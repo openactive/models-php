@@ -2,6 +2,8 @@
 
 namespace OpenActive\Model;
 
+use OpenActive\Validators\BaseValidator;
+
 class BaseModel
 {
     public function __construct($data)
@@ -71,5 +73,26 @@ class BaseModel
             },
             $name
         ));
+    }
+
+    /**
+     * Check if the given value is of at least one of the given types.
+     *
+     * @param mixed $value
+     * @param string[] $types
+     * @return bool
+     * @throws \Exception If the provided argument is not of a supported type.
+     */
+    public static function checkTypes($value, $types)
+    {
+        foreach($types as $type) {
+            $validator = BaseValidator::getValidator($type);
+
+            if($validator->run($value) === true) {
+                return $validator->coerce($value);
+            }
+        }
+
+        throw new \Exception("Error Processing Request");
     }
 }
