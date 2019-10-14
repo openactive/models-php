@@ -44,24 +44,27 @@ class BaseValidator implements ValidatorInterface
             // We are validating an array
             $isTypeArray = true;
 
+            // Instantiate validator
+            // The single item validator will be instantiated later
+            // Once we know better if we are dealing with a native type or a class
             $validator = new ArrayOfValidator();
         }
 
         // If first letter of type is a lower case letter
+        // We are validating a native type
         if(ctype_lower(substr($type, 0, 1)) === true) {
             // If we are validating an array
+            // We are validating an array of native types
             if($isTypeArray === true) {
-                // We are validating an array of native types
-
                 // Build item validator name
                 $itemValidatorName = ucfirst(substr($type, -2))."Validator";
 
-                // We set the item validator on ArrayOfValidator and return
+                // Set the item validator on ArrayOfValidator and return
                 // (fluid interface returns the validator itself)
                 return $validator->setItemValidator(new $itemValidatorName());
             }
 
-            // We are validating a native type
+            // Build item validator name
             $validatorName = ucfirst($type)."Validator";
 
             return new $validatorName();
@@ -71,17 +74,19 @@ class BaseValidator implements ValidatorInterface
             // Force global namespace on class
             $classname = "\\".$type;
         } else {
-            // We force the namespace to OpenActive's
+            // Force the namespace to OpenActive's
             // TODO: check whether it's SchemaOrg or OA's?
             $classname = "\\OpenActive\\Models\\".$type;
         }
 
-        // If we are validating an array
+        // If validating an array
+        // it means validating an array of objects
         if($isTypeArray === true) {
-            // We are validating an array of objects
-
+            // Strip out last 2 characters "[]" to get original class name
             $classname = substr($classname, 0, -2);
 
+            // Set the item validator on ArrayOfValidator and return
+            // (fluid interface returns the validator itself)
             return $validator->setItemValidator(
                 new InstanceValidator($classname)
             );
