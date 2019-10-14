@@ -89,10 +89,15 @@ class BaseModel
             $validator = BaseValidator::getValidator($type);
 
             if($validator->run($value) === true) {
+                // If validation passes for the given type
+                // We coerce the type to mitigate PHP loose types
                 return $validator->coerce($value);
             }
         }
 
-        throw new \Exception("Error Processing Request");
+        // If validation does not pass for any of the provided types,
+        // type invalid
+        // TODO bootstrap TypeError for PHP<7 compatibility
+        throw new \Exception("The first argument type does not match any of the declared parameter types.");
     }
 }
