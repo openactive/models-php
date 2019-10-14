@@ -35,8 +35,30 @@ class BaseValidator implements ValidatorInterface
      */
     public static function getValidator($type)
     {
+        $isTypeArray = false;
+
+        // If last 2 characters are "[]"
+        if(substr($type, -2) === "[]") {
+            // We are validating an array
+            $isTypeArray = true;
+
+            $validator = new ArrayOfValidator();
+        }
+
         // If first letter of type is a lower case letter
         if(ctype_lower(substr($type, 0, 1)) === true) {
+            // If we are validating an array
+            if($isTypeArray === true) {
+                // We are validating an array of native types
+
+                // Build item validator name
+                $itemValidatorName = ucfirst(substr($type, -2))."Validator";
+
+                // We set the item validator on ArrayOfValidator and return
+                // (fluid interface returns the validator itself)
+                return $validator->setItemValidator(new $itemValidatorName());
+            }
+
             // We are validating a native type
             $validatorName = ucfirst($type)."Validator";
 
@@ -50,6 +72,17 @@ class BaseValidator implements ValidatorInterface
             // We force the namespace to OpenActive's
             // TODO: check whether it's SchemaOrg or OA's?
             $classname = "\\OpenActive\\Models\\".$type;
+        }
+
+        // If we are validating an array
+        if($isTypeArray === true) {
+            // We are validating an array of objects
+
+            $classname = substr($classname, 0, -2);
+
+            return $validator->setItemValidator(
+                new InstanceValidator($classname)
+            );
         }
 
         return new InstanceValidator($classname);
