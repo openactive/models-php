@@ -1,5 +1,7 @@
 <?php
 
+namespace OpenActive\Validators;
+
 class ArrayOfValidator extends BaseValidator
 {
     /**

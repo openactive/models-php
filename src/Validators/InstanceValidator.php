@@ -1,5 +1,7 @@
 <?php
 
+namespace OpenActive\Validators;
+
 class InstanceValidator implements ValidatorInterface
 {
     public function __construct($classname)
