@@ -37,13 +37,11 @@ class BaseValidator implements ValidatorInterface
      */
     public static function getValidator($type)
     {
-        $isTypeArray = false;
-
         // If last 2 characters are "[]"
-        if(substr($type, -2) === "[]") {
-            // We are validating an array
-            $isTypeArray = true;
+        // We are validating an array
+        $isTypeArray = substr($type, -2) === "[]";
 
+        if($isTypeArray === true) {
             // Instantiate validator
             // The single item validator will be instantiated later
             // Once we know better if we are dealing with a native type or a class
