@@ -44,8 +44,11 @@ class BaseValidator implements ValidatorInterface
         }
 
         if($type === "DateTime" || $type === "DateInterval") {
+            // Force global namespace on class
             $classname = "\\".$type;
         } else {
+            // We force the namespace to OpenActive's
+            // TODO: check whether it's SchemaOrg or OA's?
             $classname = "\\OpenActive\\Models\\".$type;
         }
 
