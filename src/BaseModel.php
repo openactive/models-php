@@ -3,6 +3,7 @@
 namespace OpenActive;
 
 use OpenActive\Validators\BaseValidator;
+use OpenActive\Helpers\DateInterval as DateIntervalHelper;
 use OpenActive\Helpers\Str;
 
 class BaseModel
@@ -79,6 +80,10 @@ class BaseModel
 
             // Attribute value is the result of calling $methodName on $obj
             $data[$attrName] = $obj->$methodName();
+
+            if($data[$attrName] instanceof \DateInterval) {
+                $data[$attrName] = DateIntervalHelper::specString($data[$attrName]);
+            }
         }
 
         $json = json_encode($data);
