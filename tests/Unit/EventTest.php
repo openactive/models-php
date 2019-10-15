@@ -72,71 +72,71 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function testSerializeEncodeDecode()
-    {
-        $original = "{\"type\":\"Concept\",\"id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}";
-        $decode = Concept::deserialize($original);
-        $encode = Concept::serialize($decode);
-
-        // output.WriteLine(decode.Id?.ToString());
-        // output.WriteLine(original);
-        // output.WriteLine(encode);
-        // $this->assertSame(
-        //     "https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd",
-        //     decode.getId()
-        // );
-        $this->assertSame($original, $encode);
-    }
-
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testSerializeEncodeDecodeList()
-    {
-        $originalList = "[{\"type\":\"Concept\",\"id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}]";
-        $decodeList = Concept::deserialize($originalList);
-        $encodeList = Concept::serialize($decodeList);
-
-        // output.WriteLine($decodeList->getId());
-        // output.WriteLine($originalList);
-        // output.WriteLine($encodeList);
-        // $this->assertSame(
-        //     "https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd",
-        //     $decodeList->getId()
-        // );
-        $this->assertSame($originalList, $encodeList);
-    }
+    // public function testSerializeEncodeDecode()
+    // {
+    //     $original = "{\"type\":\"Concept\",\"id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}";
+    //     $decode = Concept::deserialize($original);
+    //     $encode = Concept::serialize($decode);
+    //
+    //     // output.WriteLine(decode.Id?.ToString());
+    //     // output.WriteLine(original);
+    //     // output.WriteLine(encode);
+    //     // $this->assertSame(
+    //     //     "https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd",
+    //     //     $decode->getId()
+    //     // );
+    //     $this->assertSame($original, $encode);
+    // }
 
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function testSerializeOfferEncodeDecode()
-    {
-        $offer = new Offer([
-            "Id" => new Uri("https://www.example.com/event_offer/12345_201803180430"),
-            "Url" => new Uri("https://www.example.com/event_offer/12345_201803180430"),
-            "Price" => 30,
-            "PriceCurrency" => "USD",
-            "ValidFrom" => new DateTime(
-                "2017-01-20 16:20:00",
-                new DateTimeZone("-0800")
-            )
-        ]);
+    // public function testSerializeEncodeDecodeList()
+    // {
+    //     $originalList = "[{\"type\":\"Concept\",\"id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}]";
+    //     $decodeList = Concept::deserialize($originalList);
+    //     $encodeList = Concept::serialize($decodeList);
+    //
+    //     // output.WriteLine($decodeList->getId());
+    //     // output.WriteLine($originalList);
+    //     // output.WriteLine($encodeList);
+    //     // $this->assertSame(
+    //     //     "https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd",
+    //     //     $decodeList->getId()
+    //     // );
+    //     $this->assertSame($originalList, $encodeList);
+    // }
 
-        $encode = Offer::serialize($offer);
-
-        $decode = Offer::deserialize($encode);
-
-        $reencode = Offer::serialize($decode);
-
-        // output.WriteLine($encode);
-        // output.WriteLine($reencode);
-        $this->assertSame($encode, $reencode);
-    }
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    // public function testSerializeOfferEncodeDecode()
+    // {
+    //     $offer = new Offer([
+    //         "Id" => "https://www.example.com/event_offer/12345_201803180430",
+    //         "Url" => "https://www.example.com/event_offer/12345_201803180430",
+    //         "Price" => 30,
+    //         "PriceCurrency" => "USD",
+    //         "ValidFrom" => new \DateTime(
+    //             "2017-01-20 16:20:00",
+    //             new \DateTimeZone("-0800")
+    //         )
+    //     ]);
+    //
+    //     $encode = Offer::serialize($offer);
+    //
+    //     $decode = Offer::deserialize($encode);
+    //
+    //     $reencode = Offer::serialize($decode);
+    //
+    //     // output.WriteLine($encode);
+    //     // output.WriteLine($reencode);
+    //     $this->assertSame($encode, $reencode);
+    // }
 
     /**
      * @var \OpenActive\Model\SessionSeries
