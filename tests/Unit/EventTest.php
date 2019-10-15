@@ -52,9 +52,9 @@ class ExampleTest extends TestCase
     //                 "Url" => new Uri("https://www.example.com/event_offer/12345_201803180430"),
     //                 "Price" => 30,
     //                 "PriceCurrency" => "USD",
-    //                 "ValidFrom" => new DateTime(
+    //                 "ValidFrom" => new \DateTime(
     //                     "2017-01-20 16:20:00",
-    //                     new DateTimeZone("-0800")
+    //                     new \DateTimeZone("-0800")
     //                 )
     //             ])
     //         ]
@@ -147,10 +147,10 @@ class ExampleTest extends TestCase
         $data[] = new SessionSeries([
             "Name" => "Virtual BODYPUMP",
             "Description" => "This is the virtual version of the original barbell class, which will help you get lean, toned and fit - fast. Les Mills™ Virtual classes are designed for people who cannot get access to our live classes or who want to get a ‘taste’ of a Les Mills™ class before taking a live class with an instructor. The classes are played on a big video screen, with dimmed lighting and pumping surround sound, and are led onscreen by the people who actually choreograph the classes.",
-            "Duration" => new DateInterval("P1D"),
-            "StartDate" => new DateTime(
+            "Duration" => new \DateInterval("P1D"),
+            "StartDate" => new \DateTime(
                 "2017-04-24 19:30:00",
-                new DateTimeZone("-0800")
+                new \DateTimeZone("-0800")
             ),
             "Location" => new Place([
                 "Name" => "Santa Clara City Library, Central Park Library",
@@ -167,18 +167,18 @@ class ExampleTest extends TestCase
                     "Url" => new Uri("http://www.example.com/event_image/12345")
                 ])
             ],
-            "EndDate" => new DateTime(
+            "EndDate" => new \DateTime(
                 "2017-04-24 23:00:00",
-                new DateTimeZone("-0800")
+                new \DateTimeZone("-0800")
             ),
             "Offers" => [
                 new IndicativeOffer([
                     "Url" => new Uri("https://www.example.com/event_offer/12345_201803180430"),
                     "Price" => 30,
                     "PriceCurrency" => "USD",
-                    "ValidFrom" => new DateTime(
+                    "ValidFrom" => new \DateTime(
                         "2017-01-20 16:20:00",
-                        new DateTimeZone("-0800")
+                        new \DateTimeZone("-0800")
                     )
                 ])
             ],
