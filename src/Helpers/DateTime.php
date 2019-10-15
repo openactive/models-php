@@ -16,7 +16,7 @@ class DateTime
      */
     public static function iso8601($date)
     {
-        if($dateInterval instanceof \DateTime === FALSE) {
+        if($date instanceof \DateTime === FALSE) {
             throw new \Exception("Invalid argument type.");
         }
 
