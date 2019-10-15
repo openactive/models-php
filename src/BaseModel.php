@@ -75,8 +75,9 @@ class BaseModel
                 continue;
             }
 
-            // Attribute name is method name without the leading "get" string
-            $attrName = substr($methodName, 3);
+            // Attribute name is method name without the leading "get" string,
+            // and camel-cased
+            $attrName = Str::camel(substr($methodName, 3));
 
             // Attribute value is the result of calling $methodName on $obj
             $data[$attrName] = $obj->$methodName();
