@@ -2,14 +2,14 @@
 
 namespace Tests\Unit;
 
-use OpenActive\Model\BaseModel;
-use OpenActive\Model\Concept;
-use OpenActive\Model\ImageObject;
-use OpenActive\Model\IndicativeOffer;
-use OpenActive\Model\Offer;
-use OpenActive\Model\Place;
-use OpenActive\Model\PostalAddress;
-use OpenActive\Model\SessionSeries;
+use OpenActive\BaseModel;
+use OpenActive\Models\OA\Concept;
+use OpenActive\Models\OA\ImageObject;
+use OpenActive\Models\OA\IndicativeOffer;
+use OpenActive\Models\OA\Offer;
+use OpenActive\Models\OA\Place;
+use OpenActive\Models\OA\PostalAddress;
+use OpenActive\Models\OA\SessionSeries;
 use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
