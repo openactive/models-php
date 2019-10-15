@@ -124,28 +124,28 @@ class BaseModel
      */
     protected static function removeAllButFirstContext($json)
     {
-        $schema_context_property = "\"@context\":\"http://schema.org\",";
-        $open_active_context_property = "\"@context\":\"https://openactive.io/\",";
-        $open_active_context_property_with_beta = "\"@context\":[\"https://openactive.io/\",\"https://openactive.io/ns-beta\"],";
+        $schemaContextProperty = "\"@context\":\"http://schema.org\",";
+        $openActiveContextProperty = "\"@context\":\"https://openactive.io/\",";
+        $openActiveContextPropertyWithBeta = "\"@context\":[\"https://openactive.io/\",\"https://openactive.io/ns-beta\"],";
 
-        $schema_id_json = "\"@id\":";
-        $open_active_id_json = "\"id\":";
-        $schema_type_json = "\"@type\":";
-        $open_active_type_json = "\"type\":";
+        $schemaIdJson = "\"@id\":";
+        $openActiveIdJson = "\"id\":";
+        $schemaTypeJson = "\"@type\":";
+        $openActiveTypeJson = "\"type\":";
 
         // Only include beta context if there are beta properties present
-        $context_property = strpos($json, "\"beta:") !== FALSE ?
-            $open_active_context_property_with_beta :
-            $open_active_context_property;
+        $contextProperty = strpos($json, "\"beta:") !== FALSE ?
+            $openActiveContextPropertyWithBeta :
+            $openActiveContextProperty;
 
         // We add the one to represent the opening curly brace.
-        $startIndex = strlen($schema_context_property) + 1;
+        $startIndex = strlen($schemaContextProperty) + 1;
 
         // Replace OpenActive context and properties
-        $json = substr_replace($schema_context_property, "", $startIndex, strlen($json) - $startIndex);
-        $json = substr_replace($schema_context_property, $context_property, 0, startIndex);
-        $json = substr_replace($schema_id_json, $open_active_id_json, 0, strlen($json));
-        $json = substr_replace($schema_type_json, $open_active_type_json, 0, strlen($json));
+        $json = substr_replace($schemaContextProperty, "", $startIndex, strlen($json) - $startIndex);
+        $json = substr_replace($schemaContextProperty, $contextProperty, 0, $startIndex);
+        $json = substr_replace($schemaIdJson, $openActiveIdJson, 0, strlen($json));
+        $json = substr_replace($schemaTypeJson, $openActiveTypeJson, 0, strlen($json));
 
         return $json;
     }
