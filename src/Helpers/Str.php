@@ -12,7 +12,7 @@ class Str
      */
     public static function camel($value)
     {
-        return lcfirst(self::canonicalizeName($value));
+        return lcfirst(self::pascal($value));
     }
 
     /**
