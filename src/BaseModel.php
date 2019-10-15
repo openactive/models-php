@@ -52,9 +52,10 @@ class BaseModel
     }
 
     /**
-     * Returns the JSON-LD representation of this instance.
+     * Returns the JSON-LD representation of the given instance.
      *
-     * @return string JSON-LD string representation of this instance.
+     * @param \OpenActive\BaseModel $obj The given instance to convert to JSON-LD
+     * @return string JSON-LD string representation of the given instance.
      */
     public static function serialize($obj)
     {
@@ -62,22 +63,22 @@ class BaseModel
         // Please note we don't use get_object_vars() here,
         // As it would only return the public attributes
         // (BaseModel's are all protected)
-        $class_methods = get_class_methods($obj);
+        $classMethods = get_class_methods($obj);
 
         $data = array();
 
         // Loop all class methods, find the getters
         // and map defined attributes, normalizing attribute name
-        foreach($class_methods as $method_name) {
-            if(substr($method_name, 0, 3) !== "get") {
+        foreach($classMethods as $methodName) {
+            if(substr($methodName, 0, 3) !== "get") {
                 continue;
             }
 
             // Attribute name is method name without the leading "get" string
-            $attr_name = substr($method_name, 3);
+            $attrName = substr($methodName, 3);
 
-            // Attribute value is the result of calling $method_name on $obj
-            $data[$attr_name] = $obj->$method_name();
+            // Attribute value is the result of calling $methodName on $obj
+            $data[$attrName] = $obj->$methodName();
         }
 
         $json = json_encode($data);
