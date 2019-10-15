@@ -10,7 +10,10 @@ class BaseModel
     public function __construct($data)
     {
         foreach ($data as $key => $value) {
-            $this->$key = $value;
+            // Make sure attribute is cased properly
+            $attributeName = Str::camel($key);
+
+            $this->$attributeName = $value;
         }
     }
 
