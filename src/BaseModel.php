@@ -3,6 +3,7 @@
 namespace OpenActive;
 
 use OpenActive\Validators\BaseValidator;
+use OpenActive\Helpers\Str;
 
 class BaseModel
 {
@@ -22,7 +23,7 @@ class BaseModel
         $self = new $class([]);
 
         foreach ($data as $key => $value) {
-            $attr_name = self::snakeName($key);
+            $attr_name = Str::snakeName($key);
 
             if (is_scalar($value)) {
                 $self->$attr_name = $value;
@@ -72,7 +73,7 @@ class BaseModel
     public function __get($name)
     {
         if (property_exists($this, $name)) {
-            $method = 'get' . self::canonicalizeName($name);
+            $method = 'get' . Str::canonicalizeName($name);
             return $this->$method();
         }
     }
@@ -80,7 +81,7 @@ class BaseModel
     public function __set($name, $value)
     {
         if (property_exists($this, "_${name}")) {
-            $method = 'set' . self::canonicalizeName($name);
+            $method = 'set' . Str::canonicalizeName($name);
             $this->$method($value);
         }
     }
@@ -90,33 +91,6 @@ class BaseModel
         if ($this->__get($name) === null) {
             return false;
         }
-    }
-
-    public static function canonicalizeName($name)
-    {
-        return preg_replace_callback(
-            '/(?:^|_)([a-z])/',
-            static function ($matches) {
-                return strtoupper($matches[1]);
-            },
-            $name
-        );
-    }
-
-    public static function camelCaseName($name)
-    {
-        return lcfirst(self::canonicalizeName($name));
-    }
-
-    public static function snakeName($name)
-    {
-        return strtolower(preg_replace_callback(
-            '/(?<=[a-z])([A-Z])/',
-            static function ($matches) {
-                return '_' . $matches[1];
-            },
-            $name
-        ));
     }
 
     /**
