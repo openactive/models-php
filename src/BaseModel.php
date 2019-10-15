@@ -110,6 +110,8 @@ class BaseModel
 
         $json = json_encode($data);
 
+        return $json;
+
         // TODO: do we need this? as PHP does not provide context
         return self::removeAllButFirstContext($json);
     }
