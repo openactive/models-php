@@ -49,7 +49,7 @@ class ExampleTest extends TestCase
     //     $event = new Event([
     //         "Offers" => [
     //             new IndicativeOffer([
-    //                 "Url" => new Uri("https://www.example.com/event_offer/12345_201803180430"),
+    //                 "Url" => "https://www.example.com/event_offer/12345_201803180430",
     //                 "Price" => 30,
     //                 "PriceCurrency" => "USD",
     //                 "ValidFrom" => new \DateTime(
@@ -164,7 +164,7 @@ class ExampleTest extends TestCase
             ]),
             "Image" => [
                 new ImageObject([
-                    "Url" => new Uri("http://www.example.com/event_image/12345")
+                    "Url" => "http://www.example.com/event_image/12345"
                 ])
             ],
             "EndDate" => new \DateTime(
@@ -173,7 +173,7 @@ class ExampleTest extends TestCase
             ),
             "Offers" => [
                 new IndicativeOffer([
-                    "Url" => new Uri("https://www.example.com/event_offer/12345_201803180430"),
+                    "Url" => "https://www.example.com/event_offer/12345_201803180430",
                     "Price" => 30,
                     "PriceCurrency" => "USD",
                     "ValidFrom" => new \DateTime(
