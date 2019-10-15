@@ -11,6 +11,9 @@ class BaseModel
         }
     }
 
+    /**
+     * @return object
+     */
     public static function deserialize($data)
     {
         $class = get_called_class();
@@ -25,7 +28,43 @@ class BaseModel
                 $self->$attr_name = ModelFactory::deserialize($value);
             }
         }
+
         return $self;
+    }
+
+    /**
+     * Returns the JSON-LD representation of this instance.
+     *
+     * @return string JSON-LD string representation of this instance.
+     */
+    public static function serialize($obj)
+    {
+        // Get all defined methods for the object
+        // Please note we don't use get_object_vars() here,
+        // As it would only return the public attributes
+        // (BaseModel's are all protected)
+        $class_methods = get_class_methods($obj);
+
+        $data = array();
+
+        // Loop all class methods, find the getters
+        // and map defined attributes, normalizing attribute name
+        foreach($class_methods as $method_name) {
+            if(substr($method_name, 0, 3) !== "get") {
+                continue;
+            }
+
+            // Attribute name is method name without the leading "get" string
+            $attr_name = substr($method_name, 3);
+
+            // Attribute value is the result of calling $method_name on $obj
+            $data[$attr_name] = $obj->$method_name();
+        }
+
+        $json = json_encode($data);
+
+        // TODO: do we need this? as PHP does not provide context
+        return self::removeAllButFirstContext($json);
     }
 
     public function __get($name)
@@ -71,5 +110,36 @@ class BaseModel
             },
             $name
         ));
+    }
+
+    /**
+     * @return string
+     */
+    protected static function removeAllButFirstContext($json)
+    {
+        $schema_context_property = "\"@context\":\"http://schema.org\",";
+        $open_active_context_property = "\"@context\":\"https://openactive.io/\",";
+        $open_active_context_property_with_beta = "\"@context\":[\"https://openactive.io/\",\"https://openactive.io/ns-beta\"],";
+
+        $schema_id_json = "\"@id\":";
+        $open_active_id_json = "\"id\":";
+        $schema_type_json = "\"@type\":";
+        $open_active_type_json = "\"type\":";
+
+        // Only include beta context if there are beta properties present
+        $context_property = strpos($json, "\"beta:") !== FALSE ?
+            $open_active_context_property_with_beta :
+            $open_active_context_property;
+
+        // We add the one to represent the opening curly brace.
+        $startIndex = strlen($schema_context_property) + 1;
+
+        // Replace OpenActive context and properties
+        $json = substr_replace($schema_context_property, "", $startIndex, strlen($json) - $startIndex);
+        $json = substr_replace($schema_context_property, $context_property, 0, startIndex);
+        $json = substr_replace($schema_id_json, $open_active_id_json, 0, strlen($json));
+        $json = substr_replace($schema_type_json, $open_active_type_json, 0, strlen($json));
+
+        return $json;
     }
 }
