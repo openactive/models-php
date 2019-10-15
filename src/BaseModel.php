@@ -103,6 +103,11 @@ class BaseModel
         );
     }
 
+    public static function camelCaseName($name)
+    {
+        return lcfirst(self::canonicalizeName($name));
+    }
+
     public static function snakeName($name)
     {
         return strtolower(preg_replace_callback(
