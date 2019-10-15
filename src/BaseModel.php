@@ -18,20 +18,33 @@ class BaseModel
     }
 
     /**
+     * Returns an object from a given JSON-LD representation.
+     *
+     * @param string|array If a string is provided, we attempt JSON-decoding first
      * @return object
      */
     public static function deserialize($data)
     {
+        // If a string is provided, we attempt JSON-decoding first
+        if(is_string($data)) {
+            $data = json_decode($data, true);
+        }
+
         $class = get_called_class();
         $self = new $class([]);
 
+        // If data provided is not an array, return an empty class
+        if(is_array($data) === FALSE) {
+            return $self;
+        }
+
         foreach ($data as $key => $value) {
-            $attr_name = Str::snake($key);
+            $attrName = Str::pascal($key);
 
             if (is_scalar($value)) {
-                $self->$attr_name = $value;
+                $self->$attrName = $value;
             } else {
-                $self->$attr_name = ModelFactory::deserialize($value);
+                $self->$attrName = ModelFactory::deserialize($value);
             }
         }
 
