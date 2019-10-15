@@ -2,6 +2,14 @@
 
 namespace Tests\Unit;
 
+use OpenActive\Model\BaseModel;
+use OpenActive\Model\Concept;
+use OpenActive\Model\ImageObject;
+use OpenActive\Model\IndicativeOffer;
+use OpenActive\Model\Offer;
+use OpenActive\Model\Place;
+use OpenActive\Model\PostalAddress;
+use OpenActive\Model\SessionSeries;
 use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
@@ -9,10 +17,211 @@ class ExampleTest extends TestCase
     /**
      * A basic test example.
      *
+     * @dataProvider sessionSeriesProvider
      * @return void
      */
-    public function testBasicTest()
+    public function testSerializeEventGoogleStructuredDataReturnsExpectedJsonLd($event, $json)
     {
-        $this->assertTrue(true);
+        $this->assertSame($json, BaseModel::serialize($event));
+    }
+
+    /**
+     * A basic test example.
+     *
+     * @dataProvider sessionSeriesProvider
+     * @return void
+     */
+    public function testSerializeEventAccessor($event)
+    {
+        $this->assertSame(
+            "Santa Clara City Library, Central Park Library",
+            $event->getLocation()->getName()
+        );
+    }
+
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    // public function testSerializeOfferCast()
+    // {
+    //     $event = new Event([
+    //         "Offers" => [
+    //             new IndicativeOffer([
+    //                 "Url" => new Uri("https://www.example.com/event_offer/12345_201803180430"),
+    //                 "Price" => 30,
+    //                 "PriceCurrency" => "USD",
+    //                 "ValidFrom" => new DateTime(
+    //                     "2017-01-20 16:20:00",
+    //                     new DateTimeZone("-0800")
+    //                 )
+    //             ])
+    //         ]
+    //         // .Cast<Offer>().ToList()
+    //     ]);
+    //
+    //     $this->assertSame(
+    //         "Santa Clara City Library, Central Park Library",
+    //         BaseModel::serialize($event)
+    //     );
+    // }
+
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testSerializeEncodeDecode()
+    {
+        $original = "{\"type\":\"Concept\",\"id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}";
+        $decode = Concept::deserialize($original);
+        $encode = Concept::serialize($decode);
+
+        // output.WriteLine(decode.Id?.ToString());
+        // output.WriteLine(original);
+        // output.WriteLine(encode);
+        // $this->assertSame(
+        //     "https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd",
+        //     decode.getId()
+        // );
+        $this->assertSame($original, $encode);
+    }
+
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testSerializeEncodeDecodeList()
+    {
+        $originalList = "[{\"type\":\"Concept\",\"id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}]";
+        $decodeList = Concept::deserialize($originalList);
+        $encodeList = Concept::serialize($decodeList);
+
+        // output.WriteLine($decodeList->getId());
+        // output.WriteLine($originalList);
+        // output.WriteLine($encodeList);
+        // $this->assertSame(
+        //     "https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd",
+        //     $decodeList->getId()
+        // );
+        $this->assertSame($originalList, $encodeList);
+    }
+
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testSerializeOfferEncodeDecode()
+    {
+        $offer = new Offer([
+            "Id" => new Uri("https://www.example.com/event_offer/12345_201803180430"),
+            "Url" => new Uri("https://www.example.com/event_offer/12345_201803180430"),
+            "Price" => 30,
+            "PriceCurrency" => "USD",
+            "ValidFrom" => new DateTime(
+                "2017-01-20 16:20:00",
+                new DateTimeZone("-0800")
+            )
+        ]);
+
+        $encode = Offer::serialize($offer);
+
+        $decode = Offer::deserialize($encode);
+
+        $reencode = Offer::serialize($decode);
+
+        // output.WriteLine($encode);
+        // output.WriteLine($reencode);
+        $this->assertSame($encode, $reencode);
+    }
+
+    /**
+     * @var \OpenActive\Model\SessionSeries
+     */
+    public function sessionSeriesProvider() {
+        $data = array();
+
+        $data[] = new SessionSeries([
+            "Name" => "Virtual BODYPUMP",
+            "Description" => "This is the virtual version of the original barbell class, which will help you get lean, toned and fit - fast. Les Mills™ Virtual classes are designed for people who cannot get access to our live classes or who want to get a ‘taste’ of a Les Mills™ class before taking a live class with an instructor. The classes are played on a big video screen, with dimmed lighting and pumping surround sound, and are led onscreen by the people who actually choreograph the classes.",
+            "Duration" => new DateInterval("P1D"),
+            "StartDate" => new DateTime(
+                "2017-04-24 19:30:00",
+                new DateTimeZone("-0800")
+            ),
+            "Location" => new Place([
+                "Name" => "Santa Clara City Library, Central Park Library",
+                "Address" => new PostalAddress([
+                    "StreetAddress" => "2635 Homestead Rd",
+                    "AddressLocality" => "Santa Clara",
+                    "PostalCode" => "95051",
+                    "AddressRegion" => "CA",
+                    "AddressCountry" => "US"
+                ])
+            ]),
+            "Image" => [
+                new ImageObject([
+                    "Url" => new Uri("http://www.example.com/event_image/12345")
+                ])
+            ],
+            "EndDate" => new DateTime(
+                "2017-04-24 23:00:00",
+                new DateTimeZone("-0800")
+            ),
+            "Offers" => [
+                new IndicativeOffer([
+                    "Url" => new Uri("https://www.example.com/event_offer/12345_201803180430"),
+                    "Price" => 30,
+                    "PriceCurrency" => "USD",
+                    "ValidFrom" => new DateTime(
+                        "2017-01-20 16:20:00",
+                        new DateTimeZone("-0800")
+                    )
+                ])
+            ],
+            "AttendeeInstructions" => "Ensure you bring trainers and a bottle of water.",
+            "MeetingPoint" => ""
+        ]);
+
+        $data[] = "{".
+            "\"@context\":\"https://openactive.io/\",".
+            "\"type\":\"SessionSeries\",".
+            "\"name\":\"Jan Lieberman Concert Series: Journey in Jazz\",".
+            "\"description\":\"Join us for an afternoon of Jazz with Santa Clara resident and pianist Andy Lagunoff. Complimentary food and beverages will be served.\",".
+            "\"image\":\"http://www.example.com/event_image/12345\",".
+            "\"duration\":\"P1D\",".
+            "\"location\":{".
+                "\"type\":\"Place\",".
+                "\"name\":\"Santa Clara City Library, Central Park Library\",".
+                "\"address\":{".
+                    "\"type\":\"PostalAddress\",".
+                    "\"addressCountry\":\"US\",".
+                    "\"addressLocality\":\"Santa Clara\",".
+                    "\"addressRegion\":\"CA\",".
+                    "\"postalCode\":\"95051\",".
+                    "\"streetAddress\":\"2635 Homestead Rd\"".
+                "}".
+            "},".
+            "\"offers\":{".
+                "\"type\":\"Offer\",".
+                "\"url\":\"https://www.example.com/event_offer/12345_201803180430\",".
+                "\"availability\":\"http://schema.org/InStock\",".
+                "\"price\":30.0,".
+                "\"priceCurrency\":\"USD\",".
+                "\"validFrom\":\"2017-01-20T16:20:00-08:00\"".
+            "},".
+            "\"performer\":{".
+                "\"type\":\"Person\",".
+                "\"name\":\"Andy Lagunoff\"".
+            "},".
+            "\"startDate\":\"2017-04-24T19:30:00-08:00\",".
+            "\"endDate\":\"2017-04-24T23:00:00-08:00\",".
+            "\"attendeeInstructions\":\"fun!\"".
+        "}";
+
+        return $data;
     }
 }
