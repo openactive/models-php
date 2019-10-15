@@ -23,7 +23,7 @@ class BaseModel
         $self = new $class([]);
 
         foreach ($data as $key => $value) {
-            $attr_name = Str::snakeName($key);
+            $attr_name = Str::snake($key);
 
             if (is_scalar($value)) {
                 $self->$attr_name = $value;
@@ -73,7 +73,7 @@ class BaseModel
     public function __get($name)
     {
         if (property_exists($this, $name)) {
-            $method = 'get' . Str::canonicalizeName($name);
+            $method = 'get' . Str::pascal($name);
             return $this->$method();
         }
     }
@@ -81,7 +81,7 @@ class BaseModel
     public function __set($name, $value)
     {
         if (property_exists($this, "_${name}")) {
-            $method = 'set' . Str::canonicalizeName($name);
+            $method = 'set' . Str::pascal($name);
             $this->$method($value);
         }
     }

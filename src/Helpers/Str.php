@@ -10,9 +10,9 @@ class Str
      * @param string $value
      * @return string
      */
-    public static function camelCaseName($name)
+    public static function camel($value)
     {
-        return lcfirst(self::canonicalizeName($name));
+        return lcfirst(self::canonicalizeName($value));
     }
 
     /**
@@ -21,14 +21,14 @@ class Str
      * @param string $value
      * @return string
      */
-    public static function canonicalizeName($name)
+    public static function pascal($value)
     {
         return preg_replace_callback(
             '/(?:^|_)([a-z])/',
             static function ($matches) {
                 return strtoupper($matches[1]);
             },
-            $name
+            $value
         );
     }
 
@@ -38,14 +38,14 @@ class Str
      * @param string $value
      * @return string
      */
-    public static function snakeName($name)
+    public static function snake($value)
     {
         return strtolower(preg_replace_callback(
             '/(?<=[a-z])([A-Z])/',
             static function ($matches) {
                 return '_' . $matches[1];
             },
-            $name
+            $value
         ));
     }
 }
