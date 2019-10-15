@@ -97,6 +97,9 @@ class BaseModel
             }
         }
 
+        // Remove empty elements
+        $data = array_filter($data);
+
         $json = json_encode($data);
 
         // TODO: do we need this? as PHP does not provide context
