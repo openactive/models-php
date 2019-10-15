@@ -83,16 +83,24 @@ class BaseModel
             // Attribute value is the result of calling $methodName on $obj
             $data[$attrName] = $obj->$methodName();
 
-            if(is_object($data[$attrName])) {
-                $classname = get_class($data[$attrName]);
+            if(is_array($data[$attrName])) {
+                foreach($data[$attrName] as $idx => $item) {
+                    $fq_classname = "\\".get_class($item);
 
-                switch ($classname) {
-                    case "DateInterval":
+                    $data[$attrName][$idx] = $fq_classname::serialize($item);
+                }
+            } else if(is_object($data[$attrName])) {
+                $fq_classname = "\\".get_class($data[$attrName]);
+
+                switch ($fq_classname) {
+                    case "\\DateInterval":
                         $data[$attrName] = DateIntervalHelper::specString($data[$attrName]);
                         break;
-                    case "DateTime":
+                    case "\\DateTime":
                         $data[$attrName] = DateTimeHelper::iso8601($data[$attrName]);
                         break;
+                    default:
+                        $data[$attrName] = $fq_classname::serialize($data[$attrName]);
                 }
             }
         }
