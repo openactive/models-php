@@ -69,6 +69,10 @@ class BaseModel
 
         $data = array();
 
+        // TODO: make this dynamic based on class const
+        // Add context
+        $data["@context"] = "https://openactive.io/";
+
         // Loop all class methods, find the getters
         // and map defined attributes, normalizing attribute name
         foreach($classMethods as $methodName) {
