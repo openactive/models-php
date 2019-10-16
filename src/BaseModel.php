@@ -160,16 +160,20 @@ class BaseModel
 
     public function __get($name)
     {
-        if (property_exists($this, $name)) {
+        // Always makes sure name casing is correct
+        if (property_exists($this, Str::camel($name))) {
             $method = 'get' . Str::pascal($name);
+
             return $this->$method();
         }
     }
 
     public function __set($name, $value)
     {
-        if (property_exists($this, "_${name}")) {
+        // Always makes sure name casing is correct
+        if (property_exists($this, Str::camel($name))) {
             $method = 'set' . Str::pascal($name);
+
             $this->$method($value);
         }
     }
