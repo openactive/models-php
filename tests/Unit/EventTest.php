@@ -121,29 +121,29 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    // public function testSerializeOfferEncodeDecode()
-    // {
-    //     $offer = new Offer([
-    //         "Id" => "https://www.example.com/event_offer/12345_201803180430",
-    //         "Url" => "https://www.example.com/event_offer/12345_201803180430",
-    //         "Price" => 30,
-    //         "PriceCurrency" => "USD",
-    //         "ValidFrom" => new \DateTime(
-    //             "2017-01-20 16:20:00",
-    //             new \DateTimeZone("-0800")
-    //         )
-    //     ]);
-    //
-    //     $encode = Offer::serialize($offer);
-    //
-    //     $decode = Offer::deserialize($encode);
-    //
-    //     $reencode = Offer::serialize($decode);
-    //
-    //     // output.WriteLine($encode);
-    //     // output.WriteLine($reencode);
-    //     $this->assertSame($encode, $reencode);
-    // }
+    public function testSerializeOfferEncodeDecode()
+    {
+        $offer = new Offer([
+            "Id" => "https://www.example.com/event_offer/12345_201803180430",
+            "Url" => "https://www.example.com/event_offer/12345_201803180430",
+            "Price" => 30,
+            "PriceCurrency" => "USD",
+            "ValidFrom" => new \DateTime(
+                "2017-01-20 16:20:00",
+                new \DateTimeZone("-0800")
+            )
+        ]);
+
+        $encode = Offer::serialize($offer);
+
+        $decode = Offer::deserialize($encode);
+
+        $reencode = Offer::serialize($decode);
+
+        // output.WriteLine($encode);
+        // output.WriteLine($reencode);
+        $this->assertSame($encode, $reencode);
+    }
 
     /**
      * @var \OpenActive\Model\SessionSeries
