@@ -23,6 +23,6 @@ class FloatValidator extends BaseValidator
      */
     public function run($value)
     {
-        return is_float($value);
+        return is_int($value) || is_float($value);
     }
 }
