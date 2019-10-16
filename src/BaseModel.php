@@ -208,7 +208,11 @@ class BaseModel
         // If validation does not pass for any of the provided types,
         // type invalid
         // TODO bootstrap TypeError for PHP<7 compatibility
-        throw new \Exception("The first argument type does not match any of the declared parameter types.");
+        throw new \Exception(
+            "The first argument type does not match any of the declared parameter types (".
+            implode(", ", $types).
+            ") for $value."
+        );
     }
 
     /**
