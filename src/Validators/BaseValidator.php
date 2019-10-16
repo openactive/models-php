@@ -61,8 +61,8 @@ class BaseValidator implements ValidatorInterface
         // If first letter of type is a lower case letter
         // We are validating a native type
         if(ctype_lower(substr($type, 0, 1)) === true) {
-            // Build item validator name
-            $validatorName = ucfirst($type)."Validator";
+            // Build item validator name (FQ)
+            $validatorName = "\\OpenActive\\Validators\\".ucfirst($type)."Validator";
 
             return new $validatorName();
         }
