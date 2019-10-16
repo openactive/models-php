@@ -71,25 +71,29 @@ class ExampleTest extends TestCase
     // }
 
     /**
-     * A basic test example.
+     * Test that serialization and deserialization return the same result
+     * after the process.
      *
      * @return void
      */
-    // public function testSerializeEncodeDecode()
-    // {
-    //     $original = "{\"type\":\"Concept\",\"id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}";
-    //     $decode = Concept::deserialize($original);
-    //     $encode = Concept::serialize($decode);
-    //
-    //     // output.WriteLine(decode.Id?.ToString());
-    //     // output.WriteLine(original);
-    //     // output.WriteLine(encode);
-    //     // $this->assertSame(
-    //     //     "https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd",
-    //     //     $decode->getId()
-    //     // );
-    //     $this->assertSame($original, $encode);
-    // }
+    public function testSerializeEncodeDecode()
+    {
+        $original = "{\"type\":\"Concept\",\"id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}";
+        $decode = Concept::deserialize($original);
+        $encode = Concept::serialize($decode);
+
+        // output.WriteLine(decode.Id?.ToString());
+        // output.WriteLine(original);
+        // output.WriteLine(encode);
+        // $this->assertSame(
+        //     "https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd",
+        //     $decode->getId()
+        // );
+        $this->assertEquals(
+            json_decode($original, true),
+            json_decode($encode, true)
+        );
+    }
 
     /**
      * A basic test example.
