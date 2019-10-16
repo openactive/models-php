@@ -5,6 +5,7 @@ namespace OpenActive;
 use OpenActive\Validators\BaseValidator;
 use OpenActive\Helpers\DateInterval as DateIntervalHelper;
 use OpenActive\Helpers\DateTime as DateTimeHelper;
+use OpenActive\Helpers\JsonLd as JsonLdHelper;
 use OpenActive\Helpers\Str;
 
 class BaseModel
