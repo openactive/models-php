@@ -10,6 +10,16 @@ use OpenActive\Helpers\Str;
 
 class BaseModel
 {
+    /**
+     * This must be included in the top-most entity in the JSON model.
+     *
+     * @var string[]
+     */
+    public static $context = [
+        "https://openactive.io/",
+        "https://openactive.io/ns-beta"
+    ];
+
     public function __construct($data)
     {
         foreach ($data as $key => $value) {
