@@ -232,9 +232,8 @@ class ExampleTest extends TestCase
                 "\"type\":\"IndicativeOffer\",".
                 "\"url\":\"https://www.example.com/event_offer/12345_201803180430\",".
                 "\"price\":30,".
-                "\"priceCurrency\":\"USD\"".
-                // Skipping validFrom as not specified anywhere as an available attribute
-                // "\"validFrom\":\"2017-01-20T16:20:00-08:00\"".
+                "\"priceCurrency\":\"USD\",".
+                "\"validFrom\":\"2017-01-20T16:20:00-08:00\"".
             "}],".
             // "\"performer\":{".
             //     "\"type\":\"Person\",".
