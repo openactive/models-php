@@ -22,7 +22,10 @@ class ExampleTest extends TestCase
      */
     public function testSerializeEventGoogleStructuredDataReturnsExpectedJsonLd($event, $json)
     {
-        $this->assertSame($json, BaseModel::serialize($event));
+        $this->assertEquals(
+            json_decode($json, true),
+            json_decode(BaseModel::serialize($event), true)
+        );
     }
 
     /**
