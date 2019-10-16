@@ -99,9 +99,8 @@ class BaseModel
 
         $data = array();
 
-        // TODO: make this dynamic based on class const
-        // Add context
-        $data["@context"] = "https://openactive.io/";
+        // Add context - this will get the called class's context
+        $data["@context"] = static::$context;
 
         // Get JSON-LD type
         $data["type"] = JsonLdHelper::getType($obj);
