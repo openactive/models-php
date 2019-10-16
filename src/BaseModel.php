@@ -54,10 +54,10 @@ class BaseModel
         foreach ($data as $key => $value) {
             $attrName = Str::pascal($key);
 
-            if (is_scalar($value)) {
-                $self->$attrName = $value;
+            if (is_object($value)) {
+                $self->$attrName = $value::deserialize($value);
             } else {
-                $self->$attrName = ModelFactory::deserialize($value);
+                $self->$attrName = $value;
             }
         }
 
