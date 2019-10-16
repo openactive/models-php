@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 class ExampleTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Test that serialized serialized event returns expected JSON-LD.
      *
      * @dataProvider sessionSeriesProvider
      * @return void
@@ -29,7 +29,7 @@ class ExampleTest extends TestCase
     }
 
     /**
-     * A basic test example.
+     * Test event accessors.
      *
      * @dataProvider sessionSeriesProvider
      * @return void
@@ -43,7 +43,7 @@ class ExampleTest extends TestCase
     }
 
     /**
-     * A basic test example.
+     * This test does not make sense.
      *
      * @return void
      */
