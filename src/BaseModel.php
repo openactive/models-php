@@ -62,6 +62,25 @@ class BaseModel
      */
     public static function serialize($obj)
     {
+        // Get data ready to be encoded
+        $data = self::prepareDataForSerialization($obj);
+
+        $json = json_encode($data);
+
+        return $json;
+
+        // TODO: do we need this? as PHP does not provide context
+        return self::removeAllButFirstContext($json);
+    }
+
+    /**
+     * Returns an associative array with the data ready for JSON-LD serialization.
+     *
+     * @param \OpenActive\BaseModel $obj The given instance to convert to JSON-LD
+     * @return array
+     */
+    public static function prepareDataForSerialization($obj)
+    {
         // Get all defined methods for the object
         // Please note we don't use get_object_vars() here,
         // As it would only return the public attributes
@@ -130,14 +149,7 @@ class BaseModel
         }
 
         // Remove empty elements
-        $data = array_filter($data);
-
-        $json = json_encode($data);
-
-        return $json;
-
-        // TODO: do we need this? as PHP does not provide context
-        return self::removeAllButFirstContext($json);
+        return array_filter($data);
     }
 
     public function __get($name)
