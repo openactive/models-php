@@ -89,28 +89,44 @@ class BaseModel
             $attrName = Str::camel(substr($methodName, 3));
 
             // Attribute value is the result of calling $methodName on $obj
-            $data[$attrName] = $obj->$methodName();
+            $attrValue = $obj->$methodName();
 
-            if(is_array($data[$attrName])) {
-                foreach($data[$attrName] as $idx => $item) {
+            if(is_array($attrValue)) {
+                // If attribute value is an array,
+                // get data for serialization from each of the item.
+                foreach($attrValue as $idx => $item) {
+                    // Get fully qualified namespace of the item's class name
                     $fq_classname = "\\".get_class($item);
 
-                    $data[$attrName][$idx] = $fq_classname::serialize($item);
+                    $attrValue[$idx] = $fq_classname::prepareDataForSerialization(
+                        $item
+                    );
                 }
-            } else if(is_object($data[$attrName])) {
-                $fq_classname = "\\".get_class($data[$attrName]);
+            } else if(is_object($attrValue)) {
+                // If attribute value is an object,
+                // get the data for the individual object
+
+                // Get fully qualified namespace of the item's class name
+                $fq_classname = "\\".get_class($attrValue);
 
                 switch ($fq_classname) {
                     case "\\DateInterval":
-                        $data[$attrName] = DateIntervalHelper::specString($data[$attrName]);
+                        // Get interval spec string, e.g. "P1D"
+                        $attrValue = DateIntervalHelper::specString($attrValue);
                         break;
                     case "\\DateTime":
-                        $data[$attrName] = DateTimeHelper::iso8601($data[$attrName]);
+                        // Get ISO 8601 date time representation,
+                        // e.g. "2019-01-01T00:00:00-08:00"
+                        $attrValue = DateTimeHelper::iso8601($attrValue);
                         break;
                     default:
-                        $data[$attrName] = $fq_classname::serialize($data[$attrName]);
+                        $attrValue = $fq_classname::prepareDataForSerialization(
+                            $attrValue
+                        );
                 }
             }
+
+            $data[$attrName] = $attrValue;
         }
 
         // Remove empty elements
