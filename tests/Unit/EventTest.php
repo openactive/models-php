@@ -148,7 +148,8 @@ class ExampleTest extends TestCase
     /**
      * @var \OpenActive\Model\SessionSeries
      */
-    public function sessionSeriesProvider() {
+    public function sessionSeriesProvider()
+    {
         $data = array();
 
         $data[0] = array();
