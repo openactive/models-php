@@ -78,7 +78,7 @@ class ExampleTest extends TestCase
      */
     public function testSerializeEncodeDecode()
     {
-        $original = "{\"type\":\"Concept\",\"id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}";
+        $original = "{\"@context\":[\"https:\\/\\/openactive.io\\/\",\"https:\\/\\/openactive.io\\/ns-beta\"],\"type\":\"Concept\",\"id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}";
         $decode = Concept::deserialize($original);
         $encode = Concept::serialize($decode);
 
