@@ -39,6 +39,28 @@ class OrderTest extends TestCase
     }
 
     /**
+     * Test that Simple datatypes are correct.
+     * Order.orderedItem.unitTaxSpecification.price is a Float
+     * Order.orderedItem.orderedItem.name is a String
+     *
+     * @dataProvider orderProvider
+     * @return void
+     */
+    public function testOrderSimpleDatatypesAreCorrect($order, $classname)
+    {
+        $this->assertTrue(
+            is_float(
+                $order->getOrderedItem()[0]
+                    ->getUnitTaxSpecification()[0]
+                    ->getPrice()
+            )
+        );
+        $this->assertTrue(
+            is_string($order->getOrderedItem()[0]->getOrderedItem()->getName())
+        );
+    }
+
+    /**
      * @return array
      */
     public function orderProvider()

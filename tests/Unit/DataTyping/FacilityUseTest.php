@@ -36,6 +36,20 @@ class FacilityUseTest extends TestCase
     }
 
     /**
+     * Test that Simple datatypes are correct.
+     * - FacilityUse.event[1].remainingUses is an Integer
+     * - FacilityUse.event[1].maximumUses is an Integer
+     *
+     * @dataProvider facilityUseProvider
+     * @return void
+     */
+    public function testFacilityUseSimpleDatatypesAreCorrect($facilityUse, $classname)
+    {
+        $this->assertTrue(is_int($facilityUse->getEvent()[1]->getRemainingUses()));
+        $this->assertTrue(is_int($facilityUse->getEvent()[1]->getMaximumUses()));
+    }
+
+    /**
      * @return array
      */
     public function facilityUseProvider()
