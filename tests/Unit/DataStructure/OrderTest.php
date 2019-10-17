@@ -29,8 +29,10 @@ class OrderTest extends TestCase
     {
         $order = new $classname($data);
 
+        $this->assertTrue($order->getOrderedItem() !== null);
+        $this->assertTrue(is_array($order->getOrderedItem()));
         $this->assertTrue(
-            $order->getOrderedItem()->getOrderedItem() !== null
+            $order->getOrderedItem()[0]->getOrderedItem() !== null
         );
     }
 
@@ -45,7 +47,7 @@ class OrderTest extends TestCase
         $order = new $classname($data);
 
         $this->assertTrue(
-            $order->getOrderedItem()->getAcceptedOffer() !== null
+            $order->getOrderedItem()[0]->getAcceptedOffer() !== null
         );
     }
 
@@ -61,13 +63,12 @@ class OrderTest extends TestCase
 
         // Assert unitTaxSpecification exists
         $this->assertTrue(
-            $order->getOrderedItem()->getUnitTaxSpecification() !== null
+            $order->getOrderedItem()[0]->getUnitTaxSpecification() !== null
         );
 
         // Assert unitTaxSpecification is array/object
         $this->assertTrue(
-            is_array($order->getOrderedItem()->getUnitTaxSpecification()) ||
-            is_object($order->getOrderedItem()->getUnitTaxSpecification())
+            is_array($order->getOrderedItem()[0]->getUnitTaxSpecification())
         );
     }
 
@@ -125,12 +126,6 @@ class OrderTest extends TestCase
         $this->assertEquals(
             $correctProperties,
             $commonProperties
-        );
-
-        // Assert unitTaxSpecification is array/object
-        $this->assertTrue(
-            is_array($order->getOrderedItem()->getUnitTaxSpecification()) ||
-            is_object($order->getOrderedItem()->getUnitTaxSpecification())
         );
     }
 
