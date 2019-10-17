@@ -247,7 +247,7 @@ class BaseModel
         throw new \Exception(
             "The first argument type does not match any of the declared parameter types (".
             implode(", ", $types).
-            ") for $value."
+            ") for ".json_encode($value)."."
         );
     }
 
