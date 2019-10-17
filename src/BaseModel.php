@@ -237,7 +237,18 @@ class BaseModel
         }
 
         // Remove empty elements
-        return array_filter($data);
+        return array_filter(
+            $data,
+            function($value) {
+                if(is_array($value) === TRUE && count($value) === 0) {
+                    // Filter out empty arrays
+                    return false;
+                }
+
+                // Filter out null values and empty strings
+                return $value !== null && $value !== "";
+            }
+        );
     }
 
     public function __get($name)
