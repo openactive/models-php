@@ -2,14 +2,6 @@
 
 namespace Tests\Unit\DataStructure;
 
-use OpenActive\BaseModel;
-use OpenActive\Models\OA\Concept;
-use OpenActive\Models\OA\ImageObject;
-use OpenActive\Models\OA\IndicativeOffer;
-use OpenActive\Models\OA\Offer;
-use OpenActive\Models\OA\Place;
-use OpenActive\Models\OA\PostalAddress;
-use OpenActive\Models\OA\SessionSeries;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -49,7 +41,14 @@ class DataStructureTest extends TestCase
     }
 
     /**
-     * @var \OpenActive\Model\SessionSeries
+     * Returns an array of arrays.
+     * Each item contains a classname and the deserialized representation
+     * of the JSON provided in the test description.
+     * This data is automatically picked up by PHPUnit
+     * whenever using a directive like "@dataProvider jsonProvider"
+     * in a test method PHP doc block.
+     *
+     * @return array[]
      */
     public function jsonProvider()
     {

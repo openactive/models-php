@@ -136,7 +136,14 @@ class ExampleEventTest extends TestCase
     }
 
     /**
-     * @var \OpenActive\Model\SessionSeries
+     * Returns an array of arrays.
+     * Each item contains a classname and the deserialized representation
+     * of the JSON provided in the test description.
+     * This data is automatically picked up by PHPUnit
+     * whenever using a directive like "@dataProvider sessionSeriesProvider"
+     * in a test method PHP doc block.
+     *
+     * @return array[]
      */
     public function sessionSeriesProvider()
     {
