@@ -107,27 +107,6 @@ class EventTest extends TestCase
      *
      * @return void
      */
-    // public function testSerializeEncodeDecodeList()
-    // {
-    //     $originalList = "[{\"type\":\"Concept\",\"id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}]";
-    //     $decodeList = Concept::deserialize($originalList);
-    //     $encodeList = Concept::serialize($decodeList);
-    //
-    //     // output.WriteLine($decodeList->getId());
-    //     // output.WriteLine($originalList);
-    //     // output.WriteLine($encodeList);
-    //     // $this->assertSame(
-    //     //     "https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd",
-    //     //     $decodeList->getId()
-    //     // );
-    //     $this->assertSame($originalList, $encodeList);
-    // }
-
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
     public function testSerializeOfferEncodeDecode()
     {
         $offer = new Offer([
