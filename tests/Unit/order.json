@@ -23,7 +23,7 @@
         "activity":{
           "type":"Concept",
           "prefLabel":"Fencing",
-          "id": "https://activity-list-editor.openactive.io/_92808e60-820c-4ee2-89ec-ea8d99d3f528"
+          "id":"https://activity-list-editor.openactive.io/_92808e60-820c-4ee2-89ec-ea8d99d3f528"
         },
         "ageRange":{
           "minValue":11,
