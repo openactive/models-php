@@ -26,16 +26,17 @@ class ArrayOfValidator extends BaseValidator
      */
     public function coerce($value)
     {
-        $nullValidator = new NullValidator();
+        // NOTE: OpenActive is more strict than schema.org in this regard, so commenting out this for now
+        // $nullValidator = new NullValidator();
 
         // If we are providing a single item of the itemValidator type (or null)
         // Put the value inside an array
-        if(
-            $nullValidator->run($value) === true ||
-            $this->itemValidator->run($value) === true
-        ) {
-            return [$value];
-        }
+        // if(
+        //     $nullValidator->run($value) === true ||
+        //     $this->itemValidator->run($value) === true
+        // ) {
+        //     return [$value];
+        // }
 
         // Otherwise this is a no-op
         return $value;
@@ -51,14 +52,15 @@ class ArrayOfValidator extends BaseValidator
     {
         $nullValidator = new NullValidator();
 
+        // NOTE: OpenActive is more strict than schema.org in this regard, so commenting out this for now
         // If we are providing a single item of the itemValidator type (or null)
         // Validation passes (but the value will need to be coerced to array)
-        if(
-            $nullValidator->run($value) === true ||
-            $this->itemValidator->run($value) === true
-        ) {
-            return true;
-        }
+        // if(
+        //     $nullValidator->run($value) === true ||
+        //     $this->itemValidator->run($value) === true
+        // ) {
+        //     return true;
+        // }
 
         // Check if value is an array
         if((new ArrayValidator())->run($value) === false) {
