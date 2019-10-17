@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @see https://github.com/openactive/models-lib/tree/master/test-description For the test description
  */
-class EventTest extends TestCase
+class ExampleEventTest extends TestCase
 {
     /**
      * Test that serialized serialized event returns expected JSON-LD.
