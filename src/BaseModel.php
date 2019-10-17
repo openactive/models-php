@@ -47,7 +47,7 @@ class BaseModel
             // Make sure attribute is cased properly
             $attributeName = Str::camel($key);
 
-            $this->$attributeName = $value;
+            $this->$attributeName = static::deserializeValue($value);
         }
     }
 
@@ -101,12 +101,45 @@ class BaseModel
 
             if (is_object($value)) {
                 $self->$attrName = $value::deserialize($value);
+            } else if (is_array($value)) {
+                $self->$attrName = static::deserializeValue($value);
             } else {
                 $self->$attrName = $value;
             }
         }
 
         return $self;
+    }
+
+    /**
+     * Returns a value from a given JSON-LD deserialized array.
+     *
+     * @param mixed If an array is provided, we recursively deserialize it
+     * @return mixed
+     */
+    public static function deserializeValue($value)
+    {
+        // If not provided an array, return same value
+        if (is_array($value) === FALSE) {
+            return $value;
+        }
+
+        // If an associative array with a type, return its deserialization form,
+        // so that it gets converted from array to object
+        // (associative arrays are still arrays in PHP)
+        if (array_key_exists("type", $value)) {
+            $classname = "\\OpenActive\\Models\\OA\\".$value["type"];
+
+            return $classname::deserialize($value);
+        }
+
+        // If providing a non-associative array
+        // Loop through it and serialize each item if needed
+        foreach($value as $idx => $item) {
+            $value[$idx] = static::deserializeValue($item);
+        }
+
+        return $value;
     }
 
     /**
@@ -222,6 +255,12 @@ class BaseModel
         // Always makes sure name casing is correct
         if (property_exists($this, Str::camel($name))) {
             $method = 'set' . Str::pascal($name);
+
+            if (is_array($value)) {
+                $classname = "\\OpenActive\\Models\\OA\\".$value["type"];
+
+                $value = static::deserializeValue($value);
+            }
 
             $this->$method($value);
         }
