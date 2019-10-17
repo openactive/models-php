@@ -17,6 +17,31 @@ class ArrayOfValidator extends BaseValidator
     }
 
     /**
+     * Coerce given value to the type the validator is validating against.
+     * PLEASE NOTE: no checks are performed on the given $value.
+     * It is therefore recommended to call the "run" method first before this.
+     *
+     * @param mixed $value The value to coerce.
+     * @return mixed The same value.
+     */
+    public function coerce($value)
+    {
+        $nullValidator = new NullValidator();
+
+        // If we are providing a single item of the itemValidator type (or null)
+        // Put the value inside an array
+        if(
+            $nullValidator->run($value) === true ||
+            $this->itemValidator->run($value) === true
+        ) {
+            return [$value];
+        }
+
+        // Otherwise this is a no-op
+        return $value;
+    }
+
+    /**
      * Run validation on the given value.
      *
      * @param mixed $value The value to validate.
@@ -25,6 +50,15 @@ class ArrayOfValidator extends BaseValidator
     public function run($value)
     {
         $nullValidator = new NullValidator();
+
+        // If we are providing a single item of the itemValidator type (or null)
+        // Validation passes (but the value will need to be coerced to array)
+        if(
+            $nullValidator->run($value) === true ||
+            $this->itemValidator->run($value) === true
+        ) {
+            return true;
+        }
 
         // Check if value is an array
         if((new ArrayValidator())->run($value) === false) {
