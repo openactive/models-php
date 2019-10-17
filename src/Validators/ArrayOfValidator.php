@@ -79,6 +79,16 @@ class ArrayOfValidator extends BaseValidator
     }
 
     /**
+     * Get the instance of the item validator.
+     *
+     * @return ValidatorInterface
+     */
+    public function getItemValidator()
+    {
+        return $this->itemValidator;
+    }
+
+    /**
      * Set the instance of the item validator.
      *
      * @param ValidatorInterface $itemValidator
