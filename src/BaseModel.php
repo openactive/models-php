@@ -118,11 +118,11 @@ class BaseModel
     public static function serialize($obj)
     {
         // Get data ready to be encoded
-        $data = self::prepareDataForSerialization($obj);
+        $data = static::prepareDataForSerialization($obj);
 
         $json = json_encode($data);
 
-        return self::removeAllButFirstContext($json);
+        return static::removeAllButFirstContext($json);
     }
 
     /**
