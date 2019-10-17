@@ -64,9 +64,10 @@ class OrderTest extends TestCase
             $order->getOrderedItem()->getUnitTaxSpecification() !== null
         );
 
-        // Assert unitTaxSpecification is array
+        // Assert unitTaxSpecification is array/object
         $this->assertTrue(
-            is_array($order->getOrderedItem()->getUnitTaxSpecification())
+            is_array($order->getOrderedItem()->getUnitTaxSpecification()) ||
+            is_object($order->getOrderedItem()->getUnitTaxSpecification())
         );
     }
 
@@ -126,9 +127,10 @@ class OrderTest extends TestCase
             $serializedOrderProperties
         );
 
-        // Assert unitTaxSpecification is array
+        // Assert unitTaxSpecification is array/object
         $this->assertTrue(
-            is_array($order->getOrderedItem()->getUnitTaxSpecification())
+            is_array($order->getOrderedItem()->getUnitTaxSpecification()) ||
+            is_object($order->getOrderedItem()->getUnitTaxSpecification())
         );
     }
 
