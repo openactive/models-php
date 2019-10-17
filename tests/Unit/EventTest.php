@@ -12,7 +12,13 @@ use OpenActive\Models\OA\PostalAddress;
 use OpenActive\Models\OA\SessionSeries;
 use PHPUnit\Framework\TestCase;
 
-class ExampleTest extends TestCase
+/**
+ * This is an example test class for the SessionSeries model.
+ * For better written tasks, please see the other unit tests.
+ *
+ * @see https://developers.google.com/search/docs/data-types/events
+ */
+class EventTest extends TestCase
 {
     /**
      * Test that serialized serialized event returns expected JSON-LD.
