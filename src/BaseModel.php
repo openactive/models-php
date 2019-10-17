@@ -133,6 +133,12 @@ class BaseModel
             return $classname::deserialize($value);
         }
 
+        // NOTE: OpenActive is more strict than schema.org in this regard, so commenting out this for now
+        // If one-item array, deserialize into the actual item
+        // if(count($value) === 1) {
+        //    return static::deserializeValue($value[0]);
+        // }
+
         // If providing a non-associative array
         // Loop through it and serialize each item if needed
         foreach($value as $idx => $item) {
