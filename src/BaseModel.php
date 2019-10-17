@@ -165,12 +165,16 @@ class BaseModel
                 // If attribute value is an array,
                 // get data for serialization from each of the item.
                 foreach($attrValue as $idx => $item) {
-                    // Get fully qualified namespace of the item's class name
-                    $fq_classname = "\\".get_class($item);
+                    if(is_object($item)) {
+                        // Get fully qualified namespace of the item's class name
+                        $fq_classname = "\\".get_class($item);
 
-                    $attrValue[$idx] = $fq_classname::prepareDataForSerialization(
-                        $item
-                    );
+                        $attrValue[$idx] = $fq_classname::prepareDataForSerialization(
+                            $item
+                        );
+                    } else {
+                        $attrValue[$idx] = $item;
+                    }
                 }
             } else if(is_object($attrValue)) {
                 // If attribute value is an object,
