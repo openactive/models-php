@@ -140,11 +140,11 @@ class ExampleEventTest extends TestCase
      */
     public function sessionSeriesProvider()
     {
-        $data = array();
+        $testData = array();
 
-        $data[0] = array();
+        $testData[0] = array();
 
-        $data[0][] = new SessionSeries([
+        $testData[0][] = new SessionSeries([
             "Name" => "Virtual BODYPUMP",
             "Description" => "This is the virtual version of the original barbell class, which will help you get lean, toned and fit - fast. Les Mills™ Virtual classes are designed for people who cannot get access to our live classes or who want to get a ‘taste’ of a Les Mills™ class before taking a live class with an instructor. The classes are played on a big video screen, with dimmed lighting and pumping surround sound, and are led onscreen by the people who actually choreograph the classes.",
             "Duration" => new \DateInterval("P1D"),
@@ -186,8 +186,8 @@ class ExampleEventTest extends TestCase
             "MeetingPoint" => ""
         ]);
 
-        $data[0][] = file_get_contents(__DIR__ . "/session_series.json");
+        $testData[0][] = file_get_contents(__DIR__ . "/session_series.json");
 
-        return $data;
+        return $testData;
     }
 }

@@ -53,11 +53,11 @@ class DataStructureTest extends TestCase
      */
     public function jsonProvider()
     {
-        $data = array();
+        $testData = array();
 
         $classname = "\\OpenActive\\Models\\OA\\Event";
 
-        $data[0] = array(
+        $testData[0] = array(
             $classname::deserialize(
                 file_get_contents(__DIR__ . "/../event.json")
             ),
@@ -66,7 +66,7 @@ class DataStructureTest extends TestCase
 
         $classname = "\\OpenActive\\Models\\OA\\FacilityUse";
 
-        $data[1] = array(
+        $testData[1] = array(
             $classname::deserialize(
                 file_get_contents(__DIR__ . "/../facility_use.json")
             ),
@@ -75,13 +75,13 @@ class DataStructureTest extends TestCase
 
         $classname = "\\OpenActive\\Models\\OA\\Order";
 
-        $data[2] = array(
+        $testData[2] = array(
             $classname::deserialize(
                 file_get_contents(__DIR__ . "/../order.json")
             ),
             $classname
         );
 
-        return $data;
+        return $testData;
     }
 }
