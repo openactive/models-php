@@ -29,9 +29,13 @@ class ExampleEventTest extends TestCase
      */
     public function testSerializeEventGoogleStructuredDataReturnsExpectedJsonLd($event, $json)
     {
+        $classname = "\\".get_class($event);
+
+        $jsonEvent = $classname::serialize($event);
+
         $this->assertEquals(
             json_decode($json, true),
-            json_decode(BaseModel::serialize($event), true)
+            json_decode($jsonEvent, true)
         );
     }
 
