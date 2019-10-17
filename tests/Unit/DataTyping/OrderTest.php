@@ -21,7 +21,7 @@ class OrderTest extends TestCase
      * @dataProvider orderProvider
      * @return void
      */
-    public function testTypeIsPopulatedCorrectly($order, $classname)
+    public function testOrderTypeIsPopulatedCorrectly($order, $classname)
     {
         $reflectOrder = new \ReflectionClass($order);
         $reflectOrderedItem = new \ReflectionClass($order->getOrderedItem()[0]->getOrderedItem());
