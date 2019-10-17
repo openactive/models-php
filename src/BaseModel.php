@@ -97,7 +97,7 @@ class BaseModel
         }
 
         foreach ($data as $key => $value) {
-            $attrName = Str::pascal($key);
+            $attrName = Str::camel($key);
 
             if (is_object($value)) {
                 $self->$attrName = $value::deserialize($value);
