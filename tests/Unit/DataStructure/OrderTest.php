@@ -13,7 +13,7 @@ use OpenActive\Models\OA\SessionSeries;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SessionSeries specific Data Structure tests.
+ * Order specific Data Structure tests.
  *
  * @see https://github.com/openactive/models-lib/blob/master/test-description/data-structure.md For the test description
  */
@@ -92,16 +92,16 @@ class OrderTest extends TestCase
     public function testOrderHasCorrectProperties($data, $classname)
     {
         $correctProperties = array(
-          "type",
-          "id",
-          "orderedItem",
-          "seller",
-          "broker",
-          "brokerRole",
-          "customer",
-          "taxCalculationExcluded",
-          "bookingService",
-          "totalPaymentDue",
+            "type",
+            "id",
+            "orderedItem",
+            "seller",
+            "broker",
+            "brokerRole",
+            "customer",
+            "taxCalculationExcluded",
+            "bookingService",
+            "totalPaymentDue",
         );
 
         sort($correctProperties);
