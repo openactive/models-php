@@ -1,0 +1,40 @@
+{
+  "@context":[
+    "https://openactive.io/",
+    "https://openactive.io/ns-beta"
+  ],
+  "type":"SessionSeries",
+  "name":"Virtual BODYPUMP",
+  "description":"This is the virtual version of the original barbell class, which will help you get lean, toned and fit - fast. Les Mills™ Virtual classes are designed for people who cannot get access to our live classes or who want to get a ‘taste’ of a Les Mills™ class before taking a live class with an instructor. The classes are played on a big video screen, with dimmed lighting and pumping surround sound, and are led onscreen by the people who actually choreograph the classes.",
+  "image":[
+    {
+      "type":"ImageObject",
+      "url":"http://www.example.com/event_image/12345"
+    }
+  ],
+  "duration":"P1D",
+  "location":{
+    "type":"Place",
+    "name":"Santa Clara City Library, Central Park Library",
+    "address":{
+      "type":"PostalAddress",
+      "addressCountry":"US",
+      "addressLocality":"Santa Clara",
+      "addressRegion":"CA",
+      "postalCode":"95051",
+      "streetAddress":"2635 Homestead Rd"
+    }
+  },
+  "offers":[
+    {
+      "type":"IndicativeOffer",
+      "url":"https://www.example.com/event_offer/12345_201803180430",
+      "price":30,
+      "priceCurrency":"USD",
+      "validFrom":"2017-01-20T16:20:00-08:00"
+    }
+  ],
+  "startDate":"2017-04-24T19:30:00-08:00",
+  "endDate":"2017-04-24T23:00:00-08:00",
+  "attendeeInstructions":"Ensure you bring trainers and a bottle of water."
+}

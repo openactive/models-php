@@ -182,54 +182,7 @@ class EventTest extends TestCase
             "MeetingPoint" => ""
         ]);
 
-        $data[0][] = "{".
-            "\"@context\":[\"https://openactive.io/\",\"https://openactive.io/ns-beta\"],".
-            "\"type\":\"SessionSeries\",".
-            // "\"name\":\"Jan Lieberman Concert Series: Journey in Jazz\",".
-            // "\"description\":\"Join us for an afternoon of Jazz with Santa Clara resident and pianist Andy Lagunoff. Complimentary food and beverages will be served.\",".
-            "\"name\":\"Virtual BODYPUMP\",".
-            "\"description\":\"This is the virtual version of the original barbell class, which will help you get lean, toned and fit - fast. Les Mills™ Virtual classes are designed for people who cannot get access to our live classes or who want to get a ‘taste’ of a Les Mills™ class before taking a live class with an instructor. The classes are played on a big video screen, with dimmed lighting and pumping surround sound, and are led onscreen by the people who actually choreograph the classes.\",".
-            "\"image\":[{".
-                "\"type\":\"ImageObject\",".
-                "\"url\":\"http://www.example.com/event_image/12345\"".
-            "}],".
-            "\"duration\":\"P1D\",".
-            "\"location\":{".
-                "\"type\":\"Place\",".
-                "\"name\":\"Santa Clara City Library, Central Park Library\",".
-                "\"address\":{".
-                    "\"type\":\"PostalAddress\",".
-                    "\"addressCountry\":\"US\",".
-                    "\"addressLocality\":\"Santa Clara\",".
-                    "\"addressRegion\":\"CA\",".
-                    "\"postalCode\":\"95051\",".
-                    "\"streetAddress\":\"2635 Homestead Rd\"".
-                "}".
-            "},".
-            // "\"offers\":{".
-            //     "\"type\":\"Offer\",".
-            //     "\"url\":\"https://www.example.com/event_offer/12345_201803180430\",".
-            //     "\"availability\":\"http://schema.org/InStock\",".
-            //     "\"price\":30.0,".
-            //     "\"priceCurrency\":\"USD\",".
-            //     "\"validFrom\":\"2017-01-20T16:20:00-08:00\"".
-            // "},".
-            "\"offers\":[{".
-                "\"type\":\"IndicativeOffer\",".
-                "\"url\":\"https://www.example.com/event_offer/12345_201803180430\",".
-                "\"price\":30,".
-                "\"priceCurrency\":\"USD\",".
-                "\"validFrom\":\"2017-01-20T16:20:00-08:00\"".
-            "}],".
-            // "\"performer\":{".
-            //     "\"type\":\"Person\",".
-            //     "\"name\":\"Andy Lagunoff\"".
-            // "},".
-            "\"startDate\":\"2017-04-24T19:30:00-08:00\",".
-            "\"endDate\":\"2017-04-24T23:00:00-08:00\",".
-            // "\"attendeeInstructions\":\"fun!\"".
-            "\"attendeeInstructions\":\"Ensure you bring trainers and a bottle of water.\"".
-        "}";
+        $data[0][] = file_get_contents(__DIR__ . "/session_series.json");
 
         return $data;
     }
