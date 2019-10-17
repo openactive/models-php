@@ -109,7 +109,7 @@ class OrderTest extends TestCase
 
         // Serialize the order and JSON-decode it
         // to compare the expected properties
-        // and the ones actually available (with "@context" removed)
+        // and the ones in common (with "@context" removed)
         // TODO: should this be analyzed with getters and setters instead?
         $serializedOrder = json_decode($classname::serialize($order), true);
         $serializedOrderProperties = array_filter(
@@ -118,13 +118,13 @@ class OrderTest extends TestCase
                 return $property !== "@context";
             }
         );
-
         sort($serializedOrderProperties);
+        $commonProperties = array_intersect($correctProperties, $serializedOrderProperties);
 
         // Assert unitTaxSpecification exists
         $this->assertEquals(
             $correctProperties,
-            $serializedOrderProperties
+            $commonProperties
         );
 
         // Assert unitTaxSpecification is array/object
