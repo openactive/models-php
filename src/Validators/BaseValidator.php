@@ -44,20 +44,12 @@ class BaseValidator implements ValidatorInterface
         $isTypeArray = substr($type, -2) === "[]";
 
         if($isTypeArray === true) {
-            // Instantiate validator
-            // The single item validator will be instantiated later
-            // Once we know better if we are dealing with a native type or a class
-            $validator = new ArrayOfValidator();
-
             // Build item validator name
             // (remove last 2 characters "[]")
-            $itemType = ucfirst(substr($type, -2));
+            $itemType = substr($type, 0, -2);
 
-            // Set the item validator on ArrayOfValidator and return
-            // (fluid interface returns the validator itself)
-            return $validator->setItemValidator(
-                BaseValidator::getValidator($itemType)
-            );
+            // Instantiate validator
+            return new ArrayOfValidator(BaseValidator::getValidator($itemType));
         }
 
         // If first letter of type is a lower case letter
