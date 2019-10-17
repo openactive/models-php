@@ -13,10 +13,11 @@ use OpenActive\Models\OA\SessionSeries;
 use PHPUnit\Framework\TestCase;
 
 /**
- * This is an example test class for the SessionSeries model.
+ * This is an illustration of the general testing approach,
+ * as found in the [.NET model tests](https://github.com/openactive/OpenActive.NET/blob/master/OpenActive.NET.Test/EventTest.cs)
  * For better written tasks, please see the other unit tests.
  *
- * @see https://developers.google.com/search/docs/data-types/events
+ * @see https://github.com/openactive/models-lib/tree/master/test-description For the test description
  */
 class EventTest extends TestCase
 {
