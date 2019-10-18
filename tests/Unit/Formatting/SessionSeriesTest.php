@@ -3,6 +3,7 @@
 namespace Tests\Unit\Formatting;
 
 use OpenActive\Helpers\DateTime as DateTimeHelper;
+use OpenActive\Helpers\DateInterval as DateIntervalHelper;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -32,12 +33,74 @@ class SessionSeriesTest extends TestCase
 
         $sessionSeries = $classname::deserialize($jsonSessionSeries);
 
+        // Sub event start date
         $startDate = $sessionSeries->getSubEvent()->getStartDate();
+        // Sub event end date
         $endDate = $sessionSeries->getSubEvent()->getEndDate();
+        // Duration (of sub event)
+        $duration = $sessionSeries->getDuration();
+        // Date difference between sub event start date and end date
+        $dateDifference = $startDate->diff($endDate);
 
+        // Check start date deserialized is same as original payload
         $this->assertEquals(
             $decodedSessionSeries["subEvent"]["startDate"],
             DateTimeHelper::iso8601($startDate)
+        );
+
+        // Check end date deserialized is same as original payload
+        $this->assertEquals(
+            $decodedSessionSeries["subEvent"]["endDate"],
+            DateTimeHelper::iso8601($endDate)
+        );
+
+        // Check duration deserialized is same as original payload
+        $this->assertEquals(
+            $decodedSessionSeries["duration"],
+            DateIntervalHelper::specString($duration)
+        );
+
+        // Check duration field is same as difference between start and end date
+        $this->assertEquals(
+            DateIntervalHelper::specString($duration),
+            DateIntervalHelper::specString($dateDifference)
+        );
+    }
+
+    /**
+     * Test are URLs are in correct format.
+     * - SessionSeries.id
+     * - SessionSeries.activity
+     * - SessionSeries.subEvent.url
+     * As PHP represents a URL as a string (no dedicated type),
+     * tests are run to check that URL representations are identical
+     * to the pre-deserialization ones, and are valid URLs.
+     *
+     * @dataProvider sessionSeriesProvider
+     * @return void
+     */
+    public function testSessionSeriesUrlsInCorrectFormat($jsonSessionSeries, $classname)
+    {
+        $decodedSessionSeries = json_decode($jsonSessionSeries, true);
+
+        $sessionSeries = $classname::deserialize($jsonSessionSeries);
+
+        $id = $sessionSeries->getId();
+        $activityId = $sessionSeries->getActivity()->getId();
+        $subEventUrl = $sessionSeries->getSubEvent()->getUrl();
+
+        // Deserialization checks (deserialised value is same as JSON)
+        $this->assertEquals(
+            $decodedSessionSeries["id"],
+            $id
+        );
+        $this->assertEquals(
+            $decodedSessionSeries["activity"]["id"],
+            $activityId
+        );
+        $this->assertEquals(
+            $decodedSessionSeries["subEvent"]["url"],
+            $subEventUrl
         );
     }
 
