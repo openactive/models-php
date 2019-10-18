@@ -2,7 +2,7 @@
 
 namespace OpenActive\Validators;
 
-class InstanceValidator implements ValidatorInterface
+class InstanceValidator extends BaseValidator
 {
     public function __construct($classname)
     {

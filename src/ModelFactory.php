@@ -1,13 +1,13 @@
 <?php
 
-namespace OpenActive\Model;
+namespace OpenActive;
 
 class ModelFactory
 {
     public static $MAPPING = [
-        "organization" => Organization::class,
-        "person" => Person::class,
-        "place" => Place::class
+        "organization" => Models\Organization::class,
+        "person" => Models\Person::class,
+        "place" => Models\Place::class
     ];
 
     public static function deserialize($data)

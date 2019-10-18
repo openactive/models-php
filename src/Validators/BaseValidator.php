@@ -6,6 +6,8 @@ class BaseValidator implements ValidatorInterface
 {
     /**
      * Coerce given value to the type the validator is validating against.
+     * PLEASE NOTE: no checks are performed on the given $value.
+     * It is therefore recommended to call the "run" method first before this.
      *
      * @param mixed $value The value to coerce.
      * @return mixed The same value.
@@ -42,39 +44,37 @@ class BaseValidator implements ValidatorInterface
         $isTypeArray = substr($type, -2) === "[]";
 
         if($isTypeArray === true) {
-            // Instantiate validator
-            // The single item validator will be instantiated later
-            // Once we know better if we are dealing with a native type or a class
-            $validator = new ArrayOfValidator();
-
             // Build item validator name
             // (remove last 2 characters "[]")
-            $itemType = ucfirst(substr($type, -2));
+            $itemType = substr($type, 0, -2);
 
-            // Set the item validator on ArrayOfValidator and return
-            // (fluid interface returns the validator itself)
-            return $validator->setItemValidator(
-                BaseValidator::getValidator($itemType)
-            );
+            // Instantiate validator
+            return new ArrayOfValidator(BaseValidator::getValidator($itemType));
         }
 
         // If first letter of type is a lower case letter
         // We are validating a native type
         if(ctype_lower(substr($type, 0, 1)) === true) {
-            // Build item validator name
-            $validatorName = ucfirst($type)."Validator";
+            // Build item validator name (FQ)
+            $validatorName = "\\OpenActive\\Validators\\".ucfirst($type)."Validator";
 
             return new $validatorName();
         }
 
-        if($type === "DateTime" || $type === "DateInterval") {
-            // Force global namespace on class
-            $classname = "\\".$type;
-        } else {
-            // Force the namespace to OpenActive's
-            // TODO: check whether it's SchemaOrg or OA's?
-            $classname = "\\OpenActive\\Models\\".$type;
+        // Force global namespace on class
+        $classname = "\\".$type;
+
+        if($type === "DateTime") {
+            return new DateTimeValidator();
         }
+
+        if($type === "DateInterval") {
+            return new DateIntervalValidator();
+        }
+
+        // Add OpenActive's namespace
+        // TODO: check whether it's SchemaOrg or OA's?
+        $classname .= "\\OpenActive\\Models".$classname;
 
         return new InstanceValidator($classname);
     }
