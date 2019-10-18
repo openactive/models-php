@@ -20,7 +20,7 @@
     "type":"Organization",
     "name":"Pimlico Fencing Club",
     "legalName":"Pimlico Fencing Club (PFC)",
-    "taxMode":"https://openactive/TaxGross",
+    "taxMode":"https://openactive.io/TaxGross",
     "vatID":"12345",
     "address":{
       "addressCountry":"United Kingdom",
