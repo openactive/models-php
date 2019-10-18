@@ -36,9 +36,6 @@ class EnumValidator extends BaseValidator
 
         $fqEnumClassname = $this->classname."\\".$enumValueClassname;
 
-        // var_dump("NOW REALLY: VALUE: ".$value." TYPE: ".$this->classname);
-        var_dump("ENUM VALUE CLASSNAME: ".$fqEnumClassname." VALUE: ".$value);
-
         // $this->classname also represents the root namespace
         // of the enum value classname,
         // if a class with that namespace plus its name exists

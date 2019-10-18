@@ -35,8 +35,6 @@ class SessionSeriesTest extends TestCase
         $startDate = $sessionSeries->getSubEvent()->getStartDate();
         $endDate = $sessionSeries->getSubEvent()->getEndDate();
 
-        var_dump($sessionSeries);
-
         $this->assertEquals(
             $decodedSessionSeries["subEvent"]["startDate"],
             DateTimeHelper::iso8601($startDate)
