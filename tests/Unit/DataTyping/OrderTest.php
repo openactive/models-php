@@ -61,6 +61,53 @@ class OrderTest extends TestCase
     }
 
     /**
+     * Test that Complex datatypes are correct.
+     * - “activity” is a Concept
+     * - “seller” is an Organization
+     * - “bookingService” is a BookingService
+     * - “orderItem” is an OrderItem
+     *
+     * @dataProvider orderProvider
+     * @return void
+     */
+    public function testOrderComplexDatatypesAreCorrect($order, $classname)
+    {
+        $activity = $order->getOrderedItem()[0]->getOrderedItem()->getActivity();
+        $seller = $order->getSeller();
+        $bookingService = $order->getBookingService();
+        $orderedItem = $order->getOrderedItem();
+
+        // Reflection classes will be used to get the class's short name
+        $activityReflect = new \ReflectionClass($activity);
+        $sellerReflect = new \ReflectionClass($seller);
+        $bookingServiceReflect = new \ReflectionClass($bookingService);
+        $orderedItemReflect = new \ReflectionClass($orderedItem);
+
+        $this->assertEquals(
+            "Concept",
+            $activityReflect->getShortName()
+        );
+        $this->assertEquals(
+            "Organization",
+            $sellerReflect->getShortName()
+        );
+        $this->assertEquals(
+            "BookingService",
+            $bookingServiceReflect->getShortName()
+        );
+        $this->assertEquals(
+            "OrderItem",
+            $orderedItemReflect->getShortName()
+        );
+    }
+
+    /**
+     * Returns an array of arrays.
+     * Each item contains a classname and the JSON provided in the test description.
+     * This data is automatically picked up by PHPUnit
+     * whenever using a directive like "@dataProvider orderProvider"
+     * in a test method PHP doc block.
+     *
      * @return array
      */
     public function orderProvider()
