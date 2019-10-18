@@ -1,0 +1,109 @@
+<?php
+
+namespace OpenActive\Models\SchemaOrg;
+
+/**
+ * [NOTICE: This is a beta class, and is highly likely to change in future versions of this library.].
+ *
+ */
+class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
+{
+    /**
+     * The number of upvotes this question, answer or comment has received from the community.
+     *
+     *
+     * @var int|null
+     */
+    protected $upvoteCount;
+
+    /**
+     * The parent of a question, answer or item in general.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Question
+     */
+    protected $parentItem;
+
+    /**
+     * The number of downvotes this question, answer or comment has received from the community.
+     *
+     *
+     * @var int|null
+     */
+    protected $downvoteCount;
+
+    /**
+     * @return int|null
+     */
+    public function getUpvoteCount()
+    {
+        return $this->upvoteCount;
+    }
+
+    /**
+     * @param int|null $upvoteCount
+     * @return void
+     * @throws \Exception If the provided argument is not of a supported type.
+     */
+    public function setUpvoteCount($upvoteCount)
+    {
+        $types = array(
+            "int",
+            "null",
+        );
+
+        $upvoteCount = self::checkTypes($upvoteCount, $types);
+
+        $this->upvoteCount = $upvoteCount;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Question
+     */
+    public function getParentItem()
+    {
+        return $this->parentItem;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Question $parentItem
+     * @return void
+     * @throws \Exception If the provided argument is not of a supported type.
+     */
+    public function setParentItem($parentItem)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Question",
+        );
+
+        $parentItem = self::checkTypes($parentItem, $types);
+
+        $this->parentItem = $parentItem;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getDownvoteCount()
+    {
+        return $this->downvoteCount;
+    }
+
+    /**
+     * @param int|null $downvoteCount
+     * @return void
+     * @throws \Exception If the provided argument is not of a supported type.
+     */
+    public function setDownvoteCount($downvoteCount)
+    {
+        $types = array(
+            "int",
+            "null",
+        );
+
+        $downvoteCount = self::checkTypes($downvoteCount, $types);
+
+        $this->downvoteCount = $downvoteCount;
+    }
+
+}
