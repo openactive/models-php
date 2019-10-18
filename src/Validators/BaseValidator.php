@@ -61,9 +61,6 @@ class BaseValidator implements ValidatorInterface
             return new $validatorName();
         }
 
-        // Force global namespace on class
-        $classname = "\\".$type;
-
         if($type === "DateTime") {
             return new DateTimeValidator();
         }
@@ -72,9 +69,15 @@ class BaseValidator implements ValidatorInterface
             return new DateIntervalValidator();
         }
 
+        // If type is an OpenActive Enum
+        if(strpos($type, "\\OpenActive\\Enums") === 0) {
+            return new EnumValidator($type);
+        }
+
         // Add OpenActive's namespace
+        // and force global namespace on class
         // TODO: check whether it's SchemaOrg or OA's?
-        $classname .= "\\OpenActive\\Models".$classname;
+        $classname = "\\OpenActive\\Models\\".$type;
 
         return new InstanceValidator($classname);
     }
