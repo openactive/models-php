@@ -18,7 +18,7 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
     /**
      *
      *
-     * @var OrderProposalStatus|null
+     * @var \OpenActive\Enums\OrderProposalStatus|null
      */
     protected $orderProposalStatus;
 
@@ -54,7 +54,7 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
     }
 
     /**
-     * @return OrderProposalStatus|null
+     * @return \OpenActive\Enums\OrderProposalStatus|null
      */
     public function getOrderProposalStatus()
     {
@@ -62,14 +62,14 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
     }
 
     /**
-     * @param OrderProposalStatus|null $orderProposalStatus
+     * @param \OpenActive\Enums\OrderProposalStatus|null $orderProposalStatus
      * @return void
      * @throws \Exception If the provided argument is not of a supported type.
      */
     public function setOrderProposalStatus($orderProposalStatus)
     {
         $types = array(
-            "OrderProposalStatus",
+            "\OpenActive\Enums\OrderProposalStatus",
             "null",
         );
 

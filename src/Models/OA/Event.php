@@ -196,7 +196,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "genderRestriction": "https://openactive.io/FemaleOnly"
      * ```
      *
-     * @var GenderRestrictionType|null
+     * @var \OpenActive\Enums\GenderRestrictionType|null
      */
     protected $genderRestriction;
 
@@ -796,7 +796,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return GenderRestrictionType|null
+     * @return \OpenActive\Enums\GenderRestrictionType|null
      */
     public function getGenderRestriction()
     {
@@ -804,14 +804,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param GenderRestrictionType|null $genderRestriction
+     * @param \OpenActive\Enums\GenderRestrictionType|null $genderRestriction
      * @return void
      * @throws \Exception If the provided argument is not of a supported type.
      */
     public function setGenderRestriction($genderRestriction)
     {
         $types = array(
-            "GenderRestrictionType",
+            "\OpenActive\Enums\GenderRestrictionType",
             "null",
         );
 

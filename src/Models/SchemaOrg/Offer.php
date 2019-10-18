@@ -347,7 +347,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * The channels through which a booking can be made.
      *
      *
-     * @var AvailableChannelType|null
+     * @var \OpenActive\Enums\AvailableChannelType|null
      */
     protected $availableChannel;
 
@@ -1336,7 +1336,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return AvailableChannelType|null
+     * @return \OpenActive\Enums\AvailableChannelType|null
      */
     public function getAvailableChannel()
     {
@@ -1344,14 +1344,14 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param AvailableChannelType|null $availableChannel
+     * @param \OpenActive\Enums\AvailableChannelType|null $availableChannel
      * @return void
      * @throws \Exception If the provided argument is not of a supported type.
      */
     public function setAvailableChannel($availableChannel)
     {
         $types = array(
-            "AvailableChannelType",
+            "\OpenActive\Enums\AvailableChannelType",
             "null",
         );
 

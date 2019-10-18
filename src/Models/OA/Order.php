@@ -39,7 +39,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      * Either https://openactive/AgentBroker,  https://openactive/ResellerBroker or  https://openactive/NoBroker, as agreed in advance between the Broker and Seller.
      *
      *
-     * @var BrokerType|null
+     * @var \OpenActive\Enums\BrokerType|null
      */
     protected $brokerRole;
 
@@ -55,7 +55,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      * This property is internal to the Broker in this version of the specification.
      *
      *
-     * @var OrderCreationStatus|null
+     * @var \OpenActive\Enums\OrderCreationStatus|null
      */
     protected $orderCreationStatus;
 
@@ -199,7 +199,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @return BrokerType|null
+     * @return \OpenActive\Enums\BrokerType|null
      */
     public function getBrokerRole()
     {
@@ -207,14 +207,14 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @param BrokerType|null $brokerRole
+     * @param \OpenActive\Enums\BrokerType|null $brokerRole
      * @return void
      * @throws \Exception If the provided argument is not of a supported type.
      */
     public function setBrokerRole($brokerRole)
     {
         $types = array(
-            "BrokerType",
+            "\OpenActive\Enums\BrokerType",
             "null",
         );
 
@@ -249,7 +249,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @return OrderCreationStatus|null
+     * @return \OpenActive\Enums\OrderCreationStatus|null
      */
     public function getOrderCreationStatus()
     {
@@ -257,14 +257,14 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @param OrderCreationStatus|null $orderCreationStatus
+     * @param \OpenActive\Enums\OrderCreationStatus|null $orderCreationStatus
      * @return void
      * @throws \Exception If the provided argument is not of a supported type.
      */
     public function setOrderCreationStatus($orderCreationStatus)
     {
         $types = array(
-            "OrderCreationStatus",
+            "\OpenActive\Enums\OrderCreationStatus",
             "null",
         );
 

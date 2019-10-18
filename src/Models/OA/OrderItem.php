@@ -113,7 +113,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      *
      *
-     * @var OrderItemStatus|null
+     * @var \OpenActive\Enums\OrderItemStatus|null
      */
     protected $orderItemStatus;
 
@@ -440,7 +440,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return OrderItemStatus|null
+     * @return \OpenActive\Enums\OrderItemStatus|null
      */
     public function getOrderItemStatus()
     {
@@ -448,14 +448,14 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param OrderItemStatus|null $orderItemStatus
+     * @param \OpenActive\Enums\OrderItemStatus|null $orderItemStatus
      * @return void
      * @throws \Exception If the provided argument is not of a supported type.
      */
     public function setOrderItemStatus($orderItemStatus)
     {
         $types = array(
-            "OrderItemStatus",
+            "\OpenActive\Enums\OrderItemStatus",
             "null",
         );
 

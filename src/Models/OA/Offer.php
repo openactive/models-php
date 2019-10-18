@@ -62,7 +62,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * "advanceBooking": "https://openactive.io/Required"
      * ```
      *
-     * @var RequiredStatusType|null
+     * @var \OpenActive\Enums\RequiredStatusType|null
      */
     protected $advanceBooking;
 
@@ -84,7 +84,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      *
      *
-     * @var AvailableChannelType[]|null
+     * @var \OpenActive\Enums\AvailableChannelType[]|null
      */
     protected $availableChannel;
 
@@ -100,7 +100,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * Can include  https://openactive.io/OpenBookingIntakeForm,  https://openactive.io/OpenBookingAttendeeDetails,  https://openactive.io/OpenBookingApproval,  https://openactive.io/OpenBookingNegotiation,  https://openactive.io/OpenBookingMessageExchange
      *
      *
-     * @var OpenBookingFlowRequirement[]|null
+     * @var \OpenActive\Enums\OpenBookingFlowRequirement[]|null
      */
     protected $openBookingFlowRequirement;
 
@@ -111,7 +111,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * "prepayment": "https://openactive.io/Required"
      * ```
      *
-     * @var RequiredStatusType|null
+     * @var \OpenActive\Enums\RequiredStatusType|null
      */
     protected $prepayment;
 
@@ -261,7 +261,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return RequiredStatusType|null
+     * @return \OpenActive\Enums\RequiredStatusType|null
      */
     public function getAdvanceBooking()
     {
@@ -269,14 +269,14 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param RequiredStatusType|null $advanceBooking
+     * @param \OpenActive\Enums\RequiredStatusType|null $advanceBooking
      * @return void
      * @throws \Exception If the provided argument is not of a supported type.
      */
     public function setAdvanceBooking($advanceBooking)
     {
         $types = array(
-            "RequiredStatusType",
+            "\OpenActive\Enums\RequiredStatusType",
             "null",
         );
 
@@ -310,7 +310,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return AvailableChannelType[]|null
+     * @return \OpenActive\Enums\AvailableChannelType[]|null
      */
     public function getAvailableChannel()
     {
@@ -318,14 +318,14 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param AvailableChannelType[]|null $availableChannel
+     * @param \OpenActive\Enums\AvailableChannelType[]|null $availableChannel
      * @return void
      * @throws \Exception If the provided argument is not of a supported type.
      */
     public function setAvailableChannel($availableChannel)
     {
         $types = array(
-            "AvailableChannelType[]",
+            "\OpenActive\Enums\AvailableChannelType[]",
             "null",
         );
 
@@ -360,7 +360,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return OpenBookingFlowRequirement[]|null
+     * @return \OpenActive\Enums\OpenBookingFlowRequirement[]|null
      */
     public function getOpenBookingFlowRequirement()
     {
@@ -368,14 +368,14 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param OpenBookingFlowRequirement[]|null $openBookingFlowRequirement
+     * @param \OpenActive\Enums\OpenBookingFlowRequirement[]|null $openBookingFlowRequirement
      * @return void
      * @throws \Exception If the provided argument is not of a supported type.
      */
     public function setOpenBookingFlowRequirement($openBookingFlowRequirement)
     {
         $types = array(
-            "OpenBookingFlowRequirement[]",
+            "\OpenActive\Enums\OpenBookingFlowRequirement[]",
             "null",
         );
 
@@ -385,7 +385,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return RequiredStatusType|null
+     * @return \OpenActive\Enums\RequiredStatusType|null
      */
     public function getPrepayment()
     {
@@ -393,14 +393,14 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param RequiredStatusType|null $prepayment
+     * @param \OpenActive\Enums\RequiredStatusType|null $prepayment
      * @return void
      * @throws \Exception If the provided argument is not of a supported type.
      */
     public function setPrepayment($prepayment)
     {
         $types = array(
-            "RequiredStatusType",
+            "\OpenActive\Enums\RequiredStatusType",
             "null",
         );
 

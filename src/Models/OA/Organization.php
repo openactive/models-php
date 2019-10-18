@@ -103,7 +103,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      * Either  https://openactive/TaxNet or  https://openactive/TaxGross
      *
      *
-     * @var TaxMode|null
+     * @var \OpenActive\Enums\TaxMode|null
      */
     protected $taxMode;
 
@@ -342,7 +342,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @return TaxMode|null
+     * @return \OpenActive\Enums\TaxMode|null
      */
     public function getTaxMode()
     {
@@ -350,14 +350,14 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param TaxMode|null $taxMode
+     * @param \OpenActive\Enums\TaxMode|null $taxMode
      * @return void
      * @throws \Exception If the provided argument is not of a supported type.
      */
     public function setTaxMode($taxMode)
     {
         $types = array(
-            "TaxMode",
+            "\OpenActive\Enums\TaxMode",
             "null",
         );
 
