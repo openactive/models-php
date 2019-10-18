@@ -24,8 +24,15 @@ class DateTimeValidator extends BaseValidator
         }
 
         // If not passing a DateTime object, try and create one from $value
-        // Assuming that the string will be a date in ISO 8601
-        return \DateTime::createFromFormat("Y-m-d\TH:i:sP", $value);
+        // Assuming that the string will be in ISO 8601 date-time format
+        $dateTime = \DateTime::createFromFormat("Y-m-d\TH:i:sP", $value);
+
+        // If date-time could not be parsed, try with date ISO 8601 format
+        if($dateTime === false) {
+            $dateTime = \DateTime::createFromFormat("Y-m-d", $value);
+        }
+
+        return $dateTime;
     }
 
     /**
@@ -49,13 +56,20 @@ class DateTimeValidator extends BaseValidator
         }
 
         // If not passing a DateTime object, try and create one from $value
-        // Assuming that the string will be a date in ISO 8601
-        $dateTime = \DateTime::createFromFormat("Y-m-d\TH:i:sP", $value);
+        // Assuming that the string will be in ISO 8601 date-time format
+        $dateTimeFormat = "Y-m-d\TH:i:sP";
+        $dateTime = \DateTime::createFromFormat($dateTimeFormat, $value);
 
-        // If createFromFormat does not return false,
-        // And formatting the resulting date yields the same original $value
+        // If not able to parse it, try just with ISO 8601 date format
+        if($dateTime === false) {
+            $dateTimeFormat = "Y-m-d";
+            $dateTime = \DateTime::createFromFormat($dateTimeFormat, $value);
+        }
+
+        // If date/time was parsed (not false),
+        // And formatting the resulting date-time yields the same original $value
         // Validation passes
-        return $dateTime !== false
-            && DateTimeHelper::iso8601($dateTime) === $value;
+        return $dateTime !== false &&
+            DateTimeHelper::iso8601($dateTime, $dateTimeFormat === "Y-m-d") === $value;
     }
 }
