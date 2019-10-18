@@ -26,6 +26,15 @@ class DateTime
         if($isDateOnly === true) {
             $format = "Y-m-d";
 
+        // The ISO 8601 format accepts the timezone identifier is "Z" (UTC) as valid,
+        // So perform a check on the original date's timezone name
+        // To see how it was instantiated originally
+        } else if(
+            $date->getTimezone()->getName() === $date->format("e") &&
+            $date->format("e") === "Z"
+        ) {
+            $format = "Y-m-d\TH:i:se";
+
         // Otherwise perform the usual format e.g. 2019-01-01T12:00:00-08:00
         } else {
             $format = "Y-m-d\TH:i:sP";
