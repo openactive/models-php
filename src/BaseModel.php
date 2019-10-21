@@ -2,16 +2,18 @@
 
 namespace OpenActive;
 
-use OpenActive\Validators\BaseValidator;
 use OpenActive\Contracts\SerializerInterface;
 use OpenActive\Contracts\TypeCheckerInterface;
 use OpenActive\Helpers\DateInterval as DateIntervalHelper;
 use OpenActive\Helpers\DateTime as DateTimeHelper;
 use OpenActive\Helpers\JsonLd as JsonLdHelper;
 use OpenActive\Helpers\Str;
+use OpenActive\TypeChecker;
 
 class BaseModel implements SerializerInterface, TypeCheckerInterface
 {
+    use TypeChecker;
+
     /**
      * Gets or sets the identifier used to uniquely identify things that are being described in the document with
      * IRIs or blank node identifiers.
@@ -292,36 +294,6 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
         if ($this->__get($name) === null) {
             return false;
         }
-    }
-
-    /**
-     * Check if the given value is of at least one of the given types.
-     *
-     * @param mixed $value
-     * @param string[] $types
-     * @return bool
-     * @throws \Exception If the provided argument is not of a supported type.
-     */
-    public static function checkTypes($value, $types)
-    {
-        foreach($types as $type) {
-            $validator = BaseValidator::getValidator($type);
-
-            if($validator->run($value) === true) {
-                // If validation passes for the given type
-                // We coerce the type to mitigate PHP loose types
-                return $validator->coerce($value);
-            }
-        }
-
-        // If validation does not pass for any of the provided types,
-        // type invalid
-        // TODO bootstrap TypeError for PHP<7 compatibility
-        throw new \Exception(
-            "The first argument type does not match any of the declared parameter types (".
-            implode(", ", $types).
-            ") for ".json_encode($value)."."
-        );
     }
 
     /**

@@ -5,9 +5,12 @@ namespace OpenActive\Rpde;
 use OpenActive\BaseModel;
 use OpenActive\Contracts\SerializerInterface;
 use OpenActive\Contracts\TypeCheckerInterface;
+use OpenActive\TypeChecker;
 
 class RpdeBody implements SerializerInterface, TypeCheckerInterface
 {
+    use TypeChecker;
+
     /**
      * The default value for the license.
      *
