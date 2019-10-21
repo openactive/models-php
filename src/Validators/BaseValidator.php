@@ -74,6 +74,13 @@ class BaseValidator implements ValidatorInterface
             return new EnumValidator($type);
         }
 
+        // If type is an OpenActive RPDE class
+        if(
+            $type === "\\OpenActive\\Rpde\\RpdeKind" ||
+            $type === "\\OpenActive\\Rpde\\RpdeState"
+        ) {
+            return new RpdeEnumValidator($type);
+        }
         // Add OpenActive's namespace
         // and force global namespace on class
         // TODO: check whether it's SchemaOrg or OA's?
