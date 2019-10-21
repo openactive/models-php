@@ -7,6 +7,13 @@ use OpenActive\BaseModel;
 class RpdeBody extends BaseModel
 {
     /**
+     * The default value for the license.
+     *
+     * @var string
+     */
+    protected static $default_license = "https://creativecommons.org/licenses/by/4.0/";
+
+    /**
      * @var string
      */
     protected $next;
@@ -21,6 +28,26 @@ class RpdeBody extends BaseModel
      */
     protected $license;
 
+    /**
+     * Create a new RPDE body instance.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function __construct($data)
+    {
+        foreach ($data as $key => $value) {
+            // Make sure setter is cased properly
+            $methodName = "set" . Str::pascal($key);
+
+            if(method_exists($this, $methodName) === TRUE) {
+                $this->$methodName($value);
+            }
+        }
+
+        // TODO: add feedbase url, id, and modified checker
+
+    }
     /**
      * @return string
      */
