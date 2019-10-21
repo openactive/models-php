@@ -45,7 +45,6 @@ class RpdeBody extends BaseModel
             }
         }
 
-        // TODO: add feedbase url, id, and modified checker
 
     }
     /**
