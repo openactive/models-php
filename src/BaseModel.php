@@ -3,12 +3,14 @@
 namespace OpenActive;
 
 use OpenActive\Validators\BaseValidator;
+use OpenActive\Contracts\SerializerInterface;
+use OpenActive\Contracts\TypeCheckerInterface;
 use OpenActive\Helpers\DateInterval as DateIntervalHelper;
 use OpenActive\Helpers\DateTime as DateTimeHelper;
 use OpenActive\Helpers\JsonLd as JsonLdHelper;
 use OpenActive\Helpers\Str;
 
-class BaseModel
+class BaseModel implements SerializerInterface, TypeCheckerInterface
 {
     /**
      * Gets or sets the identifier used to uniquely identify things that are being described in the document with
