@@ -5,7 +5,7 @@ namespace OpenActive\Rpde;
 use OpenActive\BaseModel;
 use OpenActive\Contracts\SerializerInterface;
 use OpenActive\Contracts\TypeCheckerInterface;
-use OpenActive\TypeChecker;
+use OpenActive\Concerns\TypeChecker;
 
 class RpdeBody implements SerializerInterface, TypeCheckerInterface
 {

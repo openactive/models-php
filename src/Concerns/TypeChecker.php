@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenActive;
+namespace OpenActive\Concerns;
 
 use OpenActive\Validators\BaseValidator;
 

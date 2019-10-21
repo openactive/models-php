@@ -8,7 +8,7 @@ use OpenActive\Helpers\DateInterval as DateIntervalHelper;
 use OpenActive\Helpers\DateTime as DateTimeHelper;
 use OpenActive\Helpers\JsonLd as JsonLdHelper;
 use OpenActive\Helpers\Str;
-use OpenActive\TypeChecker;
+use OpenActive\Concerns\TypeChecker;
 
 class BaseModel implements SerializerInterface, TypeCheckerInterface
 {
