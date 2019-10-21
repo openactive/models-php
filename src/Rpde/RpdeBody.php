@@ -24,7 +24,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
     protected $next;
 
     /**
-     * @var RpdeItem[]
+     * @var \OpenActive\Rpde\RpdeItem[]
      */
     protected $items;
 
@@ -76,7 +76,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
     }
 
     /**
-     * @return RpdeItem[]
+     * @return \OpenActive\Rpde\RpdeItem[]
      */
     public function getItems()
     {
@@ -84,13 +84,13 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
     }
 
     /**
-     * @param RpdeItem[]
+     * @param \OpenActive\Rpde\RpdeItem[]
      * @return void
      */
     public function setItems($items)
     {
         $types = array(
-            "RpdeItem[]",
+            "\OpenActive\Rpde\RpdeItem[]",
         );
 
         $items = self::checkTypes($items, $types);
