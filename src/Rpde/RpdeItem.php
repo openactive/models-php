@@ -94,29 +94,6 @@ class RpdeItem extends BaseModel
     }
 
     /**
-     * @return int
-     */
-    public function getModified()
-    {
-        return $this->modified;
-    }
-
-    /**
-     * @param int
-     * @return void
-     */
-    public function setModified($modified)
-    {
-        $types = array(
-            "int",
-        );
-
-        $modified = self::checkTypes($modified, $types);
-
-        $this->modified = $modified;
-    }
-
-    /**
      * @return array
      */
     public function getData()
