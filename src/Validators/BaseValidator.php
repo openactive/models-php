@@ -81,6 +81,12 @@ class BaseValidator implements ValidatorInterface
         ) {
             return new RpdeEnumValidator($type);
         }
+
+        // If type is an OpenActive BaseModel class
+        if($type === "\\OpenActive\\BaseModel") {
+            return new BaseModelValidator();
+        }
+
         // Add OpenActive's namespace
         // and force global namespace on class
         // TODO: check whether it's SchemaOrg or OA's?
