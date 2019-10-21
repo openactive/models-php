@@ -94,7 +94,7 @@ class RpdeItem extends BaseModel
     }
 
     /**
-     * @return \OpenActive\BaseModel[]
+     * @return \OpenActive\BaseModel[]|null
      */
     public function getData()
     {
@@ -102,13 +102,14 @@ class RpdeItem extends BaseModel
     }
 
     /**
-     * @param \OpenActive\BaseModel[]
+     * @param \OpenActive\BaseModel[]|null
      * @return void
      */
     public function setData($data)
     {
         $types = array(
             "\OpenActive\BaseModel[]",
+            "null",
         );
 
         $data = self::checkTypes($data, $types);
