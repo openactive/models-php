@@ -5,6 +5,8 @@ namespace OpenActive\Rpde;
 use OpenActive\BaseModel;
 use OpenActive\Contracts\SerializerInterface;
 use OpenActive\Contracts\TypeCheckerInterface;
+use OpenActive\Helpers\Str;
+use OpenActive\Helpers\JsonLd as JsonLdHelper;
 use OpenActive\Concerns\TypeChecker;
 
 class RpdeBody implements SerializerInterface, TypeCheckerInterface
@@ -227,5 +229,18 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
         $license = self::checkTypes($license, $types);
 
         $this->license = $license;
+    }
+
+    /**
+     * Returns the JSON-LD representation of the given instance.
+     *
+     * @param object $obj The given instance to convert to JSON-LD
+     * @return string JSON-LD string representation of the given instance.
+     */
+    public static function serialize($obj)
+    {
+        $data = JsonLdHelper::prepareDataForSerialization($obj);
+
+        return json_encode($data);
     }
 }
