@@ -20,6 +20,11 @@ class RpdeItem extends BaseModel
     protected $kind;
 
     /**
+     * @var string|int
+     */
+    protected $id;
+
+    /**
      * @var array
      */
     protected $data;
@@ -68,6 +73,30 @@ class RpdeItem extends BaseModel
         $kind = self::checkTypes($kind, $types);
 
         $this->kind = $kind;
+    }
+
+    /**
+     * @return string|int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string|int
+     * @return void
+     */
+    public function setId($id)
+    {
+        $types = array(
+            "string",
+            "int",
+        );
+
+        $id = self::checkTypes($id, $types);
+
+        $this->id = $id;
     }
 
     /**
