@@ -2,6 +2,8 @@
 
 namespace OpenActive\Rpde;
 
+use OpenActive\BaseModel;
+
 class RpdeBody extends BaseModel
 {
     /**
