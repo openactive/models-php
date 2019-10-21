@@ -4,8 +4,6 @@ namespace OpenActive;
 
 use OpenActive\Contracts\SerializerInterface;
 use OpenActive\Contracts\TypeCheckerInterface;
-use OpenActive\Helpers\DateInterval as DateIntervalHelper;
-use OpenActive\Helpers\DateTime as DateTimeHelper;
 use OpenActive\Helpers\JsonLd as JsonLdHelper;
 use OpenActive\Helpers\Str;
 use OpenActive\Concerns\TypeChecker;
@@ -163,104 +161,14 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
     public static function serialize($obj)
     {
         // Get data ready to be encoded
-        $data = static::prepareDataForSerialization($obj);
-
-        $json = json_encode($data);
-
-        return static::removeAllButFirstContext($json);
-    }
-
-    /**
-     * Returns an associative array with the data ready for JSON-LD serialization.
-     *
-     * @param \OpenActive\BaseModel $obj The given instance to convert to JSON-LD
-     * @return array
-     */
-    public static function prepareDataForSerialization($obj)
-    {
-        // Get all defined methods for the object
-        // Please note we don't use get_object_vars() here,
-        // As it would only return the public attributes
-        // (BaseModel's are all protected)
-        $classMethods = get_class_methods($obj);
-
-        $data = array();
+        $data = JsonLdHelper::prepareDataForSerialization($obj);
 
         // Add context - this will get the called class's context
         $data["@context"] = static::$context;
 
-        // Get JSON-LD type
-        $data["type"] = JsonLdHelper::getType($obj);
+        $json = json_encode($data);
 
-        // Loop all class methods, find the getters
-        // and map defined attributes, normalizing attribute name
-        foreach($classMethods as $methodName) {
-            if(substr($methodName, 0, 3) !== "get") {
-                continue;
-            }
-
-            // Attribute name is method name without the leading "get" string,
-            // and camel-cased
-            $attrName = Str::camel(substr($methodName, 3));
-
-            // Attribute value is the result of calling $methodName on $obj
-            $attrValue = $obj->$methodName();
-
-            if(is_array($attrValue)) {
-                // If attribute value is an array,
-                // get data for serialization from each of the item.
-                foreach($attrValue as $idx => $item) {
-                    if(is_object($item)) {
-                        // Get fully qualified namespace of the item's class name
-                        $fq_classname = "\\".get_class($item);
-
-                        $attrValue[$idx] = $fq_classname::prepareDataForSerialization(
-                            $item
-                        );
-                    } else {
-                        $attrValue[$idx] = $item;
-                    }
-                }
-            } else if(is_object($attrValue)) {
-                // If attribute value is an object,
-                // get the data for the individual object
-
-                // Get fully qualified namespace of the item's class name
-                $fq_classname = "\\".get_class($attrValue);
-
-                switch ($fq_classname) {
-                    case "\\DateInterval":
-                        // Get interval spec string, e.g. "P1D"
-                        $attrValue = DateIntervalHelper::specString($attrValue);
-                        break;
-                    case "\\DateTime":
-                        // Get ISO 8601 date time representation,
-                        // e.g. "2019-01-01T00:00:00-08:00"
-                        $attrValue = DateTimeHelper::iso8601($attrValue);
-                        break;
-                    default:
-                        $attrValue = $fq_classname::prepareDataForSerialization(
-                            $attrValue
-                        );
-                }
-            }
-
-            $data[$attrName] = $attrValue;
-        }
-
-        // Remove empty elements
-        return array_filter(
-            $data,
-            function($value) {
-                if(is_array($value) === TRUE && count($value) === 0) {
-                    // Filter out empty arrays
-                    return false;
-                }
-
-                // Filter out null values and empty strings
-                return $value !== null && $value !== "";
-            }
-        );
+        return static::removeAllButFirstContext($json);
     }
 
     public function __get($name)
