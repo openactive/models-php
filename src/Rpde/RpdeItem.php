@@ -25,6 +25,11 @@ class RpdeItem extends BaseModel
     protected $id;
 
     /**
+     * @var int
+     */
+    protected $modified;
+
+    /**
      * @var array
      */
     protected $data;
