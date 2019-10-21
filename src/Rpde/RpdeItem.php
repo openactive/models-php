@@ -10,12 +10,12 @@ use OpenActive\BaseModel;
 class RpdeItem extends BaseModel
 {
     /**
-     * @var RpdeState
+     * @var \OpenActive\Rpde\RpdeState
      */
     protected $state;
 
     /**
-     * @var RpdeKind
+     * @var \OpenActive\Rpde\RpdeKind
      */
     protected $kind;
 
@@ -33,13 +33,13 @@ class RpdeItem extends BaseModel
     }
 
     /**
-     * @param RpdeState
+     * @param \OpenActive\Rpde\RpdeState
      * @return void
      */
     public function setState($state)
     {
         $types = array(
-            "RpdeState",
+            "\OpenActive\Rpde\RpdeState",
         );
 
         $state = self::checkTypes($state, $types);
@@ -48,7 +48,7 @@ class RpdeItem extends BaseModel
     }
 
     /**
-     * @return RpdeKind
+     * @return \OpenActive\Rpde\RpdeKind
      */
     public function getKind()
     {
@@ -56,13 +56,13 @@ class RpdeItem extends BaseModel
     }
 
     /**
-     * @param RpdeKind
+     * @param \OpenActive\Rpde\RpdeKind
      * @return void
      */
     public function setKind($kind)
     {
         $types = array(
-            "RpdeKind",
+            "\OpenActive\Rpde\RpdeKind",
         );
 
         $kind = self::checkTypes($kind, $types);
