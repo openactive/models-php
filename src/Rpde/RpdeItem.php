@@ -2,13 +2,17 @@
 
 namespace OpenActive\Rpde;
 
-use OpenActive\BaseModel;
+use OpenActive\Concerns\TypeChecker;
+use OpenActive\Contracts\TypeCheckerInterface;
+use OpenActive\Helpers\Str;
 
 /**
  *
  */
-class RpdeItem extends BaseModel
+class RpdeItem implements TypeCheckerInterface
 {
+    use TypeChecker;
+
     /**
      * @var \OpenActive\Rpde\RpdeState
      */
@@ -35,7 +39,25 @@ class RpdeItem extends BaseModel
     protected $data;
 
     /**
-     * @return RpdeState
+     * Create a new model instance.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function __construct($data)
+    {
+        foreach ($data as $key => $value) {
+            // Make sure setter method is cased properly
+            $setterName = "set" . Str::pascal($key);
+
+            if(method_exists($this, $setterName) === TRUE) {
+                $this->$setterName($value);
+            }
+        }
+    }
+
+    /**
+     * @return \OpenActive\Rpde\RpdeState
      */
     public function getState()
     {
