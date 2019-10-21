@@ -75,7 +75,7 @@ class OrderTest extends TestCase
         $activity = $order->getOrderedItem()[0]->getOrderedItem()->getActivity();
         $seller = $order->getSeller();
         $bookingService = $order->getBookingService();
-        $orderedItem = $order->getOrderedItem();
+        $orderedItem = $order->getOrderedItem()[0];
 
         // Reflection classes will be used to get the class's short name
         $activityReflect = new \ReflectionClass($activity);
