@@ -10,6 +10,7 @@ use OpenActive\Models\OA\SessionSeries;
 use OpenActive\Rpde\Exceptions\DeletedItemsDataException;
 use OpenActive\Rpde\Exceptions\IncompleteItemsDataException;
 use OpenActive\Rpde\Exceptions\ModifiedIdItemsOrderException;
+use OpenActive\Rpde\Exceptions\NextChangeNumbersItemsOrderException;
 use OpenActive\Rpde\RpdeBody;
 use OpenActive\Rpde\RpdeKind;
 use OpenActive\Rpde\RpdeItem;
@@ -375,7 +376,7 @@ class RpdeTest extends TestCase
     {
         $event = $this->getSessionSeriesEvent();
 
-        $this->expectException(\Exception::class);
+        $this->expectException(NextChangeNumbersItemsOrderException::class);
         $this->expectExceptionMessage(
             "Items must be ordered by 'modified'. Please check ".
             "the RPDE specification and ensure you are using ".
@@ -414,7 +415,7 @@ class RpdeTest extends TestCase
     {
         $event = $this->getSessionSeriesEvent();
 
-        $this->expectException(\Exception::class);
+        $this->expectException(NextChangeNumbersItemsOrderException::class);
         $this->expectExceptionMessage(
             "Items must be ordered by 'modified'. Please check ".
             "the RPDE specification and ensure you are using ".
