@@ -43,6 +43,12 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
         "https://openactive.io/ns-beta"
     ];
 
+    /**
+     * Create a new model instance.
+     *
+     * @param array $data
+     * @return void
+     */
     public function __construct($data)
     {
         foreach ($data as $key => $value) {
