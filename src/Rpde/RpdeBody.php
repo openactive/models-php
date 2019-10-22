@@ -9,6 +9,7 @@ use OpenActive\Helpers\Str;
 use OpenActive\Helpers\JsonLd as JsonLdHelper;
 use OpenActive\Concerns\TypeChecker;
 use OpenActive\Rpde\Exceptions\DeletedItemsNoDataException;
+use OpenActive\Rpde\Exceptions\IncompleteItemsDataException;
 
 class RpdeBody implements SerializerInterface, TypeCheckerInterface
 {
@@ -120,10 +121,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
                     $itemModified === null ||
                     $itemId == null
                 ) {
-                    throw new \Exception(
-                        "All RPDE feed items must include id, modified, state, ".
-                        "and kind."
-                    );
+                    throw new IncompleteItemsDataException();
                 }
 
                 if (
@@ -227,12 +225,8 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
                     $item->getKind() === null ||
                     $item->getModified() === null ||
                     $item->getId() === null
-                )
-                {
-                    throw new \Exception(
-                        "All RPDE feed items must include id, modified, state, ".
-                        "and kind."
-                    );
+                ) {
+                    throw new IncompleteItemsDataException();
                 }
 
                 if ($item->getModified() > $currentChangeNumber) {
