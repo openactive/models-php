@@ -361,6 +361,188 @@ class RpdeTest extends TestCase
         );
     }
 
+    /**
+     * Test RPDE with change number unordered "modified" attribute,
+     * throws expected exception.
+     *
+     * @return void
+     */
+    public function testRpdeBodyChangeNumberUnorderedModifiedReturnsExpectedException()
+    {
+        $event = $this->getSessionSeriesEvent();
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage(
+            "Items must be ordered by 'modified'. Please check ".
+            "the RPDE specification and ensure you are using ".
+            "the correct query for your ordering strategy."
+        );
+
+        $rpdeBody = RpdeBody::createFromNextChangeNumber(
+            "https://www.example.com/feed",
+            1,
+            [
+                new RpdeItem([
+                    "Id" => 2,
+                    "Modified" => 5,
+                    "State" => RpdeState::UPDATED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ]),
+                new RpdeItem([
+                    "Id" => 1,
+                    "Modified" => 4,
+                    "State" => RpdeState::DELETED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => null
+                ])
+            ]
+        );
+    }
+
+    /**
+     * Test RPDE with change number unordered "id" attribute,
+     * throws expected exception.
+     *
+     * @return void
+     */
+    public function testRpdeBodyChangeNumberUnorderedID_ReturnsExpectedException()
+    {
+        $event = $this->getSessionSeriesEvent();
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage(
+            "Items must be ordered by 'modified'. Please check ".
+            "the RPDE specification and ensure you are using ".
+            "the correct query for your ordering strategy."
+        );
+        $rpdeBody = RpdeBody::createFromNextChangeNumber(
+            "https://www.example.com/feed",
+            1,
+            [
+                new RpdeItem([
+                    "Id" => 2,
+                    "Modified" => 4,
+                    "State" => RpdeState::UPDATED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ]),
+                new RpdeItem([
+                    "Id" => 1,
+                    "Modified" => 4,
+                    "State" => RpdeState::DELETED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => null
+                ])
+            ]
+        );
+    }
+
+    /**
+     * Test RPDE body created with change number
+     * with a deleted item with "data", throws expected exception.
+     *
+     * @return void
+     */
+    public function testRpdeBodyChangeNumberDeletedWithDataReturnsExpectedException()
+    {
+        $event = $this->getSessionSeriesEvent();
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Deleted items must not contain data.");
+
+        $rpdeBody = RpdeBody::createFromNextChangeNumber(
+            "https://www.example.com/feed",
+            1,
+            [
+                new RpdeItem([
+                    "Id" => 2,
+                    "Modified" => 4,
+                    "State" => RpdeState::UPDATED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ]),
+                new RpdeItem([
+                    "Id" => 1,
+                    "Modified" => 5,
+                    "State" => RpdeState::DELETED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ])
+            ]
+        );
+    }
+
+    /**
+     * Test RPDE body created with change number throws expected exception,
+     * with a first item in feed with same modified
+     * as afterChangeNumber parameters.
+     *
+     * @return void
+     */
+    public function testRpdeBodyChangeNumberFirstItemInFeed_ReturnsExpectedException()
+    {
+        $event = $this->getSessionSeriesEvent();
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage(
+            "First item in the feed must never have same 'modified' ".
+            "as afterChangeNumber query parameter. Please check ".
+            "the RPDE specification and ensure you are using ".
+            "the correct query for your ordering strategy."
+        );
+        $rpdeBody = RpdeBody::createFromNextChangeNumber(
+            "https://www.example.com/feed",
+            4,
+            [
+                new RpdeItem([
+                    "Id" => 2,
+                    "Modified" => 4,
+                    "State" => RpdeState::UPDATED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ]),
+                new RpdeItem([
+                    "Id" => 1,
+                    "Modified" => 5,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "State" => RpdeState::DELETED,
+                    "Data" => null
+                ])
+            ]
+        );
+    }
+
+    public function testRpdeBodyMissingPros_ReturnsExpectedException()
+    {
+        $event = $this->getSessionSeriesEvent();
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage(
+            "All RPDE feed items must include id, modified, state, ".
+            "and kind."
+        );
+
+        $rpdeBody = RpdeBody::createFromNextChangeNumber(
+            "https://www.example.com/feed",
+            1,
+            [
+                new RpdeItem([
+                    "Id" => 2,
+                    "Modified" => 4,
+                    "State" => RpdeState::UPDATED,
+                    "Data" => $event
+                ]),
+                new RpdeItem([
+                    "Id" => 1,
+                    "Modified" => 5,
+                    "State" => RpdeState::DELETED,
+                    "Data" => null
+                ])
+            ]
+        );
+    }
+
     public function jsonProvider()
     {
         $data = array();
