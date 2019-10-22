@@ -10,6 +10,7 @@ use OpenActive\Helpers\JsonLd as JsonLdHelper;
 use OpenActive\Concerns\TypeChecker;
 use OpenActive\Rpde\Exceptions\DeletedItemsDataException;
 use OpenActive\Rpde\Exceptions\IncompleteItemsDataException;
+use OpenActive\Rpde\Exceptions\ModifiedIdItemsOrderException;
 
 class RpdeBody implements SerializerInterface, TypeCheckerInterface
 {
@@ -134,12 +135,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
                     $currentModified = $itemModified;
                     $currentId = $itemId;
                 } else {
-                    throw new \Exception(
-                        "Items must be ordered first by 'modified', ".
-                        "then by 'id'. Please check the RPDE specification ".
-                        "and ensure you are using the correct query for ".
-                        "your ordering strategy."
-                    );
+                    throw new ModifiedIdItemsOrderException();
                 }
             }
 

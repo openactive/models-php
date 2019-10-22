@@ -9,6 +9,7 @@ use OpenActive\Models\OA\PostalAddress;
 use OpenActive\Models\OA\SessionSeries;
 use OpenActive\Rpde\Exceptions\DeletedItemsDataException;
 use OpenActive\Rpde\Exceptions\IncompleteItemsDataException;
+use OpenActive\Rpde\Exceptions\ModifiedIdItemsOrderException;
 use OpenActive\Rpde\RpdeBody;
 use OpenActive\Rpde\RpdeKind;
 use OpenActive\Rpde\RpdeItem;
@@ -56,7 +57,7 @@ class RpdeTest extends TestCase
     {
         $event = $this->getSessionSeriesEvent();
 
-        $this->expectException(\Exception::class);
+        $this->expectException(ModifiedIdItemsOrderException::class);
         $this->expectExceptionMessage(
             "Items must be ordered first by 'modified', ".
             "then by 'id'. Please check the RPDE specification ".
@@ -96,7 +97,7 @@ class RpdeTest extends TestCase
     {
         $event = $this->getSessionSeriesEvent();
 
-        $this->expectException(\Exception::class);
+        $this->expectException(ModifiedIdItemsOrderException::class);
         $this->expectExceptionMessage(
             "Items must be ordered first by 'modified', ".
             "then by 'id'. Please check the RPDE specification ".
@@ -214,7 +215,7 @@ class RpdeTest extends TestCase
     {
         $event = $this->getSessionSeriesEvent();
 
-        $this->expectException(\Exception::class);
+        $this->expectException(ModifiedIdItemsOrderException::class);
         $this->expectExceptionMessage(
             "Items must be ordered first by 'modified', ".
             "then by 'id'. Please check the RPDE specification ".
@@ -255,13 +256,14 @@ class RpdeTest extends TestCase
     {
         $event = $this->getSessionSeriesEvent();
 
-        $this->expectException(\Exception::class);
+        $this->expectException(ModifiedIdItemsOrderException::class);
         $this->expectExceptionMessage(
             "Items must be ordered first by 'modified', ".
             "then by 'id'. Please check the RPDE specification ".
             "and ensure you are using the correct query for ".
             "your ordering strategy."
         );
+
         $rpdeBody = RpdeBody::createFromModifiedId(
             "https://www.example.com/feed",
             1,
