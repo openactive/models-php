@@ -8,6 +8,7 @@ use OpenActive\Contracts\TypeCheckerInterface;
 use OpenActive\Helpers\Str;
 use OpenActive\Helpers\JsonLd as JsonLdHelper;
 use OpenActive\Concerns\TypeChecker;
+use OpenActive\Rpde\Exceptions\DeletedItemsNoDataException;
 
 class RpdeBody implements SerializerInterface, TypeCheckerInterface
 {
@@ -110,7 +111,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
                     $itemState === RpdeState::DELETED &&
                     $item->getData() !== null
                 ) {
-                    throw new \Exception("Deleted items must not contain data.");
+                    throw new DeletedItemsNoDataException();
                 }
 
                 if (
@@ -218,7 +219,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
                     $item->getState() === RpdeState::DELETED &&
                     $item->getData() !== null
                 ) {
-                    throw new \Exception("Deleted items must not contain data.");
+                    throw new DeletedItemsNoDataException();
                 }
 
                 if (

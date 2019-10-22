@@ -7,6 +7,7 @@ use OpenActive\Models\OA\Offer;
 use OpenActive\Models\OA\Place;
 use OpenActive\Models\OA\PostalAddress;
 use OpenActive\Models\OA\SessionSeries;
+use OpenActive\Rpde\Exceptions\DeletedItemsNoDataException;
 use OpenActive\Rpde\RpdeBody;
 use OpenActive\Rpde\RpdeKind;
 use OpenActive\Rpde\RpdeItem;
@@ -134,7 +135,7 @@ class RpdeTest extends TestCase
     {
         $event = $this->getSessionSeriesEvent();
 
-        $this->expectException(\Exception::class);
+        $this->expectException(DeletedItemsNoDataException::class);
         $this->expectExceptionMessage("Deleted items must not contain data.");
 
         $rpdeBody = RpdeBody::createFromModifiedId(
@@ -293,7 +294,7 @@ class RpdeTest extends TestCase
     {
         $event = $this->getSessionSeriesEvent();
 
-        $this->expectException(\Exception::class);
+        $this->expectException(DeletedItemsNoDataException::class);
         $this->expectExceptionMessage("Deleted items must not contain data.");
 
         $rpdeBody = RpdeBody::createFromModifiedId(
@@ -448,7 +449,7 @@ class RpdeTest extends TestCase
     {
         $event = $this->getSessionSeriesEvent();
 
-        $this->expectException(\Exception::class);
+        $this->expectException(DeletedItemsNoDataException::class);
         $this->expectExceptionMessage("Deleted items must not contain data.");
 
         $rpdeBody = RpdeBody::createFromNextChangeNumber(
