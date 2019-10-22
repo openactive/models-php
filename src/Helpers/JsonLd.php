@@ -8,6 +8,14 @@ use OpenActive\Helpers\DateTime as DateTimeHelper;
 class JsonLd
 {
     /**
+     *
+     */
+   public static $defaultContext = [
+       "https://openactive.io/",
+       "https://openactive.io/ns-beta"
+   ];
+
+    /**
      * Returns the JSON-LD type from a given thing.
      *
      * @param \OpenActive\BaseModel $thing
@@ -47,6 +55,11 @@ class JsonLd
             $fq_classname !== "\\OpenActive\\Rpde\\RpdeItem"
         ) {
             $data["type"] = self::getType($obj);
+        }
+
+        // Add context only if a BaseModel (not RPDE stuff)
+        if(is_subclass_of($obj, "\\OpenActive\\BaseModel")) {
+            $data["@context"] = static::$defaultContext;
         }
 
         // Loop all class methods, find the getters

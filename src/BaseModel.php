@@ -164,7 +164,6 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
         $data = JsonLdHelper::prepareDataForSerialization($obj);
 
         // Add context - this will get the called class's context
-        $data["@context"] = static::$context;
 
         $json = json_encode($data);
 
