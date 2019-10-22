@@ -29,5 +29,10 @@ If you want to run the whole suite in verbose mode:
 ./vendor/bin/phpunit --verbose
 ```
 
+You can also run a section of the suite by specifying the class's relative path on which you want to perform tests:
+```bash
+./vendor/bin/phpunit --verbose tests/Unit/RpdeTest.php
+```
+
 For additional information on the commands available for PHPUnit,
 consult [their documentation](https://phpunit.de/manual/5.7/en/installation.html)
