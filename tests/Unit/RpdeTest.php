@@ -8,6 +8,7 @@ use OpenActive\Models\OA\Place;
 use OpenActive\Models\OA\PostalAddress;
 use OpenActive\Models\OA\SessionSeries;
 use OpenActive\Rpde\Exceptions\DeletedItemsDataException;
+use OpenActive\Rpde\Exceptions\FirstTimeAfterChangeNumberException;
 use OpenActive\Rpde\Exceptions\IncompleteItemsDataException;
 use OpenActive\Rpde\Exceptions\ModifiedIdItemsOrderException;
 use OpenActive\Rpde\Exceptions\NextChangeNumbersItemsOrderException;
@@ -489,7 +490,7 @@ class RpdeTest extends TestCase
     {
         $event = $this->getSessionSeriesEvent();
 
-        $this->expectException(\Exception::class);
+        $this->expectException(FirstTimeAfterChangeNumberException::class);
         $this->expectExceptionMessage(
             "First item in the feed must never have same 'modified' ".
             "as afterChangeNumber query parameter. Please check ".

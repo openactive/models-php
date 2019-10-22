@@ -9,6 +9,7 @@ use OpenActive\Helpers\Str;
 use OpenActive\Helpers\JsonLd as JsonLdHelper;
 use OpenActive\Concerns\TypeChecker;
 use OpenActive\Rpde\Exceptions\DeletedItemsDataException;
+use OpenActive\Rpde\Exceptions\FirstTimeAfterChangeNumberException;
 use OpenActive\Rpde\Exceptions\IncompleteItemsDataException;
 use OpenActive\Rpde\Exceptions\ModifiedIdItemsOrderException;
 use OpenActive\Rpde\Exceptions\NextChangeNumbersItemsOrderException;
@@ -199,12 +200,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
             // Checks that the afterChangeNumber provided are not the
             // first item in the feed (helps detect whether query is correct)
             if ($firstItem->getModified() === $changeNumber) {
-                throw new \Exception(
-                    "First item in the feed must never have same 'modified' ".
-                    "as afterChangeNumber query parameter. Please check ".
-                    "the RPDE specification and ensure you are using ".
-                    "the correct query for your ordering strategy."
-                );
+                throw new FirstTimeAfterChangeNumberException();
             }
 
             // Check that items are ordered
