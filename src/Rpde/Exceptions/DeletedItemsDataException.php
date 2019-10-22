@@ -7,7 +7,7 @@ use Exception;
 /**
  *
  */
-class DeletedItemsNoDataException extends Exception
+class DeletedItemsDataException extends Exception
 {
     /**
      * The default message for the exception.
