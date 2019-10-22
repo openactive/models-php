@@ -8,7 +8,9 @@ use OpenActive\Helpers\DateTime as DateTimeHelper;
 class JsonLd
 {
     /**
+     * The default JSON-LD context for this package.
      *
+     * @var array
      */
    public static $defaultContext = [
        "https://openactive.io/",
@@ -144,20 +146,25 @@ class JsonLd
     public static function removeAllButFirstContext($json)
     {
         // OpenActive beta's context JSON-LD representation
-        $openActiveContextPropertyWithBeta = "\"@context\":[\"https:\\/\\/openactive.io\\/\",\"https:\\/\\/openactive.io\\/ns-beta\"],";
+        // We are going to build a JSON property string, from the default context
+        $defaultContext = array("@context" => static::$defaultContext);
+        $defaultContextJson = json_encode($defaultContext);
+        // Remove leading "{" and trailing "}", and add a "," at the end
+        // The JSON property is complete!
+        $defaultContextJsonProperty = substr($defaultContextJson, 1, -1).",";
 
         // Get the index of the first character of context within the JSON
-        $contextStartIndex = strpos($json, $openActiveContextPropertyWithBeta);
+        $contextStartIndex = strpos($json, $defaultContextJsonProperty);
 
         // Get the index of first character after context within the JSON
         $contextEndIndex = $contextStartIndex +
-            strlen($openActiveContextPropertyWithBeta) + 1;
+            strlen($defaultContextJsonProperty) + 1;
 
         // The resulting JSON is the string before context (with context included),
         // with the additional context strings removed
         $json = substr($json, 0, $contextEndIndex).
             str_replace(
-                $openActiveContextPropertyWithBeta,
+                $defaultContextJsonProperty,
                 "",
                 substr($json, $contextEndIndex)
             );
