@@ -10,7 +10,7 @@ interface TypeCheckerInterface
      * @param mixed $value
      * @param string[] $types
      * @return bool
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \InvalidArgumentException If the provided argument is not of an expected type.
      */
     public static function checkTypes($value, $types);
 }
