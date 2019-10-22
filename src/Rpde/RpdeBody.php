@@ -74,6 +74,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
      * @throws \OpenActive\Rpde\Exceptions\DeletedItemsDataException If any deleted items provided (if any) contain data
      * @throws \OpenActive\Rpde\Exceptions\IncompleteItemsDataException If any RPDE feed item does not include id, modified, state, or kind.
      * @throws \OpenActive\Rpde\Exceptions\ModifiedIdItemsOrderException If the feed items are not in "modified", then "id", order.
+     * @throws \InvalidArgumentException If any of the provided arguments are not of an expected type.
      */
     public static function createFromModifiedId(
         $feedBaseUrl,
@@ -181,6 +182,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
      * @throws \OpenActive\Rpde\Exceptions\DeletedItemsDataException If any of the deleted items provided (if any) contain data
      * @throws \OpenActive\Rpde\Exceptions\IncompleteItemsDataException If any RPDE feed item does not include id, modified, state, or kind.
      * @throws \OpenActive\Rpde\Exceptions\NextChangeNumbersItemsOrderException If the feed items provided are not in "modified" order.
+     * @throws \InvalidArgumentException If any of the provided arguments are not of an expected type.
      */
     public static function createFromNextChangeNumber(
         $feedBaseUrl,
