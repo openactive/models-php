@@ -143,8 +143,9 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
             $lastItemIdx = count($items) - 1;
             $lastItem = $items[$lastItemIdx];
             $rpdeBody->setNext(
-                $feedBaseUrl."?afterTimestamp=".$lastItem->getModified().
-                "&afterId=".$lastItem->getId()
+                $feedBaseUrl.
+                "?afterTimestamp=".rawurlencode($lastItem->getModified()).
+                "&afterId=".rawurlencode($lastItem->getId())
             );
         } else {
             // Set "next" value
@@ -152,7 +153,9 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
             // Last page, use existing values
             if ($modified !== null && $id !== null) {
                 $rpdeBody->setNext(
-                    $feedBaseUrl."?afterTimestamp=".$modified."&afterId=".$id
+                    $feedBaseUrl.
+                    "?afterTimestamp=".rawurlencode($modified).
+                    "&afterId=".rawurlencode($id)
                 );
             } else {
                 // No items, use feed base URL
@@ -236,13 +239,15 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
             $lastItemIdx = count($items) - 1;
             $lastItem = $items[$lastItemIdx];
             $rpdeBody->setNext(
-                $feedBaseUrl."?afterChangeNumber=".$lastItem->getModified()
+                $feedBaseUrl.
+                "?afterChangeNumber=".rawurlencode($lastItem->getModified())
             );
         } else {
             if ($changeNumber !== null) {
                 // Last page, use existing values
                 $rpdeBody->setNext(
-                    $feedBaseUrl."?afterChangeNumber=".$changeNumber
+                    $feedBaseUrl.
+                    "?afterChangeNumber=".rawurlencode($changeNumber)
                 );
             } else {
                 // No items, use feed base URL
