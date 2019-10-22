@@ -264,7 +264,7 @@ class RpdeTest extends TestCase
                 "Modified" => 4,
                 "State" => RpdeState::UPDATED,
                 "Kind" => RpdeKind::SESSION_SERIES,
-                "Data" => [$this->getSessionSeriesEvent()]
+                "Data" => $this->getSessionSeriesEvent()
             ]),
             new RpdeItem([
                 "Id" => "1",

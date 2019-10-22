@@ -34,7 +34,7 @@ class RpdeItem implements TypeCheckerInterface
     protected $modified;
 
     /**
-     * @var array
+     * @var \OpenActive\BaseModel
      */
     protected $data;
 
@@ -150,7 +150,7 @@ class RpdeItem implements TypeCheckerInterface
     }
 
     /**
-     * @return \OpenActive\BaseModel[]|null
+     * @return \OpenActive\BaseModel|null
      */
     public function getData()
     {
@@ -158,13 +158,13 @@ class RpdeItem implements TypeCheckerInterface
     }
 
     /**
-     * @param \OpenActive\BaseModel[]|null
+     * @param \OpenActive\BaseModel|null
      * @return void
      */
     public function setData($data)
     {
         $types = array(
-            "\OpenActive\BaseModel[]",
+            "\OpenActive\BaseModel",
             "null",
         );
 
