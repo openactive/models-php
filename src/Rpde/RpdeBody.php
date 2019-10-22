@@ -10,6 +10,7 @@ use OpenActive\Helpers\JsonLd as JsonLdHelper;
 use OpenActive\Concerns\TypeChecker;
 use OpenActive\Rpde\Exceptions\DeletedItemsDataException;
 use OpenActive\Rpde\Exceptions\FirstTimeAfterChangeNumberException;
+use OpenActive\Rpde\Exceptions\FirstTimeAfterTimestampAndAfterIdException;
 use OpenActive\Rpde\Exceptions\IncompleteItemsDataException;
 use OpenActive\Rpde\Exceptions\ModifiedIdItemsOrderException;
 use OpenActive\Rpde\Exceptions\NextChangeNumbersItemsOrderException;
@@ -96,12 +97,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
                 $firstItem->getModified() === $modified &&
                 $firstItem->getId() === $id
             ) {
-                throw new \Exception(
-                    "First item in the feed must never have same 'modified' ".
-                    "and 'id' as afterTimestamp and afterId query parameters. ".
-                    "Please check the RPDE specification and ensure you are ".
-                    "using the correct query for your ordering strategy."
-                );
+                throw new FirstTimeAfterTimestampAndAfterIdException();
             }
 
             // Check that items are ordered, and deleted items contain no data
