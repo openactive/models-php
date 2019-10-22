@@ -115,7 +115,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
                     $itemId == null
                 ) {
                     throw new \Exception(
-                        "All RPDE feed items must include id, modified, state ".
+                        "All RPDE feed items must include id, modified, state, ".
                         "and kind."
                     );
                 }
@@ -216,8 +216,8 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
                 )
                 {
                     throw new \Exception(
-                        "All RPDE feed items must include id, modified, ".
-                        "state and kind."
+                        "All RPDE feed items must include id, modified, state, ".
+                        "and kind."
                     );
                 }
 
