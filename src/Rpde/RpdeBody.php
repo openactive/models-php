@@ -162,6 +162,97 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
 
         return $rpdeBody;
     }
+
+    /**
+     * @param string
+     * @param string
+     * @param array
+     * @return self
+     * @throws \Exception If on or more of the provided arguments are not of a supported type.
+     */
+    public static function createFromNextChangeNumber(
+        $feedBaseUrl,
+        $changeNumber,
+        $items
+    )
+    {
+        // If the items provided are not valid,
+        // An exception will be thrown,
+        // We don't implement any further check on $items after this
+        $rpdeBody = new self([
+            "items" => $items,
+        ]);
+
+        // If there is at least one item, run validation on items array
+        if (count($items) > 0) {
+            $firstItem = $items[0];
+
+            // Checks that the afterChangeNumber provided are not the
+            // first item in the feed (helps detect whether query is correct)
+            if ($firstItem->getModified() === $changeNumber) {
+                throw new \Exception(
+                    "First item in the feed must never have same 'modified' ".
+                    "as afterChangeNumber query parameter. Please check ".
+                    "the RPDE specification and ensure you are using ".
+                    "the correct query for your ordering strategy."
+                );
+            }
+
+            // Check that items are ordered
+            $currentChangeNumber = -1;
+            foreach ($items as $item) {
+                if (
+                    $item->getState() === RpdeState::DELETED &&
+                    $item->getData() !== null
+                ) {
+                    throw new \Exception("Deleted items must not contain data.");
+                }
+
+                if (
+                    $item->getState() === null ||
+                    $item->getKind() === null ||
+                    $item->getModified() === null ||
+                    $item->getId() === null
+                )
+                {
+                    throw new \Exception(
+                        "All RPDE feed items must include id, modified, ".
+                        "state and kind."
+                    );
+                }
+
+                if ($item->getModified() > $currentChangeNumber) {
+                    $currentChangeNumber = $item->getModified();
+                } else {
+                    throw new \Exception(
+                        "Items must be ordered by 'modified'. Please check ".
+                        "the RPDE specification and ensure you are using ".
+                        "the correct query for your ordering strategy."
+                    );
+                }
+            }
+
+            // Create 'next' URL depending on whether there are items available
+            $lastItemIdx = count($items) - 1;
+            $lastItem = $items[$lastItemIdx];
+            $rpdeBody->setNext(
+                $feedBaseUrl."?afterChangeNumber=".$lastItem->getModified()
+            );
+        } else {
+            if ($changeNumber !== null) {
+                // Last page, use existing values
+                $rpdeBody->setNext(
+                    $feedBaseUrl."?afterChangeNumber=".$changeNumber
+                );
+            } else {
+                // No items, use feed base URL
+                $rpdeBody->setNext($feedBaseUrl);
+            }
+        }
+
+        return $rpdeBody;
+    }
+
     /**
      * @return string
      */
