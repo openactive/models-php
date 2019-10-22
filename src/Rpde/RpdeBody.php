@@ -3,11 +3,11 @@
 namespace OpenActive\Rpde;
 
 use OpenActive\BaseModel;
+use OpenActive\Concerns\TypeChecker;
 use OpenActive\Contracts\SerializerInterface;
 use OpenActive\Contracts\TypeCheckerInterface;
 use OpenActive\Helpers\Str;
 use OpenActive\Helpers\JsonLd as JsonLdHelper;
-use OpenActive\Concerns\TypeChecker;
 use OpenActive\Rpde\Exceptions\DeletedItemsDataException;
 use OpenActive\Rpde\Exceptions\FirstTimeAfterChangeNumberException;
 use OpenActive\Rpde\Exceptions\FirstTimeAfterTimestampAndAfterIdException;
@@ -70,7 +70,10 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
      * @param string|int $id
      * @param \OpenActive\Rpde\RpdeItem[] $items
      * @return self
-     * @throws \Exception If on or more of the provided arguments are not of a supported type.
+     * @throws \OpenActive\Rpde\Exceptions\FirstTimeAfterTimestampAndAfterIdException If the afterId and afterTimestamp provided are of the first item in the feed
+     * @throws \OpenActive\Rpde\Exceptions\DeletedItemsDataException If any deleted items provided (if any) contain data
+     * @throws \OpenActive\Rpde\Exceptions\IncompleteItemsDataException If any RPDE feed item does not include id, modified, state, or kind.
+     * @throws \OpenActive\Rpde\Exceptions\ModifiedIdItemsOrderException If the feed items are not in "modified", then "id", order.
      */
     public static function createFromModifiedId(
         $feedBaseUrl,
@@ -174,7 +177,10 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
      * @param int $changeNumber
      * @param \OpenActive\Rpde\RpdeItem[] $items
      * @return self
-     * @throws \Exception If on or more of the provided arguments are not of a supported type.
+     * @throws \OpenActive\Rpde\Exceptions\FirstTimeAfterChangeNumberException If the afterChangeNumber provided is the first item in the feed
+     * @throws \OpenActive\Rpde\Exceptions\DeletedItemsDataException If any of the deleted items provided (if any) contain data
+     * @throws \OpenActive\Rpde\Exceptions\IncompleteItemsDataException If any RPDE feed item does not include id, modified, state, or kind.
+     * @throws \OpenActive\Rpde\Exceptions\NextChangeNumbersItemsOrderException If the feed items provided are not in "modified" order.
      */
     public static function createFromNextChangeNumber(
         $feedBaseUrl,
