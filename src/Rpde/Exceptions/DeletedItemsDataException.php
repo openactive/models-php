@@ -2,12 +2,10 @@
 
 namespace OpenActive\Rpde\Exceptions;
 
-use Exception;
-
 /**
  *
  */
-class DeletedItemsDataException extends Exception
+class DeletedItemsDataException extends RpdeException
 {
     /**
      * The default message for the exception.
@@ -15,15 +13,4 @@ class DeletedItemsDataException extends Exception
      * @var string
      */
     protected static $defaultMessage = "Deleted items must not contain data.";
-
-    /**
-     * Create a new exception instance.
-     *
-     * @param string $message
-     * @return void
-     */
-    function __construct($message = null)
-    {
-        parent::__construct($message ? $message : static::$defaultMessage);
-    }
 }
