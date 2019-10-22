@@ -42,6 +42,323 @@ class RpdeTest extends TestCase
         );
     }
 
+    /**
+     * Test RPDE body with unordered "modified" attribute,
+     * throws expected exception.
+     *
+     * @return void
+     */
+    public function testRpdeBodyUnorderedModifiedReturnsExpectedException()
+    {
+        $event = $this->getSessionSeriesEvent();
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage(
+            "Items must be ordered first by 'modified', ".
+            "then by 'id'. Please check the RPDE specification ".
+            "and ensure you are using the correct query for ".
+            "your ordering strategy."
+        );
+
+        $rpdeBody = RpdeBody::createFromModifiedId(
+            "https://www.example.com/feed",
+            1,
+            "1",
+            [
+                new RpdeItem([
+                    "Id" => "2",
+                    "Modified" => 5,
+                    "State" => RpdeState::UPDATED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ]),
+                new RpdeItem([
+                    "Id" => "1",
+                    "Modified" => 4,
+                    "State" => RpdeState::DELETED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => null
+                ])
+            ]
+        );
+    }
+
+    /**
+     * Test RPDE body with unordered "id" attribute, throws expected exception.
+     *
+     * @return void
+     */
+    public function testRpdeBodyUnorderedIdReturnsExpectedException()
+    {
+        $event = $this->getSessionSeriesEvent();
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage(
+            "Items must be ordered first by 'modified', ".
+            "then by 'id'. Please check the RPDE specification ".
+            "and ensure you are using the correct query for ".
+            "your ordering strategy."
+        );
+
+        $rpdeBody = RpdeBody::createFromModifiedId(
+            "https://www.example.com/feed",
+            1,
+            "1",
+            [
+                new RpdeItem([
+                    "Id" => "2",
+                    "Modified" => 4,
+                    "State" => RpdeState::UPDATED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ]),
+                new RpdeItem([
+                    "Id" => "1",
+                    "Modified" => 4,
+                    "State" => RpdeState::DELETED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => null
+                ])
+            ]
+        );
+    }
+
+    /**
+     * Test RPDE body with a deleted item with "data", throws expected exception.
+     *
+     * @return void
+     */
+    public function testRpdeBodyDeletedWithDataReturnsExpectedException()
+    {
+        $event = $this->getSessionSeriesEvent();
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Deleted items must not contain data.");
+
+        $rpdeBody = RpdeBody::createFromModifiedId(
+            "https://www.example.com/feed",
+            1,
+            "1",
+            [
+                new RpdeItem([
+                    "Id" => "2",
+                    "Modified" => 4,
+                    "State" => RpdeState::UPDATED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ]),
+                new RpdeItem([
+                    "Id" => "1",
+                    "Modified" => 5,
+                    "State" => RpdeState::DELETED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ])
+            ]
+        );
+    }
+
+    /**
+     * Test RPDE body throws expected exception,
+     * with a first item in feed with same modified and id
+     * as afterId and afterTimestamp parameters.
+     *
+     * @return void
+     */
+    public function testRpdeBodyFirstItemInFeedReturnsExpectedException()
+    {
+        $event = $this->getSessionSeriesEvent();
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage(
+            "First item in the feed must never have same 'modified' ".
+            "and 'id' as afterTimestamp and afterId query parameters. ".
+            "Please check the RPDE specification and ensure you are ".
+            "using the correct query for your ordering strategy."
+        );
+
+        $rpdeBody = RpdeBody::createFromModifiedId(
+            "https://www.example.com/feed",
+            4,
+            "2",
+            [
+                new RpdeItem([
+                    "Id" => "2",
+                    "Modified" => 4,
+                    "State" => RpdeState::UPDATED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ]),
+                new RpdeItem([
+                    "Id" => "1",
+                    "Modified" => 5,
+                    "State" => RpdeState::DELETED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => null
+                ])
+            ]
+        );
+    }
+
+    /**
+     * Test RPDE body with unordered "modified" attribute,
+     * throws expected exception.
+     *
+     * @return void
+     */
+    public function testRpdeBodyIntUnorderedModifiedReturnsExpectedException()
+    {
+        $event = $this->getSessionSeriesEvent();
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage(
+            "Items must be ordered first by 'modified', ".
+            "then by 'id'. Please check the RPDE specification ".
+            "and ensure you are using the correct query for ".
+            "your ordering strategy."
+        );
+
+        $rpdeBody = RpdeBody::createFromModifiedId(
+            "https://www.example.com/feed",
+            1,
+            1,
+            [
+                new RpdeItem([
+                    "Id" => 2,
+                    "Modified" => 5,
+                    "State" => RpdeState::UPDATED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ]),
+                new RpdeItem([
+                    "Id" => 1,
+                    "Modified" => 4,
+                    "State" => RpdeState::DELETED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => null
+                ])
+            ]
+        );
+    }
+
+    /**
+     * Test RPDE body integer with unordered "id" attribute,
+     * throws expected exception.
+     *
+     * @return void
+     */
+    public function testRpdeBodyIntUnorderedIdReturnsExpectedException()
+    {
+        $event = $this->getSessionSeriesEvent();
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage(
+            "Items must be ordered first by 'modified', ".
+            "then by 'id'. Please check the RPDE specification ".
+            "and ensure you are using the correct query for ".
+            "your ordering strategy."
+        );
+        $rpdeBody = RpdeBody::createFromModifiedId(
+            "https://www.example.com/feed",
+            1,
+            1,
+            [
+                new RpdeItem([
+                    "Id" => 2,
+                    "Modified" => 4,
+                    "State" => RpdeState::UPDATED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ]),
+                new RpdeItem([
+                    "Id" => 1,
+                    "Modified" => 4,
+                    "State" => RpdeState::DELETED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => null
+                ])
+            ]
+        );
+    }
+
+    /**
+     * Test RPDE body int with a deleted item with "data",
+     * throws expected exception.
+     *
+     * @return void
+     */
+    public function testRpdeBodyIntDeletedWithData_ReturnsExpectedException()
+    {
+        $event = $this->getSessionSeriesEvent();
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Deleted items must not contain data.");
+
+        $rpdeBody = RpdeBody::createFromModifiedId(
+            "https://www.example.com/feed",
+            1,
+            1,
+            [
+                new RpdeItem([
+                    "Id" => 2,
+                    "Modified" => 4,
+                    "State" => RpdeState::UPDATED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ]),
+                new RpdeItem([
+                    "Id" => 1,
+                    "Modified" => 5,
+                    "State" => RpdeState::DELETED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ])
+            ]
+        );
+    }
+
+    /**
+     * Test RPDE body int throws expected exception,
+     * with a first item in feed with same modified and id
+     * as afterId and afterTimestamp parameters.
+     *
+     * @return void
+     */
+    public function testRpdeBodyIntFirstItemInFeed_ReturnsExpectedException()
+    {
+        $event = $this->getSessionSeriesEvent();
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage(
+            "First item in the feed must never have same 'modified' ".
+            "and 'id' as afterTimestamp and afterId query parameters. ".
+            "Please check the RPDE specification and ensure you are ".
+            "using the correct query for your ordering strategy."
+        );
+
+        $rpdeBody = RpdeBody::createFromModifiedId(
+            "https://www.example.com/feed",
+            4,
+            2,
+            [
+                new RpdeItem([
+                    "Id" => 2,
+                    "Modified" => 4,
+                    "State" => RpdeState::UPDATED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => $event
+                ]),
+                new RpdeItem([
+                    "Id" => 1,
+                    "Modified" => 5,
+                    "State" => RpdeState::DELETED,
+                    "Kind" => RpdeKind::SESSION_SERIES,
+                    "Data" => null
+                ])
+            ]
+        );
+    }
+
     public function jsonProvider()
     {
         $data = array();
