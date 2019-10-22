@@ -119,4 +119,36 @@ class JsonLd
             }
         );
     }
+
+    /**
+     * Remove all "@context" attributes from the given JSON-LD string,
+     * leaving only the first occurrence.
+     *
+     * @param string $json
+     * @return string
+     * @see https://github.com/openactive/OpenActive.NET/blob/master/OpenActive.NET/OpenActiveSerializer.cs#L113 For .NET implementation
+     */
+    public static function removeAllButFirstContext($json)
+    {
+        // OpenActive beta's context JSON-LD representation
+        $openActiveContextPropertyWithBeta = "\"@context\":[\"https:\\/\\/openactive.io\\/\",\"https:\\/\\/openactive.io\\/ns-beta\"],";
+
+        // Get the index of the first character of context within the JSON
+        $contextStartIndex = strpos($json, $openActiveContextPropertyWithBeta);
+
+        // Get the index of first character after context within the JSON
+        $contextEndIndex = $contextStartIndex +
+            strlen($openActiveContextPropertyWithBeta) + 1;
+
+        // The resulting JSON is the string before context (with context included),
+        // with the additional context strings removed
+        $json = substr($json, 0, $contextEndIndex).
+            str_replace(
+                $openActiveContextPropertyWithBeta,
+                "",
+                substr($json, $contextEndIndex)
+            );
+
+        return $json;
+    }
 }

@@ -168,7 +168,7 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
 
         $json = json_encode($data);
 
-        return static::removeAllButFirstContext($json);
+        return JsonLdHelper::removeAllButFirstContext($json);
     }
 
     public function __get($name)
@@ -202,70 +202,5 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
         if ($this->__get($name) === null) {
             return false;
         }
-    }
-
-    /**
-     * Remove all "@context" attributes from the given JSON-LD string,
-     * leaving only the first occurrence.
-     *
-     * @param string $json
-     * @return string
-     * @see https://github.com/openactive/OpenActive.NET/blob/master/OpenActive.NET/OpenActiveSerializer.cs#L113 For .NET implementation
-     */
-    protected static function removeAllButFirstContext($json)
-    {
-        // OpenActive beta's context JSON-LD representation
-        $openActiveContextPropertyWithBeta = "\"@context\":[\"https:\\/\\/openactive.io\\/\",\"https:\\/\\/openactive.io\\/ns-beta\"],";
-
-        // Get the index of first character after context within the JSON
-        // We add the one to represent the opening curly brace.
-        $startIndex = strlen($openActiveContextPropertyWithBeta) + 1;
-
-        // The resulting JSON is the context string,
-        // with the additional context strings removed
-        $json = "{".
-            $openActiveContextPropertyWithBeta.
-            str_replace(
-                $openActiveContextPropertyWithBeta,
-                "",
-                substr($json, $startIndex)
-            );
-
-        return $json;
-
-        // Conversion of the .NET implementation is provided below for reference
-        // but not actually use as PHP implementation makes certain assumptions
-        // around context, type, and id that .NET does not.
-        // I.e. "@context" is always OpenActive and OpenActive beta's,
-        // "type" will always be deduced from the class name in serialize()
-        // $schemaContextProperty = "\"@context\":\"http://schema.org\",";
-        // $openActiveContextProperty = "\"@context\":\"https://openactive.io/\",";
-        // $openActiveContextPropertyWithBeta = "\"@context\":[\"https://openactive.io/\",\"https://openactive.io/ns-beta\"],";
-
-        // The following don't need to be defined as not used below
-        // $schemaIdJson = "\"@id\":";
-        // $openActiveIdJson = "\"id\":";
-        // $schemaTypeJson = "\"@type\":";
-        // $openActiveTypeJson = "\"type\":";
-
-        // Only include beta context if there are beta properties present
-        // $contextProperty = strpos($json, "\"beta:") !== FALSE ?
-        //     $openActiveContextPropertyWithBeta :
-        //     $openActiveContextProperty;
-
-        // We add the one to represent the opening curly brace.
-        // $startIndex = strlen($schemaContextProperty) + 1;
-
-        // Replace OpenActive context and properties
-
-        // Context should be only OpenActive's so no need for below
-        // $json = substr_replace($schemaContextProperty, "", $startIndex, strlen($json) - $startIndex);
-        // $json = substr_replace($schemaContextProperty, $contextProperty, 0, $startIndex);
-
-        // These 2 shouldn't be included in the PHP classes so are not performed
-        // $json = substr_replace($schemaIdJson, $openActiveIdJson, 0, strlen($json));
-        // $json = substr_replace($schemaTypeJson, $openActiveTypeJson, 0, strlen($json));
-
-        // return $json;
     }
 }
