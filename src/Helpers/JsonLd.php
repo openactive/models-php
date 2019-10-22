@@ -149,11 +149,9 @@ class JsonLd
         // We are going to build a JSON property string, from the default context
         $defaultContext = array("@context" => static::$defaultContext);
         $defaultContextJson = json_encode($defaultContext);
-        $defaultContextJsonProperty = str_replace(
-            array("{", "}"),
-            "",
-            $defaultContextJson
-        ).",";
+        // Remove leading "{" and trailing "}", and add a "," at the end
+        // The JSON property is complete!
+        $defaultContextJsonProperty = substr($defaultContextJson, 1, -1).",";
 
         // Get the index of the first character of context within the JSON
         $contextStartIndex = strpos($json, $defaultContextJsonProperty);
