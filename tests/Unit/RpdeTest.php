@@ -22,10 +22,12 @@ use PHPUnit\Framework\TestCase;
 class RpdeTest extends TestCase
 {
     /**
+     * Test the serialized RPDE body returns the expected JSON-LD.
+     *
      * @dataProvider jsonProvider
      * @return void
      */
-    public function testToStringEventGoogleStructuredDataReturnsExpectedJsonLd($json)
+    public function testToStringEventReturnsExpectedJsonLd($json)
     {
         $feedItems = $this->getFeedItems();
 
