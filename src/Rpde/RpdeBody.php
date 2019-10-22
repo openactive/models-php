@@ -54,10 +54,15 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
     }
 
     /**
+     * Create an RpdeBody object from a given feed base URL, a modified int,
+     * an id, and an array of RpdeItem.
+     * Checks are performed to see if the provided "modified" and "id" attributes
+     * are valid.
+     *
      * @param string $feedBaseUrl
-     * @param string $modified
-     * @param string $id
-     * @param array $items
+     * @param int $modified
+     * @param string|int $id
+     * @param \OpenActive\Rpde\RpdeItem[] $items
      * @return self
      * @throws \Exception If on or more of the provided arguments are not of a supported type.
      */
@@ -167,9 +172,14 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
     }
 
     /**
-     * @param string
-     * @param string
-     * @param array
+     * Create an RpdeBody object from a given feed base URL, a change number int,
+     * and an array of RpdeItem.
+     * Checks are performed to see if the provided "changeNumber" attribute
+     * is valid.
+     *
+     * @param string $feedBaseUrl
+     * @param int $changeNumber
+     * @param \OpenActive\Rpde\RpdeItem[] $items
      * @return self
      * @throws \Exception If on or more of the provided arguments are not of a supported type.
      */
