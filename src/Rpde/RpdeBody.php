@@ -335,9 +335,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
     {
         $data = JsonLdHelper::prepareDataForSerialization($obj);
 
-        $json = json_encode($data);
-
-        return JsonLdHelper::removeAllButFirstContext($json);
+        return json_encode($data);
     }
 
     /**
