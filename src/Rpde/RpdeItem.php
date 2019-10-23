@@ -50,7 +50,7 @@ class RpdeItem implements TypeCheckerInterface
             // Make sure setter method is cased properly
             $setterName = "set" . Str::pascal($key);
 
-            if(method_exists($this, $setterName) === TRUE) {
+            if (method_exists($this, $setterName) === true) {
                 $this->$setterName($value);
             }
         }
