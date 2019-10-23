@@ -9,14 +9,16 @@ While most of the functionality should work down to PHP 5.4, some functionality 
 
 [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos) is also required for dependency management.
 
-## Installation
+## Development
+
+### Installation
 ```bash
 git clone https://github.com/openactive/models-php.git
 cd models-php
 composer install
 ```
 
-## Running Tests
+### Running Tests
 PHPUnit 5.7 is used to run tests.
 
 To run the whole suite:
