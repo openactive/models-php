@@ -16,7 +16,7 @@ class BaseModelValidator extends BaseValidator
         // in terms of checking the class name.
         // We allow the class to be an instanceof BaseModel
         // Or to be a sub class (BaseModel is one of its parent)
-        if($value instanceof \OpenActive\BaseModel) {
+        if ($value instanceof \OpenActive\BaseModel) {
             return true;
         }
 

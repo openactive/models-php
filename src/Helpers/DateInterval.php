@@ -20,7 +20,7 @@ class DateInterval
      */
     public static function specString($dateInterval)
     {
-        if($dateInterval instanceof \DateInterval === FALSE) {
+        if ($dateInterval instanceof \DateInterval === false) {
             throw new InvalidArgumentException(
                 "Invalid argument type. Argument must be an instance of type ".
                 "\DateInterval."

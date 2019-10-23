@@ -63,13 +63,13 @@ class ArrayOfValidator extends BaseValidator
         // }
 
         // Check if value is an array
-        if((new ArrayValidator())->run($value) === false) {
+        if ((new ArrayValidator())->run($value) === false) {
             return false;
         }
 
-        foreach($value as $item) {
+        foreach ($value as $item) {
             // If any of the provided items is not null nor an instance of the provided class name
-            if(
+            if (
                 $nullValidator->run($item) === false &&
                 $this->itemValidator->run($item) === false
             ) {

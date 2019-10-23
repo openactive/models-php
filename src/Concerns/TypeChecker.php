@@ -16,10 +16,10 @@ trait TypeChecker
      */
     public static function checkTypes($value, $types)
     {
-        foreach($types as $type) {
+        foreach ($types as $type) {
             $validator = BaseValidator::getValidator($type);
 
-            if($validator->run($value) === true) {
+            if ($validator->run($value) === true) {
                 // If validation passes for the given type
                 // We coerce the type to mitigate PHP loose types
                 return $validator->coerce($value);

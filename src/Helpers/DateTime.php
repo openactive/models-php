@@ -18,18 +18,18 @@ class DateTime
      */
     public static function iso8601($date, $isDateOnly = false)
     {
-        if($date instanceof \DateTime === FALSE) {
+        if ($date instanceof \DateTime === false) {
             throw new \Exception("Invalid argument type.");
         }
 
         // If only the date is needed, return ISO 8601 date format
-        if($isDateOnly === true) {
+        if ($isDateOnly === true) {
             $format = "Y-m-d";
 
         // The ISO 8601 format accepts the timezone identifier is "Z" (UTC) as valid,
         // So perform a check on the original date's timezone name
         // To see how it was instantiated originally
-        } else if(
+        } elseif (
             $date->getTimezone()->getName() === $date->format("e") &&
             $date->format("e") === "Z"
         ) {

@@ -53,7 +53,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
             // Make sure setter is cased properly
             $methodName = "set" . Str::pascal($key);
 
-            if(method_exists($this, $methodName) === TRUE) {
+            if (method_exists($this, $methodName) === true) {
                 $this->$methodName($value);
             }
         }
@@ -81,8 +81,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
         $modified,
         $id,
         $items
-    )
-    {
+    ) {
         // If the items provided are not valid,
         // An exception will be thrown,
         // We don't implement any further type checks on $items after this
@@ -188,8 +187,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
         $feedBaseUrl,
         $changeNumber,
         $items
-    )
-    {
+    ) {
         // If the items provided are not valid,
         // An exception will be thrown,
         // We don't implement any further check on $items after this
@@ -347,7 +345,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
     public static function deserialize($data)
     {
         // If a string is provided, we attempt JSON-decoding first
-        if(is_string($data)) {
+        if (is_string($data)) {
             $data = json_decode($data, true);
         }
 
@@ -355,7 +353,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
         $self = new $class([]);
 
         // If data provided is not an array, return an empty class
-        if(is_array($data) === FALSE) {
+        if (is_array($data) === false) {
             return $self;
         }
 
@@ -365,9 +363,9 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
 
             if (is_object($value)) {
                 $self->$attrName = $value::deserialize($value);
-            } else if (is_array($value)) {
+            } elseif (is_array($value)) {
                 $self->$attrName = static::deserializeValue($value);
-            } else if($key !== "@context" && $key !== "type") {
+            } elseif ($key !== "@context" && $key !== "type") {
                 // Calling the setter will type-enforce it
                 $self->$setterName($value);
             }

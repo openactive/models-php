@@ -12,7 +12,7 @@ class JsonLd
      *
      * @var array
      */
-   public static $defaultContext = [
+    public static $defaultContext = [
        "https://openactive.io/",
        "https://openactive.io/ns-beta"
    ];
@@ -53,7 +53,7 @@ class JsonLd
         $data = array();
 
         // Add type to data if not an RpdeItem
-        if(
+        if (
             $fq_classname !== "\\OpenActive\\Rpde\\RpdeBody" &&
             $fq_classname !== "\\OpenActive\\Rpde\\RpdeItem"
         ) {
@@ -62,7 +62,7 @@ class JsonLd
 
         // Only add context if object is subclass of BaseModel
         // and no parent, or parent is an RPDE item
-        if(
+        if (
             is_subclass_of($obj, "\\OpenActive\\BaseModel") &&
             (
                 $parent === null ||
@@ -77,8 +77,8 @@ class JsonLd
 
         // Loop all class methods, find the getters
         // and map defined attributes, normalizing attribute name
-        foreach($classMethods as $methodName) {
-            if(substr($methodName, 0, 3) !== "get") {
+        foreach ($classMethods as $methodName) {
+            if (substr($methodName, 0, 3) !== "get") {
                 continue;
             }
 
@@ -89,11 +89,11 @@ class JsonLd
             // Attribute value is the result of calling $methodName on $obj
             $attrValue = $obj->$methodName();
 
-            if(is_array($attrValue)) {
+            if (is_array($attrValue)) {
                 // If attribute value is an array,
                 // get data for serialization from each of the item.
-                foreach($attrValue as $idx => $item) {
-                    if(is_object($item)) {
+                foreach ($attrValue as $idx => $item) {
+                    if (is_object($item)) {
                         // Get fully qualified namespace of the item's class name
                         $fq_classname = "\\".get_class($item);
 
@@ -105,7 +105,7 @@ class JsonLd
 
                     $attrValue[$idx] = $item;
                 }
-            } else if(is_object($attrValue)) {
+            } elseif (is_object($attrValue)) {
                 // If attribute value is an object,
                 // get the data for the individual object
 
@@ -136,8 +136,8 @@ class JsonLd
         // Remove empty elements
         return array_filter(
             $data,
-            function($value) {
-                if(is_array($value) === TRUE && count($value) === 0) {
+            function ($value) {
+                if (is_array($value) === true && count($value) === 0) {
                     // Filter out empty arrays
                     return false;
                 }
