@@ -67,9 +67,6 @@ class JsonLd
             (
                 $parent === null ||
                 (
-                    // While instanceof will not throw an error
-                    // if the parent is not an object
-                    // A check if perform for clarity
                     is_object($parent) &&
                     $parent instanceof \OpenActive\Rpde\RpdeItem
                 )
