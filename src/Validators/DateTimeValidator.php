@@ -19,7 +19,7 @@ class DateTimeValidator extends BaseValidator
         // instanceof does not throw any error
         // if the variable being tested is not an object,
         // it simply returns FALSE.
-        if($value instanceof \DateTime) {
+        if ($value instanceof \DateTime) {
             return $value;
         }
 
@@ -28,7 +28,7 @@ class DateTimeValidator extends BaseValidator
         $dateTime = \DateTime::createFromFormat("Y-m-d\TH:i:sP", $value);
 
         // If date-time could not be parsed, try with date ISO 8601 format
-        if($dateTime === false) {
+        if ($dateTime === false) {
             $dateTime = \DateTime::createFromFormat("Y-m-d", $value);
         }
 
@@ -46,12 +46,12 @@ class DateTimeValidator extends BaseValidator
         // instanceof does not throw any error
         // if the variable being tested is not an object,
         // it simply returns FALSE.
-        if($value instanceof \DateTime) {
+        if ($value instanceof \DateTime) {
             return true;
         }
 
         // If not a string - fail validation
-        if(is_string($value) === FALSE) {
+        if (is_string($value) === false) {
             return false;
         }
 
@@ -61,7 +61,7 @@ class DateTimeValidator extends BaseValidator
         $dateTime = \DateTime::createFromFormat($dateTimeFormat, $value);
 
         // If not able to parse it, try just with ISO 8601 date format
-        if($dateTime === false) {
+        if ($dateTime === false) {
             $dateTimeFormat = "Y-m-d";
             $dateTime = \DateTime::createFromFormat($dateTimeFormat, $value);
         }

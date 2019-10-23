@@ -36,6 +36,6 @@ class RpdeEnumValidator extends BaseValidator
         // The called enum contains at least a costant that matches the "$value"
         $reflectEnum = new \ReflectionClass($this->classname);
 
-        return array_search($value, $reflectEnum->getConstants()) !== FALSE;
+        return array_search($value, $reflectEnum->getConstants()) !== false;
     }
 }

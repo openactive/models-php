@@ -16,7 +16,7 @@ class RpdeException extends DomainException implements OpenActiveExceptionInterf
      * @param string $message
      * @return void
      */
-    function __construct($message = null)
+    public function __construct($message = null)
     {
         parent::__construct($message ? $message : static::$defaultMessage);
     }

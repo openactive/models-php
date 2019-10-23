@@ -20,7 +20,7 @@ class DateIntervalValidator extends BaseValidator
         // instanceof does not throw any error
         // if the variable being tested is not an object,
         // it simply returns FALSE.
-        if($value instanceof \DateInterval) {
+        if ($value instanceof \DateInterval) {
             return $value;
         }
 
@@ -40,19 +40,19 @@ class DateIntervalValidator extends BaseValidator
         // instanceof does not throw any error
         // if the variable being tested is not an object,
         // it simply returns FALSE.
-        if($value instanceof \DateInterval) {
+        if ($value instanceof \DateInterval) {
             return true;
         }
 
         // If not a string - fail validation
-        if(is_string($value) === FALSE) {
+        if (is_string($value) === false) {
             return false;
         }
 
         // If not passing a DateInterval object, try and create one from $value
         try {
             $dateInterval = new \DateInterval($value);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             // If the string is not a valid interval spec in ISO 8601 format,
             // Fail validation
             return false;
