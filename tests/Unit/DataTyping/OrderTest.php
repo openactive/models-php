@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Order specific Data Structure tests.
  *
- * @see https://github.com/openactive/models-lib/blob/master/test-description/data-structure.md For the test description
+ * @see https://github.com/openactive/models-lib/blob/master/test-description/datatyping.md For the test description
  */
 class OrderTest extends TestCase
 {

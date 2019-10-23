@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * SessionSeries specific Data Structure tests.
  *
- * @see https://github.com/openactive/models-lib/blob/master/test-description/data-structure.md For the test description
+ * @see https://github.com/openactive/models-lib/blob/master/test-description/formatting.md For the test description
  */
 class SessionSeriesTest extends TestCase
 {
