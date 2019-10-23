@@ -36,9 +36,10 @@ class JsonLd
      * Returns an associative array with the data ready for JSON-LD serialization.
      *
      * @param \OpenActive\BaseModel $obj The given instance to convert to JSON-LD
+     * @param object|null $parent The parent node in the structure.
      * @return array
      */
-    public static function prepareDataForSerialization($obj)
+    public static function prepareDataForSerialization($obj, $parent = null)
     {
         // Get all defined methods for the object
         // Please note we don't use get_object_vars() here,
@@ -59,8 +60,21 @@ class JsonLd
             $data["type"] = self::getType($obj);
         }
 
-        // Add context only if a BaseModel (not RPDE stuff)
-        if(is_subclass_of($obj, "\\OpenActive\\BaseModel")) {
+        // Only add context if object is subclass of BaseModel
+        // and no parent, or parent is an RPDE item
+        if(
+            is_subclass_of($obj, "\\OpenActive\\BaseModel") &&
+            (
+                $parent === null ||
+                (
+                    // While instanceof will not throw an error
+                    // if the parent is not an object
+                    // A check if perform for clarity
+                    is_object($parent) &&
+                    $parent instanceof \OpenActive\Rpde\RpdeItem
+                )
+            )
+        ) {
             $data["@context"] = static::$defaultContext;
         }
 
@@ -87,7 +101,8 @@ class JsonLd
                         $fq_classname = "\\".get_class($item);
 
                         $item = self::prepareDataForSerialization(
-                            $item
+                            $item,
+                            $attrValue
                         );
                     }
 
@@ -112,7 +127,8 @@ class JsonLd
                         break;
                     default:
                         $attrValue = self::prepareDataForSerialization(
-                            $attrValue
+                            $attrValue,
+                            $obj
                         );
                 }
             }
@@ -133,42 +149,5 @@ class JsonLd
                 return $value !== null && $value !== "";
             }
         );
-    }
-
-    /**
-     * Remove all "@context" attributes from the given JSON-LD string,
-     * leaving only the first occurrence.
-     *
-     * @param string $json
-     * @return string
-     * @see https://github.com/openactive/OpenActive.NET/blob/master/OpenActive.NET/OpenActiveSerializer.cs#L113 For .NET implementation
-     */
-    public static function removeAllButFirstContext($json)
-    {
-        // OpenActive beta's context JSON-LD representation
-        // We are going to build a JSON property string, from the default context
-        $defaultContext = array("@context" => static::$defaultContext);
-        $defaultContextJson = json_encode($defaultContext);
-        // Remove leading "{" and trailing "}", and add a "," at the end
-        // The JSON property is complete!
-        $defaultContextJsonProperty = substr($defaultContextJson, 1, -1).",";
-
-        // Get the index of the first character of context within the JSON
-        $contextStartIndex = strpos($json, $defaultContextJsonProperty);
-
-        // Get the index of first character after context within the JSON
-        $contextEndIndex = $contextStartIndex +
-            strlen($defaultContextJsonProperty) + 1;
-
-        // The resulting JSON is the string before context (with context included),
-        // with the additional context strings removed
-        $json = substr($json, 0, $contextEndIndex).
-            str_replace(
-                $defaultContextJsonProperty,
-                "",
-                substr($json, $contextEndIndex)
-            );
-
-        return $json;
     }
 }
