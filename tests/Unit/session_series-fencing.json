@@ -6,7 +6,7 @@
   "name":"Fencing Fridays! Junior class",
   "startDate":"2019-09-06",
   "endDate":"2020-08-31",
-  "duration":"PT90M",
+  "duration":"PT1H30M",
   "activity":{
     "type":"Concept",
     "prefLabel":"Fencing",
