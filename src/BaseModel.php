@@ -167,7 +167,7 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
     public static function serialize($obj)
     {
         // Get data ready to be encoded
-        $data = JsonLdHelper::prepareDataForSerialization($obj, null);
+        $data = JsonLdHelper::prepareDataForSerialization($obj);
 
         return json_encode($data);
     }
