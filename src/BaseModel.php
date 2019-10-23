@@ -70,7 +70,7 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
     /**
      * @param string $id
      * @return void
-     * @throws \InvalidArgumentException If the provided argument is not of an expected type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setId($id)
     {
