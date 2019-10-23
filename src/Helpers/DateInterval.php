@@ -2,6 +2,8 @@
 
 namespace OpenActive\Helpers;
 
+use OpenActive\Exceptions\InvalidArgumentException;
+
 /**
  * A set of helper methods around the global PHP DateInterval class.
  */
@@ -14,11 +16,15 @@ class DateInterval
      * @param \DateInterval $dateInterval
      * @return string
      * @see https://stackoverflow.com/a/25371691
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not a DateInterval.
      */
     public static function specString($dateInterval)
     {
         if($dateInterval instanceof \DateInterval === FALSE) {
-            throw new \Exception("Invalid argument type.");
+            throw new InvalidArgumentException(
+                "Invalid argument type. Argument must be an instance of type ".
+                "\DateInterval."
+            );
         }
 
         // Reading all non-zero date parts.
