@@ -62,8 +62,8 @@ class SessionSeriesTest extends TestCase
 
         // Check duration field is same as difference between start and end date
         $this->assertEquals(
-            DateIntervalHelper::specString($duration),
-            DateIntervalHelper::specString($dateDifference)
+            DateIntervalHelper::toSeconds($duration),
+            DateIntervalHelper::toSeconds($dateDifference)
         );
     }
 
