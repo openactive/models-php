@@ -16,13 +16,25 @@ trait Serializer
      */
     public static function serialize($obj, $prettyPrint = false)
     {
-        $data = JsonLdHelper::prepareDataForSerialization($obj);
+        $data = static::toArray($obj);
 
         if($prettyPrint === true) {
             return json_encode($data, JSON_PRETTY_PRINT);
         }
 
         return json_encode($data);
+    }
+
+    /**
+     * Returns the JSON-LD associative array representation of the given instance.
+     *
+     * @param object $obj The given instance to convert to JSON-LD
+     * @param bool $prettyPrint Whether to pretty-print the JSON-LD output
+     * @return array JSON-LD associative array representation of the given instance.
+     */
+    public static function toArray($obj)
+    {
+        return JsonLdHelper::prepareDataForSerialization($obj);
     }
 
     /**
