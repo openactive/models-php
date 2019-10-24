@@ -41,14 +41,19 @@ class JsonLd
      */
     public static function prepareDataForSerialization($obj, $parent = null)
     {
-        // Get all defined methods for the object
-        // Please note we don't use get_object_vars() here,
-        // As it would only return the public attributes
-        // (BaseModel's are all protected)
-        $classMethods = get_class_methods($obj);
-
         // Get fully qualified namespace of the object's class name
         $fq_classname = "\\".get_class($obj);
+
+        // Get interval spec string, e.g. "P1D"
+        if($fq_classname === "\\DateInterval") {
+            return DateIntervalHelper::specString($obj);
+        }
+
+        // Get ISO 8601 date time representation,
+        // e.g. "2019-01-01T00:00:00-08:00"
+        if($fq_classname === "\\DateTime") {
+            return DateTimeHelper::iso8601($obj);
+        }
 
         $data = array();
 
@@ -74,6 +79,12 @@ class JsonLd
         ) {
             $data["@context"] = static::$defaultContext;
         }
+
+        // Get all defined methods for the object
+        // Please note we don't use get_object_vars() here,
+        // As it would only return the public attributes
+        // (BaseModel's are all protected)
+        $classMethods = get_class_methods($obj);
 
         // Loop all class methods, find the getters
         // and map defined attributes, normalizing attribute name
@@ -112,22 +123,10 @@ class JsonLd
                 // Get fully qualified namespace of the item's class name
                 $fq_classname = "\\".get_class($attrValue);
 
-                switch ($fq_classname) {
-                    case "\\DateInterval":
-                        // Get interval spec string, e.g. "P1D"
-                        $attrValue = DateIntervalHelper::specString($attrValue);
-                        break;
-                    case "\\DateTime":
-                        // Get ISO 8601 date time representation,
-                        // e.g. "2019-01-01T00:00:00-08:00"
-                        $attrValue = DateTimeHelper::iso8601($attrValue);
-                        break;
-                    default:
-                        $attrValue = self::prepareDataForSerialization(
-                            $attrValue,
-                            $obj
-                        );
-                }
+                $attrValue = self::prepareDataForSerialization(
+                    $attrValue,
+                    $obj
+                );
             }
 
             $data[$attrName] = $attrValue;
