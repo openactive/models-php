@@ -4,13 +4,13 @@ namespace OpenActive;
 
 use OpenActive\Contracts\SerializerInterface;
 use OpenActive\Contracts\TypeCheckerInterface;
-use OpenActive\Helpers\JsonLd as JsonLdHelper;
 use OpenActive\Helpers\Str;
+use OpenActive\Concerns\Serializer;
 use OpenActive\Concerns\TypeChecker;
 
 class BaseModel implements SerializerInterface, TypeCheckerInterface
 {
-    use TypeChecker;
+    use Serializer, TypeChecker;
 
     /**
      * Gets or sets the identifier used to uniquely identify things that are being described in the document with
@@ -156,25 +156,6 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
         }
 
         return $value;
-    }
-
-    /**
-     * Returns the JSON-LD representation of the given instance.
-     *
-     * @param \OpenActive\BaseModel $obj The given instance to convert to JSON-LD
-     * @param bool $prettyPrint Whether to pretty-print the JSON-LD output
-     * @return string JSON-LD string representation of the given instance.
-     */
-    public static function serialize($obj, $prettyPrint = false)
-    {
-        // Get data ready to be encoded
-        $data = JsonLdHelper::prepareDataForSerialization($obj);
-
-        if($prettyPrint === true) {
-            return json_encode($data, JSON_PRETTY_PRINT);
-        }
-
-        return json_encode($data);
     }
 
     public function __get($name)

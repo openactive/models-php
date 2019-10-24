@@ -3,11 +3,11 @@
 namespace OpenActive\Rpde;
 
 use OpenActive\BaseModel;
+use OpenActive\Concerns\Serializer;
 use OpenActive\Concerns\TypeChecker;
 use OpenActive\Contracts\SerializerInterface;
 use OpenActive\Contracts\TypeCheckerInterface;
 use OpenActive\Helpers\Str;
-use OpenActive\Helpers\JsonLd as JsonLdHelper;
 use OpenActive\Rpde\Exceptions\DeletedItemsDataException;
 use OpenActive\Rpde\Exceptions\FirstTimeAfterChangeNumberException;
 use OpenActive\Rpde\Exceptions\FirstTimeAfterTimestampAndAfterIdException;
@@ -17,7 +17,7 @@ use OpenActive\Rpde\Exceptions\NextChangeNumbersItemsOrderException;
 
 class RpdeBody implements SerializerInterface, TypeCheckerInterface
 {
-    use TypeChecker;
+    use Serializer, TypeChecker;
 
     /**
      * The default value for the license.
@@ -321,24 +321,6 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
         $license = self::checkTypes($license, $types);
 
         $this->license = $license;
-    }
-
-    /**
-     * Returns the JSON-LD representation of the given instance.
-     *
-     * @param object $obj The given instance to convert to JSON-LD
-     * @param bool $prettyPrint Whether to pretty-print the JSON-LD output
-     * @return string JSON-LD string representation of the given instance.
-     */
-    public static function serialize($obj, $prettyPrint = false)
-    {
-        $data = JsonLdHelper::prepareDataForSerialization($obj);
-
-        if($prettyPrint === true) {
-            return json_encode($data, JSON_PRETTY_PRINT);
-        }
-
-        return json_encode($data);
     }
 
     /**
