@@ -162,12 +162,17 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
      * Returns the JSON-LD representation of the given instance.
      *
      * @param \OpenActive\BaseModel $obj The given instance to convert to JSON-LD
+     * @param bool $prettyPrint Whether to pretty-print the JSON-LD output
      * @return string JSON-LD string representation of the given instance.
      */
-    public static function serialize($obj)
+    public static function serialize($obj, $prettyPrint = false)
     {
         // Get data ready to be encoded
         $data = JsonLdHelper::prepareDataForSerialization($obj);
+
+        if($prettyPrint === true) {
+            return json_encode($data, JSON_PRETTY_PRINT);
+        }
 
         return json_encode($data);
     }
