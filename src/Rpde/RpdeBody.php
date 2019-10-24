@@ -322,42 +322,4 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
 
         $this->license = $license;
     }
-
-    /**
-     * Returns an object from a given JSON-LD representation.
-     *
-     * @param string|array If a string is provided, we attempt JSON-decoding first
-     * @return object
-     */
-    public static function deserialize($data)
-    {
-        // If a string is provided, we attempt JSON-decoding first
-        if (is_string($data)) {
-            $data = json_decode($data, true);
-        }
-
-        $class = get_called_class();
-        $self = new $class([]);
-
-        // If data provided is not an array, return an empty class
-        if (is_array($data) === false) {
-            return $self;
-        }
-
-        foreach ($data as $key => $value) {
-            $attrName = Str::camel($key);
-            $setterName = "set" . Str::pascal($key);
-
-            if (is_object($value)) {
-                $self->$attrName = $value::deserialize($value);
-            } elseif (is_array($value)) {
-                $self->$attrName = static::deserializeValue($value);
-            } elseif ($key !== "@context" && $key !== "type") {
-                // Calling the setter will type-enforce it
-                $self->$setterName($value);
-            }
-        }
-
-        return $self;
-    }
 }
