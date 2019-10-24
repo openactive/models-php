@@ -189,8 +189,6 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
             $method = 'set' . Str::pascal($name);
 
             if (is_array($value)) {
-                $classname = "\\OpenActive\\Models\\OA\\".$value["type"];
-
                 $value = static::deserializeValue($value);
             }
 
