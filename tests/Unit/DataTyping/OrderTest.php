@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\DataTyping;
+namespace OpenActive\Models\Tests\Unit\DataTyping;
 
 use PHPUnit\Framework\TestCase;
 

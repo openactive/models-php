@@ -12,7 +12,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests/"
+      "OpenActive\\Models\\Tests\\": "tests/"
     }
   },
   "require-dev": {

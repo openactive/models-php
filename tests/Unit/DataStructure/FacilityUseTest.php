@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\DataStructure;
+namespace OpenActive\Models\Tests\Unit\DataStructure;
 
 use OpenActive\BaseModel;
 use OpenActive\Models\OA\Concept;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Formatting;
+namespace OpenActive\Models\Tests\Unit\Formatting;
 
 use OpenActive\Helpers\DateTime as DateTimeHelper;
 use OpenActive\Helpers\DateInterval as DateIntervalHelper;

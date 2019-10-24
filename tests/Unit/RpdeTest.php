@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace OpenActive\Models\Tests\Unit;
 
 use OpenActive\Models\OA\ImageObject;
 use OpenActive\Models\OA\Offer;

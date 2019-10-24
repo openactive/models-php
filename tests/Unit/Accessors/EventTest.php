@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Accessors;
+namespace OpenActive\Models\Tests\Unit\Accessors;
 
 use PHPUnit\Framework\TestCase;
 

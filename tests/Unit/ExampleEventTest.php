@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace OpenActive\Models\Tests\Unit;
 
 use OpenActive\BaseModel;
 use OpenActive\Models\OA\Concept;
