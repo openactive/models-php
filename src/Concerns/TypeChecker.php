@@ -2,6 +2,7 @@
 
 namespace OpenActive\Concerns;
 
+use OpenActive\Exceptions\InvalidArgumentException;
 use OpenActive\Validators\BaseValidator;
 
 trait TypeChecker
@@ -28,8 +29,7 @@ trait TypeChecker
 
         // If validation does not pass for any of the provided types,
         // type invalid
-        // TODO bootstrap TypeError for PHP<7 compatibility
-        throw new \Exception(
+        throw new InvalidArgumentException(
             "The first argument type does not match any of the declared parameter types (".
             implode(", ", $types).
             ") for ".json_encode($value)."."
