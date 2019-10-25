@@ -50,4 +50,15 @@ class Str
             $value
         ));
     }
+
+    /**
+     * Convert a given value to kebab case e.g. "kebab-case".
+     *
+     * @param string $value
+     * @return string
+     */
+    public static function kebab($value)
+    {
+        return static::snake($value, "-");
+    }
 }
