@@ -188,7 +188,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $title
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTitle($title)
     {
@@ -212,7 +212,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Place $jobLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setJobLocation($jobLocation)
     {
@@ -236,7 +236,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $benefits
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBenefits($benefits)
     {
@@ -260,7 +260,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $incentiveCompensation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIncentiveCompensation($incentiveCompensation)
     {
@@ -284,7 +284,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $workHours
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWorkHours($workHours)
     {
@@ -308,7 +308,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $salaryCurrency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSalaryCurrency($salaryCurrency)
     {
@@ -332,7 +332,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $jobBenefits
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setJobBenefits($jobBenefits)
     {
@@ -356,7 +356,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $datePosted
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDatePosted($datePosted)
     {
@@ -381,7 +381,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $skills
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSkills($skills)
     {
@@ -405,7 +405,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $incentives
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIncentives($incentives)
     {
@@ -429,7 +429,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $responsibilities
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setResponsibilities($responsibilities)
     {
@@ -453,7 +453,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param PriceSpecification|decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $baseSalary
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBaseSalary($baseSalary)
     {
@@ -480,7 +480,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $validThrough
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidThrough($validThrough)
     {
@@ -505,7 +505,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization $hiringOrganization
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHiringOrganization($hiringOrganization)
     {
@@ -529,7 +529,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Occupation $relevantOccupation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRelevantOccupation($relevantOccupation)
     {
@@ -553,7 +553,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $specialCommitments
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSpecialCommitments($specialCommitments)
     {
@@ -577,7 +577,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string|\OpenActive\Models\SchemaOrg\CategoryCode $occupationalCategory
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOccupationalCategory($occupationalCategory)
     {
@@ -602,7 +602,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $experienceRequirements
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExperienceRequirements($experienceRequirements)
     {
@@ -626,7 +626,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $employmentType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEmploymentType($employmentType)
     {
@@ -650,7 +650,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|null $estimatedSalary
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEstimatedSalary($estimatedSalary)
     {
@@ -677,7 +677,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $industry
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIndustry($industry)
     {

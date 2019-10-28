@@ -138,7 +138,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param \OpenActive\Models\SchemaOrg\Airport $arrivalAirport
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArrivalAirport($arrivalAirport)
     {
@@ -162,7 +162,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param string $arrivalGate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArrivalGate($arrivalGate)
     {
@@ -186,7 +186,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param Organization $carrier
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCarrier($carrier)
     {
@@ -210,7 +210,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param Schema.NET.BoardingPolicyType|null $boardingPolicy
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBoardingPolicy($boardingPolicy)
     {
@@ -235,7 +235,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Vehicle $aircraft
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAircraft($aircraft)
     {
@@ -260,7 +260,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param DateTime|null $webCheckinTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWebCheckinTime($webCheckinTime)
     {
@@ -285,7 +285,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param Person|Organization $seller
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeller($seller)
     {
@@ -310,7 +310,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param string $mealService
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMealService($mealService)
     {
@@ -334,7 +334,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param string $departureGate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDepartureGate($departureGate)
     {
@@ -358,7 +358,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param string $departureTerminal
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDepartureTerminal($departureTerminal)
     {
@@ -382,7 +382,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param DateInterval|string|null $estimatedFlightDuration
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEstimatedFlightDuration($estimatedFlightDuration)
     {
@@ -408,7 +408,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param \OpenActive\Models\SchemaOrg\Distance|string $flightDistance
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFlightDistance($flightDistance)
     {
@@ -433,7 +433,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param string $arrivalTerminal
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArrivalTerminal($arrivalTerminal)
     {
@@ -457,7 +457,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param \OpenActive\Models\SchemaOrg\Airport $departureAirport
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDepartureAirport($departureAirport)
     {
@@ -481,7 +481,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param string $flightNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFlightNumber($flightNumber)
     {

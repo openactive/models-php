@@ -68,7 +68,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $availabilityStarts
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailabilityStarts($availabilityStarts)
     {
@@ -93,7 +93,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param bool|\OpenActive\Models\SchemaOrg\MediaSubscription|null $requiresSubscription
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiresSubscription($requiresSubscription)
     {
@@ -119,7 +119,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing $category
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCategory($category)
     {
@@ -145,7 +145,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $availabilityEnds
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailabilityEnds($availabilityEnds)
     {
@@ -170,7 +170,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Offer $expectsAcceptanceOf
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExpectsAcceptanceOf($expectsAcceptanceOf)
     {
@@ -194,7 +194,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Place|string|\OpenActive\Models\SchemaOrg\GeoShape $eligibleRegion
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleRegion($eligibleRegion)
     {

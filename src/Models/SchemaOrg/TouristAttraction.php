@@ -34,7 +34,7 @@ class TouristAttraction extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param \OpenActive\Models\SchemaOrg\Audience|string $touristType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTouristType($touristType)
     {
@@ -59,7 +59,7 @@ class TouristAttraction extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Language $availableLanguage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableLanguage($availableLanguage)
     {

@@ -42,7 +42,7 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\SoftwareApplication|\OpenActive\Models\SchemaOrg\WebSite $interactionService
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInteractionService($interactionService)
     {
@@ -67,7 +67,7 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param int|null $userInteractionCount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUserInteractionCount($userInteractionCount)
     {
@@ -92,7 +92,7 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param Action $interactionType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInteractionType($interactionType)
     {

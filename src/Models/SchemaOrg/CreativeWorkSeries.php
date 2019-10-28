@@ -42,7 +42,7 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateTime|null $endDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
@@ -67,7 +67,7 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $issn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIssn($issn)
     {
@@ -91,7 +91,7 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateTime|null $startDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {

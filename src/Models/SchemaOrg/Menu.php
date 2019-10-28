@@ -34,7 +34,7 @@ class Menu extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\MenuItem $hasMenuItem
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasMenuItem($hasMenuItem)
     {
@@ -58,7 +58,7 @@ class Menu extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\MenuSection $hasMenuSection
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasMenuSection($hasMenuSection)
     {

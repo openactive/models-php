@@ -162,7 +162,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateTime|null $startTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartTime($startTime)
     {
@@ -187,7 +187,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateTime|null $uploadDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUploadDate($uploadDate)
     {
@@ -212,7 +212,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $playerType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPlayerType($playerType)
     {
@@ -236,7 +236,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $height
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHeight($height)
     {
@@ -261,7 +261,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $bitrate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBitrate($bitrate)
     {
@@ -285,7 +285,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param bool|\OpenActive\Models\SchemaOrg\MediaSubscription|null $requiresSubscription
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiresSubscription($requiresSubscription)
     {
@@ -311,7 +311,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Place $regionsAllowed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRegionsAllowed($regionsAllowed)
     {
@@ -335,7 +335,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateTime|null $endTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndTime($endTime)
     {
@@ -360,7 +360,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $contentSize
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContentSize($contentSize)
     {
@@ -384,7 +384,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $embedUrl
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEmbedUrl($embedUrl)
     {
@@ -408,7 +408,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $width
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWidth($width)
     {
@@ -433,7 +433,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $contentUrl
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContentUrl($contentUrl)
     {
@@ -457,7 +457,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\NewsArticle $associatedArticle
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAssociatedArticle($associatedArticle)
     {
@@ -481,7 +481,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Organization $productionCompany
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProductionCompany($productionCompany)
     {
@@ -505,7 +505,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateInterval|null $duration
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
@@ -530,7 +530,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork $encodesCreativeWork
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEncodesCreativeWork($encodesCreativeWork)
     {
@@ -554,7 +554,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $encodingFormat
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEncodingFormat($encodingFormat)
     {

@@ -66,7 +66,7 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param decimal|string|null $ratingValue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRatingValue($ratingValue)
     {
@@ -92,7 +92,7 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string|decimal|null $bestRating
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBestRating($bestRating)
     {
@@ -118,7 +118,7 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $reviewAspect
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReviewAspect($reviewAspect)
     {
@@ -142,7 +142,7 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Person|Organization $author
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAuthor($author)
     {
@@ -167,7 +167,7 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param decimal|string|null $worstRating
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWorstRating($worstRating)
     {

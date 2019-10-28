@@ -214,7 +214,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      *
      * ```json
      * "offers": {
-     *   "type": "Offer",
+     *   "@type": "Offer",
      *   "identifier": "OX-AD",
      *   "name": "Adult",
      *   "price": 7.5,
@@ -286,7 +286,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param int|string|PropertyValue|PropertyValue[]|null $identifier
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
@@ -314,7 +314,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -338,7 +338,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param string $description
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDescription($description)
     {
@@ -362,7 +362,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param string $accessibilityInformation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessibilityInformation($accessibilityInformation)
     {
@@ -386,7 +386,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param Concept[] $accessibilitySupport
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessibilitySupport($accessibilitySupport)
     {
@@ -410,7 +410,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param Concept[] $activity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActivity($activity)
     {
@@ -434,7 +434,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param string $attendeeInstructions
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAttendeeInstructions($attendeeInstructions)
     {
@@ -458,7 +458,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param string[]|Concept[] $category
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCategory($category)
     {
@@ -483,7 +483,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param Slot[] $event
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEvent($event)
     {
@@ -507,7 +507,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param OpeningHoursSpecification[] $hoursAvailable
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHoursAvailable($hoursAvailable)
     {
@@ -531,7 +531,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param ImageObject[] $image
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setImage($image)
     {
@@ -555,7 +555,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param IndividualFacilityUse[] $individualFacilityUse
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIndividualFacilityUse($individualFacilityUse)
     {
@@ -579,7 +579,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param Place $location
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLocation($location)
     {
@@ -603,7 +603,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param Offer[] $offers
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
@@ -627,7 +627,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param Action[] $potentialAction
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPotentialAction($potentialAction)
     {
@@ -651,7 +651,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param Organization $provider
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvider($provider)
     {
@@ -675,7 +675,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param string $url
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrl($url)
     {

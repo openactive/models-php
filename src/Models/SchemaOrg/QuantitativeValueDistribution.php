@@ -66,7 +66,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     /**
      * @param decimal|null $percentile25
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPercentile25($percentile25)
     {
@@ -91,7 +91,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     /**
      * @param decimal|null $median
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMedian($median)
     {
@@ -116,7 +116,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     /**
      * @param decimal|null $percentile10
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPercentile10($percentile10)
     {
@@ -141,7 +141,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     /**
      * @param DateInterval|null $duration
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
@@ -166,7 +166,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     /**
      * @param decimal|null $percentile90
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPercentile90($percentile90)
     {
@@ -191,7 +191,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     /**
      * @param decimal|null $percentile75
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPercentile75($percentile75)
     {

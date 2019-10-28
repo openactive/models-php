@@ -58,7 +58,7 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $isbn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsbn($isbn)
     {
@@ -82,7 +82,7 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $bookEdition
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBookEdition($bookEdition)
     {
@@ -106,7 +106,7 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Schema.NET.BookFormatType|null $bookFormat
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBookFormat($bookFormat)
     {
@@ -131,7 +131,7 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Person $illustrator
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIllustrator($illustrator)
     {
@@ -155,7 +155,7 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param int|null $numberOfPages
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfPages($numberOfPages)
     {

@@ -27,7 +27,7 @@ class Corporation extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param string $tickerSymbol
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTickerSymbol($tickerSymbol)
     {

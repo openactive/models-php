@@ -66,7 +66,7 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\MusicComposition $recordingOf
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecordingOf($recordingOf)
     {
@@ -90,7 +90,7 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $isrcCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsrcCode($isrcCode)
     {
@@ -114,7 +114,7 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\MusicAlbum $inAlbum
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInAlbum($inAlbum)
     {
@@ -138,7 +138,7 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\MusicPlaylist $inPlaylist
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInPlaylist($inPlaylist)
     {
@@ -162,7 +162,7 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Person|\OpenActive\Models\SchemaOrg\MusicGroup $byArtist
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setByArtist($byArtist)
     {
@@ -187,7 +187,7 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateInterval|null $duration
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {

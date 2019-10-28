@@ -98,7 +98,7 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param Place|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea $serviceArea
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServiceArea($serviceArea)
     {
@@ -124,7 +124,7 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param Place|string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAreaServed($areaServed)
     {
@@ -151,7 +151,7 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $faxNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFaxNumber($faxNumber)
     {
@@ -175,7 +175,7 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param OpeningHoursSpecification $hoursAvailable
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHoursAvailable($hoursAvailable)
     {
@@ -199,7 +199,7 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param Schema.NET.ContactPointOption|null $contactOption
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContactOption($contactOption)
     {
@@ -224,7 +224,7 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Language $availableLanguage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableLanguage($availableLanguage)
     {
@@ -249,7 +249,7 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $telephone
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTelephone($telephone)
     {
@@ -273,7 +273,7 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $email
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEmail($email)
     {
@@ -297,7 +297,7 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $contactType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContactType($contactType)
     {
@@ -321,7 +321,7 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\Product|string $productSupported
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProductSupported($productSupported)
     {

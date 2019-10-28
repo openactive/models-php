@@ -26,7 +26,7 @@ class ReturnAction extends \OpenActive\Models\SchemaOrg\TransferAction
     /**
      * @param Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|Organization $recipient
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecipient($recipient)
     {

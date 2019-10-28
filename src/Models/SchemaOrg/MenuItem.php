@@ -50,7 +50,7 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\MenuSection|\OpenActive\Models\SchemaOrg\MenuItem $menuAddOn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMenuAddOn($menuAddOn)
     {
@@ -75,7 +75,7 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\NutritionInformation $nutrition
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNutrition($nutrition)
     {
@@ -99,7 +99,7 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Offer $offers
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
@@ -123,7 +123,7 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.RestrictedDiet|null $suitableForDiet
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuitableForDiet($suitableForDiet)
     {

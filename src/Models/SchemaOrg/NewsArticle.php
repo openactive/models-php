@@ -62,7 +62,7 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
     /**
      * @param string $printColumn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrintColumn($printColumn)
     {
@@ -86,7 +86,7 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
     /**
      * @param string $printEdition
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrintEdition($printEdition)
     {
@@ -110,7 +110,7 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
     /**
      * @param string $printSection
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrintSection($printSection)
     {
@@ -134,7 +134,7 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
     /**
      * @param string $printPage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrintPage($printPage)
     {
@@ -158,7 +158,7 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
     /**
      * @param string $dateline
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateline($dateline)
     {

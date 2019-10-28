@@ -26,7 +26,7 @@ class HowToSection extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\ItemList|string $steps
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSteps($steps)
     {

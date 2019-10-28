@@ -50,7 +50,7 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $pagination
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPagination($pagination)
     {
@@ -74,7 +74,7 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string|int|null $issueNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIssueNumber($issueNumber)
     {
@@ -100,7 +100,7 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param int|string|null $pageEnd
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPageEnd($pageEnd)
     {
@@ -126,7 +126,7 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param int|string|null $pageStart
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPageStart($pageStart)
     {

@@ -26,7 +26,7 @@ class TravelAction extends \OpenActive\Models\SchemaOrg\MoveAction
     /**
      * @param \OpenActive\Models\SchemaOrg\Distance $distance
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDistance($distance)
     {

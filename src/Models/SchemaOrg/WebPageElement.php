@@ -34,7 +34,7 @@ class WebPageElement extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\CssSelectorType $cssSelector
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCssSelector($cssSelector)
     {
@@ -58,7 +58,7 @@ class WebPageElement extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\XPathType $xpath
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setXpath($xpath)
     {

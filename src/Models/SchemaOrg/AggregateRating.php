@@ -42,7 +42,7 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $itemReviewed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemReviewed($itemReviewed)
     {
@@ -66,7 +66,7 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
     /**
      * @param int|null $reviewCount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReviewCount($reviewCount)
     {
@@ -91,7 +91,7 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
     /**
      * @param int|null $ratingCount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRatingCount($ratingCount)
     {

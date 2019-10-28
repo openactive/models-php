@@ -51,7 +51,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     /**
      * @param Lease $lease
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLease($lease)
     {
@@ -75,7 +75,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     /**
      * @param string $orderProposalVersion
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderProposalVersion($orderProposalVersion)
     {
@@ -99,7 +99,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     /**
      * @param bool|null $orderRequiresApproval
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderRequiresApproval($orderRequiresApproval)
     {
@@ -124,7 +124,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     /**
      * @param Payment $payment
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPayment($payment)
     {

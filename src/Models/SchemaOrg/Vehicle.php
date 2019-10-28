@@ -240,7 +240,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param QuantitativeValue|decimal|null $numberOfForwardGears
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfForwardGears($numberOfForwardGears)
     {
@@ -266,7 +266,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param QuantitativeValue $cargoVolume
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCargoVolume($cargoVolume)
     {
@@ -290,7 +290,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param string $vehicleInteriorColor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVehicleInteriorColor($vehicleInteriorColor)
     {
@@ -314,7 +314,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param \OpenActive\Models\SchemaOrg\SteeringPositionValue $steeringPosition
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSteeringPosition($steeringPosition)
     {
@@ -338,7 +338,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param \OpenActive\Models\SchemaOrg\EngineSpecification $vehicleEngine
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVehicleEngine($vehicleEngine)
     {
@@ -362,7 +362,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param DateTime|null $vehicleModelDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVehicleModelDate($vehicleModelDate)
     {
@@ -387,7 +387,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param QuantitativeValue|decimal|null $numberOfDoors
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfDoors($numberOfDoors)
     {
@@ -413,7 +413,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param string $vehicleConfiguration
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVehicleConfiguration($vehicleConfiguration)
     {
@@ -437,7 +437,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param string|Schema.NET.QualitativeValue|null $fuelType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFuelType($fuelType)
     {
@@ -463,7 +463,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param string $vehicleIdentificationNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVehicleIdentificationNumber($vehicleIdentificationNumber)
     {
@@ -487,7 +487,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param QuantitativeValue $fuelConsumption
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFuelConsumption($fuelConsumption)
     {
@@ -511,7 +511,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param decimal|QuantitativeValue|null $numberOfPreviousOwners
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfPreviousOwners($numberOfPreviousOwners)
     {
@@ -537,7 +537,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param QuantitativeValue $mileageFromOdometer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMileageFromOdometer($mileageFromOdometer)
     {
@@ -561,7 +561,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param QuantitativeValue $fuelEfficiency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFuelEfficiency($fuelEfficiency)
     {
@@ -585,7 +585,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param QuantitativeValue|decimal|null $numberOfAxles
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfAxles($numberOfAxles)
     {
@@ -611,7 +611,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param string $vehicleInteriorType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVehicleInteriorType($vehicleInteriorType)
     {
@@ -635,7 +635,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param string $knownVehicleDamages
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setKnownVehicleDamages($knownVehicleDamages)
     {
@@ -659,7 +659,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param decimal|string|null $numberOfAirbags
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfAirbags($numberOfAirbags)
     {
@@ -685,7 +685,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param decimal|QuantitativeValue|null $vehicleSeatingCapacity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVehicleSeatingCapacity($vehicleSeatingCapacity)
     {
@@ -711,7 +711,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param Schema.NET.QualitativeValue|string|null $vehicleTransmission
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVehicleTransmission($vehicleTransmission)
     {
@@ -737,7 +737,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param DateTime|null $dateVehicleFirstRegistered
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateVehicleFirstRegistered($dateVehicleFirstRegistered)
     {
@@ -762,7 +762,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param DateTime|null $purchaseDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPurchaseDate($purchaseDate)
     {
@@ -787,7 +787,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param DateTime|null $productionDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProductionDate($productionDate)
     {
@@ -812,7 +812,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param string|\OpenActive\Models\SchemaOrg\DriveWheelConfigurationValue $driveWheelConfiguration
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDriveWheelConfiguration($driveWheelConfiguration)
     {

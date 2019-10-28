@@ -26,7 +26,7 @@ class Report extends \OpenActive\Models\SchemaOrg\Article
     /**
      * @param string $reportNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReportNumber($reportNumber)
     {

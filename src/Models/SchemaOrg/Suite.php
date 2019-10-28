@@ -45,7 +45,7 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
     /**
      * @param QuantitativeValue $occupancy
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOccupancy($occupancy)
     {
@@ -69,7 +69,7 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
     /**
      * @param string|\OpenActive\Models\SchemaOrg\BedDetails|\OpenActive\Models\SchemaOrg\BedType $bed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBed($bed)
     {
@@ -95,7 +95,7 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
     /**
      * @param QuantitativeValue|decimal|null $numberOfRooms
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfRooms($numberOfRooms)
     {

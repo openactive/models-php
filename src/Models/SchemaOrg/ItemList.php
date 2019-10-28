@@ -46,7 +46,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\ListItem|string|\OpenActive\Models\SchemaOrg\Thing $itemListElement
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemListElement($itemListElement)
     {
@@ -72,7 +72,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.ItemListOrderType|string|null $itemListOrder
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemListOrder($itemListOrder)
     {
@@ -98,7 +98,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param int|null $numberOfItems
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfItems($numberOfItems)
     {

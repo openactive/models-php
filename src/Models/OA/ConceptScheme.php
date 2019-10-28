@@ -82,7 +82,7 @@ class ConceptScheme extends \OpenActive\BaseModel
     /**
      * @param string $title
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTitle($title)
     {
@@ -106,7 +106,7 @@ class ConceptScheme extends \OpenActive\BaseModel
     /**
      * @param string $description
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDescription($description)
     {
@@ -130,7 +130,7 @@ class ConceptScheme extends \OpenActive\BaseModel
     /**
      * @param Concept[] $concept
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setConcept($concept)
     {
@@ -154,7 +154,7 @@ class ConceptScheme extends \OpenActive\BaseModel
     /**
      * @param string $license
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLicense($license)
     {
@@ -178,7 +178,7 @@ class ConceptScheme extends \OpenActive\BaseModel
     /**
      * @param string $url
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrl($url)
     {

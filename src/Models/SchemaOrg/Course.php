@@ -68,7 +68,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $courseCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCourseCode($courseCode)
     {
@@ -92,7 +92,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string|\OpenActive\Models\SchemaOrg\AlignmentObject|Course $coursePrerequisites
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCoursePrerequisites($coursePrerequisites)
     {
@@ -118,7 +118,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $educationalCredentialAwarded
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEducationalCredentialAwarded($educationalCredentialAwarded)
     {
@@ -143,7 +143,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param CourseInstance $hasCourseInstance
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasCourseInstance($hasCourseInstance)
     {
@@ -167,7 +167,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param ImageObject $logo
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLogo($logo)
     {
@@ -191,7 +191,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\VideoObject $video
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVideo($video)
     {

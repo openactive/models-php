@@ -268,7 +268,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $sku
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSku($sku)
     {
@@ -292,7 +292,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $availabilityStarts
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailabilityStarts($availabilityStarts)
     {
@@ -317,7 +317,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.DeliveryMethod|null $availableDeliveryMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableDeliveryMethod($availableDeliveryMethod)
     {
@@ -342,7 +342,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Place|string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAreaServed($areaServed)
     {
@@ -369,7 +369,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $mpn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMpn($mpn)
     {
@@ -393,7 +393,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $serialNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSerialNumber($serialNumber)
     {
@@ -417,7 +417,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $gtin8
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGtin8($gtin8)
     {
@@ -441,7 +441,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.ItemAvailability|null $availability
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailability($availability)
     {
@@ -466,7 +466,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param PriceSpecification $priceSpecification
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceSpecification($priceSpecification)
     {
@@ -490,7 +490,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param QuantitativeValue $inventoryLevel
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInventoryLevel($inventoryLevel)
     {
@@ -514,7 +514,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param PriceSpecification $eligibleTransactionVolume
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleTransactionVolume($eligibleTransactionVolume)
     {
@@ -538,7 +538,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Place $availableAtOrFrom
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableAtOrFrom($availableAtOrFrom)
     {
@@ -562,7 +562,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\WarrantyPromise $warranty
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWarranty($warranty)
     {
@@ -586,7 +586,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\TypeAndQuantityNode $includesObject
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIncludesObject($includesObject)
     {
@@ -610,7 +610,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param QuantitativeValue $eligibleQuantity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleQuantity($eligibleQuantity)
     {
@@ -634,7 +634,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $validFrom
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFrom($validFrom)
     {
@@ -659,7 +659,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $validThrough
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidThrough($validThrough)
     {
@@ -684,7 +684,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $gtin14
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGtin14($gtin14)
     {
@@ -708,7 +708,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $gtin13
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGtin13($gtin13)
     {
@@ -732,7 +732,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $gtin12
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGtin12($gtin12)
     {
@@ -756,7 +756,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Person|Organization $seller
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeller($seller)
     {
@@ -781,7 +781,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param QuantitativeValue $deliveryLeadTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDeliveryLeadTime($deliveryLeadTime)
     {
@@ -805,7 +805,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $availabilityEnds
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailabilityEnds($availabilityEnds)
     {
@@ -830,7 +830,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.BusinessEntityType|null $eligibleCustomerType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleCustomerType($eligibleCustomerType)
     {
@@ -855,7 +855,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.OfferItemCondition|null $itemCondition
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemCondition($itemCondition)
     {
@@ -880,7 +880,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $itemOffered
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemOffered($itemOffered)
     {
@@ -905,7 +905,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param QuantitativeValue $eligibleDuration
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleDuration($eligibleDuration)
     {
@@ -929,7 +929,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\LoanOrCredit|Schema.NET.PaymentMethod|null $acceptedPaymentMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcceptedPaymentMethod($acceptedPaymentMethod)
     {
@@ -955,7 +955,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.BusinessFunction|null $businessFunction
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBusinessFunction($businessFunction)
     {
@@ -980,7 +980,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Place|string|\OpenActive\Models\SchemaOrg\GeoShape $eligibleRegion
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleRegion($eligibleRegion)
     {
@@ -1006,7 +1006,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param QuantitativeValue $advanceBookingRequirement
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAdvanceBookingRequirement($advanceBookingRequirement)
     {

@@ -27,7 +27,7 @@ class SearchAction extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @param string $query
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setQuery($query)
     {

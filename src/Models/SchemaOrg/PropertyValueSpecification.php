@@ -106,7 +106,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Thing $defaultValue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDefaultValue($defaultValue)
     {
@@ -131,7 +131,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $valuePattern
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValuePattern($valuePattern)
     {
@@ -155,7 +155,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param decimal|null $stepValue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStepValue($stepValue)
     {
@@ -180,7 +180,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param decimal|null $valueMaxLength
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueMaxLength($valueMaxLength)
     {
@@ -205,7 +205,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param bool|null $readonlyValue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReadonlyValue($readonlyValue)
     {
@@ -230,7 +230,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param decimal|null $valueMinLength
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueMinLength($valueMinLength)
     {
@@ -255,7 +255,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param decimal|null $maxValue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaxValue($maxValue)
     {
@@ -280,7 +280,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $valueName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueName($valueName)
     {
@@ -304,7 +304,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param bool|null $multipleValues
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMultipleValues($multipleValues)
     {
@@ -329,7 +329,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param decimal|null $minValue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMinValue($minValue)
     {
@@ -354,7 +354,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param bool|null $valueRequired
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueRequired($valueRequired)
     {

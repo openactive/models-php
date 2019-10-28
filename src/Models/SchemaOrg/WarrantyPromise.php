@@ -34,7 +34,7 @@ class WarrantyPromise extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param QuantitativeValue $durationOfWarranty
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDurationOfWarranty($durationOfWarranty)
     {
@@ -58,7 +58,7 @@ class WarrantyPromise extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param Schema.NET.WarrantyScope|null $warrantyScope
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWarrantyScope($warrantyScope)
     {

@@ -47,7 +47,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      *
      * ```json
      * "address": {
-     *   "type": "PostalAddress",
+     *   "@type": "PostalAddress",
      *   "streetAddress": "Raynes Park High School, 46A West Barnes Lane",
      *   "addressLocality": "New Malden",
      *   "addressRegion": "London",
@@ -107,7 +107,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      *
      * ```json
      * "containedInPlace": {
-     *   "type": "Place",
+     *   "@type": "Place",
      *   "url": "https://www.everyoneactive.com/centres/Middlesbrough-Sports-Village",
      *   "name": "Middlesbrough Sports Village"
      * }
@@ -122,7 +122,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      *
      * ```json
      * "containsPlace": {
-     *   "type": "Place",
+     *   "@type": "Place",
      *   "url": "https://www.everyoneactive.com/centres/Center-Parcs-Sports-Plaza",
      *   "name": "Center Parcs Sports Plaza"
      * }
@@ -205,7 +205,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param int|string|PropertyValue|PropertyValue[]|null $identifier
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
@@ -233,7 +233,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -257,7 +257,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param string $description
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDescription($description)
     {
@@ -281,7 +281,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param string|PostalAddress $address
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddress($address)
     {
@@ -306,7 +306,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param LocationFeatureSpecification[] $amenityFeature
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAmenityFeature($amenityFeature)
     {
@@ -330,7 +330,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param Place $containedInPlace
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContainedInPlace($containedInPlace)
     {
@@ -354,7 +354,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param Place[] $containsPlace
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContainsPlace($containsPlace)
     {
@@ -378,7 +378,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param GeoCoordinates $geo
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGeo($geo)
     {
@@ -402,7 +402,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param ImageObject[] $image
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setImage($image)
     {
@@ -426,7 +426,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param OpeningHoursSpecification[] $openingHoursSpecification
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOpeningHoursSpecification($openingHoursSpecification)
     {
@@ -450,7 +450,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param string $telephone
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTelephone($telephone)
     {
@@ -474,7 +474,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param string $url
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrl($url)
     {

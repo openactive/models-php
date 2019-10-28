@@ -35,7 +35,7 @@ class PlayAction extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @param \OpenActive\Models\SchemaOrg\Audience $audience
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAudience($audience)
     {
@@ -59,7 +59,7 @@ class PlayAction extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @param Event $event
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEvent($event)
     {

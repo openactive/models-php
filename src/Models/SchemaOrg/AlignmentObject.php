@@ -58,7 +58,7 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $targetDescription
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTargetDescription($targetDescription)
     {
@@ -82,7 +82,7 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $targetUrl
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTargetUrl($targetUrl)
     {
@@ -106,7 +106,7 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $targetName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTargetName($targetName)
     {
@@ -130,7 +130,7 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $alignmentType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAlignmentType($alignmentType)
     {
@@ -154,7 +154,7 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $educationalFramework
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEducationalFramework($educationalFramework)
     {

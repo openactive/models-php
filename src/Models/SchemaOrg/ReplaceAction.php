@@ -34,7 +34,7 @@ class ReplaceAction extends \OpenActive\Models\SchemaOrg\UpdateAction
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $replacee
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReplacee($replacee)
     {
@@ -58,7 +58,7 @@ class ReplaceAction extends \OpenActive\Models\SchemaOrg\UpdateAction
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $replacer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReplacer($replacer)
     {

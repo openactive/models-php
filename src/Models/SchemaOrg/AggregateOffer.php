@@ -66,7 +66,7 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param Offer $offers
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
@@ -90,7 +90,7 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param int|null $offerCount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOfferCount($offerCount)
     {
@@ -115,7 +115,7 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param string|decimal|null $lowPrice
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLowPrice($lowPrice)
     {
@@ -141,7 +141,7 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param decimal|string|null $highPrice
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHighPrice($highPrice)
     {

@@ -50,7 +50,7 @@ class MusicAlbum extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     /**
      * @param Schema.NET.MusicAlbumProductionType|null $albumProductionType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAlbumProductionType($albumProductionType)
     {
@@ -75,7 +75,7 @@ class MusicAlbum extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     /**
      * @param Schema.NET.MusicAlbumReleaseType|null $albumReleaseType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAlbumReleaseType($albumReleaseType)
     {
@@ -100,7 +100,7 @@ class MusicAlbum extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     /**
      * @param Person|\OpenActive\Models\SchemaOrg\MusicGroup $byArtist
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setByArtist($byArtist)
     {
@@ -125,7 +125,7 @@ class MusicAlbum extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     /**
      * @param \OpenActive\Models\SchemaOrg\MusicRelease $albumRelease
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAlbumRelease($albumRelease)
     {

@@ -50,7 +50,7 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $about
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAbout($about)
     {
@@ -74,7 +74,7 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
     /**
      * @param \OpenActive\Models\SchemaOrg\Language|string $inLanguage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInLanguage($inLanguage)
     {
@@ -99,7 +99,7 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
     /**
      * @param Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|Organization $recipient
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecipient($recipient)
     {
@@ -126,7 +126,7 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
     /**
      * @param \OpenActive\Models\SchemaOrg\Language $language
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLanguage($language)
     {

@@ -36,7 +36,7 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
     /**
      * @param QuantitativeValue $occupancy
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOccupancy($occupancy)
     {
@@ -60,7 +60,7 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
     /**
      * @param string|\OpenActive\Models\SchemaOrg\BedDetails|\OpenActive\Models\SchemaOrg\BedType $bed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBed($bed)
     {

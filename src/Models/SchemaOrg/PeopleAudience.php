@@ -66,7 +66,7 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     /**
      * @param decimal|null $suggestedMaxAge
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuggestedMaxAge($suggestedMaxAge)
     {
@@ -91,7 +91,7 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     /**
      * @param int|null $requiredMinAge
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiredMinAge($requiredMinAge)
     {
@@ -116,7 +116,7 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     /**
      * @param string $requiredGender
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiredGender($requiredGender)
     {
@@ -140,7 +140,7 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     /**
      * @param string $suggestedGender
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuggestedGender($suggestedGender)
     {
@@ -164,7 +164,7 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     /**
      * @param int|null $requiredMaxAge
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiredMaxAge($requiredMaxAge)
     {
@@ -189,7 +189,7 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     /**
      * @param decimal|null $suggestedMinAge
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuggestedMinAge($suggestedMinAge)
     {

@@ -54,7 +54,7 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\EntryPoint
     /**
      * @param string $encodingType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEncodingType($encodingType)
     {
@@ -78,7 +78,7 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\EntryPoint
     /**
      * @param string $httpMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHttpMethod($httpMethod)
     {
@@ -102,7 +102,7 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\EntryPoint
     /**
      * @param string $urlTemplate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrlTemplate($urlTemplate)
     {

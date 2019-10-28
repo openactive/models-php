@@ -42,7 +42,7 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param \OpenActive\Models\SchemaOrg\BroadcastService $publishedOn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPublishedOn($publishedOn)
     {
@@ -66,7 +66,7 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param bool|null $free
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFree($free)
     {
@@ -91,7 +91,7 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param bool|null $isAccessibleForFree
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsAccessibleForFree($isAccessibleForFree)
     {

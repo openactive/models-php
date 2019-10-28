@@ -26,7 +26,7 @@ class WebApplication extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     /**
      * @param string $browserRequirements
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBrowserRequirements($browserRequirements)
     {

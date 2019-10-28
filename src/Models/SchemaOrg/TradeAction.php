@@ -55,7 +55,7 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @param PriceSpecification $priceSpecification
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceSpecification($priceSpecification)
     {
@@ -79,7 +79,7 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @param string $priceCurrency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceCurrency($priceCurrency)
     {
@@ -103,7 +103,7 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @param decimal|string|null $price
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {

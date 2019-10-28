@@ -90,7 +90,7 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateInterval|null $prepTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrepTime($prepTime)
     {
@@ -115,7 +115,7 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\HowToStep|string|\OpenActive\Models\SchemaOrg\HowToSection|\OpenActive\Models\SchemaOrg\CreativeWork $step
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStep($step)
     {
@@ -142,7 +142,7 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string|\OpenActive\Models\SchemaOrg\HowToTool $tool
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTool($tool)
     {
@@ -167,7 +167,7 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\ItemList|string $steps
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSteps($steps)
     {
@@ -193,7 +193,7 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateInterval|null $performTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPerformTime($performTime)
     {
@@ -218,7 +218,7 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string $estimatedCost
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEstimatedCost($estimatedCost)
     {
@@ -243,7 +243,7 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateInterval|null $totalTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalTime($totalTime)
     {
@@ -268,7 +268,7 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\HowToSupply|string $supply
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSupply($supply)
     {
@@ -293,7 +293,7 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string|QuantitativeValue $yield
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setYield($yield)
     {

@@ -210,7 +210,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $downloadUrl
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDownloadUrl($downloadUrl)
     {
@@ -234,7 +234,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $softwareRequirements
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSoftwareRequirements($softwareRequirements)
     {
@@ -258,7 +258,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $permissions
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPermissions($permissions)
     {
@@ -282,7 +282,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $processorRequirements
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProcessorRequirements($processorRequirements)
     {
@@ -306,7 +306,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $availableOnDevice
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableOnDevice($availableOnDevice)
     {
@@ -330,7 +330,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $featureList
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFeatureList($featureList)
     {
@@ -354,7 +354,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $applicationSubCategory
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setApplicationSubCategory($applicationSubCategory)
     {
@@ -378,7 +378,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $requirements
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequirements($requirements)
     {
@@ -402,7 +402,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $device
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDevice($device)
     {
@@ -426,7 +426,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $applicationCategory
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setApplicationCategory($applicationCategory)
     {
@@ -450,7 +450,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $softwareVersion
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSoftwareVersion($softwareVersion)
     {
@@ -474,7 +474,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $storageRequirements
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStorageRequirements($storageRequirements)
     {
@@ -498,7 +498,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $applicationSuite
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setApplicationSuite($applicationSuite)
     {
@@ -522,7 +522,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $memoryRequirements
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMemoryRequirements($memoryRequirements)
     {
@@ -546,7 +546,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string|ImageObject $screenshot
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setScreenshot($screenshot)
     {
@@ -571,7 +571,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $countriesSupported
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCountriesSupported($countriesSupported)
     {
@@ -595,7 +595,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork $softwareHelp
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSoftwareHelp($softwareHelp)
     {
@@ -619,7 +619,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\SoftwareApplication $softwareAddOn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSoftwareAddOn($softwareAddOn)
     {
@@ -643,7 +643,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $releaseNotes
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReleaseNotes($releaseNotes)
     {
@@ -667,7 +667,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\DataFeed $supportingData
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSupportingData($supportingData)
     {
@@ -691,7 +691,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $countriesNotSupported
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCountriesNotSupported($countriesNotSupported)
     {
@@ -715,7 +715,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $operatingSystem
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOperatingSystem($operatingSystem)
     {
@@ -739,7 +739,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $fileSize
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFileSize($fileSize)
     {
@@ -763,7 +763,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $installUrl
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInstallUrl($installUrl)
     {

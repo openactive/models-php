@@ -58,7 +58,7 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $gameItem
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGameItem($gameItem)
     {
@@ -82,7 +82,7 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $characterAttribute
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCharacterAttribute($characterAttribute)
     {
@@ -106,7 +106,7 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param PostalAddress|string|Place $gameLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGameLocation($gameLocation)
     {
@@ -132,7 +132,7 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $quest
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setQuest($quest)
     {
@@ -156,7 +156,7 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param QuantitativeValue $numberOfPlayers
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfPlayers($numberOfPlayers)
     {

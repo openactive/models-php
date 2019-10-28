@@ -82,7 +82,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param PostalAddress|string $address
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddress($address)
     {
@@ -107,7 +107,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $line
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLine($line)
     {
@@ -131,7 +131,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $circle
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCircle($circle)
     {
@@ -155,7 +155,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $box
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBox($box)
     {
@@ -179,7 +179,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Country $addressCountry
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddressCountry($addressCountry)
     {
@@ -204,7 +204,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $postalCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPostalCode($postalCode)
     {
@@ -228,7 +228,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param decimal|string|null $elevation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setElevation($elevation)
     {
@@ -254,7 +254,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $polygon
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPolygon($polygon)
     {

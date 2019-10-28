@@ -34,7 +34,7 @@ class TechArticle extends \OpenActive\Models\SchemaOrg\Article
     /**
      * @param string $proficiencyLevel
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProficiencyLevel($proficiencyLevel)
     {
@@ -58,7 +58,7 @@ class TechArticle extends \OpenActive\Models\SchemaOrg\Article
     /**
      * @param string $dependencies
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDependencies($dependencies)
     {

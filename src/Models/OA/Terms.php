@@ -41,7 +41,7 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -65,7 +65,7 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
     /**
      * @param bool|null $requiresExplicitConsent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiresExplicitConsent($requiresExplicitConsent)
     {
@@ -90,7 +90,7 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
     /**
      * @param string $url
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrl($url)
     {

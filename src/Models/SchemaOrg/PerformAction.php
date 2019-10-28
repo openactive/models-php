@@ -26,7 +26,7 @@ class PerformAction extends \OpenActive\Models\SchemaOrg\PlayAction
     /**
      * @param \OpenActive\Models\SchemaOrg\EntertainmentBusiness $entertainmentBusiness
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEntertainmentBusiness($entertainmentBusiness)
     {

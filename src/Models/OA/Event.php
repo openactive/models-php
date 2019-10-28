@@ -93,7 +93,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      *
      * ```json
      * "ageRange": {
-     *   "type": "QuantitativeValue",
+     *   "@type": "QuantitativeValue",
      *   "minValue": 15,
      *   "maxValue": 60
      * }
@@ -133,7 +133,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ```json
      * "contributor": [
      *   {
-     *     "type": "Person",
+     *     "@type": "Person",
      *     "familyName": "Smith",
      *     "givenName": "Nicole",
      *     "id": "https://example.com/locations/1234ABCD/leaders/89",
@@ -206,11 +206,11 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ```json
      * "image": [
      *   {
-     *     "type": "ImageObject",
+     *     "@type": "ImageObject",
      *     "url": "http://example.com/static/image/speedball_large.jpg",
      *     "thumbnail": [
      *       {
-     *         "type": "ImageObject",
+     *         "@type": "ImageObject",
      *         "url": "http://example.com/static/image/speedball_thumbnail.jpg"
      *       }
      *     ]
@@ -250,7 +250,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ```json
      * "leader": [
      *   {
-     *     "type": "Person",
+     *     "@type": "Person",
      *     "familyName": "Smith",
      *     "givenName": "Nicole",
      *     "gender": "https://schema.org/Male",
@@ -338,7 +338,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ```json
      * "offers": [
      *   {
-     *     "type": "Offer",
+     *     "@type": "Offer",
      *     "identifier": "OX-AD",
      *     "name": "Adult",
      *     "price": 3.3,
@@ -394,7 +394,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      *
      * ```json
      * "programme": {
-     *   "type": "Brand",
+     *   "@type": "Brand",
      *   "name": "Play Ball!",
      *   "url": "http://example.org/brand/play-ball"
      * }
@@ -487,7 +487,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param int|string|PropertyValue|PropertyValue[]|null $identifier
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
@@ -515,7 +515,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -539,7 +539,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param string $description
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDescription($description)
     {
@@ -563,7 +563,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param string $accessibilityInformation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessibilityInformation($accessibilityInformation)
     {
@@ -587,7 +587,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Concept[] $accessibilitySupport
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessibilitySupport($accessibilitySupport)
     {
@@ -611,7 +611,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Concept[] $activity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActivity($activity)
     {
@@ -635,7 +635,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param QuantitativeValue $ageRange
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAgeRange($ageRange)
     {
@@ -659,7 +659,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param string $attendeeInstructions
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAttendeeInstructions($attendeeInstructions)
     {
@@ -683,7 +683,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param string[]|Concept[] $category
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCategory($category)
     {
@@ -708,7 +708,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Person[] $contributor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContributor($contributor)
     {
@@ -732,7 +732,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param DateInterval|null $duration
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
@@ -757,7 +757,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Schedule[] $eventSchedule
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEventSchedule($eventSchedule)
     {
@@ -781,7 +781,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Schema.NET.EventStatusType|null $eventStatus
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEventStatus($eventStatus)
     {
@@ -806,7 +806,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param \OpenActive\Enums\GenderRestrictionType|null $genderRestriction
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGenderRestriction($genderRestriction)
     {
@@ -831,7 +831,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param ImageObject[] $image
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setImage($image)
     {
@@ -855,7 +855,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param bool|null $isAccessibleForFree
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsAccessibleForFree($isAccessibleForFree)
     {
@@ -880,7 +880,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param bool|null $isCoached
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsCoached($isCoached)
     {
@@ -905,7 +905,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Person[] $leader
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLeader($leader)
     {
@@ -929,7 +929,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param string[]|Concept[] $level
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLevel($level)
     {
@@ -954,7 +954,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Place $location
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLocation($location)
     {
@@ -978,7 +978,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param int|null $maximumAttendeeCapacity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
     {
@@ -1003,7 +1003,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param string $meetingPoint
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMeetingPoint($meetingPoint)
     {
@@ -1027,7 +1027,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Offer[] $offers
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
@@ -1051,7 +1051,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Person|Organization $organizer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrganizer($organizer)
     {
@@ -1076,7 +1076,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Action[] $potentialAction
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPotentialAction($potentialAction)
     {
@@ -1100,7 +1100,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Brand $programme
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProgramme($programme)
     {
@@ -1124,7 +1124,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param int|null $remainingAttendeeCapacity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
@@ -1149,7 +1149,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param string $schedulingNote
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSchedulingNote($schedulingNote)
     {
@@ -1173,7 +1173,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param DateTime|null $startDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
@@ -1198,7 +1198,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param DateTime|null $endDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
@@ -1223,7 +1223,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Event[] $subEvent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSubEvent($subEvent)
     {
@@ -1247,7 +1247,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Event $superEvent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuperEvent($superEvent)
     {
@@ -1271,7 +1271,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param string $url
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrl($url)
     {

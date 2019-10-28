@@ -27,7 +27,7 @@ class DropdownFormFieldSpecification extends \OpenActive\Models\OA\PropertyValue
     /**
      * @param string[] $valueOption
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueOption($valueOption)
     {

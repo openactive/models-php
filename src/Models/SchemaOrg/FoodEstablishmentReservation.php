@@ -46,7 +46,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     /**
      * @param DateTime|null $startTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartTime($startTime)
     {
@@ -71,7 +71,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     /**
      * @param DateTime|null $endTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndTime($endTime)
     {
@@ -96,7 +96,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     /**
      * @param int|QuantitativeValue|null $partySize
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPartySize($partySize)
     {

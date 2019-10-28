@@ -26,7 +26,7 @@ class EndorseAction extends \OpenActive\Models\SchemaOrg\ReactAction
     /**
      * @param Person|Organization $endorsee
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndorsee($endorsee)
     {

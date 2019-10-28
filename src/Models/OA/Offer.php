@@ -71,7 +71,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      *
      * ```json
      * "ageRange": {
-     *   "type": "QuantitativeValue",
+     *   "@type": "QuantitativeValue",
      *   "minValue": 15,
      *   "maxValue": 60
      * }
@@ -170,7 +170,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param int|string|PropertyValue|PropertyValue[]|null $identifier
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
@@ -198,7 +198,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -222,7 +222,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param string $description
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDescription($description)
     {
@@ -246,7 +246,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param Schema.NET.PaymentMethod[]|null $acceptedPaymentMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcceptedPaymentMethod($acceptedPaymentMethod)
     {
@@ -271,7 +271,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param \OpenActive\Enums\RequiredStatusType|null $advanceBooking
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAdvanceBooking($advanceBooking)
     {
@@ -296,7 +296,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param QuantitativeValue $ageRange
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAgeRange($ageRange)
     {
@@ -320,7 +320,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param \OpenActive\Enums\AvailableChannelType[]|null $availableChannel
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableChannel($availableChannel)
     {
@@ -345,7 +345,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param DateInterval|null $latestCancellationBeforeStartDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLatestCancellationBeforeStartDate($latestCancellationBeforeStartDate)
     {
@@ -370,7 +370,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param \OpenActive\Enums\OpenBookingFlowRequirement[]|null $openBookingFlowRequirement
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOpenBookingFlowRequirement($openBookingFlowRequirement)
     {
@@ -395,7 +395,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param \OpenActive\Enums\RequiredStatusType|null $prepayment
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrepayment($prepayment)
     {
@@ -420,7 +420,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param float|null $price
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
@@ -445,7 +445,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param string $priceCurrency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceCurrency($priceCurrency)
     {
@@ -469,7 +469,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param string $url
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrl($url)
     {
@@ -493,7 +493,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @param DateInterval|null $validFromBeforeStartDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFromBeforeStartDate($validFromBeforeStartDate)
     {

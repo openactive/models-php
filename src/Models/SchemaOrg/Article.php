@@ -85,7 +85,7 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $pagination
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPagination($pagination)
     {
@@ -109,7 +109,7 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\SpeakableSpecification|string $speakable
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSpeakable($speakable)
     {
@@ -134,7 +134,7 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param int|string|null $pageEnd
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPageEnd($pageEnd)
     {
@@ -160,7 +160,7 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $articleSection
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArticleSection($articleSection)
     {
@@ -184,7 +184,7 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param int|string|null $pageStart
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPageStart($pageStart)
     {
@@ -210,7 +210,7 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param int|null $wordCount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWordCount($wordCount)
     {
@@ -235,7 +235,7 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $articleBody
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArticleBody($articleBody)
     {

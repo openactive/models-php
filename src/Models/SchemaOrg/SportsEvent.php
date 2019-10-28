@@ -43,7 +43,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Person|\OpenActive\Models\SchemaOrg\SportsTeam $awayTeam
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAwayTeam($awayTeam)
     {
@@ -68,7 +68,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param \OpenActive\Models\SchemaOrg\SportsTeam|Person $homeTeam
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHomeTeam($homeTeam)
     {
@@ -93,7 +93,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Person|\OpenActive\Models\SchemaOrg\SportsTeam $competitor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCompetitor($competitor)
     {

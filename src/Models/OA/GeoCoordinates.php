@@ -41,7 +41,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\GeoCoordinates
     /**
      * @param float|null $latitude
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLatitude($latitude)
     {
@@ -66,7 +66,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\GeoCoordinates
     /**
      * @param float|null $longitude
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLongitude($longitude)
     {

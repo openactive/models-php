@@ -42,7 +42,7 @@ class Blog extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\BlogPosting $blogPosts
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBlogPosts($blogPosts)
     {
@@ -66,7 +66,7 @@ class Blog extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\BlogPosting $blogPost
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBlogPost($blogPost)
     {
@@ -90,7 +90,7 @@ class Blog extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $issn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIssn($issn)
     {

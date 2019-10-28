@@ -34,7 +34,7 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
     /**
      * @param Person $buyer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBuyer($buyer)
     {
@@ -58,7 +58,7 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
     /**
      * @param \OpenActive\Models\SchemaOrg\WarrantyPromise $warrantyPromise
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWarrantyPromise($warrantyPromise)
     {

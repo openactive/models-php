@@ -76,7 +76,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      *
      * ```json
      * "logo": {
-     *   "type": "ImageObject",
+     *   "@type": "ImageObject",
      *   "url": "http://example.com/static/image/speedball_large.jpg"
      * }
      * ```
@@ -100,7 +100,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     protected $sameAs;
 
     /**
-     * Either  https://openactive/TaxNet or  https://openactive/TaxGross
+     * Either  https://openactive.io/TaxNet or  https://openactive.io/TaxGross
      *
      *
      * @var \OpenActive\Enums\TaxMode|null
@@ -156,7 +156,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param int|string|PropertyValue|PropertyValue[]|null $identifier
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
@@ -184,7 +184,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -208,7 +208,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param string $description
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDescription($description)
     {
@@ -232,7 +232,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param PostalAddress $address
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddress($address)
     {
@@ -256,7 +256,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param string $email
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEmail($email)
     {
@@ -280,7 +280,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param string $legalName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLegalName($legalName)
     {
@@ -304,7 +304,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param ImageObject $logo
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLogo($logo)
     {
@@ -328,7 +328,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param string[] $sameAs
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSameAs($sameAs)
     {
@@ -352,7 +352,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param \OpenActive\Enums\TaxMode|null $taxMode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTaxMode($taxMode)
     {
@@ -377,7 +377,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param string $telephone
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTelephone($telephone)
     {
@@ -401,7 +401,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param Terms[] $termsOfService
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTermsOfService($termsOfService)
     {
@@ -425,7 +425,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param string $url
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrl($url)
     {
@@ -449,7 +449,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param string $vatID
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVatID($vatID)
     {

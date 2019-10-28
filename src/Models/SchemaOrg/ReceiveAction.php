@@ -34,7 +34,7 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
     /**
      * @param Schema.NET.DeliveryMethod|null $deliveryMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDeliveryMethod($deliveryMethod)
     {
@@ -59,7 +59,7 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
     /**
      * @param Person|\OpenActive\Models\SchemaOrg\Audience|Organization $sender
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSender($sender)
     {

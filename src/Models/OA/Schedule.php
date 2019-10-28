@@ -187,7 +187,7 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * @param string[]|Schema.NET.DayOfWeek[]|null $byDay
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setByDay($byDay)
     {
@@ -213,7 +213,7 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * @param int[]|null $byMonth
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setByMonth($byMonth)
     {
@@ -238,7 +238,7 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * @param int[]|null $byMonthDay
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setByMonthDay($byMonthDay)
     {
@@ -263,7 +263,7 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * @param DateInterval|null $duration
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
@@ -288,7 +288,7 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * @param DateTime|null $endTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndTime($endTime)
     {
@@ -313,7 +313,7 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * @param DateTime[]|null $exceptDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExceptDate($exceptDate)
     {
@@ -338,7 +338,7 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * @param string $idTemplate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdTemplate($idTemplate)
     {
@@ -362,7 +362,7 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * @param int|null $repeatCount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRepeatCount($repeatCount)
     {
@@ -387,7 +387,7 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * @param DateInterval|null $repeatFrequency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRepeatFrequency($repeatFrequency)
     {
@@ -412,7 +412,7 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * @param string $scheduledEventType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setScheduledEventType($scheduledEventType)
     {
@@ -436,7 +436,7 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * @param DateTime|null $startDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
@@ -461,7 +461,7 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * @param DateTime|null $endDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
@@ -486,7 +486,7 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * @param DateTime|null $startTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartTime($startTime)
     {
@@ -511,7 +511,7 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * @param string $urlTemplate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrlTemplate($urlTemplate)
     {

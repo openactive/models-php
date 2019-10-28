@@ -109,7 +109,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateTime|null $lastReviewed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLastReviewed($lastReviewed)
     {
@@ -134,7 +134,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\SpeakableSpecification|string $speakable
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSpeakable($speakable)
     {
@@ -159,7 +159,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\BreadcrumbList|string $breadcrumb
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBreadcrumb($breadcrumb)
     {
@@ -184,7 +184,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $significantLink
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSignificantLink($significantLink)
     {
@@ -208,7 +208,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $relatedLink
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRelatedLink($relatedLink)
     {
@@ -232,7 +232,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\WebPageElement $mainContentOfPage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMainContentOfPage($mainContentOfPage)
     {
@@ -256,7 +256,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Organization|Person $reviewedBy
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReviewedBy($reviewedBy)
     {
@@ -281,7 +281,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param ImageObject $primaryImageOfPage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrimaryImageOfPage($primaryImageOfPage)
     {
@@ -305,7 +305,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $significantLinks
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSignificantLinks($significantLinks)
     {
@@ -329,7 +329,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Schema.NET.Specialty|null $specialty
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSpecialty($specialty)
     {

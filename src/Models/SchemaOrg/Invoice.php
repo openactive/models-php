@@ -146,7 +146,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization|Person $provider
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvider($provider)
     {
@@ -171,7 +171,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $paymentDue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentDue($paymentDue)
     {
@@ -196,7 +196,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateInterval|null $billingPeriod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBillingPeriod($billingPeriod)
     {
@@ -221,7 +221,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $confirmationNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setConfirmationNumber($confirmationNumber)
     {
@@ -245,7 +245,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $accountId
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccountId($accountId)
     {
@@ -269,7 +269,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $scheduledPaymentDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setScheduledPaymentDate($scheduledPaymentDate)
     {
@@ -294,7 +294,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization|Person $customer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCustomer($customer)
     {
@@ -319,7 +319,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing $category
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCategory($category)
     {
@@ -345,7 +345,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.PaymentStatusType|string|null $paymentStatus
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentStatus($paymentStatus)
     {
@@ -371,7 +371,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Person|Organization $broker
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroker($broker)
     {
@@ -396,7 +396,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Order $referencesOrder
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReferencesOrder($referencesOrder)
     {
@@ -420,7 +420,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.PaymentMethod|null $paymentMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentMethod($paymentMethod)
     {
@@ -445,7 +445,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $paymentMethodId
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentMethodId($paymentMethodId)
     {
@@ -469,7 +469,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|PriceSpecification $minimumPaymentDue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMinimumPaymentDue($minimumPaymentDue)
     {
@@ -494,7 +494,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount $totalPaymentDue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalPaymentDue($totalPaymentDue)
     {
@@ -519,7 +519,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $paymentDueDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentDueDate($paymentDueDate)
     {

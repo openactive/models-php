@@ -83,7 +83,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      *
      * ```json
      * "logo": {
-     *   "type": "ImageObject",
+     *   "@type": "ImageObject",
      *   "url": "http://example.com/static/image/speedball_large.jpg"
      * }
      * ```
@@ -114,7 +114,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     /**
      * @param int|string|PropertyValue|PropertyValue[]|null $identifier
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
@@ -142,7 +142,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -166,7 +166,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     /**
      * @param string $description
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDescription($description)
     {
@@ -190,7 +190,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     /**
      * @param Concept[] $activity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActivity($activity)
     {
@@ -214,7 +214,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     /**
      * @param Person|Organization $author
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAuthor($author)
     {
@@ -239,7 +239,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     /**
      * @param ImageObject $logo
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLogo($logo)
     {
@@ -263,7 +263,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     /**
      * @param string $url
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrl($url)
     {

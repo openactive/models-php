@@ -38,7 +38,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\ImageObject
     /**
      * @param ImageObject[] $thumbnail
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setThumbnail($thumbnail)
     {
@@ -62,7 +62,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\ImageObject
     /**
      * @param string $url
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrl($url)
     {

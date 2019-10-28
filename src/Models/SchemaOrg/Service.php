@@ -202,7 +202,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Place|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea $serviceArea
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServiceArea($serviceArea)
     {
@@ -228,7 +228,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $produces
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProduces($produces)
     {
@@ -252,7 +252,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization|Person $provider
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvider($provider)
     {
@@ -277,7 +277,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Audience $serviceAudience
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServiceAudience($serviceAudience)
     {
@@ -301,7 +301,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Place|string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAreaServed($areaServed)
     {
@@ -328,7 +328,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Audience $audience
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAudience($audience)
     {
@@ -352,7 +352,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\OfferCatalog $hasOfferCatalog
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasOfferCatalog($hasOfferCatalog)
     {
@@ -376,7 +376,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param OpeningHoursSpecification $hoursAvailable
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHoursAvailable($hoursAvailable)
     {
@@ -400,7 +400,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $providerMobility
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProviderMobility($providerMobility)
     {
@@ -424,7 +424,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\AggregateRating $aggregateRating
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAggregateRating($aggregateRating)
     {
@@ -448,7 +448,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Offer $offers
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
@@ -472,7 +472,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $award
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAward($award)
     {
@@ -496,7 +496,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing $category
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCategory($category)
     {
@@ -522,7 +522,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Person|Organization $broker
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroker($broker)
     {
@@ -547,7 +547,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $serviceOutput
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServiceOutput($serviceOutput)
     {
@@ -571,7 +571,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param ImageObject|string $logo
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLogo($logo)
     {
@@ -596,7 +596,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service $isSimilarTo
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsSimilarTo($isSimilarTo)
     {
@@ -621,7 +621,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service $isRelatedTo
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsRelatedTo($isRelatedTo)
     {
@@ -646,7 +646,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\ServiceChannel $availableChannel
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableChannel($availableChannel)
     {
@@ -670,7 +670,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Review $review
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReview($review)
     {
@@ -694,7 +694,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $serviceType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServiceType($serviceType)
     {
@@ -718,7 +718,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $slogan
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSlogan($slogan)
     {
@@ -742,7 +742,7 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization|Brand $brand
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBrand($brand)
     {

@@ -66,7 +66,7 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string $broadcastFrequency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastFrequency($broadcastFrequency)
     {
@@ -91,7 +91,7 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $broadcastChannelId
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastChannelId($broadcastChannelId)
     {
@@ -115,7 +115,7 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $broadcastServiceTier
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastServiceTier($broadcastServiceTier)
     {
@@ -139,7 +139,7 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\CableOrSatelliteService $inBroadcastLineup
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInBroadcastLineup($inBroadcastLineup)
     {
@@ -163,7 +163,7 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\BroadcastService $providesBroadcastService
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvidesBroadcastService($providesBroadcastService)
     {
@@ -187,7 +187,7 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $genre
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGenre($genre)
     {

@@ -34,7 +34,7 @@ class ParentAudience extends \OpenActive\Models\SchemaOrg\PeopleAudience
     /**
      * @param decimal|null $childMaxAge
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setChildMaxAge($childMaxAge)
     {
@@ -59,7 +59,7 @@ class ParentAudience extends \OpenActive\Models\SchemaOrg\PeopleAudience
     /**
      * @param decimal|null $childMinAge
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setChildMinAge($childMinAge)
     {

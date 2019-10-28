@@ -3,6 +3,7 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
+ * This type is derived from [PriceSpecification](https://schema.org/PriceSpecification), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
@@ -59,7 +60,7 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     /**
      * @param string $unitCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnitCode($unitCode)
     {
@@ -83,7 +84,7 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     /**
      * @param decimal|null $billingIncrement
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBillingIncrement($billingIncrement)
     {
@@ -108,7 +109,7 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     /**
      * @param QuantitativeValue $referenceQuantity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReferenceQuantity($referenceQuantity)
     {
@@ -132,7 +133,7 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     /**
      * @param string $unitText
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnitText($unitText)
     {
@@ -156,7 +157,7 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     /**
      * @param string $priceType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceType($priceType)
     {

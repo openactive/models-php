@@ -35,7 +35,7 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $collection
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCollection($collection)
     {
@@ -59,7 +59,7 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $targetCollection
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTargetCollection($targetCollection)
     {

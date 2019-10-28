@@ -43,7 +43,7 @@ class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Person $instructor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInstructor($instructor)
     {
@@ -67,7 +67,7 @@ class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param string $courseMode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCourseMode($courseMode)
     {
@@ -91,7 +91,7 @@ class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Course $course
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCourse($course)
     {

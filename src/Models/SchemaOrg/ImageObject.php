@@ -50,7 +50,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param PropertyValue|string $exifData
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExifData($exifData)
     {
@@ -75,7 +75,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param bool|null $representativeOfPage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRepresentativeOfPage($representativeOfPage)
     {
@@ -100,7 +100,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param ImageObject $thumbnail
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setThumbnail($thumbnail)
     {
@@ -124,7 +124,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param \OpenActive\Models\SchemaOrg\MediaObject|string $caption
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCaption($caption)
     {

@@ -26,7 +26,7 @@ class OrderAction extends \OpenActive\Models\SchemaOrg\TradeAction
     /**
      * @param Schema.NET.DeliveryMethod|null $deliveryMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDeliveryMethod($deliveryMethod)
     {

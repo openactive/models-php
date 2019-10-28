@@ -50,7 +50,7 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @param string $passengerSequenceNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPassengerSequenceNumber($passengerSequenceNumber)
     {
@@ -74,7 +74,7 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @param string $securityScreening
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSecurityScreening($securityScreening)
     {
@@ -98,7 +98,7 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @param Schema.NET.QualitativeValue|string|null $passengerPriorityStatus
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPassengerPriorityStatus($passengerPriorityStatus)
     {
@@ -124,7 +124,7 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @param string $boardingGroup
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBoardingGroup($boardingGroup)
     {

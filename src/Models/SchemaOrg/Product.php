@@ -300,7 +300,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization $manufacturer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setManufacturer($manufacturer)
     {
@@ -324,7 +324,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $sku
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSku($sku)
     {
@@ -348,7 +348,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Audience $audience
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAudience($audience)
     {
@@ -372,7 +372,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $mpn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMpn($mpn)
     {
@@ -396,7 +396,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $height
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHeight($height)
     {
@@ -421,7 +421,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $gtin8
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGtin8($gtin8)
     {
@@ -445,7 +445,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Review $reviews
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReviews($reviews)
     {
@@ -469,7 +469,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\AggregateRating $aggregateRating
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAggregateRating($aggregateRating)
     {
@@ -493,7 +493,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Product $isConsumableFor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsConsumableFor($isConsumableFor)
     {
@@ -517,7 +517,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Offer $offers
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
@@ -541,7 +541,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $award
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAward($award)
     {
@@ -565,7 +565,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing $category
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCategory($category)
     {
@@ -591,7 +591,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $width
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWidth($width)
     {
@@ -616,7 +616,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $awards
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAwards($awards)
     {
@@ -640,7 +640,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param PropertyValue $additionalProperty
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAdditionalProperty($additionalProperty)
     {
@@ -664,7 +664,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Product $isAccessoryOrSparePartFor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsAccessoryOrSparePartFor($isAccessoryOrSparePartFor)
     {
@@ -688,7 +688,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param ImageObject|string $logo
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLogo($logo)
     {
@@ -713,7 +713,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $gtin14
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGtin14($gtin14)
     {
@@ -737,7 +737,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $gtin13
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGtin13($gtin13)
     {
@@ -761,7 +761,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $gtin12
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGtin12($gtin12)
     {
@@ -785,7 +785,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Product $material
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaterial($material)
     {
@@ -810,7 +810,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param QuantitativeValue $weight
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWeight($weight)
     {
@@ -834,7 +834,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service $isSimilarTo
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsSimilarTo($isSimilarTo)
     {
@@ -859,7 +859,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string|\OpenActive\Models\SchemaOrg\ProductModel $model
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setModel($model)
     {
@@ -884,7 +884,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $color
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setColor($color)
     {
@@ -908,7 +908,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service $isRelatedTo
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsRelatedTo($isRelatedTo)
     {
@@ -933,7 +933,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $productID
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProductID($productID)
     {
@@ -957,7 +957,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Review $review
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReview($review)
     {
@@ -981,7 +981,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $depth
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDepth($depth)
     {
@@ -1006,7 +1006,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $purchaseDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPurchaseDate($purchaseDate)
     {
@@ -1031,7 +1031,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Schema.NET.OfferItemCondition|null $itemCondition
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemCondition($itemCondition)
     {
@@ -1056,7 +1056,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $productionDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProductionDate($productionDate)
     {
@@ -1081,7 +1081,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $slogan
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSlogan($slogan)
     {
@@ -1105,7 +1105,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization|Brand $brand
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBrand($brand)
     {
@@ -1130,7 +1130,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $releaseDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReleaseDate($releaseDate)
     {

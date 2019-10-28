@@ -27,7 +27,7 @@ class BooleanFormFieldSpecification extends \OpenActive\Models\OA\PropertyValueS
     /**
      * @param string $valueRequired
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueRequired($valueRequired)
     {

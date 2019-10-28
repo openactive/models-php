@@ -59,7 +59,7 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $unitCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnitCode($unitCode)
     {
@@ -83,7 +83,7 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $typeOfGood
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTypeOfGood($typeOfGood)
     {
@@ -108,7 +108,7 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param decimal|null $amountOfThisGood
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAmountOfThisGood($amountOfThisGood)
     {
@@ -133,7 +133,7 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $unitText
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnitText($unitText)
     {
@@ -157,7 +157,7 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param Schema.NET.BusinessFunction|null $businessFunction
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBusinessFunction($businessFunction)
     {

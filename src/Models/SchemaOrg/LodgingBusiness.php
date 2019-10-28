@@ -83,7 +83,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @param \OpenActive\Models\SchemaOrg\Audience $audience
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAudience($audience)
     {
@@ -107,7 +107,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @param DateTime|null $checkinTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCheckinTime($checkinTime)
     {
@@ -132,7 +132,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @param string|bool|null $petsAllowed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPetsAllowed($petsAllowed)
     {
@@ -158,7 +158,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Language $availableLanguage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableLanguage($availableLanguage)
     {
@@ -183,7 +183,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @param LocationFeatureSpecification $amenityFeature
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAmenityFeature($amenityFeature)
     {
@@ -207,7 +207,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @param \OpenActive\Models\SchemaOrg\Rating $starRating
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStarRating($starRating)
     {
@@ -231,7 +231,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @param DateTime|null $checkoutTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCheckoutTime($checkoutTime)
     {
@@ -256,7 +256,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @param QuantitativeValue|decimal|null $numberOfRooms
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfRooms($numberOfRooms)
     {

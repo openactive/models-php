@@ -66,7 +66,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @param string $lodgingUnitDescription
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLodgingUnitDescription($lodgingUnitDescription)
     {
@@ -90,7 +90,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @param DateTime|null $checkinTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCheckinTime($checkinTime)
     {
@@ -115,7 +115,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @param int|QuantitativeValue|null $numChildren
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumChildren($numChildren)
     {
@@ -141,7 +141,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @param DateTime|null $checkoutTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCheckoutTime($checkoutTime)
     {
@@ -166,7 +166,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @param Schema.NET.QualitativeValue|string|null $lodgingUnitType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLodgingUnitType($lodgingUnitType)
     {
@@ -192,7 +192,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @param int|QuantitativeValue|null $numAdults
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumAdults($numAdults)
     {

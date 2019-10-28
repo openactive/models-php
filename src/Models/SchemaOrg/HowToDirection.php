@@ -82,7 +82,7 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\MediaObject|string $beforeMedia
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBeforeMedia($beforeMedia)
     {
@@ -107,7 +107,7 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateInterval|null $prepTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrepTime($prepTime)
     {
@@ -132,7 +132,7 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string|\OpenActive\Models\SchemaOrg\HowToTool $tool
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTool($tool)
     {
@@ -157,7 +157,7 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateInterval|null $performTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPerformTime($performTime)
     {
@@ -182,7 +182,7 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateInterval|null $totalTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalTime($totalTime)
     {
@@ -207,7 +207,7 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\HowToSupply|string $supply
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSupply($supply)
     {
@@ -232,7 +232,7 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string|\OpenActive\Models\SchemaOrg\MediaObject $afterMedia
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAfterMedia($afterMedia)
     {
@@ -257,7 +257,7 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string|\OpenActive\Models\SchemaOrg\MediaObject $duringMedia
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuringMedia($duringMedia)
     {

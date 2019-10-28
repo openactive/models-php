@@ -16,6 +16,14 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
     protected $name;
 
     /**
+     * The version of the application, useful for on-premise installations.
+     *
+     *
+     * @var string
+     */
+    protected $softwareVersion;
+
+    /**
      * The terms of service of the Booking System.
      *
      *
@@ -42,7 +50,7 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -56,6 +64,30 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
+     * @return string
+     */
+    public function getSoftwareVersion()
+    {
+        return $this->softwareVersion;
+    }
+
+    /**
+     * @param string $softwareVersion
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSoftwareVersion($softwareVersion)
+    {
+        $types = array(
+            "string",
+        );
+
+        $softwareVersion = self::checkTypes($softwareVersion, $types);
+
+        $this->softwareVersion = $softwareVersion;
+    }
+
+    /**
      * @return Terms[]
      */
     public function getTermsOfService()
@@ -66,7 +98,7 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param Terms[] $termsOfService
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTermsOfService($termsOfService)
     {
@@ -90,7 +122,7 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param string $url
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrl($url)
     {

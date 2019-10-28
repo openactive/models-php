@@ -52,7 +52,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     /**
      * @param QuantitativeValue $loanTerm
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLoanTerm($loanTerm)
     {
@@ -76,7 +76,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     /**
      * @param string $currency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCurrency($currency)
     {
@@ -100,7 +100,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     /**
      * @param decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $amount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAmount($amount)
     {
@@ -126,7 +126,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Thing $requiredCollateral
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiredCollateral($requiredCollateral)
     {

@@ -34,7 +34,7 @@ class Airport extends \OpenActive\Models\SchemaOrg\CivicStructure
     /**
      * @param string $iataCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIataCode($iataCode)
     {
@@ -58,7 +58,7 @@ class Airport extends \OpenActive\Models\SchemaOrg\CivicStructure
     /**
      * @param string $icaoCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIcaoCode($icaoCode)
     {

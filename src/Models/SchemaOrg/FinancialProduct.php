@@ -42,7 +42,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param QuantitativeValue|decimal|null $interestRate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInterestRate($interestRate)
     {
@@ -68,7 +68,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param string $feesAndCommissionsSpecification
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFeesAndCommissionsSpecification($feesAndCommissionsSpecification)
     {
@@ -92,7 +92,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param QuantitativeValue|decimal|null $annualPercentageRate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAnnualPercentageRate($annualPercentageRate)
     {

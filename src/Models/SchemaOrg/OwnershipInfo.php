@@ -50,7 +50,7 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $typeOfGood
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTypeOfGood($typeOfGood)
     {
@@ -75,7 +75,7 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param DateTime|null $ownedThrough
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOwnedThrough($ownedThrough)
     {
@@ -100,7 +100,7 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param Organization|Person $acquiredFrom
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcquiredFrom($acquiredFrom)
     {
@@ -125,7 +125,7 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param DateTime|null $ownedFrom
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOwnedFrom($ownedFrom)
     {

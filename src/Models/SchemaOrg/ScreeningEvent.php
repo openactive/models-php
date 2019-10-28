@@ -35,7 +35,7 @@ class ScreeningEvent extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param string $videoFormat
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVideoFormat($videoFormat)
     {
@@ -59,7 +59,7 @@ class ScreeningEvent extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param \OpenActive\Models\SchemaOrg\Movie $workPresented
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWorkPresented($workPresented)
     {

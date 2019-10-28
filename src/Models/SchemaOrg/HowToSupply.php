@@ -26,7 +26,7 @@ class HowToSupply extends \OpenActive\Models\SchemaOrg\HowToItem
     /**
      * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string $estimatedCost
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEstimatedCost($estimatedCost)
     {

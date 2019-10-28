@@ -28,7 +28,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     protected $bookingService;
 
     /**
-     * The organisation or developer providing an application that allows Customers to make bookings. Those applications will be clients of the API defined in this specification. If brokerRole is set to https://openactive/NoBroker this is not required.
+     * The organisation or developer providing an application that allows Customers to make bookings. Those applications will be clients of the API defined in this specification. If brokerRole is set to https://openactive.io/NoBroker this is not required.
      *
      *
      * @var Organization
@@ -36,7 +36,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     protected $broker;
 
     /**
-     * Either https://openactive/AgentBroker,  https://openactive/ResellerBroker or  https://openactive/NoBroker, as agreed in advance between the Broker and Seller.
+     * Either https://openactive.io/AgentBroker,  https://openactive.io/ResellerBroker or  https://openactive.io/NoBroker, as agreed in advance between the Broker and Seller.
      *
      *
      * @var \OpenActive\Enums\BrokerType|null
@@ -133,7 +133,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      * @param int|string|PropertyValue|PropertyValue[]|null $identifier
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
@@ -161,7 +161,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      * @param BookingService $bookingService
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBookingService($bookingService)
     {
@@ -185,7 +185,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      * @param Organization $broker
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroker($broker)
     {
@@ -209,7 +209,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      * @param \OpenActive\Enums\BrokerType|null $brokerRole
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBrokerRole($brokerRole)
     {
@@ -234,7 +234,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      * @param Organization|Person $customer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCustomer($customer)
     {
@@ -259,7 +259,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      * @param \OpenActive\Enums\OrderCreationStatus|null $orderCreationStatus
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderCreationStatus($orderCreationStatus)
     {
@@ -284,7 +284,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      * @param OrderItem[] $orderedItem
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderedItem($orderedItem)
     {
@@ -308,7 +308,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      * @param string $orderNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderNumber($orderNumber)
     {
@@ -332,7 +332,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      * @param string $orderProposalVersion
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderProposalVersion($orderProposalVersion)
     {
@@ -356,7 +356,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      * @param Payment $payment
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPayment($payment)
     {
@@ -380,7 +380,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      * @param Organization $seller
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeller($seller)
     {
@@ -404,7 +404,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      * @param bool|null $taxCalculationExcluded
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTaxCalculationExcluded($taxCalculationExcluded)
     {
@@ -429,7 +429,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      * @param PriceSpecification $totalPaymentDue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalPaymentDue($totalPaymentDue)
     {
@@ -453,7 +453,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      * @param TaxChargeSpecification[] $totalPaymentTax
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalPaymentTax($totalPaymentTax)
     {

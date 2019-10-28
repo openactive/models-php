@@ -46,7 +46,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      *
      * ```json
      * "logo": {
-     *   "type": "ImageObject",
+     *   "@type": "ImageObject",
      *   "url": "http://example.com/static/image/speedball_large.jpg"
      * }
      * ```
@@ -77,7 +77,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     /**
      * @param int|string|PropertyValue|PropertyValue[]|null $identifier
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
@@ -105,7 +105,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -129,7 +129,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     /**
      * @param string $description
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDescription($description)
     {
@@ -153,7 +153,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     /**
      * @param ImageObject $logo
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLogo($logo)
     {
@@ -177,7 +177,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     /**
      * @param string $url
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrl($url)
     {

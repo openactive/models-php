@@ -50,7 +50,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization|Person $provider
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvider($provider)
     {
@@ -75,7 +75,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Offer $offers
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
@@ -99,7 +99,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $arrivalTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArrivalTime($arrivalTime)
     {
@@ -124,7 +124,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $departureTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDepartureTime($departureTime)
     {

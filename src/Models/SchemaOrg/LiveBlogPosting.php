@@ -42,7 +42,7 @@ class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
     /**
      * @param DateTime|null $coverageStartTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCoverageStartTime($coverageStartTime)
     {
@@ -67,7 +67,7 @@ class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
     /**
      * @param DateTime|null $coverageEndTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCoverageEndTime($coverageEndTime)
     {
@@ -92,7 +92,7 @@ class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
     /**
      * @param \OpenActive\Models\SchemaOrg\BlogPosting $liveBlogUpdate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLiveBlogUpdate($liveBlogUpdate)
     {

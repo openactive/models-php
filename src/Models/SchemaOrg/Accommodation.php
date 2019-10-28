@@ -60,7 +60,7 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param QuantitativeValue $floorSize
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFloorSize($floorSize)
     {
@@ -84,7 +84,7 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param string|bool|null $petsAllowed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPetsAllowed($petsAllowed)
     {
@@ -110,7 +110,7 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param LocationFeatureSpecification $amenityFeature
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAmenityFeature($amenityFeature)
     {
@@ -134,7 +134,7 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param QuantitativeValue|decimal|null $numberOfRooms
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfRooms($numberOfRooms)
     {
@@ -160,7 +160,7 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param string $permittedUsage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPermittedUsage($permittedUsage)
     {

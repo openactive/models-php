@@ -50,7 +50,7 @@ class BusTrip extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param string $busName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBusName($busName)
     {
@@ -74,7 +74,7 @@ class BusTrip extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param \OpenActive\Models\SchemaOrg\BusStop|\OpenActive\Models\SchemaOrg\BusStation $departureBusStop
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDepartureBusStop($departureBusStop)
     {
@@ -99,7 +99,7 @@ class BusTrip extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param \OpenActive\Models\SchemaOrg\BusStation|\OpenActive\Models\SchemaOrg\BusStop $arrivalBusStop
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArrivalBusStop($arrivalBusStop)
     {
@@ -124,7 +124,7 @@ class BusTrip extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param string $busNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBusNumber($busNumber)
     {

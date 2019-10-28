@@ -98,7 +98,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $musicCompositionForm
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicCompositionForm($musicCompositionForm)
     {
@@ -122,7 +122,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork $lyrics
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLyrics($lyrics)
     {
@@ -146,7 +146,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\MusicComposition $includedComposition
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIncludedComposition($includedComposition)
     {
@@ -170,7 +170,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Person $lyricist
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLyricist($lyricist)
     {
@@ -194,7 +194,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\MusicRecording $recordedAs
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecordedAs($recordedAs)
     {
@@ -218,7 +218,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Event $firstPerformance
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFirstPerformance($firstPerformance)
     {
@@ -242,7 +242,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\MusicComposition $musicArrangement
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicArrangement($musicArrangement)
     {
@@ -266,7 +266,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $iswcCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIswcCode($iswcCode)
     {
@@ -290,7 +290,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Person|Organization $composer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setComposer($composer)
     {
@@ -315,7 +315,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $musicalKey
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicalKey($musicalKey)
     {

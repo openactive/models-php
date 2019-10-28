@@ -11,12 +11,12 @@ class DataCatalog extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A dataset contained in this catalog.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Dataset
+     * @var Dataset
      */
     protected $dataset;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Dataset
+     * @return Dataset
      */
     public function getDataset()
     {
@@ -24,14 +24,14 @@ class DataCatalog extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Dataset $dataset
+     * @param Dataset $dataset
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDataset($dataset)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Dataset",
+            "Dataset",
         );
 
         $dataset = self::checkTypes($dataset, $types);

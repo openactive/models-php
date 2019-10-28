@@ -41,7 +41,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
     /**
      * @param int|null $maxValue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaxValue($maxValue)
     {
@@ -66,7 +66,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
     /**
      * @param int|null $minValue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMinValue($minValue)
     {

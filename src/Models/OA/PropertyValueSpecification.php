@@ -43,7 +43,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyVa
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -67,7 +67,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyVa
     /**
      * @param string $description
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDescription($description)
     {
@@ -91,7 +91,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyVa
     /**
      * @param string $valueRequired
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueRequired($valueRequired)
     {

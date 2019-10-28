@@ -26,7 +26,7 @@ class Map extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Schema.NET.MapCategoryType|null $mapType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMapType($mapType)
     {

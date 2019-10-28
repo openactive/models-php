@@ -90,7 +90,7 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string $broadcastFrequency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastFrequency($broadcastFrequency)
     {
@@ -115,7 +115,7 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param string $broadcastTimezone
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastTimezone($broadcastTimezone)
     {
@@ -139,7 +139,7 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param Organization $broadcastAffiliateOf
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastAffiliateOf($broadcastAffiliateOf)
     {
@@ -163,7 +163,7 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param string $videoFormat
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVideoFormat($videoFormat)
     {
@@ -187,7 +187,7 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param \OpenActive\Models\SchemaOrg\BroadcastService $parentService
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setParentService($parentService)
     {
@@ -211,7 +211,7 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param string $broadcastDisplayName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastDisplayName($broadcastDisplayName)
     {
@@ -235,7 +235,7 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param Place $area
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArea($area)
     {
@@ -259,7 +259,7 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param \OpenActive\Models\SchemaOrg\BroadcastChannel $hasBroadcastChannel
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasBroadcastChannel($hasBroadcastChannel)
     {
@@ -283,7 +283,7 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param Organization $broadcaster
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcaster($broadcaster)
     {

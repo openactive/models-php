@@ -26,7 +26,7 @@ class ClaimReview extends \OpenActive\Models\SchemaOrg\Review
     /**
      * @param string $claimReviewed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setClaimReviewed($claimReviewed)
     {

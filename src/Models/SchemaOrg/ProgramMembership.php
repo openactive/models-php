@@ -58,7 +58,7 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $membershipNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMembershipNumber($membershipNumber)
     {
@@ -82,7 +82,7 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Person|Organization $members
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMembers($members)
     {
@@ -107,7 +107,7 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Person|Organization $member
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMember($member)
     {
@@ -132,7 +132,7 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $programName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProgramName($programName)
     {
@@ -156,7 +156,7 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization $hostingOrganization
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHostingOrganization($hostingOrganization)
     {

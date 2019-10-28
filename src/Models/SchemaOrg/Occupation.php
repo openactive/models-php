@@ -68,7 +68,7 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\AdministrativeArea $occupationLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOccupationLocation($occupationLocation)
     {
@@ -92,7 +92,7 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $skills
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSkills($skills)
     {
@@ -116,7 +116,7 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $responsibilities
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setResponsibilities($responsibilities)
     {
@@ -140,7 +140,7 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string|\OpenActive\Models\SchemaOrg\CategoryCode $occupationalCategory
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOccupationalCategory($occupationalCategory)
     {
@@ -165,7 +165,7 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $experienceRequirements
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExperienceRequirements($experienceRequirements)
     {
@@ -189,7 +189,7 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|null $estimatedSalary
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEstimatedSalary($estimatedSalary)
     {

@@ -90,7 +90,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Person $actor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActor($actor)
     {
@@ -114,7 +114,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\VideoObject $trailer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTrailer($trailer)
     {
@@ -138,7 +138,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\Country $countryOfOrigin
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCountryOfOrigin($countryOfOrigin)
     {
@@ -162,7 +162,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Person|\OpenActive\Models\SchemaOrg\MusicGroup $musicBy
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicBy($musicBy)
     {
@@ -187,7 +187,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Person $directors
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDirectors($directors)
     {
@@ -211,7 +211,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Person $director
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDirector($director)
     {
@@ -235,7 +235,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Organization $productionCompany
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProductionCompany($productionCompany)
     {
@@ -259,7 +259,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateInterval|null $duration
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
@@ -284,7 +284,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Person $actors
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActors($actors)
     {

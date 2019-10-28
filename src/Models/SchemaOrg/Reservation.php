@@ -132,7 +132,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization|Person $provider
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvider($provider)
     {
@@ -157,7 +157,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\ProgramMembership $programMembershipUsed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProgramMembershipUsed($programMembershipUsed)
     {
@@ -181,7 +181,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.ReservationStatusType|null $reservationStatus
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReservationStatus($reservationStatus)
     {
@@ -206,7 +206,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization|Person $underName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnderName($underName)
     {
@@ -231,7 +231,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Person|Organization $bookingAgent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBookingAgent($bookingAgent)
     {
@@ -256,7 +256,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param PriceSpecification|decimal|string|null $totalPrice
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalPrice($totalPrice)
     {
@@ -283,7 +283,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $reservationFor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReservationFor($reservationFor)
     {
@@ -307,7 +307,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $priceCurrency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceCurrency($priceCurrency)
     {
@@ -331,7 +331,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Person|Organization $broker
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroker($broker)
     {
@@ -356,7 +356,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $modifiedTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setModifiedTime($modifiedTime)
     {
@@ -381,7 +381,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $bookingTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBookingTime($bookingTime)
     {
@@ -406,7 +406,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $reservationId
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReservationId($reservationId)
     {
@@ -430,7 +430,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Ticket $reservedTicket
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReservedTicket($reservedTicket)
     {

@@ -98,7 +98,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     /**
      * @param string|QuantitativeValue $recipeYield
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecipeYield($recipeYield)
     {
@@ -123,7 +123,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     /**
      * @param string $recipeCategory
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecipeCategory($recipeCategory)
     {
@@ -147,7 +147,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     /**
      * @param string $recipeIngredient
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecipeIngredient($recipeIngredient)
     {
@@ -171,7 +171,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     /**
      * @param string|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\ItemList $recipeInstructions
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecipeInstructions($recipeInstructions)
     {
@@ -197,7 +197,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     /**
      * @param \OpenActive\Models\SchemaOrg\NutritionInformation $nutrition
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNutrition($nutrition)
     {
@@ -221,7 +221,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     /**
      * @param Schema.NET.RestrictedDiet|null $suitableForDiet
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuitableForDiet($suitableForDiet)
     {
@@ -246,7 +246,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     /**
      * @param string $recipeCuisine
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecipeCuisine($recipeCuisine)
     {
@@ -270,7 +270,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     /**
      * @param DateInterval|null $cookTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCookTime($cookTime)
     {
@@ -295,7 +295,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     /**
      * @param string $cookingMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCookingMethod($cookingMethod)
     {
@@ -319,7 +319,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     /**
      * @param string $ingredients
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIngredients($ingredients)
     {

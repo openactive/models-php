@@ -26,7 +26,7 @@ class EngineSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string|Schema.NET.QualitativeValue|null $fuelType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFuelType($fuelType)
     {

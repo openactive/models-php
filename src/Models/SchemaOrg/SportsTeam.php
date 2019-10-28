@@ -34,7 +34,7 @@ class SportsTeam extends \OpenActive\Models\SchemaOrg\SportsOrganization
     /**
      * @param Person $athlete
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAthlete($athlete)
     {
@@ -58,7 +58,7 @@ class SportsTeam extends \OpenActive\Models\SchemaOrg\SportsOrganization
     /**
      * @param Person $coach
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCoach($coach)
     {

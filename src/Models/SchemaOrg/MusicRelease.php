@@ -66,7 +66,7 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     /**
      * @param Organization $recordLabel
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecordLabel($recordLabel)
     {
@@ -90,7 +90,7 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     /**
      * @param string $catalogNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCatalogNumber($catalogNumber)
     {
@@ -114,7 +114,7 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     /**
      * @param \OpenActive\Models\SchemaOrg\MusicAlbum $releaseOf
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReleaseOf($releaseOf)
     {
@@ -138,7 +138,7 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     /**
      * @param Person|Organization $creditedTo
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCreditedTo($creditedTo)
     {
@@ -163,7 +163,7 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     /**
      * @param DateInterval|null $duration
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
@@ -188,7 +188,7 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     /**
      * @param Schema.NET.MusicReleaseFormatType|null $musicReleaseFormat
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicReleaseFormat($musicReleaseFormat)
     {

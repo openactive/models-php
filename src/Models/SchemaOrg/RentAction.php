@@ -34,7 +34,7 @@ class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
     /**
      * @param Organization|Person $landlord
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLandlord($landlord)
     {
@@ -59,7 +59,7 @@ class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
     /**
      * @param \OpenActive\Models\SchemaOrg\RealEstateAgent $realEstateAgent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRealEstateAgent($realEstateAgent)
     {

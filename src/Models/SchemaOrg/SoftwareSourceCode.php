@@ -74,7 +74,7 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\SoftwareApplication $targetProduct
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTargetProduct($targetProduct)
     {
@@ -98,7 +98,7 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $codeRepository
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCodeRepository($codeRepository)
     {
@@ -122,7 +122,7 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\ComputerLanguage|string $programmingLanguage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProgrammingLanguage($programmingLanguage)
     {
@@ -147,7 +147,7 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $codeSampleType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCodeSampleType($codeSampleType)
     {
@@ -171,7 +171,7 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $runtimePlatform
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRuntimePlatform($runtimePlatform)
     {
@@ -195,7 +195,7 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $sampleType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSampleType($sampleType)
     {
@@ -219,7 +219,7 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $runtime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRuntime($runtime)
     {

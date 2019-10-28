@@ -50,7 +50,7 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $dateModified
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateModified($dateModified)
     {
@@ -75,7 +75,7 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $dateDeleted
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateDeleted($dateDeleted)
     {
@@ -100,7 +100,7 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $dateCreated
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateCreated($dateCreated)
     {
@@ -125,7 +125,7 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $item
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItem($item)
     {

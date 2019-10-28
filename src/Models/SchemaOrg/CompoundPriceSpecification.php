@@ -3,6 +3,7 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
+ * This type is derived from [PriceSpecification](https://schema.org/PriceSpecification), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class CompoundPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
@@ -26,7 +27,7 @@ class CompoundPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
     /**
      * @param \OpenActive\Models\SchemaOrg\UnitPriceSpecification $priceComponent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceComponent($priceComponent)
     {

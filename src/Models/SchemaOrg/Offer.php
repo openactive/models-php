@@ -361,7 +361,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $sku
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSku($sku)
     {
@@ -385,7 +385,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $availabilityStarts
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailabilityStarts($availabilityStarts)
     {
@@ -410,7 +410,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.DeliveryMethod|null $availableDeliveryMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableDeliveryMethod($availableDeliveryMethod)
     {
@@ -435,7 +435,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Place|string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAreaServed($areaServed)
     {
@@ -462,7 +462,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $mpn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMpn($mpn)
     {
@@ -486,7 +486,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $serialNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSerialNumber($serialNumber)
     {
@@ -510,7 +510,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $gtin8
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGtin8($gtin8)
     {
@@ -534,7 +534,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Review $reviews
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReviews($reviews)
     {
@@ -558,7 +558,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.ItemAvailability|null $availability
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailability($availability)
     {
@@ -583,7 +583,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param PriceSpecification $priceSpecification
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceSpecification($priceSpecification)
     {
@@ -607,7 +607,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param QuantitativeValue $inventoryLevel
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInventoryLevel($inventoryLevel)
     {
@@ -631,7 +631,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\AggregateRating $aggregateRating
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAggregateRating($aggregateRating)
     {
@@ -655,7 +655,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param PriceSpecification $eligibleTransactionVolume
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleTransactionVolume($eligibleTransactionVolume)
     {
@@ -679,7 +679,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Place $availableAtOrFrom
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableAtOrFrom($availableAtOrFrom)
     {
@@ -703,7 +703,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $priceCurrency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceCurrency($priceCurrency)
     {
@@ -727,7 +727,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing $category
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCategory($category)
     {
@@ -753,7 +753,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $priceValidUntil
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceValidUntil($priceValidUntil)
     {
@@ -778,7 +778,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Offer $addOn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddOn($addOn)
     {
@@ -802,7 +802,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\WarrantyPromise $warranty
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWarranty($warranty)
     {
@@ -826,7 +826,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\TypeAndQuantityNode $includesObject
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIncludesObject($includesObject)
     {
@@ -850,7 +850,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param QuantitativeValue $eligibleQuantity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleQuantity($eligibleQuantity)
     {
@@ -874,7 +874,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $validFrom
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFrom($validFrom)
     {
@@ -899,7 +899,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $validThrough
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidThrough($validThrough)
     {
@@ -924,7 +924,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param decimal|string|null $price
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
@@ -950,7 +950,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $gtin14
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGtin14($gtin14)
     {
@@ -974,7 +974,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $gtin13
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGtin13($gtin13)
     {
@@ -998,7 +998,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $gtin12
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGtin12($gtin12)
     {
@@ -1022,7 +1022,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Person|Organization $seller
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeller($seller)
     {
@@ -1047,7 +1047,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param QuantitativeValue $deliveryLeadTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDeliveryLeadTime($deliveryLeadTime)
     {
@@ -1071,7 +1071,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $availabilityEnds
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailabilityEnds($availabilityEnds)
     {
@@ -1096,7 +1096,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Review $review
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReview($review)
     {
@@ -1120,7 +1120,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.BusinessEntityType|null $eligibleCustomerType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleCustomerType($eligibleCustomerType)
     {
@@ -1145,7 +1145,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.OfferItemCondition|null $itemCondition
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemCondition($itemCondition)
     {
@@ -1170,7 +1170,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $itemOffered
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemOffered($itemOffered)
     {
@@ -1195,7 +1195,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization|Person $offeredBy
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOfferedBy($offeredBy)
     {
@@ -1220,7 +1220,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param QuantitativeValue $eligibleDuration
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleDuration($eligibleDuration)
     {
@@ -1244,7 +1244,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\LoanOrCredit|Schema.NET.PaymentMethod|null $acceptedPaymentMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcceptedPaymentMethod($acceptedPaymentMethod)
     {
@@ -1270,7 +1270,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.BusinessFunction|null $businessFunction
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBusinessFunction($businessFunction)
     {
@@ -1295,7 +1295,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Place|string|\OpenActive\Models\SchemaOrg\GeoShape $eligibleRegion
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleRegion($eligibleRegion)
     {
@@ -1321,7 +1321,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param QuantitativeValue $advanceBookingRequirement
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAdvanceBookingRequirement($advanceBookingRequirement)
     {
@@ -1345,7 +1345,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Enums\AvailableChannelType|null $availableChannel
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableChannel($availableChannel)
     {

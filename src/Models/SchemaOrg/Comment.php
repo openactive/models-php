@@ -42,7 +42,7 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param int|null $upvoteCount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUpvoteCount($upvoteCount)
     {
@@ -67,7 +67,7 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\Question $parentItem
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setParentItem($parentItem)
     {
@@ -91,7 +91,7 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param int|null $downvoteCount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDownvoteCount($downvoteCount)
     {

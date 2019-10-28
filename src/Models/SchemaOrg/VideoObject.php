@@ -98,7 +98,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param Person $actor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActor($actor)
     {
@@ -122,7 +122,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param string $videoFrameSize
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVideoFrameSize($videoFrameSize)
     {
@@ -146,7 +146,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param Person|\OpenActive\Models\SchemaOrg\MusicGroup $musicBy
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicBy($musicBy)
     {
@@ -171,7 +171,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param Person $directors
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDirectors($directors)
     {
@@ -195,7 +195,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param string $videoQuality
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVideoQuality($videoQuality)
     {
@@ -219,7 +219,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param Person $director
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDirector($director)
     {
@@ -243,7 +243,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param string $transcript
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTranscript($transcript)
     {
@@ -267,7 +267,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param ImageObject $thumbnail
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setThumbnail($thumbnail)
     {
@@ -291,7 +291,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param \OpenActive\Models\SchemaOrg\MediaObject|string $caption
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCaption($caption)
     {
@@ -316,7 +316,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param Person $actors
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActors($actors)
     {

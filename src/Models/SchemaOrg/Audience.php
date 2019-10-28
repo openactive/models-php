@@ -34,7 +34,7 @@ class Audience extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $audienceType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAudienceType($audienceType)
     {
@@ -58,7 +58,7 @@ class Audience extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\AdministrativeArea $geographicArea
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGeographicArea($geographicArea)
     {

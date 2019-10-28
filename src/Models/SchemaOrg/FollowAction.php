@@ -26,7 +26,7 @@ class FollowAction extends \OpenActive\Models\SchemaOrg\InteractAction
     /**
      * @param Person|Organization $followee
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFollowee($followee)
     {

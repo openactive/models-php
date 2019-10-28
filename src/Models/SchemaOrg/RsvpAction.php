@@ -42,7 +42,7 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     /**
      * @param decimal|null $additionalNumberOfGuests
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAdditionalNumberOfGuests($additionalNumberOfGuests)
     {
@@ -67,7 +67,7 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     /**
      * @param \OpenActive\Models\SchemaOrg\Comment $comment
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setComment($comment)
     {
@@ -91,7 +91,7 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     /**
      * @param Schema.NET.RsvpResponseType|null $rsvpResponse
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRsvpResponse($rsvpResponse)
     {

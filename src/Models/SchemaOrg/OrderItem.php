@@ -58,7 +58,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.OrderStatus|null $orderItemStatus
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderItemStatus($orderItemStatus)
     {
@@ -83,7 +83,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param decimal|null $orderQuantity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderQuantity($orderQuantity)
     {
@@ -108,7 +108,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|OrderItem $orderedItem
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderedItem($orderedItem)
     {
@@ -134,7 +134,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\ParcelDelivery $orderDelivery
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderDelivery($orderDelivery)
     {
@@ -158,7 +158,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $orderItemNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderItemNumber($orderItemNumber)
     {

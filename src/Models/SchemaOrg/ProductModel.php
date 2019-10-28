@@ -42,7 +42,7 @@ class ProductModel extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param \OpenActive\Models\SchemaOrg\ProductModel $predecessorOf
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPredecessorOf($predecessorOf)
     {
@@ -66,7 +66,7 @@ class ProductModel extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param \OpenActive\Models\SchemaOrg\ProductModel $successorOf
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuccessorOf($successorOf)
     {
@@ -90,7 +90,7 @@ class ProductModel extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @param \OpenActive\Models\SchemaOrg\ProductModel $isVariantOf
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsVariantOf($isVariantOf)
     {

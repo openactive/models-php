@@ -52,7 +52,7 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     /**
      * @param DateTime|null $endDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
@@ -77,7 +77,7 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     /**
      * @param string $currency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCurrency($currency)
     {
@@ -101,7 +101,7 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     /**
      * @param decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $amount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAmount($amount)
     {
@@ -127,7 +127,7 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     /**
      * @param DateTime|null $startDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {

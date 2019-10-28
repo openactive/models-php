@@ -58,7 +58,7 @@ class FoodEstablishment extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @param string $servesCuisine
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServesCuisine($servesCuisine)
     {
@@ -82,7 +82,7 @@ class FoodEstablishment extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Menu $hasMenu
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasMenu($hasMenu)
     {
@@ -107,7 +107,7 @@ class FoodEstablishment extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Menu $menu
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMenu($menu)
     {
@@ -132,7 +132,7 @@ class FoodEstablishment extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @param \OpenActive\Models\SchemaOrg\Rating $starRating
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStarRating($starRating)
     {
@@ -156,7 +156,7 @@ class FoodEstablishment extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @param string|bool|null $acceptsReservations
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcceptsReservations($acceptsReservations)
     {

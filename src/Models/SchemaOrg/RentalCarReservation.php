@@ -50,7 +50,7 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @param DateTime|null $dropoffTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDropoffTime($dropoffTime)
     {
@@ -75,7 +75,7 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @param Place $dropoffLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDropoffLocation($dropoffLocation)
     {
@@ -99,7 +99,7 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @param Place $pickupLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPickupLocation($pickupLocation)
     {
@@ -123,7 +123,7 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @param DateTime|null $pickupTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPickupTime($pickupTime)
     {

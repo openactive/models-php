@@ -58,7 +58,7 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     /**
      * @param string $commentText
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCommentText($commentText)
     {
@@ -82,7 +82,7 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork $discusses
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDiscusses($discusses)
     {
@@ -106,7 +106,7 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     /**
      * @param DateTime|null $commentTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCommentTime($commentTime)
     {
@@ -131,7 +131,7 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     /**
      * @param Person|Organization $creator
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCreator($creator)
     {
@@ -156,7 +156,7 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     /**
      * @param string $replyToUrl
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReplyToUrl($replyToUrl)
     {

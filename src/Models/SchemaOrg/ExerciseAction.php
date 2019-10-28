@@ -90,7 +90,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     /**
      * @param Place $course
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCourse($course)
     {
@@ -114,7 +114,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     /**
      * @param \OpenActive\Models\SchemaOrg\SportsTeam $sportsTeam
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSportsTeam($sportsTeam)
     {
@@ -138,7 +138,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     /**
      * @param \OpenActive\Models\SchemaOrg\SportsEvent $sportsEvent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSportsEvent($sportsEvent)
     {
@@ -162,7 +162,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     /**
      * @param \OpenActive\Models\SchemaOrg\Distance $distance
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDistance($distance)
     {
@@ -186,7 +186,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     /**
      * @param Person $opponent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOpponent($opponent)
     {
@@ -210,7 +210,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     /**
      * @param SportsActivityLocation $sportsActivityLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSportsActivityLocation($sportsActivityLocation)
     {
@@ -234,7 +234,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     /**
      * @param Place $toLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setToLocation($toLocation)
     {
@@ -258,7 +258,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     /**
      * @param Place $fromLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFromLocation($fromLocation)
     {
@@ -282,7 +282,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     /**
      * @param Place $exerciseCourse
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExerciseCourse($exerciseCourse)
     {

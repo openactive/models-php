@@ -43,7 +43,7 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     /**
      * @param OpeningHoursSpecification $hoursAvailable
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHoursAvailable($hoursAvailable)
     {
@@ -67,7 +67,7 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     /**
      * @param DateTime|null $validFrom
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFrom($validFrom)
     {
@@ -92,7 +92,7 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     /**
      * @param DateTime|null $validThrough
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidThrough($validThrough)
     {

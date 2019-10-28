@@ -712,7 +712,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $about
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAbout($about)
     {
@@ -736,7 +736,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\AlignmentObject $educationalAlignment
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEducationalAlignment($educationalAlignment)
     {
@@ -760,7 +760,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\MediaObject $associatedMedia
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAssociatedMedia($associatedMedia)
     {
@@ -784,7 +784,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization|Person $funder
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFunder($funder)
     {
@@ -809,7 +809,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string|int|null $position
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPosition($position)
     {
@@ -835,7 +835,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Clip|\OpenActive\Models\SchemaOrg\AudioObject $audio
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAudio($audio)
     {
@@ -860,7 +860,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork $workExample
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWorkExample($workExample)
     {
@@ -884,7 +884,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization|Person $provider
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvider($provider)
     {
@@ -909,7 +909,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\MediaObject $encoding
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEncoding($encoding)
     {
@@ -933,7 +933,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $interactivityType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInteractivityType($interactivityType)
     {
@@ -957,7 +957,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $character
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCharacter($character)
     {
@@ -981,7 +981,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Audience $audience
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAudience($audience)
     {
@@ -1005,7 +1005,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization $sourceOrganization
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSourceOrganization($sourceOrganization)
     {
@@ -1029,7 +1029,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork $isPartOf
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsPartOf($isPartOf)
     {
@@ -1053,7 +1053,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\VideoObject|\OpenActive\Models\SchemaOrg\Clip $video
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVideo($video)
     {
@@ -1078,7 +1078,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\PublicationEvent $publication
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPublication($publication)
     {
@@ -1102,7 +1102,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $text
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setText($text)
     {
@@ -1126,7 +1126,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $expires
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExpires($expires)
     {
@@ -1151,7 +1151,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization|Person $contributor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContributor($contributor)
     {
@@ -1176,7 +1176,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person|Organization $publisher
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPublisher($publisher)
     {
@@ -1201,7 +1201,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Review $reviews
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReviews($reviews)
     {
@@ -1225,7 +1225,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $typicalAgeRange
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTypicalAgeRange($typicalAgeRange)
     {
@@ -1249,7 +1249,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\PublicationEvent $releasedEvent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReleasedEvent($releasedEvent)
     {
@@ -1273,7 +1273,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $educationalUse
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEducationalUse($educationalUse)
     {
@@ -1297,7 +1297,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Place $contentLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContentLocation($contentLocation)
     {
@@ -1321,7 +1321,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $schemaVersion
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSchemaVersion($schemaVersion)
     {
@@ -1345,7 +1345,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $accessibilityFeature
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessibilityFeature($accessibilityFeature)
     {
@@ -1369,7 +1369,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\AggregateRating $aggregateRating
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAggregateRating($aggregateRating)
     {
@@ -1393,7 +1393,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Place $locationCreated
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLocationCreated($locationCreated)
     {
@@ -1417,7 +1417,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\ItemList $accessModeSufficient
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessModeSufficient($accessModeSufficient)
     {
@@ -1441,7 +1441,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|string|null $temporalCoverage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTemporalCoverage($temporalCoverage)
     {
@@ -1467,7 +1467,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $accountablePerson
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccountablePerson($accountablePerson)
     {
@@ -1491,7 +1491,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Place $spatialCoverage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSpatialCoverage($spatialCoverage)
     {
@@ -1515,7 +1515,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $accessibilitySummary
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessibilitySummary($accessibilitySummary)
     {
@@ -1539,7 +1539,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Offer $offers
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
@@ -1563,7 +1563,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $editor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEditor($editor)
     {
@@ -1587,7 +1587,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $discussionUrl
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDiscussionUrl($discussionUrl)
     {
@@ -1611,7 +1611,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $award
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAward($award)
     {
@@ -1635,7 +1635,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person|Organization $copyrightHolder
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCopyrightHolder($copyrightHolder)
     {
@@ -1660,7 +1660,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $accessibilityHazard
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessibilityHazard($accessibilityHazard)
     {
@@ -1684,7 +1684,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param decimal|null $copyrightYear
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCopyrightYear($copyrightYear)
     {
@@ -1709,7 +1709,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $awards
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAwards($awards)
     {
@@ -1733,7 +1733,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Event $recordedAt
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecordedAt($recordedAt)
     {
@@ -1757,7 +1757,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Place $spatial
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSpatial($spatial)
     {
@@ -1781,7 +1781,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param int|null $commentCount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCommentCount($commentCount)
     {
@@ -1806,7 +1806,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $fileFormat
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFileFormat($fileFormat)
     {
@@ -1830,7 +1830,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Language|string $inLanguage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInLanguage($inLanguage)
     {
@@ -1855,7 +1855,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string|DateTime|null $temporal
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTemporal($temporal)
     {
@@ -1881,7 +1881,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $accessibilityAPI
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessibilityAPI($accessibilityAPI)
     {
@@ -1905,7 +1905,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\InteractionCounter $interactionStatistic
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInteractionStatistic($interactionStatistic)
     {
@@ -1929,7 +1929,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Rating|string $contentRating
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContentRating($contentRating)
     {
@@ -1954,7 +1954,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $learningResourceType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLearningResourceType($learningResourceType)
     {
@@ -1978,7 +1978,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $accessMode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessMode($accessMode)
     {
@@ -2002,7 +2002,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Product $material
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaterial($material)
     {
@@ -2027,7 +2027,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param bool|null $isFamilyFriendly
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsFamilyFriendly($isFamilyFriendly)
     {
@@ -2052,7 +2052,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork $exampleOfWork
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExampleOfWork($exampleOfWork)
     {
@@ -2076,7 +2076,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param decimal|string|null $version
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVersion($version)
     {
@@ -2102,7 +2102,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $dateModified
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateModified($dateModified)
     {
@@ -2127,7 +2127,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $mainEntity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMainEntity($mainEntity)
     {
@@ -2151,7 +2151,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $genre
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGenre($genre)
     {
@@ -2175,7 +2175,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $keywords
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setKeywords($keywords)
     {
@@ -2199,7 +2199,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person|Organization $author
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAuthor($author)
     {
@@ -2224,7 +2224,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\MediaObject $encodings
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEncodings($encodings)
     {
@@ -2248,7 +2248,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Product $isBasedOnUrl
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsBasedOnUrl($isBasedOnUrl)
     {
@@ -2274,7 +2274,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateInterval|null $timeRequired
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTimeRequired($timeRequired)
     {
@@ -2299,7 +2299,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization|Person $translator
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTranslator($translator)
     {
@@ -2324,7 +2324,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $thumbnailUrl
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setThumbnailUrl($thumbnailUrl)
     {
@@ -2348,7 +2348,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork $hasPart
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasPart($hasPart)
     {
@@ -2372,7 +2372,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Comment $comment
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setComment($comment)
     {
@@ -2396,7 +2396,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $encodingFormat
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEncodingFormat($encodingFormat)
     {
@@ -2420,7 +2420,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Review $review
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReview($review)
     {
@@ -2444,7 +2444,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $license
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLicense($license)
     {
@@ -2469,7 +2469,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $accessibilityControl
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessibilityControl($accessibilityControl)
     {
@@ -2493,7 +2493,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Product|string|\OpenActive\Models\SchemaOrg\CreativeWork $isBasedOn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsBasedOn($isBasedOn)
     {
@@ -2519,7 +2519,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person|Organization $creator
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCreator($creator)
     {
@@ -2544,7 +2544,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $publishingPrinciples
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPublishingPrinciples($publishingPrinciples)
     {
@@ -2569,7 +2569,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person|Organization $sponsor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSponsor($sponsor)
     {
@@ -2594,7 +2594,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person|Organization $producer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProducer($producer)
     {
@@ -2619,7 +2619,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $mentions
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMentions($mentions)
     {
@@ -2643,7 +2643,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $dateCreated
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateCreated($dateCreated)
     {
@@ -2668,7 +2668,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $datePublished
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDatePublished($datePublished)
     {
@@ -2693,7 +2693,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param bool|null $isAccessibleForFree
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsAccessibleForFree($isAccessibleForFree)
     {
@@ -2718,7 +2718,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $alternativeHeadline
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAlternativeHeadline($alternativeHeadline)
     {
@@ -2742,7 +2742,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $headline
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHeadline($headline)
     {
@@ -2766,7 +2766,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $citation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCitation($citation)
     {

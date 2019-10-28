@@ -56,7 +56,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
     /**
      * @param Schedule[] $eventSchedule
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEventSchedule($eventSchedule)
     {
@@ -80,7 +80,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
     /**
      * @param Event[] $subEvent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSubEvent($subEvent)
     {
@@ -104,7 +104,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
     /**
      * @param string|Event $superEvent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuperEvent($superEvent)
     {

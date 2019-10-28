@@ -30,7 +30,7 @@ class SportsActivityLocation extends \OpenActive\Models\SchemaOrg\SportsActivity
     /**
      * @param string|Place $containedInPlace
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContainedInPlace($containedInPlace)
     {

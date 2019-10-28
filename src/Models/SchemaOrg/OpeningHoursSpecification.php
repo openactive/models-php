@@ -58,7 +58,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     /**
      * @param DateTime|null $validFrom
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFrom($validFrom)
     {
@@ -83,7 +83,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     /**
      * @param DateTime|null $validThrough
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidThrough($validThrough)
     {
@@ -108,7 +108,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     /**
      * @param DateTime|null $opens
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOpens($opens)
     {
@@ -133,7 +133,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     /**
      * @param DateTime|null $closes
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCloses($closes)
     {
@@ -158,7 +158,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     /**
      * @param Schema.NET.DayOfWeek|null $dayOfWeek
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDayOfWeek($dayOfWeek)
     {

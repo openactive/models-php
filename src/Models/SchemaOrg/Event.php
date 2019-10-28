@@ -380,6 +380,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Whether the event or facility is indoor or outdoor.
+     *
+     *
+     * @var \OpenActive\Enums\FacilitySettingType|null
+     */
+    protected $facilitySetting;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * A property that indicates whether the event is led by a virtual coach. Only relevant if an event `isCoached`.
      *
      *
@@ -398,7 +407,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $about
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAbout($about)
     {
@@ -422,7 +431,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization|Person $funder
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFunder($funder)
     {
@@ -447,7 +456,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Event $subEvent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSubEvent($subEvent)
     {
@@ -471,7 +480,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork $workFeatured
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWorkFeatured($workFeatured)
     {
@@ -495,7 +504,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Audience $audience
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAudience($audience)
     {
@@ -519,7 +528,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param int|null $remainingAttendeeCapacity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
@@ -544,7 +553,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $actor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActor($actor)
     {
@@ -568,7 +577,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person|Organization $performers
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPerformers($performers)
     {
@@ -593,7 +602,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $endDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
@@ -618,7 +627,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $doorTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDoorTime($doorTime)
     {
@@ -643,7 +652,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization|Person $contributor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContributor($contributor)
     {
@@ -668,7 +677,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param int|null $maximumAttendeeCapacity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
     {
@@ -693,7 +702,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $typicalAgeRange
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTypicalAgeRange($typicalAgeRange)
     {
@@ -717,7 +726,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization|Person $organizer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrganizer($organizer)
     {
@@ -742,7 +751,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization|Person $attendees
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAttendees($attendees)
     {
@@ -767,7 +776,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\AggregateRating $aggregateRating
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAggregateRating($aggregateRating)
     {
@@ -791,7 +800,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Event $subEvents
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSubEvents($subEvents)
     {
@@ -815,7 +824,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Offer $offers
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
@@ -839,7 +848,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Language|string $inLanguage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInLanguage($inLanguage)
     {
@@ -864,7 +873,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person|Organization $attendee
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAttendee($attendee)
     {
@@ -889,7 +898,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork $workPerformed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWorkPerformed($workPerformed)
     {
@@ -913,7 +922,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Schema.NET.EventStatusType|null $eventStatus
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEventStatus($eventStatus)
     {
@@ -938,7 +947,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $startDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
@@ -963,7 +972,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $director
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDirector($director)
     {
@@ -987,7 +996,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Event $superEvent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuperEvent($superEvent)
     {
@@ -1011,7 +1020,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateInterval|null $duration
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
@@ -1036,7 +1045,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization|Person $translator
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTranslator($translator)
     {
@@ -1061,7 +1070,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $previousStartDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPreviousStartDate($previousStartDate)
     {
@@ -1086,7 +1095,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Review $review
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReview($review)
     {
@@ -1110,7 +1119,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person|Organization $sponsor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSponsor($sponsor)
     {
@@ -1135,7 +1144,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Place|string|PostalAddress $location
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLocation($location)
     {
@@ -1161,7 +1170,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork $recordedIn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecordedIn($recordedIn)
     {
@@ -1185,7 +1194,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person|Organization $composer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setComposer($composer)
     {
@@ -1210,7 +1219,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param bool|null $isAccessibleForFree
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsAccessibleForFree($isAccessibleForFree)
     {
@@ -1235,7 +1244,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person|Organization $performer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPerformer($performer)
     {
@@ -1260,7 +1269,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $formattedDescription
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFormattedDescription($formattedDescription)
     {
@@ -1284,7 +1293,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param QuantitativeValue $distance
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDistance($distance)
     {
@@ -1308,7 +1317,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $availability
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailability($availability)
     {
@@ -1332,7 +1341,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param int|null $attendeeCount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAttendeeCount($attendeeCount)
     {
@@ -1357,7 +1366,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param int|null $registrationCount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRegistrationCount($registrationCount)
     {
@@ -1382,7 +1391,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param bool|null $isWheelchairAccessible
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsWheelchairAccessible($isWheelchairAccessible)
     {
@@ -1407,7 +1416,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param QuantitativeValue $estimatedDuration
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEstimatedDuration($estimatedDuration)
     {
@@ -1431,7 +1440,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\VideoObject $video
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVideo($video)
     {
@@ -1455,7 +1464,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param SportsActivityLocation $sportsActivityLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSportsActivityLocation($sportsActivityLocation)
     {
@@ -1479,7 +1488,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateInterval|null $offerValidityPeriod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOfferValidityPeriod($offerValidityPeriod)
     {
@@ -1494,6 +1503,31 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
+     * @return \OpenActive\Enums\FacilitySettingType|null
+     */
+    public function getFacilitySetting()
+    {
+        return $this->facilitySetting;
+    }
+
+    /**
+     * @param \OpenActive\Enums\FacilitySettingType|null $facilitySetting
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFacilitySetting($facilitySetting)
+    {
+        $types = array(
+            "\OpenActive\Enums\FacilitySettingType",
+            "null",
+        );
+
+        $facilitySetting = self::checkTypes($facilitySetting, $types);
+
+        $this->facilitySetting = $facilitySetting;
+    }
+
+    /**
      * @return bool|null
      */
     public function getIsVirtuallyCoached()
@@ -1504,7 +1538,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param bool|null $isVirtuallyCoached
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsVirtuallyCoached($isVirtuallyCoached)
     {

@@ -3,7 +3,6 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [Thing](https://schema.org/Thing), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class Payment extends \OpenActive\Models\SchemaOrg\Thing
@@ -62,7 +61,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param int|string|PropertyValue|PropertyValue[]|null $identifier
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
@@ -90,7 +89,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -114,7 +113,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $accountId
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccountId($accountId)
     {
@@ -138,7 +137,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Schema.NET.PaymentMethod|null $paymentMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentMethod($paymentMethod)
     {
@@ -163,7 +162,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $paymentProviderId
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentProviderId($paymentProviderId)
     {

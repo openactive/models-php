@@ -26,7 +26,7 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     /**
      * @param QuantitativeValue|decimal|null $broadcastFrequencyValue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastFrequencyValue($broadcastFrequencyValue)
     {

@@ -42,7 +42,7 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     /**
      * @param \OpenActive\Models\SchemaOrg\FoodEstablishment|Place $foodEstablishment
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFoodEstablishment($foodEstablishment)
     {
@@ -67,7 +67,7 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     /**
      * @param \OpenActive\Models\SchemaOrg\Recipe $recipe
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecipe($recipe)
     {
@@ -91,7 +91,7 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     /**
      * @param \OpenActive\Models\SchemaOrg\FoodEvent $foodEvent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFoodEvent($foodEvent)
     {

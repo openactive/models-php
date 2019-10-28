@@ -34,7 +34,7 @@ class CivicStructure extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @param string $openingHours
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOpeningHours($openingHours)
     {

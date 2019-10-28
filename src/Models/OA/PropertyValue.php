@@ -60,7 +60,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -84,7 +84,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
     /**
      * @param string $description
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDescription($description)
     {
@@ -108,7 +108,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
     /**
      * @param string $propertyID
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPropertyID($propertyID)
     {
@@ -132,7 +132,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
     /**
      * @param int|string|null $value
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValue($value)
     {

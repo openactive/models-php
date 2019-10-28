@@ -44,7 +44,7 @@ class DeliveryChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpec
     /**
      * @param Place|string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAreaServed($areaServed)
     {
@@ -71,7 +71,7 @@ class DeliveryChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpec
     /**
      * @param Schema.NET.DeliveryMethod|null $appliesToDeliveryMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAppliesToDeliveryMethod($appliesToDeliveryMethod)
     {
@@ -96,7 +96,7 @@ class DeliveryChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpec
     /**
      * @param Place|string|\OpenActive\Models\SchemaOrg\GeoShape $eligibleRegion
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleRegion($eligibleRegion)
     {

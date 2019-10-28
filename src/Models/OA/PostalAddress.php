@@ -74,7 +74,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
     /**
      * @param string $addressCountry
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddressCountry($addressCountry)
     {
@@ -98,7 +98,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
     /**
      * @param string $addressLocality
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddressLocality($addressLocality)
     {
@@ -122,7 +122,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
     /**
      * @param string $addressRegion
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddressRegion($addressRegion)
     {
@@ -146,7 +146,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
     /**
      * @param string $postalCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPostalCode($postalCode)
     {
@@ -170,7 +170,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
     /**
      * @param string $streetAddress
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStreetAddress($streetAddress)
     {

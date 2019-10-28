@@ -74,7 +74,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateInterval|null $validFor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFor($validFor)
     {
@@ -99,7 +99,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $validUntil
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidUntil($validUntil)
     {
@@ -124,7 +124,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $validFrom
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFrom($validFrom)
     {
@@ -149,7 +149,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization $issuedBy
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIssuedBy($issuedBy)
     {
@@ -173,7 +173,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Service $issuedThrough
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIssuedThrough($issuedThrough)
     {
@@ -197,7 +197,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Audience $permitAudience
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPermitAudience($permitAudience)
     {
@@ -221,7 +221,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\AdministrativeArea $validIn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidIn($validIn)
     {

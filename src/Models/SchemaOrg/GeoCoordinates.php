@@ -66,7 +66,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param PostalAddress|string $address
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddress($address)
     {
@@ -91,7 +91,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string|decimal|null $latitude
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLatitude($latitude)
     {
@@ -117,7 +117,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param decimal|string|null $longitude
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLongitude($longitude)
     {
@@ -143,7 +143,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Country $addressCountry
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddressCountry($addressCountry)
     {
@@ -168,7 +168,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $postalCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPostalCode($postalCode)
     {
@@ -192,7 +192,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param decimal|string|null $elevation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setElevation($elevation)
     {

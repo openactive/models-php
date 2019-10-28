@@ -58,7 +58,7 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     /**
      * @param string $executableLibraryName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExecutableLibraryName($executableLibraryName)
     {
@@ -82,7 +82,7 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     /**
      * @param string $assemblyVersion
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAssemblyVersion($assemblyVersion)
     {
@@ -106,7 +106,7 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     /**
      * @param string $programmingModel
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProgrammingModel($programmingModel)
     {
@@ -130,7 +130,7 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     /**
      * @param string $assembly
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAssembly($assembly)
     {
@@ -154,7 +154,7 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     /**
      * @param string $targetPlatform
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTargetPlatform($targetPlatform)
     {

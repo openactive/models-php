@@ -34,7 +34,7 @@ class GeoCircle extends \OpenActive\Models\SchemaOrg\GeoShape
     /**
      * @param \OpenActive\Models\SchemaOrg\Distance|string|decimal|null $geoRadius
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGeoRadius($geoRadius)
     {
@@ -61,7 +61,7 @@ class GeoCircle extends \OpenActive\Models\SchemaOrg\GeoShape
     /**
      * @param GeoCoordinates $geoMidpoint
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGeoMidpoint($geoMidpoint)
     {

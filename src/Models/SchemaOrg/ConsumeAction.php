@@ -35,7 +35,7 @@ class ConsumeAction extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @param \OpenActive\Models\SchemaOrg\ActionAccessSpecification $actionAccessibilityRequirement
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActionAccessibilityRequirement($actionAccessibilityRequirement)
     {
@@ -59,7 +59,7 @@ class ConsumeAction extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @param Offer $expectsAcceptanceOf
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExpectsAcceptanceOf($expectsAcceptanceOf)
     {

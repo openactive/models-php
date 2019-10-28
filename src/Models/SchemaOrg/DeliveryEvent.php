@@ -51,7 +51,7 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param Schema.NET.DeliveryMethod|null $hasDeliveryMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasDeliveryMethod($hasDeliveryMethod)
     {
@@ -76,7 +76,7 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param DateTime|null $availableThrough
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableThrough($availableThrough)
     {
@@ -101,7 +101,7 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param DateTime|null $availableFrom
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableFrom($availableFrom)
     {
@@ -126,7 +126,7 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     /**
      * @param string $accessCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessCode($accessCode)
     {

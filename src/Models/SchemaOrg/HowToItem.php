@@ -26,7 +26,7 @@ class HowToItem extends \OpenActive\Models\SchemaOrg\ListItem
     /**
      * @param QuantitativeValue|decimal|string|null $requiredQuantity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiredQuantity($requiredQuantity)
     {

@@ -26,7 +26,7 @@ class FinancialService extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @param string $feesAndCommissionsSpecification
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFeesAndCommissionsSpecification($feesAndCommissionsSpecification)
     {

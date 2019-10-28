@@ -106,7 +106,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Thing $gamePlatform
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGamePlatform($gamePlatform)
     {
@@ -131,7 +131,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     /**
      * @param \OpenActive\Models\SchemaOrg\GameServer $gameServer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGameServer($gameServer)
     {
@@ -155,7 +155,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     /**
      * @param Person $actor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActor($actor)
     {
@@ -179,7 +179,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     /**
      * @param \OpenActive\Models\SchemaOrg\VideoObject $trailer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTrailer($trailer)
     {
@@ -203,7 +203,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork $cheatCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCheatCode($cheatCode)
     {
@@ -227,7 +227,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork $gameTip
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGameTip($gameTip)
     {
@@ -251,7 +251,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     /**
      * @param Person|\OpenActive\Models\SchemaOrg\MusicGroup $musicBy
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicBy($musicBy)
     {
@@ -276,7 +276,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     /**
      * @param Person $directors
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDirectors($directors)
     {
@@ -300,7 +300,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     /**
      * @param Schema.NET.GamePlayMode|null $playMode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPlayMode($playMode)
     {
@@ -325,7 +325,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     /**
      * @param Person $director
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDirector($director)
     {
@@ -349,7 +349,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     /**
      * @param Person $actors
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActors($actors)
     {

@@ -50,7 +50,7 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\Rating $reviewRating
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReviewRating($reviewRating)
     {
@@ -74,7 +74,7 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $reviewAspect
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReviewAspect($reviewAspect)
     {
@@ -98,7 +98,7 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $itemReviewed
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemReviewed($itemReviewed)
     {
@@ -122,7 +122,7 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $reviewBody
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReviewBody($reviewBody)
     {

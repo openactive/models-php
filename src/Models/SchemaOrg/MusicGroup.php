@@ -66,7 +66,7 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
     /**
      * @param \OpenActive\Models\SchemaOrg\MusicAlbum $albums
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAlbums($albums)
     {
@@ -90,7 +90,7 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
     /**
      * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\MusicRecording $track
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTrack($track)
     {
@@ -115,7 +115,7 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
     /**
      * @param string $genre
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGenre($genre)
     {
@@ -139,7 +139,7 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
     /**
      * @param \OpenActive\Models\SchemaOrg\MusicRecording $tracks
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTracks($tracks)
     {
@@ -163,7 +163,7 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
     /**
      * @param Person $musicGroupMember
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicGroupMember($musicGroupMember)
     {
@@ -187,7 +187,7 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
     /**
      * @param \OpenActive\Models\SchemaOrg\MusicAlbum $album
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAlbum($album)
     {

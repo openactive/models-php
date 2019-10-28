@@ -66,7 +66,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
     /**
      * @param string $postOfficeBoxNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPostOfficeBoxNumber($postOfficeBoxNumber)
     {
@@ -90,7 +90,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
     /**
      * @param string $streetAddress
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStreetAddress($streetAddress)
     {
@@ -114,7 +114,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Country $addressCountry
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddressCountry($addressCountry)
     {
@@ -139,7 +139,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
     /**
      * @param string $addressRegion
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddressRegion($addressRegion)
     {
@@ -163,7 +163,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
     /**
      * @param string $postalCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPostalCode($postalCode)
     {
@@ -187,7 +187,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
     /**
      * @param string $addressLocality
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddressLocality($addressLocality)
     {

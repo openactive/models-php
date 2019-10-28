@@ -34,7 +34,7 @@ class AudioObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param string $transcript
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTranscript($transcript)
     {
@@ -58,7 +58,7 @@ class AudioObject extends \OpenActive\Models\SchemaOrg\MediaObject
     /**
      * @param \OpenActive\Models\SchemaOrg\MediaObject|string $caption
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCaption($caption)
     {

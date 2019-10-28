@@ -102,7 +102,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param decimal|null $minPrice
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMinPrice($minPrice)
     {
@@ -127,7 +127,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param PriceSpecification $eligibleTransactionVolume
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleTransactionVolume($eligibleTransactionVolume)
     {
@@ -151,7 +151,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param decimal|null $maxPrice
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaxPrice($maxPrice)
     {
@@ -176,7 +176,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $priceCurrency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceCurrency($priceCurrency)
     {
@@ -200,7 +200,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param QuantitativeValue $eligibleQuantity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleQuantity($eligibleQuantity)
     {
@@ -224,7 +224,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param DateTime|null $validFrom
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFrom($validFrom)
     {
@@ -249,7 +249,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param DateTime|null $validThrough
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidThrough($validThrough)
     {
@@ -274,7 +274,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param decimal|string|null $price
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
@@ -300,7 +300,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param bool|null $valueAddedTaxIncluded
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueAddedTaxIncluded($valueAddedTaxIncluded)
     {

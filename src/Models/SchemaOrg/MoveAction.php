@@ -35,7 +35,7 @@ class MoveAction extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @param Place $toLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setToLocation($toLocation)
     {
@@ -59,7 +59,7 @@ class MoveAction extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @param Place $fromLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFromLocation($fromLocation)
     {

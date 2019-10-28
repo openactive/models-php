@@ -92,7 +92,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization|Person $underName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnderName($underName)
     {
@@ -117,7 +117,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $dateIssued
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateIssued($dateIssued)
     {
@@ -142,7 +142,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param PriceSpecification|decimal|string|null $totalPrice
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalPrice($totalPrice)
     {
@@ -169,7 +169,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $priceCurrency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceCurrency($priceCurrency)
     {
@@ -193,7 +193,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $ticketNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTicketNumber($ticketNumber)
     {
@@ -217,7 +217,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization $issuedBy
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIssuedBy($issuedBy)
     {
@@ -241,7 +241,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $ticketToken
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTicketToken($ticketToken)
     {
@@ -265,7 +265,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Seat $ticketedSeat
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTicketedSeat($ticketedSeat)
     {

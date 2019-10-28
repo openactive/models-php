@@ -3,10 +3,10 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [ImageObject](https://schema.org/ImageObject), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from [Barcode](https://schema.org/Barcode), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
-class BarCode extends \OpenActive\Models\OA\ImageObject
+class Barcode extends \OpenActive\Models\OA\ImageObject
 {
     /**
      * The barcode number
@@ -41,7 +41,7 @@ class BarCode extends \OpenActive\Models\OA\ImageObject
     /**
      * @param string $text
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setText($text)
     {
@@ -65,7 +65,7 @@ class BarCode extends \OpenActive\Models\OA\ImageObject
     /**
      * @param string $url
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrl($url)
     {

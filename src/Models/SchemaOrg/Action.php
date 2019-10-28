@@ -110,7 +110,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $result
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setResult($result)
     {
@@ -134,7 +134,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $startTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartTime($startTime)
     {
@@ -159,7 +159,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Schema.NET.ActionStatusType|null $actionStatus
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActionStatus($actionStatus)
     {
@@ -184,7 +184,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param EntryPoint $target
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTarget($target)
     {
@@ -208,7 +208,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization|Person $agent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAgent($agent)
     {
@@ -233,7 +233,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $endTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndTime($endTime)
     {
@@ -258,7 +258,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $instrument
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInstrument($instrument)
     {
@@ -282,7 +282,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization|Person $participant
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setParticipant($participant)
     {
@@ -307,7 +307,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $object
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setObject($object)
     {
@@ -331,7 +331,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Thing $error
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setError($error)
     {
@@ -355,7 +355,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Place|string|PostalAddress $location
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLocation($location)
     {

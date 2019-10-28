@@ -52,7 +52,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHour
     /**
      * @param DateTime|null $closes
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCloses($closes)
     {
@@ -77,7 +77,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHour
     /**
      * @param Schema.NET.DayOfWeek|null $dayOfWeek
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDayOfWeek($dayOfWeek)
     {
@@ -102,7 +102,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHour
     /**
      * @param DateTime|null $opens
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOpens($opens)
     {

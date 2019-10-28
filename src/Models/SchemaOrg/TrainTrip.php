@@ -66,7 +66,7 @@ class TrainTrip extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param \OpenActive\Models\SchemaOrg\TrainStation $departureStation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDepartureStation($departureStation)
     {
@@ -90,7 +90,7 @@ class TrainTrip extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param string $arrivalPlatform
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArrivalPlatform($arrivalPlatform)
     {
@@ -114,7 +114,7 @@ class TrainTrip extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param string $departurePlatform
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDeparturePlatform($departurePlatform)
     {
@@ -138,7 +138,7 @@ class TrainTrip extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param string $trainName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTrainName($trainName)
     {
@@ -162,7 +162,7 @@ class TrainTrip extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param string $trainNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTrainNumber($trainNumber)
     {
@@ -186,7 +186,7 @@ class TrainTrip extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @param \OpenActive\Models\SchemaOrg\TrainStation $arrivalStation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArrivalStation($arrivalStation)
     {

@@ -46,7 +46,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -70,7 +70,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @param EntryPoint $target
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTarget($target)
     {

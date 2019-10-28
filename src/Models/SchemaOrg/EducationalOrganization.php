@@ -27,7 +27,7 @@ class EducationalOrganization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param Person $alumni
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAlumni($alumni)
     {

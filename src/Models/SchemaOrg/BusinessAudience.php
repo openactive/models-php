@@ -42,7 +42,7 @@ class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
     /**
      * @param QuantitativeValue $yearsInOperation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setYearsInOperation($yearsInOperation)
     {
@@ -66,7 +66,7 @@ class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
     /**
      * @param QuantitativeValue $yearlyRevenue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setYearlyRevenue($yearlyRevenue)
     {
@@ -90,7 +90,7 @@ class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
     /**
      * @param QuantitativeValue $numberOfEmployees
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfEmployees($numberOfEmployees)
     {

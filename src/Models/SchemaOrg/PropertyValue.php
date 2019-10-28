@@ -86,7 +86,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $unitCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnitCode($unitCode)
     {
@@ -110,7 +110,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $propertyID
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPropertyID($propertyID)
     {
@@ -134,7 +134,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param decimal|string|\OpenActive\Models\SchemaOrg\StructuredValue|bool|null $value
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValue($value)
     {
@@ -162,7 +162,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param Schema.NET.QualitativeValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|null $valueReference
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueReference($valueReference)
     {
@@ -191,7 +191,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param decimal|null $maxValue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaxValue($maxValue)
     {
@@ -216,7 +216,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $unitText
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnitText($unitText)
     {
@@ -240,7 +240,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param decimal|null $minValue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMinValue($minValue)
     {

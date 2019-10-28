@@ -50,7 +50,7 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $endDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
@@ -75,7 +75,7 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $namedPosition
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNamedPosition($namedPosition)
     {
@@ -99,7 +99,7 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $startDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
@@ -124,7 +124,7 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $roleName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRoleName($roleName)
     {

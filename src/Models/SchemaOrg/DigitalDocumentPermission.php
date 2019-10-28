@@ -34,7 +34,7 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint|Organization|Person $grantee
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGrantee($grantee)
     {
@@ -61,7 +61,7 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.DigitalDocumentPermissionType|null $permissionType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPermissionType($permissionType)
     {

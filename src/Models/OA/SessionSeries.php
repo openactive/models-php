@@ -38,7 +38,7 @@ class SessionSeries extends \OpenActive\Models\OA\Event
     /**
      * @param int|null $remainingAttendeeCapacity
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
@@ -63,7 +63,7 @@ class SessionSeries extends \OpenActive\Models\OA\Event
     /**
      * @param ScheduledSession[] $subEvent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSubEvent($subEvent)
     {

@@ -34,7 +34,7 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
     /**
      * @param string $salaryCurrency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSalaryCurrency($salaryCurrency)
     {
@@ -58,7 +58,7 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
     /**
      * @param PriceSpecification|decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $baseSalary
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBaseSalary($baseSalary)
     {

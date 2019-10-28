@@ -47,7 +47,7 @@ class IndividualFacilityUse extends \OpenActive\Models\OA\FacilityUse
     /**
      * @param FacilityUse $aggregateFacilityUse
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAggregateFacilityUse($aggregateFacilityUse)
     {
@@ -71,7 +71,7 @@ class IndividualFacilityUse extends \OpenActive\Models\OA\FacilityUse
     /**
      * @param Slot[] $event
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEvent($event)
     {

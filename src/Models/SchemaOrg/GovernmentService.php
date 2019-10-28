@@ -26,7 +26,7 @@ class GovernmentService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @param Organization $serviceOperator
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServiceOperator($serviceOperator)
     {

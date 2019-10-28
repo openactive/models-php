@@ -3,6 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
+ * This type is derived from [PriceSpecification](https://schema.org/PriceSpecification), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
@@ -61,7 +62,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     /**
      * @param int|string|PropertyValue|PropertyValue[]|null $identifier
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
@@ -89,7 +90,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -113,7 +114,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     /**
      * @param float|null $price
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
@@ -138,7 +139,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     /**
      * @param string $priceCurrency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceCurrency($priceCurrency)
     {
@@ -162,7 +163,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     /**
      * @param float|null $rate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRate($rate)
     {

@@ -40,7 +40,7 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
     /**
      * @param string $orderCustomerNote
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderCustomerNote($orderCustomerNote)
     {
@@ -64,7 +64,7 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
     /**
      * @param \OpenActive\Enums\OrderProposalStatus|null $orderProposalStatus
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderProposalStatus($orderProposalStatus)
     {
@@ -89,7 +89,7 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
     /**
      * @param string $orderSellerNote
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderSellerNote($orderSellerNote)
     {

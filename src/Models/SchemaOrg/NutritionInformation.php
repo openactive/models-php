@@ -114,7 +114,7 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\Mass $saturatedFatContent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSaturatedFatContent($saturatedFatContent)
     {
@@ -138,7 +138,7 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\Mass $fatContent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFatContent($fatContent)
     {
@@ -162,7 +162,7 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\Mass $unsaturatedFatContent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnsaturatedFatContent($unsaturatedFatContent)
     {
@@ -186,7 +186,7 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\Mass $sugarContent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSugarContent($sugarContent)
     {
@@ -210,7 +210,7 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\Mass $cholesterolContent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCholesterolContent($cholesterolContent)
     {
@@ -234,7 +234,7 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\Mass $carbohydrateContent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCarbohydrateContent($carbohydrateContent)
     {
@@ -258,7 +258,7 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\Mass $proteinContent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProteinContent($proteinContent)
     {
@@ -282,7 +282,7 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\Mass $sodiumContent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSodiumContent($sodiumContent)
     {
@@ -306,7 +306,7 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\Mass $transFatContent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTransFatContent($transFatContent)
     {
@@ -330,7 +330,7 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\Mass $fiberContent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFiberContent($fiberContent)
     {
@@ -354,7 +354,7 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param \OpenActive\Models\SchemaOrg\Energy $calories
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCalories($calories)
     {
@@ -378,7 +378,7 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $servingSize
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServingSize($servingSize)
     {

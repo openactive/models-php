@@ -34,7 +34,7 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     /**
      * @param \OpenActive\Models\SchemaOrg\TVSeries $partOfTVSeries
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPartOfTVSeries($partOfTVSeries)
     {
@@ -58,7 +58,7 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     /**
      * @param \OpenActive\Models\SchemaOrg\Country $countryOfOrigin
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCountryOfOrigin($countryOfOrigin)
     {

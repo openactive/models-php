@@ -85,7 +85,7 @@ class Concept extends \OpenActive\BaseModel
     /**
      * @param string[] $altLabel
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAltLabel($altLabel)
     {
@@ -109,7 +109,7 @@ class Concept extends \OpenActive\BaseModel
     /**
      * @param string[] $broader
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroader($broader)
     {
@@ -133,7 +133,7 @@ class Concept extends \OpenActive\BaseModel
     /**
      * @param string $inScheme
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInScheme($inScheme)
     {
@@ -157,7 +157,7 @@ class Concept extends \OpenActive\BaseModel
     /**
      * @param string[] $narrower
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNarrower($narrower)
     {
@@ -181,7 +181,7 @@ class Concept extends \OpenActive\BaseModel
     /**
      * @param string $notation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNotation($notation)
     {
@@ -205,7 +205,7 @@ class Concept extends \OpenActive\BaseModel
     /**
      * @param string $prefLabel
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrefLabel($prefLabel)
     {

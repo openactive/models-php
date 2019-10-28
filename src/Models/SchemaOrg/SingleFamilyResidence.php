@@ -36,7 +36,7 @@ class SingleFamilyResidence extends \OpenActive\Models\SchemaOrg\House
     /**
      * @param QuantitativeValue $occupancy
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOccupancy($occupancy)
     {
@@ -60,7 +60,7 @@ class SingleFamilyResidence extends \OpenActive\Models\SchemaOrg\House
     /**
      * @param QuantitativeValue|decimal|null $numberOfRooms
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfRooms($numberOfRooms)
     {

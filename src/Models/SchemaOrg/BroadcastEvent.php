@@ -42,7 +42,7 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
     /**
      * @param string $videoFormat
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVideoFormat($videoFormat)
     {
@@ -66,7 +66,7 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
     /**
      * @param bool|null $isLiveBroadcast
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsLiveBroadcast($isLiveBroadcast)
     {
@@ -91,7 +91,7 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
     /**
      * @param Event $broadcastOfEvent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastOfEvent($broadcastOfEvent)
     {

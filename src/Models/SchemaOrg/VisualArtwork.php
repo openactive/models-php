@@ -82,7 +82,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $height
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHeight($height)
     {
@@ -107,7 +107,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $artMedium
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArtMedium($artMedium)
     {
@@ -131,7 +131,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $artform
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArtform($artform)
     {
@@ -155,7 +155,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $artworkSurface
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArtworkSurface($artworkSurface)
     {
@@ -179,7 +179,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param int|string|null $artEdition
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArtEdition($artEdition)
     {
@@ -205,7 +205,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $width
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWidth($width)
     {
@@ -230,7 +230,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $surface
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSurface($surface)
     {
@@ -254,7 +254,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $depth
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDepth($depth)
     {

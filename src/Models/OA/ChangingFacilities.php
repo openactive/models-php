@@ -30,7 +30,7 @@ class ChangingFacilities extends \OpenActive\Models\OA\LocationFeatureSpecificat
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {

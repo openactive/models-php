@@ -74,7 +74,7 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $urlTemplate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrlTemplate($urlTemplate)
     {
@@ -98,7 +98,7 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\SoftwareApplication $actionApplication
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActionApplication($actionApplication)
     {
@@ -122,7 +122,7 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\SoftwareApplication $application
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setApplication($application)
     {
@@ -146,7 +146,7 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $actionPlatform
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActionPlatform($actionPlatform)
     {
@@ -170,7 +170,7 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $httpMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHttpMethod($httpMethod)
     {
@@ -194,7 +194,7 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $encodingType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEncodingType($encodingType)
     {
@@ -218,7 +218,7 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $contentType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContentType($contentType)
     {

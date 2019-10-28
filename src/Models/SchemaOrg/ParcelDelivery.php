@@ -114,7 +114,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization|Person $provider
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvider($provider)
     {
@@ -139,7 +139,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $trackingUrl
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTrackingUrl($trackingUrl)
     {
@@ -163,7 +163,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param PostalAddress $deliveryAddress
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDeliveryAddress($deliveryAddress)
     {
@@ -187,7 +187,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $trackingNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTrackingNumber($trackingNumber)
     {
@@ -211,7 +211,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.DeliveryMethod|null $hasDeliveryMethod
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasDeliveryMethod($hasDeliveryMethod)
     {
@@ -236,7 +236,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\DeliveryEvent $deliveryStatus
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDeliveryStatus($deliveryStatus)
     {
@@ -260,7 +260,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization $carrier
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCarrier($carrier)
     {
@@ -284,7 +284,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param PostalAddress $originAddress
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOriginAddress($originAddress)
     {
@@ -308,7 +308,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Product $itemShipped
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemShipped($itemShipped)
     {
@@ -332,7 +332,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Order $partOfOrder
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPartOfOrder($partOfOrder)
     {
@@ -356,7 +356,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $expectedArrivalFrom
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExpectedArrivalFrom($expectedArrivalFrom)
     {
@@ -381,7 +381,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateTime|null $expectedArrivalUntil
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExpectedArrivalUntil($expectedArrivalUntil)
     {

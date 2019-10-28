@@ -460,7 +460,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\ProgramMembership|Organization $memberOf
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMemberOf($memberOf)
     {
@@ -485,7 +485,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param PostalAddress|string $address
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddress($address)
     {
@@ -510,7 +510,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $spouse
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSpouse($spouse)
     {
@@ -534,7 +534,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization|Person $funder
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFunder($funder)
     {
@@ -559,7 +559,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $colleagues
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setColleagues($colleagues)
     {
@@ -583,7 +583,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $deathDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDeathDate($deathDate)
     {
@@ -608,7 +608,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $height
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHeight($height)
     {
@@ -633,7 +633,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\ContactPoint|Place $workLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWorkLocation($workLocation)
     {
@@ -658,7 +658,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount $netWorth
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNetWorth($netWorth)
     {
@@ -683,7 +683,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $faxNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFaxNumber($faxNumber)
     {
@@ -707,7 +707,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Occupation $hasOccupation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasOccupation($hasOccupation)
     {
@@ -731,7 +731,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\OfferCatalog $hasOfferCatalog
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasOfferCatalog($hasOfferCatalog)
     {
@@ -755,7 +755,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Place $deathPlace
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDeathPlace($deathPlace)
     {
@@ -779,7 +779,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $globalLocationNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGlobalLocationNumber($globalLocationNumber)
     {
@@ -803,7 +803,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Place $birthPlace
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBirthPlace($birthPlace)
     {
@@ -827,7 +827,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\EducationalOrganization|Organization $alumniOf
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAlumniOf($alumniOf)
     {
@@ -852,7 +852,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\ContactPoint|Place $homeLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHomeLocation($homeLocation)
     {
@@ -877,7 +877,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $duns
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuns($duns)
     {
@@ -901,7 +901,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $taxID
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTaxID($taxID)
     {
@@ -925,7 +925,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $award
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAward($award)
     {
@@ -949,7 +949,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param DateTime|null $birthDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBirthDate($birthDate)
     {
@@ -974,7 +974,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Offer $makesOffer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMakesOffer($makesOffer)
     {
@@ -998,7 +998,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $givenName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGivenName($givenName)
     {
@@ -1022,7 +1022,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\ContactPoint $contactPoints
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContactPoints($contactPoints)
     {
@@ -1046,7 +1046,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $awards
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAwards($awards)
     {
@@ -1070,7 +1070,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $familyName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFamilyName($familyName)
     {
@@ -1094,7 +1094,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Demand $seeks
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeeks($seeks)
     {
@@ -1118,7 +1118,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $sibling
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSibling($sibling)
     {
@@ -1142,7 +1142,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Event $performerIn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPerformerIn($performerIn)
     {
@@ -1166,7 +1166,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $honorificPrefix
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHonorificPrefix($honorificPrefix)
     {
@@ -1190,7 +1190,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $additionalName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAdditionalName($additionalName)
     {
@@ -1214,7 +1214,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $siblings
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSiblings($siblings)
     {
@@ -1238,7 +1238,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $telephone
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTelephone($telephone)
     {
@@ -1262,7 +1262,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $email
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEmail($email)
     {
@@ -1286,7 +1286,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param QuantitativeValue $weight
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWeight($weight)
     {
@@ -1310,7 +1310,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\ContactPoint $contactPoint
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContactPoint($contactPoint)
     {
@@ -1334,7 +1334,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string|Person $colleague
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setColleague($colleague)
     {
@@ -1359,7 +1359,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $children
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setChildren($children)
     {
@@ -1383,7 +1383,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $parents
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setParents($parents)
     {
@@ -1407,7 +1407,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $naics
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNaics($naics)
     {
@@ -1431,7 +1431,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Place $hasPOS
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasPOS($hasPOS)
     {
@@ -1455,7 +1455,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $parent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setParent($parent)
     {
@@ -1479,7 +1479,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\OwnershipInfo|\OpenActive\Models\SchemaOrg\Product $owns
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOwns($owns)
     {
@@ -1504,7 +1504,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization $affiliation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAffiliation($affiliation)
     {
@@ -1528,7 +1528,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $publishingPrinciples
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPublishingPrinciples($publishingPrinciples)
     {
@@ -1553,7 +1553,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person|Organization $sponsor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSponsor($sponsor)
     {
@@ -1578,7 +1578,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $isicV4
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsicV4($isicV4)
     {
@@ -1602,7 +1602,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization|Brand $brand
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBrand($brand)
     {
@@ -1627,7 +1627,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $honorificSuffix
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHonorificSuffix($honorificSuffix)
     {
@@ -1651,7 +1651,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $vatID
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVatID($vatID)
     {
@@ -1675,7 +1675,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param \OpenActive\Models\SchemaOrg\Country $nationality
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNationality($nationality)
     {
@@ -1699,7 +1699,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $relatedTo
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRelatedTo($relatedTo)
     {
@@ -1723,7 +1723,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $follows
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFollows($follows)
     {
@@ -1747,7 +1747,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Person $knows
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setKnows($knows)
     {
@@ -1771,7 +1771,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param Organization $worksFor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWorksFor($worksFor)
     {

@@ -106,7 +106,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Person $actor
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActor($actor)
     {
@@ -130,7 +130,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param int|null $numberOfEpisodes
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfEpisodes($numberOfEpisodes)
     {
@@ -155,7 +155,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\VideoObject $trailer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTrailer($trailer)
     {
@@ -179,7 +179,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateTime|null $endDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
@@ -204,7 +204,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeries $partOfSeries
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPartOfSeries($partOfSeries)
     {
@@ -228,7 +228,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\Episode $episodes
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEpisodes($episodes)
     {
@@ -252,7 +252,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateTime|null $startDate
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
@@ -277,7 +277,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Person $director
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDirector($director)
     {
@@ -301,7 +301,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Organization $productionCompany
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProductionCompany($productionCompany)
     {
@@ -325,7 +325,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\Episode $episode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEpisode($episode)
     {
@@ -349,7 +349,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string|int|null $seasonNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeasonNumber($seasonNumber)
     {

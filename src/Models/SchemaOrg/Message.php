@@ -90,7 +90,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateTime|null $dateRead
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateRead($dateRead)
     {
@@ -115,7 +115,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\ContactPoint|Person|Organization $bccRecipient
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBccRecipient($bccRecipient)
     {
@@ -141,7 +141,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateTime|null $dateSent
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateSent($dateSent)
     {
@@ -166,7 +166,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Organization|\OpenActive\Models\SchemaOrg\ContactPoint|Person $ccRecipient
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCcRecipient($ccRecipient)
     {
@@ -192,7 +192,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|Organization $recipient
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecipient($recipient)
     {
@@ -219,7 +219,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork $messageAttachment
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMessageAttachment($messageAttachment)
     {
@@ -243,7 +243,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateTime|null $dateReceived
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateReceived($dateReceived)
     {
@@ -268,7 +268,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|Organization|Person $toRecipient
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setToRecipient($toRecipient)
     {
@@ -295,7 +295,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param Person|\OpenActive\Models\SchemaOrg\Audience|Organization $sender
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSender($sender)
     {

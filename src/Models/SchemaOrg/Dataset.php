@@ -51,7 +51,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A downloadable form of this dataset, at a specific location, in a specific format.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DataDownload
+     * @var DataDownload
      */
     protected $distribution;
 
@@ -66,7 +66,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\DataCatalog $includedInDataCatalog
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIncludedInDataCatalog($includedInDataCatalog)
     {
@@ -90,7 +90,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param DateTime|null $datasetTimeInterval
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDatasetTimeInterval($datasetTimeInterval)
     {
@@ -115,7 +115,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\DataCatalog $catalog
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCatalog($catalog)
     {
@@ -139,7 +139,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param string $issn
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIssn($issn)
     {
@@ -163,7 +163,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\DataCatalog $includedDataCatalog
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIncludedDataCatalog($includedDataCatalog)
     {
@@ -177,7 +177,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DataDownload
+     * @return DataDownload
      */
     public function getDistribution()
     {
@@ -185,14 +185,14 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DataDownload $distribution
+     * @param DataDownload $distribution
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDistribution($distribution)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\DataDownload",
+            "DataDownload",
         );
 
         $distribution = self::checkTypes($distribution, $types);

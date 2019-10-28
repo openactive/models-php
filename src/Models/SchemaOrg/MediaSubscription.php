@@ -34,7 +34,7 @@ class MediaSubscription extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Organization $authenticator
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAuthenticator($authenticator)
     {
@@ -58,7 +58,7 @@ class MediaSubscription extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Offer $expectsAcceptanceOf
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExpectsAcceptanceOf($expectsAcceptanceOf)
     {

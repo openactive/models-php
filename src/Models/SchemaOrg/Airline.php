@@ -35,7 +35,7 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param string $iataCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIataCode($iataCode)
     {
@@ -59,7 +59,7 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @param Schema.NET.BoardingPolicyType|null $boardingPolicy
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBoardingPolicy($boardingPolicy)
     {

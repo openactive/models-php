@@ -76,7 +76,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param string $currency
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCurrency($currency)
     {
@@ -100,7 +100,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param decimal|string|\OpenActive\Models\SchemaOrg\StructuredValue|bool|null $value
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValue($value)
     {
@@ -128,7 +128,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param DateTime|null $validFrom
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFrom($validFrom)
     {
@@ -153,7 +153,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param DateTime|null $validThrough
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidThrough($validThrough)
     {
@@ -178,7 +178,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param decimal|null $maxValue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaxValue($maxValue)
     {
@@ -203,7 +203,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @param decimal|null $minValue
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMinValue($minValue)
     {

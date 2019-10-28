@@ -114,7 +114,7 @@ class Thing extends \OpenActive\BaseModel
     /**
      * @param PropertyValue|string $identifier
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
@@ -139,7 +139,7 @@ class Thing extends \OpenActive\BaseModel
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -163,7 +163,7 @@ class Thing extends \OpenActive\BaseModel
     /**
      * @param string $description
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDescription($description)
     {
@@ -187,7 +187,7 @@ class Thing extends \OpenActive\BaseModel
     /**
      * @param string $sameAs
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSameAs($sameAs)
     {
@@ -211,7 +211,7 @@ class Thing extends \OpenActive\BaseModel
     /**
      * @param string $url
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUrl($url)
     {
@@ -235,7 +235,7 @@ class Thing extends \OpenActive\BaseModel
     /**
      * @param ImageObject|string $image
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setImage($image)
     {
@@ -260,7 +260,7 @@ class Thing extends \OpenActive\BaseModel
     /**
      * @param string $additionalType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAdditionalType($additionalType)
     {
@@ -284,7 +284,7 @@ class Thing extends \OpenActive\BaseModel
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork|Event $subjectOf
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSubjectOf($subjectOf)
     {
@@ -309,7 +309,7 @@ class Thing extends \OpenActive\BaseModel
     /**
      * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $mainEntityOfPage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMainEntityOfPage($mainEntityOfPage)
     {
@@ -334,7 +334,7 @@ class Thing extends \OpenActive\BaseModel
     /**
      * @param Action $potentialAction
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPotentialAction($potentialAction)
     {
@@ -358,7 +358,7 @@ class Thing extends \OpenActive\BaseModel
     /**
      * @param string $disambiguatingDescription
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDisambiguatingDescription($disambiguatingDescription)
     {
@@ -382,7 +382,7 @@ class Thing extends \OpenActive\BaseModel
     /**
      * @param string $alternateName
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAlternateName($alternateName)
     {

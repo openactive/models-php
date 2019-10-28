@@ -28,7 +28,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      * ImageObject or Barcode that contains reference to an asset (e.g. Barcode, QR code image or PDF) usable for entrance. Not applicable for an OrderQuote.
      *
      *
-     * @var BarCode|ImageObject
+     * @var Barcode|ImageObject
      */
     protected $accessToken;
 
@@ -136,7 +136,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @param Offer $acceptedOffer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcceptedOffer($acceptedOffer)
     {
@@ -160,7 +160,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @param PropertyValue[] $accessCode
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessCode($accessCode)
     {
@@ -174,7 +174,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return BarCode|ImageObject
+     * @return Barcode|ImageObject
      */
     public function getAccessToken()
     {
@@ -182,14 +182,14 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param BarCode|ImageObject $accessToken
+     * @param Barcode|ImageObject $accessToken
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessToken($accessToken)
     {
         $types = array(
-            "BarCode",
+            "Barcode",
             "ImageObject",
         );
 
@@ -209,7 +209,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @param PropertyValue[] $additionalProperty
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAdditionalProperty($additionalProperty)
     {
@@ -233,7 +233,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @param bool|null $allowCustomerCancellationFullRefund
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAllowCustomerCancellationFullRefund($allowCustomerCancellationFullRefund)
     {
@@ -258,7 +258,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @param Person $attendee
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAttendee($attendee)
     {
@@ -282,7 +282,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @param string[] $attendeeDetailsRequired
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAttendeeDetailsRequired($attendeeDetailsRequired)
     {
@@ -306,7 +306,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @param string $cancellationMessage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCancellationMessage($cancellationMessage)
     {
@@ -330,7 +330,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @param string $customerNotice
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCustomerNotice($customerNotice)
     {
@@ -354,7 +354,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @param OpenBookingError[] $error
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setError($error)
     {
@@ -378,7 +378,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @param Event $orderedItem
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderedItem($orderedItem)
     {
@@ -402,7 +402,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @param PropertyValueSpecification[] $orderItemIntakeForm
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderItemIntakeForm($orderItemIntakeForm)
     {
@@ -426,7 +426,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @param PropertyValue[] $orderItemIntakeFormResponse
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderItemIntakeFormResponse($orderItemIntakeFormResponse)
     {
@@ -450,7 +450,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @param \OpenActive\Enums\OrderItemStatus|null $orderItemStatus
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderItemStatus($orderItemStatus)
     {
@@ -475,7 +475,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @param TaxChargeSpecification[] $unitTaxSpecification
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnitTaxSpecification($unitTaxSpecification)
     {

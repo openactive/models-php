@@ -38,7 +38,7 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Location
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -62,7 +62,7 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Location
     /**
      * @param bool|null $value
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValue($value)
     {

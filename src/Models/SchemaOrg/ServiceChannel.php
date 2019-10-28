@@ -82,7 +82,7 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\Service $providesService
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvidesService($providesService)
     {
@@ -106,7 +106,7 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Place $serviceLocation
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServiceLocation($serviceLocation)
     {
@@ -130,7 +130,7 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param PostalAddress $servicePostalAddress
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServicePostalAddress($servicePostalAddress)
     {
@@ -154,7 +154,7 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string|\OpenActive\Models\SchemaOrg\Language $availableLanguage
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableLanguage($availableLanguage)
     {
@@ -179,7 +179,7 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\ContactPoint $serviceSmsNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServiceSmsNumber($serviceSmsNumber)
     {
@@ -203,7 +203,7 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $serviceUrl
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServiceUrl($serviceUrl)
     {
@@ -227,7 +227,7 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param \OpenActive\Models\SchemaOrg\ContactPoint $servicePhone
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServicePhone($servicePhone)
     {
@@ -251,7 +251,7 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param DateInterval|null $processingTime
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProcessingTime($processingTime)
     {

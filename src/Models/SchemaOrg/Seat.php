@@ -50,7 +50,7 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param Schema.NET.QualitativeValue|string|null $seatingType
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeatingType($seatingType)
     {
@@ -76,7 +76,7 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $seatSection
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeatSection($seatSection)
     {
@@ -100,7 +100,7 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $seatRow
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeatRow($seatRow)
     {
@@ -124,7 +124,7 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @param string $seatNumber
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeatNumber($seatNumber)
     {

@@ -58,7 +58,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param int|null $upvoteCount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUpvoteCount($upvoteCount)
     {
@@ -83,7 +83,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param int|null $answerCount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAnswerCount($answerCount)
     {
@@ -108,7 +108,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList $acceptedAnswer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcceptedAnswer($acceptedAnswer)
     {
@@ -133,7 +133,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer $suggestedAnswer
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuggestedAnswer($suggestedAnswer)
     {
@@ -158,7 +158,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @param int|null $downvoteCount
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDownvoteCount($downvoteCount)
     {

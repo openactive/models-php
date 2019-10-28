@@ -3,7 +3,6 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [Thing](https://schema.org/Thing), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
@@ -81,7 +80,7 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $name
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setName($name)
     {
@@ -105,7 +104,7 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $description
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDescription($description)
     {
@@ -129,7 +128,7 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $instance
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInstance($instance)
     {
@@ -153,7 +152,7 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string[] $invalidParams
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInvalidParams($invalidParams)
     {
@@ -177,7 +176,7 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $method
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMethod($method)
     {
@@ -201,7 +200,7 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param string $requestId
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequestId($requestId)
     {
@@ -225,7 +224,7 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @param int|null $status
      * @return void
-     * @throws \Exception If the provided argument is not of a supported type.
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStatus($status)
     {
