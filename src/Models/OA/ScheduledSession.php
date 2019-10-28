@@ -26,6 +26,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var Schedule[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $eventSchedule;
 
@@ -34,6 +35,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
      *
      *
      * @var Event[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $subEvent;
 
@@ -47,6 +49,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
 
     /**
      * @return Schedule[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getEventSchedule()
     {
@@ -57,6 +60,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
      * @param Schedule[] $eventSchedule
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setEventSchedule($eventSchedule)
     {
@@ -71,6 +75,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
 
     /**
      * @return Event[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getSubEvent()
     {
@@ -81,6 +86,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
      * @param Event[] $subEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setSubEvent($subEvent)
     {

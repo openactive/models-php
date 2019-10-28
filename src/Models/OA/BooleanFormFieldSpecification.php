@@ -13,11 +13,13 @@ class BooleanFormFieldSpecification extends \OpenActive\Models\OA\PropertyValueS
      *
      *
      * @var string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $valueRequired;
 
     /**
      * @return string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getValueRequired()
     {
@@ -28,6 +30,7 @@ class BooleanFormFieldSpecification extends \OpenActive\Models\OA\PropertyValueS
      * @param string $valueRequired
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setValueRequired($valueRequired)
     {

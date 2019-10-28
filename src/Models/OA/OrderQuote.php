@@ -21,6 +21,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
      *
      *
      * @var string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $orderProposalVersion;
 
@@ -37,6 +38,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
      *
      *
      * @var Payment
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $payment;
 
@@ -66,6 +68,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
 
     /**
      * @return string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getOrderProposalVersion()
     {
@@ -76,6 +79,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
      * @param string $orderProposalVersion
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setOrderProposalVersion($orderProposalVersion)
     {
@@ -115,6 +119,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
 
     /**
      * @return Payment
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getPayment()
     {
@@ -125,6 +130,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
      * @param Payment $payment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setPayment($payment)
     {

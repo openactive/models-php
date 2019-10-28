@@ -26,11 +26,13 @@ class HeadlineEvent extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var Schedule[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $eventSchedule;
 
     /**
      * @return Schedule[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getEventSchedule()
     {
@@ -41,6 +43,7 @@ class HeadlineEvent extends \OpenActive\Models\OA\Event
      * @param Schedule[] $eventSchedule
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setEventSchedule($eventSchedule)
     {
