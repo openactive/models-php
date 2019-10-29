@@ -27,6 +27,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $name;
 
@@ -38,6 +39,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $description;
 
@@ -49,6 +51,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $accessibilityInformation;
 
@@ -67,6 +70,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var Concept[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $accessibilitySupport;
 
@@ -85,6 +89,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var Concept[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $activity;
 
@@ -100,6 +105,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var QuantitativeValue
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $ageRange;
 
@@ -111,6 +117,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $attendeeInstructions;
 
@@ -124,6 +131,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var string[]|Concept[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $category;
 
@@ -143,6 +151,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var Person[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $contributor;
 
@@ -175,6 +184,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var Schedule[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $eventSchedule;
 
@@ -186,6 +196,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var Schema.NET.EventStatusType|null
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $eventStatus;
 
@@ -208,6 +219,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var \OpenActive\Enums\GenderRestrictionType|null
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $genderRestriction;
 
@@ -230,6 +242,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var ImageObject[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $image;
 
@@ -241,6 +254,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var bool|null
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $isAccessibleForFree;
 
@@ -252,6 +266,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var bool|null
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $isCoached;
 
@@ -272,6 +287,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var Person[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $leader;
 
@@ -285,6 +301,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var string[]|Concept[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $level;
 
@@ -318,6 +335,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var Place
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $location;
 
@@ -329,6 +347,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var int|null
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $maximumAttendeeCapacity;
 
@@ -351,6 +370,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $meetingPoint;
 
@@ -384,6 +404,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var Person|Organization
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $organizer;
 
@@ -406,6 +427,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var Action[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $potentialAction;
 
@@ -421,6 +443,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var Brand
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $programme;
 
@@ -432,6 +455,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var int|null
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $remainingAttendeeCapacity;
 
@@ -454,6 +478,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $schedulingNote;
 
@@ -485,6 +510,7 @@ class Slot extends \OpenActive\Models\OA\Event
      *
      *
      * @var Event[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $subEvent;
 
@@ -493,6 +519,7 @@ class Slot extends \OpenActive\Models\OA\Event
      *
      *
      * @var Event
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $superEvent;
 
@@ -504,6 +531,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```
      *
      * @var string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $url;
 
@@ -537,6 +565,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getName()
     {
@@ -547,6 +576,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param string $name
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setName($name)
     {
@@ -561,6 +591,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getDescription()
     {
@@ -571,6 +602,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param string $description
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setDescription($description)
     {
@@ -585,6 +617,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getAccessibilityInformation()
     {
@@ -595,6 +628,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param string $accessibilityInformation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setAccessibilityInformation($accessibilityInformation)
     {
@@ -609,6 +643,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return Concept[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getAccessibilitySupport()
     {
@@ -619,6 +654,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param Concept[] $accessibilitySupport
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setAccessibilitySupport($accessibilitySupport)
     {
@@ -633,6 +669,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return Concept[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getActivity()
     {
@@ -643,6 +680,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param Concept[] $activity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setActivity($activity)
     {
@@ -657,6 +695,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return QuantitativeValue
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getAgeRange()
     {
@@ -667,6 +706,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param QuantitativeValue $ageRange
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setAgeRange($ageRange)
     {
@@ -681,6 +721,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getAttendeeInstructions()
     {
@@ -691,6 +732,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param string $attendeeInstructions
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setAttendeeInstructions($attendeeInstructions)
     {
@@ -705,6 +747,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return string[]|Concept[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getCategory()
     {
@@ -715,6 +758,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param string[]|Concept[] $category
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setCategory($category)
     {
@@ -730,6 +774,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return Person[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getContributor()
     {
@@ -740,6 +785,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param Person[] $contributor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setContributor($contributor)
     {
@@ -779,6 +825,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return Schedule[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getEventSchedule()
     {
@@ -789,6 +836,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param Schedule[] $eventSchedule
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setEventSchedule($eventSchedule)
     {
@@ -803,6 +851,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return Schema.NET.EventStatusType|null
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getEventStatus()
     {
@@ -813,6 +862,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param Schema.NET.EventStatusType|null $eventStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setEventStatus($eventStatus)
     {
@@ -852,6 +902,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return \OpenActive\Enums\GenderRestrictionType|null
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getGenderRestriction()
     {
@@ -862,6 +913,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param \OpenActive\Enums\GenderRestrictionType|null $genderRestriction
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setGenderRestriction($genderRestriction)
     {
@@ -877,6 +929,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return ImageObject[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getImage()
     {
@@ -887,6 +940,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param ImageObject[] $image
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setImage($image)
     {
@@ -901,6 +955,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return bool|null
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getIsAccessibleForFree()
     {
@@ -911,6 +966,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param bool|null $isAccessibleForFree
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setIsAccessibleForFree($isAccessibleForFree)
     {
@@ -926,6 +982,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return bool|null
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getIsCoached()
     {
@@ -936,6 +993,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param bool|null $isCoached
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setIsCoached($isCoached)
     {
@@ -951,6 +1009,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return Person[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getLeader()
     {
@@ -961,6 +1020,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param Person[] $leader
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setLeader($leader)
     {
@@ -975,6 +1035,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return string[]|Concept[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getLevel()
     {
@@ -985,6 +1046,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param string[]|Concept[] $level
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setLevel($level)
     {
@@ -1000,6 +1062,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return Place
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getLocation()
     {
@@ -1010,6 +1073,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param Place $location
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setLocation($location)
     {
@@ -1024,6 +1088,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return int|null
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getMaximumAttendeeCapacity()
     {
@@ -1034,6 +1099,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param int|null $maximumAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
     {
@@ -1074,6 +1140,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getMeetingPoint()
     {
@@ -1084,6 +1151,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param string $meetingPoint
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setMeetingPoint($meetingPoint)
     {
@@ -1122,6 +1190,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return Person|Organization
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getOrganizer()
     {
@@ -1132,6 +1201,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param Person|Organization $organizer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setOrganizer($organizer)
     {
@@ -1147,6 +1217,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return Action[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getPotentialAction()
     {
@@ -1157,6 +1228,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param Action[] $potentialAction
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setPotentialAction($potentialAction)
     {
@@ -1171,6 +1243,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return Brand
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getProgramme()
     {
@@ -1181,6 +1254,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param Brand $programme
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setProgramme($programme)
     {
@@ -1195,6 +1269,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return int|null
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getRemainingAttendeeCapacity()
     {
@@ -1205,6 +1280,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param int|null $remainingAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
@@ -1245,6 +1321,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getSchedulingNote()
     {
@@ -1255,6 +1332,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param string $schedulingNote
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setSchedulingNote($schedulingNote)
     {
@@ -1319,6 +1397,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return Event[]
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getSubEvent()
     {
@@ -1329,6 +1408,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param Event[] $subEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setSubEvent($subEvent)
     {
@@ -1343,6 +1423,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return Event
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getSuperEvent()
     {
@@ -1353,6 +1434,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param Event $superEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setSuperEvent($superEvent)
     {
@@ -1367,6 +1449,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return string
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getUrl()
     {
@@ -1377,6 +1460,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param string $url
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setUrl($url)
     {
