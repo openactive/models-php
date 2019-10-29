@@ -94,8 +94,7 @@ class BaseValidator implements ValidatorInterface
         } else {
             // Add OpenActive's namespace
             // and force global namespace on class
-            // TODO: check whether it's SchemaOrg or OA's?
-            $classname = "\\OpenActive\\Models\\".$type;
+            $classname = "\\OpenActive\\Models\\OA\\".$type;
         }
 
         return new InstanceValidator($classname);
