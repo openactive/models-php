@@ -7,10 +7,8 @@ OpenActive aims to provide model files for all classes defined in its Opportunit
 This project requires PHP >=5.6.
 While most of the functionality should work down to PHP 5.4, some functionality (especially around parsing of offset for DateTimeZone) will not work with that version of PHP (see the [DateTimeZone PHP docs](https://www.php.net/manual/en/datetimezone.construct.php#refsect1-datetimezone.construct-changelog) for more info).
 
-[Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos) is also required for dependency management.
-
 ## Installation
-From terminal, run:
+To install via Composer, from terminal, run:
 ```bash
 composer require openactive/models
 ```
@@ -18,6 +16,8 @@ composer require openactive/models
 ## Contribution
 
 ### Installation
+**Please note:** [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos) is required for dependency management.
+
 ```bash
 git clone https://github.com/openactive/models-php.git
 cd models-php
