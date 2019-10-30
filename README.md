@@ -10,9 +10,11 @@ OpenActive aims to provide model files for all classes defined in its Opportunit
     - [Models](#models)
         - [OpenActive](#openactive)
         - [Schema.org](#schemaorg)
-        - [Serialization](#serialization)
     - [RPDE](#rpde)
     - [Enums](#enums)
+    - [Serialization](#serialization)
+        - [`serialize($obj, $prettyPrint = false)`](#serializeobj-prettyprint-false)
+        - [`deserialize($data)`](#deserializedata)
 
 ## Requirements
 This project requires PHP >=5.6.
@@ -84,21 +86,15 @@ To instantiate a new one, see the [models](#models) section, making sure you are
 
 ### Serialization
 
-This package provides support for JSON-LD serialization of [models](#models) and and for the `\OpenActive\Rpde\RpdeBody` object.
+This package provides support for JSON-LD serialization/deserialization of [models](#models) and and for the `\OpenActive\Rpde\RpdeBody` object.
+
+#### `serialize($obj, $prettyPrint = false)`
+
+Returns the JSON-LD string representation of the given object `$obj`.
+
+An additional parameter `$prettyPrint` is available to return a JSON-LD string in a human-readable format.
 
 An example, using the `\OpenActive\Models\OA\Action` defined above:
-```php
-use OpenActive\Models\OA\Action;
-
-echo Action::serialize($action);
-```
-
-Will output:
-```json
-{"@context":["https:\/\/openactive.io\/","https:\/\/openactive.io\/ns-beta"],"type":"Action","name":"Book","target":{"type":"EntryPoint","encodingType":"application\/vnd.openactive.v1.0+json","httpMethod":"POST","type":"EntryPoint","url":"https:\/\/example.com\/orders"}}
-```
-
-In order to output human-readable JSON-LD, pass `true` as a second argument to the `serialize` function:
 ```php
 use OpenActive\Models\OA\Action;
 
@@ -124,7 +120,121 @@ Will output:
 }
 ```
 
-**Please note:** at the moment, only the OpenActive `@context` is rendered in the serialization output. Future versions of this package may allow to include more and/or different `@context`
+**Please note:** at the moment, only the OpenActive `@context` is rendered in the serialization output. Future versions of this package may allow to include more and/or different `@context`.
+
+#### `deserialize($data)`
+
+Returns an object from a given JSON-LD representation.
+
+The `$data` argument can be a JSON-LD string, or an associative array, for example as a result of `json_encode($string, true)`.
+
+For example:
+
+```php
+use OpenActive\Models\OA\Action;
+
+$jsonLd = '{"@context": ["https:\/\/openactive.io\/","https:\/\/openactive.io\/ns-beta"],"type": "Action","name": "Book","target": {"type": "EntryPoint","encodingType": "application\/vnd.openactive.v1.0+json","httpMethod": "POST","type": "EntryPoint","url": "https:\/\/example.com\/orders"}}';
+
+$action = Action::deserialize($jsonLd);
+
+echo "<pre>";
+var_dump($action);
+```
+
+Will result in:
+```
+object(OpenActive\Models\OA\Action)#3 (24) {
+  ["name":protected]=>
+  string(4) "Book"
+  ["target":protected]=>
+  object(OpenActive\Models\OA\EntryPoint)#2 (20) {
+    ["encodingType":protected]=>
+    string(36) "application/vnd.openactive.v1.0+json"
+    ["httpMethod":protected]=>
+    string(4) "POST"
+    ["urlTemplate":protected]=>
+    NULL
+    ["actionApplication":protected]=>
+    NULL
+    ["application":protected]=>
+    NULL
+    ["actionPlatform":protected]=>
+    NULL
+    ["contentType":protected]=>
+    NULL
+    ["identifier":protected]=>
+    NULL
+    ["name":protected]=>
+    NULL
+    ["description":protected]=>
+    NULL
+    ["sameAs":protected]=>
+    NULL
+    ["url":protected]=>
+    string(26) "https://example.com/orders"
+    ["image":protected]=>
+    NULL
+    ["additionalType":protected]=>
+    NULL
+    ["subjectOf":protected]=>
+    NULL
+    ["mainEntityOfPage":protected]=>
+    NULL
+    ["potentialAction":protected]=>
+    NULL
+    ["disambiguatingDescription":protected]=>
+    NULL
+    ["alternateName":protected]=>
+    NULL
+    ["id":protected]=>
+    NULL
+  }
+  ["result":protected]=>
+  NULL
+  ["startTime":protected]=>
+  NULL
+  ["actionStatus":protected]=>
+  NULL
+  ["agent":protected]=>
+  NULL
+  ["endTime":protected]=>
+  NULL
+  ["instrument":protected]=>
+  NULL
+  ["participant":protected]=>
+  NULL
+  ["object":protected]=>
+  NULL
+  ["error":protected]=>
+  NULL
+  ["location":protected]=>
+  NULL
+  ["identifier":protected]=>
+  NULL
+  ["description":protected]=>
+  NULL
+  ["sameAs":protected]=>
+  NULL
+  ["url":protected]=>
+  NULL
+  ["image":protected]=>
+  NULL
+  ["additionalType":protected]=>
+  NULL
+  ["subjectOf":protected]=>
+  NULL
+  ["mainEntityOfPage":protected]=>
+  NULL
+  ["potentialAction":protected]=>
+  NULL
+  ["disambiguatingDescription":protected]=>
+  NULL
+  ["alternateName":protected]=>
+  NULL
+  ["id":protected]=>
+  NULL
+}
+```
 
 ## Contribution
 
