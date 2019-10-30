@@ -9,7 +9,13 @@ While most of the functionality should work down to PHP 5.4, some functionality 
 
 [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos) is also required for dependency management.
 
-## Development
+## Installation
+From terminal, run:
+```bash
+composer require openactive/models
+```
+
+## Contribution
 
 ### Installation
 ```bash
