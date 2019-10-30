@@ -1,5 +1,5 @@
 {
-  "name": "openactive/models-php",
+  "name": "openactive/models",
   "type": "library",
   "license": "MIT",
   "require": {
