@@ -13,7 +13,7 @@ OpenActive aims to provide model files for all classes defined in its Opportunit
     - [RPDE](#rpde)
     - [Enums](#enums)
     - [Serialization](#serialization)
-        - [`serialize($obj, $prettyPrint = false)`](#serializeobj-prettyprint-false)
+        - [`serialize($obj, $prettyPrint = false)`](#serializeobj-prettyprint--false)
         - [`deserialize($data)`](#deserializedata)
 
 ## Requirements
@@ -137,7 +137,6 @@ $jsonLd = '{"@context": ["https:\/\/openactive.io\/","https:\/\/openactive.io\/n
 
 $action = Action::deserialize($jsonLd);
 
-echo "<pre>";
 var_dump($action);
 ```
 
