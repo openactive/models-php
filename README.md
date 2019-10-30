@@ -3,6 +3,17 @@ PHP Models for the OpenActive Opportunity and Booking Specifications
 
 OpenActive aims to provide model files for all classes defined in its Opportunity and Booking specifications across the PHP, Ruby, and .NET languages. This repository is intended for the PHP files; see also the [Ruby](https://github.com/openactive/models-ruby/) and [.NET](https://github.com/openactive/OpenActive.NET) implementations.
 
+## Table of Contents
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Models](#models)
+        - [OpenActive](#openactive)
+        - [Schema.org](#schemaorg)
+        - [Serialization](#serialization)
+    - [RPDE](#rpde)
+    - [Enums](#enums)
+
 ## Requirements
 This project requires PHP >=5.6.
 While most of the functionality should work down to PHP 5.4, some functionality (especially around parsing of offset for DateTimeZone) will not work with that version of PHP (see the [DateTimeZone PHP docs](https://www.php.net/manual/en/datetimezone.construct.php#refsect1-datetimezone.construct-changelog) for more info).
@@ -12,6 +23,108 @@ To install via Composer, from terminal, run:
 ```bash
 composer require openactive/models
 ```
+
+## Usage
+
+This package provides PHP models for the OpenActive specifications.
+
+It also provide a set of models for the [schema.org](https://schema.org) specifications.
+
+Finally it provides a set of classes to handle OpenActive's [RPDE](https://developer.openactive.io/publishing-data/data-feeds/how-a-data-feed-works) data feeds.
+
+### Models
+
+The models are included under the `\OpenActive\Models` namespace.
+
+You can instantiate a new model, passing an associative array, where the key is the attribute name, and the value is the attribute value.
+
+For example, from your PHP application, run:
+
+```php
+// Make sure you use the right namespace for your models
+use OpenActive\Models\OA\Action;
+use OpenActive\Models\OA\EntryPoint;
+
+$action = new Action([
+    "name" => "Book",
+    "target" => new EntryPoint([
+        "encodingType" => "application/vnd.openactive.v1.0+json",
+        "httpMethod" => "POST",
+        "type" => "EntryPoint",
+        "url" => "https://example.com/orders"
+    ])
+]);
+```
+
+Please note that type enforcement is in place whenever creating a new model.
+
+For example, providing a `string` to the `target` attribute in the example above will result in an `\OpenActive\Exception\InvalidArgumentException` being thrown.
+
+A set of getters and setters for all the attributes is provided. Type enforcement is in place for setters too.
+
+#### OpenActive
+
+The OpenActive models are included under the `\OpenActive\Models\OA` namespace.
+
+To instantiate a new one, see the [models](#models) section, making sure you are using the right namespace from your model.
+
+#### Schema.org
+
+The Schema.org models are included under the `\OpenActive\Models\SchemaOrg` namespace.
+
+To instantiate a new one, see the [models](#models) section, making sure you are using the right namespace from your model.
+
+### RPDE
+
+**Coming soon**
+
+### Enums
+
+**Coming soon**
+
+### Serialization
+
+This package provides support for JSON-LD serialization of [models](#models) and and for the `\OpenActive\Rpde\RpdeBody` object.
+
+An example, using the `\OpenActive\Models\OA\Action` defined above:
+```php
+use OpenActive\Models\OA\Action;
+
+echo Action::serialize($action);
+```
+
+Will output:
+```json
+{"@context":["https:\/\/openactive.io\/","https:\/\/openactive.io\/ns-beta"],"type":"Action","name":"Book","target":{"type":"EntryPoint","encodingType":"application\/vnd.openactive.v1.0+json","httpMethod":"POST","type":"EntryPoint","url":"https:\/\/example.com\/orders"}}
+```
+
+In order to output human-readable JSON-LD, pass `true` as a second argument to the `serialize` function:
+```php
+use OpenActive\Models\OA\Action;
+
+echo Action::serialize($action, true);
+```
+
+Will output:
+```json
+{
+    "@context": [
+        "https:\/\/openactive.io\/",
+        "https:\/\/openactive.io\/ns-beta"
+    ],
+    "type": "Action",
+    "name": "Book",
+    "target": {
+        "type": "EntryPoint",
+        "encodingType": "application\/vnd.openactive.v1.0+json",
+        "httpMethod": "POST",
+        "type": "EntryPoint",
+        "url": "https:\/\/example.com\/orders"
+    }
+}
+```
+
+**Please note:** at the moment, only the OpenActive `@context` is rendered in the serialization output. Future versions of this package may allow to include more and/or different `@context`
 
 ## Contribution
 
