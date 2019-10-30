@@ -58,6 +58,17 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     protected $bookingService;
 
     /**
+     * The date this Dataset was last updated. For RPDE feeds this may simply be the date and time that the Dataset Site was rendered, which may be cached.
+     *
+     * ```json
+     * "dateModified": "2018-01-27T12:00:00Z"
+     * ```
+     *
+     * @var DateTime|null
+     */
+    protected $dateModified;
+
+    /**
      * The date this Dataset was first published. Can be specified as a schema:Date or schema:DateTime.
      *
      * ```json
@@ -284,6 +295,31 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
         $bookingService = self::checkTypes($bookingService, $types);
 
         $this->bookingService = $bookingService;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getDateModified()
+    {
+        return $this->dateModified;
+    }
+
+    /**
+     * @param DateTime|null $dateModified
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDateModified($dateModified)
+    {
+        $types = array(
+            "DateTime",
+            "null",
+        );
+
+        $dateModified = self::checkTypes($dateModified, $types);
+
+        $this->dateModified = $dateModified;
     }
 
     /**
