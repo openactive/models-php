@@ -44,17 +44,41 @@ For example, from your PHP application, run:
 
 ```php
 // Make sure you use the right namespace for your models
-use OpenActive\Models\OA\Action;
-use OpenActive\Models\OA\EntryPoint;
+use OpenActive\Models\OA\SessionSeries;
+use OpenActive\Models\OA\Place;
+use OpenActive\Models\OA\GeoCoordinates;
+use OpenActive\Models\OA\Concept;
+use OpenActive\Models\OA\Organization;
+use OpenActive\Models\OA\Offer;
 
-$action = new Action([
-    "name" => "Book",
-    "target" => new EntryPoint([
-        "encodingType" => "application/vnd.openactive.v1.0+json",
-        "httpMethod" => "POST",
-        "type" => "EntryPoint",
-        "url" => "https://example.com/orders"
-    ])
+$sessionSeries = new SessionSeries([
+    "name" => "Virtual BODYPUMP",
+    "description" => "This is the virtual version of the original barbell class, which will help you get lean, toned and fit - fast",
+    "startDate" => "2017-04-24T19:30:00-08:00",
+    "endDate" => "2017-04-24T23:00:00-08:00",
+    "location" => new Place([
+        "name" => "",
+        "geo" => new GeoCoordinates([
+            "latitude" => 51.4034423828125,
+            "longitude" => -0.2369088977575302,
+        ])
+    ]),
+    "activity" => new Concept([
+        "id": "https://openactive.io/activity-list#5e78bcbe-36db-425a-9064-bf96d09cc351",
+        "prefLabel": "Bodypump™",
+        "inScheme": "https://openactive.io/activity-list"
+    ]),
+    "organizer" => new Organization([
+        "name" => "Central Speedball Association",
+        "url" => "http://www.speedball-world.com"
+    ]),
+    "offers" => [new Offer([
+        "identifier": "OX-AD",
+        "name": "Adult",
+        "price": 3.3,
+        "priceCurrency": "GBP",
+        "url": "https://profile.everyoneactive.com/booking?Site=0140&Activities=1402CBP20150217&Culture=en-GB"
+    ])],
 ]);
 ```
 
@@ -94,11 +118,11 @@ Returns the JSON-LD string representation of the given object `$obj`.
 
 An additional parameter `$prettyPrint` is available to return a JSON-LD string in a human-readable format.
 
-An example, using the `\OpenActive\Models\OA\Action` defined above:
+An example, using the `\OpenActive\Models\OA\SessionSeries` defined above:
 ```php
-use OpenActive\Models\OA\Action;
+use OpenActive\Models\OA\SessionSeries;
 
-echo Action::serialize($action, true);
+echo SessionSeries::serialize($sessionSeries, true);
 ```
 
 Will output:
@@ -108,15 +132,15 @@ Will output:
         "https:\/\/openactive.io\/",
         "https:\/\/openactive.io\/ns-beta"
     ],
-    "type": "Action",
-    "name": "Book",
-    "target": {
-        "type": "EntryPoint",
-        "encodingType": "application\/vnd.openactive.v1.0+json",
-        "httpMethod": "POST",
-        "type": "EntryPoint",
-        "url": "https:\/\/example.com\/orders"
-    }
+    "type": "SessionSeries",
+    "name": "Virtual BODYPUMP",
+    "description": "This is the virtual version of the original barbell class, which will help you get lean, toned and fit - fast.",
+    "startDate": "2017-04-24T19:30:00-08:00",
+    "endDate": "2017-04-24T23:00:00-08:00",
+    "location": {...},
+    "activity": {...},
+    "organizer": {...},
+    "offers": [...]
 }
 ```
 
