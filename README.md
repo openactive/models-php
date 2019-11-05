@@ -103,7 +103,84 @@ To instantiate a new one, see the [models](#models) section, making sure you are
 
 ### RPDE
 
-**Coming soon**
+RpdeItem & RpdeBody are the main classes to use when generating a page for an RPDE feed.
+
+#### Feed items
+
+RpdeItem is used to create each individual item for a page. It includes a data attribute to which should be an instance of an OA Model along with metadata (id, modified, state and kind). It is left to each application developer to generate these models and metadata.
+
+e.g. a session series collection
+```php
+
+use OpenActive\Rpde\RpdeItem;
+
+$feedItems = [
+    new RpdeItem([
+        "Id" => "2",
+        "Modified" => 4,
+        "State" => RpdeState::UPDATED,
+        "Kind" => RpdeKind::SESSION_SERIES,
+        "Data" => $sessionSeries2;
+    ]),
+    new RpdeItem([
+        "Id" => "1",
+        "Modified" => 5,
+        "State" => RpdeState::DELETED,
+        "Kind" => RpdeKind::SESSION_SERIES,
+        "Data" => $sessionSeries1;
+    ])
+];
+```
+
+#### Feed page
+
+RpdeBody is then used to wrap a collection of items and provide the licence and next entries expected from an RPDE page. To help keep pages valid and create an correct next link, use `RpdeBody::createFromNextChangeNumber` or `RpdeBody::createFromModifiedId` to create an RPDE page feed out of an array of `RpdeItem`s (the constructor has been made private).
+
+`RpdeBody::createFromNextChangeNumber` will check that all feed items do indeed come after the `$changeNumber` argument provided. It will contruct the next link based on the modified value of the newest feed item and the provided `$feedBaseUrl` argument.
+
+e.g.
+```php
+use OpenActive\Rpde\RpdeBody;
+
+$feedPage = RpdeBody::createFromNextChangeNumber(
+    'https://www.example.com/rpde-feeds/session-series', # $feedBaseUrl
+    0, # $changeNumber,
+    $feedItems
+);
+
+$feedPage.getNext(); # 'https://www.example.com/rpde-feeds/session-series?afterTimestamp=5&afterId=2'
+```
+
+`RpdeBody::createFromModifiedId` will check that all feed items do indeed come after the `$id` and `$modified` arguments provided. It will contruct the next link based on the id and modified value of the newest feed item and the provided `$feedBaseUrl` argument.
+
+e.g.
+```php
+use OpenActive\Rpde\RpdeBody;
+
+$feedPage = RpdeBody::createFromModifiedId(
+    'https://www.example.com/rpde-feeds/session-series', # $feedBaseUrl
+    0, # $id
+    0, # $modified,
+    $feedItems
+);
+
+$feedPage.getNext(); # 'https://www.example.com/rpde-feeds/session-series?afterChangeNumber=5'
+```
+
+To override the default licence:
+```php
+$feedPage.setLicense('https://www.example.com/my-licence/v2.0');
+```
+
+#### Serializing the feed page
+
+Finally the feed page can then be serialized with `Serialize RpdeBody::serialize($feedPage)` which will also take care of serializing the each feed item's data attribute as JSON-LD.
+
+```php
+$jsonFeedPage = RpdeBody::serialize($feedPage);
+```
+
+See the [OpenActive's guide to publishing data](https://developer.openactive.io/publishing-data/data-feeds) and [the RPDE specification](https://www.openactive.io/realtime-paged-data-exchange/) for more details about RPDE feeds.
 
 ### Enums
 
