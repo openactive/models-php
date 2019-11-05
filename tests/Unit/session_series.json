@@ -27,7 +27,7 @@
   },
   "offers":[
     {
-      "type":"IndicativeOffer",
+      "type":"beta:IndicativeOffer",
       "url":"https://www.example.com/event_offer/12345_201803180430",
       "price":30,
       "priceCurrency":"USD",

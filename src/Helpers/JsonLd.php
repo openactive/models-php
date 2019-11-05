@@ -18,21 +18,6 @@ class JsonLd
    ];
 
     /**
-     * Returns the JSON-LD type from a given thing.
-     *
-     * @param \OpenActive\BaseModel $thing
-     * @return string
-     */
-    public static function getType($thing)
-    {
-        // Append "type" attribute for all other classes
-        $reflect = new \ReflectionClass($thing);
-
-        // Type is just the non-FQ class name
-        return $reflect->getShortName();
-    }
-
-    /**
      * Returns an associative array with the data ready for JSON-LD serialization.
      *
      * @param \OpenActive\BaseModel $obj The given instance to convert to JSON-LD
@@ -62,7 +47,7 @@ class JsonLd
             $fq_classname !== "\\OpenActive\\Rpde\\RpdeBody" &&
             $fq_classname !== "\\OpenActive\\Rpde\\RpdeItem"
         ) {
-            $data["type"] = self::getType($obj);
+            $data["type"] = $obj->getType();
         }
 
         // Only add context if object is subclass of BaseModel
