@@ -15,6 +15,7 @@ OpenActive aims to provide model files for all classes defined in its Opportunit
     - [Serialization](#serialization)
         - [`serialize($obj, $prettyPrint = false)`](#serializeobj-prettyprint--false)
         - [`deserialize($data)`](#deserializedata)
+- [Contributing](#contributing)
 
 ## Requirements
 This project requires PHP >=5.6.
@@ -278,7 +279,7 @@ object(OpenActive\Models\OA\Action)#3 (24) {
 }
 ```
 
-## Contribution
+## Contributing
 
 ### Installation
 **Please note:** [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos) is required for dependency management.
