@@ -120,15 +120,14 @@ $feedItems = [
         "Modified" => 4,
         "State" => RpdeState::UPDATED,
         "Kind" => RpdeKind::SESSION_SERIES,
-        "Data" => $sessionSeries2;
+        "Data" => $sessionSeries2,
     ]),
     new RpdeItem([
         "Id" => "1",
         "Modified" => 5,
         "State" => RpdeState::DELETED,
         "Kind" => RpdeKind::SESSION_SERIES,
-        "Data" => $sessionSeries1;
-    ])
+    ]),
 ];
 ```
 
