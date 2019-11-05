@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:PostalAddress";
+    }
+
+    /**
      * The post office box number for PO box addresses.
      *
      *
@@ -27,7 +35,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
      * The country. For example, USA. You can also provide the two-letter <a href="http://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166-1 alpha-2 country code</a>.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Country
+     * @var \OpenActive\Models\SchemaOrg\Country|string
      */
     protected $addressCountry;
 
@@ -104,7 +112,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Country
+     * @return \OpenActive\Models\SchemaOrg\Country|string
      */
     public function getAddressCountry()
     {
@@ -112,15 +120,15 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Country $addressCountry
+     * @param \OpenActive\Models\SchemaOrg\Country|string $addressCountry
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddressCountry($addressCountry)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\Country",
+            "string",
         );
 
         $addressCountry = self::checkTypes($addressCountry, $types);

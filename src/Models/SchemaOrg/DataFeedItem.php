@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:DataFeedItem";
+    }
+
+    /**
      * The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
      *
      *

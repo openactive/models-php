@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Permit extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Permit";
+    }
+
+    /**
      * The duration of validity of a permit or similar thing.
      *
      *

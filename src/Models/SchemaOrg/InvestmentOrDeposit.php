@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class InvestmentOrDeposit extends \OpenActive\Models\SchemaOrg\FinancialProduct
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:InvestmentOrDeposit";
+    }
+
+    /**
      * The amount of money.
      *
      *

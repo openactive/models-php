@@ -8,4 +8,12 @@ namespace OpenActive\Models\SchemaOrg;
  */
 class Landform extends \OpenActive\Models\SchemaOrg\Place
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Landform";
+    }
+
 }

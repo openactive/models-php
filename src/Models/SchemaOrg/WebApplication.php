@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class WebApplication extends \OpenActive\Models\SchemaOrg\SoftwareApplication
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:WebApplication";
+    }
+
+    /**
      * Specifies browser requirements in human-readable text. For example, 'requires HTML5 support'.
      *
      *

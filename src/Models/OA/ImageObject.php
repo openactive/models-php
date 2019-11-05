@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class ImageObject extends \OpenActive\Models\SchemaOrg\ImageObject
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "ImageObject";
+    }
+
+    /**
      * The URL for a thumbnail image for an image.
      *
      *

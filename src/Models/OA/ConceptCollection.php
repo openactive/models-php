@@ -8,4 +8,12 @@ namespace OpenActive\Models\OA;
  */
 class ConceptCollection extends \OpenActive\Models\OA\Collection
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "beta:ConceptCollection";
+    }
+
 }

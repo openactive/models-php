@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ReviewAction extends \OpenActive\Models\SchemaOrg\AssessAction
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:ReviewAction";
+    }
+
+    /**
      * A sub property of result. The review that resulted in the performing of the action.
      *
      *

@@ -8,6 +8,22 @@ namespace OpenActive\Models\SchemaOrg;
 class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:TaxiReservation";
+    }
+
+    /**
+     * When a taxi will pickup a passenger or a rental car can be picked up.
+     *
+     *
+     * @var DateTime|null
+     */
+    protected $pickupTime;
+
+    /**
      * Number of people the reservation should accommodate.
      *
      *
@@ -24,12 +40,29 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $pickupLocation;
 
     /**
-     * When a taxi will pickup a passenger or a rental car can be picked up.
-     *
-     *
-     * @var DateTime|null
+     * @return DateTime|null
      */
-    protected $pickupTime;
+    public function getPickupTime()
+    {
+        return $this->pickupTime;
+    }
+
+    /**
+     * @param DateTime|null $pickupTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPickupTime($pickupTime)
+    {
+        $types = array(
+            "DateTime",
+            "null",
+        );
+
+        $pickupTime = self::checkTypes($pickupTime, $types);
+
+        $this->pickupTime = $pickupTime;
+    }
 
     /**
      * @return int|QuantitativeValue|null
@@ -79,31 +112,6 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
         $pickupLocation = self::checkTypes($pickupLocation, $types);
 
         $this->pickupLocation = $pickupLocation;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getPickupTime()
-    {
-        return $this->pickupTime;
-    }
-
-    /**
-     * @param DateTime|null $pickupTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPickupTime($pickupTime)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $pickupTime = self::checkTypes($pickupTime, $types);
-
-        $this->pickupTime = $pickupTime;
     }
 
 }

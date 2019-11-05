@@ -8,12 +8,28 @@ namespace OpenActive\Models\SchemaOrg;
 class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:PropertyValueSpecification";
+    }
+
+    /**
      * The default value of the input.  For properties that expect a literal, the default is a literal value, for properties that expect an object, it's an ID reference to one of the current values.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
     protected $defaultValue;
+
+    /**
+     * The lower value of some characteristic or property.
+     *
+     *
+     * @var decimal|null
+     */
+    protected $minValue;
 
     /**
      * Specifies a regular expression for testing literal values according to the HTML spec.
@@ -80,14 +96,6 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     protected $multipleValues;
 
     /**
-     * The lower value of some characteristic or property.
-     *
-     *
-     * @var decimal|null
-     */
-    protected $minValue;
-
-    /**
      * Whether the property must be filled in to complete the action.  Default is false.
      *
      *
@@ -96,7 +104,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     protected $valueRequired;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Thing
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
     public function getDefaultValue()
     {
@@ -104,20 +112,45 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Thing $defaultValue
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $defaultValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDefaultValue($defaultValue)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
         );
 
         $defaultValue = self::checkTypes($defaultValue, $types);
 
         $this->defaultValue = $defaultValue;
+    }
+
+    /**
+     * @return decimal|null
+     */
+    public function getMinValue()
+    {
+        return $this->minValue;
+    }
+
+    /**
+     * @param decimal|null $minValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMinValue($minValue)
+    {
+        $types = array(
+            "decimal",
+            "null",
+        );
+
+        $minValue = self::checkTypes($minValue, $types);
+
+        $this->minValue = $minValue;
     }
 
     /**
@@ -316,31 +349,6 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
         $multipleValues = self::checkTypes($multipleValues, $types);
 
         $this->multipleValues = $multipleValues;
-    }
-
-    /**
-     * @return decimal|null
-     */
-    public function getMinValue()
-    {
-        return $this->minValue;
-    }
-
-    /**
-     * @param decimal|null $minValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMinValue($minValue)
-    {
-        $types = array(
-            "decimal",
-            "null",
-        );
-
-        $minValue = self::checkTypes($minValue, $types);
-
-        $this->minValue = $minValue;
     }
 
     /**

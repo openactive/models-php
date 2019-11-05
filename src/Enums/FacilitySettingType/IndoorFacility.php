@@ -10,5 +10,5 @@ namespace OpenActive\Enums\FacilitySettingType;
 class IndoorFacility extends \OpenActive\Enums\FacilitySettingType
 {
     const value = "IndoorFacility";
-    const memberVal = "undefinedIndoorFacility";
+    const memberVal = "https://openactive.io/ns-beta#IndoorFacility";
 }

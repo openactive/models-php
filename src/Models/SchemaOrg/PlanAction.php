@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class PlanAction extends \OpenActive\Models\SchemaOrg\OrganizeAction
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:PlanAction";
+    }
+
+    /**
      * The time the object is scheduled to.
      *
      *

@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class TVClip extends \OpenActive\Models\SchemaOrg\Clip
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:TVClip";
+    }
+
+    /**
      * The TV series to which this episode or season belongs.
      *
      *

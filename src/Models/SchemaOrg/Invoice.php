@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Invoice";
+    }
+
+    /**
      * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
      *
      *
@@ -59,7 +67,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
      * Party placing the order or paying the invoice.
      *
      *
-     * @var Organization|Person
+     * @var Person|Organization
      */
     protected $customer;
 
@@ -67,7 +75,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
      * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing
+     * @var string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory
      */
     protected $category;
 
@@ -83,7 +91,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
      * An entity that arranges for an exchange between a buyer and a seller.  In most cases a broker never acquires or releases ownership of a product or service involved in an exchange.  If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred.
      *
      *
-     * @var Person|Organization
+     * @var Organization|Person
      */
     protected $broker;
 
@@ -123,7 +131,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
      * The total amount due.
      *
      *
-     * @var PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|PriceSpecification
      */
     protected $totalPaymentDue;
 
@@ -284,7 +292,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Organization|Person
+     * @return Person|Organization
      */
     public function getCustomer()
     {
@@ -292,15 +300,15 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Organization|Person $customer
+     * @param Person|Organization $customer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCustomer($customer)
     {
         $types = array(
-            "Organization",
             "Person",
+            "Organization",
         );
 
         $customer = self::checkTypes($customer, $types);
@@ -309,7 +317,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing
+     * @return string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory
      */
     public function getCategory()
     {
@@ -317,7 +325,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing $category
+     * @param string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory $category
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -325,8 +333,8 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "string",
-            "\OpenActive\Models\SchemaOrg\PhysicalActivityCategory",
             "\OpenActive\Models\SchemaOrg\Thing",
+            "\OpenActive\Models\SchemaOrg\PhysicalActivityCategory",
         );
 
         $category = self::checkTypes($category, $types);
@@ -361,7 +369,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Person|Organization
+     * @return Organization|Person
      */
     public function getBroker()
     {
@@ -369,15 +377,15 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Person|Organization $broker
+     * @param Organization|Person $broker
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroker($broker)
     {
         $types = array(
-            "Person",
             "Organization",
+            "Person",
         );
 
         $broker = self::checkTypes($broker, $types);
@@ -484,7 +492,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|PriceSpecification
      */
     public function getTotalPaymentDue()
     {
@@ -492,15 +500,15 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount $totalPaymentDue
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|PriceSpecification $totalPaymentDue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalPaymentDue($totalPaymentDue)
     {
         $types = array(
-            "PriceSpecification",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "PriceSpecification",
         );
 
         $totalPaymentDue = self::checkTypes($totalPaymentDue, $types);

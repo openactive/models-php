@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class HeadlineEvent extends \OpenActive\Models\OA\Event
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "HeadlineEvent";
+    }
+
+    /**
      * A an array of oa:Schedule or oa:PartialSchedule, which represents a recurrence pattern.
      *
      * ```json

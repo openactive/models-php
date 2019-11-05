@@ -9,6 +9,14 @@ namespace OpenActive\Models\SchemaOrg;
 class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:DeliveryEvent";
+    }
+
+    /**
      * Method used for delivery or shipping.
      *
      *

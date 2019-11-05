@@ -14,6 +14,14 @@ namespace OpenActive\Models\OA;
 class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "Dataset";
+    }
+
+    /**
      * The name of the Dataset
      *
      * ```json
@@ -34,6 +42,14 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      * @var string
      */
     protected $description;
+
+    /**
+     * Information about the Open Booking API. Note this property is in EARLY RELEASE AND IS SUBJECT TO CHANGE.
+     *
+     *
+     * @var WebAPI
+     */
+    protected $accessService;
 
     /**
      * A background image for the Dataset.
@@ -247,6 +263,30 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
         $description = self::checkTypes($description, $types);
 
         $this->description = $description;
+    }
+
+    /**
+     * @return WebAPI
+     */
+    public function getAccessService()
+    {
+        return $this->accessService;
+    }
+
+    /**
+     * @param WebAPI $accessService
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAccessService($accessService)
+    {
+        $types = array(
+            "WebAPI",
+        );
+
+        $accessService = self::checkTypes($accessService, $types);
+
+        $this->accessService = $accessService;
     }
 
     /**

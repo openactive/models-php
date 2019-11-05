@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Product extends \OpenActive\Models\SchemaOrg\Thing
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Product";
+    }
+
+    /**
      * The manufacturer of the product.
      *
      *
@@ -43,7 +51,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * The height of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
+     * @var QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     protected $height;
 
@@ -54,14 +62,6 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * @var string
      */
     protected $gtin8;
-
-    /**
-     * Review of the item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Review
-     */
-    protected $reviews;
 
     /**
      * The overall rating, based on a collection of reviews or ratings, of the item.
@@ -78,6 +78,14 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * @var \OpenActive\Models\SchemaOrg\Product
      */
     protected $isConsumableFor;
+
+    /**
+     * Review of the item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Review
+     */
+    protected $reviews;
 
     /**
      * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
@@ -99,7 +107,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing
+     * @var string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory
      */
     protected $category;
 
@@ -107,7 +115,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * The width of the item.
      *
      *
-     * @var QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * @var \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
      */
     protected $width;
 
@@ -186,10 +194,18 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     protected $weight;
 
     /**
+     * The depth of the item.
+     *
+     *
+     * @var QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     */
+    protected $depth;
+
+    /**
      * A pointer to another, functionally similar product (or multiple products).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service
+     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
      */
     protected $isSimilarTo;
 
@@ -197,7 +213,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * The model of the product. Use with the URL of a ProductModel or a textual representation of the model identifier. The URL of the ProductModel can be from an external source. It is recommended to additionally provide strong product identifiers via the gtin8/gtin13/gtin14 and mpn properties.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\ProductModel
+     * @var \OpenActive\Models\SchemaOrg\ProductModel|string
      */
     protected $model;
 
@@ -213,7 +229,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * A pointer to another, somehow related product (or multiple products).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service
+     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
      */
     protected $isRelatedTo;
 
@@ -232,14 +248,6 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * @var \OpenActive\Models\SchemaOrg\Review
      */
     protected $review;
-
-    /**
-     * The depth of the item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
-     */
-    protected $depth;
 
     /**
      * The date the item e.g. vehicle was purchased by the current owner.
@@ -277,7 +285,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
      *
      *
-     * @var Organization|Brand
+     * @var Brand|Organization
      */
     protected $brand;
 
@@ -386,7 +394,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
+     * @return QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     public function getHeight()
     {
@@ -394,15 +402,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $height
+     * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $height
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHeight($height)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Distance",
             "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\Distance",
         );
 
         $height = self::checkTypes($height, $types);
@@ -432,30 +440,6 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
         $gtin8 = self::checkTypes($gtin8, $types);
 
         $this->gtin8 = $gtin8;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Review
-     */
-    public function getReviews()
-    {
-        return $this->reviews;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Review $reviews
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReviews($reviews)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Review",
-        );
-
-        $reviews = self::checkTypes($reviews, $types);
-
-        $this->reviews = $reviews;
     }
 
     /**
@@ -507,6 +491,30 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\Review
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Review $reviews
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReviews($reviews)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Review",
+        );
+
+        $reviews = self::checkTypes($reviews, $types);
+
+        $this->reviews = $reviews;
+    }
+
+    /**
      * @return Offer
      */
     public function getOffers()
@@ -555,7 +563,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing
+     * @return string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory
      */
     public function getCategory()
     {
@@ -563,7 +571,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing $category
+     * @param string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory $category
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -571,8 +579,8 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     {
         $types = array(
             "string",
-            "\OpenActive\Models\SchemaOrg\PhysicalActivityCategory",
             "\OpenActive\Models\SchemaOrg\Thing",
+            "\OpenActive\Models\SchemaOrg\PhysicalActivityCategory",
         );
 
         $category = self::checkTypes($category, $types);
@@ -581,7 +589,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * @return \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
      */
     public function getWidth()
     {
@@ -589,15 +597,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $width
+     * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $width
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWidth($width)
     {
         $types = array(
-            "QuantitativeValue",
             "\OpenActive\Models\SchemaOrg\Distance",
+            "QuantitativeValue",
         );
 
         $width = self::checkTypes($width, $types);
@@ -824,7 +832,32 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service
+     * @return QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     */
+    public function getDepth()
+    {
+        return $this->depth;
+    }
+
+    /**
+     * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $depth
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDepth($depth)
+    {
+        $types = array(
+            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\Distance",
+        );
+
+        $depth = self::checkTypes($depth, $types);
+
+        $this->depth = $depth;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
      */
     public function getIsSimilarTo()
     {
@@ -832,15 +865,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service $isSimilarTo
+     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $isSimilarTo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsSimilarTo($isSimilarTo)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Product",
             "\OpenActive\Models\SchemaOrg\Service",
+            "\OpenActive\Models\SchemaOrg\Product",
         );
 
         $isSimilarTo = self::checkTypes($isSimilarTo, $types);
@@ -849,7 +882,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\ProductModel
+     * @return \OpenActive\Models\SchemaOrg\ProductModel|string
      */
     public function getModel()
     {
@@ -857,15 +890,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\ProductModel $model
+     * @param \OpenActive\Models\SchemaOrg\ProductModel|string $model
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setModel($model)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\ProductModel",
+            "string",
         );
 
         $model = self::checkTypes($model, $types);
@@ -898,7 +931,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service
+     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
      */
     public function getIsRelatedTo()
     {
@@ -906,15 +939,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service $isRelatedTo
+     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $isRelatedTo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsRelatedTo($isRelatedTo)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Product",
             "\OpenActive\Models\SchemaOrg\Service",
+            "\OpenActive\Models\SchemaOrg\Product",
         );
 
         $isRelatedTo = self::checkTypes($isRelatedTo, $types);
@@ -968,31 +1001,6 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
         $review = self::checkTypes($review, $types);
 
         $this->review = $review;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
-     */
-    public function getDepth()
-    {
-        return $this->depth;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $depth
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDepth($depth)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Distance",
-            "QuantitativeValue",
-        );
-
-        $depth = self::checkTypes($depth, $types);
-
-        $this->depth = $depth;
     }
 
     /**
@@ -1095,7 +1103,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Organization|Brand
+     * @return Brand|Organization
      */
     public function getBrand()
     {
@@ -1103,15 +1111,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Organization|Brand $brand
+     * @param Brand|Organization $brand
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBrand($brand)
     {
         $types = array(
-            "Organization",
             "Brand",
+            "Organization",
         );
 
         $brand = self::checkTypes($brand, $types);

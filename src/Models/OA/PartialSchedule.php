@@ -8,4 +8,12 @@ namespace OpenActive\Models\OA;
  */
 class PartialSchedule extends \OpenActive\Models\OA\Schedule
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "PartialSchedule";
+    }
+
 }

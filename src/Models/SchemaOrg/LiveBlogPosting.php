@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:LiveBlogPosting";
+    }
+
+    /**
      * The time when the live blog will begin covering the Event. Note that coverage may begin before the Event's start time. The LiveBlogPosting may also be created before coverage begins.
      *
      *

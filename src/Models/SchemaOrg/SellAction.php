@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:SellAction";
+    }
+
+    /**
      * A sub property of participant. The participant/person/organization that bought the object.
      *
      *

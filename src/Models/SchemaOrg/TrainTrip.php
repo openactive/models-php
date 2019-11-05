@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class TrainTrip extends \OpenActive\Models\SchemaOrg\Trip
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:TrainTrip";
+    }
+
+    /**
      * The station from which the train departs.
      *
      *

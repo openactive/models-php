@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:TVEpisode";
+    }
+
+    /**
      * The TV series to which this episode or season belongs.
      *
      *

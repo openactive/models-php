@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "PriceSpecification";
+    }
+
+    /**
      * The total amount.
      *
      *

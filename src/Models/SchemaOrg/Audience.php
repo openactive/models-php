@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Audience extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Audience";
+    }
+
+    /**
      * The target group associated with a given audience (e.g. veterans, car owners, musicians, etc.).
      *
      *

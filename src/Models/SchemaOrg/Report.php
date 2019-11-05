@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Report extends \OpenActive\Models\SchemaOrg\Article
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Report";
+    }
+
+    /**
      * The number or other unique designator assigned to a Report by the publishing organization.
      *
      *

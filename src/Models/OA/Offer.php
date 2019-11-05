@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class Offer extends \OpenActive\Models\SchemaOrg\Offer
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "Offer";
+    }
+
+    /**
      * A local non-URI identifier for the resource
      *
      * ```json

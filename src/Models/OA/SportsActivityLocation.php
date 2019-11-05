@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class SportsActivityLocation extends \OpenActive\Models\SchemaOrg\SportsActivityLocation
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "SportsActivityLocation";
+    }
+
+    /**
      * While a `url` is not specified as an option in the Modelling Specification, it is necessary to link entities in RPDE.
      *
      * ```json

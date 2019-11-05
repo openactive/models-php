@@ -9,6 +9,14 @@ namespace OpenActive\Models\SchemaOrg;
 class EducationalOrganization extends \OpenActive\Models\SchemaOrg\Organization
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:EducationalOrganization";
+    }
+
+    /**
      * Alumni of an organization.
      *
      *

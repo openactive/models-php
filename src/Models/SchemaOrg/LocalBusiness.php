@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class LocalBusiness extends \OpenActive\Models\SchemaOrg\Place
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:LocalBusiness";
+    }
+
+    /**
      * The price range of the business, for example <code>$$$</code>.
      *
      *

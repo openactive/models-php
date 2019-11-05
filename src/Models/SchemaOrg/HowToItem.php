@@ -8,15 +8,23 @@ namespace OpenActive\Models\SchemaOrg;
 class HowToItem extends \OpenActive\Models\SchemaOrg\ListItem
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:HowToItem";
+    }
+
+    /**
      * The required quantity of the item(s).
      *
      *
-     * @var QuantitativeValue|decimal|string|null
+     * @var QuantitativeValue|string|decimal|null
      */
     protected $requiredQuantity;
 
     /**
-     * @return QuantitativeValue|decimal|string|null
+     * @return QuantitativeValue|string|decimal|null
      */
     public function getRequiredQuantity()
     {
@@ -24,7 +32,7 @@ class HowToItem extends \OpenActive\Models\SchemaOrg\ListItem
     }
 
     /**
-     * @param QuantitativeValue|decimal|string|null $requiredQuantity
+     * @param QuantitativeValue|string|decimal|null $requiredQuantity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -32,8 +40,8 @@ class HowToItem extends \OpenActive\Models\SchemaOrg\ListItem
     {
         $types = array(
             "QuantitativeValue",
-            "decimal",
             "string",
+            "decimal",
             "null",
         );
 

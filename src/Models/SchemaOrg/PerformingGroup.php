@@ -8,4 +8,12 @@ namespace OpenActive\Models\SchemaOrg;
  */
 class PerformingGroup extends \OpenActive\Models\SchemaOrg\Organization
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:PerformingGroup";
+    }
+
 }

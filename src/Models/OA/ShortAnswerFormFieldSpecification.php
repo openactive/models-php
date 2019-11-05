@@ -8,4 +8,12 @@ namespace OpenActive\Models\OA;
  */
 class ShortAnswerFormFieldSpecification extends \OpenActive\Models\OA\PropertyValueSpecification
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "ShortAnswerFormFieldSpecification";
+    }
+
 }

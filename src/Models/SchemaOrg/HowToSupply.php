@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class HowToSupply extends \OpenActive\Models\SchemaOrg\HowToItem
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:HowToSupply";
+    }
+
+    /**
      * The estimated cost of the supply or supplies consumed when performing instructions.
      *
      *

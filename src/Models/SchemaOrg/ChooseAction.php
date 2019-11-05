@@ -8,10 +8,18 @@ namespace OpenActive\Models\SchemaOrg;
 class ChooseAction extends \OpenActive\Models\SchemaOrg\AssessAction
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:ChooseAction";
+    }
+
+    /**
      * A sub property of object. The options subject to this action.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
     protected $actionOption;
 
@@ -24,7 +32,7 @@ class ChooseAction extends \OpenActive\Models\SchemaOrg\AssessAction
     protected $option;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Thing
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
     public function getActionOption()
     {
@@ -32,15 +40,15 @@ class ChooseAction extends \OpenActive\Models\SchemaOrg\AssessAction
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Thing $actionOption
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $actionOption
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActionOption($actionOption)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
         );
 
         $actionOption = self::checkTypes($actionOption, $types);

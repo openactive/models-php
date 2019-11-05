@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class ChangingFacilities extends \OpenActive\Models\OA\LocationFeatureSpecification
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "ChangingFacilities";
+    }
+
+    /**
      * A string, suitable for presentation in user interfaces.
      *
      * ```json

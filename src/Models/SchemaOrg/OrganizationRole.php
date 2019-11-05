@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class OrganizationRole extends \OpenActive\Models\SchemaOrg\Role
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:OrganizationRole";
+    }
+
+    /**
      * A number associated with a role in an organization, for example, the number on an athlete's jersey.
      *
      *

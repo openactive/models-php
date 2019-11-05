@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class Course extends \OpenActive\Models\SchemaOrg\Course
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "Course";
+    }
+
+    /**
      * A local non-URI identifier for the resource
      *
      * ```json

@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:MusicRelease";
+    }
+
+    /**
      * The label that issued the release.
      *
      *
@@ -24,20 +32,20 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     protected $catalogNumber;
 
     /**
-     * The album this is a release of.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MusicAlbum
-     */
-    protected $releaseOf;
-
-    /**
      * The group the release is credited to if different than the byArtist. For example, Red and Blue is credited to "Stefani Germanotta Band", but by Lady Gaga.
      *
      *
      * @var Person|Organization
      */
     protected $creditedTo;
+
+    /**
+     * The album this is a release of.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MusicAlbum
+     */
+    protected $releaseOf;
 
     /**
      * The duration of the item (movie, audio recording, event, etc.) in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.
@@ -104,30 +112,6 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MusicAlbum
-     */
-    public function getReleaseOf()
-    {
-        return $this->releaseOf;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MusicAlbum $releaseOf
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReleaseOf($releaseOf)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\MusicAlbum",
-        );
-
-        $releaseOf = self::checkTypes($releaseOf, $types);
-
-        $this->releaseOf = $releaseOf;
-    }
-
-    /**
      * @return Person|Organization
      */
     public function getCreditedTo()
@@ -150,6 +134,30 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
         $creditedTo = self::checkTypes($creditedTo, $types);
 
         $this->creditedTo = $creditedTo;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MusicAlbum
+     */
+    public function getReleaseOf()
+    {
+        return $this->releaseOf;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MusicAlbum $releaseOf
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReleaseOf($releaseOf)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\MusicAlbum",
+        );
+
+        $releaseOf = self::checkTypes($releaseOf, $types);
+
+        $this->releaseOf = $releaseOf;
     }
 
     /**

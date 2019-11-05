@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class Organization extends \OpenActive\Models\SchemaOrg\Organization
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "Organization";
+    }
+
+    /**
      * A local non-URI identifier for the resource
      *
      * ```json

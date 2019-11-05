@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Brand extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Brand";
+    }
+
+    /**
      * The overall rating, based on a collection of reviews or ratings, of the item.
      *
      *

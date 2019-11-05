@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:NewsArticle";
+    }
+
+    /**
      * The number of the column in which the NewsArticle appears in the print edition.
      *
      *

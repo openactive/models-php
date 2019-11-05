@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:OrderItem";
+    }
+
+    /**
      * The current status of the order item.
      *
      *

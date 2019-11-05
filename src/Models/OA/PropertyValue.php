@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "PropertyValue";
+    }
+
+    /**
      * The name of this PropertyValue
      *
      * ```json

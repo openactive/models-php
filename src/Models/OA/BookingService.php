@@ -8,6 +8,14 @@ namespace OpenActive\Models\OA;
 class BookingService extends \OpenActive\Models\SchemaOrg\Service
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "BookingService";
+    }
+
+    /**
      * The name of the Booking System.
      *
      *

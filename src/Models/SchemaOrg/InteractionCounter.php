@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:InteractionCounter";
+    }
+
+    /**
      * The WebSite or SoftwareApplication where the interactions took place.
      *
      *

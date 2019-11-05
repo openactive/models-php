@@ -7,4 +7,12 @@ namespace OpenActive\Models\SchemaOrg;
  */
 class AgreeAction extends \OpenActive\Models\SchemaOrg\ReactAction
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:AgreeAction";
+    }
+
 }

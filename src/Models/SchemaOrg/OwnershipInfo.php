@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:OwnershipInfo";
+    }
+
+    /**
      * The product that this structured value is referring to.
      *
      *
@@ -27,7 +35,7 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The organization or person from which the product was acquired.
      *
      *
-     * @var Organization|Person
+     * @var Person|Organization
      */
     protected $acquiredFrom;
 
@@ -90,7 +98,7 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return Organization|Person
+     * @return Person|Organization
      */
     public function getAcquiredFrom()
     {
@@ -98,15 +106,15 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param Organization|Person $acquiredFrom
+     * @param Person|Organization $acquiredFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcquiredFrom($acquiredFrom)
     {
         $types = array(
-            "Organization",
             "Person",
+            "Organization",
         );
 
         $acquiredFrom = self::checkTypes($acquiredFrom, $types);

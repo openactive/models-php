@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:FlightReservation";
+    }
+
+    /**
      * The passenger's sequence number as assigned by the airline.
      *
      *

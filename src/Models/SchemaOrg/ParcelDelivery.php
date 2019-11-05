@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:ParcelDelivery";
+    }
+
+    /**
      * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
      *
      *

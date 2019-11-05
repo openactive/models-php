@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class SpeakableSpecification extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:SpeakableSpecification";
+    }
+
+    /**
      * A CSS selector, e.g. of a <a class="localLink" href="https://schema.org/SpeakableSpecification">SpeakableSpecification</a> or <a class="localLink" href="https://schema.org/WebPageElement">WebPageElement</a>. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element".
      *
      *

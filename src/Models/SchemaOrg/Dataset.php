@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Dataset";
+    }
+
+    /**
      * A data catalog which contains this dataset.
      *
      *

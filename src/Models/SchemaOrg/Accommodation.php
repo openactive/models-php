@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Accommodation extends \OpenActive\Models\SchemaOrg\Place
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Accommodation";
+    }
+
+    /**
      * The size of the accommodation, e.g. in square meter or squarefoot.
      * Typical unit code(s): MTK for square meter, FTK for square foot, or YDK for square yard
      *

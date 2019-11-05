@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class MovieSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:MovieSeries";
+    }
+
+    /**
      * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
@@ -27,7 +35,7 @@ class MovieSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * The composer of the soundtrack.
      *
      *
-     * @var Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|Person
      */
     protected $musicBy;
 
@@ -112,7 +120,7 @@ class MovieSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|Person
      */
     public function getMusicBy()
     {
@@ -120,15 +128,15 @@ class MovieSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param Person|\OpenActive\Models\SchemaOrg\MusicGroup $musicBy
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|Person $musicBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicBy($musicBy)
     {
         $types = array(
-            "Person",
             "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "Person",
         );
 
         $musicBy = self::checkTypes($musicBy, $types);

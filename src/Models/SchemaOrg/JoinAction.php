@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class JoinAction extends \OpenActive\Models\SchemaOrg\InteractAction
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:JoinAction";
+    }
+
+    /**
      * Upcoming or past event associated with this place, organization, or action.
      *
      *

@@ -5,8 +5,16 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
+class VideoGame extends \OpenActive\Models\SchemaOrg\Game
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:VideoGame";
+    }
+
     /**
      * The electronic systems used to play <a href="http://en.wikipedia.org/wiki/Category:Video_game_platforms">video games</a>.
      *
@@ -59,7 +67,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
      * The composer of the soundtrack.
      *
      *
-     * @var Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|Person
      */
     protected $musicBy;
 
@@ -241,7 +249,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     }
 
     /**
-     * @return Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|Person
      */
     public function getMusicBy()
     {
@@ -249,15 +257,15 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     }
 
     /**
-     * @param Person|\OpenActive\Models\SchemaOrg\MusicGroup $musicBy
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|Person $musicBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicBy($musicBy)
     {
         $types = array(
-            "Person",
             "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "Person",
         );
 
         $musicBy = self::checkTypes($musicBy, $types);

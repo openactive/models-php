@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class Event extends \OpenActive\Models\SchemaOrg\Event
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "Event";
+    }
+
+    /**
      * A local non-URI identifier for the resource
      *
      * ```json

@@ -8,4 +8,12 @@ namespace OpenActive\Models\SchemaOrg;
  */
 class Residence extends \OpenActive\Models\SchemaOrg\Place
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Residence";
+    }
+
 }

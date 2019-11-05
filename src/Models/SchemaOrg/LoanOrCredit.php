@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:LoanOrCredit";
+    }
+
+    /**
      * The duration of the loan or credit agreement.
      *
      *
@@ -37,7 +45,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
      * Assets required to secure loan or credit repayments. It may take form of third party pledge, goods, financial instruments (cash, securities, etc.)
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
     protected $requiredCollateral;
 
@@ -116,7 +124,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Thing
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
     public function getRequiredCollateral()
     {
@@ -124,15 +132,15 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Thing $requiredCollateral
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $requiredCollateral
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiredCollateral($requiredCollateral)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
         );
 
         $requiredCollateral = self::checkTypes($requiredCollateral, $types);

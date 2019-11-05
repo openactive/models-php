@@ -8,12 +8,20 @@ namespace OpenActive\Models\SchemaOrg;
 class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
 {
     /**
-     * The interest rate, charged or paid, applicable to the financial product. Note: This is different from the calculated annualPercentageRate.
-     *
-     *
-     * @var QuantitativeValue|decimal|null
+     * @return string[]|null
      */
-    protected $interestRate;
+    static public function getType()
+    {
+        return "schema:FinancialProduct";
+    }
+
+    /**
+     * The annual rate that is charged for borrowing (or made by investing), expressed as a single percentage number that represents the actual yearly cost of funds over the term of a loan. This includes any fees or additional costs associated with the transaction.
+     *
+     *
+     * @var decimal|QuantitativeValue|null
+     */
+    protected $annualPercentageRate;
 
     /**
      * Description of fees, commissions, and other terms applied either to a class of financial product, or by a financial service organization.
@@ -24,37 +32,37 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     protected $feesAndCommissionsSpecification;
 
     /**
-     * The annual rate that is charged for borrowing (or made by investing), expressed as a single percentage number that represents the actual yearly cost of funds over the term of a loan. This includes any fees or additional costs associated with the transaction.
+     * The interest rate, charged or paid, applicable to the financial product. Note: This is different from the calculated annualPercentageRate.
      *
      *
-     * @var QuantitativeValue|decimal|null
+     * @var decimal|QuantitativeValue|null
      */
-    protected $annualPercentageRate;
+    protected $interestRate;
 
     /**
-     * @return QuantitativeValue|decimal|null
+     * @return decimal|QuantitativeValue|null
      */
-    public function getInterestRate()
+    public function getAnnualPercentageRate()
     {
-        return $this->interestRate;
+        return $this->annualPercentageRate;
     }
 
     /**
-     * @param QuantitativeValue|decimal|null $interestRate
+     * @param decimal|QuantitativeValue|null $annualPercentageRate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setInterestRate($interestRate)
+    public function setAnnualPercentageRate($annualPercentageRate)
     {
         $types = array(
-            "QuantitativeValue",
             "decimal",
+            "QuantitativeValue",
             "null",
         );
 
-        $interestRate = self::checkTypes($interestRate, $types);
+        $annualPercentageRate = self::checkTypes($annualPercentageRate, $types);
 
-        $this->interestRate = $interestRate;
+        $this->annualPercentageRate = $annualPercentageRate;
     }
 
     /**
@@ -82,29 +90,29 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @return QuantitativeValue|decimal|null
+     * @return decimal|QuantitativeValue|null
      */
-    public function getAnnualPercentageRate()
+    public function getInterestRate()
     {
-        return $this->annualPercentageRate;
+        return $this->interestRate;
     }
 
     /**
-     * @param QuantitativeValue|decimal|null $annualPercentageRate
+     * @param decimal|QuantitativeValue|null $interestRate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAnnualPercentageRate($annualPercentageRate)
+    public function setInterestRate($interestRate)
     {
         $types = array(
-            "QuantitativeValue",
             "decimal",
+            "QuantitativeValue",
             "null",
         );
 
-        $annualPercentageRate = self::checkTypes($annualPercentageRate, $types);
+        $interestRate = self::checkTypes($interestRate, $types);
 
-        $this->annualPercentageRate = $annualPercentageRate;
+        $this->interestRate = $interestRate;
     }
 
 }

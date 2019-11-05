@@ -8,4 +8,12 @@ namespace OpenActive\Models\SchemaOrg;
  */
 class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:MedicalOrganization";
+    }
+
 }

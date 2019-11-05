@@ -9,6 +9,14 @@ namespace OpenActive\Models\SchemaOrg;
 class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:UpdateAction";
+    }
+
+    /**
      * A sub property of object. The collection target of the action.
      *
      *

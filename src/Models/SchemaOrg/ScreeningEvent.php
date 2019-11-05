@@ -9,6 +9,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ScreeningEvent extends \OpenActive\Models\SchemaOrg\Event
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:ScreeningEvent";
+    }
+
+    /**
      * The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
      *
      *

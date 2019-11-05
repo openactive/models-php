@@ -7,4 +7,12 @@ namespace OpenActive\Models\SchemaOrg;
  */
 class CampingPitch extends \OpenActive\Models\SchemaOrg\Accommodation
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:CampingPitch";
+    }
+
 }

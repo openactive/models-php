@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class MusicAlbum extends \OpenActive\Models\SchemaOrg\MusicPlaylist
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:MusicAlbum";
+    }
+
+    /**
      * Classification of the album by it's type of content: soundtrack, live album, studio album, etc.
      *
      *

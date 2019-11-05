@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:CourseInstance";
+    }
+
+    /**
      * A person assigned to instruct or provide instructional assistance for the <a class="localLink" href="https://schema.org/CourseInstance">CourseInstance</a>.
      *
      *

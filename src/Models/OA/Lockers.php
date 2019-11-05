@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class Lockers extends \OpenActive\Models\OA\LocationFeatureSpecification
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "Lockers";
+    }
+
+    /**
      * A string, suitable for presentation in user interfaces.
      *
      * ```json

@@ -7,4 +7,12 @@ namespace OpenActive\Models\SchemaOrg;
  */
 class AccountingService extends \OpenActive\Models\SchemaOrg\FinancialService
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:AccountingService";
+    }
+
 }

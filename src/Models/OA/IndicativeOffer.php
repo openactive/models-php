@@ -9,4 +9,12 @@ namespace OpenActive\Models\OA;
  */
 class IndicativeOffer extends \OpenActive\Models\OA\Offer
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "beta:IndicativeOffer";
+    }
+
 }

@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Map extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Map";
+    }
+
+    /**
      * Indicates the kind of Map, from the MapCategoryType Enumeration.
      *
      *

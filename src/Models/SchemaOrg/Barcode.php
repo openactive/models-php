@@ -8,4 +8,12 @@ namespace OpenActive\Models\SchemaOrg;
  */
 class Barcode extends \OpenActive\Models\SchemaOrg\ImageObject
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Barcode";
+    }
+
 }

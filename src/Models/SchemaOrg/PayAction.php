@@ -8,15 +8,23 @@ namespace OpenActive\Models\SchemaOrg;
 class PayAction extends \OpenActive\Models\SchemaOrg\TradeAction
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:PayAction";
+    }
+
+    /**
      * A sub property of participant. The participant who is at the receiving end of the action.
      *
      *
-     * @var Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|Organization
+     * @var Person|\OpenActive\Models\SchemaOrg\ContactPoint|Organization|\OpenActive\Models\SchemaOrg\Audience
      */
     protected $recipient;
 
     /**
-     * @return Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|Organization
+     * @return Person|\OpenActive\Models\SchemaOrg\ContactPoint|Organization|\OpenActive\Models\SchemaOrg\Audience
      */
     public function getRecipient()
     {
@@ -24,7 +32,7 @@ class PayAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
-     * @param Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|Organization $recipient
+     * @param Person|\OpenActive\Models\SchemaOrg\ContactPoint|Organization|\OpenActive\Models\SchemaOrg\Audience $recipient
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -33,8 +41,8 @@ class PayAction extends \OpenActive\Models\SchemaOrg\TradeAction
         $types = array(
             "Person",
             "\OpenActive\Models\SchemaOrg\ContactPoint",
-            "\OpenActive\Models\SchemaOrg\Audience",
             "Organization",
+            "\OpenActive\Models\SchemaOrg\Audience",
         );
 
         $recipient = self::checkTypes($recipient, $types);

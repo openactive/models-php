@@ -7,4 +7,12 @@ namespace OpenActive\Models\SchemaOrg;
  */
 class SiteNavigationElement extends \OpenActive\Models\SchemaOrg\WebPageElement
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:SiteNavigationElement";
+    }
+
 }

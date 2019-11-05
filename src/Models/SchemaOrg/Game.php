@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Game";
+    }
+
+    /**
      * An item is an object within the game world that can be collected by a player or, occasionally, a non-player character.
      *
      *
@@ -27,7 +35,7 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Real or fictional location of the game (or part of game).
      *
      *
-     * @var PostalAddress|string|Place
+     * @var Place|PostalAddress|string
      */
     protected $gameLocation;
 
@@ -96,7 +104,7 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return PostalAddress|string|Place
+     * @return Place|PostalAddress|string
      */
     public function getGameLocation()
     {
@@ -104,16 +112,16 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param PostalAddress|string|Place $gameLocation
+     * @param Place|PostalAddress|string $gameLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGameLocation($gameLocation)
     {
         $types = array(
+            "Place",
             "PostalAddress",
             "string",
-            "Place",
         );
 
         $gameLocation = self::checkTypes($gameLocation, $types);

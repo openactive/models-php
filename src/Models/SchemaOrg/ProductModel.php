@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ProductModel extends \OpenActive\Models\SchemaOrg\Product
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:ProductModel";
+    }
+
+    /**
      * A pointer from a previous, often discontinued variant of the product to its newer variant.
      *
      *

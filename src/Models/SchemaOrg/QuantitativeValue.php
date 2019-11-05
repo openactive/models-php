@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:QuantitativeValue";
+    }
+
+    /**
      * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
      *
      *
@@ -16,14 +24,12 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $unitCode;
 
     /**
-     * A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.<br/><br/>
-     * 
-     * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
+     * The lower value of some characteristic or property.
      *
      *
-     * @var PropertyValue
+     * @var decimal|null
      */
-    protected $additionalProperty;
+    protected $minValue;
 
     /**
      * The value of the quantitative value or property value node.<br/><br/>
@@ -37,15 +43,25 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * 
      *
      *
-     * @var decimal|string|\OpenActive\Models\SchemaOrg\StructuredValue|bool|null
+     * @var \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null
      */
     protected $value;
+
+    /**
+     * A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.<br/><br/>
+     * 
+     * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
+     *
+     *
+     * @var PropertyValue
+     */
+    protected $additionalProperty;
 
     /**
      * A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature.
      *
      *
-     * @var Schema.NET.QualitativeValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|null
+     * @var \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|Schema.NET.QualitativeValue|null
      */
     protected $valueReference;
 
@@ -65,14 +81,6 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * @var string
      */
     protected $unitText;
-
-    /**
-     * The lower value of some characteristic or property.
-     *
-     *
-     * @var decimal|null
-     */
-    protected $minValue;
 
     /**
      * @return string
@@ -96,6 +104,59 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
         $unitCode = self::checkTypes($unitCode, $types);
 
         $this->unitCode = $unitCode;
+    }
+
+    /**
+     * @return decimal|null
+     */
+    public function getMinValue()
+    {
+        return $this->minValue;
+    }
+
+    /**
+     * @param decimal|null $minValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMinValue($minValue)
+    {
+        $types = array(
+            "decimal",
+            "null",
+        );
+
+        $minValue = self::checkTypes($minValue, $types);
+
+        $this->minValue = $minValue;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null $value
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValue($value)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\StructuredValue",
+            "string",
+            "decimal",
+            "bool",
+            "null",
+        );
+
+        $value = self::checkTypes($value, $types);
+
+        $this->value = $value;
     }
 
     /**
@@ -123,35 +184,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return decimal|string|\OpenActive\Models\SchemaOrg\StructuredValue|bool|null
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-    /**
-     * @param decimal|string|\OpenActive\Models\SchemaOrg\StructuredValue|bool|null $value
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setValue($value)
-    {
-        $types = array(
-            "decimal",
-            "string",
-            "\OpenActive\Models\SchemaOrg\StructuredValue",
-            "bool",
-            "null",
-        );
-
-        $value = self::checkTypes($value, $types);
-
-        $this->value = $value;
-    }
-
-    /**
-     * @return Schema.NET.QualitativeValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|null
+     * @return \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|Schema.NET.QualitativeValue|null
      */
     public function getValueReference()
     {
@@ -159,18 +192,18 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param Schema.NET.QualitativeValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|null $valueReference
+     * @param \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|Schema.NET.QualitativeValue|null $valueReference
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueReference($valueReference)
     {
         $types = array(
-            "Schema.NET.QualitativeValue",
-            "QuantitativeValue",
-            "\OpenActive\Models\SchemaOrg\StructuredValue",
             "\OpenActive\Models\SchemaOrg\Enumeration",
             "PropertyValue",
+            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\StructuredValue",
+            "Schema.NET.QualitativeValue",
             "null",
         );
 
@@ -226,31 +259,6 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
         $unitText = self::checkTypes($unitText, $types);
 
         $this->unitText = $unitText;
-    }
-
-    /**
-     * @return decimal|null
-     */
-    public function getMinValue()
-    {
-        return $this->minValue;
-    }
-
-    /**
-     * @param decimal|null $minValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMinValue($minValue)
-    {
-        $types = array(
-            "decimal",
-            "null",
-        );
-
-        $minValue = self::checkTypes($minValue, $types);
-
-        $this->minValue = $minValue;
     }
 
 }

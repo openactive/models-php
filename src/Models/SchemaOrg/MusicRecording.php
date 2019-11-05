@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:MusicRecording";
+    }
+
+    /**
      * The composition this track is a recording of.
      *
      *

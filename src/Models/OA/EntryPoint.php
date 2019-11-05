@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class EntryPoint extends \OpenActive\Models\SchemaOrg\EntryPoint
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "EntryPoint";
+    }
+
+    /**
      * Must always be present and set to ```json
 "encodingType": "application/vnd.openactive.v1.0+json"
 ```

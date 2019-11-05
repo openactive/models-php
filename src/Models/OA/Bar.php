@@ -9,4 +9,12 @@ namespace OpenActive\Models\OA;
  */
 class Bar extends \OpenActive\Models\OA\LocationFeatureSpecification
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "beta:Bar";
+    }
+
 }

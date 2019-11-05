@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Comment";
+    }
+
+    /**
      * The number of upvotes this question, answer or comment has received from the community.
      *
      *

@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class Order extends \OpenActive\Models\SchemaOrg\Order
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "Order";
+    }
+
+    /**
      * A local non-URI identifier for the resource
      *
      * ```json

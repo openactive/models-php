@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:BroadcastFrequencySpecification";
+    }
+
+    /**
      * The frequency in MHz for a particular broadcast.
      *
      *

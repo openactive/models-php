@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:APIReference";
+    }
+
+    /**
      * Library file name e.g., mscorlib.dll, system.web.dll.
      *
      *

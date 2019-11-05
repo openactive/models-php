@@ -8,4 +8,12 @@ namespace OpenActive\Models\SchemaOrg;
  */
 class Festival extends \OpenActive\Models\SchemaOrg\Event
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Festival";
+    }
+
 }

@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class DropdownFormFieldSpecification extends \OpenActive\Models\OA\PropertyValueSpecification
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "DropdownFormFieldSpecification";
+    }
+
+    /**
      * Specifies an array of display values for the dropdown.
      *
      *

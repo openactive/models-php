@@ -8,12 +8,28 @@ namespace OpenActive\Models\SchemaOrg;
 class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:MusicGroup";
+    }
+
+    /**
      * A collection of music albums.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\MusicAlbum
      */
     protected $albums;
+
+    /**
+     * A member of a music group&#x2014;for example, John, Paul, George, or Ringo.
+     *
+     *
+     * @var Person
+     */
+    protected $musicGroupMember;
 
     /**
      * A music recording (track)&#x2014;usually a single song. If an ItemList is given, the list should contain items of type MusicRecording.
@@ -38,14 +54,6 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
      * @var \OpenActive\Models\SchemaOrg\MusicRecording
      */
     protected $tracks;
-
-    /**
-     * A member of a music group&#x2014;for example, John, Paul, George, or Ringo.
-     *
-     *
-     * @var Person
-     */
-    protected $musicGroupMember;
 
     /**
      * A music album.
@@ -77,6 +85,30 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
         $albums = self::checkTypes($albums, $types);
 
         $this->albums = $albums;
+    }
+
+    /**
+     * @return Person
+     */
+    public function getMusicGroupMember()
+    {
+        return $this->musicGroupMember;
+    }
+
+    /**
+     * @param Person $musicGroupMember
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMusicGroupMember($musicGroupMember)
+    {
+        $types = array(
+            "Person",
+        );
+
+        $musicGroupMember = self::checkTypes($musicGroupMember, $types);
+
+        $this->musicGroupMember = $musicGroupMember;
     }
 
     /**
@@ -150,30 +182,6 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
         $tracks = self::checkTypes($tracks, $types);
 
         $this->tracks = $tracks;
-    }
-
-    /**
-     * @return Person
-     */
-    public function getMusicGroupMember()
-    {
-        return $this->musicGroupMember;
-    }
-
-    /**
-     * @param Person $musicGroupMember
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMusicGroupMember($musicGroupMember)
-    {
-        $types = array(
-            "Person",
-        );
-
-        $musicGroupMember = self::checkTypes($musicGroupMember, $types);
-
-        $this->musicGroupMember = $musicGroupMember;
     }
 
     /**

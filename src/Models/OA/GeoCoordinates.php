@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class GeoCoordinates extends \OpenActive\Models\SchemaOrg\GeoCoordinates
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "GeoCoordinates";
+    }
+
+    /**
      * The latitude of a location. For example 51.522338 (WGS 84).
      *
      * ```json

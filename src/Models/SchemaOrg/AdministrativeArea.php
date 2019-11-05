@@ -8,4 +8,12 @@ namespace OpenActive\Models\SchemaOrg;
  */
 class AdministrativeArea extends \OpenActive\Models\SchemaOrg\Place
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:AdministrativeArea";
+    }
+
 }

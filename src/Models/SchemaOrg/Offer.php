@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Offer extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Offer";
+    }
+
+    /**
      * The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers.
      *
      *
@@ -32,14 +40,6 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     protected $availableDeliveryMethod;
 
     /**
-     * The geographic area where a service or offered item is provided.
-     *
-     *
-     * @var Place|string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea
-     */
-    protected $areaServed;
-
-    /**
      * The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.
      *
      *
@@ -62,14 +62,6 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * @var string
      */
     protected $gtin8;
-
-    /**
-     * Review of the item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Review
-     */
-    protected $reviews;
 
     /**
      * The availability of this item&#x2014;for example In stock, Out of stock, Pre-order, etc.
@@ -120,6 +112,14 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     protected $availableAtOrFrom;
 
     /**
+     * Review of the item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Review
+     */
+    protected $reviews;
+
+    /**
      * The currency of the price, or a price component when attached to <a class="localLink" href="https://schema.org/PriceSpecification">PriceSpecification</a> and its subtypes.<br/><br/>
      * 
      * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
@@ -133,7 +133,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing
+     * @var string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory
      */
     protected $category;
 
@@ -160,14 +160,6 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * @var \OpenActive\Models\SchemaOrg\WarrantyPromise
      */
     protected $warranty;
-
-    /**
-     * This links to a node or nodes indicating the exact quantity of the products included in the offer.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\TypeAndQuantityNode
-     */
-    protected $includesObject;
 
     /**
      * The interval and unit of measurement of ordering quantities for which the offer or price specification is valid. This allows e.g. specifying that a certain freight charge is valid only for a certain quantity.
@@ -207,7 +199,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * 
      *
      *
-     * @var decimal|string|null
+     * @var string|decimal|null
      */
     protected $price;
 
@@ -260,12 +252,28 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     protected $availabilityEnds;
 
     /**
+     * This links to a node or nodes indicating the exact quantity of the products included in the offer.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\TypeAndQuantityNode
+     */
+    protected $includesObject;
+
+    /**
      * A review of the item.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Review
      */
     protected $review;
+
+    /**
+     * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
+     *
+     *
+     * @var Schema.NET.BusinessFunction|null
+     */
+    protected $businessFunction;
 
     /**
      * The type(s) of customers for which the given offer is valid.
@@ -316,12 +324,12 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     protected $acceptedPaymentMethod;
 
     /**
-     * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
+     * The geographic area where a service or offered item is provided.
      *
      *
-     * @var Schema.NET.BusinessFunction|null
+     * @var string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|Place
      */
-    protected $businessFunction;
+    protected $areaServed;
 
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.<br/><br/>
@@ -425,33 +433,6 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Place|string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea
-     */
-    public function getAreaServed()
-    {
-        return $this->areaServed;
-    }
-
-    /**
-     * @param Place|string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAreaServed($areaServed)
-    {
-        $types = array(
-            "Place",
-            "string",
-            "\OpenActive\Models\SchemaOrg\GeoShape",
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-        );
-
-        $areaServed = self::checkTypes($areaServed, $types);
-
-        $this->areaServed = $areaServed;
-    }
-
-    /**
      * @return string
      */
     public function getMpn()
@@ -521,30 +502,6 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
         $gtin8 = self::checkTypes($gtin8, $types);
 
         $this->gtin8 = $gtin8;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Review
-     */
-    public function getReviews()
-    {
-        return $this->reviews;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Review $reviews
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReviews($reviews)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Review",
-        );
-
-        $reviews = self::checkTypes($reviews, $types);
-
-        $this->reviews = $reviews;
     }
 
     /**
@@ -693,6 +650,30 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\Review
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Review $reviews
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReviews($reviews)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Review",
+        );
+
+        $reviews = self::checkTypes($reviews, $types);
+
+        $this->reviews = $reviews;
+    }
+
+    /**
      * @return string
      */
     public function getPriceCurrency()
@@ -717,7 +698,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing
+     * @return string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory
      */
     public function getCategory()
     {
@@ -725,7 +706,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing $category
+     * @param string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory $category
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -733,8 +714,8 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "string",
-            "\OpenActive\Models\SchemaOrg\PhysicalActivityCategory",
             "\OpenActive\Models\SchemaOrg\Thing",
+            "\OpenActive\Models\SchemaOrg\PhysicalActivityCategory",
         );
 
         $category = self::checkTypes($category, $types);
@@ -816,30 +797,6 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\TypeAndQuantityNode
-     */
-    public function getIncludesObject()
-    {
-        return $this->includesObject;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\TypeAndQuantityNode $includesObject
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIncludesObject($includesObject)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\TypeAndQuantityNode",
-        );
-
-        $includesObject = self::checkTypes($includesObject, $types);
-
-        $this->includesObject = $includesObject;
-    }
-
-    /**
      * @return QuantitativeValue
      */
     public function getEligibleQuantity()
@@ -914,7 +871,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return decimal|string|null
+     * @return string|decimal|null
      */
     public function getPrice()
     {
@@ -922,15 +879,15 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param decimal|string|null $price
+     * @param string|decimal|null $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
         $types = array(
-            "decimal",
             "string",
+            "decimal",
             "null",
         );
 
@@ -1086,6 +1043,30 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\TypeAndQuantityNode
+     */
+    public function getIncludesObject()
+    {
+        return $this->includesObject;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\TypeAndQuantityNode $includesObject
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIncludesObject($includesObject)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\TypeAndQuantityNode",
+        );
+
+        $includesObject = self::checkTypes($includesObject, $types);
+
+        $this->includesObject = $includesObject;
+    }
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\Review
      */
     public function getReview()
@@ -1107,6 +1088,31 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
         $review = self::checkTypes($review, $types);
 
         $this->review = $review;
+    }
+
+    /**
+     * @return Schema.NET.BusinessFunction|null
+     */
+    public function getBusinessFunction()
+    {
+        return $this->businessFunction;
+    }
+
+    /**
+     * @param Schema.NET.BusinessFunction|null $businessFunction
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBusinessFunction($businessFunction)
+    {
+        $types = array(
+            "Schema.NET.BusinessFunction",
+            "null",
+        );
+
+        $businessFunction = self::checkTypes($businessFunction, $types);
+
+        $this->businessFunction = $businessFunction;
     }
 
     /**
@@ -1260,28 +1266,30 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Schema.NET.BusinessFunction|null
+     * @return string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|Place
      */
-    public function getBusinessFunction()
+    public function getAreaServed()
     {
-        return $this->businessFunction;
+        return $this->areaServed;
     }
 
     /**
-     * @param Schema.NET.BusinessFunction|null $businessFunction
+     * @param string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|Place $areaServed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBusinessFunction($businessFunction)
+    public function setAreaServed($areaServed)
     {
         $types = array(
-            "Schema.NET.BusinessFunction",
-            "null",
+            "string",
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+            "\OpenActive\Models\SchemaOrg\GeoShape",
+            "Place",
         );
 
-        $businessFunction = self::checkTypes($businessFunction, $types);
+        $areaServed = self::checkTypes($areaServed, $types);
 
-        $this->businessFunction = $businessFunction;
+        $this->areaServed = $areaServed;
     }
 
     /**

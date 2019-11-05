@@ -5,8 +5,16 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class HowToSection extends \OpenActive\Models\SchemaOrg\CreativeWork
+class HowToSection extends \OpenActive\Models\SchemaOrg\ItemList
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:HowToSection";
+    }
+
     /**
      * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed 'steps'; 'step' is preferred).
      *

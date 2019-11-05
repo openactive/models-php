@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class SomeProducts extends \OpenActive\Models\SchemaOrg\Product
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:SomeProducts";
+    }
+
+    /**
      * The current approximate inventory level for the item or items.
      *
      *

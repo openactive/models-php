@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:EntryPoint";
+    }
+
+    /**
      * An url template (RFC6570) that will be used to construct the target of the execution of the action.
      *
      *

@@ -8,18 +8,18 @@ namespace OpenActive\Models\SchemaOrg;
 class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
-     * The identifier for the <a class="localLink" href="https://schema.org/Course">Course</a> used by the course <a class="localLink" href="https://schema.org/provider">provider</a> (e.g. CS101 or 6.001).
-     *
-     *
-     * @var string
+     * @return string[]|null
      */
-    protected $courseCode;
+    static public function getType()
+    {
+        return "schema:Course";
+    }
 
     /**
      * Requirements for taking the Course. May be completion of another <a class="localLink" href="https://schema.org/Course">Course</a> or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using <a class="localLink" href="https://schema.org/AlignmentObject">AlignmentObject</a>.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\AlignmentObject|Course
+     * @var \OpenActive\Models\SchemaOrg\AlignmentObject|string|Course
      */
     protected $coursePrerequisites;
 
@@ -40,6 +40,14 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $hasCourseInstance;
 
     /**
+     * The identifier for the <a class="localLink" href="https://schema.org/Course">Course</a> used by the course <a class="localLink" href="https://schema.org/provider">provider</a> (e.g. CS101 or 6.001).
+     *
+     *
+     * @var string
+     */
+    protected $courseCode;
+
+    /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * An associated logo for a course.
      *
@@ -58,31 +66,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $video;
 
     /**
-     * @return string
-     */
-    public function getCourseCode()
-    {
-        return $this->courseCode;
-    }
-
-    /**
-     * @param string $courseCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCourseCode($courseCode)
-    {
-        $types = array(
-            "string",
-        );
-
-        $courseCode = self::checkTypes($courseCode, $types);
-
-        $this->courseCode = $courseCode;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\AlignmentObject|Course
+     * @return \OpenActive\Models\SchemaOrg\AlignmentObject|string|Course
      */
     public function getCoursePrerequisites()
     {
@@ -90,15 +74,15 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\AlignmentObject|Course $coursePrerequisites
+     * @param \OpenActive\Models\SchemaOrg\AlignmentObject|string|Course $coursePrerequisites
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCoursePrerequisites($coursePrerequisites)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\AlignmentObject",
+            "string",
             "Course",
         );
 
@@ -154,6 +138,30 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
         $hasCourseInstance = self::checkTypes($hasCourseInstance, $types);
 
         $this->hasCourseInstance = $hasCourseInstance;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCourseCode()
+    {
+        return $this->courseCode;
+    }
+
+    /**
+     * @param string $courseCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCourseCode($courseCode)
+    {
+        $types = array(
+            "string",
+        );
+
+        $courseCode = self::checkTypes($courseCode, $types);
+
+        $this->courseCode = $courseCode;
     }
 
     /**

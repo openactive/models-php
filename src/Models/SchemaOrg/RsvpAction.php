@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:RsvpAction";
+    }
+
+    /**
      * If responding yes, the number of guests who will attend in addition to the invitee.
      *
      *

@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class InformAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:InformAction";
+    }
+
+    /**
      * Upcoming or past event associated with this place, organization, or action.
      *
      *

@@ -8,10 +8,18 @@ namespace OpenActive\Models\SchemaOrg;
 class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:DigitalDocumentPermission";
+    }
+
+    /**
      * The person, organization, contact point, or audience that has been granted this permission.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint|Organization|Person
+     * @var Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|Organization
      */
     protected $grantee;
 
@@ -24,7 +32,7 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
     protected $permissionType;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint|Organization|Person
+     * @return Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|Organization
      */
     public function getGrantee()
     {
@@ -32,17 +40,17 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint|Organization|Person $grantee
+     * @param Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|Organization $grantee
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGrantee($grantee)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Audience",
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
-            "Organization",
             "Person",
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
+            "\OpenActive\Models\SchemaOrg\Audience",
+            "Organization",
         );
 
         $grantee = self::checkTypes($grantee, $types);

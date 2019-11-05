@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class SportsTeam extends \OpenActive\Models\SchemaOrg\SportsOrganization
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:SportsTeam";
+    }
+
+    /**
      * A person that acts as performing member of a sports team; a player as opposed to a coach.
      *
      *

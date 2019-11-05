@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class Barcode extends \OpenActive\Models\OA\ImageObject
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "Barcode";
+    }
+
+    /**
      * The barcode number
      *
      * ```json

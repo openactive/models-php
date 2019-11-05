@@ -8,20 +8,20 @@ namespace OpenActive\Models\SchemaOrg;
 class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:MusicComposition";
+    }
+
+    /**
      * The type of composition (e.g. overture, sonata, symphony, etc.).
      *
      *
      * @var string
      */
     protected $musicCompositionForm;
-
-    /**
-     * The words in the song.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    protected $lyrics;
 
     /**
      * Smaller compositions included in this work (e.g. a movement in a symphony).
@@ -62,6 +62,14 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var \OpenActive\Models\SchemaOrg\MusicComposition
      */
     protected $musicArrangement;
+
+    /**
+     * The words in the song.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    protected $lyrics;
 
     /**
      * The International Standard Musical Work Code for the composition.
@@ -109,30 +117,6 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
         $musicCompositionForm = self::checkTypes($musicCompositionForm, $types);
 
         $this->musicCompositionForm = $musicCompositionForm;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    public function getLyrics()
-    {
-        return $this->lyrics;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork $lyrics
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLyrics($lyrics)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-        );
-
-        $lyrics = self::checkTypes($lyrics, $types);
-
-        $this->lyrics = $lyrics;
     }
 
     /**
@@ -253,6 +237,30 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
         $musicArrangement = self::checkTypes($musicArrangement, $types);
 
         $this->musicArrangement = $musicArrangement;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    public function getLyrics()
+    {
+        return $this->lyrics;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork $lyrics
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLyrics($lyrics)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+        );
+
+        $lyrics = self::checkTypes($lyrics, $types);
+
+        $this->lyrics = $lyrics;
     }
 
     /**

@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Airport extends \OpenActive\Models\SchemaOrg\CivicStructure
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Airport";
+    }
+
+    /**
      * IATA identifier for an airline or airport.
      *
      *

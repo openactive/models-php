@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class AskAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:AskAction";
+    }
+
+    /**
      * A sub property of object. A question.
      *
      *

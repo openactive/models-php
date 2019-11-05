@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class BabyChanging extends \OpenActive\Models\OA\LocationFeatureSpecification
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "BabyChanging";
+    }
+
+    /**
      * A string, suitable for presentation in user interfaces.
      *
      * ```json

@@ -8,4 +8,12 @@ namespace OpenActive\Models\SchemaOrg;
  */
 class InteractAction extends \OpenActive\Models\SchemaOrg\Action
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:InteractAction";
+    }
+
 }

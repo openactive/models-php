@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "TaxChargeSpecification";
+    }
+
+    /**
      * A local non-URI identifier for the resource
      *
      * ```json

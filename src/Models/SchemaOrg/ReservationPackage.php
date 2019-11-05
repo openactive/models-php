@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ReservationPackage extends \OpenActive\Models\SchemaOrg\Reservation
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:ReservationPackage";
+    }
+
+    /**
      * The individual reservations included in the package. Typically a repeated property.
      *
      *

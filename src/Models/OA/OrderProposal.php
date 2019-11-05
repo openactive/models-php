@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class OrderProposal extends \OpenActive\Models\OA\OrderQuote
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "OrderProposal";
+    }
+
+    /**
      *
      *
      * @var string

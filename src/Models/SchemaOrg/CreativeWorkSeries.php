@@ -5,8 +5,16 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
+class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\Series
 {
+    /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:CreativeWorkSeries";
+    }
+
     /**
      * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *

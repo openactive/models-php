@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:AggregateRating";
+    }
+
+    /**
      * The item that is being reviewed/rated.
      *
      *

@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class FoodEstablishment extends \OpenActive\Models\SchemaOrg\LocalBusiness
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:FoodEstablishment";
+    }
+
+    /**
      * The cuisine of the restaurant.
      *
      *

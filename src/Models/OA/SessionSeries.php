@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class SessionSeries extends \OpenActive\Models\OA\Event
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "SessionSeries";
+    }
+
+    /**
      * The number of places that are still available for the Event.
      *
      * ```json

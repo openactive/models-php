@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class Action extends \OpenActive\Models\SchemaOrg\Action
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "Action";
+    }
+
+    /**
      * The name of the action
      *
      * ```json

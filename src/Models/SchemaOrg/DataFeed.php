@@ -9,6 +9,14 @@ namespace OpenActive\Models\SchemaOrg;
 class DataFeed extends \OpenActive\Models\SchemaOrg\Dataset
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:DataFeed";
+    }
+
+    /**
      * An item within in a data feed. Data feeds may have many elements.
      *
      *

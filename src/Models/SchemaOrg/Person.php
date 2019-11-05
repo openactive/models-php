@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Person extends \OpenActive\Models\SchemaOrg\Thing
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:Person";
+    }
+
+    /**
      * An Organization (or ProgramMembership) to which this Person or Organization belongs.
      *
      *
@@ -19,7 +27,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
      * Physical address of the item.
      *
      *
-     * @var PostalAddress|string
+     * @var string|PostalAddress
      */
     protected $address;
 
@@ -59,7 +67,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
      * The height of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
+     * @var QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     protected $height;
 
@@ -75,17 +83,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
      * The total financial value of the person as calculated by subtracting assets from liabilities.
      *
      *
-     * @var PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|PriceSpecification
      */
     protected $netWorth;
-
-    /**
-     * The fax number.
-     *
-     *
-     * @var string
-     */
-    protected $faxNumber;
 
     /**
      * The Person's occupation. For past professions, use Role for expressing dates.
@@ -126,6 +126,14 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
      * @var Place
      */
     protected $birthPlace;
+
+    /**
+     * A parents of the person.
+     *
+     *
+     * @var Person
+     */
+    protected $parents;
 
     /**
      * An organization that the person is an alumni of.
@@ -312,14 +320,6 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $children;
 
     /**
-     * A parents of the person.
-     *
-     *
-     * @var Person
-     */
-    protected $parents;
-
-    /**
      * The North American Industry Classification System (NAICS) code for a particular organization or business person.
      *
      *
@@ -365,7 +365,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
      * While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a <a class="localLink" href="https://schema.org/funder">funder</a>) can be expressed using schema.org terminology.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     protected $publishingPrinciples;
 
@@ -389,7 +389,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
      * The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
      *
      *
-     * @var Organization|Brand
+     * @var Brand|Organization
      */
     protected $brand;
 
@@ -416,6 +416,14 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
      * @var \OpenActive\Models\SchemaOrg\Country
      */
     protected $nationality;
+
+    /**
+     * The fax number.
+     *
+     *
+     * @var string
+     */
+    protected $faxNumber;
 
     /**
      * The most generic familial relation.
@@ -475,7 +483,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return PostalAddress|string
+     * @return string|PostalAddress
      */
     public function getAddress()
     {
@@ -483,15 +491,15 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param PostalAddress|string $address
+     * @param string|PostalAddress $address
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddress($address)
     {
         $types = array(
-            "PostalAddress",
             "string",
+            "PostalAddress",
         );
 
         $address = self::checkTypes($address, $types);
@@ -598,7 +606,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
+     * @return QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     public function getHeight()
     {
@@ -606,15 +614,15 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $height
+     * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $height
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHeight($height)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Distance",
             "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\Distance",
         );
 
         $height = self::checkTypes($height, $types);
@@ -648,7 +656,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|PriceSpecification
      */
     public function getNetWorth()
     {
@@ -656,44 +664,20 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount $netWorth
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|PriceSpecification $netWorth
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNetWorth($netWorth)
     {
         $types = array(
-            "PriceSpecification",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "PriceSpecification",
         );
 
         $netWorth = self::checkTypes($netWorth, $types);
 
         $this->netWorth = $netWorth;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFaxNumber()
-    {
-        return $this->faxNumber;
-    }
-
-    /**
-     * @param string $faxNumber
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFaxNumber($faxNumber)
-    {
-        $types = array(
-            "string",
-        );
-
-        $faxNumber = self::checkTypes($faxNumber, $types);
-
-        $this->faxNumber = $faxNumber;
     }
 
     /**
@@ -814,6 +798,30 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
         $birthPlace = self::checkTypes($birthPlace, $types);
 
         $this->birthPlace = $birthPlace;
+    }
+
+    /**
+     * @return Person
+     */
+    public function getParents()
+    {
+        return $this->parents;
+    }
+
+    /**
+     * @param Person $parents
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setParents($parents)
+    {
+        $types = array(
+            "Person",
+        );
+
+        $parents = self::checkTypes($parents, $types);
+
+        $this->parents = $parents;
     }
 
     /**
@@ -1373,30 +1381,6 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Person
-     */
-    public function getParents()
-    {
-        return $this->parents;
-    }
-
-    /**
-     * @param Person $parents
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setParents($parents)
-    {
-        $types = array(
-            "Person",
-        );
-
-        $parents = self::checkTypes($parents, $types);
-
-        $this->parents = $parents;
-    }
-
-    /**
      * @return string
      */
     public function getNaics()
@@ -1518,7 +1502,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     public function getPublishingPrinciples()
     {
@@ -1526,15 +1510,15 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $publishingPrinciples
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $publishingPrinciples
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPublishingPrinciples($publishingPrinciples)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
         );
 
         $publishingPrinciples = self::checkTypes($publishingPrinciples, $types);
@@ -1592,7 +1576,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Organization|Brand
+     * @return Brand|Organization
      */
     public function getBrand()
     {
@@ -1600,15 +1584,15 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Organization|Brand $brand
+     * @param Brand|Organization $brand
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBrand($brand)
     {
         $types = array(
-            "Organization",
             "Brand",
+            "Organization",
         );
 
         $brand = self::checkTypes($brand, $types);
@@ -1686,6 +1670,30 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
         $nationality = self::checkTypes($nationality, $types);
 
         $this->nationality = $nationality;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFaxNumber()
+    {
+        return $this->faxNumber;
+    }
+
+    /**
+     * @param string $faxNumber
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFaxNumber($faxNumber)
+    {
+        $types = array(
+            "string",
+        );
+
+        $faxNumber = self::checkTypes($faxNumber, $types);
+
+        $this->faxNumber = $faxNumber;
     }
 
     /**

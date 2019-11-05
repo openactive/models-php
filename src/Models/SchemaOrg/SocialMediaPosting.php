@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class SocialMediaPosting extends \OpenActive\Models\SchemaOrg\Article
 {
     /**
+     * @return string[]|null
+     */
+    static public function getType()
+    {
+        return "schema:SocialMediaPosting";
+    }
+
+    /**
      * A CreativeWork such as an image, video, or audio clip shared as part of this posting.
      *
      *
