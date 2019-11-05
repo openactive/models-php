@@ -65,20 +65,20 @@ $sessionSeries = new SessionSeries([
         ])
     ]),
     "activity" => new Concept([
-        "id": "https://openactive.io/activity-list#5e78bcbe-36db-425a-9064-bf96d09cc351",
-        "prefLabel": "Bodypump™",
-        "inScheme": "https://openactive.io/activity-list"
+        "id" => "https://openactive.io/activity-list#5e78bcbe-36db-425a-9064-bf96d09cc351",
+        "prefLabel" => "Bodypump™",
+        "inScheme" => "https://openactive.io/activity-list"
     ]),
     "organizer" => new Organization([
         "name" => "Central Speedball Association",
         "url" => "http://www.speedball-world.com"
     ]),
     "offers" => [new Offer([
-        "identifier": "OX-AD",
-        "name": "Adult",
-        "price": 3.3,
-        "priceCurrency": "GBP",
-        "url": "https://profile.everyoneactive.com/booking?Site=0140&Activities=1402CBP20150217&Culture=en-GB"
+        "identifier" => "OX-AD",
+        "name" => "Adult",
+        "price" => 3.3,
+        "priceCurrency" => "GBP",
+        "url" => "https://profile.everyoneactive.com/booking?Site=0140&Activities=1402CBP20150217&Culture=en-GB"
     ])],
 ]);
 ```
