@@ -106,7 +106,26 @@ To instantiate a new one, see the [models](#models) section, making sure you are
 
 ### Enums
 
-**Coming soon**
+Each enum is represented by a class which contains a constant for each available value.
+
+e.g. Adding days of the week to a Schedule:
+
+```php
+use OpenActive\Models\OA\Schedule;
+use OpenActive\Enums\DayOfWeek;
+
+new Schedule([
+    "scheduledEventType" => "Event",
+    "startTime" => "12:00:00",
+    "endTime" => "14:00:00"
+    "byDay" => [
+        DayOfWeek::Monday,
+        DayOfWeek::Wednesday,
+        DayOfWeek::Friday
+    ],
+    ...
+]);
+```
 
 ### Serialization
 
