@@ -27,12 +27,12 @@ use PHPUnit\Framework\TestCase;
 class RpdeTest extends TestCase
 {
     /**
-     * Test the serialized RPDE body returns the expected JSON-LD.
+     * Test the serialized RPDE body created with createFromModifiedId returns the expected JSON-LD.
      *
-     * @dataProvider jsonProvider
+     * @dataProvider jsonAfterModifiedAfterIdProvider
      * @return void
      */
-    public function testToStringEventReturnsExpectedJsonLd($json)
+    public function testCreateFromModifiedIdCreatesCorrectlySerializableRpdeFeedPage($json)
     {
         $feedItems = $this->getFeedItems();
 
@@ -40,6 +40,28 @@ class RpdeTest extends TestCase
             "https://www.example.com/feed",
             1,
             "1",
+            $feedItems
+        );
+
+        $this->assertEquals(
+            json_decode($json, true),
+            json_decode(RpdeBody::serialize($feed), true)
+        );
+    }
+
+    /**
+     * Test the serialized RPDE body created with createFromNextChangeNumber returns the expected JSON-LD.
+     *
+     * @dataProvider jsonChangeNumberProvider
+     * @return void
+     */
+    public function testCreateFromNextChangeNumberCreatesCorrectlySerializableRpdeFeedPage($json)
+    {
+        $feedItems = $this->getFeedItems();
+
+        $feed = RpdeBody::createFromNextChangeNumber(
+            "https://www.example.com/feed",
+            1,
             $feedItems
         );
 
@@ -548,15 +570,46 @@ class RpdeTest extends TestCase
         );
     }
 
-    public function jsonProvider()
+    public function jsonAfterModifiedAfterIdProvider()
     {
         $data = array();
 
         $classname = "\\OpenActive\\Models\\OA\\SessionSeries";
 
+        $items = json_decode(file_get_contents(__DIR__ . "/rpde-session_series-items.json"));
+
+        $page = [
+            "next" => "https://www.example.com/feed?afterTimestamp=5&afterId=1",
+            "items" => $items,
+            "license" => "https://creativecommons.org/licenses/by/4.0/"
+        ];
+
         // Event
         $data[0] = array(
-            file_get_contents(__DIR__ . "/rpde-session_series.json"),
+            json_encode($page),
+            $classname
+        );
+
+        return $data;
+    }
+
+    public function jsonChangeNumberProvider()
+    {
+        $data = array();
+
+        $classname = "\\OpenActive\\Models\\OA\\SessionSeries";
+
+        $items = json_decode(file_get_contents(__DIR__ . "/rpde-session_series-items.json"));
+
+        $page = [
+            "next" => "https://www.example.com/feed?afterChangeNumber=5",
+            "items" => $items,
+            "license" => "https://creativecommons.org/licenses/by/4.0/"
+        ];
+
+        // Event
+        $data[0] = array(
+            json_encode($page),
             $classname
         );
 

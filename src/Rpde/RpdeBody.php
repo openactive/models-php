@@ -193,6 +193,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
         // We don't implement any further check on $items after this
         $rpdeBody = new self([
             "items" => $items,
+            "license" => static::$default_license,
         ]);
 
         // If there is at least one item, run validation on items array
