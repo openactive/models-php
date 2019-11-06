@@ -92,7 +92,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The time admission will commence.
      *
      *
-     * @var DateTime|null
+     * @var DateTime|string|null
      */
     protected $doorTime;
 
@@ -625,7 +625,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTime|string|null
      */
     public function getDoorTime()
     {
@@ -633,7 +633,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param DateTime|null $doorTime
+     * @param DateTime|string|null $doorTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -641,6 +641,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     {
         $types = array(
             "DateTime",
+            "Time",
             "null",
         );
 

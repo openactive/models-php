@@ -35,7 +35,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
      * The opening hour of the place or service on the given day(s) of the week.
      *
      *
-     * @var DateTime|null
+     * @var string|null
      */
     protected $opens;
 
@@ -43,7 +43,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
      * The closing hour of the place or service on the given day(s) of the week.
      *
      *
-     * @var DateTime|null
+     * @var string|null
      */
     protected $closes;
 
@@ -106,7 +106,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
     public function getOpens()
     {
@@ -114,14 +114,14 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     }
 
     /**
-     * @param DateTime|null $opens
+     * @param string|null $opens
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOpens($opens)
     {
         $types = array(
-            "DateTime",
+            "Time",
             "null",
         );
 
@@ -131,7 +131,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
     public function getCloses()
     {
@@ -139,14 +139,14 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     }
 
     /**
-     * @param DateTime|null $closes
+     * @param string|null $closes
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCloses($closes)
     {
         $types = array(
-            "DateTime",
+            "Time",
             "null",
         );
 

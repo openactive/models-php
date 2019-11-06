@@ -27,7 +27,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
      * The beginning of the availability of the product or service included in the offer.
      *
      *
-     * @var DateTime|null
+     * @var DateTime|string|null
      */
     protected $availabilityStarts;
 
@@ -179,7 +179,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
      * The end of the availability of the product or service included in the offer.
      *
      *
-     * @var DateTime|null
+     * @var DateTime|string|null
      */
     protected $availabilityEnds;
 
@@ -290,7 +290,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTime|string|null
      */
     public function getAvailabilityStarts()
     {
@@ -298,7 +298,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateTime|null $availabilityStarts
+     * @param DateTime|string|null $availabilityStarts
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -306,6 +306,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "DateTime",
+            "Time",
             "null",
         );
 
@@ -752,7 +753,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTime|string|null
      */
     public function getAvailabilityEnds()
     {
@@ -760,7 +761,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateTime|null $availabilityEnds
+     * @param DateTime|string|null $availabilityEnds
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -768,6 +769,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "DateTime",
+            "Time",
             "null",
         );
 
