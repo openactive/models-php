@@ -588,7 +588,7 @@ class RpdeTest extends TestCase
     public function jsonChangeNumberProvider()
     {
         $data = $this->jsonProvider();
-        var_dump($data[0][0]);
+
         $data[0][0] = str_replace("https://www.example.com/feed?afterTimestamp=5&afterId=1", "https://www.example.com/feed?afterChangeNumber=5", $data[0][0]);
 
         return $data;
