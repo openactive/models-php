@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:WebPage";
+    }
+
+    /**
      * Date on which the content on this web page was last reviewed for accuracy and/or completeness.
      *
      *
@@ -30,7 +38,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
      * we define a supporting type, <a class="localLink" href="https://schema.org/SpeakableSpecification">SpeakableSpecification</a>  which is defined to be a possible value of the <em>speakable</em> property.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SpeakableSpecification|string
+     * @var string|\OpenActive\Models\SchemaOrg\SpeakableSpecification
      */
     protected $speakable;
 
@@ -38,7 +46,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A set of links that can help a user understand and navigate a website hierarchy.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\BreadcrumbList|string
+     * @var string|\OpenActive\Models\SchemaOrg\BreadcrumbList
      */
     protected $breadcrumb;
 
@@ -70,7 +78,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
      * People or organizations that have reviewed the content on this web page for accuracy and/or completeness.
      *
      *
-     * @var Organization|Person
+     * @var Person|Organization
      */
     protected $reviewedBy;
 
@@ -124,7 +132,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SpeakableSpecification|string
+     * @return string|\OpenActive\Models\SchemaOrg\SpeakableSpecification
      */
     public function getSpeakable()
     {
@@ -132,15 +140,15 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SpeakableSpecification|string $speakable
+     * @param string|\OpenActive\Models\SchemaOrg\SpeakableSpecification $speakable
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSpeakable($speakable)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\SpeakableSpecification",
             "string",
+            "\OpenActive\Models\SchemaOrg\SpeakableSpecification",
         );
 
         $speakable = self::checkTypes($speakable, $types);
@@ -149,7 +157,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\BreadcrumbList|string
+     * @return string|\OpenActive\Models\SchemaOrg\BreadcrumbList
      */
     public function getBreadcrumb()
     {
@@ -157,15 +165,15 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\BreadcrumbList|string $breadcrumb
+     * @param string|\OpenActive\Models\SchemaOrg\BreadcrumbList $breadcrumb
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBreadcrumb($breadcrumb)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\BreadcrumbList",
             "string",
+            "\OpenActive\Models\SchemaOrg\BreadcrumbList",
         );
 
         $breadcrumb = self::checkTypes($breadcrumb, $types);
@@ -246,7 +254,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Organization|Person
+     * @return Person|Organization
      */
     public function getReviewedBy()
     {
@@ -254,15 +262,15 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Organization|Person $reviewedBy
+     * @param Person|Organization $reviewedBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReviewedBy($reviewedBy)
     {
         $types = array(
-            "Organization",
             "Person",
+            "Organization",
         );
 
         $reviewedBy = self::checkTypes($reviewedBy, $types);

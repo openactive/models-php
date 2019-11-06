@@ -8,10 +8,18 @@ namespace OpenActive\Models\SchemaOrg;
 class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:BroadcastService";
+    }
+
+    /**
      * The frequency used for over-the-air broadcasts. Numeric values or simple ranges e.g. 87-99. In addition a shortcut idiom is supported for frequences of AM and FM radio channels, e.g. "87 FM".
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string
+     * @var string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification
      */
     protected $broadcastFrequency;
 
@@ -24,20 +32,20 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     protected $broadcastTimezone;
 
     /**
-     * The media network(s) whose content is broadcast on this station.
-     *
-     *
-     * @var Organization
-     */
-    protected $broadcastAffiliateOf;
-
-    /**
      * The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
      *
      *
      * @var string
      */
     protected $videoFormat;
+
+    /**
+     * The media network(s) whose content is broadcast on this station.
+     *
+     *
+     * @var Organization
+     */
+    protected $broadcastAffiliateOf;
 
     /**
      * A broadcast service to which the broadcast service may belong to such as regional variations of a national channel.
@@ -80,7 +88,7 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     protected $broadcaster;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string
+     * @return string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification
      */
     public function getBroadcastFrequency()
     {
@@ -88,15 +96,15 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string $broadcastFrequency
+     * @param string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification $broadcastFrequency
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastFrequency($broadcastFrequency)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification",
             "string",
+            "\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification",
         );
 
         $broadcastFrequency = self::checkTypes($broadcastFrequency, $types);
@@ -129,30 +137,6 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @return Organization
-     */
-    public function getBroadcastAffiliateOf()
-    {
-        return $this->broadcastAffiliateOf;
-    }
-
-    /**
-     * @param Organization $broadcastAffiliateOf
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBroadcastAffiliateOf($broadcastAffiliateOf)
-    {
-        $types = array(
-            "Organization",
-        );
-
-        $broadcastAffiliateOf = self::checkTypes($broadcastAffiliateOf, $types);
-
-        $this->broadcastAffiliateOf = $broadcastAffiliateOf;
-    }
-
-    /**
      * @return string
      */
     public function getVideoFormat()
@@ -174,6 +158,30 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
         $videoFormat = self::checkTypes($videoFormat, $types);
 
         $this->videoFormat = $videoFormat;
+    }
+
+    /**
+     * @return Organization
+     */
+    public function getBroadcastAffiliateOf()
+    {
+        return $this->broadcastAffiliateOf;
+    }
+
+    /**
+     * @param Organization $broadcastAffiliateOf
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBroadcastAffiliateOf($broadcastAffiliateOf)
+    {
+        $types = array(
+            "Organization",
+        );
+
+        $broadcastAffiliateOf = self::checkTypes($broadcastAffiliateOf, $types);
+
+        $this->broadcastAffiliateOf = $broadcastAffiliateOf;
     }
 
     /**

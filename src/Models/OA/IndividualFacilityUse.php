@@ -8,6 +8,14 @@ namespace OpenActive\Models\OA;
 class IndividualFacilityUse extends \OpenActive\Models\OA\FacilityUse
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "IndividualFacilityUse";
+    }
+
+    /**
      * Inverse of the oa:individualFacilityUse property. Relates an oa:IndividualFacilityUse (e.g. an opportunity to play tennis on a specific court) to a oa:FacilityUse (e.g. an opportunity to play tennis at a specific location).
      *
      *

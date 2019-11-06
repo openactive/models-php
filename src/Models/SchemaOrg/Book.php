@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Book";
+    }
+
+    /**
      * The ISBN of the book.
      *
      *

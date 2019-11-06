@@ -9,6 +9,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ConsumeAction extends \OpenActive\Models\SchemaOrg\Action
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:ConsumeAction";
+    }
+
+    /**
      * A set of requirements that a must be fulfilled in order to perform an Action. If more than one value is specied, fulfilling one set of requirements will allow the Action to be performed.
      *
      *

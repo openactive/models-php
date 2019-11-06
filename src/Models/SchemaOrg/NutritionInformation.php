@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:NutritionInformation";
+    }
+
+    /**
      * The number of grams of saturated fat.
      *
      *

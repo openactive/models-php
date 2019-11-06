@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class CommentAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:CommentAction";
+    }
+
+    /**
      * A sub property of result. The Comment created or sent as a result of this action.
      *
      *

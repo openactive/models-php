@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Thing extends \OpenActive\BaseModel
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Thing";
+    }
+
+    /**
      * The identifier property represents any kind of identifier for any kind of <a class="localLink" href="https://schema.org/Thing">Thing</a>, such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See <a href="/docs/datamodel.html#identifierBg">background notes</a> for more details.
      *
      *
@@ -40,12 +48,12 @@ class Thing extends \OpenActive\BaseModel
     protected $sameAs;
 
     /**
-     * URL of the item.
+     * An alias for the item.
      *
      *
      * @var string
      */
-    protected $url;
+    protected $alternateName;
 
     /**
      * An image of the item. This can be a <a class="localLink" href="https://schema.org/URL">URL</a> or a fully described <a class="localLink" href="https://schema.org/ImageObject">ImageObject</a>.
@@ -72,12 +80,12 @@ class Thing extends \OpenActive\BaseModel
     protected $subjectOf;
 
     /**
-     * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See <a href="/docs/datamodel.html#mainEntityBackground">background notes</a> for details.
+     * URL of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
+     * @var string
      */
-    protected $mainEntityOfPage;
+    protected $url;
 
     /**
      * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
@@ -88,20 +96,20 @@ class Thing extends \OpenActive\BaseModel
     protected $potentialAction;
 
     /**
+     * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See <a href="/docs/datamodel.html#mainEntityBackground">background notes</a> for details.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    protected $mainEntityOfPage;
+
+    /**
      * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
      *
      *
      * @var string
      */
     protected $disambiguatingDescription;
-
-    /**
-     * An alias for the item.
-     *
-     *
-     * @var string
-     */
-    protected $alternateName;
 
     /**
      * @return PropertyValue|string
@@ -203,25 +211,25 @@ class Thing extends \OpenActive\BaseModel
     /**
      * @return string
      */
-    public function getUrl()
+    public function getAlternateName()
     {
-        return $this->url;
+        return $this->alternateName;
     }
 
     /**
-     * @param string $url
+     * @param string $alternateName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setUrl($url)
+    public function setAlternateName($alternateName)
     {
         $types = array(
             "string",
         );
 
-        $url = self::checkTypes($url, $types);
+        $alternateName = self::checkTypes($alternateName, $types);
 
-        $this->url = $url;
+        $this->alternateName = $alternateName;
     }
 
     /**
@@ -299,28 +307,27 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     * @return string
      */
-    public function getMainEntityOfPage()
+    public function getUrl()
     {
-        return $this->mainEntityOfPage;
+        return $this->url;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $mainEntityOfPage
+     * @param string $url
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMainEntityOfPage($mainEntityOfPage)
+    public function setUrl($url)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
             "string",
         );
 
-        $mainEntityOfPage = self::checkTypes($mainEntityOfPage, $types);
+        $url = self::checkTypes($url, $types);
 
-        $this->mainEntityOfPage = $mainEntityOfPage;
+        $this->url = $url;
     }
 
     /**
@@ -348,6 +355,31 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
+     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    public function getMainEntityOfPage()
+    {
+        return $this->mainEntityOfPage;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $mainEntityOfPage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMainEntityOfPage($mainEntityOfPage)
+    {
+        $types = array(
+            "string",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+        );
+
+        $mainEntityOfPage = self::checkTypes($mainEntityOfPage, $types);
+
+        $this->mainEntityOfPage = $mainEntityOfPage;
+    }
+
+    /**
      * @return string
      */
     public function getDisambiguatingDescription()
@@ -369,30 +401,6 @@ class Thing extends \OpenActive\BaseModel
         $disambiguatingDescription = self::checkTypes($disambiguatingDescription, $types);
 
         $this->disambiguatingDescription = $disambiguatingDescription;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAlternateName()
-    {
-        return $this->alternateName;
-    }
-
-    /**
-     * @param string $alternateName
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAlternateName($alternateName)
-    {
-        $types = array(
-            "string",
-        );
-
-        $alternateName = self::checkTypes($alternateName, $types);
-
-        $this->alternateName = $alternateName;
     }
 
 }

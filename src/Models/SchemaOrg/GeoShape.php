@@ -8,20 +8,20 @@ namespace OpenActive\Models\SchemaOrg;
 class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:GeoShape";
+    }
+
+    /**
      * Physical address of the item.
      *
      *
-     * @var PostalAddress|string
+     * @var string|PostalAddress
      */
     protected $address;
-
-    /**
-     * A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space.
-     *
-     *
-     * @var string
-     */
-    protected $line;
 
     /**
      * A circle is the circular region of a specified radius centered at a specified latitude and longitude. A circle is expressed as a pair followed by a radius in meters.
@@ -43,7 +43,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The country. For example, USA. You can also provide the two-letter <a href="http://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166-1 alpha-2 country code</a>.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Country
+     * @var \OpenActive\Models\SchemaOrg\Country|string
      */
     protected $addressCountry;
 
@@ -59,7 +59,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The elevation of a location (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>). Values may be of the form 'NUMBER UNIT<em>OF</em>MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters.
      *
      *
-     * @var decimal|string|null
+     * @var string|decimal|null
      */
     protected $elevation;
 
@@ -72,7 +72,15 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $polygon;
 
     /**
-     * @return PostalAddress|string
+     * A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space.
+     *
+     *
+     * @var string
+     */
+    protected $line;
+
+    /**
+     * @return string|PostalAddress
      */
     public function getAddress()
     {
@@ -80,44 +88,20 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param PostalAddress|string $address
+     * @param string|PostalAddress $address
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddress($address)
     {
         $types = array(
-            "PostalAddress",
             "string",
+            "PostalAddress",
         );
 
         $address = self::checkTypes($address, $types);
 
         $this->address = $address;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLine()
-    {
-        return $this->line;
-    }
-
-    /**
-     * @param string $line
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLine($line)
-    {
-        $types = array(
-            "string",
-        );
-
-        $line = self::checkTypes($line, $types);
-
-        $this->line = $line;
     }
 
     /**
@@ -169,7 +153,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Country
+     * @return \OpenActive\Models\SchemaOrg\Country|string
      */
     public function getAddressCountry()
     {
@@ -177,15 +161,15 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Country $addressCountry
+     * @param \OpenActive\Models\SchemaOrg\Country|string $addressCountry
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddressCountry($addressCountry)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\Country",
+            "string",
         );
 
         $addressCountry = self::checkTypes($addressCountry, $types);
@@ -218,7 +202,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return decimal|string|null
+     * @return string|decimal|null
      */
     public function getElevation()
     {
@@ -226,15 +210,15 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param decimal|string|null $elevation
+     * @param string|decimal|null $elevation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setElevation($elevation)
     {
         $types = array(
-            "decimal",
             "string",
+            "decimal",
             "null",
         );
 
@@ -265,6 +249,30 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
         $polygon = self::checkTypes($polygon, $types);
 
         $this->polygon = $polygon;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLine()
+    {
+        return $this->line;
+    }
+
+    /**
+     * @param string $line
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLine($line)
+    {
+        $types = array(
+            "string",
+        );
+
+        $line = self::checkTypes($line, $types);
+
+        $this->line = $line;
     }
 
 }

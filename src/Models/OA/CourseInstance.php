@@ -8,4 +8,12 @@ namespace OpenActive\Models\OA;
  */
 class CourseInstance extends \OpenActive\Models\OA\Event
 {
+    /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "CourseInstance";
+    }
+
 }

@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Blog extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Blog";
+    }
+
+    /**
      * The postings that are part of this blog.
      *
      *

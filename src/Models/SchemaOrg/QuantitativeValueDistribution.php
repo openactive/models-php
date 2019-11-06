@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\StructuredValue
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:QuantitativeValueDistribution";
+    }
+
+    /**
      * The 25th percentile value.
      *
      *

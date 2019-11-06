@@ -8,10 +8,18 @@ namespace OpenActive\Models\SchemaOrg;
 class Seat extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Seat";
+    }
+
+    /**
      * The type/class of the seat.
      *
      *
-     * @var Schema.NET.QualitativeValue|string|null
+     * @var string|Schema.NET.QualitativeValue|null
      */
     protected $seatingType;
 
@@ -40,7 +48,7 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
     protected $seatNumber;
 
     /**
-     * @return Schema.NET.QualitativeValue|string|null
+     * @return string|Schema.NET.QualitativeValue|null
      */
     public function getSeatingType()
     {
@@ -48,15 +56,15 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Schema.NET.QualitativeValue|string|null $seatingType
+     * @param string|Schema.NET.QualitativeValue|null $seatingType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeatingType($seatingType)
     {
         $types = array(
-            "Schema.NET.QualitativeValue",
             "string",
+            "Schema.NET.QualitativeValue",
             "null",
         );
 

@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:AlignmentObject";
+    }
+
+    /**
      * The description of a node in an established educational framework.
      *
      *

@@ -9,6 +9,14 @@ namespace OpenActive\Models\SchemaOrg;
 class SearchAction extends \OpenActive\Models\SchemaOrg\Action
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:SearchAction";
+    }
+
+    /**
      * A sub property of instrument. The query used on this action.
      *
      *

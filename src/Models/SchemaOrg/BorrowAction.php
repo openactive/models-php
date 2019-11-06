@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class BorrowAction extends \OpenActive\Models\SchemaOrg\TransferAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:BorrowAction";
+    }
+
+    /**
      * A sub property of participant. The person that lends the object being borrowed.
      *
      *

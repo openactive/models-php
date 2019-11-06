@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:ExerciseAction";
+    }
+
+    /**
      * A sub property of location. The course where this action was taken.
      *
      *

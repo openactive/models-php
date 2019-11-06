@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "OrderItem";
+    }
+
+    /**
      * The offer from the associated orderedItem that has been selected by the Customer. The price of this includes or excludes tax depending on the taxMode of the Order.
      *
      *

@@ -9,6 +9,14 @@ namespace OpenActive\Models\SchemaOrg;
 class SportsOrganization extends \OpenActive\Models\SchemaOrg\Organization
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:SportsOrganization";
+    }
+
+    /**
      * A type of sport (e.g. Baseball).
      *
      *

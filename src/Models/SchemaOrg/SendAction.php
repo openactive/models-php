@@ -8,10 +8,18 @@ namespace OpenActive\Models\SchemaOrg;
 class SendAction extends \OpenActive\Models\SchemaOrg\TransferAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:SendAction";
+    }
+
+    /**
      * A sub property of participant. The participant who is at the receiving end of the action.
      *
      *
-     * @var Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|Organization
+     * @var Person|\OpenActive\Models\SchemaOrg\ContactPoint|Organization|\OpenActive\Models\SchemaOrg\Audience
      */
     protected $recipient;
 
@@ -24,7 +32,7 @@ class SendAction extends \OpenActive\Models\SchemaOrg\TransferAction
     protected $deliveryMethod;
 
     /**
-     * @return Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|Organization
+     * @return Person|\OpenActive\Models\SchemaOrg\ContactPoint|Organization|\OpenActive\Models\SchemaOrg\Audience
      */
     public function getRecipient()
     {
@@ -32,7 +40,7 @@ class SendAction extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @param Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|Organization $recipient
+     * @param Person|\OpenActive\Models\SchemaOrg\ContactPoint|Organization|\OpenActive\Models\SchemaOrg\Audience $recipient
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -41,8 +49,8 @@ class SendAction extends \OpenActive\Models\SchemaOrg\TransferAction
         $types = array(
             "Person",
             "\OpenActive\Models\SchemaOrg\ContactPoint",
-            "\OpenActive\Models\SchemaOrg\Audience",
             "Organization",
+            "\OpenActive\Models\SchemaOrg\Audience",
         );
 
         $recipient = self::checkTypes($recipient, $types);

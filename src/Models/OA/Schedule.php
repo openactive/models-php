@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class Schedule extends \OpenActive\BaseModel
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "Schedule";
+    }
+
+    /**
      * Defines the day of the week upon which the Event takes place.
      * When using string values, this MUST conform to iCal BYDAY rule.
      *

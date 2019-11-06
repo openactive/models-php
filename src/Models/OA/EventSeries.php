@@ -8,4 +8,12 @@ namespace OpenActive\Models\OA;
  */
 class EventSeries extends \OpenActive\Models\OA\Event
 {
+    /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "EventSeries";
+    }
+
 }

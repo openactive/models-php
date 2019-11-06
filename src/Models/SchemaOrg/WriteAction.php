@@ -8,10 +8,18 @@ namespace OpenActive\Models\SchemaOrg;
 class WriteAction extends \OpenActive\Models\SchemaOrg\CreateAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:WriteAction";
+    }
+
+    /**
      * The language of the content or performance or used in an action. Please use one of the language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>. See also <a class="localLink" href="https://schema.org/availableLanguage">availableLanguage</a>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Language|string
+     * @var string|\OpenActive\Models\SchemaOrg\Language
      */
     protected $inLanguage;
 
@@ -24,7 +32,7 @@ class WriteAction extends \OpenActive\Models\SchemaOrg\CreateAction
     protected $language;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Language|string
+     * @return string|\OpenActive\Models\SchemaOrg\Language
      */
     public function getInLanguage()
     {
@@ -32,15 +40,15 @@ class WriteAction extends \OpenActive\Models\SchemaOrg\CreateAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Language|string $inLanguage
+     * @param string|\OpenActive\Models\SchemaOrg\Language $inLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInLanguage($inLanguage)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Language",
             "string",
+            "\OpenActive\Models\SchemaOrg\Language",
         );
 
         $inLanguage = self::checkTypes($inLanguage, $types);

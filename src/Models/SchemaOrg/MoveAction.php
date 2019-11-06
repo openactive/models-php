@@ -9,6 +9,14 @@ namespace OpenActive\Models\SchemaOrg;
 class MoveAction extends \OpenActive\Models\SchemaOrg\Action
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:MoveAction";
+    }
+
+    /**
      * A sub property of location. The final location of the object or the agent after the action.
      *
      *

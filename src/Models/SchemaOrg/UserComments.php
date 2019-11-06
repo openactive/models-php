@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:UserComments";
+    }
+
+    /**
      * The text of the UserComment.
      *
      *
@@ -35,7 +43,7 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
      * The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.
      *
      *
-     * @var Person|Organization
+     * @var Organization|Person
      */
     protected $creator;
 
@@ -121,7 +129,7 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     }
 
     /**
-     * @return Person|Organization
+     * @return Organization|Person
      */
     public function getCreator()
     {
@@ -129,15 +137,15 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     }
 
     /**
-     * @param Person|Organization $creator
+     * @param Organization|Person $creator
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCreator($creator)
     {
         $types = array(
-            "Person",
             "Organization",
+            "Person",
         );
 
         $creator = self::checkTypes($creator, $types);

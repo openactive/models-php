@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:BroadcastEvent";
+    }
+
+    /**
      * The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
      *
      *

@@ -5,8 +5,16 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWorkSeason
+class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
+    /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:TVSeason";
+    }
+
     /**
      * The TV series to which this episode or season belongs.
      *

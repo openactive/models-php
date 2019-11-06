@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class FinancialService extends \OpenActive\Models\SchemaOrg\LocalBusiness
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:FinancialService";
+    }
+
+    /**
      * Description of fees, commissions, and other terms applied either to a class of financial product, or by a financial service organization.
      *
      *

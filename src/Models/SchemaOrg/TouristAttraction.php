@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class TouristAttraction extends \OpenActive\Models\SchemaOrg\Place
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:TouristAttraction";
+    }
+
+    /**
      * Attraction suitable for type(s) of tourist. eg. Children, visitors from a particular country, etc.
      *
      *
@@ -19,7 +27,7 @@ class TouristAttraction extends \OpenActive\Models\SchemaOrg\Place
      * A language someone may use with or at the item, service or place. Please use one of the language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>. See also <a class="localLink" href="https://schema.org/inLanguage">inLanguage</a>
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Language
+     * @var \OpenActive\Models\SchemaOrg\Language|string
      */
     protected $availableLanguage;
 
@@ -49,7 +57,7 @@ class TouristAttraction extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Language
+     * @return \OpenActive\Models\SchemaOrg\Language|string
      */
     public function getAvailableLanguage()
     {
@@ -57,15 +65,15 @@ class TouristAttraction extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Language $availableLanguage
+     * @param \OpenActive\Models\SchemaOrg\Language|string $availableLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableLanguage($availableLanguage)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\Language",
+            "string",
         );
 
         $availableLanguage = self::checkTypes($availableLanguage, $types);

@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Trip extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Trip";
+    }
+
+    /**
      * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
      *
      *

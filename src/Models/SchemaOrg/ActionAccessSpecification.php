@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:ActionAccessSpecification";
+    }
+
+    /**
      * The beginning of the availability of the product or service included in the offer.
      *
      *
@@ -19,7 +27,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * Indicates if use of the media require a subscription  (either paid or free). Allowed values are <code>true</code> or <code>false</code> (note that an earlier version had 'yes', 'no').
      *
      *
-     * @var bool|\OpenActive\Models\SchemaOrg\MediaSubscription|null
+     * @var \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null
      */
     protected $requiresSubscription;
 
@@ -27,7 +35,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing
+     * @var string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory
      */
     protected $category;
 
@@ -83,7 +91,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return bool|\OpenActive\Models\SchemaOrg\MediaSubscription|null
+     * @return \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null
      */
     public function getRequiresSubscription()
     {
@@ -91,15 +99,15 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param bool|\OpenActive\Models\SchemaOrg\MediaSubscription|null $requiresSubscription
+     * @param \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null $requiresSubscription
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiresSubscription($requiresSubscription)
     {
         $types = array(
-            "bool",
             "\OpenActive\Models\SchemaOrg\MediaSubscription",
+            "bool",
             "null",
         );
 
@@ -109,7 +117,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing
+     * @return string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory
      */
     public function getCategory()
     {
@@ -117,7 +125,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing $category
+     * @param string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory $category
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -125,8 +133,8 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "string",
-            "\OpenActive\Models\SchemaOrg\PhysicalActivityCategory",
             "\OpenActive\Models\SchemaOrg\Thing",
+            "\OpenActive\Models\SchemaOrg\PhysicalActivityCategory",
         );
 
         $category = self::checkTypes($category, $types);

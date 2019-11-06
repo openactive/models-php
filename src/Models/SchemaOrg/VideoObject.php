@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:VideoObject";
+    }
+
+    /**
      * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
@@ -27,7 +35,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
      * The composer of the soundtrack.
      *
      *
-     * @var Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|Person
      */
     protected $musicBy;
 
@@ -75,7 +83,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
      * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the <a class="localLink" href="https://schema.org/encodingFormat">encodingFormat</a>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MediaObject|string
+     * @var string|\OpenActive\Models\SchemaOrg\MediaObject
      */
     protected $caption;
 
@@ -136,7 +144,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|Person
      */
     public function getMusicBy()
     {
@@ -144,15 +152,15 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param Person|\OpenActive\Models\SchemaOrg\MusicGroup $musicBy
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|Person $musicBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicBy($musicBy)
     {
         $types = array(
-            "Person",
             "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "Person",
         );
 
         $musicBy = self::checkTypes($musicBy, $types);
@@ -281,7 +289,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MediaObject|string
+     * @return string|\OpenActive\Models\SchemaOrg\MediaObject
      */
     public function getCaption()
     {
@@ -289,15 +297,15 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MediaObject|string $caption
+     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $caption
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCaption($caption)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\MediaObject",
             "string",
+            "\OpenActive\Models\SchemaOrg\MediaObject",
         );
 
         $caption = self::checkTypes($caption, $types);

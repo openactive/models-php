@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:SoftwareApplication";
+    }
+
+    /**
      * If the file can be downloaded, URL to download the binary.
      *
      *
@@ -123,7 +131,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A link to a screenshot image of the app.
      *
      *
-     * @var string|ImageObject
+     * @var ImageObject|string
      */
     protected $screenshot;
 
@@ -536,7 +544,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string|ImageObject
+     * @return ImageObject|string
      */
     public function getScreenshot()
     {
@@ -544,15 +552,15 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|ImageObject $screenshot
+     * @param ImageObject|string $screenshot
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setScreenshot($screenshot)
     {
         $types = array(
-            "string",
             "ImageObject",
+            "string",
         );
 
         $screenshot = self::checkTypes($screenshot, $types);

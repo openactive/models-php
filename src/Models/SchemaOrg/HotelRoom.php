@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:HotelRoom";
+    }
+
+    /**
      * The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person).
      * Typical unit code(s): C62 for person
      *
@@ -21,7 +29,7 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
      *       If you want to indicate the quantity of a certain kind of bed, use an instance of BedDetails. For more detailed information, use the amenityFeature property.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\BedDetails|\OpenActive\Models\SchemaOrg\BedType
+     * @var \OpenActive\Models\SchemaOrg\BedDetails|\OpenActive\Models\SchemaOrg\BedType|string
      */
     protected $bed;
 
@@ -50,7 +58,7 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\BedDetails|\OpenActive\Models\SchemaOrg\BedType
+     * @return \OpenActive\Models\SchemaOrg\BedDetails|\OpenActive\Models\SchemaOrg\BedType|string
      */
     public function getBed()
     {
@@ -58,16 +66,16 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\BedDetails|\OpenActive\Models\SchemaOrg\BedType $bed
+     * @param \OpenActive\Models\SchemaOrg\BedDetails|\OpenActive\Models\SchemaOrg\BedType|string $bed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBed($bed)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\BedDetails",
             "\OpenActive\Models\SchemaOrg\BedType",
+            "string",
         );
 
         $bed = self::checkTypes($bed, $types);

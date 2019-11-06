@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:ServiceChannel";
+    }
+
+    /**
      * The service provided by this channel.
      *
      *
@@ -35,17 +43,9 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
      * A language someone may use with or at the item, service or place. Please use one of the language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>. See also <a class="localLink" href="https://schema.org/inLanguage">inLanguage</a>
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Language
+     * @var \OpenActive\Models\SchemaOrg\Language|string
      */
     protected $availableLanguage;
-
-    /**
-     * The number to access the service by text message.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ContactPoint
-     */
-    protected $serviceSmsNumber;
 
     /**
      * The website to access the service.
@@ -62,6 +62,14 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
      * @var \OpenActive\Models\SchemaOrg\ContactPoint
      */
     protected $servicePhone;
+
+    /**
+     * The number to access the service by text message.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ContactPoint
+     */
+    protected $serviceSmsNumber;
 
     /**
      * Estimated processing time for the service using this channel.
@@ -144,7 +152,7 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Language
+     * @return \OpenActive\Models\SchemaOrg\Language|string
      */
     public function getAvailableLanguage()
     {
@@ -152,44 +160,20 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Language $availableLanguage
+     * @param \OpenActive\Models\SchemaOrg\Language|string $availableLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableLanguage($availableLanguage)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\Language",
+            "string",
         );
 
         $availableLanguage = self::checkTypes($availableLanguage, $types);
 
         $this->availableLanguage = $availableLanguage;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ContactPoint
-     */
-    public function getServiceSmsNumber()
-    {
-        return $this->serviceSmsNumber;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ContactPoint $serviceSmsNumber
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setServiceSmsNumber($serviceSmsNumber)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
-        );
-
-        $serviceSmsNumber = self::checkTypes($serviceSmsNumber, $types);
-
-        $this->serviceSmsNumber = $serviceSmsNumber;
     }
 
     /**
@@ -238,6 +222,30 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
         $servicePhone = self::checkTypes($servicePhone, $types);
 
         $this->servicePhone = $servicePhone;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ContactPoint
+     */
+    public function getServiceSmsNumber()
+    {
+        return $this->serviceSmsNumber;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ContactPoint $serviceSmsNumber
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setServiceSmsNumber($serviceSmsNumber)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
+        );
+
+        $serviceSmsNumber = self::checkTypes($serviceSmsNumber, $types);
+
+        $this->serviceSmsNumber = $serviceSmsNumber;
     }
 
     /**

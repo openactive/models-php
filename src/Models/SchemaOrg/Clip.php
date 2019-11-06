@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Clip";
+    }
+
+    /**
      * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
@@ -16,20 +24,20 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $actor;
 
     /**
-     * The episode to which this clip belongs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Episode
-     */
-    protected $partOfEpisode;
-
-    /**
      * The series to which this episode or season belongs.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      */
     protected $partOfSeries;
+
+    /**
+     * The episode to which this clip belongs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Episode
+     */
+    protected $partOfEpisode;
 
     /**
      * The season to which this episode belongs.
@@ -43,7 +51,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The composer of the soundtrack.
      *
      *
-     * @var Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|Person
      */
     protected $musicBy;
 
@@ -75,7 +83,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Position of the clip within an ordered group of clips.
      *
      *
-     * @var int|string|null
+     * @var string|int|null
      */
     protected $clipNumber;
 
@@ -104,30 +112,6 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Episode
-     */
-    public function getPartOfEpisode()
-    {
-        return $this->partOfEpisode;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Episode $partOfEpisode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPartOfEpisode($partOfEpisode)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Episode",
-        );
-
-        $partOfEpisode = self::checkTypes($partOfEpisode, $types);
-
-        $this->partOfEpisode = $partOfEpisode;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      */
     public function getPartOfSeries()
@@ -149,6 +133,30 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
         $partOfSeries = self::checkTypes($partOfSeries, $types);
 
         $this->partOfSeries = $partOfSeries;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Episode
+     */
+    public function getPartOfEpisode()
+    {
+        return $this->partOfEpisode;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Episode $partOfEpisode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPartOfEpisode($partOfEpisode)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Episode",
+        );
+
+        $partOfEpisode = self::checkTypes($partOfEpisode, $types);
+
+        $this->partOfEpisode = $partOfEpisode;
     }
 
     /**
@@ -176,7 +184,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|Person
      */
     public function getMusicBy()
     {
@@ -184,15 +192,15 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person|\OpenActive\Models\SchemaOrg\MusicGroup $musicBy
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|Person $musicBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicBy($musicBy)
     {
         $types = array(
-            "Person",
             "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "Person",
         );
 
         $musicBy = self::checkTypes($musicBy, $types);
@@ -273,7 +281,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|string|null
+     * @return string|int|null
      */
     public function getClipNumber()
     {
@@ -281,15 +289,15 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param int|string|null $clipNumber
+     * @param string|int|null $clipNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setClipNumber($clipNumber)
     {
         $types = array(
-            "int",
             "string",
+            "int",
             "null",
         );
 

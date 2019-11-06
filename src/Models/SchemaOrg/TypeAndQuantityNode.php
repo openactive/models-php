@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:TypeAndQuantityNode";
+    }
+
+    /**
      * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
      *
      *
@@ -32,6 +40,14 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $amountOfThisGood;
 
     /**
+     * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
+     *
+     *
+     * @var Schema.NET.BusinessFunction|null
+     */
+    protected $businessFunction;
+
+    /**
      * A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for
      * <a href='unitCode'>unitCode</a>.
      *
@@ -39,14 +55,6 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
      * @var string
      */
     protected $unitText;
-
-    /**
-     * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
-     *
-     *
-     * @var Schema.NET.BusinessFunction|null
-     */
-    protected $businessFunction;
 
     /**
      * @return string
@@ -123,30 +131,6 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string
-     */
-    public function getUnitText()
-    {
-        return $this->unitText;
-    }
-
-    /**
-     * @param string $unitText
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setUnitText($unitText)
-    {
-        $types = array(
-            "string",
-        );
-
-        $unitText = self::checkTypes($unitText, $types);
-
-        $this->unitText = $unitText;
-    }
-
-    /**
      * @return Schema.NET.BusinessFunction|null
      */
     public function getBusinessFunction()
@@ -169,6 +153,30 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
         $businessFunction = self::checkTypes($businessFunction, $types);
 
         $this->businessFunction = $businessFunction;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUnitText()
+    {
+        return $this->unitText;
+    }
+
+    /**
+     * @param string $unitText
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUnitText($unitText)
+    {
+        $types = array(
+            "string",
+        );
+
+        $unitText = self::checkTypes($unitText, $types);
+
+        $this->unitText = $unitText;
     }
 
 }

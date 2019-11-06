@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class Brand extends \OpenActive\Models\SchemaOrg\Brand
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "Brand";
+    }
+
+    /**
      * A local non-URI identifier for the resource
      *
      * ```json

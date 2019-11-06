@@ -8,12 +8,28 @@ namespace OpenActive\Models\SchemaOrg;
 class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:PropertyValue";
+    }
+
+    /**
      * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
      *
      *
      * @var string
      */
     protected $unitCode;
+
+    /**
+     * The lower value of some characteristic or property.
+     *
+     *
+     * @var decimal|null
+     */
+    protected $minValue;
 
     /**
      * A commonly used identifier for the characteristic represented by the property, e.g. a manufacturer or a standard code for a property. propertyID can be
@@ -38,7 +54,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * 
      *
      *
-     * @var decimal|string|\OpenActive\Models\SchemaOrg\StructuredValue|bool|null
+     * @var \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null
      */
     protected $value;
 
@@ -46,7 +62,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature.
      *
      *
-     * @var Schema.NET.QualitativeValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|null
+     * @var \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|Schema.NET.QualitativeValue|null
      */
     protected $valueReference;
 
@@ -66,14 +82,6 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * @var string
      */
     protected $unitText;
-
-    /**
-     * The lower value of some characteristic or property.
-     *
-     *
-     * @var decimal|null
-     */
-    protected $minValue;
 
     /**
      * @return string
@@ -97,6 +105,31 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
         $unitCode = self::checkTypes($unitCode, $types);
 
         $this->unitCode = $unitCode;
+    }
+
+    /**
+     * @return decimal|null
+     */
+    public function getMinValue()
+    {
+        return $this->minValue;
+    }
+
+    /**
+     * @param decimal|null $minValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMinValue($minValue)
+    {
+        $types = array(
+            "decimal",
+            "null",
+        );
+
+        $minValue = self::checkTypes($minValue, $types);
+
+        $this->minValue = $minValue;
     }
 
     /**
@@ -124,7 +157,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return decimal|string|\OpenActive\Models\SchemaOrg\StructuredValue|bool|null
+     * @return \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null
      */
     public function getValue()
     {
@@ -132,16 +165,16 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param decimal|string|\OpenActive\Models\SchemaOrg\StructuredValue|bool|null $value
+     * @param \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null $value
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValue($value)
     {
         $types = array(
-            "decimal",
-            "string",
             "\OpenActive\Models\SchemaOrg\StructuredValue",
+            "string",
+            "decimal",
             "bool",
             "null",
         );
@@ -152,7 +185,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return Schema.NET.QualitativeValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|null
+     * @return \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|Schema.NET.QualitativeValue|null
      */
     public function getValueReference()
     {
@@ -160,18 +193,18 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param Schema.NET.QualitativeValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|null $valueReference
+     * @param \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|Schema.NET.QualitativeValue|null $valueReference
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueReference($valueReference)
     {
         $types = array(
-            "Schema.NET.QualitativeValue",
-            "QuantitativeValue",
-            "\OpenActive\Models\SchemaOrg\StructuredValue",
             "\OpenActive\Models\SchemaOrg\Enumeration",
             "PropertyValue",
+            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\StructuredValue",
+            "Schema.NET.QualitativeValue",
             "null",
         );
 
@@ -227,31 +260,6 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
         $unitText = self::checkTypes($unitText, $types);
 
         $this->unitText = $unitText;
-    }
-
-    /**
-     * @return decimal|null
-     */
-    public function getMinValue()
-    {
-        return $this->minValue;
-    }
-
-    /**
-     * @param decimal|null $minValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMinValue($minValue)
-    {
-        $types = array(
-            "decimal",
-            "null",
-        );
-
-        $minValue = self::checkTypes($minValue, $types);
-
-        $this->minValue = $minValue;
     }
 
 }

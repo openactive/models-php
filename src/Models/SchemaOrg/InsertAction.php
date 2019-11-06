@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class InsertAction extends \OpenActive\Models\SchemaOrg\AddAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:InsertAction";
+    }
+
+    /**
      * A sub property of location. The final location of the object or the agent after the action.
      *
      *

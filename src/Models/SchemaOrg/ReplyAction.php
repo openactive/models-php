@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ReplyAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:ReplyAction";
+    }
+
+    /**
      * A sub property of result. The Comment created or sent as a result of this action.
      *
      *

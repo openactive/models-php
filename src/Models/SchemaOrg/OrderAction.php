@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class OrderAction extends \OpenActive\Models\SchemaOrg\TradeAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:OrderAction";
+    }
+
+    /**
      * A sub property of instrument. The method of delivery.
      *
      *

@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class BooleanFormFieldSpecification extends \OpenActive\Models\OA\PropertyValueSpecification
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "BooleanFormFieldSpecification";
+    }
+
+    /**
      * Specifies that a value for the field is required to proceed with the booking.
      *
      *

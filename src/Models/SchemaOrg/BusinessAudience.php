@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:BusinessAudience";
+    }
+
+    /**
      * The age of the business.
      *
      *

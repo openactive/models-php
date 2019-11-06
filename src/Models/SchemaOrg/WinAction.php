@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class WinAction extends \OpenActive\Models\SchemaOrg\AchieveAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:WinAction";
+    }
+
+    /**
      * A sub property of participant. The loser of the action.
      *
      *

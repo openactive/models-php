@@ -8,14 +8,20 @@ namespace OpenActive\Models\SchemaOrg;
 class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
 {
     /**
-     * The currency in which the monetary amount is expressed.<br/><br/>
-     * 
-     * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
-     *
-     *
-     * @var string
+     * @return string[]|null
      */
-    protected $currency;
+    public static function getType()
+    {
+        return "schema:MonetaryAmount";
+    }
+
+    /**
+     * The lower value of some characteristic or property.
+     *
+     *
+     * @var decimal|null
+     */
+    protected $minValue;
 
     /**
      * The value of the quantitative value or property value node.<br/><br/>
@@ -29,9 +35,19 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
      * 
      *
      *
-     * @var decimal|string|\OpenActive\Models\SchemaOrg\StructuredValue|bool|null
+     * @var \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null
      */
     protected $value;
+
+    /**
+     * The currency in which the monetary amount is expressed.<br/><br/>
+     * 
+     * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
+     *
+     *
+     * @var string
+     */
+    protected $currency;
 
     /**
      * The date when the item becomes valid.
@@ -58,12 +74,57 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $maxValue;
 
     /**
-     * The lower value of some characteristic or property.
-     *
-     *
-     * @var decimal|null
+     * @return decimal|null
      */
-    protected $minValue;
+    public function getMinValue()
+    {
+        return $this->minValue;
+    }
+
+    /**
+     * @param decimal|null $minValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMinValue($minValue)
+    {
+        $types = array(
+            "decimal",
+            "null",
+        );
+
+        $minValue = self::checkTypes($minValue, $types);
+
+        $this->minValue = $minValue;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null $value
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValue($value)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\StructuredValue",
+            "string",
+            "decimal",
+            "bool",
+            "null",
+        );
+
+        $value = self::checkTypes($value, $types);
+
+        $this->value = $value;
+    }
 
     /**
      * @return string
@@ -87,34 +148,6 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
         $currency = self::checkTypes($currency, $types);
 
         $this->currency = $currency;
-    }
-
-    /**
-     * @return decimal|string|\OpenActive\Models\SchemaOrg\StructuredValue|bool|null
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-    /**
-     * @param decimal|string|\OpenActive\Models\SchemaOrg\StructuredValue|bool|null $value
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setValue($value)
-    {
-        $types = array(
-            "decimal",
-            "string",
-            "\OpenActive\Models\SchemaOrg\StructuredValue",
-            "bool",
-            "null",
-        );
-
-        $value = self::checkTypes($value, $types);
-
-        $this->value = $value;
     }
 
     /**
@@ -190,31 +223,6 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
         $maxValue = self::checkTypes($maxValue, $types);
 
         $this->maxValue = $maxValue;
-    }
-
-    /**
-     * @return decimal|null
-     */
-    public function getMinValue()
-    {
-        return $this->minValue;
-    }
-
-    /**
-     * @param decimal|null $minValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMinValue($minValue)
-    {
-        $types = array(
-            "decimal",
-            "null",
-        );
-
-        $minValue = self::checkTypes($minValue, $types);
-
-        $this->minValue = $minValue;
     }
 
 }

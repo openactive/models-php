@@ -8,10 +8,18 @@ namespace OpenActive\Models\SchemaOrg;
 class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:VisualArtwork";
+    }
+
+    /**
      * The height of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
+     * @var QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     protected $height;
 
@@ -51,7 +59,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The width of the item.
      *
      *
-     * @var QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * @var \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
      */
     protected $width;
 
@@ -67,12 +75,12 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The depth of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
+     * @var QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     protected $depth;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
+     * @return QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     public function getHeight()
     {
@@ -80,15 +88,15 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $height
+     * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $height
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHeight($height)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Distance",
             "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\Distance",
         );
 
         $height = self::checkTypes($height, $types);
@@ -195,7 +203,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * @return \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
      */
     public function getWidth()
     {
@@ -203,15 +211,15 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $width
+     * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $width
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWidth($width)
     {
         $types = array(
-            "QuantitativeValue",
             "\OpenActive\Models\SchemaOrg\Distance",
+            "QuantitativeValue",
         );
 
         $width = self::checkTypes($width, $types);
@@ -244,7 +252,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
+     * @return QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     public function getDepth()
     {
@@ -252,15 +260,15 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $depth
+     * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $depth
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDepth($depth)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Distance",
             "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\Distance",
         );
 
         $depth = self::checkTypes($depth, $types);

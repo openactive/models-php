@@ -9,6 +9,6 @@ namespace OpenActive\Enums;
 class RsvpResponseType
 {
     const RsvpResponseYes = \OpenActive\Enums\OA\RsvpResponseType\RsvpResponseYes::class;
-    const RsvpResponseNo = \OpenActive\Enums\OA\RsvpResponseType\RsvpResponseNo::class;
     const RsvpResponseMaybe = \OpenActive\Enums\OA\RsvpResponseType\RsvpResponseMaybe::class;
+    const RsvpResponseNo = \OpenActive\Enums\OA\RsvpResponseType\RsvpResponseNo::class;
 }

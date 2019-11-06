@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class CivicStructure extends \OpenActive\Models\SchemaOrg\Place
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:CivicStructure";
+    }
+
+    /**
      * The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. Multiple days can be listed with commas ',' separating each day. Day or time ranges are specified using a hyphen '-'.<br/><br/>
      * 
      * <ul>

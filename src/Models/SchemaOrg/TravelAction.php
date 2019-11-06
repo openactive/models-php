@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class TravelAction extends \OpenActive\Models\SchemaOrg\MoveAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:TravelAction";
+    }
+
+    /**
      * The distance travelled, e.g. exercising or travelling.
      *
      *

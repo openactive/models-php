@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:PublicationEvent";
+    }
+
+    /**
      * A broadcast service associated with the publication event.
      *
      *

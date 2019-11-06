@@ -9,6 +9,14 @@ namespace OpenActive\Models\SchemaOrg;
 class PlayAction extends \OpenActive\Models\SchemaOrg\Action
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:PlayAction";
+    }
+
+    /**
      * An intended audience, i.e. a group for whom something was created.
      *
      *

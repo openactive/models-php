@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHoursSpecification
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "OpeningHoursSpecification";
+    }
+
+    /**
      * The closing time.
      *
      * ```json

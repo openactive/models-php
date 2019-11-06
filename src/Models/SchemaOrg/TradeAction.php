@@ -9,6 +9,14 @@ namespace OpenActive\Models\SchemaOrg;
 class TradeAction extends \OpenActive\Models\SchemaOrg\Action
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:TradeAction";
+    }
+
+    /**
      * One or more detailed price specifications, indicating the unit price and delivery or payment charges.
      *
      *
@@ -40,7 +48,7 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
      * 
      *
      *
-     * @var decimal|string|null
+     * @var string|decimal|null
      */
     protected $price;
 
@@ -93,7 +101,7 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @return decimal|string|null
+     * @return string|decimal|null
      */
     public function getPrice()
     {
@@ -101,15 +109,15 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @param decimal|string|null $price
+     * @param string|decimal|null $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
         $types = array(
-            "decimal",
             "string",
+            "decimal",
             "null",
         );
 

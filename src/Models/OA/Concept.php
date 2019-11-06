@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class Concept extends \OpenActive\BaseModel
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "Concept";
+    }
+
+    /**
      * An alternative human readable string for use in user interfaces.
      *
      * ```json

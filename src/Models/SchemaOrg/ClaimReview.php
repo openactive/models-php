@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ClaimReview extends \OpenActive\Models\SchemaOrg\Review
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:ClaimReview";
+    }
+
+    /**
      * A short summary of the specific claims reviewed in a ClaimReview.
      *
      *

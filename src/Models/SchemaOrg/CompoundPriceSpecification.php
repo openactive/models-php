@@ -9,6 +9,14 @@ namespace OpenActive\Models\SchemaOrg;
 class CompoundPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:CompoundPriceSpecification";
+    }
+
+    /**
      * This property links to all <a class="localLink" href="https://schema.org/UnitPriceSpecification">UnitPriceSpecification</a> nodes that apply in parallel for the <a class="localLink" href="https://schema.org/CompoundPriceSpecification">CompoundPriceSpecification</a> node.
      *
      *

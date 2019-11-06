@@ -8,6 +8,14 @@ namespace OpenActive\Models\OA;
 class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "FacilityUse";
+    }
+
+    /**
      * A local non-URI identifier for the resource
      *
      * ```json

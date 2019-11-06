@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class EndorseAction extends \OpenActive\Models\SchemaOrg\ReactAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:EndorseAction";
+    }
+
+    /**
      * A sub property of participant. The person/organization being supported.
      *
      *

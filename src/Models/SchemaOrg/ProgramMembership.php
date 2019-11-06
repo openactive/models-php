@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:ProgramMembership";
+    }
+
+    /**
      * A unique identifier for the membership.
      *
      *
@@ -19,7 +27,7 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
      * A member of this organization.
      *
      *
-     * @var Person|Organization
+     * @var Organization|Person
      */
     protected $members;
 
@@ -27,17 +35,9 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
      * A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals.
      *
      *
-     * @var Person|Organization
+     * @var Organization|Person
      */
     protected $member;
-
-    /**
-     * The program providing the membership.
-     *
-     *
-     * @var string
-     */
-    protected $programName;
 
     /**
      * The organization (airline, travelers' club, etc.) the membership is made with.
@@ -46,6 +46,14 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
      * @var Organization
      */
     protected $hostingOrganization;
+
+    /**
+     * The program providing the membership.
+     *
+     *
+     * @var string
+     */
+    protected $programName;
 
     /**
      * @return string
@@ -72,7 +80,7 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Person|Organization
+     * @return Organization|Person
      */
     public function getMembers()
     {
@@ -80,15 +88,15 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Person|Organization $members
+     * @param Organization|Person $members
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMembers($members)
     {
         $types = array(
-            "Person",
             "Organization",
+            "Person",
         );
 
         $members = self::checkTypes($members, $types);
@@ -97,7 +105,7 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Person|Organization
+     * @return Organization|Person
      */
     public function getMember()
     {
@@ -105,44 +113,20 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Person|Organization $member
+     * @param Organization|Person $member
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMember($member)
     {
         $types = array(
-            "Person",
             "Organization",
+            "Person",
         );
 
         $member = self::checkTypes($member, $types);
 
         $this->member = $member;
-    }
-
-    /**
-     * @return string
-     */
-    public function getProgramName()
-    {
-        return $this->programName;
-    }
-
-    /**
-     * @param string $programName
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProgramName($programName)
-    {
-        $types = array(
-            "string",
-        );
-
-        $programName = self::checkTypes($programName, $types);
-
-        $this->programName = $programName;
     }
 
     /**
@@ -167,6 +151,30 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
         $hostingOrganization = self::checkTypes($hostingOrganization, $types);
 
         $this->hostingOrganization = $hostingOrganization;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProgramName()
+    {
+        return $this->programName;
+    }
+
+    /**
+     * @param string $programName
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProgramName($programName)
+    {
+        $types = array(
+            "string",
+        );
+
+        $programName = self::checkTypes($programName, $types);
+
+        $this->programName = $programName;
     }
 
 }

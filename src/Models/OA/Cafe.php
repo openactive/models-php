@@ -9,4 +9,12 @@ namespace OpenActive\Models\OA;
  */
 class Cafe extends \OpenActive\Models\OA\LocationFeatureSpecification
 {
+    /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "beta:Cafe";
+    }
+
 }

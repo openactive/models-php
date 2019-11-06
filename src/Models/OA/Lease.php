@@ -8,6 +8,14 @@ namespace OpenActive\Models\OA;
 class Lease extends \OpenActive\Models\SchemaOrg\Thing
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "Lease";
+    }
+
+    /**
      * Optional identifier of the Lease if useful for audit or debugging purposes.
      *
      * ```json

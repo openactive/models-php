@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class VoteAction extends \OpenActive\Models\SchemaOrg\ChooseAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:VoteAction";
+    }
+
+    /**
      * A sub property of object. The candidate subject of this action.
      *
      *

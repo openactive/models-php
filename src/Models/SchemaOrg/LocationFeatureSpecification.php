@@ -9,6 +9,14 @@ namespace OpenActive\Models\SchemaOrg;
 class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\PropertyValue
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:LocationFeatureSpecification";
+    }
+
+    /**
      * The hours during which this service or contact is available.
      *
      *

@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class Place extends \OpenActive\Models\SchemaOrg\Place
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "Place";
+    }
+
+    /**
      * A local non-URI identifier for the resource
      *
      * ```json

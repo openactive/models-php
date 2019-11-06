@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class BusTrip extends \OpenActive\Models\SchemaOrg\Trip
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:BusTrip";
+    }
+
+    /**
      * The name of the bus (e.g. Bolt Express).
      *
      *
@@ -19,7 +27,7 @@ class BusTrip extends \OpenActive\Models\SchemaOrg\Trip
      * The stop or station from which the bus departs.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\BusStop|\OpenActive\Models\SchemaOrg\BusStation
+     * @var \OpenActive\Models\SchemaOrg\BusStation|\OpenActive\Models\SchemaOrg\BusStop
      */
     protected $departureBusStop;
 
@@ -64,7 +72,7 @@ class BusTrip extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\BusStop|\OpenActive\Models\SchemaOrg\BusStation
+     * @return \OpenActive\Models\SchemaOrg\BusStation|\OpenActive\Models\SchemaOrg\BusStop
      */
     public function getDepartureBusStop()
     {
@@ -72,15 +80,15 @@ class BusTrip extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\BusStop|\OpenActive\Models\SchemaOrg\BusStation $departureBusStop
+     * @param \OpenActive\Models\SchemaOrg\BusStation|\OpenActive\Models\SchemaOrg\BusStop $departureBusStop
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDepartureBusStop($departureBusStop)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\BusStop",
             "\OpenActive\Models\SchemaOrg\BusStation",
+            "\OpenActive\Models\SchemaOrg\BusStop",
         );
 
         $departureBusStop = self::checkTypes($departureBusStop, $types);

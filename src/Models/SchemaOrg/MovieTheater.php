@@ -5,8 +5,16 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class MovieTheater extends \OpenActive\Models\SchemaOrg\EntertainmentBusiness
+class MovieTheater extends \OpenActive\Models\SchemaOrg\CivicStructure
 {
+    /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:MovieTheater";
+    }
+
     /**
      * The number of screens in the movie theater.
      *

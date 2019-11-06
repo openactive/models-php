@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:EmployeeRole";
+    }
+
+    /**
      * The currency (coded using <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> ) used for the main salary information in this job posting or for this employee.
      *
      *
@@ -19,7 +27,7 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
      * The base salary of the job or of an employee in an EmployeeRole.
      *
      *
-     * @var PriceSpecification|decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     * @var PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|decimal|null
      */
     protected $baseSalary;
 
@@ -48,7 +56,7 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
     }
 
     /**
-     * @return PriceSpecification|decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     * @return PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|decimal|null
      */
     public function getBaseSalary()
     {
@@ -56,7 +64,7 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
     }
 
     /**
-     * @param PriceSpecification|decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $baseSalary
+     * @param PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|decimal|null $baseSalary
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -64,8 +72,8 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
     {
         $types = array(
             "PriceSpecification",
-            "decimal",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "decimal",
             "null",
         );
 

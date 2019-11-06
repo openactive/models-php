@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:ListItem";
+    }
+
+    /**
      * A link to the ListItem that follows the current one.
      *
      *

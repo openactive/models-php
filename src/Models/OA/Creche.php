@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class Creche extends \OpenActive\Models\OA\LocationFeatureSpecification
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "Creche";
+    }
+
+    /**
      * A string, suitable for presentation in user interfaces.
      *
      * ```json

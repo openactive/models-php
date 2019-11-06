@@ -8,10 +8,18 @@ namespace OpenActive\Models\SchemaOrg;
 class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:CookAction";
+    }
+
+    /**
      * A sub property of location. The specific food establishment where the action occurred.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\FoodEstablishment|Place
+     * @var Place|\OpenActive\Models\SchemaOrg\FoodEstablishment
      */
     protected $foodEstablishment;
 
@@ -32,7 +40,7 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     protected $foodEvent;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\FoodEstablishment|Place
+     * @return Place|\OpenActive\Models\SchemaOrg\FoodEstablishment
      */
     public function getFoodEstablishment()
     {
@@ -40,15 +48,15 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\FoodEstablishment|Place $foodEstablishment
+     * @param Place|\OpenActive\Models\SchemaOrg\FoodEstablishment $foodEstablishment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFoodEstablishment($foodEstablishment)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\FoodEstablishment",
             "Place",
+            "\OpenActive\Models\SchemaOrg\FoodEstablishment",
         );
 
         $foodEstablishment = self::checkTypes($foodEstablishment, $types);

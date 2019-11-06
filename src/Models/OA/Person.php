@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class Person extends \OpenActive\Models\SchemaOrg\Person
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "Person";
+    }
+
+    /**
      * A local non-URI identifier for the resource
      *
      * ```json

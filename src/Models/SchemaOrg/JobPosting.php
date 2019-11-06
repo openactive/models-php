@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:JobPosting";
+    }
+
+    /**
      * The title of the job.
      *
      *
@@ -72,10 +80,10 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     protected $datePosted;
 
     /**
-     * Skills required to fulfill this role or in this Occupation.
+     * A statement of knowledge, skill, ability, task or any other assertion expressing a competency that is desired or required to fulfill this role or to work in this occupation.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
     protected $skills;
 
@@ -99,7 +107,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
      * The base salary of the job or of an employee in an EmployeeRole.
      *
      *
-     * @var PriceSpecification|decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     * @var PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|decimal|null
      */
     protected $baseSalary;
 
@@ -141,7 +149,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
      * Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\CategoryCode
+     * @var \OpenActive\Models\SchemaOrg\CategoryCode|string
      */
     protected $occupationalCategory;
 
@@ -165,7 +173,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
      * An estimated salary for a job posting or occupation, based on a variety of variables including, but not limited to industry, job title, and location. Estimated salaries  are often computed by outside organizations rather than the hiring organization, who may not have committed to the estimated value.
      *
      *
-     * @var decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|null
+     * @var decimal|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
      */
     protected $estimatedSalary;
 
@@ -371,7 +379,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
     public function getSkills()
     {
@@ -379,13 +387,14 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string $skills
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $skills
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSkills($skills)
     {
         $types = array(
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
             "string",
         );
 
@@ -443,7 +452,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return PriceSpecification|decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     * @return PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|decimal|null
      */
     public function getBaseSalary()
     {
@@ -451,7 +460,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param PriceSpecification|decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $baseSalary
+     * @param PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|decimal|null $baseSalary
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -459,8 +468,8 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "PriceSpecification",
-            "decimal",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "decimal",
             "null",
         );
 
@@ -567,7 +576,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\CategoryCode
+     * @return \OpenActive\Models\SchemaOrg\CategoryCode|string
      */
     public function getOccupationalCategory()
     {
@@ -575,15 +584,15 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CategoryCode $occupationalCategory
+     * @param \OpenActive\Models\SchemaOrg\CategoryCode|string $occupationalCategory
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOccupationalCategory($occupationalCategory)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\CategoryCode",
+            "string",
         );
 
         $occupationalCategory = self::checkTypes($occupationalCategory, $types);
@@ -640,7 +649,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|null
+     * @return decimal|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
      */
     public function getEstimatedSalary()
     {
@@ -648,7 +657,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|null $estimatedSalary
+     * @param decimal|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $estimatedSalary
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -656,8 +665,8 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "decimal",
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "null",
         );
 

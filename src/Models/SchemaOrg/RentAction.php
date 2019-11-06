@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:RentAction";
+    }
+
+    /**
      * A sub property of participant. The owner of the real estate property.
      *
      *

@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:SoftwareSourceCode";
+    }
+
+    /**
      * Target Operating System / Product to which the code applies.  If applies to several versions, just the product name can be used.
      *
      *

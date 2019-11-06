@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class LeaveAction extends \OpenActive\Models\SchemaOrg\InteractAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:LeaveAction";
+    }
+
+    /**
      * Upcoming or past event associated with this place, organization, or action.
      *
      *

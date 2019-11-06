@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class EducationalAudience extends \OpenActive\Models\SchemaOrg\Audience
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:EducationalAudience";
+    }
+
+    /**
      * An educationalRole of an EducationalAudience.
      *
      *

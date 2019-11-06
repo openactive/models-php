@@ -8,10 +8,18 @@ namespace OpenActive\Models\SchemaOrg;
 class Place extends \OpenActive\Models\SchemaOrg\Thing
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Place";
+    }
+
+    /**
      * Represents a relationship between two geometries (or the places they represent), relating a geometry to one that contains it, i.e. it is inside (i.e. within) its interior. As defined in <a href="https://en.wikipedia.org/wiki/DE-9IM">DE-9IM</a>.
      *
      *
-     * @var Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry
+     * @var \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place
      */
     protected $geoWithin;
 
@@ -35,7 +43,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
      * Physical address of the item.
      *
      *
-     * @var PostalAddress|string
+     * @var string|PostalAddress
      */
     protected $address;
 
@@ -56,20 +64,12 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     protected $openingHoursSpecification;
 
     /**
-     * Upcoming or past events associated with this place or organization.
-     *
-     *
-     * @var Event
-     */
-    protected $events;
-
-    /**
-     * The fax number.
+     * A URL to a map of the place.
      *
      *
      * @var string
      */
-    protected $faxNumber;
+    protected $maps;
 
     /**
      * The basic containment relation between a place and one that contains it.
@@ -112,18 +112,10 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     protected $maximumAttendeeCapacity;
 
     /**
-     * Review of the item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Review
-     */
-    protected $reviews;
-
-    /**
      * Represents a relationship between two geometries (or the places they represent), relating a geometry to another that crosses it: "a crosses b: they have some but not all interior points in common, and the dimension of the intersection is less than that of at least one of them". As defined in <a href="https://en.wikipedia.org/wiki/DE-9IM">DE-9IM</a>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place
+     * @var Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry
      */
     protected $geoCrosses;
 
@@ -134,6 +126,14 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
      * @var \OpenActive\Models\SchemaOrg\AggregateRating
      */
     protected $aggregateRating;
+
+    /**
+     * Review of the item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Review
+     */
+    protected $reviews;
 
     /**
      * Photographs of this place.
@@ -173,7 +173,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
      * A URL to a map of the place.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Map
+     * @var \OpenActive\Models\SchemaOrg\Map|string
      */
     protected $hasMap;
 
@@ -186,6 +186,14 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
      * @var PropertyValue
      */
     protected $additionalProperty;
+
+    /**
+     * Upcoming or past events associated with this place or organization.
+     *
+     *
+     * @var Event
+     */
+    protected $events;
 
     /**
      * The special opening hours of a certain place.<br/><br/>
@@ -241,7 +249,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
      * Represents spatial relations in which two geometries (or the places they represent) are topologically equal, as defined in <a href="https://en.wikipedia.org/wiki/DE-9IM">DE-9IM</a>. "Two geometries are topologically equal if their interiors intersect and no part of the interior or boundary of one geometry intersects the exterior of the other" (a symmetric relationship)
      *
      *
-     * @var Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry
+     * @var \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place
      */
     protected $geoEquals;
 
@@ -254,12 +262,12 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     protected $review;
 
     /**
-     * The basic containment relation between a place and one that contains it.
+     * A flag to signal that the <a class="localLink" href="https://schema.org/Place">Place</a> is open to public visitors.  If this property is omitted there is no assumed default boolean value
      *
      *
-     * @var Place
+     * @var bool|null
      */
-    protected $containedIn;
+    protected $publicAccess;
 
     /**
      * Upcoming or past event associated with this place, organization, or action.
@@ -273,7 +281,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
      * Represents spatial relations in which two geometries (or the places they represent) touch: they have at least one boundary point in common, but no interior points." (a symmetric relationship, as defined in <a href="https://en.wikipedia.org/wiki/DE-9IM">DE-9IM</a> )
      *
      *
-     * @var Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry
+     * @var \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place
      */
     protected $geoTouches;
 
@@ -286,10 +294,18 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     protected $containsPlace;
 
     /**
+     * Represents spatial relations in which two geometries (or the places they represent) have at least one point in common. As defined in <a href="https://en.wikipedia.org/wiki/DE-9IM">DE-9IM</a>.
+     *
+     *
+     * @var Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry
+     */
+    protected $geoIntersects;
+
+    /**
      * Represents spatial relations in which two geometries (or the places they represent) are topologically disjoint: they have no point in common. They form a set of disconnected geometries." (a symmetric relationship, as defined in <a href="https://en.wikipedia.org/wiki/DE-9IM">DE-9IM</a>)
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place
+     * @var Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry
      */
     protected $geoDisjoint;
 
@@ -310,20 +326,12 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     protected $slogan;
 
     /**
-     * A URL to a map of the place.
+     * The fax number.
      *
      *
      * @var string
      */
-    protected $maps;
-
-    /**
-     * Represents spatial relations in which two geometries (or the places they represent) have at least one point in common. As defined in <a href="https://en.wikipedia.org/wiki/DE-9IM">DE-9IM</a>.
-     *
-     *
-     * @var Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry
-     */
-    protected $geoIntersects;
+    protected $faxNumber;
 
     /**
      * A flag to signal that the item, event, or place is accessible for free.
@@ -342,12 +350,12 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     protected $geoCoveredBy;
 
     /**
-     * A flag to signal that the <a class="localLink" href="https://schema.org/Place">Place</a> is open to public visitors.  If this property is omitted there is no assumed default boolean value
+     * The basic containment relation between a place and one that contains it.
      *
      *
-     * @var bool|null
+     * @var Place
      */
-    protected $publicAccess;
+    protected $containedIn;
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
@@ -359,7 +367,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     protected $formattedDescription;
 
     /**
-     * @return Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry
+     * @return \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place
      */
     public function getGeoWithin()
     {
@@ -367,15 +375,15 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry $geoWithin
+     * @param \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place $geoWithin
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGeoWithin($geoWithin)
     {
         $types = array(
-            "Place",
             "\OpenActive\Models\SchemaOrg\GeospatialGeometry",
+            "Place",
         );
 
         $geoWithin = self::checkTypes($geoWithin, $types);
@@ -434,7 +442,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return PostalAddress|string
+     * @return string|PostalAddress
      */
     public function getAddress()
     {
@@ -442,15 +450,15 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param PostalAddress|string $address
+     * @param string|PostalAddress $address
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddress($address)
     {
         $types = array(
-            "PostalAddress",
             "string",
+            "PostalAddress",
         );
 
         $address = self::checkTypes($address, $types);
@@ -509,51 +517,27 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Event
-     */
-    public function getEvents()
-    {
-        return $this->events;
-    }
-
-    /**
-     * @param Event $events
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEvents($events)
-    {
-        $types = array(
-            "Event",
-        );
-
-        $events = self::checkTypes($events, $types);
-
-        $this->events = $events;
-    }
-
-    /**
      * @return string
      */
-    public function getFaxNumber()
+    public function getMaps()
     {
-        return $this->faxNumber;
+        return $this->maps;
     }
 
     /**
-     * @param string $faxNumber
+     * @param string $maps
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setFaxNumber($faxNumber)
+    public function setMaps($maps)
     {
         $types = array(
             "string",
         );
 
-        $faxNumber = self::checkTypes($faxNumber, $types);
+        $maps = self::checkTypes($maps, $types);
 
-        $this->faxNumber = $faxNumber;
+        $this->maps = $maps;
     }
 
     /**
@@ -680,31 +664,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Review
-     */
-    public function getReviews()
-    {
-        return $this->reviews;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Review $reviews
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReviews($reviews)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Review",
-        );
-
-        $reviews = self::checkTypes($reviews, $types);
-
-        $this->reviews = $reviews;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place
+     * @return Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry
      */
     public function getGeoCrosses()
     {
@@ -712,15 +672,15 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place $geoCrosses
+     * @param Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry $geoCrosses
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGeoCrosses($geoCrosses)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\GeospatialGeometry",
             "Place",
+            "\OpenActive\Models\SchemaOrg\GeospatialGeometry",
         );
 
         $geoCrosses = self::checkTypes($geoCrosses, $types);
@@ -750,6 +710,30 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
         $aggregateRating = self::checkTypes($aggregateRating, $types);
 
         $this->aggregateRating = $aggregateRating;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Review
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Review $reviews
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReviews($reviews)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Review",
+        );
+
+        $reviews = self::checkTypes($reviews, $types);
+
+        $this->reviews = $reviews;
     }
 
     /**
@@ -852,7 +836,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Map
+     * @return \OpenActive\Models\SchemaOrg\Map|string
      */
     public function getHasMap()
     {
@@ -860,15 +844,15 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Map $hasMap
+     * @param \OpenActive\Models\SchemaOrg\Map|string $hasMap
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasMap($hasMap)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\Map",
+            "string",
         );
 
         $hasMap = self::checkTypes($hasMap, $types);
@@ -898,6 +882,30 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
         $additionalProperty = self::checkTypes($additionalProperty, $types);
 
         $this->additionalProperty = $additionalProperty;
+    }
+
+    /**
+     * @return Event
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    /**
+     * @param Event $events
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEvents($events)
+    {
+        $types = array(
+            "Event",
+        );
+
+        $events = self::checkTypes($events, $types);
+
+        $this->events = $events;
     }
 
     /**
@@ -1048,7 +1056,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry
+     * @return \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place
      */
     public function getGeoEquals()
     {
@@ -1056,15 +1064,15 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry $geoEquals
+     * @param \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place $geoEquals
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGeoEquals($geoEquals)
     {
         $types = array(
-            "Place",
             "\OpenActive\Models\SchemaOrg\GeospatialGeometry",
+            "Place",
         );
 
         $geoEquals = self::checkTypes($geoEquals, $types);
@@ -1097,27 +1105,28 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Place
+     * @return bool|null
      */
-    public function getContainedIn()
+    public function getPublicAccess()
     {
-        return $this->containedIn;
+        return $this->publicAccess;
     }
 
     /**
-     * @param Place $containedIn
+     * @param bool|null $publicAccess
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setContainedIn($containedIn)
+    public function setPublicAccess($publicAccess)
     {
         $types = array(
-            "Place",
+            "bool",
+            "null",
         );
 
-        $containedIn = self::checkTypes($containedIn, $types);
+        $publicAccess = self::checkTypes($publicAccess, $types);
 
-        $this->containedIn = $containedIn;
+        $this->publicAccess = $publicAccess;
     }
 
     /**
@@ -1145,7 +1154,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry
+     * @return \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place
      */
     public function getGeoTouches()
     {
@@ -1153,15 +1162,15 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry $geoTouches
+     * @param \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place $geoTouches
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGeoTouches($geoTouches)
     {
         $types = array(
-            "Place",
             "\OpenActive\Models\SchemaOrg\GeospatialGeometry",
+            "Place",
         );
 
         $geoTouches = self::checkTypes($geoTouches, $types);
@@ -1194,7 +1203,32 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place
+     * @return Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry
+     */
+    public function getGeoIntersects()
+    {
+        return $this->geoIntersects;
+    }
+
+    /**
+     * @param Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry $geoIntersects
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGeoIntersects($geoIntersects)
+    {
+        $types = array(
+            "Place",
+            "\OpenActive\Models\SchemaOrg\GeospatialGeometry",
+        );
+
+        $geoIntersects = self::checkTypes($geoIntersects, $types);
+
+        $this->geoIntersects = $geoIntersects;
+    }
+
+    /**
+     * @return Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry
      */
     public function getGeoDisjoint()
     {
@@ -1202,15 +1236,15 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\GeospatialGeometry|Place $geoDisjoint
+     * @param Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry $geoDisjoint
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGeoDisjoint($geoDisjoint)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\GeospatialGeometry",
             "Place",
+            "\OpenActive\Models\SchemaOrg\GeospatialGeometry",
         );
 
         $geoDisjoint = self::checkTypes($geoDisjoint, $types);
@@ -1269,50 +1303,25 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @return string
      */
-    public function getMaps()
+    public function getFaxNumber()
     {
-        return $this->maps;
+        return $this->faxNumber;
     }
 
     /**
-     * @param string $maps
+     * @param string $faxNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMaps($maps)
+    public function setFaxNumber($faxNumber)
     {
         $types = array(
             "string",
         );
 
-        $maps = self::checkTypes($maps, $types);
+        $faxNumber = self::checkTypes($faxNumber, $types);
 
-        $this->maps = $maps;
-    }
-
-    /**
-     * @return Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry
-     */
-    public function getGeoIntersects()
-    {
-        return $this->geoIntersects;
-    }
-
-    /**
-     * @param Place|\OpenActive\Models\SchemaOrg\GeospatialGeometry $geoIntersects
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGeoIntersects($geoIntersects)
-    {
-        $types = array(
-            "Place",
-            "\OpenActive\Models\SchemaOrg\GeospatialGeometry",
-        );
-
-        $geoIntersects = self::checkTypes($geoIntersects, $types);
-
-        $this->geoIntersects = $geoIntersects;
+        $this->faxNumber = $faxNumber;
     }
 
     /**
@@ -1366,28 +1375,27 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return bool|null
+     * @return Place
      */
-    public function getPublicAccess()
+    public function getContainedIn()
     {
-        return $this->publicAccess;
+        return $this->containedIn;
     }
 
     /**
-     * @param bool|null $publicAccess
+     * @param Place $containedIn
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPublicAccess($publicAccess)
+    public function setContainedIn($containedIn)
     {
         $types = array(
-            "bool",
-            "null",
+            "Place",
         );
 
-        $publicAccess = self::checkTypes($publicAccess, $types);
+        $containedIn = self::checkTypes($containedIn, $types);
 
-        $this->publicAccess = $publicAccess;
+        $this->containedIn = $containedIn;
     }
 
     /**

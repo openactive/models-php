@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:PriceSpecification";
+    }
+
+    /**
      * The lowest price if the price is a range.
      *
      *
@@ -79,7 +87,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
      * 
      *
      *
-     * @var decimal|string|null
+     * @var string|decimal|null
      */
     protected $price;
 
@@ -264,7 +272,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return decimal|string|null
+     * @return string|decimal|null
      */
     public function getPrice()
     {
@@ -272,15 +280,15 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param decimal|string|null $price
+     * @param string|decimal|null $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
         $types = array(
-            "decimal",
             "string",
+            "decimal",
             "null",
         );
 

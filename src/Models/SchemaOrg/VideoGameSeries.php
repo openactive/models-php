@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:VideoGameSeries";
+    }
+
+    /**
      * An item is an object within the game world that can be collected by a player or, occasionally, a non-player character.
      *
      *
@@ -91,7 +99,7 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * Real or fictional location of the game (or part of game).
      *
      *
-     * @var PostalAddress|string|Place
+     * @var Place|PostalAddress|string
      */
     protected $gameLocation;
 
@@ -99,7 +107,7 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * The composer of the soundtrack.
      *
      *
-     * @var Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|Person
      */
     protected $musicBy;
 
@@ -426,7 +434,7 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return PostalAddress|string|Place
+     * @return Place|PostalAddress|string
      */
     public function getGameLocation()
     {
@@ -434,16 +442,16 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param PostalAddress|string|Place $gameLocation
+     * @param Place|PostalAddress|string $gameLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGameLocation($gameLocation)
     {
         $types = array(
+            "Place",
             "PostalAddress",
             "string",
-            "Place",
         );
 
         $gameLocation = self::checkTypes($gameLocation, $types);
@@ -452,7 +460,7 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|Person
      */
     public function getMusicBy()
     {
@@ -460,15 +468,15 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param Person|\OpenActive\Models\SchemaOrg\MusicGroup $musicBy
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|Person $musicBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicBy($musicBy)
     {
         $types = array(
-            "Person",
             "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "Person",
         );
 
         $musicBy = self::checkTypes($musicBy, $types);

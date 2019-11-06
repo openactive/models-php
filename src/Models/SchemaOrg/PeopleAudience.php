@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:PeopleAudience";
+    }
+
+    /**
      * Maximal age recommended for viewing content.
      *
      *

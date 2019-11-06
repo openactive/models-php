@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class TrackAction extends \OpenActive\Models\SchemaOrg\FindAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:TrackAction";
+    }
+
+    /**
      * A sub property of instrument. The method of delivery.
      *
      *

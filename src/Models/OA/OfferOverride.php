@@ -8,4 +8,12 @@ namespace OpenActive\Models\OA;
  */
 class OfferOverride extends \OpenActive\Models\OA\Offer
 {
+    /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "OfferOverride";
+    }
+
 }

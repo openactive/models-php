@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ParentAudience extends \OpenActive\Models\SchemaOrg\PeopleAudience
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:ParentAudience";
+    }
+
+    /**
      * Maximal age of the child.
      *
      *

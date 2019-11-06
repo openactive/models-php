@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:ReceiveAction";
+    }
+
+    /**
      * A sub property of instrument. The method of delivery.
      *
      *
@@ -19,7 +27,7 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
      * A sub property of participant. The participant who is at the sending end of the action.
      *
      *
-     * @var Person|\OpenActive\Models\SchemaOrg\Audience|Organization
+     * @var \OpenActive\Models\SchemaOrg\Audience|Person|Organization
      */
     protected $sender;
 
@@ -49,7 +57,7 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @return Person|\OpenActive\Models\SchemaOrg\Audience|Organization
+     * @return \OpenActive\Models\SchemaOrg\Audience|Person|Organization
      */
     public function getSender()
     {
@@ -57,15 +65,15 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @param Person|\OpenActive\Models\SchemaOrg\Audience|Organization $sender
+     * @param \OpenActive\Models\SchemaOrg\Audience|Person|Organization $sender
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSender($sender)
     {
         $types = array(
-            "Person",
             "\OpenActive\Models\SchemaOrg\Audience",
+            "Person",
             "Organization",
         );
 

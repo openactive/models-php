@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class MediaSubscription extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:MediaSubscription";
+    }
+
+    /**
      * The Organization responsible for authenticating the user's subscription. For example, many media apps require a cable/satellite provider to authenticate your subscription before playing media.
      *
      *

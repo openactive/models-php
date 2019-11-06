@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Event extends \OpenActive\Models\SchemaOrg\Thing
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Event";
+    }
+
+    /**
      * The subject matter of the content.
      *
      *
@@ -68,7 +76,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The main performer or performers of the event&#x2014;for example, a presenter, musician, or actor.
      *
      *
-     * @var Person|Organization
+     * @var Organization|Person
      */
     protected $performers;
 
@@ -124,7 +132,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * A person attending the event.
      *
      *
-     * @var Organization|Person
+     * @var Person|Organization
      */
     protected $attendees;
 
@@ -156,7 +164,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The language of the content or performance or used in an action. Please use one of the language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>. See also <a class="localLink" href="https://schema.org/availableLanguage">availableLanguage</a>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Language|string
+     * @var string|\OpenActive\Models\SchemaOrg\Language
      */
     protected $inLanguage;
 
@@ -164,7 +172,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * A person or organization attending the event.
      *
      *
-     * @var Person|Organization
+     * @var Organization|Person
      */
     protected $attendee;
 
@@ -284,7 +292,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * A performer at the event&#x2014;for example, a presenter, musician, musical group or actor.
      *
      *
-     * @var Person|Organization
+     * @var Organization|Person
      */
     protected $performer;
 
@@ -567,7 +575,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Person|Organization
+     * @return Organization|Person
      */
     public function getPerformers()
     {
@@ -575,15 +583,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Person|Organization $performers
+     * @param Organization|Person $performers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPerformers($performers)
     {
         $types = array(
-            "Person",
             "Organization",
+            "Person",
         );
 
         $performers = self::checkTypes($performers, $types);
@@ -741,7 +749,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Organization|Person
+     * @return Person|Organization
      */
     public function getAttendees()
     {
@@ -749,15 +757,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Organization|Person $attendees
+     * @param Person|Organization $attendees
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAttendees($attendees)
     {
         $types = array(
-            "Organization",
             "Person",
+            "Organization",
         );
 
         $attendees = self::checkTypes($attendees, $types);
@@ -838,7 +846,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Language|string
+     * @return string|\OpenActive\Models\SchemaOrg\Language
      */
     public function getInLanguage()
     {
@@ -846,15 +854,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Language|string $inLanguage
+     * @param string|\OpenActive\Models\SchemaOrg\Language $inLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInLanguage($inLanguage)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Language",
             "string",
+            "\OpenActive\Models\SchemaOrg\Language",
         );
 
         $inLanguage = self::checkTypes($inLanguage, $types);
@@ -863,7 +871,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Person|Organization
+     * @return Organization|Person
      */
     public function getAttendee()
     {
@@ -871,15 +879,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Person|Organization $attendee
+     * @param Organization|Person $attendee
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAttendee($attendee)
     {
         $types = array(
-            "Person",
             "Organization",
+            "Person",
         );
 
         $attendee = self::checkTypes($attendee, $types);
@@ -1234,7 +1242,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Person|Organization
+     * @return Organization|Person
      */
     public function getPerformer()
     {
@@ -1242,15 +1250,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Person|Organization $performer
+     * @param Organization|Person $performer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPerformer($performer)
     {
         $types = array(
-            "Person",
             "Organization",
+            "Person",
         );
 
         $performer = self::checkTypes($performer, $types);

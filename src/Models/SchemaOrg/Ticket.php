@@ -8,20 +8,20 @@ namespace OpenActive\Models\SchemaOrg;
 class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Ticket";
+    }
+
+    /**
      * The person or organization the reservation or ticket is for.
      *
      *
      * @var Organization|Person
      */
     protected $underName;
-
-    /**
-     * The date the ticket was issued.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $dateIssued;
 
     /**
      * The total price for the reservation or ticket, including applicable taxes, shipping, etc.<br/><br/>
@@ -35,7 +35,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
      * 
      *
      *
-     * @var PriceSpecification|decimal|string|null
+     * @var string|decimal|PriceSpecification|null
      */
     protected $totalPrice;
 
@@ -82,6 +82,14 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     protected $ticketedSeat;
 
     /**
+     * The date the ticket was issued.
+     *
+     *
+     * @var DateTime|null
+     */
+    protected $dateIssued;
+
+    /**
      * @return Organization|Person
      */
     public function getUnderName()
@@ -107,32 +115,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateTime|null
-     */
-    public function getDateIssued()
-    {
-        return $this->dateIssued;
-    }
-
-    /**
-     * @param DateTime|null $dateIssued
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDateIssued($dateIssued)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $dateIssued = self::checkTypes($dateIssued, $types);
-
-        $this->dateIssued = $dateIssued;
-    }
-
-    /**
-     * @return PriceSpecification|decimal|string|null
+     * @return string|decimal|PriceSpecification|null
      */
     public function getTotalPrice()
     {
@@ -140,16 +123,16 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param PriceSpecification|decimal|string|null $totalPrice
+     * @param string|decimal|PriceSpecification|null $totalPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalPrice($totalPrice)
     {
         $types = array(
-            "PriceSpecification",
-            "decimal",
             "string",
+            "decimal",
+            "PriceSpecification",
             "null",
         );
 
@@ -276,6 +259,31 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
         $ticketedSeat = self::checkTypes($ticketedSeat, $types);
 
         $this->ticketedSeat = $ticketedSeat;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getDateIssued()
+    {
+        return $this->dateIssued;
+    }
+
+    /**
+     * @param DateTime|null $dateIssued
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDateIssued($dateIssued)
+    {
+        $types = array(
+            "DateTime",
+            "null",
+        );
+
+        $dateIssued = self::checkTypes($dateIssued, $types);
+
+        $this->dateIssued = $dateIssued;
     }
 
 }

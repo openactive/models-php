@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class ReplaceAction extends \OpenActive\Models\SchemaOrg\UpdateAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:ReplaceAction";
+    }
+
+    /**
      * A sub property of object. The object that is being replaced.
      *
      *

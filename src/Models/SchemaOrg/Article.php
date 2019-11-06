@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Article";
+    }
+
+    /**
      * Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49".
      *
      *
@@ -30,7 +38,7 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
      * we define a supporting type, <a class="localLink" href="https://schema.org/SpeakableSpecification">SpeakableSpecification</a>  which is defined to be a possible value of the <em>speakable</em> property.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SpeakableSpecification|string
+     * @var string|\OpenActive\Models\SchemaOrg\SpeakableSpecification
      */
     protected $speakable;
 
@@ -38,7 +46,7 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The page on which the work ends; for example "138" or "xvi".
      *
      *
-     * @var int|string|null
+     * @var string|int|null
      */
     protected $pageEnd;
 
@@ -99,7 +107,7 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SpeakableSpecification|string
+     * @return string|\OpenActive\Models\SchemaOrg\SpeakableSpecification
      */
     public function getSpeakable()
     {
@@ -107,15 +115,15 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SpeakableSpecification|string $speakable
+     * @param string|\OpenActive\Models\SchemaOrg\SpeakableSpecification $speakable
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSpeakable($speakable)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\SpeakableSpecification",
             "string",
+            "\OpenActive\Models\SchemaOrg\SpeakableSpecification",
         );
 
         $speakable = self::checkTypes($speakable, $types);
@@ -124,7 +132,7 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|string|null
+     * @return string|int|null
      */
     public function getPageEnd()
     {
@@ -132,15 +140,15 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param int|string|null $pageEnd
+     * @param string|int|null $pageEnd
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPageEnd($pageEnd)
     {
         $types = array(
-            "int",
             "string",
+            "int",
             "null",
         );
 

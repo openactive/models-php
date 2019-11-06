@@ -14,6 +14,14 @@ namespace OpenActive\Models\OA;
 class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "DataDownload";
+    }
+
+    /**
      * The name of the type of feed
      *
      * ```json

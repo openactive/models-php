@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "QuantitativeValue";
+    }
+
+    /**
      * The maximum value.
      *
      * ```json

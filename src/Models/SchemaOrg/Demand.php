@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Demand extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Demand";
+    }
+
+    /**
      * The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers.
      *
      *
@@ -30,14 +38,6 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
      * @var Schema.NET.DeliveryMethod|null
      */
     protected $availableDeliveryMethod;
-
-    /**
-     * The geographic area where a service or offered item is provided.
-     *
-     *
-     * @var Place|string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea
-     */
-    protected $areaServed;
 
     /**
      * The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.
@@ -112,14 +112,6 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $warranty;
 
     /**
-     * This links to a node or nodes indicating the exact quantity of the products included in the offer.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\TypeAndQuantityNode
-     */
-    protected $includesObject;
-
-    /**
      * The interval and unit of measurement of ordering quantities for which the offer or price specification is valid. This allows e.g. specifying that a certain freight charge is valid only for a certain quantity.
      *
      *
@@ -192,6 +184,22 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $availabilityEnds;
 
     /**
+     * This links to a node or nodes indicating the exact quantity of the products included in the offer.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\TypeAndQuantityNode
+     */
+    protected $includesObject;
+
+    /**
+     * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
+     *
+     *
+     * @var Schema.NET.BusinessFunction|null
+     */
+    protected $businessFunction;
+
+    /**
      * The type(s) of customers for which the given offer is valid.
      *
      *
@@ -232,12 +240,12 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $acceptedPaymentMethod;
 
     /**
-     * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
+     * The geographic area where a service or offered item is provided.
      *
      *
-     * @var Schema.NET.BusinessFunction|null
+     * @var string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|Place
      */
-    protected $businessFunction;
+    protected $areaServed;
 
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.<br/><br/>
@@ -329,33 +337,6 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
         $availableDeliveryMethod = self::checkTypes($availableDeliveryMethod, $types);
 
         $this->availableDeliveryMethod = $availableDeliveryMethod;
-    }
-
-    /**
-     * @return Place|string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea
-     */
-    public function getAreaServed()
-    {
-        return $this->areaServed;
-    }
-
-    /**
-     * @param Place|string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAreaServed($areaServed)
-    {
-        $types = array(
-            "Place",
-            "string",
-            "\OpenActive\Models\SchemaOrg\GeoShape",
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-        );
-
-        $areaServed = self::checkTypes($areaServed, $types);
-
-        $this->areaServed = $areaServed;
     }
 
     /**
@@ -573,30 +554,6 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
         $warranty = self::checkTypes($warranty, $types);
 
         $this->warranty = $warranty;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\TypeAndQuantityNode
-     */
-    public function getIncludesObject()
-    {
-        return $this->includesObject;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\TypeAndQuantityNode $includesObject
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIncludesObject($includesObject)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\TypeAndQuantityNode",
-        );
-
-        $includesObject = self::checkTypes($includesObject, $types);
-
-        $this->includesObject = $includesObject;
     }
 
     /**
@@ -820,6 +777,55 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\TypeAndQuantityNode
+     */
+    public function getIncludesObject()
+    {
+        return $this->includesObject;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\TypeAndQuantityNode $includesObject
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIncludesObject($includesObject)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\TypeAndQuantityNode",
+        );
+
+        $includesObject = self::checkTypes($includesObject, $types);
+
+        $this->includesObject = $includesObject;
+    }
+
+    /**
+     * @return Schema.NET.BusinessFunction|null
+     */
+    public function getBusinessFunction()
+    {
+        return $this->businessFunction;
+    }
+
+    /**
+     * @param Schema.NET.BusinessFunction|null $businessFunction
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBusinessFunction($businessFunction)
+    {
+        $types = array(
+            "Schema.NET.BusinessFunction",
+            "null",
+        );
+
+        $businessFunction = self::checkTypes($businessFunction, $types);
+
+        $this->businessFunction = $businessFunction;
+    }
+
+    /**
      * @return Schema.NET.BusinessEntityType|null
      */
     public function getEligibleCustomerType()
@@ -945,28 +951,30 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Schema.NET.BusinessFunction|null
+     * @return string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|Place
      */
-    public function getBusinessFunction()
+    public function getAreaServed()
     {
-        return $this->businessFunction;
+        return $this->areaServed;
     }
 
     /**
-     * @param Schema.NET.BusinessFunction|null $businessFunction
+     * @param string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|Place $areaServed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBusinessFunction($businessFunction)
+    public function setAreaServed($areaServed)
     {
         $types = array(
-            "Schema.NET.BusinessFunction",
-            "null",
+            "string",
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+            "\OpenActive\Models\SchemaOrg\GeoShape",
+            "Place",
         );
 
-        $businessFunction = self::checkTypes($businessFunction, $types);
+        $areaServed = self::checkTypes($areaServed, $types);
 
-        $this->businessFunction = $businessFunction;
+        $this->areaServed = $areaServed;
     }
 
     /**

@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class MobileApplication extends \OpenActive\Models\SchemaOrg\SoftwareApplication
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:MobileApplication";
+    }
+
+    /**
      * Specifies specific carrier(s) requirements for the application (e.g. an application may only work on a specific carrier network).
      *
      *

@@ -8,6 +8,22 @@ namespace OpenActive\Models\SchemaOrg;
 class BuyAction extends \OpenActive\Models\SchemaOrg\TradeAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:BuyAction";
+    }
+
+    /**
+     * 'vendor' is an earlier term for 'seller'.
+     *
+     *
+     * @var Organization|Person
+     */
+    protected $vendor;
+
+    /**
      * An entity which offers (sells / leases / lends / loans) the services / goods.  A seller may also be a provider.
      *
      *
@@ -24,12 +40,29 @@ class BuyAction extends \OpenActive\Models\SchemaOrg\TradeAction
     protected $warrantyPromise;
 
     /**
-     * 'vendor' is an earlier term for 'seller'.
-     *
-     *
-     * @var Organization|Person
+     * @return Organization|Person
      */
-    protected $vendor;
+    public function getVendor()
+    {
+        return $this->vendor;
+    }
+
+    /**
+     * @param Organization|Person $vendor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVendor($vendor)
+    {
+        $types = array(
+            "Organization",
+            "Person",
+        );
+
+        $vendor = self::checkTypes($vendor, $types);
+
+        $this->vendor = $vendor;
+    }
 
     /**
      * @return Person|Organization
@@ -78,31 +111,6 @@ class BuyAction extends \OpenActive\Models\SchemaOrg\TradeAction
         $warrantyPromise = self::checkTypes($warrantyPromise, $types);
 
         $this->warrantyPromise = $warrantyPromise;
-    }
-
-    /**
-     * @return Organization|Person
-     */
-    public function getVendor()
-    {
-        return $this->vendor;
-    }
-
-    /**
-     * @param Organization|Person $vendor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVendor($vendor)
-    {
-        $types = array(
-            "Organization",
-            "Person",
-        );
-
-        $vendor = self::checkTypes($vendor, $types);
-
-        $this->vendor = $vendor;
     }
 
 }

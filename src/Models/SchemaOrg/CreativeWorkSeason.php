@@ -8,12 +8,28 @@ namespace OpenActive\Models\SchemaOrg;
 class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:CreativeWorkSeason";
+    }
+
+    /**
      * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
      * @var Person
      */
     protected $actor;
+
+    /**
+     * The series to which this episode or season belongs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeries
+     */
+    protected $partOfSeries;
 
     /**
      * The number of episodes in this season or series.
@@ -38,14 +54,6 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var DateTime|null
      */
     protected $endDate;
-
-    /**
-     * The series to which this episode or season belongs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeries
-     */
-    protected $partOfSeries;
 
     /**
      * An episode of a TV/radio series or season.
@@ -120,6 +128,30 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeries
+     */
+    public function getPartOfSeries()
+    {
+        return $this->partOfSeries;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeries $partOfSeries
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPartOfSeries($partOfSeries)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\CreativeWorkSeries",
+        );
+
+        $partOfSeries = self::checkTypes($partOfSeries, $types);
+
+        $this->partOfSeries = $partOfSeries;
+    }
+
+    /**
      * @return int|null
      */
     public function getNumberOfEpisodes()
@@ -191,30 +223,6 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
         $endDate = self::checkTypes($endDate, $types);
 
         $this->endDate = $endDate;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeries
-     */
-    public function getPartOfSeries()
-    {
-        return $this->partOfSeries;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeries $partOfSeries
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPartOfSeries($partOfSeries)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWorkSeries",
-        );
-
-        $partOfSeries = self::checkTypes($partOfSeries, $types);
-
-        $this->partOfSeries = $partOfSeries;
     }
 
     /**

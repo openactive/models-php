@@ -9,6 +9,14 @@ namespace OpenActive\Models\SchemaOrg;
 class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:PaymentChargeSpecification";
+    }
+
+    /**
      * The payment method(s) to which the payment charge specification applies.
      *
      *

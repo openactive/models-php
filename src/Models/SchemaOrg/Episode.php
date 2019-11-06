@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Episode extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Episode";
+    }
+
+    /**
      * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
@@ -16,20 +24,20 @@ class Episode extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $actor;
 
     /**
-     * The trailer of a movie or tv/radio series, season, episode, etc.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\VideoObject
-     */
-    protected $trailer;
-
-    /**
      * The series to which this episode or season belongs.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      */
     protected $partOfSeries;
+
+    /**
+     * The trailer of a movie or tv/radio series, season, episode, etc.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\VideoObject
+     */
+    protected $trailer;
 
     /**
      * The season to which this episode belongs.
@@ -43,7 +51,7 @@ class Episode extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The composer of the soundtrack.
      *
      *
-     * @var Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|Person
      */
     protected $musicBy;
 
@@ -112,30 +120,6 @@ class Episode extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\VideoObject
-     */
-    public function getTrailer()
-    {
-        return $this->trailer;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\VideoObject $trailer
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTrailer($trailer)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\VideoObject",
-        );
-
-        $trailer = self::checkTypes($trailer, $types);
-
-        $this->trailer = $trailer;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      */
     public function getPartOfSeries()
@@ -157,6 +141,30 @@ class Episode extends \OpenActive\Models\SchemaOrg\CreativeWork
         $partOfSeries = self::checkTypes($partOfSeries, $types);
 
         $this->partOfSeries = $partOfSeries;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\VideoObject
+     */
+    public function getTrailer()
+    {
+        return $this->trailer;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\VideoObject $trailer
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTrailer($trailer)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\VideoObject",
+        );
+
+        $trailer = self::checkTypes($trailer, $types);
+
+        $this->trailer = $trailer;
     }
 
     /**
@@ -184,7 +192,7 @@ class Episode extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|Person
      */
     public function getMusicBy()
     {
@@ -192,15 +200,15 @@ class Episode extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person|\OpenActive\Models\SchemaOrg\MusicGroup $musicBy
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|Person $musicBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicBy($musicBy)
     {
         $types = array(
-            "Person",
             "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "Person",
         );
 
         $musicBy = self::checkTypes($musicBy, $types);

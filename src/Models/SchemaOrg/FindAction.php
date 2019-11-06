@@ -8,4 +8,12 @@ namespace OpenActive\Models\SchemaOrg;
  */
 class FindAction extends \OpenActive\Models\SchemaOrg\Action
 {
+    /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:FindAction";
+    }
+
 }

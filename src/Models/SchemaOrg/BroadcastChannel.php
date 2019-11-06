@@ -8,10 +8,18 @@ namespace OpenActive\Models\SchemaOrg;
 class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:BroadcastChannel";
+    }
+
+    /**
      * The frequency used for over-the-air broadcasts. Numeric values or simple ranges e.g. 87-99. In addition a shortcut idiom is supported for frequences of AM and FM radio channels, e.g. "87 FM".
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string
+     * @var string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification
      */
     protected $broadcastFrequency;
 
@@ -56,7 +64,7 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     protected $genre;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string
+     * @return string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification
      */
     public function getBroadcastFrequency()
     {
@@ -64,15 +72,15 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string $broadcastFrequency
+     * @param string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification $broadcastFrequency
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastFrequency($broadcastFrequency)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification",
             "string",
+            "\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification",
         );
 
         $broadcastFrequency = self::checkTypes($broadcastFrequency, $types);

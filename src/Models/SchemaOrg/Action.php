@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Action extends \OpenActive\Models\SchemaOrg\Thing
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Action";
+    }
+
+    /**
      * The result produced in the action. e.g. John wrote <em>a book</em>.
      *
      *
@@ -45,7 +53,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
      * The direct performer or driver of the action (animate or inanimate). e.g. <em>John</em> wrote a book.
      *
      *
-     * @var Organization|Person
+     * @var Person|Organization
      */
     protected $agent;
 
@@ -60,20 +68,20 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     protected $endTime;
 
     /**
-     * The object that helped the agent perform the action. e.g. John wrote a book with <em>a pen</em>.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $instrument;
-
-    /**
      * Other co-agents that participated in the action indirectly. e.g. John wrote a book with <em>Steve</em>.
      *
      *
      * @var Organization|Person
      */
     protected $participant;
+
+    /**
+     * The object that helped the agent perform the action. e.g. John wrote a book with <em>a pen</em>.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing
+     */
+    protected $instrument;
 
     /**
      * The object upon which the action is carried out, whose state is kept intact or changed. Also known as the semantic roles patient, affected or undergoer (which change their state) or theme (which doesn't). e.g. John read <em>a book</em>.
@@ -198,7 +206,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Organization|Person
+     * @return Person|Organization
      */
     public function getAgent()
     {
@@ -206,15 +214,15 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Organization|Person $agent
+     * @param Person|Organization $agent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAgent($agent)
     {
         $types = array(
-            "Organization",
             "Person",
+            "Organization",
         );
 
         $agent = self::checkTypes($agent, $types);
@@ -248,30 +256,6 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getInstrument()
-    {
-        return $this->instrument;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $instrument
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setInstrument($instrument)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
-        );
-
-        $instrument = self::checkTypes($instrument, $types);
-
-        $this->instrument = $instrument;
-    }
-
-    /**
      * @return Organization|Person
      */
     public function getParticipant()
@@ -294,6 +278,30 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
         $participant = self::checkTypes($participant, $types);
 
         $this->participant = $participant;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing
+     */
+    public function getInstrument()
+    {
+        return $this->instrument;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing $instrument
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInstrument($instrument)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Thing",
+        );
+
+        $instrument = self::checkTypes($instrument, $types);
+
+        $this->instrument = $instrument;
     }
 
     /**

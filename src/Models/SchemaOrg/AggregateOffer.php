@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:AggregateOffer";
+    }
+
+    /**
      * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
      *
      *

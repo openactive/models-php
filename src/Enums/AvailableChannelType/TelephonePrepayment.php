@@ -10,5 +10,5 @@ namespace OpenActive\Enums\AvailableChannelType;
 class TelephonePrepayment extends \OpenActive\Enums\AvailableChannelType
 {
     const value = "TelephonePrepayment";
-    const memberVal = "undefinedTelephonePrepayment";
+    const memberVal = "https://openactive.io/ns-beta#TelephonePrepayment";
 }

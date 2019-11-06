@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class DataCatalog extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:DataCatalog";
+    }
+
+    /**
      * A dataset contained in this catalog.
      *
      *

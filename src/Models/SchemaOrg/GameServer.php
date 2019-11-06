@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:GameServer";
+    }
+
+    /**
      * Video game which is played on this server.
      *
      *

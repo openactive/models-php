@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class OrderQuote extends \OpenActive\Models\OA\Order
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "OrderQuote";
+    }
+
+    /**
      * The Lease on the OrderItems which lasts for the duration specified by the Booking System.
      *
      *

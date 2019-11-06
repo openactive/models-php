@@ -8,12 +8,12 @@ namespace OpenActive\Models\SchemaOrg;
 class Order extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
-     * Date order was placed.
-     *
-     *
-     * @var DateTime|null
+     * @return string[]|null
      */
-    protected $orderDate;
+    public static function getType()
+    {
+        return "schema:Order";
+    }
 
     /**
      * The date that payment is due.
@@ -48,14 +48,6 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     protected $orderStatus;
 
     /**
-     * The billing address for the order.
-     *
-     *
-     * @var PostalAddress
-     */
-    protected $billingAddress;
-
-    /**
      * The order is being paid as part of the referenced Invoice.
      *
      *
@@ -72,10 +64,18 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     protected $confirmationNumber;
 
     /**
+     * Date order was placed.
+     *
+     *
+     * @var DateTime|null
+     */
+    protected $orderDate;
+
+    /**
      * Party placing the order or paying the invoice.
      *
      *
-     * @var Organization|Person
+     * @var Person|Organization
      */
     protected $customer;
 
@@ -91,7 +91,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
      * An entity that arranges for an exchange between a buyer and a seller.  In most cases a broker never acquires or releases ownership of a product or service involved in an exchange.  If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred.
      *
      *
-     * @var Person|Organization
+     * @var Organization|Person
      */
     protected $broker;
 
@@ -110,6 +110,14 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
      * @var bool|null
      */
     protected $isGift;
+
+    /**
+     * The billing address for the order.
+     *
+     *
+     * @var PostalAddress
+     */
+    protected $billingAddress;
 
     /**
      * The name of the credit card or other method of payment for the order.
@@ -184,31 +192,6 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
      * @var string
      */
     protected $discountCode;
-
-    /**
-     * @return DateTime|null
-     */
-    public function getOrderDate()
-    {
-        return $this->orderDate;
-    }
-
-    /**
-     * @param DateTime|null $orderDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOrderDate($orderDate)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $orderDate = self::checkTypes($orderDate, $types);
-
-        $this->orderDate = $orderDate;
-    }
 
     /**
      * @return DateTime|null
@@ -309,30 +292,6 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return PostalAddress
-     */
-    public function getBillingAddress()
-    {
-        return $this->billingAddress;
-    }
-
-    /**
-     * @param PostalAddress $billingAddress
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBillingAddress($billingAddress)
-    {
-        $types = array(
-            "PostalAddress",
-        );
-
-        $billingAddress = self::checkTypes($billingAddress, $types);
-
-        $this->billingAddress = $billingAddress;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Invoice
      */
     public function getPartOfInvoice()
@@ -381,7 +340,32 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Organization|Person
+     * @return DateTime|null
+     */
+    public function getOrderDate()
+    {
+        return $this->orderDate;
+    }
+
+    /**
+     * @param DateTime|null $orderDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOrderDate($orderDate)
+    {
+        $types = array(
+            "DateTime",
+            "null",
+        );
+
+        $orderDate = self::checkTypes($orderDate, $types);
+
+        $this->orderDate = $orderDate;
+    }
+
+    /**
+     * @return Person|Organization
      */
     public function getCustomer()
     {
@@ -389,15 +373,15 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Organization|Person $customer
+     * @param Person|Organization $customer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCustomer($customer)
     {
         $types = array(
-            "Organization",
             "Person",
+            "Organization",
         );
 
         $customer = self::checkTypes($customer, $types);
@@ -431,7 +415,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Person|Organization
+     * @return Organization|Person
      */
     public function getBroker()
     {
@@ -439,15 +423,15 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Person|Organization $broker
+     * @param Organization|Person $broker
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroker($broker)
     {
         $types = array(
-            "Person",
             "Organization",
+            "Person",
         );
 
         $broker = self::checkTypes($broker, $types);
@@ -504,6 +488,30 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
         $isGift = self::checkTypes($isGift, $types);
 
         $this->isGift = $isGift;
+    }
+
+    /**
+     * @return PostalAddress
+     */
+    public function getBillingAddress()
+    {
+        return $this->billingAddress;
+    }
+
+    /**
+     * @param PostalAddress $billingAddress
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBillingAddress($billingAddress)
+    {
+        $types = array(
+            "PostalAddress",
+        );
+
+        $billingAddress = self::checkTypes($billingAddress, $types);
+
+        $this->billingAddress = $billingAddress;
     }
 
     /**

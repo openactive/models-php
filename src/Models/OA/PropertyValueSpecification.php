@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyValueSpecification
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "PropertyValueSpecification";
+    }
+
+    /**
      * Display label for the field.
      *
      *

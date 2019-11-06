@@ -8,12 +8,12 @@ namespace OpenActive\Models\SchemaOrg;
 class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
 {
     /**
-     * A full description of the lodging unit.
-     *
-     *
-     * @var string
+     * @return string[]|null
      */
-    protected $lodgingUnitDescription;
+    public static function getType()
+    {
+        return "schema:LodgingReservation";
+    }
 
     /**
      * The earliest someone may check into a lodging establishment.
@@ -30,6 +30,14 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * @var int|QuantitativeValue|null
      */
     protected $numChildren;
+
+    /**
+     * A full description of the lodging unit.
+     *
+     *
+     * @var string
+     */
+    protected $lodgingUnitDescription;
 
     /**
      * The latest someone may check out of a lodging establishment.
@@ -54,30 +62,6 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * @var int|QuantitativeValue|null
      */
     protected $numAdults;
-
-    /**
-     * @return string
-     */
-    public function getLodgingUnitDescription()
-    {
-        return $this->lodgingUnitDescription;
-    }
-
-    /**
-     * @param string $lodgingUnitDescription
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLodgingUnitDescription($lodgingUnitDescription)
-    {
-        $types = array(
-            "string",
-        );
-
-        $lodgingUnitDescription = self::checkTypes($lodgingUnitDescription, $types);
-
-        $this->lodgingUnitDescription = $lodgingUnitDescription;
-    }
 
     /**
      * @return DateTime|null
@@ -128,6 +112,30 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
         $numChildren = self::checkTypes($numChildren, $types);
 
         $this->numChildren = $numChildren;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLodgingUnitDescription()
+    {
+        return $this->lodgingUnitDescription;
+    }
+
+    /**
+     * @param string $lodgingUnitDescription
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLodgingUnitDescription($lodgingUnitDescription)
+    {
+        $types = array(
+            "string",
+        );
+
+        $lodgingUnitDescription = self::checkTypes($lodgingUnitDescription, $types);
+
+        $this->lodgingUnitDescription = $lodgingUnitDescription;
     }
 
     /**

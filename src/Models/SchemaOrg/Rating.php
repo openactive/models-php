@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Rating extends \OpenActive\Models\SchemaOrg\Intangible
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Rating";
+    }
+
+    /**
      * The rating for the content.<br/><br/>
      * 
      * Usage guidelines:<br/><br/>
@@ -19,7 +27,7 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
      * 
      *
      *
-     * @var decimal|string|null
+     * @var string|decimal|null
      */
     protected $ratingValue;
 
@@ -30,14 +38,6 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
      * @var string|decimal|null
      */
     protected $bestRating;
-
-    /**
-     * This Review or Rating is relevant to this part or facet of the itemReviewed.
-     *
-     *
-     * @var string
-     */
-    protected $reviewAspect;
 
     /**
      * The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.
@@ -51,12 +51,20 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
      * The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed.
      *
      *
-     * @var decimal|string|null
+     * @var string|decimal|null
      */
     protected $worstRating;
 
     /**
-     * @return decimal|string|null
+     * This Review or Rating is relevant to this part or facet of the itemReviewed.
+     *
+     *
+     * @var string
+     */
+    protected $reviewAspect;
+
+    /**
+     * @return string|decimal|null
      */
     public function getRatingValue()
     {
@@ -64,15 +72,15 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param decimal|string|null $ratingValue
+     * @param string|decimal|null $ratingValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRatingValue($ratingValue)
     {
         $types = array(
-            "decimal",
             "string",
+            "decimal",
             "null",
         );
 
@@ -108,30 +116,6 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
-     */
-    public function getReviewAspect()
-    {
-        return $this->reviewAspect;
-    }
-
-    /**
-     * @param string $reviewAspect
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReviewAspect($reviewAspect)
-    {
-        $types = array(
-            "string",
-        );
-
-        $reviewAspect = self::checkTypes($reviewAspect, $types);
-
-        $this->reviewAspect = $reviewAspect;
-    }
-
-    /**
      * @return Person|Organization
      */
     public function getAuthor()
@@ -157,7 +141,7 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return decimal|string|null
+     * @return string|decimal|null
      */
     public function getWorstRating()
     {
@@ -165,21 +149,45 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param decimal|string|null $worstRating
+     * @param string|decimal|null $worstRating
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWorstRating($worstRating)
     {
         $types = array(
-            "decimal",
             "string",
+            "decimal",
             "null",
         );
 
         $worstRating = self::checkTypes($worstRating, $types);
 
         $this->worstRating = $worstRating;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReviewAspect()
+    {
+        return $this->reviewAspect;
+    }
+
+    /**
+     * @param string $reviewAspect
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReviewAspect($reviewAspect)
+    {
+        $types = array(
+            "string",
+        );
+
+        $reviewAspect = self::checkTypes($reviewAspect, $types);
+
+        $this->reviewAspect = $reviewAspect;
     }
 
 }

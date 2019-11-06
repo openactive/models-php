@@ -10,5 +10,5 @@ namespace OpenActive\Enums\AvailableChannelType;
 class TelephoneAdvanceBooking extends \OpenActive\Enums\AvailableChannelType
 {
     const value = "TelephoneAdvanceBooking";
-    const memberVal = "undefinedTelephoneAdvanceBooking";
+    const memberVal = "https://openactive.io/ns-beta#TelephoneAdvanceBooking";
 }

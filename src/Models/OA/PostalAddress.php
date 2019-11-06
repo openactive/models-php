@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "PostalAddress";
+    }
+
+    /**
      * The country, expressed as a two-letter ISO 3166-1 alpha-2 country code.
      *
      * ```json

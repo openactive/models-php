@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class FollowAction extends \OpenActive\Models\SchemaOrg\InteractAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:FollowAction";
+    }
+
+    /**
      * A sub property of object. The person or organization being followed.
      *
      *

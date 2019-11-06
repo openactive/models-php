@@ -8,6 +8,14 @@ namespace OpenActive\Models\OA;
 class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "OpenBookingError";
+    }
+
+    /**
      * A short, human-readable summary of the problem type. It should not change from occurrence to occurrence of the problem, except for purposes of localization.
      *
      * ```json
@@ -67,7 +75,7 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
      *
      * @var int|null
      */
-    protected $status;
+    protected $statusCode;
 
     /**
      * @return string
@@ -216,26 +224,26 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @return int|null
      */
-    public function getStatus()
+    public function getStatusCode()
     {
-        return $this->status;
+        return $this->statusCode;
     }
 
     /**
-     * @param int|null $status
+     * @param int|null $statusCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setStatus($status)
+    public function setStatusCode($statusCode)
     {
         $types = array(
             "int",
             "null",
         );
 
-        $status = self::checkTypes($status, $types);
+        $statusCode = self::checkTypes($statusCode, $types);
 
-        $this->status = $status;
+        $this->statusCode = $statusCode;
     }
 
 }

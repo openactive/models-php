@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class PerformAction extends \OpenActive\Models\SchemaOrg\PlayAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:PerformAction";
+    }
+
+    /**
      * A sub property of location. The entertainment business where the action occurred.
      *
      *

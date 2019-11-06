@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Question";
+    }
+
+    /**
      * The number of upvotes this question, answer or comment has received from the community.
      *
      *
@@ -35,7 +43,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
      * An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer
+     * @var \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList
      */
     protected $suggestedAnswer;
 
@@ -123,7 +131,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer
+     * @return \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList
      */
     public function getSuggestedAnswer()
     {
@@ -131,15 +139,15 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer $suggestedAnswer
+     * @param \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList $suggestedAnswer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuggestedAnswer($suggestedAnswer)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\ItemList",
             "\OpenActive\Models\SchemaOrg\Answer",
+            "\OpenActive\Models\SchemaOrg\ItemList",
         );
 
         $suggestedAnswer = self::checkTypes($suggestedAnswer, $types);

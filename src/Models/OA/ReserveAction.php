@@ -8,4 +8,12 @@ namespace OpenActive\Models\OA;
  */
 class ReserveAction extends \OpenActive\Models\OA\Action
 {
+    /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "ReserveAction";
+    }
+
 }

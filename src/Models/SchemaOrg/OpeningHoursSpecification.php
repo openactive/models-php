@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:OpeningHoursSpecification";
+    }
+
+    /**
      * The date when the item becomes valid.
      *
      *

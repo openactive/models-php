@@ -8,4 +8,12 @@ namespace OpenActive\Models\OA;
  */
 class ParagraphFormFieldSpecification extends \OpenActive\Models\OA\PropertyValueSpecification
 {
+    /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "ParagraphFormFieldSpecification";
+    }
+
 }

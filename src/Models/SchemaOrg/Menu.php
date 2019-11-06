@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class Menu extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Menu";
+    }
+
+    /**
      * A food or drink item contained in a menu or menu section.
      *
      *

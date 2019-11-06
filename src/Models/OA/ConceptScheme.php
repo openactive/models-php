@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class ConceptScheme extends \OpenActive\BaseModel
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "ConceptScheme";
+    }
+
+    /**
      * The title of the scheme
      *
      * ```json

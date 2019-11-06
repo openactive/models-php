@@ -8,6 +8,14 @@ namespace OpenActive\Models\OA;
 class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "Terms";
+    }
+
+    /**
      * The name of the terms. The name must distinguish this from other terms fields provided, e.g. 'Terms and Conditions' or 'Privacy Policy'.
      *
      *

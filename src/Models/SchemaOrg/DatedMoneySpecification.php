@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:DatedMoneySpecification";
+    }
+
+    /**
      * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *

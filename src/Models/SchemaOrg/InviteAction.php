@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class InviteAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:InviteAction";
+    }
+
+    /**
      * Upcoming or past event associated with this place, organization, or action.
      *
      *

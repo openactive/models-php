@@ -5,6 +5,14 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Campground extends \OpenActive\Models\SchemaOrg\LodgingBusiness
+class Campground extends \OpenActive\Models\SchemaOrg\CivicStructure
 {
+    /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:Campground";
+    }
+
 }

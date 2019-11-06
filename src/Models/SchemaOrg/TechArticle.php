@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class TechArticle extends \OpenActive\Models\SchemaOrg\Article
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:TechArticle";
+    }
+
+    /**
      * Proficiency needed for this content; expected values: 'Beginner', 'Expert'.
      *
      *

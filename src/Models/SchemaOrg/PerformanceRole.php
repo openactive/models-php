@@ -8,6 +8,14 @@ namespace OpenActive\Models\SchemaOrg;
 class PerformanceRole extends \OpenActive\Models\SchemaOrg\Role
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:PerformanceRole";
+    }
+
+    /**
      * The name of a character played in some acting or performing role, i.e. in a PerformanceRole.
      *
      *

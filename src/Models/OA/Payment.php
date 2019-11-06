@@ -8,6 +8,14 @@ namespace OpenActive\Models\OA;
 class Payment extends \OpenActive\Models\SchemaOrg\Thing
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "Payment";
+    }
+
+    /**
      * The identifier of the payment held by the Broker and/or Payment Provider.
      *
      * ```json

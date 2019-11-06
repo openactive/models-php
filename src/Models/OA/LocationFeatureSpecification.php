@@ -9,6 +9,14 @@ namespace OpenActive\Models\OA;
 class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\LocationFeatureSpecification
 {
     /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "LocationFeatureSpecification";
+    }
+
+    /**
      * A string, suitable for presentation in user interfaces.
      *
      * ```json
