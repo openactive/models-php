@@ -27,12 +27,12 @@ use PHPUnit\Framework\TestCase;
 class RpdeTest extends TestCase
 {
     /**
-     * Test the serialized RPDE body returns the expected JSON-LD.
+     * Test the serialized RPDE body created with createFromModifiedId returns the expected JSON-LD.
      *
      * @dataProvider jsonProvider
      * @return void
      */
-    public function testToStringEventReturnsExpectedJsonLd($json)
+    public function testCreateFromModifiedIdCreatesCorrectlySerializableRpdeFeedPage($json)
     {
         $feedItems = $this->getFeedItems();
 
@@ -40,6 +40,28 @@ class RpdeTest extends TestCase
             "https://www.example.com/feed",
             1,
             "1",
+            $feedItems
+        );
+
+        $this->assertEquals(
+            json_decode($json, true),
+            json_decode(RpdeBody::serialize($feed), true)
+        );
+    }
+
+    /**
+     * Test the serialized RPDE body created with createFromNextChangeNumber returns the expected JSON-LD.
+     *
+     * @dataProvider jsonChangeNumberProvider
+     * @return void
+     */
+    public function testCreateFromNextChangeNumberCreatesCorrectlySerializableRpdeFeedPage($json)
+    {
+        $feedItems = $this->getFeedItems();
+
+        $feed = RpdeBody::createFromNextChangeNumber(
+            "https://www.example.com/feed",
+            1,
             $feedItems
         );
 
@@ -559,6 +581,15 @@ class RpdeTest extends TestCase
             file_get_contents(__DIR__ . "/rpde-session_series.json"),
             $classname
         );
+
+        return $data;
+    }
+
+    public function jsonChangeNumberProvider()
+    {
+        $data = $this->jsonProvider();
+        var_dump($data[0][0]);
+        $data[0][0] = str_replace("https://www.example.com/feed?afterTimestamp=5&afterId=1", "https://www.example.com/feed?afterChangeNumber=5", $data[0][0]);
 
         return $data;
     }
