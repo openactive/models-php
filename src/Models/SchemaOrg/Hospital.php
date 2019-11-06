@@ -10,7 +10,7 @@ class Hospital extends \OpenActive\Models\SchemaOrg\MedicalOrganization
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:Hospital";
     }

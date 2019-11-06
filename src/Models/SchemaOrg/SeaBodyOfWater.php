@@ -10,7 +10,7 @@ class SeaBodyOfWater extends \OpenActive\Models\SchemaOrg\BodyOfWater
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:SeaBodyOfWater";
     }

@@ -11,7 +11,7 @@ class CompoundPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:CompoundPriceSpecification";
     }

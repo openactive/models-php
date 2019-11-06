@@ -11,7 +11,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "Course";
     }

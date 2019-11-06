@@ -11,7 +11,7 @@ class PartialSchedule extends \OpenActive\Models\OA\Schedule
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "PartialSchedule";
     }

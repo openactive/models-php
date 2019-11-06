@@ -10,7 +10,7 @@ class TemporarilyUnableToProduceOrderQuoteError extends \OpenActive\Models\OA\Op
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "TemporarilyUnableToProduceOrderQuoteError";
     }

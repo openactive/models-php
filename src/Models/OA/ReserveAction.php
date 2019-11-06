@@ -11,7 +11,7 @@ class ReserveAction extends \OpenActive\Models\OA\Action
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "ReserveAction";
     }

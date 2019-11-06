@@ -10,7 +10,7 @@ class ParentAudience extends \OpenActive\Models\SchemaOrg\PeopleAudience
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:ParentAudience";
     }

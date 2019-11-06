@@ -10,7 +10,7 @@ class RadioClip extends \OpenActive\Models\SchemaOrg\Clip
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:RadioClip";
     }

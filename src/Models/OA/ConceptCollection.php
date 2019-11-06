@@ -11,7 +11,7 @@ class ConceptCollection extends \OpenActive\Models\OA\Collection
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "beta:ConceptCollection";
     }

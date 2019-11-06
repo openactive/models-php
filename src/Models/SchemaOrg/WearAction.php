@@ -10,7 +10,7 @@ class WearAction extends \OpenActive\Models\SchemaOrg\UseAction
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:WearAction";
     }

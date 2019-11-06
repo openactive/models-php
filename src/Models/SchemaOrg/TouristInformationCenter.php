@@ -10,7 +10,7 @@ class TouristInformationCenter extends \OpenActive\Models\SchemaOrg\LocalBusines
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:TouristInformationCenter";
     }

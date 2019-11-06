@@ -10,7 +10,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:FoodEstablishmentReservation";
     }

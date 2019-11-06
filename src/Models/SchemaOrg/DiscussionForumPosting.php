@@ -10,7 +10,7 @@ class DiscussionForumPosting extends \OpenActive\Models\SchemaOrg\SocialMediaPos
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:DiscussionForumPosting";
     }

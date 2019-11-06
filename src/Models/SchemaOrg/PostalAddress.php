@@ -10,7 +10,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:PostalAddress";
     }

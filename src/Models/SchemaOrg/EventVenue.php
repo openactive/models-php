@@ -10,7 +10,7 @@ class EventVenue extends \OpenActive\Models\SchemaOrg\CivicStructure
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:EventVenue";
     }

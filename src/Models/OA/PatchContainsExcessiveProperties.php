@@ -10,7 +10,7 @@ class PatchContainsExcessiveProperties extends \OpenActive\Models\OA\OpenBooking
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "PatchContainsExcessiveProperties";
     }

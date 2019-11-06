@@ -11,7 +11,7 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\EntryPoint
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "EntryPoint";
     }

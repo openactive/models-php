@@ -10,7 +10,7 @@ class IndividualProduct extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:IndividualProduct";
     }

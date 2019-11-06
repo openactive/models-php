@@ -10,7 +10,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:GeoShape";
     }

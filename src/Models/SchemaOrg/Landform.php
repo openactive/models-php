@@ -11,7 +11,7 @@ class Landform extends \OpenActive\Models\SchemaOrg\Place
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:Landform";
     }

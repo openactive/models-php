@@ -10,7 +10,7 @@ class LegislativeBuilding extends \OpenActive\Models\SchemaOrg\GovernmentBuildin
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:LegislativeBuilding";
     }

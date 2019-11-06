@@ -16,7 +16,7 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "DataDownload";
     }

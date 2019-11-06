@@ -10,7 +10,7 @@ class VideoGallery extends \OpenActive\Models\SchemaOrg\CollectionPage
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:VideoGallery";
     }

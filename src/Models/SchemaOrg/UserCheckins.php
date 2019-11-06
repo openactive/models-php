@@ -10,7 +10,7 @@ class UserCheckins extends \OpenActive\Models\SchemaOrg\UserInteraction
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:UserCheckins";
     }

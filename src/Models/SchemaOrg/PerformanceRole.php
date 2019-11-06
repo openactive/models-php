@@ -10,7 +10,7 @@ class PerformanceRole extends \OpenActive\Models\SchemaOrg\Role
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:PerformanceRole";
     }

@@ -10,7 +10,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\Game
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:VideoGame";
     }

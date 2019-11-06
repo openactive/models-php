@@ -10,7 +10,7 @@ class CurrencyConversionService extends \OpenActive\Models\SchemaOrg\FinancialPr
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:CurrencyConversionService";
     }

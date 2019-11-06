@@ -10,7 +10,7 @@ class ReserveAction extends \OpenActive\Models\SchemaOrg\PlanAction
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:ReserveAction";
     }

@@ -10,7 +10,7 @@ class LikeAction extends \OpenActive\Models\SchemaOrg\ReactAction
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:LikeAction";
     }

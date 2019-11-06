@@ -10,7 +10,7 @@ class OnDemandEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:OnDemandEvent";
     }

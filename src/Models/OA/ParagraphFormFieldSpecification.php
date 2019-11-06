@@ -11,7 +11,7 @@ class ParagraphFormFieldSpecification extends \OpenActive\Models\OA\PropertyValu
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "ParagraphFormFieldSpecification";
     }

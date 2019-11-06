@@ -10,7 +10,7 @@ class BodyOfWater extends \OpenActive\Models\SchemaOrg\Landform
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:BodyOfWater";
     }

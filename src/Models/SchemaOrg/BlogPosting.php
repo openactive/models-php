@@ -10,7 +10,7 @@ class BlogPosting extends \OpenActive\Models\SchemaOrg\SocialMediaPosting
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:BlogPosting";
     }

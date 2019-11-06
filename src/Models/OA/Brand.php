@@ -11,7 +11,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "Brand";
     }

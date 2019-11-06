@@ -10,7 +10,7 @@ class DanceGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:DanceGroup";
     }

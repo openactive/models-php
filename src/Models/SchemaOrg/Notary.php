@@ -10,7 +10,7 @@ class Notary extends \OpenActive\Models\SchemaOrg\LegalService
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:Notary";
     }

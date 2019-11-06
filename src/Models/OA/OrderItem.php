@@ -11,7 +11,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "OrderItem";
     }

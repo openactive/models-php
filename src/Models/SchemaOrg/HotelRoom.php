@@ -10,7 +10,7 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:HotelRoom";
     }

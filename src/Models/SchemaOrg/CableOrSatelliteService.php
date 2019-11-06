@@ -10,7 +10,7 @@ class CableOrSatelliteService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:CableOrSatelliteService";
     }

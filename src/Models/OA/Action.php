@@ -11,7 +11,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Action
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "Action";
     }

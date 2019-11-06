@@ -11,7 +11,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\ImageObject
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "ImageObject";
     }

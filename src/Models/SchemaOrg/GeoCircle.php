@@ -10,7 +10,7 @@ class GeoCircle extends \OpenActive\Models\SchemaOrg\GeoShape
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:GeoCircle";
     }

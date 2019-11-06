@@ -11,7 +11,7 @@ class BooleanFormFieldSpecification extends \OpenActive\Models\OA\PropertyValueS
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "BooleanFormFieldSpecification";
     }

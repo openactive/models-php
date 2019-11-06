@@ -10,7 +10,7 @@ class NoteDigitalDocument extends \OpenActive\Models\SchemaOrg\DigitalDocument
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:NoteDigitalDocument";
     }

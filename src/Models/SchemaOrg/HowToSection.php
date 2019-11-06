@@ -10,7 +10,7 @@ class HowToSection extends \OpenActive\Models\SchemaOrg\ItemList
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:HowToSection";
     }

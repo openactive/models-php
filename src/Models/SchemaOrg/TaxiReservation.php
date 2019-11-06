@@ -10,7 +10,7 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:TaxiReservation";
     }

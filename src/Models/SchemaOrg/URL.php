@@ -10,7 +10,7 @@ class URL extends \OpenActive\Models\SchemaOrg\Text
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:URL";
     }

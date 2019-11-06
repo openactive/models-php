@@ -10,7 +10,7 @@ class PrependAction extends \OpenActive\Models\SchemaOrg\InsertAction
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:PrependAction";
     }

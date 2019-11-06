@@ -10,7 +10,7 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:APIReference";
     }

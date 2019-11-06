@@ -10,7 +10,7 @@ class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:LiveBlogPosting";
     }

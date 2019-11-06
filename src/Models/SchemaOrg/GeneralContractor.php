@@ -10,7 +10,7 @@ class GeneralContractor extends \OpenActive\Models\SchemaOrg\HomeAndConstruction
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:GeneralContractor";
     }

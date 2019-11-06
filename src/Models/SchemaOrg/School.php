@@ -10,7 +10,7 @@ class School extends \OpenActive\Models\SchemaOrg\EducationalOrganization
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:School";
     }

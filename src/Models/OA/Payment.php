@@ -10,7 +10,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "Payment";
     }

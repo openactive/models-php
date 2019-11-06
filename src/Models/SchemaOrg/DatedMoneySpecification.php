@@ -10,7 +10,7 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:DatedMoneySpecification";
     }

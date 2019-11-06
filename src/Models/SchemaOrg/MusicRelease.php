@@ -10,7 +10,7 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:MusicRelease";
     }

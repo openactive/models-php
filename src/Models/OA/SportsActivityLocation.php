@@ -11,7 +11,7 @@ class SportsActivityLocation extends \OpenActive\Models\SchemaOrg\SportsActivity
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "SportsActivityLocation";
     }

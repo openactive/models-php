@@ -10,7 +10,7 @@ class UnknownOrIncorrectEndpointError extends \OpenActive\Models\OA\OpenBookingE
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "UnknownOrIncorrectEndpointError";
     }

@@ -10,7 +10,7 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:BroadcastFrequencySpecification";
     }

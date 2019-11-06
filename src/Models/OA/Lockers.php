@@ -11,7 +11,7 @@ class Lockers extends \OpenActive\Models\OA\LocationFeatureSpecification
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "Lockers";
     }

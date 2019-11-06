@@ -10,7 +10,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:ParcelDelivery";
     }

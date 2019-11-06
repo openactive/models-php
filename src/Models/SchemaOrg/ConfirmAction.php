@@ -10,7 +10,7 @@ class ConfirmAction extends \OpenActive\Models\SchemaOrg\InformAction
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:ConfirmAction";
     }

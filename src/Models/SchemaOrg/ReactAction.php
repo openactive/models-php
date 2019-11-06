@@ -10,7 +10,7 @@ class ReactAction extends \OpenActive\Models\SchemaOrg\AssessAction
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:ReactAction";
     }

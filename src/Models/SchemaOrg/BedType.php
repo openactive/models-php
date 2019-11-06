@@ -10,7 +10,7 @@ class BedType extends \OpenActive\Models\SchemaOrg\QualitativeValue
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:BedType";
     }

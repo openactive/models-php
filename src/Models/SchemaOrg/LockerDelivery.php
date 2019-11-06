@@ -10,7 +10,7 @@ class LockerDelivery extends \OpenActive\Models\SchemaOrg\DeliveryMethod
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:LockerDelivery";
     }

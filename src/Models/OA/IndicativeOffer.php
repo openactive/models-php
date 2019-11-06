@@ -12,7 +12,7 @@ class IndicativeOffer extends \OpenActive\Models\OA\Offer
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "beta:IndicativeOffer";
     }

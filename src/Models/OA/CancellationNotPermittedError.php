@@ -10,7 +10,7 @@ class CancellationNotPermittedError extends \OpenActive\Models\OA\OpenBookingErr
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "CancellationNotPermittedError";
     }

@@ -10,7 +10,7 @@ class Plumber extends \OpenActive\Models\SchemaOrg\HomeAndConstructionBusiness
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:Plumber";
     }

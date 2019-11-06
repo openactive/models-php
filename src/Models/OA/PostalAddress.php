@@ -11,7 +11,7 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "PostalAddress";
     }

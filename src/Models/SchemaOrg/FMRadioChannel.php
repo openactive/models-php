@@ -10,7 +10,7 @@ class FMRadioChannel extends \OpenActive\Models\SchemaOrg\RadioChannel
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:FMRadioChannel";
     }

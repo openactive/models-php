@@ -11,7 +11,7 @@ class HeadlineEvent extends \OpenActive\Models\OA\Event
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "HeadlineEvent";
     }

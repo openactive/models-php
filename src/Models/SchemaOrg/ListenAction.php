@@ -10,7 +10,7 @@ class ListenAction extends \OpenActive\Models\SchemaOrg\ConsumeAction
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:ListenAction";
     }

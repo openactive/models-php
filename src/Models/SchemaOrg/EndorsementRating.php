@@ -10,7 +10,7 @@ class EndorsementRating extends \OpenActive\Models\SchemaOrg\Rating
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:EndorsementRating";
     }

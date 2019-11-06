@@ -10,7 +10,7 @@ class FinancialService extends \OpenActive\Models\SchemaOrg\LocalBusiness
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:FinancialService";
     }

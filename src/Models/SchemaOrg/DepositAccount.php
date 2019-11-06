@@ -10,7 +10,7 @@ class DepositAccount extends \OpenActive\Models\SchemaOrg\InvestmentOrDeposit
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:DepositAccount";
     }

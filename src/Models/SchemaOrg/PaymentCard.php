@@ -10,7 +10,7 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:PaymentCard";
     }

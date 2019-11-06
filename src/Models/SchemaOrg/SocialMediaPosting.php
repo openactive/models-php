@@ -10,7 +10,7 @@ class SocialMediaPosting extends \OpenActive\Models\SchemaOrg\Article
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:SocialMediaPosting";
     }

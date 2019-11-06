@@ -10,7 +10,7 @@ class TemporarilyUnableToUpdateOrderError extends \OpenActive\Models\OA\OpenBook
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "TemporarilyUnableToUpdateOrderError";
     }

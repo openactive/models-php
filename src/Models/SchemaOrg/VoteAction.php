@@ -10,7 +10,7 @@ class VoteAction extends \OpenActive\Models\SchemaOrg\ChooseAction
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:VoteAction";
     }

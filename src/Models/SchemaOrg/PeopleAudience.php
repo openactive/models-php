@@ -10,7 +10,7 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:PeopleAudience";
     }

@@ -10,7 +10,7 @@ class BusTrip extends \OpenActive\Models\SchemaOrg\Trip
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:BusTrip";
     }

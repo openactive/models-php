@@ -10,7 +10,7 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:TVSeries";
     }

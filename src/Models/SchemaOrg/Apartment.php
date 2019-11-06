@@ -10,7 +10,7 @@ class Apartment extends \OpenActive\Models\SchemaOrg\Accommodation
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:Apartment";
     }

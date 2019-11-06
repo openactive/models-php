@@ -10,7 +10,7 @@ class Embassy extends \OpenActive\Models\SchemaOrg\GovernmentBuilding
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:Embassy";
     }

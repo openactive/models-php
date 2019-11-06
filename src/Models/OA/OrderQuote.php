@@ -11,7 +11,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "OrderQuote";
     }

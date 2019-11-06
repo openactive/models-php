@@ -10,7 +10,7 @@ class MonetaryAmountDistribution extends \OpenActive\Models\SchemaOrg\Quantitati
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:MonetaryAmountDistribution";
     }

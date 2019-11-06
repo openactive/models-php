@@ -10,7 +10,7 @@ class PerformAction extends \OpenActive\Models\SchemaOrg\PlayAction
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:PerformAction";
     }

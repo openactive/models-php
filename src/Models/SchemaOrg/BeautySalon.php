@@ -10,7 +10,7 @@ class BeautySalon extends \OpenActive\Models\SchemaOrg\HealthAndBeautyBusiness
     /**
      * @return string[]|null
      */
-    static public function getType()
+    public static function getType()
     {
         return "schema:BeautySalon";
     }
