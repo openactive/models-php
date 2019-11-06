@@ -576,9 +576,17 @@ class RpdeTest extends TestCase
 
         $classname = "\\OpenActive\\Models\\OA\\SessionSeries";
 
+        $items = json_decode(file_get_contents(__DIR__ . "/rpde-session_series-items.json"));
+
+        $page = [
+            "next" => "https://www.example.com/feed?afterTimestamp=5&afterId=1",
+            "items" => $items,
+            "license" => "https://creativecommons.org/licenses/by/4.0/"
+        ];
+
         // Event
         $data[0] = array(
-            file_get_contents(__DIR__ . "/rpde-session_series.json"),
+            json_encode($page),
             $classname
         );
 
@@ -587,9 +595,23 @@ class RpdeTest extends TestCase
 
     public function jsonChangeNumberProvider()
     {
-        $data = $this->jsonProvider();
+        $data = array();
 
-        $data[0][0] = str_replace("https://www.example.com/feed?afterTimestamp=5&afterId=1", "https://www.example.com/feed?afterChangeNumber=5", $data[0][0]);
+        $classname = "\\OpenActive\\Models\\OA\\SessionSeries";
+
+        $items = json_decode(file_get_contents(__DIR__ . "/rpde-session_series-items.json"));
+
+        $page = [
+            "next" => "https://www.example.com/feed?afterChangeNumber=5",
+            "items" => $items,
+            "license" => "https://creativecommons.org/licenses/by/4.0/"
+        ];
+
+        // Event
+        $data[0] = array(
+            json_encode($page),
+            $classname
+        );
 
         return $data;
     }
