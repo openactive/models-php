@@ -29,7 +29,7 @@ class RpdeTest extends TestCase
     /**
      * Test the serialized RPDE body created with createFromModifiedId returns the expected JSON-LD.
      *
-     * @dataProvider jsonProvider
+     * @dataProvider jsonAfterModifiedAfterIdProvider
      * @return void
      */
     public function testCreateFromModifiedIdCreatesCorrectlySerializableRpdeFeedPage($json)
@@ -570,7 +570,7 @@ class RpdeTest extends TestCase
         );
     }
 
-    public function jsonProvider()
+    public function jsonAfterModifiedAfterIdProvider()
     {
         $data = array();
 
