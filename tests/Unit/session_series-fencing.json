@@ -37,24 +37,26 @@
     "minValue":11,
     "maxValue":17
   },
-  "subEvent":{
-    "type":"ScheduledSession",
-    "id":"https://pimlico-fencing-club.example.com/intermediate/12345",
-    "url":"https://pimlico-fencing-club.example.com/intermediate-classes/juniors",
-    "name":"Fencing Fridays! Junior class - First Friday in October",
-    "startDate":"2019-10-04T19:00:00Z",
-    "endDate":"2019-10-04T20:30:00Z",
-    "offers": [
-      {
-        "type":"Offer",
-        "id":"https://pimlico-fencing-club.example.com/junior-regular/12345",
-        "price":6,
-        "priceCurrency":"GBP",
-        "availableChannel":[
-          "https://openactive.io/OpenBookingPrepayment",
-          "https://openactive.io/OnlinePrepayment"
-        ]
-      }
-    ]
-  }
+  "subEvent":[
+    {
+      "type":"ScheduledSession",
+      "id":"https://pimlico-fencing-club.example.com/intermediate/12345",
+      "url":"https://pimlico-fencing-club.example.com/intermediate-classes/juniors",
+      "name":"Fencing Fridays! Junior class - First Friday in October",
+      "startDate":"2019-10-04T19:00:00Z",
+      "endDate":"2019-10-04T20:30:00Z",
+      "offers": [
+        {
+          "type":"Offer",
+          "id":"https://pimlico-fencing-club.example.com/junior-regular/12345",
+          "price":6,
+          "priceCurrency":"GBP",
+          "availableChannel":[
+            "https://openactive.io/ns-beta#OpenBookingPrepayment",
+            "https://openactive.io/ns-beta#OnlinePrepayment"
+          ]
+        }
+      ]
+    }
+  ]
 }

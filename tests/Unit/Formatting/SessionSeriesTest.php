@@ -34,9 +34,9 @@ class SessionSeriesTest extends TestCase
         $sessionSeries = $classname::deserialize($jsonSessionSeries);
 
         // Sub event start date
-        $startDate = $sessionSeries->getSubEvent()->getStartDate();
+        $startDate = $sessionSeries->getSubEvent()[0]->getStartDate();
         // Sub event end date
-        $endDate = $sessionSeries->getSubEvent()->getEndDate();
+        $endDate = $sessionSeries->getSubEvent()[0]->getEndDate();
         // Duration (of sub event)
         $duration = $sessionSeries->getDuration();
         // Date difference between sub event start date and end date
@@ -44,13 +44,13 @@ class SessionSeriesTest extends TestCase
 
         // Check start date deserialized is same as original payload
         $this->assertEquals(
-            $decodedSessionSeries["subEvent"]["startDate"],
+            $decodedSessionSeries["subEvent"][0]["startDate"],
             DateTimeHelper::iso8601($startDate)
         );
 
         // Check end date deserialized is same as original payload
         $this->assertEquals(
-            $decodedSessionSeries["subEvent"]["endDate"],
+            $decodedSessionSeries["subEvent"][0]["endDate"],
             DateTimeHelper::iso8601($endDate)
         );
 
@@ -86,8 +86,8 @@ class SessionSeriesTest extends TestCase
         $sessionSeries = $classname::deserialize($jsonSessionSeries);
 
         $id = $sessionSeries->getId();
-        $activityId = $sessionSeries->getActivity()->getId();
-        $subEventUrl = $sessionSeries->getSubEvent()->getUrl();
+        $activityId = $sessionSeries->getActivity()[0]->getId();
+        $subEventUrl = $sessionSeries->getSubEvent()[0]->getUrl();
 
         // Deserialization checks (deserialised value is same as JSON)
         $this->assertEquals(
@@ -95,11 +95,11 @@ class SessionSeriesTest extends TestCase
             $id
         );
         $this->assertEquals(
-            $decodedSessionSeries["activity"]["id"],
+            $decodedSessionSeries["activity"][0]["id"],
             $activityId
         );
         $this->assertEquals(
-            $decodedSessionSeries["subEvent"]["url"],
+            $decodedSessionSeries["subEvent"][0]["url"],
             $subEventUrl
         );
     }

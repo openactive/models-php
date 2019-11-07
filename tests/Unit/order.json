@@ -51,8 +51,8 @@
         "price":6.00,
         "priceCurrency":"GBP",
         "availableChannel":[
-          "https://openactive.io/OpenBookingPrepayment",
-          "https://openactive.io/OnlinePrepayment"
+          "https://openactive.io/ns-beta#OpenBookingPrepayment",
+          "https://openactive.io/ns-beta#OnlinePrepayment"
         ]
       }
     }
@@ -64,6 +64,7 @@
     "taxMode":"https://openactive.io/TaxGross",
     "vatID":"12345",
     "address":{
+      "type":"PostalAddress",
       "addressCountry":"United Kingdom",
       "addressLocality":"Pimlico",
       "postalCode":"SW55 P23",

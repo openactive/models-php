@@ -29,7 +29,7 @@ class OrderTest extends TestCase
             $order->getOrderedItem()[0]->getAcceptedOffer()
         );
         $reflectActivity = new \ReflectionClass(
-            $order->getOrderedItem()[0]->getOrderedItem()->getActivity()
+            $order->getOrderedItem()[0]->getOrderedItem()->getActivity()[0]
         );
 
         $this->assertEquals("Order", $reflectOrder->getShortName());
@@ -72,7 +72,7 @@ class OrderTest extends TestCase
      */
     public function testOrderComplexDatatypesAreCorrect($order, $classname)
     {
-        $activity = $order->getOrderedItem()[0]->getOrderedItem()->getActivity();
+        $activity = $order->getOrderedItem()[0]->getOrderedItem()->getActivity()[0];
         $seller = $order->getSeller();
         $bookingService = $order->getBookingService();
         $orderedItem = $order->getOrderedItem()[0];
