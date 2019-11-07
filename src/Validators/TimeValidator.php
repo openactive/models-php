@@ -12,8 +12,9 @@ class TimeValidator extends BaseValidator
      */
     public function run($value)
     {
-        if(!is_string($value))
+        if(!is_string($value)) {
             return false;
+        }
         // user DateTime to parse the string to check it it a valid time string
         // alas it will add today's date so this created object cannot
         $dateTimeFormat = "H:i:s";
