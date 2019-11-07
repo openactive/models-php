@@ -69,6 +69,10 @@ class BaseValidator implements ValidatorInterface
             return new DateIntervalValidator();
         }
 
+        if ($type === "Time") {
+            return new TimeValidator();
+        }
+
         // If type is an OpenActive Enum
         if (strpos($type, "\\OpenActive\\Enums") === 0) {
             return new EnumValidator($type);

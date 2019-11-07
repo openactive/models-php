@@ -21,7 +21,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      *
      *
-     * @var DateTime|null
+     * @var string|DateTime|null
      */
     protected $startTime;
 
@@ -79,7 +79,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      *
      *
-     * @var DateTime|null
+     * @var string|DateTime|null
      */
     protected $endTime;
 
@@ -160,7 +160,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $encodingFormat;
 
     /**
-     * @return DateTime|null
+     * @return string|DateTime|null
      */
     public function getStartTime()
     {
@@ -168,13 +168,14 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateTime|null $startTime
+     * @param string|DateTime|null $startTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartTime($startTime)
     {
         $types = array(
+            "Time",
             "DateTime",
             "null",
         );
@@ -333,7 +334,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return DateTime|null
+     * @return string|DateTime|null
      */
     public function getEndTime()
     {
@@ -341,13 +342,14 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateTime|null $endTime
+     * @param string|DateTime|null $endTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndTime($endTime)
     {
         $types = array(
+            "Time",
             "DateTime",
             "null",
         );

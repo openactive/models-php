@@ -27,7 +27,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
      * The earliest someone may check into a lodging establishment.
      *
      *
-     * @var DateTime|null
+     * @var string|DateTime|null
      */
     protected $checkinTime;
 
@@ -67,7 +67,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
      * The latest someone may check out of a lodging establishment.
      *
      *
-     * @var DateTime|null
+     * @var DateTime|string|null
      */
     protected $checkoutTime;
 
@@ -105,7 +105,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @return DateTime|null
+     * @return string|DateTime|null
      */
     public function getCheckinTime()
     {
@@ -113,13 +113,14 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @param DateTime|null $checkinTime
+     * @param string|DateTime|null $checkinTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCheckinTime($checkinTime)
     {
         $types = array(
+            "Time",
             "DateTime",
             "null",
         );
@@ -229,7 +230,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTime|string|null
      */
     public function getCheckoutTime()
     {
@@ -237,7 +238,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @param DateTime|null $checkoutTime
+     * @param DateTime|string|null $checkoutTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -245,6 +246,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     {
         $types = array(
             "DateTime",
+            "Time",
             "null",
         );
 

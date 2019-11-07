@@ -74,7 +74,7 @@ class Schedule extends \OpenActive\BaseModel
      * "endTime": "12:00:00"
      * ```
      *
-     * @var DateTime|null
+     * @var string|null
      */
     protected $endTime;
 
@@ -169,7 +169,7 @@ class Schedule extends \OpenActive\BaseModel
      * "startTime": "12:00:00"
      * ```
      *
-     * @var DateTime|null
+     * @var string|null
      */
     protected $startTime;
 
@@ -286,7 +286,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
     public function getEndTime()
     {
@@ -294,14 +294,14 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param DateTime|null $endTime
+     * @param string|null $endTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndTime($endTime)
     {
         $types = array(
-            "DateTime",
+            "Time",
             "null",
         );
 
@@ -484,7 +484,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
     public function getStartTime()
     {
@@ -492,14 +492,14 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param DateTime|null $startTime
+     * @param string|null $startTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartTime($startTime)
     {
         $types = array(
-            "DateTime",
+            "Time",
             "null",
         );
 

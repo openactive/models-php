@@ -29,7 +29,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
      * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      *
      *
-     * @var DateTime|null
+     * @var string|DateTime|null
      */
     protected $startTime;
 
@@ -63,7 +63,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
      * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      *
      *
-     * @var DateTime|null
+     * @var string|DateTime|null
      */
     protected $endTime;
 
@@ -132,7 +132,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return DateTime|null
+     * @return string|DateTime|null
      */
     public function getStartTime()
     {
@@ -140,13 +140,14 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param DateTime|null $startTime
+     * @param string|DateTime|null $startTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartTime($startTime)
     {
         $types = array(
+            "Time",
             "DateTime",
             "null",
         );
@@ -231,7 +232,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return DateTime|null
+     * @return string|DateTime|null
      */
     public function getEndTime()
     {
@@ -239,13 +240,14 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param DateTime|null $endTime
+     * @param string|DateTime|null $endTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndTime($endTime)
     {
         $types = array(
+            "Time",
             "DateTime",
             "null",
         );

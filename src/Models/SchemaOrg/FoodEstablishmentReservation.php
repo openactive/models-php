@@ -21,7 +21,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
      * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      *
      *
-     * @var DateTime|null
+     * @var string|DateTime|null
      */
     protected $startTime;
 
@@ -31,7 +31,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
      * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      *
      *
-     * @var DateTime|null
+     * @var string|DateTime|null
      */
     protected $endTime;
 
@@ -44,7 +44,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     protected $partySize;
 
     /**
-     * @return DateTime|null
+     * @return string|DateTime|null
      */
     public function getStartTime()
     {
@@ -52,13 +52,14 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * @param DateTime|null $startTime
+     * @param string|DateTime|null $startTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartTime($startTime)
     {
         $types = array(
+            "Time",
             "DateTime",
             "null",
         );
@@ -69,7 +70,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * @return DateTime|null
+     * @return string|DateTime|null
      */
     public function getEndTime()
     {
@@ -77,13 +78,14 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * @param DateTime|null $endTime
+     * @param string|DateTime|null $endTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndTime($endTime)
     {
         $types = array(
+            "Time",
             "DateTime",
             "null",
         );

@@ -35,7 +35,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
      * The expected arrival time.
      *
      *
-     * @var DateTime|null
+     * @var DateTime|string|null
      */
     protected $arrivalTime;
 
@@ -43,7 +43,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
      * The expected departure time.
      *
      *
-     * @var DateTime|null
+     * @var DateTime|string|null
      */
     protected $departureTime;
 
@@ -97,7 +97,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTime|string|null
      */
     public function getArrivalTime()
     {
@@ -105,7 +105,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateTime|null $arrivalTime
+     * @param DateTime|string|null $arrivalTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -113,6 +113,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "DateTime",
+            "Time",
             "null",
         );
 
@@ -122,7 +123,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTime|string|null
      */
     public function getDepartureTime()
     {
@@ -130,7 +131,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateTime|null $departureTime
+     * @param DateTime|string|null $departureTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -138,6 +139,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "DateTime",
+            "Time",
             "null",
         );
 
