@@ -4,11 +4,13 @@
   "url":"http://www.example.org/facility-use/1",
   "name":"Example Leisure Centre Table Tennis",
   "description":"Table tennis tables are available to hire for thirty minute slots",
-  "activity":{
-    "type":"Concept",
-    "prefLabel":"Table Tennis",
-    "id":"https://activity-list-editor.openactive.io/_1a05993d-b206-4efe-85da-646fa340bdf4"
-  },
+  "activity":[
+    {
+      "type":"Concept",
+      "prefLabel":"Table Tennis",
+      "id":"https://activity-list-editor.openactive.io/_1a05993d-b206-4efe-85da-646fa340bdf4"
+    }
+  ],
   "provider":{
     "type":"Organization",
     "name":"Leisure Centre Ltd"

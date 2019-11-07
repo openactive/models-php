@@ -3,22 +3,22 @@
   "type":"Event",
   "url":"http://www.example.org/events/1",
   "name":"Tai chi Class",
-  "activity":{
-    "type": "Concept",
-    "prefLabel": "Tai Chi",
-    "id":"https://activity-list-editor.openactive.io/_c16df6ed-a4a0-4275-a8c3-1c8cff56856f"
-  },
+  "activity":[
+    {
+      "type": "Concept",
+      "prefLabel": "Tai Chi",
+      "id":"https://activity-list-editor.openactive.io/_c16df6ed-a4a0-4275-a8c3-1c8cff56856f"
+    }
+  ],
   "description":"A tai chi class intended for beginners",
   "attendeeInstructions":"Please wear trainers and comfortable clothing",
   "startDate":"2017-03-22T20:00:00Z",
   "duration":"PT60M",
-  "organizer":[
-    {
-      "type":"Organization",
-      "url":"http://example.org/orgs/bristol-tai-chi",
-      "name":"Bristol Tai Chi"
-    }
-  ],
+  "organizer":{
+    "type":"Organization",
+    "url":"http://example.org/orgs/bristol-tai-chi",
+    "name":"Bristol Tai Chi"
+  },
   "location":{
     "type":"Place",
     "name":"ExampleCo Gym",
