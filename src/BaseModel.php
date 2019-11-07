@@ -117,7 +117,13 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
         // so that it gets converted from array to object
         // (associative arrays are still arrays in PHP)
         if (array_key_exists("type", $value)) {
-            $classname = "\\OpenActive\\Models\\OA\\".$value["type"];
+            // If type is schema.org target right namespace
+            if(strpos($value["type"], "schema:") === 0) {
+                $classname = "\\OpenActive\\Models\\SchemaOrg\\".
+                    str_replace("schema:", "", $value["type"]);
+            } else {
+                $classname = "\\OpenActive\\Models\\OA\\".$value["type"];
+            }
 
             return $classname::deserialize($value);
         }
