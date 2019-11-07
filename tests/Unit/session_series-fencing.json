@@ -7,11 +7,13 @@
   "startDate":"2019-09-06",
   "endDate":"2020-08-31",
   "duration":"PT1H30M",
-  "activity":{
-    "type":"Concept",
-    "prefLabel":"Fencing",
-    "id":"https://activity-list-editor.openactive.io/_92808e60-820c-4ee2-89ec-ea8d99d3f528"
-  },
+  "activity":[
+    {
+      "type":"Concept",
+      "prefLabel":"Fencing",
+      "id":"https://activity-list-editor.openactive.io/_92808e60-820c-4ee2-89ec-ea8d99d3f528"
+    }
+  ],
   "location":{
     "type":"Place",
     "name":"Pimlico Fencing Club Suite"
@@ -23,6 +25,7 @@
     "taxMode":"https://openactive.io/TaxGross",
     "vatID":"12345",
     "address":{
+      "type":"PostalAddress",
       "addressCountry":"United Kingdom",
       "addressLocality":"Pimlico",
       "postalCode":"SW55 P23",
@@ -30,6 +33,7 @@
     }
   },
   "ageRange":{
+    "type":"QuantitativeValue",
     "minValue":11,
     "maxValue":17
   },
