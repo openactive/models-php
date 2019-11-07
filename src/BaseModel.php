@@ -52,11 +52,28 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
     public function __construct($data)
     {
         foreach ($data as $key => $value) {
-            // Make sure attribute is cased properly
-            $attributeName = Str::camel($key);
-
-            $this->$attributeName = static::deserializeValue($value);
+            $this->defineProperty($key, $value);
         }
+    }
+
+    public function defineProperty($key, $value)
+    {
+        // Don't try to set "@context" or type
+        if ($key === "@context" || $key === "type") {
+            return;
+        }
+
+        // Build setter name
+        $setterName = "set" . Str::pascal($key);
+
+        // Calling the setter will type-enforce the values
+
+        if (is_array($value)) {
+            $this->$setterName(static::deserializeValue($value));
+            return;
+        }
+
+        $this->$setterName($value);
     }
 
     /**
@@ -100,7 +117,13 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
         // so that it gets converted from array to object
         // (associative arrays are still arrays in PHP)
         if (array_key_exists("type", $value)) {
-            $classname = "\\OpenActive\\Models\\OA\\".$value["type"];
+            // If type is schema.org target right namespace
+            if(strpos($value["type"], "schema:") === 0) {
+                $classname = "\\OpenActive\\Models\\SchemaOrg\\".
+                    str_replace("schema:", "", $value["type"]);
+            } else {
+                $classname = "\\OpenActive\\Models\\OA\\".$value["type"];
+            }
 
             return $classname::deserialize($value);
         }
