@@ -121,16 +121,16 @@ class ExampleEventTest extends TestCase
         $testData[0] = array();
 
         $testData[0][] = new SessionSeries([
-            "Name" => "Virtual BODYPUMP",
-            "Description" => "This is the virtual version of the original barbell class, which will help you get lean, toned and fit - fast. Les Mills™ Virtual classes are designed for people who cannot get access to our live classes or who want to get a ‘taste’ of a Les Mills™ class before taking a live class with an instructor. The classes are played on a big video screen, with dimmed lighting and pumping surround sound, and are led onscreen by the people who actually choreograph the classes.",
-            "Duration" => new \DateInterval("P1D"),
-            "StartDate" => new \DateTime(
+            "name" => "Virtual BODYPUMP",
+            "description" => "This is the virtual version of the original barbell class, which will help you get lean, toned and fit - fast. Les Mills™ Virtual classes are designed for people who cannot get access to our live classes or who want to get a ‘taste’ of a Les Mills™ class before taking a live class with an instructor. The classes are played on a big video screen, with dimmed lighting and pumping surround sound, and are led onscreen by the people who actually choreograph the classes.",
+            "duration" => new \DateInterval("P1D"),
+            "startDate" => new \DateTime(
                 "2017-04-24 19:30:00",
                 new \DateTimeZone("-0800")
             ),
-            "Location" => new Place([
-                "Name" => "Santa Clara City Library, Central Park Library",
-                "Address" => new PostalAddress([
+            "location" => new Place([
+                "name" => "Santa Clara City Library, Central Park Library",
+                "address" => new PostalAddress([
                     "StreetAddress" => "2635 Homestead Rd",
                     "AddressLocality" => "Santa Clara",
                     "PostalCode" => "95051",
@@ -138,28 +138,28 @@ class ExampleEventTest extends TestCase
                     "AddressCountry" => "US"
                 ])
             ]),
-            "Image" => [
+            "image" => [
                 new ImageObject([
-                    "Url" => "http://www.example.com/event_image/12345"
+                    "url" => "http://www.example.com/event_image/12345"
                 ])
             ],
-            "EndDate" => new \DateTime(
+            "endDate" => new \DateTime(
                 "2017-04-24 23:00:00",
                 new \DateTimeZone("-0800")
             ),
-            "Offers" => [
+            "offers" => [
                 new IndicativeOffer([
-                    "Url" => "https://www.example.com/event_offer/12345_201803180430",
-                    "Price" => 30,
-                    "PriceCurrency" => "USD",
-                    "ValidFrom" => new \DateTime(
+                    "url" => "https://www.example.com/event_offer/12345_201803180430",
+                    "price" => 30,
+                    "priceCurrency" => "USD",
+                    "validFrom" => new \DateTime(
                         "2017-01-20 16:20:00",
                         new \DateTimeZone("-0800")
                     )
                 ])
             ],
-            "AttendeeInstructions" => "Ensure you bring trainers and a bottle of water.",
-            "MeetingPoint" => ""
+            "attendeeInstructions" => "Ensure you bring trainers and a bottle of water.",
+            "meetingPoint" => ""
         ]);
 
         $testData[0][] = file_get_contents(__DIR__ . "/session_series.json");
