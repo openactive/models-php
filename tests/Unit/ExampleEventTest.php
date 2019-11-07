@@ -65,9 +65,6 @@ class ExampleEventTest extends TestCase
         $decode = Concept::deserialize($original);
         $encode = Concept::serialize($decode);
 
-        // output.WriteLine(decode.Id?.ToString());
-        // output.WriteLine(original);
-        // output.WriteLine(encode);
         // $this->assertSame(
         //     "https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd",
         //     $decode->getId()
