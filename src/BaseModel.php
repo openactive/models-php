@@ -52,11 +52,28 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
     public function __construct($data)
     {
         foreach ($data as $key => $value) {
-            // Make sure attribute is cased properly
-            $attributeName = Str::camel($key);
-
-            $this->$attributeName = static::deserializeValue($value);
+            $this->defineProperty($key, $value);
         }
+    }
+
+    public function defineProperty($key, $value)
+    {
+        // Don't try to set "@context" or type
+        if ($key === "@context" || $key === "type") {
+            return;
+        }
+
+        // Build setter name
+        $setterName = "set" . Str::pascal($key);
+
+        // Calling the setter will type-enforce the values
+
+        if (is_array($value)) {
+            $this->$setterName(static::deserializeValue($value));
+            return;
+        }
+
+        $this->$setterName($value);
     }
 
     /**
