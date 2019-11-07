@@ -54,34 +54,6 @@ class ExampleEventTest extends TestCase
     }
 
     /**
-     * This test does not make sense.
-     *
-     * @return void
-     */
-    // public function testSerializeOfferCast()
-    // {
-    //     $event = new Event([
-    //         "Offers" => [
-    //             new IndicativeOffer([
-    //                 "Url" => "https://www.example.com/event_offer/12345_201803180430",
-    //                 "Price" => 30,
-    //                 "PriceCurrency" => "USD",
-    //                 "ValidFrom" => new \DateTime(
-    //                     "2017-01-20 16:20:00",
-    //                     new \DateTimeZone("-0800")
-    //                 )
-    //             ])
-    //         ]
-    //         // .Cast<Offer>().ToList()
-    //     ]);
-    //
-    //     $this->assertSame(
-    //         "Santa Clara City Library, Central Park Library",
-    //         BaseModel::serialize($event)
-    //     );
-    // }
-
-    /**
      * Test that serialization and deserialization return the same result
      * after the process.
      *
