@@ -25,11 +25,9 @@ class EventTest extends TestCase
      * @dataProvider eventProvider
      * @return void
      */
-    public function testEventAttendeeInstructionsExists($data, $classname)
+    public function testEventAttendeeInstructionsExists($model, $classname)
     {
-        $event = new $classname($data);
-
-        $this->assertTrue($event->getAttendeeInstructions() !== null);
+        $this->assertTrue($model->getAttendeeInstructions() !== null);
     }
 
     /**
@@ -49,7 +47,7 @@ class EventTest extends TestCase
      * @dataProvider eventProvider
      * @return void
      */
-    public function testEventHasCorrectProperties($data, $classname)
+    public function testEventHasCorrectProperties($model, $classname)
     {
         $correctProperties = array(
             "type",
@@ -66,13 +64,11 @@ class EventTest extends TestCase
 
         sort($correctProperties);
 
-        $order = new $classname($data);
-
-        // Serialize the order and JSON-decode it
+        // Serialize the model and JSON-decode it
         // to compare the expected properties
         // and the ones in common (with "@context" removed)
         // TODO: should this be analyzed with getters and setters instead?
-        $serializedEvent = json_decode($classname::serialize($order), true);
+        $serializedEvent = json_decode($classname::serialize($model), true);
         $serializedEventProperties = array_filter(
             array_keys($serializedEvent),
             function($property) {

@@ -25,14 +25,12 @@ class OrderTest extends TestCase
      * @dataProvider orderProvider
      * @return void
      */
-    public function testOrderOrderedItemOrderedItemExists($data, $classname)
+    public function testOrderOrderedItemOrderedItemExists($model, $classname)
     {
-        $order = new $classname($data);
-
-        $this->assertTrue($order->getOrderedItem() !== null);
-        $this->assertTrue(is_array($order->getOrderedItem()));
+        $this->assertTrue($model->getOrderedItem() !== null);
+        $this->assertTrue(is_array($model->getOrderedItem()));
         $this->assertTrue(
-            $order->getOrderedItem()[0]->getOrderedItem() !== null
+            $model->getOrderedItem()[0]->getOrderedItem() !== null
         );
     }
 
@@ -42,12 +40,10 @@ class OrderTest extends TestCase
      * @dataProvider orderProvider
      * @return void
      */
-    public function testOrderOrderedItemAcceptedOfferExists($data, $classname)
+    public function testOrderOrderedItemAcceptedOfferExists($model, $classname)
     {
-        $order = new $classname($data);
-
         $this->assertTrue(
-            $order->getOrderedItem()[0]->getAcceptedOffer() !== null
+            $model->getOrderedItem()[0]->getAcceptedOffer() !== null
         );
     }
 
@@ -57,18 +53,16 @@ class OrderTest extends TestCase
      * @dataProvider orderProvider
      * @return void
      */
-    public function testOrderOrderedItemUnitTaxSpecificationExistsAndArray($data, $classname)
+    public function testOrderOrderedItemUnitTaxSpecificationExistsAndArray($model, $classname)
     {
-        $order = new $classname($data);
-
         // Assert unitTaxSpecification exists
         $this->assertTrue(
-            $order->getOrderedItem()[0]->getUnitTaxSpecification() !== null
+            $model->getOrderedItem()[0]->getUnitTaxSpecification() !== null
         );
 
         // Assert unitTaxSpecification is array/object
         $this->assertTrue(
-            is_array($order->getOrderedItem()[0]->getUnitTaxSpecification())
+            is_array($model->getOrderedItem()[0]->getUnitTaxSpecification())
         );
     }
 
@@ -89,7 +83,7 @@ class OrderTest extends TestCase
      * @dataProvider orderProvider
      * @return void
      */
-    public function testOrderHasCorrectProperties($data, $classname)
+    public function testOrderHasCorrectProperties($model, $classname)
     {
         $correctProperties = array(
             "type",
@@ -106,13 +100,11 @@ class OrderTest extends TestCase
 
         sort($correctProperties);
 
-        $order = new $classname($data);
-
-        // Serialize the order and JSON-decode it
+        // Serialize the model and JSON-decode it
         // to compare the expected properties
         // and the ones in common (with "@context" removed)
         // TODO: should this be analyzed with getters and setters instead?
-        $serializedOrder = json_decode($classname::serialize($order), true);
+        $serializedOrder = json_decode($classname::serialize($model), true);
         $serializedOrderProperties = array_filter(
             array_keys($serializedOrder),
             function($property) {

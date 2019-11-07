@@ -25,12 +25,10 @@ class FacilityUseTest extends TestCase
      * @dataProvider facilityUseProvider
      * @return void
      */
-    public function testFacilityUseEventExistsAndIsArray($data, $classname)
+    public function testFacilityUseEventExistsAndIsArray($model, $classname)
     {
-        $facilityUse = new $classname($data);
-
-        $this->assertTrue($facilityUse->getEvent() !== null);
-        $this->assertTrue(is_array($facilityUse->getEvent()));
+        $this->assertTrue($model->getEvent() !== null);
+        $this->assertTrue(is_array($model->getEvent()));
     }
 
     /**
@@ -50,7 +48,7 @@ class FacilityUseTest extends TestCase
      * @dataProvider facilityUseProvider
      * @return void
      */
-    public function testFacilityUseHasCorrectProperties($data, $classname)
+    public function testFacilityUseHasCorrectProperties($model, $classname)
     {
         $correctProperties = array(
             "type",
@@ -66,13 +64,11 @@ class FacilityUseTest extends TestCase
 
         sort($correctProperties);
 
-        $order = new $classname($data);
-
-        // Serialize the order and JSON-decode it
+        // Serialize the model and JSON-decode it
         // to compare the expected properties
         // and the ones in common (with "@context" removed)
         // TODO: should this be analyzed with getters and setters instead?
-        $serializedFacilityUse = json_decode($classname::serialize($order), true);
+        $serializedFacilityUse = json_decode($classname::serialize($model), true);
         $serializedFacilityUseProperties = array_filter(
             array_keys($serializedFacilityUse),
             function($property) {

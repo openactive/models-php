@@ -17,9 +17,9 @@ class DataStructureTest extends TestCase
      * @dataProvider jsonProvider
      * @return void
      */
-    public function testObjectIsSingleNotArray($data, $classname)
+    public function testObjectIsSingleNotArray($model, $classname)
     {
-        $this->assertTrue(is_object(new $classname($data)));
+        $this->assertTrue(is_object($model));
     }
 
     /**
@@ -30,7 +30,7 @@ class DataStructureTest extends TestCase
      * @dataProvider jsonProvider
      * @return void
      */
-    public function testContextIsArrayAndContainsOpenActiveBeta($data, $classname)
+    public function testContextIsArrayAndContainsOpenActiveBeta($model, $classname)
     {
         $this->assertTrue(is_array($classname::$context));
         $this->assertTrue(
