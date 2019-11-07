@@ -74,7 +74,7 @@ class BaseValidator implements ValidatorInterface
         }
 
         // If type is an OpenActive Enum
-        if (strpos($type, "\\OpenActive\\Enums") === 0) {
+        if (strpos($type, "\\OpenActive\\Enums\\") === 0) {
             return new EnumValidator($type);
         }
 
