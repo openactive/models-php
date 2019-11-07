@@ -32,7 +32,14 @@ class EnumValidator extends BaseValidator
     {
         // Enum value is usually in a URL form
         // Replace the base so that have a classname to use for the enum value
-        $enumValueClassname = str_replace("https://openactive.io/", "", $value);
+        $enumValueClassname = str_replace(
+            array(
+                "https://openactive.io/ns-beta#",
+                "https://openactive.io/",
+            ),
+            "",
+            $value
+        );
 
         $fqEnumClassname = $this->classname."\\".$enumValueClassname;
 
