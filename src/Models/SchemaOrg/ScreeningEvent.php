@@ -17,14 +17,6 @@ class ScreeningEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
-     *
-     *
-     * @var string
-     */
-    protected $videoFormat;
-
-    /**
      * The movie presented during this event.
      *
      *
@@ -33,28 +25,12 @@ class ScreeningEvent extends \OpenActive\Models\SchemaOrg\Event
     protected $workPresented;
 
     /**
-     * @return string
+     * The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
+     *
+     *
+     * @var string
      */
-    public function getVideoFormat()
-    {
-        return $this->videoFormat;
-    }
-
-    /**
-     * @param string $videoFormat
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVideoFormat($videoFormat)
-    {
-        $types = array(
-            "string",
-        );
-
-        $videoFormat = self::checkTypes($videoFormat, $types);
-
-        $this->videoFormat = $videoFormat;
-    }
+    protected $videoFormat;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Movie
@@ -78,6 +54,30 @@ class ScreeningEvent extends \OpenActive\Models\SchemaOrg\Event
         $workPresented = self::checkTypes($workPresented, $types);
 
         $this->workPresented = $workPresented;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVideoFormat()
+    {
+        return $this->videoFormat;
+    }
+
+    /**
+     * @param string $videoFormat
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVideoFormat($videoFormat)
+    {
+        $types = array(
+            "string",
+        );
+
+        $videoFormat = self::checkTypes($videoFormat, $types);
+
+        $this->videoFormat = $videoFormat;
     }
 
 }

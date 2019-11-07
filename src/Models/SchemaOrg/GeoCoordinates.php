@@ -16,36 +16,12 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * Physical address of the item.
+     * The elevation of a location (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>). Values may be of the form 'NUMBER UNIT<em>OF</em>MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters.
      *
      *
-     * @var string|PostalAddress
+     * @var string|float|null
      */
-    protected $address;
-
-    /**
-     * The latitude of a location. For example <code>37.42242</code> (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>).
-     *
-     *
-     * @var string|decimal|null
-     */
-    protected $latitude;
-
-    /**
-     * The longitude of a location. For example <code>-122.08585</code> (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>).
-     *
-     *
-     * @var decimal|string|null
-     */
-    protected $longitude;
-
-    /**
-     * The country. For example, USA. You can also provide the two-letter <a href="http://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166-1 alpha-2 country code</a>.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Country|string
-     */
-    protected $addressCountry;
+    protected $elevation;
 
     /**
      * The postal code. For example, 94043.
@@ -56,88 +32,85 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $postalCode;
 
     /**
-     * The elevation of a location (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>). Values may be of the form 'NUMBER UNIT<em>OF</em>MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters.
+     * The country. For example, USA. You can also provide the two-letter <a href="http://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166-1 alpha-2 country code</a>.
      *
      *
-     * @var string|decimal|null
+     * @var \OpenActive\Models\SchemaOrg\Country|string
      */
-    protected $elevation;
+    protected $addressCountry;
 
     /**
-     * @return string|PostalAddress
+     * The longitude of a location. For example <code>-122.08585</code> (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>).
+     *
+     *
+     * @var float|string|null
      */
-    public function getAddress()
+    protected $longitude;
+
+    /**
+     * The latitude of a location. For example <code>37.42242</code> (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>).
+     *
+     *
+     * @var string|float|null
+     */
+    protected $latitude;
+
+    /**
+     * Physical address of the item.
+     *
+     *
+     * @var string|PostalAddress
+     */
+    protected $address;
+
+    /**
+     * @return string|float|null
+     */
+    public function getElevation()
     {
-        return $this->address;
+        return $this->elevation;
     }
 
     /**
-     * @param string|PostalAddress $address
+     * @param string|float|null $elevation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAddress($address)
+    public function setElevation($elevation)
     {
         $types = array(
             "string",
-            "PostalAddress",
-        );
-
-        $address = self::checkTypes($address, $types);
-
-        $this->address = $address;
-    }
-
-    /**
-     * @return string|decimal|null
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * @param string|decimal|null $latitude
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLatitude($latitude)
-    {
-        $types = array(
-            "string",
-            "decimal",
+            "float",
             "null",
         );
 
-        $latitude = self::checkTypes($latitude, $types);
+        $elevation = self::checkTypes($elevation, $types);
 
-        $this->latitude = $latitude;
+        $this->elevation = $elevation;
     }
 
     /**
-     * @return decimal|string|null
+     * @return string
      */
-    public function getLongitude()
+    public function getPostalCode()
     {
-        return $this->longitude;
+        return $this->postalCode;
     }
 
     /**
-     * @param decimal|string|null $longitude
+     * @param string $postalCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLongitude($longitude)
+    public function setPostalCode($postalCode)
     {
         $types = array(
-            "decimal",
             "string",
-            "null",
         );
 
-        $longitude = self::checkTypes($longitude, $types);
+        $postalCode = self::checkTypes($postalCode, $types);
 
-        $this->longitude = $longitude;
+        $this->postalCode = $postalCode;
     }
 
     /**
@@ -166,53 +139,80 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string
+     * @return float|string|null
      */
-    public function getPostalCode()
+    public function getLongitude()
     {
-        return $this->postalCode;
+        return $this->longitude;
     }
 
     /**
-     * @param string $postalCode
+     * @param float|string|null $longitude
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPostalCode($postalCode)
+    public function setLongitude($longitude)
     {
         $types = array(
+            "float",
             "string",
-        );
-
-        $postalCode = self::checkTypes($postalCode, $types);
-
-        $this->postalCode = $postalCode;
-    }
-
-    /**
-     * @return string|decimal|null
-     */
-    public function getElevation()
-    {
-        return $this->elevation;
-    }
-
-    /**
-     * @param string|decimal|null $elevation
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setElevation($elevation)
-    {
-        $types = array(
-            "string",
-            "decimal",
             "null",
         );
 
-        $elevation = self::checkTypes($elevation, $types);
+        $longitude = self::checkTypes($longitude, $types);
 
-        $this->elevation = $elevation;
+        $this->longitude = $longitude;
+    }
+
+    /**
+     * @return string|float|null
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * @param string|float|null $latitude
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLatitude($latitude)
+    {
+        $types = array(
+            "string",
+            "float",
+            "null",
+        );
+
+        $latitude = self::checkTypes($latitude, $types);
+
+        $this->latitude = $latitude;
+    }
+
+    /**
+     * @return string|PostalAddress
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string|PostalAddress $address
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAddress($address)
+    {
+        $types = array(
+            "string",
+            "PostalAddress",
+        );
+
+        $address = self::checkTypes($address, $types);
+
+        $this->address = $address;
     }
 
 }

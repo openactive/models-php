@@ -16,12 +16,20 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     }
 
     /**
-     * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
+     * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
      * @var DateTime|null
      */
-    protected $endDate;
+    protected $startDate;
+
+    /**
+     * The amount of money.
+     *
+     *
+     * @var float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     */
+    protected $amount;
 
     /**
      * The currency in which the monetary amount is expressed.<br/><br/>
@@ -34,44 +42,62 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     protected $currency;
 
     /**
-     * The amount of money.
-     *
-     *
-     * @var decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
-     */
-    protected $amount;
-
-    /**
-     * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
+     * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
      * @var DateTime|null
      */
-    protected $startDate;
+    protected $endDate;
 
     /**
      * @return DateTime|null
      */
-    public function getEndDate()
+    public function getStartDate()
     {
-        return $this->endDate;
+        return $this->startDate;
     }
 
     /**
-     * @param DateTime|null $endDate
+     * @param DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEndDate($endDate)
+    public function setStartDate($startDate)
     {
         $types = array(
             "DateTime",
             "null",
         );
 
-        $endDate = self::checkTypes($endDate, $types);
+        $startDate = self::checkTypes($startDate, $types);
 
-        $this->endDate = $endDate;
+        $this->startDate = $startDate;
+    }
+
+    /**
+     * @return float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $amount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAmount($amount)
+    {
+        $types = array(
+            "float",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "null",
+        );
+
+        $amount = self::checkTypes($amount, $types);
+
+        $this->amount = $amount;
     }
 
     /**
@@ -99,54 +125,28 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     }
 
     /**
-     * @return decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
-     */
-    public function getAmount()
-    {
-        return $this->amount;
-    }
-
-    /**
-     * @param decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $amount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAmount($amount)
-    {
-        $types = array(
-            "decimal",
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "null",
-        );
-
-        $amount = self::checkTypes($amount, $types);
-
-        $this->amount = $amount;
-    }
-
-    /**
      * @return DateTime|null
      */
-    public function getStartDate()
+    public function getEndDate()
     {
-        return $this->startDate;
+        return $this->endDate;
     }
 
     /**
-     * @param DateTime|null $startDate
+     * @param DateTime|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setStartDate($startDate)
+    public function setEndDate($endDate)
     {
         $types = array(
             "DateTime",
             "null",
         );
 
-        $startDate = self::checkTypes($startDate, $types);
+        $endDate = self::checkTypes($endDate, $types);
 
-        $this->startDate = $startDate;
+        $this->endDate = $endDate;
     }
 
 }

@@ -16,13 +16,13 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
     }
 
     /**
-     * The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person).
-     * Typical unit code(s): C62 for person
+     * The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business.
+     * Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue.
      *
      *
-     * @var QuantitativeValue
+     * @var QuantitativeValue|float|null
      */
-    protected $occupancy;
+    protected $numberOfRooms;
 
     /**
      * The type of bed or beds included in the accommodation. For the single case of just one bed of a certain type, you use bed directly with a text.
@@ -34,36 +34,38 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
     protected $bed;
 
     /**
-     * The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business.
-     * Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue.
+     * The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person).
+     * Typical unit code(s): C62 for person
      *
      *
-     * @var QuantitativeValue|decimal|null
+     * @var QuantitativeValue
      */
-    protected $numberOfRooms;
+    protected $occupancy;
 
     /**
-     * @return QuantitativeValue
+     * @return QuantitativeValue|float|null
      */
-    public function getOccupancy()
+    public function getNumberOfRooms()
     {
-        return $this->occupancy;
+        return $this->numberOfRooms;
     }
 
     /**
-     * @param QuantitativeValue $occupancy
+     * @param QuantitativeValue|float|null $numberOfRooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOccupancy($occupancy)
+    public function setNumberOfRooms($numberOfRooms)
     {
         $types = array(
             "QuantitativeValue",
+            "float",
+            "null",
         );
 
-        $occupancy = self::checkTypes($occupancy, $types);
+        $numberOfRooms = self::checkTypes($numberOfRooms, $types);
 
-        $this->occupancy = $occupancy;
+        $this->numberOfRooms = $numberOfRooms;
     }
 
     /**
@@ -93,29 +95,27 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
     }
 
     /**
-     * @return QuantitativeValue|decimal|null
+     * @return QuantitativeValue
      */
-    public function getNumberOfRooms()
+    public function getOccupancy()
     {
-        return $this->numberOfRooms;
+        return $this->occupancy;
     }
 
     /**
-     * @param QuantitativeValue|decimal|null $numberOfRooms
+     * @param QuantitativeValue $occupancy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfRooms($numberOfRooms)
+    public function setOccupancy($occupancy)
     {
         $types = array(
             "QuantitativeValue",
-            "decimal",
-            "null",
         );
 
-        $numberOfRooms = self::checkTypes($numberOfRooms, $types);
+        $occupancy = self::checkTypes($occupancy, $types);
 
-        $this->numberOfRooms = $numberOfRooms;
+        $this->occupancy = $occupancy;
     }
 
 }

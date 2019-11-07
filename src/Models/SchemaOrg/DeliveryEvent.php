@@ -17,20 +17,12 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * Method used for delivery or shipping.
+     * Password, PIN, or access code needed for delivery (e.g. from a locker).
      *
      *
-     * @var Schema.NET.DeliveryMethod|null
+     * @var string
      */
-    protected $hasDeliveryMethod;
-
-    /**
-     * After this date, the item will no longer be available for pickup.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $availableThrough;
+    protected $accessCode;
 
     /**
      * When the item is available for pickup from the store, locker, etc.
@@ -41,61 +33,43 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     protected $availableFrom;
 
     /**
-     * Password, PIN, or access code needed for delivery (e.g. from a locker).
+     * After this date, the item will no longer be available for pickup.
      *
      *
-     * @var string
+     * @var DateTime|null
      */
-    protected $accessCode;
+    protected $availableThrough;
 
     /**
-     * @return Schema.NET.DeliveryMethod|null
+     * Method used for delivery or shipping.
+     *
+     *
+     * @var \OpenActive\Enums\DeliveryMethod|null
      */
-    public function getHasDeliveryMethod()
+    protected $hasDeliveryMethod;
+
+    /**
+     * @return string
+     */
+    public function getAccessCode()
     {
-        return $this->hasDeliveryMethod;
+        return $this->accessCode;
     }
 
     /**
-     * @param Schema.NET.DeliveryMethod|null $hasDeliveryMethod
+     * @param string $accessCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHasDeliveryMethod($hasDeliveryMethod)
+    public function setAccessCode($accessCode)
     {
         $types = array(
-            "Schema.NET.DeliveryMethod",
-            "null",
+            "string",
         );
 
-        $hasDeliveryMethod = self::checkTypes($hasDeliveryMethod, $types);
+        $accessCode = self::checkTypes($accessCode, $types);
 
-        $this->hasDeliveryMethod = $hasDeliveryMethod;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getAvailableThrough()
-    {
-        return $this->availableThrough;
-    }
-
-    /**
-     * @param DateTime|null $availableThrough
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAvailableThrough($availableThrough)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $availableThrough = self::checkTypes($availableThrough, $types);
-
-        $this->availableThrough = $availableThrough;
+        $this->accessCode = $accessCode;
     }
 
     /**
@@ -124,27 +98,53 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return string
+     * @return DateTime|null
      */
-    public function getAccessCode()
+    public function getAvailableThrough()
     {
-        return $this->accessCode;
+        return $this->availableThrough;
     }
 
     /**
-     * @param string $accessCode
+     * @param DateTime|null $availableThrough
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAccessCode($accessCode)
+    public function setAvailableThrough($availableThrough)
     {
         $types = array(
-            "string",
+            "DateTime",
+            "null",
         );
 
-        $accessCode = self::checkTypes($accessCode, $types);
+        $availableThrough = self::checkTypes($availableThrough, $types);
 
-        $this->accessCode = $accessCode;
+        $this->availableThrough = $availableThrough;
+    }
+
+    /**
+     * @return \OpenActive\Enums\DeliveryMethod|null
+     */
+    public function getHasDeliveryMethod()
+    {
+        return $this->hasDeliveryMethod;
+    }
+
+    /**
+     * @param \OpenActive\Enums\DeliveryMethod|null $hasDeliveryMethod
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasDeliveryMethod($hasDeliveryMethod)
+    {
+        $types = array(
+            "\OpenActive\Enums\DeliveryMethod",
+            "null",
+        );
+
+        $hasDeliveryMethod = self::checkTypes($hasDeliveryMethod, $types);
+
+        $this->hasDeliveryMethod = $hasDeliveryMethod;
     }
 
 }

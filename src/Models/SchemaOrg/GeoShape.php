@@ -16,52 +16,12 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * Physical address of the item.
-     *
-     *
-     * @var string|PostalAddress
-     */
-    protected $address;
-
-    /**
-     * A circle is the circular region of a specified radius centered at a specified latitude and longitude. A circle is expressed as a pair followed by a radius in meters.
+     * A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space.
      *
      *
      * @var string
      */
-    protected $circle;
-
-    /**
-     * A box is the area enclosed by the rectangle formed by two points. The first point is the lower corner, the second point is the upper corner. A box is expressed as two points separated by a space character.
-     *
-     *
-     * @var string
-     */
-    protected $box;
-
-    /**
-     * The country. For example, USA. You can also provide the two-letter <a href="http://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166-1 alpha-2 country code</a>.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Country|string
-     */
-    protected $addressCountry;
-
-    /**
-     * The postal code. For example, 94043.
-     *
-     *
-     * @var string
-     */
-    protected $postalCode;
-
-    /**
-     * The elevation of a location (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>). Values may be of the form 'NUMBER UNIT<em>OF</em>MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters.
-     *
-     *
-     * @var string|decimal|null
-     */
-    protected $elevation;
+    protected $line;
 
     /**
      * A polygon is the area enclosed by a point-to-point path for which the starting and ending points are the same. A polygon is expressed as a series of four or more space delimited points where the first and final points are identical.
@@ -72,84 +32,149 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $polygon;
 
     /**
-     * A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space.
+     * The elevation of a location (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>). Values may be of the form 'NUMBER UNIT<em>OF</em>MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters.
+     *
+     *
+     * @var string|float|null
+     */
+    protected $elevation;
+
+    /**
+     * The postal code. For example, 94043.
      *
      *
      * @var string
      */
-    protected $line;
+    protected $postalCode;
 
     /**
-     * @return string|PostalAddress
+     * The country. For example, USA. You can also provide the two-letter <a href="http://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166-1 alpha-2 country code</a>.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Country|string
      */
-    public function getAddress()
+    protected $addressCountry;
+
+    /**
+     * A box is the area enclosed by the rectangle formed by two points. The first point is the lower corner, the second point is the upper corner. A box is expressed as two points separated by a space character.
+     *
+     *
+     * @var string
+     */
+    protected $box;
+
+    /**
+     * A circle is the circular region of a specified radius centered at a specified latitude and longitude. A circle is expressed as a pair followed by a radius in meters.
+     *
+     *
+     * @var string
+     */
+    protected $circle;
+
+    /**
+     * Physical address of the item.
+     *
+     *
+     * @var string|PostalAddress
+     */
+    protected $address;
+
+    /**
+     * @return string
+     */
+    public function getLine()
     {
-        return $this->address;
+        return $this->line;
     }
 
     /**
-     * @param string|PostalAddress $address
+     * @param string $line
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAddress($address)
+    public function setLine($line)
     {
         $types = array(
             "string",
-            "PostalAddress",
         );
 
-        $address = self::checkTypes($address, $types);
+        $line = self::checkTypes($line, $types);
 
-        $this->address = $address;
+        $this->line = $line;
     }
 
     /**
      * @return string
      */
-    public function getCircle()
+    public function getPolygon()
     {
-        return $this->circle;
+        return $this->polygon;
     }
 
     /**
-     * @param string $circle
+     * @param string $polygon
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCircle($circle)
+    public function setPolygon($polygon)
     {
         $types = array(
             "string",
         );
 
-        $circle = self::checkTypes($circle, $types);
+        $polygon = self::checkTypes($polygon, $types);
 
-        $this->circle = $circle;
+        $this->polygon = $polygon;
+    }
+
+    /**
+     * @return string|float|null
+     */
+    public function getElevation()
+    {
+        return $this->elevation;
+    }
+
+    /**
+     * @param string|float|null $elevation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setElevation($elevation)
+    {
+        $types = array(
+            "string",
+            "float",
+            "null",
+        );
+
+        $elevation = self::checkTypes($elevation, $types);
+
+        $this->elevation = $elevation;
     }
 
     /**
      * @return string
      */
-    public function getBox()
+    public function getPostalCode()
     {
-        return $this->box;
+        return $this->postalCode;
     }
 
     /**
-     * @param string $box
+     * @param string $postalCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBox($box)
+    public function setPostalCode($postalCode)
     {
         $types = array(
             "string",
         );
 
-        $box = self::checkTypes($box, $types);
+        $postalCode = self::checkTypes($postalCode, $types);
 
-        $this->box = $box;
+        $this->postalCode = $postalCode;
     }
 
     /**
@@ -180,99 +205,74 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @return string
      */
-    public function getPostalCode()
+    public function getBox()
     {
-        return $this->postalCode;
+        return $this->box;
     }
 
     /**
-     * @param string $postalCode
+     * @param string $box
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPostalCode($postalCode)
+    public function setBox($box)
     {
         $types = array(
             "string",
         );
 
-        $postalCode = self::checkTypes($postalCode, $types);
+        $box = self::checkTypes($box, $types);
 
-        $this->postalCode = $postalCode;
-    }
-
-    /**
-     * @return string|decimal|null
-     */
-    public function getElevation()
-    {
-        return $this->elevation;
-    }
-
-    /**
-     * @param string|decimal|null $elevation
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setElevation($elevation)
-    {
-        $types = array(
-            "string",
-            "decimal",
-            "null",
-        );
-
-        $elevation = self::checkTypes($elevation, $types);
-
-        $this->elevation = $elevation;
+        $this->box = $box;
     }
 
     /**
      * @return string
      */
-    public function getPolygon()
+    public function getCircle()
     {
-        return $this->polygon;
+        return $this->circle;
     }
 
     /**
-     * @param string $polygon
+     * @param string $circle
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPolygon($polygon)
+    public function setCircle($circle)
     {
         $types = array(
             "string",
         );
 
-        $polygon = self::checkTypes($polygon, $types);
+        $circle = self::checkTypes($circle, $types);
 
-        $this->polygon = $polygon;
+        $this->circle = $circle;
     }
 
     /**
-     * @return string
+     * @return string|PostalAddress
      */
-    public function getLine()
+    public function getAddress()
     {
-        return $this->line;
+        return $this->address;
     }
 
     /**
-     * @param string $line
+     * @param string|PostalAddress $address
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLine($line)
+    public function setAddress($address)
     {
         $types = array(
             "string",
+            "PostalAddress",
         );
 
-        $line = self::checkTypes($line, $types);
+        $address = self::checkTypes($address, $types);
 
-        $this->line = $line;
+        $this->address = $address;
     }
 
 }

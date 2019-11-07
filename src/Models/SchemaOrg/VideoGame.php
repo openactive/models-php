@@ -16,46 +16,6 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\Game
     }
 
     /**
-     * The electronic systems used to play <a href="http://en.wikipedia.org/wiki/Category:Video_game_platforms">video games</a>.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $gamePlatform;
-
-    /**
-     * The server on which  it is possible to play the game.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\GameServer
-     */
-    protected $gameServer;
-
-    /**
-     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
-     *
-     *
-     * @var Person
-     */
-    protected $actor;
-
-    /**
-     * The trailer of a movie or tv/radio series, season, episode, etc.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\VideoObject
-     */
-    protected $trailer;
-
-    /**
-     * Cheat codes to the game.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    protected $cheatCode;
-
-    /**
      * Links to tips, tactics, etc.
      *
      *
@@ -64,28 +24,20 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\Game
     protected $gameTip;
 
     /**
-     * The composer of the soundtrack.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MusicGroup|Person
-     */
-    protected $musicBy;
-
-    /**
-     * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
+     * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
      * @var Person
      */
-    protected $directors;
+    protected $actors;
 
     /**
-     * Indicates whether this game is multi-player, co-op or single-player.  The game can be marked as multi-player, co-op and single-player at the same time.
+     * The electronic systems used to play <a href="http://en.wikipedia.org/wiki/Category:Video_game_platforms">video games</a>.
      *
      *
-     * @var Schema.NET.GamePlayMode|null
+     * @var string|\OpenActive\Models\SchemaOrg\Thing
      */
-    protected $playMode;
+    protected $gamePlatform;
 
     /**
      * A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
@@ -96,12 +48,108 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\Game
     protected $director;
 
     /**
-     * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
+     * Indicates whether this game is multi-player, co-op or single-player.  The game can be marked as multi-player, co-op and single-player at the same time.
+     *
+     *
+     * @var \OpenActive\Enums\GamePlayMode|null
+     */
+    protected $playMode;
+
+    /**
+     * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
      *
      * @var Person
      */
-    protected $actors;
+    protected $directors;
+
+    /**
+     * The composer of the soundtrack.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|Person
+     */
+    protected $musicBy;
+
+    /**
+     * The server on which  it is possible to play the game.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\GameServer
+     */
+    protected $gameServer;
+
+    /**
+     * Cheat codes to the game.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    protected $cheatCode;
+
+    /**
+     * The trailer of a movie or tv/radio series, season, episode, etc.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\VideoObject
+     */
+    protected $trailer;
+
+    /**
+     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
+     *
+     *
+     * @var Person
+     */
+    protected $actor;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    public function getGameTip()
+    {
+        return $this->gameTip;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork $gameTip
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGameTip($gameTip)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+        );
+
+        $gameTip = self::checkTypes($gameTip, $types);
+
+        $this->gameTip = $gameTip;
+    }
+
+    /**
+     * @return Person
+     */
+    public function getActors()
+    {
+        return $this->actors;
+    }
+
+    /**
+     * @param Person $actors
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActors($actors)
+    {
+        $types = array(
+            "Person",
+        );
+
+        $actors = self::checkTypes($actors, $types);
+
+        $this->actors = $actors;
+    }
 
     /**
      * @return string|\OpenActive\Models\SchemaOrg\Thing
@@ -129,123 +177,76 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\Game
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\GameServer
-     */
-    public function getGameServer()
-    {
-        return $this->gameServer;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\GameServer $gameServer
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGameServer($gameServer)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\GameServer",
-        );
-
-        $gameServer = self::checkTypes($gameServer, $types);
-
-        $this->gameServer = $gameServer;
-    }
-
-    /**
      * @return Person
      */
-    public function getActor()
+    public function getDirector()
     {
-        return $this->actor;
+        return $this->director;
     }
 
     /**
-     * @param Person $actor
+     * @param Person $director
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setActor($actor)
+    public function setDirector($director)
     {
         $types = array(
             "Person",
         );
 
-        $actor = self::checkTypes($actor, $types);
+        $director = self::checkTypes($director, $types);
 
-        $this->actor = $actor;
+        $this->director = $director;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\VideoObject
+     * @return \OpenActive\Enums\GamePlayMode|null
      */
-    public function getTrailer()
+    public function getPlayMode()
     {
-        return $this->trailer;
+        return $this->playMode;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\VideoObject $trailer
+     * @param \OpenActive\Enums\GamePlayMode|null $playMode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTrailer($trailer)
+    public function setPlayMode($playMode)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\VideoObject",
+            "\OpenActive\Enums\GamePlayMode",
+            "null",
         );
 
-        $trailer = self::checkTypes($trailer, $types);
+        $playMode = self::checkTypes($playMode, $types);
 
-        $this->trailer = $trailer;
+        $this->playMode = $playMode;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork
+     * @return Person
      */
-    public function getCheatCode()
+    public function getDirectors()
     {
-        return $this->cheatCode;
+        return $this->directors;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork $cheatCode
+     * @param Person $directors
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCheatCode($cheatCode)
+    public function setDirectors($directors)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "Person",
         );
 
-        $cheatCode = self::checkTypes($cheatCode, $types);
+        $directors = self::checkTypes($directors, $types);
 
-        $this->cheatCode = $cheatCode;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    public function getGameTip()
-    {
-        return $this->gameTip;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork $gameTip
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGameTip($gameTip)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-        );
-
-        $gameTip = self::checkTypes($gameTip, $types);
-
-        $this->gameTip = $gameTip;
+        $this->directors = $directors;
     }
 
     /**
@@ -274,100 +275,99 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\Game
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\GameServer
      */
-    public function getDirectors()
+    public function getGameServer()
     {
-        return $this->directors;
+        return $this->gameServer;
     }
 
     /**
-     * @param Person $directors
+     * @param \OpenActive\Models\SchemaOrg\GameServer $gameServer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDirectors($directors)
+    public function setGameServer($gameServer)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\GameServer",
+        );
+
+        $gameServer = self::checkTypes($gameServer, $types);
+
+        $this->gameServer = $gameServer;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    public function getCheatCode()
+    {
+        return $this->cheatCode;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork $cheatCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCheatCode($cheatCode)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+        );
+
+        $cheatCode = self::checkTypes($cheatCode, $types);
+
+        $this->cheatCode = $cheatCode;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\VideoObject
+     */
+    public function getTrailer()
+    {
+        return $this->trailer;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\VideoObject $trailer
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTrailer($trailer)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\VideoObject",
+        );
+
+        $trailer = self::checkTypes($trailer, $types);
+
+        $this->trailer = $trailer;
+    }
+
+    /**
+     * @return Person
+     */
+    public function getActor()
+    {
+        return $this->actor;
+    }
+
+    /**
+     * @param Person $actor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActor($actor)
     {
         $types = array(
             "Person",
         );
 
-        $directors = self::checkTypes($directors, $types);
+        $actor = self::checkTypes($actor, $types);
 
-        $this->directors = $directors;
-    }
-
-    /**
-     * @return Schema.NET.GamePlayMode|null
-     */
-    public function getPlayMode()
-    {
-        return $this->playMode;
-    }
-
-    /**
-     * @param Schema.NET.GamePlayMode|null $playMode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPlayMode($playMode)
-    {
-        $types = array(
-            "Schema.NET.GamePlayMode",
-            "null",
-        );
-
-        $playMode = self::checkTypes($playMode, $types);
-
-        $this->playMode = $playMode;
-    }
-
-    /**
-     * @return Person
-     */
-    public function getDirector()
-    {
-        return $this->director;
-    }
-
-    /**
-     * @param Person $director
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDirector($director)
-    {
-        $types = array(
-            "Person",
-        );
-
-        $director = self::checkTypes($director, $types);
-
-        $this->director = $director;
-    }
-
-    /**
-     * @return Person
-     */
-    public function getActors()
-    {
-        return $this->actors;
-    }
-
-    /**
-     * @param Person $actors
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActors($actors)
-    {
-        $types = array(
-            "Person",
-        );
-
-        $actors = self::checkTypes($actors, $types);
-
-        $this->actors = $actors;
+        $this->actor = $actor;
     }
 
 }

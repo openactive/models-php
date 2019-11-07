@@ -16,48 +16,23 @@ class ParentAudience extends \OpenActive\Models\SchemaOrg\PeopleAudience
     }
 
     /**
-     * Maximal age of the child.
-     *
-     *
-     * @var decimal|null
-     */
-    protected $childMaxAge;
-
-    /**
      * Minimal age of the child.
      *
      *
-     * @var decimal|null
+     * @var float|null
      */
     protected $childMinAge;
 
     /**
-     * @return decimal|null
+     * Maximal age of the child.
+     *
+     *
+     * @var float|null
      */
-    public function getChildMaxAge()
-    {
-        return $this->childMaxAge;
-    }
+    protected $childMaxAge;
 
     /**
-     * @param decimal|null $childMaxAge
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setChildMaxAge($childMaxAge)
-    {
-        $types = array(
-            "decimal",
-            "null",
-        );
-
-        $childMaxAge = self::checkTypes($childMaxAge, $types);
-
-        $this->childMaxAge = $childMaxAge;
-    }
-
-    /**
-     * @return decimal|null
+     * @return float|null
      */
     public function getChildMinAge()
     {
@@ -65,20 +40,45 @@ class ParentAudience extends \OpenActive\Models\SchemaOrg\PeopleAudience
     }
 
     /**
-     * @param decimal|null $childMinAge
+     * @param float|null $childMinAge
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setChildMinAge($childMinAge)
     {
         $types = array(
-            "decimal",
+            "float",
             "null",
         );
 
         $childMinAge = self::checkTypes($childMinAge, $types);
 
         $this->childMinAge = $childMinAge;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getChildMaxAge()
+    {
+        return $this->childMaxAge;
+    }
+
+    /**
+     * @param float|null $childMaxAge
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setChildMaxAge($childMaxAge)
+    {
+        $types = array(
+            "float",
+            "null",
+        );
+
+        $childMaxAge = self::checkTypes($childMaxAge, $types);
+
+        $this->childMaxAge = $childMaxAge;
     }
 
 }

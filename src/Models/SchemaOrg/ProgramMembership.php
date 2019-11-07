@@ -16,28 +16,12 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * A unique identifier for the membership.
+     * The program providing the membership.
      *
      *
      * @var string
      */
-    protected $membershipNumber;
-
-    /**
-     * A member of this organization.
-     *
-     *
-     * @var Organization|Person
-     */
-    protected $members;
-
-    /**
-     * A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals.
-     *
-     *
-     * @var Organization|Person
-     */
-    protected $member;
+    protected $programName;
 
     /**
      * The organization (airline, travelers' club, etc.) the membership is made with.
@@ -48,60 +32,75 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     protected $hostingOrganization;
 
     /**
-     * The program providing the membership.
+     * A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals.
+     *
+     *
+     * @var Organization|Person
+     */
+    protected $member;
+
+    /**
+     * A member of this organization.
+     *
+     *
+     * @var Organization|Person
+     */
+    protected $members;
+
+    /**
+     * A unique identifier for the membership.
      *
      *
      * @var string
      */
-    protected $programName;
+    protected $membershipNumber;
 
     /**
      * @return string
      */
-    public function getMembershipNumber()
+    public function getProgramName()
     {
-        return $this->membershipNumber;
+        return $this->programName;
     }
 
     /**
-     * @param string $membershipNumber
+     * @param string $programName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMembershipNumber($membershipNumber)
+    public function setProgramName($programName)
     {
         $types = array(
             "string",
         );
 
-        $membershipNumber = self::checkTypes($membershipNumber, $types);
+        $programName = self::checkTypes($programName, $types);
 
-        $this->membershipNumber = $membershipNumber;
+        $this->programName = $programName;
     }
 
     /**
-     * @return Organization|Person
+     * @return Organization
      */
-    public function getMembers()
+    public function getHostingOrganization()
     {
-        return $this->members;
+        return $this->hostingOrganization;
     }
 
     /**
-     * @param Organization|Person $members
+     * @param Organization $hostingOrganization
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMembers($members)
+    public function setHostingOrganization($hostingOrganization)
     {
         $types = array(
             "Organization",
-            "Person",
         );
 
-        $members = self::checkTypes($members, $types);
+        $hostingOrganization = self::checkTypes($hostingOrganization, $types);
 
-        $this->members = $members;
+        $this->hostingOrganization = $hostingOrganization;
     }
 
     /**
@@ -130,51 +129,52 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Organization
+     * @return Organization|Person
      */
-    public function getHostingOrganization()
+    public function getMembers()
     {
-        return $this->hostingOrganization;
+        return $this->members;
     }
 
     /**
-     * @param Organization $hostingOrganization
+     * @param Organization|Person $members
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHostingOrganization($hostingOrganization)
+    public function setMembers($members)
     {
         $types = array(
             "Organization",
+            "Person",
         );
 
-        $hostingOrganization = self::checkTypes($hostingOrganization, $types);
+        $members = self::checkTypes($members, $types);
 
-        $this->hostingOrganization = $hostingOrganization;
+        $this->members = $members;
     }
 
     /**
      * @return string
      */
-    public function getProgramName()
+    public function getMembershipNumber()
     {
-        return $this->programName;
+        return $this->membershipNumber;
     }
 
     /**
-     * @param string $programName
+     * @param string $membershipNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setProgramName($programName)
+    public function setMembershipNumber($membershipNumber)
     {
         $types = array(
             "string",
         );
 
-        $programName = self::checkTypes($programName, $types);
+        $membershipNumber = self::checkTypes($membershipNumber, $types);
 
-        $this->programName = $programName;
+        $this->membershipNumber = $membershipNumber;
     }
 
 }

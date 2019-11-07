@@ -16,6 +16,30 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
+     * The GTIN-14 code of the product, or the product to which the offer refers. See <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1 GTIN Summary</a> for more details.
+     *
+     *
+     * @var string
+     */
+    protected $gtin14;
+
+    /**
+     * The release date of a product or product model. This can be used to distinguish the exact variant of a product.
+     *
+     *
+     * @var DateTime|null
+     */
+    protected $releaseDate;
+
+    /**
+     * The GTIN-13 code of the product, or the product to which the offer refers. This is equivalent to 13-digit ISBN codes and EAN UCC-13. Former 12-digit UPC codes can be converted into a GTIN-13 code by simply adding a preceeding zero. See <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1 GTIN Summary</a> for more details.
+     *
+     *
+     * @var string
+     */
+    protected $gtin13;
+
+    /**
      * The manufacturer of the product.
      *
      *
@@ -24,12 +48,12 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     protected $manufacturer;
 
     /**
-     * The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers.
+     * The GTIN-12 code of the product, or the product to which the offer refers. The GTIN-12 is the 12-digit GS1 Identification Key composed of a U.P.C. Company Prefix, Item Reference, and Check Digit used to identify trade items. See <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1 GTIN Summary</a> for more details.
      *
      *
      * @var string
      */
-    protected $sku;
+    protected $gtin12;
 
     /**
      * An intended audience, i.e. a group for whom something was created.
@@ -40,12 +64,12 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     protected $audience;
 
     /**
-     * The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.
+     * A material that something is made from, e.g. leather, wool, cotton, paper.
      *
      *
-     * @var string
+     * @var string|\OpenActive\Models\SchemaOrg\Product
      */
-    protected $mpn;
+    protected $material;
 
     /**
      * The height of the item.
@@ -56,12 +80,12 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     protected $height;
 
     /**
-     * The <a href="http://apps.gs1.org/GDD/glossary/Pages/GTIN-8.aspx">GTIN-8</a> code of the product, or the product to which the offer refers. This code is also known as EAN/UCC-8 or 8-digit EAN. See <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1 GTIN Summary</a> for more details.
+     * The weight of the product or person.
      *
      *
-     * @var string
+     * @var QuantitativeValue
      */
-    protected $gtin8;
+    protected $weight;
 
     /**
      * The overall rating, based on a collection of reviews or ratings, of the item.
@@ -72,12 +96,12 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     protected $aggregateRating;
 
     /**
-     * A pointer to another product (or multiple products) for which this product is a consumable.
+     * The depth of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Product
+     * @var QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
-    protected $isConsumableFor;
+    protected $depth;
 
     /**
      * Review of the item.
@@ -88,12 +112,12 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     protected $reviews;
 
     /**
-     * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+     * A pointer to another, functionally similar product (or multiple products).
      *
      *
-     * @var Offer
+     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
      */
-    protected $offers;
+    protected $isSimilarTo;
 
     /**
      * An award won by or for this item.
@@ -104,12 +128,12 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     protected $award;
 
     /**
-     * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
+     * The model of the product. Use with the URL of a ProductModel or a textual representation of the model identifier. The URL of the ProductModel can be from an external source. It is recommended to additionally provide strong product identifiers via the gtin8/gtin13/gtin14 and mpn properties.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory
+     * @var \OpenActive\Models\SchemaOrg\ProductModel|string
      */
-    protected $category;
+    protected $model;
 
     /**
      * The width of the item.
@@ -120,12 +144,12 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     protected $width;
 
     /**
-     * Awards won by or for this item.
+     * The color of the product.
      *
      *
      * @var string
      */
-    protected $awards;
+    protected $color;
 
     /**
      * A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.<br/><br/>
@@ -138,12 +162,12 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     protected $additionalProperty;
 
     /**
-     * A pointer to another product (or multiple products) for which this product is an accessory or spare part.
+     * A pointer to another, somehow related product (or multiple products).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Product
+     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
      */
-    protected $isAccessoryOrSparePartFor;
+    protected $isRelatedTo;
 
     /**
      * An associated logo.
@@ -154,92 +178,20 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     protected $logo;
 
     /**
-     * The GTIN-14 code of the product, or the product to which the offer refers. See <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1 GTIN Summary</a> for more details.
-     *
-     *
-     * @var string
-     */
-    protected $gtin14;
-
-    /**
-     * The GTIN-13 code of the product, or the product to which the offer refers. This is equivalent to 13-digit ISBN codes and EAN UCC-13. Former 12-digit UPC codes can be converted into a GTIN-13 code by simply adding a preceeding zero. See <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1 GTIN Summary</a> for more details.
-     *
-     *
-     * @var string
-     */
-    protected $gtin13;
-
-    /**
-     * The GTIN-12 code of the product, or the product to which the offer refers. The GTIN-12 is the 12-digit GS1 Identification Key composed of a U.P.C. Company Prefix, Item Reference, and Check Digit used to identify trade items. See <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1 GTIN Summary</a> for more details.
-     *
-     *
-     * @var string
-     */
-    protected $gtin12;
-
-    /**
-     * A material that something is made from, e.g. leather, wool, cotton, paper.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Product
-     */
-    protected $material;
-
-    /**
-     * The weight of the product or person.
-     *
-     *
-     * @var QuantitativeValue
-     */
-    protected $weight;
-
-    /**
-     * The depth of the item.
-     *
-     *
-     * @var QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
-     */
-    protected $depth;
-
-    /**
-     * A pointer to another, functionally similar product (or multiple products).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
-     */
-    protected $isSimilarTo;
-
-    /**
-     * The model of the product. Use with the URL of a ProductModel or a textual representation of the model identifier. The URL of the ProductModel can be from an external source. It is recommended to additionally provide strong product identifiers via the gtin8/gtin13/gtin14 and mpn properties.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ProductModel|string
-     */
-    protected $model;
-
-    /**
-     * The color of the product.
-     *
-     *
-     * @var string
-     */
-    protected $color;
-
-    /**
-     * A pointer to another, somehow related product (or multiple products).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
-     */
-    protected $isRelatedTo;
-
-    /**
      * The product identifier, such as ISBN. For example: <code>meta itemprop="productID" content="isbn:123-456-789"</code>.
      *
      *
      * @var string
      */
     protected $productID;
+
+    /**
+     * The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.
+     *
+     *
+     * @var string
+     */
+    protected $mpn;
 
     /**
      * A review of the item.
@@ -250,6 +202,14 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     protected $review;
 
     /**
+     * A pointer to another product (or multiple products) for which this product is a consumable.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Product
+     */
+    protected $isConsumableFor;
+
+    /**
      * The date the item e.g. vehicle was purchased by the current owner.
      *
      *
@@ -258,28 +218,20 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     protected $purchaseDate;
 
     /**
-     * A predefined value from OfferItemCondition or a textual description of the condition of the product or service, or the products or services included in the offer.
+     * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
      *
      *
-     * @var Schema.NET.OfferItemCondition|null
+     * @var string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory
      */
-    protected $itemCondition;
+    protected $category;
 
     /**
-     * The date of production of the item, e.g. vehicle.
+     * A pointer to another product (or multiple products) for which this product is an accessory or spare part.
      *
      *
-     * @var DateTime|null
+     * @var \OpenActive\Models\SchemaOrg\Product
      */
-    protected $productionDate;
-
-    /**
-     * A slogan or motto associated with the item.
-     *
-     *
-     * @var string
-     */
-    protected $slogan;
+    protected $isAccessoryOrSparePartFor;
 
     /**
      * The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
@@ -290,12 +242,133 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     protected $brand;
 
     /**
-     * The release date of a product or product model. This can be used to distinguish the exact variant of a product.
+     * A slogan or motto associated with the item.
+     *
+     *
+     * @var string
+     */
+    protected $slogan;
+
+    /**
+     * The date of production of the item, e.g. vehicle.
      *
      *
      * @var DateTime|null
      */
-    protected $releaseDate;
+    protected $productionDate;
+
+    /**
+     * A predefined value from OfferItemCondition or a textual description of the condition of the product or service, or the products or services included in the offer.
+     *
+     *
+     * @var \OpenActive\Enums\OfferItemCondition|null
+     */
+    protected $itemCondition;
+
+    /**
+     * The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers.
+     *
+     *
+     * @var string
+     */
+    protected $sku;
+
+    /**
+     * Awards won by or for this item.
+     *
+     *
+     * @var string
+     */
+    protected $awards;
+
+    /**
+     * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+     *
+     *
+     * @var Offer
+     */
+    protected $offers;
+
+    /**
+     * The <a href="http://apps.gs1.org/GDD/glossary/Pages/GTIN-8.aspx">GTIN-8</a> code of the product, or the product to which the offer refers. This code is also known as EAN/UCC-8 or 8-digit EAN. See <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1 GTIN Summary</a> for more details.
+     *
+     *
+     * @var string
+     */
+    protected $gtin8;
+
+    /**
+     * @return string
+     */
+    public function getGtin14()
+    {
+        return $this->gtin14;
+    }
+
+    /**
+     * @param string $gtin14
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGtin14($gtin14)
+    {
+        $types = array(
+            "string",
+        );
+
+        $gtin14 = self::checkTypes($gtin14, $types);
+
+        $this->gtin14 = $gtin14;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getReleaseDate()
+    {
+        return $this->releaseDate;
+    }
+
+    /**
+     * @param DateTime|null $releaseDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReleaseDate($releaseDate)
+    {
+        $types = array(
+            "DateTime",
+            "null",
+        );
+
+        $releaseDate = self::checkTypes($releaseDate, $types);
+
+        $this->releaseDate = $releaseDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGtin13()
+    {
+        return $this->gtin13;
+    }
+
+    /**
+     * @param string $gtin13
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGtin13($gtin13)
+    {
+        $types = array(
+            "string",
+        );
+
+        $gtin13 = self::checkTypes($gtin13, $types);
+
+        $this->gtin13 = $gtin13;
+    }
 
     /**
      * @return Organization
@@ -324,25 +397,25 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @return string
      */
-    public function getSku()
+    public function getGtin12()
     {
-        return $this->sku;
+        return $this->gtin12;
     }
 
     /**
-     * @param string $sku
+     * @param string $gtin12
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSku($sku)
+    public function setGtin12($gtin12)
     {
         $types = array(
             "string",
         );
 
-        $sku = self::checkTypes($sku, $types);
+        $gtin12 = self::checkTypes($gtin12, $types);
 
-        $this->sku = $sku;
+        $this->gtin12 = $gtin12;
     }
 
     /**
@@ -370,27 +443,28 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string
+     * @return string|\OpenActive\Models\SchemaOrg\Product
      */
-    public function getMpn()
+    public function getMaterial()
     {
-        return $this->mpn;
+        return $this->material;
     }
 
     /**
-     * @param string $mpn
+     * @param string|\OpenActive\Models\SchemaOrg\Product $material
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMpn($mpn)
+    public function setMaterial($material)
     {
         $types = array(
             "string",
+            "\OpenActive\Models\SchemaOrg\Product",
         );
 
-        $mpn = self::checkTypes($mpn, $types);
+        $material = self::checkTypes($material, $types);
 
-        $this->mpn = $mpn;
+        $this->material = $material;
     }
 
     /**
@@ -419,27 +493,27 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string
+     * @return QuantitativeValue
      */
-    public function getGtin8()
+    public function getWeight()
     {
-        return $this->gtin8;
+        return $this->weight;
     }
 
     /**
-     * @param string $gtin8
+     * @param QuantitativeValue $weight
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setGtin8($gtin8)
+    public function setWeight($weight)
     {
         $types = array(
-            "string",
+            "QuantitativeValue",
         );
 
-        $gtin8 = self::checkTypes($gtin8, $types);
+        $weight = self::checkTypes($weight, $types);
 
-        $this->gtin8 = $gtin8;
+        $this->weight = $weight;
     }
 
     /**
@@ -467,27 +541,28 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Product
+     * @return QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
-    public function getIsConsumableFor()
+    public function getDepth()
     {
-        return $this->isConsumableFor;
+        return $this->depth;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Product $isConsumableFor
+     * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $depth
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIsConsumableFor($isConsumableFor)
+    public function setDepth($depth)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Product",
+            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\Distance",
         );
 
-        $isConsumableFor = self::checkTypes($isConsumableFor, $types);
+        $depth = self::checkTypes($depth, $types);
 
-        $this->isConsumableFor = $isConsumableFor;
+        $this->depth = $depth;
     }
 
     /**
@@ -515,27 +590,28 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Offer
+     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
      */
-    public function getOffers()
+    public function getIsSimilarTo()
     {
-        return $this->offers;
+        return $this->isSimilarTo;
     }
 
     /**
-     * @param Offer $offers
+     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $isSimilarTo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOffers($offers)
+    public function setIsSimilarTo($isSimilarTo)
     {
         $types = array(
-            "Offer",
+            "\OpenActive\Models\SchemaOrg\Service",
+            "\OpenActive\Models\SchemaOrg\Product",
         );
 
-        $offers = self::checkTypes($offers, $types);
+        $isSimilarTo = self::checkTypes($isSimilarTo, $types);
 
-        $this->offers = $offers;
+        $this->isSimilarTo = $isSimilarTo;
     }
 
     /**
@@ -563,29 +639,28 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory
+     * @return \OpenActive\Models\SchemaOrg\ProductModel|string
      */
-    public function getCategory()
+    public function getModel()
     {
-        return $this->category;
+        return $this->model;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory $category
+     * @param \OpenActive\Models\SchemaOrg\ProductModel|string $model
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCategory($category)
+    public function setModel($model)
     {
         $types = array(
+            "\OpenActive\Models\SchemaOrg\ProductModel",
             "string",
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "\OpenActive\Models\SchemaOrg\PhysicalActivityCategory",
         );
 
-        $category = self::checkTypes($category, $types);
+        $model = self::checkTypes($model, $types);
 
-        $this->category = $category;
+        $this->model = $model;
     }
 
     /**
@@ -616,25 +691,25 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @return string
      */
-    public function getAwards()
+    public function getColor()
     {
-        return $this->awards;
+        return $this->color;
     }
 
     /**
-     * @param string $awards
+     * @param string $color
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAwards($awards)
+    public function setColor($color)
     {
         $types = array(
             "string",
         );
 
-        $awards = self::checkTypes($awards, $types);
+        $color = self::checkTypes($color, $types);
 
-        $this->awards = $awards;
+        $this->color = $color;
     }
 
     /**
@@ -662,27 +737,28 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Product
+     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
      */
-    public function getIsAccessoryOrSparePartFor()
+    public function getIsRelatedTo()
     {
-        return $this->isAccessoryOrSparePartFor;
+        return $this->isRelatedTo;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Product $isAccessoryOrSparePartFor
+     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $isRelatedTo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIsAccessoryOrSparePartFor($isAccessoryOrSparePartFor)
+    public function setIsRelatedTo($isRelatedTo)
     {
         $types = array(
+            "\OpenActive\Models\SchemaOrg\Service",
             "\OpenActive\Models\SchemaOrg\Product",
         );
 
-        $isAccessoryOrSparePartFor = self::checkTypes($isAccessoryOrSparePartFor, $types);
+        $isRelatedTo = self::checkTypes($isRelatedTo, $types);
 
-        $this->isAccessoryOrSparePartFor = $isAccessoryOrSparePartFor;
+        $this->isRelatedTo = $isRelatedTo;
     }
 
     /**
@@ -713,251 +789,6 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @return string
      */
-    public function getGtin14()
-    {
-        return $this->gtin14;
-    }
-
-    /**
-     * @param string $gtin14
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGtin14($gtin14)
-    {
-        $types = array(
-            "string",
-        );
-
-        $gtin14 = self::checkTypes($gtin14, $types);
-
-        $this->gtin14 = $gtin14;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGtin13()
-    {
-        return $this->gtin13;
-    }
-
-    /**
-     * @param string $gtin13
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGtin13($gtin13)
-    {
-        $types = array(
-            "string",
-        );
-
-        $gtin13 = self::checkTypes($gtin13, $types);
-
-        $this->gtin13 = $gtin13;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGtin12()
-    {
-        return $this->gtin12;
-    }
-
-    /**
-     * @param string $gtin12
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGtin12($gtin12)
-    {
-        $types = array(
-            "string",
-        );
-
-        $gtin12 = self::checkTypes($gtin12, $types);
-
-        $this->gtin12 = $gtin12;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Product
-     */
-    public function getMaterial()
-    {
-        return $this->material;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Product $material
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMaterial($material)
-    {
-        $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\Product",
-        );
-
-        $material = self::checkTypes($material, $types);
-
-        $this->material = $material;
-    }
-
-    /**
-     * @return QuantitativeValue
-     */
-    public function getWeight()
-    {
-        return $this->weight;
-    }
-
-    /**
-     * @param QuantitativeValue $weight
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setWeight($weight)
-    {
-        $types = array(
-            "QuantitativeValue",
-        );
-
-        $weight = self::checkTypes($weight, $types);
-
-        $this->weight = $weight;
-    }
-
-    /**
-     * @return QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
-     */
-    public function getDepth()
-    {
-        return $this->depth;
-    }
-
-    /**
-     * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $depth
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDepth($depth)
-    {
-        $types = array(
-            "QuantitativeValue",
-            "\OpenActive\Models\SchemaOrg\Distance",
-        );
-
-        $depth = self::checkTypes($depth, $types);
-
-        $this->depth = $depth;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
-     */
-    public function getIsSimilarTo()
-    {
-        return $this->isSimilarTo;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $isSimilarTo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIsSimilarTo($isSimilarTo)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Service",
-            "\OpenActive\Models\SchemaOrg\Product",
-        );
-
-        $isSimilarTo = self::checkTypes($isSimilarTo, $types);
-
-        $this->isSimilarTo = $isSimilarTo;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ProductModel|string
-     */
-    public function getModel()
-    {
-        return $this->model;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ProductModel|string $model
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setModel($model)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\ProductModel",
-            "string",
-        );
-
-        $model = self::checkTypes($model, $types);
-
-        $this->model = $model;
-    }
-
-    /**
-     * @return string
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
-
-    /**
-     * @param string $color
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setColor($color)
-    {
-        $types = array(
-            "string",
-        );
-
-        $color = self::checkTypes($color, $types);
-
-        $this->color = $color;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
-     */
-    public function getIsRelatedTo()
-    {
-        return $this->isRelatedTo;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $isRelatedTo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIsRelatedTo($isRelatedTo)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Service",
-            "\OpenActive\Models\SchemaOrg\Product",
-        );
-
-        $isRelatedTo = self::checkTypes($isRelatedTo, $types);
-
-        $this->isRelatedTo = $isRelatedTo;
-    }
-
-    /**
-     * @return string
-     */
     public function getProductID()
     {
         return $this->productID;
@@ -977,6 +808,30 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
         $productID = self::checkTypes($productID, $types);
 
         $this->productID = $productID;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMpn()
+    {
+        return $this->mpn;
+    }
+
+    /**
+     * @param string $mpn
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMpn($mpn)
+    {
+        $types = array(
+            "string",
+        );
+
+        $mpn = self::checkTypes($mpn, $types);
+
+        $this->mpn = $mpn;
     }
 
     /**
@@ -1001,6 +856,30 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
         $review = self::checkTypes($review, $types);
 
         $this->review = $review;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Product
+     */
+    public function getIsConsumableFor()
+    {
+        return $this->isConsumableFor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Product $isConsumableFor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsConsumableFor($isConsumableFor)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Product",
+        );
+
+        $isConsumableFor = self::checkTypes($isConsumableFor, $types);
+
+        $this->isConsumableFor = $isConsumableFor;
     }
 
     /**
@@ -1029,77 +908,53 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Schema.NET.OfferItemCondition|null
+     * @return string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory
      */
-    public function getItemCondition()
+    public function getCategory()
     {
-        return $this->itemCondition;
+        return $this->category;
     }
 
     /**
-     * @param Schema.NET.OfferItemCondition|null $itemCondition
+     * @param string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory $category
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setItemCondition($itemCondition)
-    {
-        $types = array(
-            "Schema.NET.OfferItemCondition",
-            "null",
-        );
-
-        $itemCondition = self::checkTypes($itemCondition, $types);
-
-        $this->itemCondition = $itemCondition;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getProductionDate()
-    {
-        return $this->productionDate;
-    }
-
-    /**
-     * @param DateTime|null $productionDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProductionDate($productionDate)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $productionDate = self::checkTypes($productionDate, $types);
-
-        $this->productionDate = $productionDate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSlogan()
-    {
-        return $this->slogan;
-    }
-
-    /**
-     * @param string $slogan
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSlogan($slogan)
+    public function setCategory($category)
     {
         $types = array(
             "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "\OpenActive\Models\SchemaOrg\PhysicalActivityCategory",
         );
 
-        $slogan = self::checkTypes($slogan, $types);
+        $category = self::checkTypes($category, $types);
 
-        $this->slogan = $slogan;
+        $this->category = $category;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Product
+     */
+    public function getIsAccessoryOrSparePartFor()
+    {
+        return $this->isAccessoryOrSparePartFor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Product $isAccessoryOrSparePartFor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsAccessoryOrSparePartFor($isAccessoryOrSparePartFor)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Product",
+        );
+
+        $isAccessoryOrSparePartFor = self::checkTypes($isAccessoryOrSparePartFor, $types);
+
+        $this->isAccessoryOrSparePartFor = $isAccessoryOrSparePartFor;
     }
 
     /**
@@ -1128,28 +983,173 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return DateTime|null
+     * @return string
      */
-    public function getReleaseDate()
+    public function getSlogan()
     {
-        return $this->releaseDate;
+        return $this->slogan;
     }
 
     /**
-     * @param DateTime|null $releaseDate
+     * @param string $slogan
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setReleaseDate($releaseDate)
+    public function setSlogan($slogan)
+    {
+        $types = array(
+            "string",
+        );
+
+        $slogan = self::checkTypes($slogan, $types);
+
+        $this->slogan = $slogan;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getProductionDate()
+    {
+        return $this->productionDate;
+    }
+
+    /**
+     * @param DateTime|null $productionDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProductionDate($productionDate)
     {
         $types = array(
             "DateTime",
             "null",
         );
 
-        $releaseDate = self::checkTypes($releaseDate, $types);
+        $productionDate = self::checkTypes($productionDate, $types);
 
-        $this->releaseDate = $releaseDate;
+        $this->productionDate = $productionDate;
+    }
+
+    /**
+     * @return \OpenActive\Enums\OfferItemCondition|null
+     */
+    public function getItemCondition()
+    {
+        return $this->itemCondition;
+    }
+
+    /**
+     * @param \OpenActive\Enums\OfferItemCondition|null $itemCondition
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setItemCondition($itemCondition)
+    {
+        $types = array(
+            "\OpenActive\Enums\OfferItemCondition",
+            "null",
+        );
+
+        $itemCondition = self::checkTypes($itemCondition, $types);
+
+        $this->itemCondition = $itemCondition;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSku()
+    {
+        return $this->sku;
+    }
+
+    /**
+     * @param string $sku
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSku($sku)
+    {
+        $types = array(
+            "string",
+        );
+
+        $sku = self::checkTypes($sku, $types);
+
+        $this->sku = $sku;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAwards()
+    {
+        return $this->awards;
+    }
+
+    /**
+     * @param string $awards
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAwards($awards)
+    {
+        $types = array(
+            "string",
+        );
+
+        $awards = self::checkTypes($awards, $types);
+
+        $this->awards = $awards;
+    }
+
+    /**
+     * @return Offer
+     */
+    public function getOffers()
+    {
+        return $this->offers;
+    }
+
+    /**
+     * @param Offer $offers
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOffers($offers)
+    {
+        $types = array(
+            "Offer",
+        );
+
+        $offers = self::checkTypes($offers, $types);
+
+        $this->offers = $offers;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGtin8()
+    {
+        return $this->gtin8;
+    }
+
+    /**
+     * @param string $gtin8
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGtin8($gtin8)
+    {
+        $types = array(
+            "string",
+        );
+
+        $gtin8 = self::checkTypes($gtin8, $types);
+
+        $this->gtin8 = $gtin8;
     }
 
 }

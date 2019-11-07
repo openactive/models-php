@@ -203,7 +203,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * "eventStatus": "https://schema.org/EventScheduled"
      * ```
      *
-     * @var Schema.NET.EventStatusType|null
+     * @var \OpenActive\Enums\EventStatusType|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $eventStatus;
@@ -858,7 +858,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return Schema.NET.EventStatusType|null
+     * @return \OpenActive\Enums\EventStatusType|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getEventStatus()
@@ -867,7 +867,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param Schema.NET.EventStatusType|null $eventStatus
+     * @param \OpenActive\Enums\EventStatusType|null $eventStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -875,7 +875,7 @@ class Slot extends \OpenActive\Models\OA\Event
     public function setEventStatus($eventStatus)
     {
         $types = array(
-            "Schema.NET.EventStatusType",
+            "\OpenActive\Enums\EventStatusType",
             "null",
         );
 

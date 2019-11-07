@@ -16,12 +16,12 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     }
 
     /**
-     * If responding yes, the number of guests who will attend in addition to the invitee.
+     * The response (yes, no, maybe) to the RSVP.
      *
      *
-     * @var decimal|null
+     * @var \OpenActive\Enums\RsvpResponseType|null
      */
-    protected $additionalNumberOfGuests;
+    protected $rsvpResponse;
 
     /**
      * Comments, typically from users.
@@ -32,36 +32,36 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     protected $comment;
 
     /**
-     * The response (yes, no, maybe) to the RSVP.
+     * If responding yes, the number of guests who will attend in addition to the invitee.
      *
      *
-     * @var Schema.NET.RsvpResponseType|null
+     * @var float|null
      */
-    protected $rsvpResponse;
+    protected $additionalNumberOfGuests;
 
     /**
-     * @return decimal|null
+     * @return \OpenActive\Enums\RsvpResponseType|null
      */
-    public function getAdditionalNumberOfGuests()
+    public function getRsvpResponse()
     {
-        return $this->additionalNumberOfGuests;
+        return $this->rsvpResponse;
     }
 
     /**
-     * @param decimal|null $additionalNumberOfGuests
+     * @param \OpenActive\Enums\RsvpResponseType|null $rsvpResponse
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAdditionalNumberOfGuests($additionalNumberOfGuests)
+    public function setRsvpResponse($rsvpResponse)
     {
         $types = array(
-            "decimal",
+            "\OpenActive\Enums\RsvpResponseType",
             "null",
         );
 
-        $additionalNumberOfGuests = self::checkTypes($additionalNumberOfGuests, $types);
+        $rsvpResponse = self::checkTypes($rsvpResponse, $types);
 
-        $this->additionalNumberOfGuests = $additionalNumberOfGuests;
+        $this->rsvpResponse = $rsvpResponse;
     }
 
     /**
@@ -89,28 +89,28 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     }
 
     /**
-     * @return Schema.NET.RsvpResponseType|null
+     * @return float|null
      */
-    public function getRsvpResponse()
+    public function getAdditionalNumberOfGuests()
     {
-        return $this->rsvpResponse;
+        return $this->additionalNumberOfGuests;
     }
 
     /**
-     * @param Schema.NET.RsvpResponseType|null $rsvpResponse
+     * @param float|null $additionalNumberOfGuests
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRsvpResponse($rsvpResponse)
+    public function setAdditionalNumberOfGuests($additionalNumberOfGuests)
     {
         $types = array(
-            "Schema.NET.RsvpResponseType",
+            "float",
             "null",
         );
 
-        $rsvpResponse = self::checkTypes($rsvpResponse, $types);
+        $additionalNumberOfGuests = self::checkTypes($additionalNumberOfGuests, $types);
 
-        $this->rsvpResponse = $rsvpResponse;
+        $this->additionalNumberOfGuests = $additionalNumberOfGuests;
     }
 
 }

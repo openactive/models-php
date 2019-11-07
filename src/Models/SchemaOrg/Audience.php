@@ -16,14 +16,6 @@ class Audience extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * The target group associated with a given audience (e.g. veterans, car owners, musicians, etc.).
-     *
-     *
-     * @var string
-     */
-    protected $audienceType;
-
-    /**
      * The geographic area associated with the audience.
      *
      *
@@ -32,28 +24,12 @@ class Audience extends \OpenActive\Models\SchemaOrg\Intangible
     protected $geographicArea;
 
     /**
-     * @return string
+     * The target group associated with a given audience (e.g. veterans, car owners, musicians, etc.).
+     *
+     *
+     * @var string
      */
-    public function getAudienceType()
-    {
-        return $this->audienceType;
-    }
-
-    /**
-     * @param string $audienceType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAudienceType($audienceType)
-    {
-        $types = array(
-            "string",
-        );
-
-        $audienceType = self::checkTypes($audienceType, $types);
-
-        $this->audienceType = $audienceType;
-    }
+    protected $audienceType;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\AdministrativeArea
@@ -77,6 +53,30 @@ class Audience extends \OpenActive\Models\SchemaOrg\Intangible
         $geographicArea = self::checkTypes($geographicArea, $types);
 
         $this->geographicArea = $geographicArea;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAudienceType()
+    {
+        return $this->audienceType;
+    }
+
+    /**
+     * @param string $audienceType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAudienceType($audienceType)
+    {
+        $types = array(
+            "string",
+        );
+
+        $audienceType = self::checkTypes($audienceType, $types);
+
+        $this->audienceType = $audienceType;
     }
 
 }

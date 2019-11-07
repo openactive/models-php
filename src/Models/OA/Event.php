@@ -193,7 +193,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "eventStatus": "https://schema.org/EventScheduled"
      * ```
      *
-     * @var Schema.NET.EventStatusType|null
+     * @var \OpenActive\Enums\EventStatusType|null
      */
     protected $eventStatus;
 
@@ -779,7 +779,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Schema.NET.EventStatusType|null
+     * @return \OpenActive\Enums\EventStatusType|null
      */
     public function getEventStatus()
     {
@@ -787,14 +787,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Schema.NET.EventStatusType|null $eventStatus
+     * @param \OpenActive\Enums\EventStatusType|null $eventStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEventStatus($eventStatus)
     {
         $types = array(
-            "Schema.NET.EventStatusType",
+            "\OpenActive\Enums\EventStatusType",
             "null",
         );
 

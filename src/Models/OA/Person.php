@@ -81,7 +81,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      * "gender": "https://schema.org/Female"
      * ```
      *
-     * @var Schema.NET.GenderType|null
+     * @var \OpenActive\Enums\GenderType|null
      */
     protected $gender;
 
@@ -282,7 +282,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     }
 
     /**
-     * @return Schema.NET.GenderType|null
+     * @return \OpenActive\Enums\GenderType|null
      */
     public function getGender()
     {
@@ -290,14 +290,14 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     }
 
     /**
-     * @param Schema.NET.GenderType|null $gender
+     * @param \OpenActive\Enums\GenderType|null $gender
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGender($gender)
     {
         $types = array(
-            "Schema.NET.GenderType",
+            "\OpenActive\Enums\GenderType",
             "null",
         );
 

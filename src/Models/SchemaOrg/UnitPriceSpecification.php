@@ -17,28 +17,12 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     }
 
     /**
-     * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
+     * A short text or acronym indicating multiple price specifications for the same offer, e.g. SRP for the suggested retail price or INVOICE for the invoice price, mostly used in the car industry.
      *
      *
      * @var string
      */
-    protected $unitCode;
-
-    /**
-     * This property specifies the minimal quantity and rounding increment that will be the basis for the billing. The unit of measurement is specified by the unitCode property.
-     *
-     *
-     * @var decimal|null
-     */
-    protected $billingIncrement;
-
-    /**
-     * The reference quantity for which a certain price applies, e.g. 1 EUR per 4 kWh of electricity. This property is a replacement for unitOfMeasurement for the advanced cases where the price does not relate to a standard unit.
-     *
-     *
-     * @var QuantitativeValue
-     */
-    protected $referenceQuantity;
+    protected $priceType;
 
     /**
      * A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for
@@ -50,84 +34,51 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     protected $unitText;
 
     /**
-     * A short text or acronym indicating multiple price specifications for the same offer, e.g. SRP for the suggested retail price or INVOICE for the invoice price, mostly used in the car industry.
+     * The reference quantity for which a certain price applies, e.g. 1 EUR per 4 kWh of electricity. This property is a replacement for unitOfMeasurement for the advanced cases where the price does not relate to a standard unit.
+     *
+     *
+     * @var QuantitativeValue
+     */
+    protected $referenceQuantity;
+
+    /**
+     * This property specifies the minimal quantity and rounding increment that will be the basis for the billing. The unit of measurement is specified by the unitCode property.
+     *
+     *
+     * @var float|null
+     */
+    protected $billingIncrement;
+
+    /**
+     * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
      *
      *
      * @var string
      */
-    protected $priceType;
+    protected $unitCode;
 
     /**
      * @return string
      */
-    public function getUnitCode()
+    public function getPriceType()
     {
-        return $this->unitCode;
+        return $this->priceType;
     }
 
     /**
-     * @param string $unitCode
+     * @param string $priceType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setUnitCode($unitCode)
+    public function setPriceType($priceType)
     {
         $types = array(
             "string",
         );
 
-        $unitCode = self::checkTypes($unitCode, $types);
+        $priceType = self::checkTypes($priceType, $types);
 
-        $this->unitCode = $unitCode;
-    }
-
-    /**
-     * @return decimal|null
-     */
-    public function getBillingIncrement()
-    {
-        return $this->billingIncrement;
-    }
-
-    /**
-     * @param decimal|null $billingIncrement
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBillingIncrement($billingIncrement)
-    {
-        $types = array(
-            "decimal",
-            "null",
-        );
-
-        $billingIncrement = self::checkTypes($billingIncrement, $types);
-
-        $this->billingIncrement = $billingIncrement;
-    }
-
-    /**
-     * @return QuantitativeValue
-     */
-    public function getReferenceQuantity()
-    {
-        return $this->referenceQuantity;
-    }
-
-    /**
-     * @param QuantitativeValue $referenceQuantity
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReferenceQuantity($referenceQuantity)
-    {
-        $types = array(
-            "QuantitativeValue",
-        );
-
-        $referenceQuantity = self::checkTypes($referenceQuantity, $types);
-
-        $this->referenceQuantity = $referenceQuantity;
+        $this->priceType = $priceType;
     }
 
     /**
@@ -155,27 +106,76 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     }
 
     /**
-     * @return string
+     * @return QuantitativeValue
      */
-    public function getPriceType()
+    public function getReferenceQuantity()
     {
-        return $this->priceType;
+        return $this->referenceQuantity;
     }
 
     /**
-     * @param string $priceType
+     * @param QuantitativeValue $referenceQuantity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPriceType($priceType)
+    public function setReferenceQuantity($referenceQuantity)
+    {
+        $types = array(
+            "QuantitativeValue",
+        );
+
+        $referenceQuantity = self::checkTypes($referenceQuantity, $types);
+
+        $this->referenceQuantity = $referenceQuantity;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getBillingIncrement()
+    {
+        return $this->billingIncrement;
+    }
+
+    /**
+     * @param float|null $billingIncrement
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBillingIncrement($billingIncrement)
+    {
+        $types = array(
+            "float",
+            "null",
+        );
+
+        $billingIncrement = self::checkTypes($billingIncrement, $types);
+
+        $this->billingIncrement = $billingIncrement;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUnitCode()
+    {
+        return $this->unitCode;
+    }
+
+    /**
+     * @param string $unitCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUnitCode($unitCode)
     {
         $types = array(
             "string",
         );
 
-        $priceType = self::checkTypes($priceType, $types);
+        $unitCode = self::checkTypes($unitCode, $types);
 
-        $this->priceType = $priceType;
+        $this->unitCode = $unitCode;
     }
 
 }

@@ -34,7 +34,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHour
      * "dayOfWeek": "https://schema.org/Monday"
      * ```
      *
-     * @var Schema.NET.DayOfWeek|null
+     * @var \OpenActive\Enums\DayOfWeek|null
      */
     protected $dayOfWeek;
 
@@ -75,7 +75,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHour
     }
 
     /**
-     * @return Schema.NET.DayOfWeek|null
+     * @return \OpenActive\Enums\DayOfWeek|null
      */
     public function getDayOfWeek()
     {
@@ -83,14 +83,14 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHour
     }
 
     /**
-     * @param Schema.NET.DayOfWeek|null $dayOfWeek
+     * @param \OpenActive\Enums\DayOfWeek|null $dayOfWeek
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDayOfWeek($dayOfWeek)
     {
         $types = array(
-            "Schema.NET.DayOfWeek",
+            "\OpenActive\Enums\DayOfWeek",
             "null",
         );
 

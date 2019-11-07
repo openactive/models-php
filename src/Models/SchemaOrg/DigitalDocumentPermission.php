@@ -16,6 +16,14 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
+     * The type of permission granted the person, organization, or audience.
+     *
+     *
+     * @var \OpenActive\Enums\DigitalDocumentPermissionType|null
+     */
+    protected $permissionType;
+
+    /**
      * The person, organization, contact point, or audience that has been granted this permission.
      *
      *
@@ -24,12 +32,29 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
     protected $grantee;
 
     /**
-     * The type of permission granted the person, organization, or audience.
-     *
-     *
-     * @var Schema.NET.DigitalDocumentPermissionType|null
+     * @return \OpenActive\Enums\DigitalDocumentPermissionType|null
      */
-    protected $permissionType;
+    public function getPermissionType()
+    {
+        return $this->permissionType;
+    }
+
+    /**
+     * @param \OpenActive\Enums\DigitalDocumentPermissionType|null $permissionType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPermissionType($permissionType)
+    {
+        $types = array(
+            "\OpenActive\Enums\DigitalDocumentPermissionType",
+            "null",
+        );
+
+        $permissionType = self::checkTypes($permissionType, $types);
+
+        $this->permissionType = $permissionType;
+    }
 
     /**
      * @return Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|Organization
@@ -56,31 +81,6 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
         $grantee = self::checkTypes($grantee, $types);
 
         $this->grantee = $grantee;
-    }
-
-    /**
-     * @return Schema.NET.DigitalDocumentPermissionType|null
-     */
-    public function getPermissionType()
-    {
-        return $this->permissionType;
-    }
-
-    /**
-     * @param Schema.NET.DigitalDocumentPermissionType|null $permissionType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPermissionType($permissionType)
-    {
-        $types = array(
-            "Schema.NET.DigitalDocumentPermissionType",
-            "null",
-        );
-
-        $permissionType = self::checkTypes($permissionType, $types);
-
-        $this->permissionType = $permissionType;
     }
 
 }

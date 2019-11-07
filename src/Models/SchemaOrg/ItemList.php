@@ -16,6 +16,22 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
+     * The number of items in an ItemList. Note that some descriptions might not fully describe all items in a list (e.g., multi-page pagination); in such cases, the numberOfItems would be for the entire list.
+     *
+     *
+     * @var int|null
+     */
+    protected $numberOfItems;
+
+    /**
+     * Type of ordering (e.g. Ascending, Descending, Unordered).
+     *
+     *
+     * @var \OpenActive\Enums\ItemListOrderType|string|null
+     */
+    protected $itemListOrder;
+
+    /**
      * For itemListElement values, you can use simple strings (e.g. "Peter", "Paul", "Mary"), existing entities, or use ListItem.<br/><br/>
      * 
      * Text values are best if the elements in the list are plain strings. Existing entities are best for a simple, unordered list of existing things in your data. ListItem is used with ordered lists when you want to provide additional context about the element in that list or when the same item might be in different places in different lists.<br/><br/>
@@ -28,20 +44,55 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     protected $itemListElement;
 
     /**
-     * Type of ordering (e.g. Ascending, Descending, Unordered).
-     *
-     *
-     * @var Schema.NET.ItemListOrderType|string|null
+     * @return int|null
      */
-    protected $itemListOrder;
+    public function getNumberOfItems()
+    {
+        return $this->numberOfItems;
+    }
 
     /**
-     * The number of items in an ItemList. Note that some descriptions might not fully describe all items in a list (e.g., multi-page pagination); in such cases, the numberOfItems would be for the entire list.
-     *
-     *
-     * @var int|null
+     * @param int|null $numberOfItems
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $numberOfItems;
+    public function setNumberOfItems($numberOfItems)
+    {
+        $types = array(
+            "int",
+            "null",
+        );
+
+        $numberOfItems = self::checkTypes($numberOfItems, $types);
+
+        $this->numberOfItems = $numberOfItems;
+    }
+
+    /**
+     * @return \OpenActive\Enums\ItemListOrderType|string|null
+     */
+    public function getItemListOrder()
+    {
+        return $this->itemListOrder;
+    }
+
+    /**
+     * @param \OpenActive\Enums\ItemListOrderType|string|null $itemListOrder
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setItemListOrder($itemListOrder)
+    {
+        $types = array(
+            "\OpenActive\Enums\ItemListOrderType",
+            "string",
+            "null",
+        );
+
+        $itemListOrder = self::checkTypes($itemListOrder, $types);
+
+        $this->itemListOrder = $itemListOrder;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing|string|\OpenActive\Models\SchemaOrg\ListItem
@@ -67,57 +118,6 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
         $itemListElement = self::checkTypes($itemListElement, $types);
 
         $this->itemListElement = $itemListElement;
-    }
-
-    /**
-     * @return Schema.NET.ItemListOrderType|string|null
-     */
-    public function getItemListOrder()
-    {
-        return $this->itemListOrder;
-    }
-
-    /**
-     * @param Schema.NET.ItemListOrderType|string|null $itemListOrder
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setItemListOrder($itemListOrder)
-    {
-        $types = array(
-            "Schema.NET.ItemListOrderType",
-            "string",
-            "null",
-        );
-
-        $itemListOrder = self::checkTypes($itemListOrder, $types);
-
-        $this->itemListOrder = $itemListOrder;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getNumberOfItems()
-    {
-        return $this->numberOfItems;
-    }
-
-    /**
-     * @param int|null $numberOfItems
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNumberOfItems($numberOfItems)
-    {
-        $types = array(
-            "int",
-            "null",
-        );
-
-        $numberOfItems = self::checkTypes($numberOfItems, $types);
-
-        $this->numberOfItems = $numberOfItems;
     }
 
 }

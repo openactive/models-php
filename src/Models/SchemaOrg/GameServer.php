@@ -16,12 +16,12 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * Video game which is played on this server.
+     * Status of a game server.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\VideoGame
+     * @var \OpenActive\Enums\GameServerStatus|null
      */
-    protected $game;
+    protected $serverStatus;
 
     /**
      * Number of players on the server.
@@ -32,35 +32,36 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
     protected $playersOnline;
 
     /**
-     * Status of a game server.
+     * Video game which is played on this server.
      *
      *
-     * @var Schema.NET.GameServerStatus|null
+     * @var \OpenActive\Models\SchemaOrg\VideoGame
      */
-    protected $serverStatus;
+    protected $game;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\VideoGame
+     * @return \OpenActive\Enums\GameServerStatus|null
      */
-    public function getGame()
+    public function getServerStatus()
     {
-        return $this->game;
+        return $this->serverStatus;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\VideoGame $game
+     * @param \OpenActive\Enums\GameServerStatus|null $serverStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setGame($game)
+    public function setServerStatus($serverStatus)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\VideoGame",
+            "\OpenActive\Enums\GameServerStatus",
+            "null",
         );
 
-        $game = self::checkTypes($game, $types);
+        $serverStatus = self::checkTypes($serverStatus, $types);
 
-        $this->game = $game;
+        $this->serverStatus = $serverStatus;
     }
 
     /**
@@ -89,28 +90,27 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Schema.NET.GameServerStatus|null
+     * @return \OpenActive\Models\SchemaOrg\VideoGame
      */
-    public function getServerStatus()
+    public function getGame()
     {
-        return $this->serverStatus;
+        return $this->game;
     }
 
     /**
-     * @param Schema.NET.GameServerStatus|null $serverStatus
+     * @param \OpenActive\Models\SchemaOrg\VideoGame $game
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setServerStatus($serverStatus)
+    public function setGame($game)
     {
         $types = array(
-            "Schema.NET.GameServerStatus",
-            "null",
+            "\OpenActive\Models\SchemaOrg\VideoGame",
         );
 
-        $serverStatus = self::checkTypes($serverStatus, $types);
+        $game = self::checkTypes($game, $types);
 
-        $this->serverStatus = $serverStatus;
+        $this->game = $game;
     }
 
 }

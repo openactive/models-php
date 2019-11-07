@@ -17,6 +17,14 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
+     * The type of boarding policy used by the airline (e.g. zone-based or group-based).
+     *
+     *
+     * @var \OpenActive\Enums\BoardingPolicyType|null
+     */
+    protected $boardingPolicy;
+
+    /**
      * IATA identifier for an airline or airport.
      *
      *
@@ -25,12 +33,29 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
     protected $iataCode;
 
     /**
-     * The type of boarding policy used by the airline (e.g. zone-based or group-based).
-     *
-     *
-     * @var Schema.NET.BoardingPolicyType|null
+     * @return \OpenActive\Enums\BoardingPolicyType|null
      */
-    protected $boardingPolicy;
+    public function getBoardingPolicy()
+    {
+        return $this->boardingPolicy;
+    }
+
+    /**
+     * @param \OpenActive\Enums\BoardingPolicyType|null $boardingPolicy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBoardingPolicy($boardingPolicy)
+    {
+        $types = array(
+            "\OpenActive\Enums\BoardingPolicyType",
+            "null",
+        );
+
+        $boardingPolicy = self::checkTypes($boardingPolicy, $types);
+
+        $this->boardingPolicy = $boardingPolicy;
+    }
 
     /**
      * @return string
@@ -54,31 +79,6 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
         $iataCode = self::checkTypes($iataCode, $types);
 
         $this->iataCode = $iataCode;
-    }
-
-    /**
-     * @return Schema.NET.BoardingPolicyType|null
-     */
-    public function getBoardingPolicy()
-    {
-        return $this->boardingPolicy;
-    }
-
-    /**
-     * @param Schema.NET.BoardingPolicyType|null $boardingPolicy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBoardingPolicy($boardingPolicy)
-    {
-        $types = array(
-            "Schema.NET.BoardingPolicyType",
-            "null",
-        );
-
-        $boardingPolicy = self::checkTypes($boardingPolicy, $types);
-
-        $this->boardingPolicy = $boardingPolicy;
     }
 
 }

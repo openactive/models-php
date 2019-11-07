@@ -19,12 +19,12 @@ class HowToItem extends \OpenActive\Models\SchemaOrg\ListItem
      * The required quantity of the item(s).
      *
      *
-     * @var QuantitativeValue|string|decimal|null
+     * @var QuantitativeValue|string|float|null
      */
     protected $requiredQuantity;
 
     /**
-     * @return QuantitativeValue|string|decimal|null
+     * @return QuantitativeValue|string|float|null
      */
     public function getRequiredQuantity()
     {
@@ -32,7 +32,7 @@ class HowToItem extends \OpenActive\Models\SchemaOrg\ListItem
     }
 
     /**
-     * @param QuantitativeValue|string|decimal|null $requiredQuantity
+     * @param QuantitativeValue|string|float|null $requiredQuantity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -41,7 +41,7 @@ class HowToItem extends \OpenActive\Models\SchemaOrg\ListItem
         $types = array(
             "QuantitativeValue",
             "string",
-            "decimal",
+            "float",
             "null",
         );
 

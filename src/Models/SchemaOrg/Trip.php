@@ -16,20 +16,12 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
+     * The expected departure time.
      *
      *
-     * @var Organization|Person
+     * @var DateTime|string|null
      */
-    protected $provider;
-
-    /**
-     * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-     *
-     *
-     * @var Offer
-     */
-    protected $offers;
+    protected $departureTime;
 
     /**
      * The expected arrival time.
@@ -40,60 +32,45 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     protected $arrivalTime;
 
     /**
-     * The expected departure time.
+     * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
      *
      *
-     * @var DateTime|string|null
+     * @var Offer
      */
-    protected $departureTime;
+    protected $offers;
 
     /**
-     * @return Organization|Person
+     * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
+     *
+     *
+     * @var Organization|Person
      */
-    public function getProvider()
+    protected $provider;
+
+    /**
+     * @return DateTime|string|null
+     */
+    public function getDepartureTime()
     {
-        return $this->provider;
+        return $this->departureTime;
     }
 
     /**
-     * @param Organization|Person $provider
+     * @param DateTime|string|null $departureTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setProvider($provider)
+    public function setDepartureTime($departureTime)
     {
         $types = array(
-            "Organization",
-            "Person",
+            "DateTime",
+            "Time",
+            "null",
         );
 
-        $provider = self::checkTypes($provider, $types);
+        $departureTime = self::checkTypes($departureTime, $types);
 
-        $this->provider = $provider;
-    }
-
-    /**
-     * @return Offer
-     */
-    public function getOffers()
-    {
-        return $this->offers;
-    }
-
-    /**
-     * @param Offer $offers
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOffers($offers)
-    {
-        $types = array(
-            "Offer",
-        );
-
-        $offers = self::checkTypes($offers, $types);
-
-        $this->offers = $offers;
+        $this->departureTime = $departureTime;
     }
 
     /**
@@ -123,29 +100,52 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateTime|string|null
+     * @return Offer
      */
-    public function getDepartureTime()
+    public function getOffers()
     {
-        return $this->departureTime;
+        return $this->offers;
     }
 
     /**
-     * @param DateTime|string|null $departureTime
+     * @param Offer $offers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDepartureTime($departureTime)
+    public function setOffers($offers)
     {
         $types = array(
-            "DateTime",
-            "Time",
-            "null",
+            "Offer",
         );
 
-        $departureTime = self::checkTypes($departureTime, $types);
+        $offers = self::checkTypes($offers, $types);
 
-        $this->departureTime = $departureTime;
+        $this->offers = $offers;
+    }
+
+    /**
+     * @return Organization|Person
+     */
+    public function getProvider()
+    {
+        return $this->provider;
+    }
+
+    /**
+     * @param Organization|Person $provider
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProvider($provider)
+    {
+        $types = array(
+            "Organization",
+            "Person",
+        );
+
+        $provider = self::checkTypes($provider, $types);
+
+        $this->provider = $provider;
     }
 
 }

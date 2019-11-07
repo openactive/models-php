@@ -17,12 +17,12 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     }
 
     /**
-     * The hours during which this service or contact is available.
+     * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
      *
      *
-     * @var OpeningHoursSpecification
+     * @var DateTime|null
      */
-    protected $hoursAvailable;
+    protected $validThrough;
 
     /**
      * The date when the item becomes valid.
@@ -33,35 +33,36 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     protected $validFrom;
 
     /**
-     * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
+     * The hours during which this service or contact is available.
      *
      *
-     * @var DateTime|null
+     * @var OpeningHoursSpecification
      */
-    protected $validThrough;
+    protected $hoursAvailable;
 
     /**
-     * @return OpeningHoursSpecification
+     * @return DateTime|null
      */
-    public function getHoursAvailable()
+    public function getValidThrough()
     {
-        return $this->hoursAvailable;
+        return $this->validThrough;
     }
 
     /**
-     * @param OpeningHoursSpecification $hoursAvailable
+     * @param DateTime|null $validThrough
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHoursAvailable($hoursAvailable)
+    public function setValidThrough($validThrough)
     {
         $types = array(
-            "OpeningHoursSpecification",
+            "DateTime",
+            "null",
         );
 
-        $hoursAvailable = self::checkTypes($hoursAvailable, $types);
+        $validThrough = self::checkTypes($validThrough, $types);
 
-        $this->hoursAvailable = $hoursAvailable;
+        $this->validThrough = $validThrough;
     }
 
     /**
@@ -90,28 +91,27 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     }
 
     /**
-     * @return DateTime|null
+     * @return OpeningHoursSpecification
      */
-    public function getValidThrough()
+    public function getHoursAvailable()
     {
-        return $this->validThrough;
+        return $this->hoursAvailable;
     }
 
     /**
-     * @param DateTime|null $validThrough
+     * @param OpeningHoursSpecification $hoursAvailable
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setValidThrough($validThrough)
+    public function setHoursAvailable($hoursAvailable)
     {
         $types = array(
-            "DateTime",
-            "null",
+            "OpeningHoursSpecification",
         );
 
-        $validThrough = self::checkTypes($validThrough, $types);
+        $hoursAvailable = self::checkTypes($hoursAvailable, $types);
 
-        $this->validThrough = $validThrough;
+        $this->hoursAvailable = $hoursAvailable;
     }
 
 }

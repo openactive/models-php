@@ -20,12 +20,12 @@ class House extends \OpenActive\Models\SchemaOrg\Accommodation
      * Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue.
      *
      *
-     * @var QuantitativeValue|decimal|null
+     * @var QuantitativeValue|float|null
      */
     protected $numberOfRooms;
 
     /**
-     * @return QuantitativeValue|decimal|null
+     * @return QuantitativeValue|float|null
      */
     public function getNumberOfRooms()
     {
@@ -33,7 +33,7 @@ class House extends \OpenActive\Models\SchemaOrg\Accommodation
     }
 
     /**
-     * @param QuantitativeValue|decimal|null $numberOfRooms
+     * @param QuantitativeValue|float|null $numberOfRooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -41,7 +41,7 @@ class House extends \OpenActive\Models\SchemaOrg\Accommodation
     {
         $types = array(
             "QuantitativeValue",
-            "decimal",
+            "float",
             "null",
         );
 

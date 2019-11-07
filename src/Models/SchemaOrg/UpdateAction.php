@@ -22,7 +22,7 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
      *
      * @var \OpenActive\Models\SchemaOrg\Thing
      */
-    protected $collection;
+    protected $targetCollection;
 
     /**
      * A sub property of object. The collection target of the action.
@@ -30,31 +30,7 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
      *
      * @var \OpenActive\Models\SchemaOrg\Thing
      */
-    protected $targetCollection;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getCollection()
-    {
-        return $this->collection;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $collection
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCollection($collection)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
-        );
-
-        $collection = self::checkTypes($collection, $types);
-
-        $this->collection = $collection;
-    }
+    protected $collection;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing
@@ -78,6 +54,30 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
         $targetCollection = self::checkTypes($targetCollection, $types);
 
         $this->targetCollection = $targetCollection;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing
+     */
+    public function getCollection()
+    {
+        return $this->collection;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing $collection
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCollection($collection)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Thing",
+        );
+
+        $collection = self::checkTypes($collection, $types);
+
+        $this->collection = $collection;
     }
 
 }

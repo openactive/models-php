@@ -16,14 +16,6 @@ class WebPageElement extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * A CSS selector, e.g. of a <a class="localLink" href="https://schema.org/SpeakableSpecification">SpeakableSpecification</a> or <a class="localLink" href="https://schema.org/WebPageElement">WebPageElement</a>. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element".
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CssSelectorType
-     */
-    protected $cssSelector;
-
-    /**
      * An XPath, e.g. of a <a class="localLink" href="https://schema.org/SpeakableSpecification">SpeakableSpecification</a> or <a class="localLink" href="https://schema.org/WebPageElement">WebPageElement</a>. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element".
      *
      *
@@ -32,28 +24,12 @@ class WebPageElement extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $xpath;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CssSelectorType
+     * A CSS selector, e.g. of a <a class="localLink" href="https://schema.org/SpeakableSpecification">SpeakableSpecification</a> or <a class="localLink" href="https://schema.org/WebPageElement">WebPageElement</a>. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element".
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CssSelectorType
      */
-    public function getCssSelector()
-    {
-        return $this->cssSelector;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CssSelectorType $cssSelector
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCssSelector($cssSelector)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\CssSelectorType",
-        );
-
-        $cssSelector = self::checkTypes($cssSelector, $types);
-
-        $this->cssSelector = $cssSelector;
-    }
+    protected $cssSelector;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\XPathType
@@ -77,6 +53,30 @@ class WebPageElement extends \OpenActive\Models\SchemaOrg\CreativeWork
         $xpath = self::checkTypes($xpath, $types);
 
         $this->xpath = $xpath;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CssSelectorType
+     */
+    public function getCssSelector()
+    {
+        return $this->cssSelector;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CssSelectorType $cssSelector
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCssSelector($cssSelector)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\CssSelectorType",
+        );
+
+        $cssSelector = self::checkTypes($cssSelector, $types);
+
+        $this->cssSelector = $cssSelector;
     }
 
 }

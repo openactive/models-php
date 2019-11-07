@@ -16,14 +16,6 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * The TV series to which this episode or season belongs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\TVSeries
-     */
-    protected $partOfTVSeries;
-
-    /**
      * The country of the principal offices of the production company or individual responsible for the movie or program.
      *
      *
@@ -32,28 +24,12 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $countryOfOrigin;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\TVSeries
+     * The TV series to which this episode or season belongs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\TVSeries
      */
-    public function getPartOfTVSeries()
-    {
-        return $this->partOfTVSeries;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\TVSeries $partOfTVSeries
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPartOfTVSeries($partOfTVSeries)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\TVSeries",
-        );
-
-        $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
-
-        $this->partOfTVSeries = $partOfTVSeries;
-    }
+    protected $partOfTVSeries;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Country
@@ -77,6 +53,30 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
         $countryOfOrigin = self::checkTypes($countryOfOrigin, $types);
 
         $this->countryOfOrigin = $countryOfOrigin;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\TVSeries
+     */
+    public function getPartOfTVSeries()
+    {
+        return $this->partOfTVSeries;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\TVSeries $partOfTVSeries
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPartOfTVSeries($partOfTVSeries)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\TVSeries",
+        );
+
+        $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
+
+        $this->partOfTVSeries = $partOfTVSeries;
     }
 
 }

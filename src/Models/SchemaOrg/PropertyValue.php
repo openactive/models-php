@@ -16,31 +16,29 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
+     * A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for
+     * <a href='unitCode'>unitCode</a>.
      *
      *
      * @var string
      */
-    protected $unitCode;
+    protected $unitText;
 
     /**
-     * The lower value of some characteristic or property.
+     * The upper value of some characteristic or property.
      *
      *
-     * @var decimal|null
+     * @var float|null
      */
-    protected $minValue;
+    protected $maxValue;
 
     /**
-     * A commonly used identifier for the characteristic represented by the property, e.g. a manufacturer or a standard code for a property. propertyID can be
-     * (1) a prefixed string, mainly meant to be used with standards for product properties; (2) a site-specific, non-prefixed string (e.g. the primary key of the property or the vendor-specific id of the property), or (3)
-     * a URL indicating the type of the property, either pointing to an external vocabulary, or a Web resource that describes the property (e.g. a glossary entry).
-     * Standards bodies should promote a standard prefix for the identifiers of properties from their standards.
+     * A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Enums\QualitativeValue|null
      */
-    protected $propertyID;
+    protected $valueReference;
 
     /**
      * The value of the quantitative value or property value node.<br/><br/>
@@ -54,82 +52,141 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * 
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null
+     * @var \OpenActive\Models\SchemaOrg\StructuredValue|string|float|bool|null
      */
     protected $value;
 
     /**
-     * A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|Schema.NET.QualitativeValue|null
-     */
-    protected $valueReference;
-
-    /**
-     * The upper value of some characteristic or property.
-     *
-     *
-     * @var decimal|null
-     */
-    protected $maxValue;
-
-    /**
-     * A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for
-     * <a href='unitCode'>unitCode</a>.
+     * A commonly used identifier for the characteristic represented by the property, e.g. a manufacturer or a standard code for a property. propertyID can be
+     * (1) a prefixed string, mainly meant to be used with standards for product properties; (2) a site-specific, non-prefixed string (e.g. the primary key of the property or the vendor-specific id of the property), or (3)
+     * a URL indicating the type of the property, either pointing to an external vocabulary, or a Web resource that describes the property (e.g. a glossary entry).
+     * Standards bodies should promote a standard prefix for the identifiers of properties from their standards.
      *
      *
      * @var string
      */
-    protected $unitText;
+    protected $propertyID;
+
+    /**
+     * The lower value of some characteristic or property.
+     *
+     *
+     * @var float|null
+     */
+    protected $minValue;
+
+    /**
+     * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
+     *
+     *
+     * @var string
+     */
+    protected $unitCode;
 
     /**
      * @return string
      */
-    public function getUnitCode()
+    public function getUnitText()
     {
-        return $this->unitCode;
+        return $this->unitText;
     }
 
     /**
-     * @param string $unitCode
+     * @param string $unitText
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setUnitCode($unitCode)
+    public function setUnitText($unitText)
     {
         $types = array(
             "string",
         );
 
-        $unitCode = self::checkTypes($unitCode, $types);
+        $unitText = self::checkTypes($unitText, $types);
 
-        $this->unitCode = $unitCode;
+        $this->unitText = $unitText;
     }
 
     /**
-     * @return decimal|null
+     * @return float|null
      */
-    public function getMinValue()
+    public function getMaxValue()
     {
-        return $this->minValue;
+        return $this->maxValue;
     }
 
     /**
-     * @param decimal|null $minValue
+     * @param float|null $maxValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMinValue($minValue)
+    public function setMaxValue($maxValue)
     {
         $types = array(
-            "decimal",
+            "float",
             "null",
         );
 
-        $minValue = self::checkTypes($minValue, $types);
+        $maxValue = self::checkTypes($maxValue, $types);
 
-        $this->minValue = $minValue;
+        $this->maxValue = $maxValue;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Enums\QualitativeValue|null
+     */
+    public function getValueReference()
+    {
+        return $this->valueReference;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Enums\QualitativeValue|null $valueReference
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValueReference($valueReference)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Enumeration",
+            "PropertyValue",
+            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\StructuredValue",
+            "\OpenActive\Enums\QualitativeValue",
+            "null",
+        );
+
+        $valueReference = self::checkTypes($valueReference, $types);
+
+        $this->valueReference = $valueReference;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\StructuredValue|string|float|bool|null
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\StructuredValue|string|float|bool|null $value
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValue($value)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\StructuredValue",
+            "string",
+            "float",
+            "bool",
+            "null",
+        );
+
+        $value = self::checkTypes($value, $types);
+
+        $this->value = $value;
     }
 
     /**
@@ -157,109 +214,52 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null
+     * @return float|null
      */
-    public function getValue()
+    public function getMinValue()
     {
-        return $this->value;
+        return $this->minValue;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null $value
+     * @param float|null $minValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setValue($value)
+    public function setMinValue($minValue)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\StructuredValue",
-            "string",
-            "decimal",
-            "bool",
+            "float",
             "null",
         );
 
-        $value = self::checkTypes($value, $types);
+        $minValue = self::checkTypes($minValue, $types);
 
-        $this->value = $value;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|Schema.NET.QualitativeValue|null
-     */
-    public function getValueReference()
-    {
-        return $this->valueReference;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|Schema.NET.QualitativeValue|null $valueReference
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setValueReference($valueReference)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Enumeration",
-            "PropertyValue",
-            "QuantitativeValue",
-            "\OpenActive\Models\SchemaOrg\StructuredValue",
-            "Schema.NET.QualitativeValue",
-            "null",
-        );
-
-        $valueReference = self::checkTypes($valueReference, $types);
-
-        $this->valueReference = $valueReference;
-    }
-
-    /**
-     * @return decimal|null
-     */
-    public function getMaxValue()
-    {
-        return $this->maxValue;
-    }
-
-    /**
-     * @param decimal|null $maxValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMaxValue($maxValue)
-    {
-        $types = array(
-            "decimal",
-            "null",
-        );
-
-        $maxValue = self::checkTypes($maxValue, $types);
-
-        $this->maxValue = $maxValue;
+        $this->minValue = $minValue;
     }
 
     /**
      * @return string
      */
-    public function getUnitText()
+    public function getUnitCode()
     {
-        return $this->unitText;
+        return $this->unitCode;
     }
 
     /**
-     * @param string $unitText
+     * @param string $unitCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setUnitText($unitText)
+    public function setUnitCode($unitCode)
     {
         $types = array(
             "string",
         );
 
-        $unitText = self::checkTypes($unitText, $types);
+        $unitCode = self::checkTypes($unitCode, $types);
 
-        $this->unitText = $unitText;
+        $this->unitCode = $unitCode;
     }
 
 }

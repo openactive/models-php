@@ -17,48 +17,23 @@ class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
     }
 
     /**
-     * The payment method(s) to which the payment charge specification applies.
-     *
-     *
-     * @var Schema.NET.PaymentMethod|null
-     */
-    protected $appliesToPaymentMethod;
-
-    /**
      * The delivery method(s) to which the delivery charge or payment charge specification applies.
      *
      *
-     * @var Schema.NET.DeliveryMethod|null
+     * @var \OpenActive\Enums\DeliveryMethod|null
      */
     protected $appliesToDeliveryMethod;
 
     /**
-     * @return Schema.NET.PaymentMethod|null
+     * The payment method(s) to which the payment charge specification applies.
+     *
+     *
+     * @var \OpenActive\Enums\PaymentMethod|null
      */
-    public function getAppliesToPaymentMethod()
-    {
-        return $this->appliesToPaymentMethod;
-    }
+    protected $appliesToPaymentMethod;
 
     /**
-     * @param Schema.NET.PaymentMethod|null $appliesToPaymentMethod
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAppliesToPaymentMethod($appliesToPaymentMethod)
-    {
-        $types = array(
-            "Schema.NET.PaymentMethod",
-            "null",
-        );
-
-        $appliesToPaymentMethod = self::checkTypes($appliesToPaymentMethod, $types);
-
-        $this->appliesToPaymentMethod = $appliesToPaymentMethod;
-    }
-
-    /**
-     * @return Schema.NET.DeliveryMethod|null
+     * @return \OpenActive\Enums\DeliveryMethod|null
      */
     public function getAppliesToDeliveryMethod()
     {
@@ -66,20 +41,45 @@ class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
     }
 
     /**
-     * @param Schema.NET.DeliveryMethod|null $appliesToDeliveryMethod
+     * @param \OpenActive\Enums\DeliveryMethod|null $appliesToDeliveryMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAppliesToDeliveryMethod($appliesToDeliveryMethod)
     {
         $types = array(
-            "Schema.NET.DeliveryMethod",
+            "\OpenActive\Enums\DeliveryMethod",
             "null",
         );
 
         $appliesToDeliveryMethod = self::checkTypes($appliesToDeliveryMethod, $types);
 
         $this->appliesToDeliveryMethod = $appliesToDeliveryMethod;
+    }
+
+    /**
+     * @return \OpenActive\Enums\PaymentMethod|null
+     */
+    public function getAppliesToPaymentMethod()
+    {
+        return $this->appliesToPaymentMethod;
+    }
+
+    /**
+     * @param \OpenActive\Enums\PaymentMethod|null $appliesToPaymentMethod
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAppliesToPaymentMethod($appliesToPaymentMethod)
+    {
+        $types = array(
+            "\OpenActive\Enums\PaymentMethod",
+            "null",
+        );
+
+        $appliesToPaymentMethod = self::checkTypes($appliesToPaymentMethod, $types);
+
+        $this->appliesToPaymentMethod = $appliesToPaymentMethod;
     }
 
 }

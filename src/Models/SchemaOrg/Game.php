@@ -16,28 +16,12 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * An item is an object within the game world that can be collected by a player or, occasionally, a non-player character.
+     * Indicate how many people can play this game (minimum, maximum, or range).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing
+     * @var QuantitativeValue
      */
-    protected $gameItem;
-
-    /**
-     * A piece of data that represents a particular aspect of a fictional character (skill, power, character points, advantage, disadvantage).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $characterAttribute;
-
-    /**
-     * Real or fictional location of the game (or part of game).
-     *
-     *
-     * @var Place|PostalAddress|string
-     */
-    protected $gameLocation;
+    protected $numberOfPlayers;
 
     /**
      * The task that a player-controlled character, or group of characters may complete in order to gain a reward.
@@ -48,59 +32,75 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $quest;
 
     /**
-     * Indicate how many people can play this game (minimum, maximum, or range).
+     * Real or fictional location of the game (or part of game).
      *
      *
-     * @var QuantitativeValue
+     * @var Place|PostalAddress|string
      */
-    protected $numberOfPlayers;
+    protected $gameLocation;
+
+    /**
+     * A piece of data that represents a particular aspect of a fictional character (skill, power, character points, advantage, disadvantage).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing
+     */
+    protected $characterAttribute;
+
+    /**
+     * An item is an object within the game world that can be collected by a player or, occasionally, a non-player character.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing
+     */
+    protected $gameItem;
+
+    /**
+     * @return QuantitativeValue
+     */
+    public function getNumberOfPlayers()
+    {
+        return $this->numberOfPlayers;
+    }
+
+    /**
+     * @param QuantitativeValue $numberOfPlayers
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumberOfPlayers($numberOfPlayers)
+    {
+        $types = array(
+            "QuantitativeValue",
+        );
+
+        $numberOfPlayers = self::checkTypes($numberOfPlayers, $types);
+
+        $this->numberOfPlayers = $numberOfPlayers;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing
      */
-    public function getGameItem()
+    public function getQuest()
     {
-        return $this->gameItem;
+        return $this->quest;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $gameItem
+     * @param \OpenActive\Models\SchemaOrg\Thing $quest
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setGameItem($gameItem)
+    public function setQuest($quest)
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\Thing",
         );
 
-        $gameItem = self::checkTypes($gameItem, $types);
+        $quest = self::checkTypes($quest, $types);
 
-        $this->gameItem = $gameItem;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getCharacterAttribute()
-    {
-        return $this->characterAttribute;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $characterAttribute
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCharacterAttribute($characterAttribute)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
-        );
-
-        $characterAttribute = self::checkTypes($characterAttribute, $types);
-
-        $this->characterAttribute = $characterAttribute;
+        $this->quest = $quest;
     }
 
     /**
@@ -132,49 +132,49 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing
      */
-    public function getQuest()
+    public function getCharacterAttribute()
     {
-        return $this->quest;
+        return $this->characterAttribute;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $quest
+     * @param \OpenActive\Models\SchemaOrg\Thing $characterAttribute
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setQuest($quest)
+    public function setCharacterAttribute($characterAttribute)
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\Thing",
         );
 
-        $quest = self::checkTypes($quest, $types);
+        $characterAttribute = self::checkTypes($characterAttribute, $types);
 
-        $this->quest = $quest;
+        $this->characterAttribute = $characterAttribute;
     }
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\Thing
      */
-    public function getNumberOfPlayers()
+    public function getGameItem()
     {
-        return $this->numberOfPlayers;
+        return $this->gameItem;
     }
 
     /**
-     * @param QuantitativeValue $numberOfPlayers
+     * @param \OpenActive\Models\SchemaOrg\Thing $gameItem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfPlayers($numberOfPlayers)
+    public function setGameItem($gameItem)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\Thing",
         );
 
-        $numberOfPlayers = self::checkTypes($numberOfPlayers, $types);
+        $gameItem = self::checkTypes($gameItem, $types);
 
-        $this->numberOfPlayers = $numberOfPlayers;
+        $this->gameItem = $gameItem;
     }
 
 }

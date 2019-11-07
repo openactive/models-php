@@ -16,20 +16,12 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * When a taxi will pickup a passenger or a rental car can be picked up.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $pickupTime;
-
-    /**
-     * Where a rental car can be dropped off.
+     * Where a taxi will pick up a passenger or a rental car can be picked up.
      *
      *
      * @var Place
      */
-    protected $dropoffLocation;
+    protected $pickupLocation;
 
     /**
      * When a rental car can be dropped off.
@@ -40,60 +32,43 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $dropoffTime;
 
     /**
-     * Where a taxi will pick up a passenger or a rental car can be picked up.
+     * Where a rental car can be dropped off.
      *
      *
      * @var Place
      */
-    protected $pickupLocation;
+    protected $dropoffLocation;
 
     /**
-     * @return DateTime|null
+     * When a taxi will pickup a passenger or a rental car can be picked up.
+     *
+     *
+     * @var DateTime|null
      */
-    public function getPickupTime()
-    {
-        return $this->pickupTime;
-    }
-
-    /**
-     * @param DateTime|null $pickupTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPickupTime($pickupTime)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $pickupTime = self::checkTypes($pickupTime, $types);
-
-        $this->pickupTime = $pickupTime;
-    }
+    protected $pickupTime;
 
     /**
      * @return Place
      */
-    public function getDropoffLocation()
+    public function getPickupLocation()
     {
-        return $this->dropoffLocation;
+        return $this->pickupLocation;
     }
 
     /**
-     * @param Place $dropoffLocation
+     * @param Place $pickupLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDropoffLocation($dropoffLocation)
+    public function setPickupLocation($pickupLocation)
     {
         $types = array(
             "Place",
         );
 
-        $dropoffLocation = self::checkTypes($dropoffLocation, $types);
+        $pickupLocation = self::checkTypes($pickupLocation, $types);
 
-        $this->dropoffLocation = $dropoffLocation;
+        $this->pickupLocation = $pickupLocation;
     }
 
     /**
@@ -124,25 +99,50 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @return Place
      */
-    public function getPickupLocation()
+    public function getDropoffLocation()
     {
-        return $this->pickupLocation;
+        return $this->dropoffLocation;
     }
 
     /**
-     * @param Place $pickupLocation
+     * @param Place $dropoffLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPickupLocation($pickupLocation)
+    public function setDropoffLocation($dropoffLocation)
     {
         $types = array(
             "Place",
         );
 
-        $pickupLocation = self::checkTypes($pickupLocation, $types);
+        $dropoffLocation = self::checkTypes($dropoffLocation, $types);
 
-        $this->pickupLocation = $pickupLocation;
+        $this->dropoffLocation = $dropoffLocation;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getPickupTime()
+    {
+        return $this->pickupTime;
+    }
+
+    /**
+     * @param DateTime|null $pickupTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPickupTime($pickupTime)
+    {
+        $types = array(
+            "DateTime",
+            "null",
+        );
+
+        $pickupTime = self::checkTypes($pickupTime, $types);
+
+        $this->pickupTime = $pickupTime;
     }
 
 }

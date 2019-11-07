@@ -16,12 +16,44 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49".
+     * The actual body of the article.
      *
      *
      * @var string
      */
-    protected $pagination;
+    protected $articleBody;
+
+    /**
+     * The number of words in the text of the Article.
+     *
+     *
+     * @var int|null
+     */
+    protected $wordCount;
+
+    /**
+     * The page on which the work starts; for example "135" or "xiii".
+     *
+     *
+     * @var int|string|null
+     */
+    protected $pageStart;
+
+    /**
+     * Articles may belong to one or more 'sections' in a magazine or newspaper, such as Sports, Lifestyle, etc.
+     *
+     *
+     * @var string
+     */
+    protected $articleSection;
+
+    /**
+     * The page on which the work ends; for example "138" or "xvi".
+     *
+     *
+     * @var string|int|null
+     */
+    protected $pageEnd;
 
     /**
      * Indicates sections of a Web page that are particularly 'speakable' in the sense of being highlighted as being especially appropriate for text-to-speech conversion. Other sections of a page may also be usefully spoken in particular circumstances; the 'speakable' property serves to indicate the parts most likely to be generally useful for speech.<br/><br/>
@@ -43,142 +75,60 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $speakable;
 
     /**
-     * The page on which the work ends; for example "138" or "xvi".
-     *
-     *
-     * @var string|int|null
-     */
-    protected $pageEnd;
-
-    /**
-     * Articles may belong to one or more 'sections' in a magazine or newspaper, such as Sports, Lifestyle, etc.
+     * Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49".
      *
      *
      * @var string
      */
-    protected $articleSection;
-
-    /**
-     * The page on which the work starts; for example "135" or "xiii".
-     *
-     *
-     * @var int|string|null
-     */
-    protected $pageStart;
-
-    /**
-     * The number of words in the text of the Article.
-     *
-     *
-     * @var int|null
-     */
-    protected $wordCount;
-
-    /**
-     * The actual body of the article.
-     *
-     *
-     * @var string
-     */
-    protected $articleBody;
+    protected $pagination;
 
     /**
      * @return string
      */
-    public function getPagination()
+    public function getArticleBody()
     {
-        return $this->pagination;
+        return $this->articleBody;
     }
 
     /**
-     * @param string $pagination
+     * @param string $articleBody
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPagination($pagination)
+    public function setArticleBody($articleBody)
     {
         $types = array(
             "string",
         );
 
-        $pagination = self::checkTypes($pagination, $types);
+        $articleBody = self::checkTypes($articleBody, $types);
 
-        $this->pagination = $pagination;
+        $this->articleBody = $articleBody;
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\SpeakableSpecification
+     * @return int|null
      */
-    public function getSpeakable()
+    public function getWordCount()
     {
-        return $this->speakable;
+        return $this->wordCount;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\SpeakableSpecification $speakable
+     * @param int|null $wordCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSpeakable($speakable)
+    public function setWordCount($wordCount)
     {
         $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\SpeakableSpecification",
-        );
-
-        $speakable = self::checkTypes($speakable, $types);
-
-        $this->speakable = $speakable;
-    }
-
-    /**
-     * @return string|int|null
-     */
-    public function getPageEnd()
-    {
-        return $this->pageEnd;
-    }
-
-    /**
-     * @param string|int|null $pageEnd
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPageEnd($pageEnd)
-    {
-        $types = array(
-            "string",
             "int",
             "null",
         );
 
-        $pageEnd = self::checkTypes($pageEnd, $types);
+        $wordCount = self::checkTypes($wordCount, $types);
 
-        $this->pageEnd = $pageEnd;
-    }
-
-    /**
-     * @return string
-     */
-    public function getArticleSection()
-    {
-        return $this->articleSection;
-    }
-
-    /**
-     * @param string $articleSection
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setArticleSection($articleSection)
-    {
-        $types = array(
-            "string",
-        );
-
-        $articleSection = self::checkTypes($articleSection, $types);
-
-        $this->articleSection = $articleSection;
+        $this->wordCount = $wordCount;
     }
 
     /**
@@ -208,52 +158,102 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|null
-     */
-    public function getWordCount()
-    {
-        return $this->wordCount;
-    }
-
-    /**
-     * @param int|null $wordCount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setWordCount($wordCount)
-    {
-        $types = array(
-            "int",
-            "null",
-        );
-
-        $wordCount = self::checkTypes($wordCount, $types);
-
-        $this->wordCount = $wordCount;
-    }
-
-    /**
      * @return string
      */
-    public function getArticleBody()
+    public function getArticleSection()
     {
-        return $this->articleBody;
+        return $this->articleSection;
     }
 
     /**
-     * @param string $articleBody
+     * @param string $articleSection
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setArticleBody($articleBody)
+    public function setArticleSection($articleSection)
     {
         $types = array(
             "string",
         );
 
-        $articleBody = self::checkTypes($articleBody, $types);
+        $articleSection = self::checkTypes($articleSection, $types);
 
-        $this->articleBody = $articleBody;
+        $this->articleSection = $articleSection;
+    }
+
+    /**
+     * @return string|int|null
+     */
+    public function getPageEnd()
+    {
+        return $this->pageEnd;
+    }
+
+    /**
+     * @param string|int|null $pageEnd
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPageEnd($pageEnd)
+    {
+        $types = array(
+            "string",
+            "int",
+            "null",
+        );
+
+        $pageEnd = self::checkTypes($pageEnd, $types);
+
+        $this->pageEnd = $pageEnd;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\SpeakableSpecification
+     */
+    public function getSpeakable()
+    {
+        return $this->speakable;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\SpeakableSpecification $speakable
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSpeakable($speakable)
+    {
+        $types = array(
+            "string",
+            "\OpenActive\Models\SchemaOrg\SpeakableSpecification",
+        );
+
+        $speakable = self::checkTypes($speakable, $types);
+
+        $this->speakable = $speakable;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPagination()
+    {
+        return $this->pagination;
+    }
+
+    /**
+     * @param string $pagination
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPagination($pagination)
+    {
+        $types = array(
+            "string",
+        );
+
+        $pagination = self::checkTypes($pagination, $types);
+
+        $this->pagination = $pagination;
     }
 
 }

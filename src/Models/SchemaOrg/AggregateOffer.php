@@ -16,20 +16,20 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+     * The highest price of all offers available.<br/><br/>
+     * 
+     * Usage guidelines:<br/><br/>
+     * 
+     * <ul>
+     * <li>Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.</li>
+     * <li>Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.</li>
+     * </ul>
+     * 
      *
      *
-     * @var Offer
+     * @var float|string|null
      */
-    protected $offers;
-
-    /**
-     * The number of offers for the product.
-     *
-     *
-     * @var int|null
-     */
-    protected $offerCount;
+    protected $highPrice;
 
     /**
      * The lowest price of all offers available.<br/><br/>
@@ -43,48 +43,76 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
      * 
      *
      *
-     * @var string|decimal|null
+     * @var string|float|null
      */
     protected $lowPrice;
 
     /**
-     * The highest price of all offers available.<br/><br/>
-     * 
-     * Usage guidelines:<br/><br/>
-     * 
-     * <ul>
-     * <li>Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.</li>
-     * <li>Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.</li>
-     * </ul>
-     * 
+     * The number of offers for the product.
      *
      *
-     * @var decimal|string|null
+     * @var int|null
      */
-    protected $highPrice;
+    protected $offerCount;
 
     /**
-     * @return Offer
+     * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
+     *
+     *
+     * @var Offer
      */
-    public function getOffers()
+    protected $offers;
+
+    /**
+     * @return float|string|null
+     */
+    public function getHighPrice()
     {
-        return $this->offers;
+        return $this->highPrice;
     }
 
     /**
-     * @param Offer $offers
+     * @param float|string|null $highPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOffers($offers)
+    public function setHighPrice($highPrice)
     {
         $types = array(
-            "Offer",
+            "float",
+            "string",
+            "null",
         );
 
-        $offers = self::checkTypes($offers, $types);
+        $highPrice = self::checkTypes($highPrice, $types);
 
-        $this->offers = $offers;
+        $this->highPrice = $highPrice;
+    }
+
+    /**
+     * @return string|float|null
+     */
+    public function getLowPrice()
+    {
+        return $this->lowPrice;
+    }
+
+    /**
+     * @param string|float|null $lowPrice
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLowPrice($lowPrice)
+    {
+        $types = array(
+            "string",
+            "float",
+            "null",
+        );
+
+        $lowPrice = self::checkTypes($lowPrice, $types);
+
+        $this->lowPrice = $lowPrice;
     }
 
     /**
@@ -113,55 +141,27 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return string|decimal|null
+     * @return Offer
      */
-    public function getLowPrice()
+    public function getOffers()
     {
-        return $this->lowPrice;
+        return $this->offers;
     }
 
     /**
-     * @param string|decimal|null $lowPrice
+     * @param Offer $offers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLowPrice($lowPrice)
+    public function setOffers($offers)
     {
         $types = array(
-            "string",
-            "decimal",
-            "null",
+            "Offer",
         );
 
-        $lowPrice = self::checkTypes($lowPrice, $types);
+        $offers = self::checkTypes($offers, $types);
 
-        $this->lowPrice = $lowPrice;
-    }
-
-    /**
-     * @return decimal|string|null
-     */
-    public function getHighPrice()
-    {
-        return $this->highPrice;
-    }
-
-    /**
-     * @param decimal|string|null $highPrice
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHighPrice($highPrice)
-    {
-        $types = array(
-            "decimal",
-            "string",
-            "null",
-        );
-
-        $highPrice = self::checkTypes($highPrice, $types);
-
-        $this->highPrice = $highPrice;
+        $this->offers = $offers;
     }
 
 }

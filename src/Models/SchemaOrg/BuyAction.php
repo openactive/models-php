@@ -16,12 +16,12 @@ class BuyAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
-     * 'vendor' is an earlier term for 'seller'.
+     * The warranty promise(s) included in the offer.
      *
      *
-     * @var Organization|Person
+     * @var \OpenActive\Models\SchemaOrg\WarrantyPromise
      */
-    protected $vendor;
+    protected $warrantyPromise;
 
     /**
      * An entity which offers (sells / leases / lends / loans) the services / goods.  A seller may also be a provider.
@@ -32,36 +32,35 @@ class BuyAction extends \OpenActive\Models\SchemaOrg\TradeAction
     protected $seller;
 
     /**
-     * The warranty promise(s) included in the offer.
+     * 'vendor' is an earlier term for 'seller'.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\WarrantyPromise
+     * @var Organization|Person
      */
-    protected $warrantyPromise;
+    protected $vendor;
 
     /**
-     * @return Organization|Person
+     * @return \OpenActive\Models\SchemaOrg\WarrantyPromise
      */
-    public function getVendor()
+    public function getWarrantyPromise()
     {
-        return $this->vendor;
+        return $this->warrantyPromise;
     }
 
     /**
-     * @param Organization|Person $vendor
+     * @param \OpenActive\Models\SchemaOrg\WarrantyPromise $warrantyPromise
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setVendor($vendor)
+    public function setWarrantyPromise($warrantyPromise)
     {
         $types = array(
-            "Organization",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\WarrantyPromise",
         );
 
-        $vendor = self::checkTypes($vendor, $types);
+        $warrantyPromise = self::checkTypes($warrantyPromise, $types);
 
-        $this->vendor = $vendor;
+        $this->warrantyPromise = $warrantyPromise;
     }
 
     /**
@@ -90,27 +89,28 @@ class BuyAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\WarrantyPromise
+     * @return Organization|Person
      */
-    public function getWarrantyPromise()
+    public function getVendor()
     {
-        return $this->warrantyPromise;
+        return $this->vendor;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\WarrantyPromise $warrantyPromise
+     * @param Organization|Person $vendor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setWarrantyPromise($warrantyPromise)
+    public function setVendor($vendor)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\WarrantyPromise",
+            "Organization",
+            "Person",
         );
 
-        $warrantyPromise = self::checkTypes($warrantyPromise, $types);
+        $vendor = self::checkTypes($vendor, $types);
 
-        $this->warrantyPromise = $warrantyPromise;
+        $this->vendor = $vendor;
     }
 
 }

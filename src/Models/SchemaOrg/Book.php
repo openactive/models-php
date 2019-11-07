@@ -16,28 +16,12 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * The ISBN of the book.
+     * The number of pages in the book.
      *
      *
-     * @var string
+     * @var int|null
      */
-    protected $isbn;
-
-    /**
-     * The edition of the book.
-     *
-     *
-     * @var string
-     */
-    protected $bookEdition;
-
-    /**
-     * The format of the book.
-     *
-     *
-     * @var Schema.NET.BookFormatType|null
-     */
-    protected $bookFormat;
+    protected $numberOfPages;
 
     /**
      * The illustrator of the book.
@@ -48,84 +32,52 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $illustrator;
 
     /**
-     * The number of pages in the book.
+     * The format of the book.
      *
      *
-     * @var int|null
+     * @var \OpenActive\Enums\BookFormatType|null
      */
-    protected $numberOfPages;
+    protected $bookFormat;
 
     /**
-     * @return string
+     * The edition of the book.
+     *
+     *
+     * @var string
      */
-    public function getIsbn()
+    protected $bookEdition;
+
+    /**
+     * The ISBN of the book.
+     *
+     *
+     * @var string
+     */
+    protected $isbn;
+
+    /**
+     * @return int|null
+     */
+    public function getNumberOfPages()
     {
-        return $this->isbn;
+        return $this->numberOfPages;
     }
 
     /**
-     * @param string $isbn
+     * @param int|null $numberOfPages
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIsbn($isbn)
+    public function setNumberOfPages($numberOfPages)
     {
         $types = array(
-            "string",
-        );
-
-        $isbn = self::checkTypes($isbn, $types);
-
-        $this->isbn = $isbn;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBookEdition()
-    {
-        return $this->bookEdition;
-    }
-
-    /**
-     * @param string $bookEdition
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBookEdition($bookEdition)
-    {
-        $types = array(
-            "string",
-        );
-
-        $bookEdition = self::checkTypes($bookEdition, $types);
-
-        $this->bookEdition = $bookEdition;
-    }
-
-    /**
-     * @return Schema.NET.BookFormatType|null
-     */
-    public function getBookFormat()
-    {
-        return $this->bookFormat;
-    }
-
-    /**
-     * @param Schema.NET.BookFormatType|null $bookFormat
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBookFormat($bookFormat)
-    {
-        $types = array(
-            "Schema.NET.BookFormatType",
+            "int",
             "null",
         );
 
-        $bookFormat = self::checkTypes($bookFormat, $types);
+        $numberOfPages = self::checkTypes($numberOfPages, $types);
 
-        $this->bookFormat = $bookFormat;
+        $this->numberOfPages = $numberOfPages;
     }
 
     /**
@@ -153,28 +105,76 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|null
+     * @return \OpenActive\Enums\BookFormatType|null
      */
-    public function getNumberOfPages()
+    public function getBookFormat()
     {
-        return $this->numberOfPages;
+        return $this->bookFormat;
     }
 
     /**
-     * @param int|null $numberOfPages
+     * @param \OpenActive\Enums\BookFormatType|null $bookFormat
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfPages($numberOfPages)
+    public function setBookFormat($bookFormat)
     {
         $types = array(
-            "int",
+            "\OpenActive\Enums\BookFormatType",
             "null",
         );
 
-        $numberOfPages = self::checkTypes($numberOfPages, $types);
+        $bookFormat = self::checkTypes($bookFormat, $types);
 
-        $this->numberOfPages = $numberOfPages;
+        $this->bookFormat = $bookFormat;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBookEdition()
+    {
+        return $this->bookEdition;
+    }
+
+    /**
+     * @param string $bookEdition
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBookEdition($bookEdition)
+    {
+        $types = array(
+            "string",
+        );
+
+        $bookEdition = self::checkTypes($bookEdition, $types);
+
+        $this->bookEdition = $bookEdition;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIsbn()
+    {
+        return $this->isbn;
+    }
+
+    /**
+     * @param string $isbn
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsbn($isbn)
+    {
+        $types = array(
+            "string",
+        );
+
+        $isbn = self::checkTypes($isbn, $types);
+
+        $this->isbn = $isbn;
     }
 
 }

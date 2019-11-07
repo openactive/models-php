@@ -19,12 +19,12 @@ class EngineSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The type of fuel suitable for the engine or engines of the vehicle. If the vehicle has only one engine, this property can be attached directly to the vehicle.
      *
      *
-     * @var Schema.NET.QualitativeValue|string|null
+     * @var \OpenActive\Enums\QualitativeValue|string|null
      */
     protected $fuelType;
 
     /**
-     * @return Schema.NET.QualitativeValue|string|null
+     * @return \OpenActive\Enums\QualitativeValue|string|null
      */
     public function getFuelType()
     {
@@ -32,14 +32,14 @@ class EngineSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param Schema.NET.QualitativeValue|string|null $fuelType
+     * @param \OpenActive\Enums\QualitativeValue|string|null $fuelType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFuelType($fuelType)
     {
         $types = array(
-            "Schema.NET.QualitativeValue",
+            "\OpenActive\Enums\QualitativeValue",
             "string",
             "null",
         );

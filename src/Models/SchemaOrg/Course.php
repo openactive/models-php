@@ -16,36 +16,13 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * Requirements for taking the Course. May be completion of another <a class="localLink" href="https://schema.org/Course">Course</a> or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using <a class="localLink" href="https://schema.org/AlignmentObject">AlignmentObject</a>.
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * An related video object.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\AlignmentObject|string|Course
+     * @var \OpenActive\Models\SchemaOrg\VideoObject
      */
-    protected $coursePrerequisites;
-
-    /**
-     * A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
-     */
-    protected $educationalCredentialAwarded;
-
-    /**
-     * An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students.
-     *
-     *
-     * @var CourseInstance
-     */
-    protected $hasCourseInstance;
-
-    /**
-     * The identifier for the <a class="localLink" href="https://schema.org/Course">Course</a> used by the course <a class="localLink" href="https://schema.org/provider">provider</a> (e.g. CS101 or 6.001).
-     *
-     *
-     * @var string
-     */
-    protected $courseCode;
+    protected $video;
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
@@ -57,38 +34,131 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $logo;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * An related video object.
+     * The identifier for the <a class="localLink" href="https://schema.org/Course">Course</a> used by the course <a class="localLink" href="https://schema.org/provider">provider</a> (e.g. CS101 or 6.001).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\VideoObject
+     * @var string
      */
-    protected $video;
+    protected $courseCode;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AlignmentObject|string|Course
+     * An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students.
+     *
+     *
+     * @var CourseInstance
      */
-    public function getCoursePrerequisites()
+    protected $hasCourseInstance;
+
+    /**
+     * A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     */
+    protected $educationalCredentialAwarded;
+
+    /**
+     * Requirements for taking the Course. May be completion of another <a class="localLink" href="https://schema.org/Course">Course</a> or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using <a class="localLink" href="https://schema.org/AlignmentObject">AlignmentObject</a>.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\AlignmentObject|string|Course
+     */
+    protected $coursePrerequisites;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\VideoObject
+     */
+    public function getVideo()
     {
-        return $this->coursePrerequisites;
+        return $this->video;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AlignmentObject|string|Course $coursePrerequisites
+     * @param \OpenActive\Models\SchemaOrg\VideoObject $video
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCoursePrerequisites($coursePrerequisites)
+    public function setVideo($video)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\AlignmentObject",
-            "string",
-            "Course",
+            "\OpenActive\Models\SchemaOrg\VideoObject",
         );
 
-        $coursePrerequisites = self::checkTypes($coursePrerequisites, $types);
+        $video = self::checkTypes($video, $types);
 
-        $this->coursePrerequisites = $coursePrerequisites;
+        $this->video = $video;
+    }
+
+    /**
+     * @return ImageObject
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * @param ImageObject $logo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLogo($logo)
+    {
+        $types = array(
+            "ImageObject",
+        );
+
+        $logo = self::checkTypes($logo, $types);
+
+        $this->logo = $logo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCourseCode()
+    {
+        return $this->courseCode;
+    }
+
+    /**
+     * @param string $courseCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCourseCode($courseCode)
+    {
+        $types = array(
+            "string",
+        );
+
+        $courseCode = self::checkTypes($courseCode, $types);
+
+        $this->courseCode = $courseCode;
+    }
+
+    /**
+     * @return CourseInstance
+     */
+    public function getHasCourseInstance()
+    {
+        return $this->hasCourseInstance;
+    }
+
+    /**
+     * @param CourseInstance $hasCourseInstance
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasCourseInstance($hasCourseInstance)
+    {
+        $types = array(
+            "CourseInstance",
+        );
+
+        $hasCourseInstance = self::checkTypes($hasCourseInstance, $types);
+
+        $this->hasCourseInstance = $hasCourseInstance;
     }
 
     /**
@@ -117,99 +187,29 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return CourseInstance
+     * @return \OpenActive\Models\SchemaOrg\AlignmentObject|string|Course
      */
-    public function getHasCourseInstance()
+    public function getCoursePrerequisites()
     {
-        return $this->hasCourseInstance;
+        return $this->coursePrerequisites;
     }
 
     /**
-     * @param CourseInstance $hasCourseInstance
+     * @param \OpenActive\Models\SchemaOrg\AlignmentObject|string|Course $coursePrerequisites
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHasCourseInstance($hasCourseInstance)
+    public function setCoursePrerequisites($coursePrerequisites)
     {
         $types = array(
-            "CourseInstance",
-        );
-
-        $hasCourseInstance = self::checkTypes($hasCourseInstance, $types);
-
-        $this->hasCourseInstance = $hasCourseInstance;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCourseCode()
-    {
-        return $this->courseCode;
-    }
-
-    /**
-     * @param string $courseCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCourseCode($courseCode)
-    {
-        $types = array(
+            "\OpenActive\Models\SchemaOrg\AlignmentObject",
             "string",
+            "Course",
         );
 
-        $courseCode = self::checkTypes($courseCode, $types);
+        $coursePrerequisites = self::checkTypes($coursePrerequisites, $types);
 
-        $this->courseCode = $courseCode;
-    }
-
-    /**
-     * @return ImageObject
-     */
-    public function getLogo()
-    {
-        return $this->logo;
-    }
-
-    /**
-     * @param ImageObject $logo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLogo($logo)
-    {
-        $types = array(
-            "ImageObject",
-        );
-
-        $logo = self::checkTypes($logo, $types);
-
-        $this->logo = $logo;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\VideoObject
-     */
-    public function getVideo()
-    {
-        return $this->video;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\VideoObject $video
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVideo($video)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\VideoObject",
-        );
-
-        $video = self::checkTypes($video, $types);
-
-        $this->video = $video;
+        $this->coursePrerequisites = $coursePrerequisites;
     }
 
 }

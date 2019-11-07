@@ -19,12 +19,12 @@ class OrderAction extends \OpenActive\Models\SchemaOrg\TradeAction
      * A sub property of instrument. The method of delivery.
      *
      *
-     * @var Schema.NET.DeliveryMethod|null
+     * @var \OpenActive\Enums\DeliveryMethod|null
      */
     protected $deliveryMethod;
 
     /**
-     * @return Schema.NET.DeliveryMethod|null
+     * @return \OpenActive\Enums\DeliveryMethod|null
      */
     public function getDeliveryMethod()
     {
@@ -32,14 +32,14 @@ class OrderAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
-     * @param Schema.NET.DeliveryMethod|null $deliveryMethod
+     * @param \OpenActive\Enums\DeliveryMethod|null $deliveryMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDeliveryMethod($deliveryMethod)
     {
         $types = array(
-            "Schema.NET.DeliveryMethod",
+            "\OpenActive\Enums\DeliveryMethod",
             "null",
         );
 

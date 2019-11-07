@@ -59,7 +59,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * ]
      * ```
      *
-     * @var Schema.NET.PaymentMethod[]|null
+     * @var \OpenActive\Enums\PaymentMethod[]|null
      */
     protected $acceptedPaymentMethod;
 
@@ -244,7 +244,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return Schema.NET.PaymentMethod[]|null
+     * @return \OpenActive\Enums\PaymentMethod[]|null
      */
     public function getAcceptedPaymentMethod()
     {
@@ -252,14 +252,14 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param Schema.NET.PaymentMethod[]|null $acceptedPaymentMethod
+     * @param \OpenActive\Enums\PaymentMethod[]|null $acceptedPaymentMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcceptedPaymentMethod($acceptedPaymentMethod)
     {
         $types = array(
-            "Schema.NET.PaymentMethod[]",
+            "\OpenActive\Enums\PaymentMethod[]",
             "null",
         );
 

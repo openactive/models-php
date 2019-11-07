@@ -16,12 +16,20 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * The passenger's sequence number as assigned by the airline.
+     * The airline-specific indicator of boarding order / preference.
      *
      *
      * @var string
      */
-    protected $passengerSequenceNumber;
+    protected $boardingGroup;
+
+    /**
+     * The priority status assigned to a passenger for security or boarding (e.g. FastTrack or Priority).
+     *
+     *
+     * @var \OpenActive\Enums\QualitativeValue|string|null
+     */
+    protected $passengerPriorityStatus;
 
     /**
      * The type of security screening the passenger is subject to.
@@ -32,43 +40,61 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $securityScreening;
 
     /**
-     * The priority status assigned to a passenger for security or boarding (e.g. FastTrack or Priority).
-     *
-     *
-     * @var Schema.NET.QualitativeValue|string|null
-     */
-    protected $passengerPriorityStatus;
-
-    /**
-     * The airline-specific indicator of boarding order / preference.
+     * The passenger's sequence number as assigned by the airline.
      *
      *
      * @var string
      */
-    protected $boardingGroup;
+    protected $passengerSequenceNumber;
 
     /**
      * @return string
      */
-    public function getPassengerSequenceNumber()
+    public function getBoardingGroup()
     {
-        return $this->passengerSequenceNumber;
+        return $this->boardingGroup;
     }
 
     /**
-     * @param string $passengerSequenceNumber
+     * @param string $boardingGroup
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPassengerSequenceNumber($passengerSequenceNumber)
+    public function setBoardingGroup($boardingGroup)
     {
         $types = array(
             "string",
         );
 
-        $passengerSequenceNumber = self::checkTypes($passengerSequenceNumber, $types);
+        $boardingGroup = self::checkTypes($boardingGroup, $types);
 
-        $this->passengerSequenceNumber = $passengerSequenceNumber;
+        $this->boardingGroup = $boardingGroup;
+    }
+
+    /**
+     * @return \OpenActive\Enums\QualitativeValue|string|null
+     */
+    public function getPassengerPriorityStatus()
+    {
+        return $this->passengerPriorityStatus;
+    }
+
+    /**
+     * @param \OpenActive\Enums\QualitativeValue|string|null $passengerPriorityStatus
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPassengerPriorityStatus($passengerPriorityStatus)
+    {
+        $types = array(
+            "\OpenActive\Enums\QualitativeValue",
+            "string",
+            "null",
+        );
+
+        $passengerPriorityStatus = self::checkTypes($passengerPriorityStatus, $types);
+
+        $this->passengerPriorityStatus = $passengerPriorityStatus;
     }
 
     /**
@@ -96,53 +122,27 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return Schema.NET.QualitativeValue|string|null
-     */
-    public function getPassengerPriorityStatus()
-    {
-        return $this->passengerPriorityStatus;
-    }
-
-    /**
-     * @param Schema.NET.QualitativeValue|string|null $passengerPriorityStatus
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPassengerPriorityStatus($passengerPriorityStatus)
-    {
-        $types = array(
-            "Schema.NET.QualitativeValue",
-            "string",
-            "null",
-        );
-
-        $passengerPriorityStatus = self::checkTypes($passengerPriorityStatus, $types);
-
-        $this->passengerPriorityStatus = $passengerPriorityStatus;
-    }
-
-    /**
      * @return string
      */
-    public function getBoardingGroup()
+    public function getPassengerSequenceNumber()
     {
-        return $this->boardingGroup;
+        return $this->passengerSequenceNumber;
     }
 
     /**
-     * @param string $boardingGroup
+     * @param string $passengerSequenceNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBoardingGroup($boardingGroup)
+    public function setPassengerSequenceNumber($passengerSequenceNumber)
     {
         $types = array(
             "string",
         );
 
-        $boardingGroup = self::checkTypes($boardingGroup, $types);
+        $passengerSequenceNumber = self::checkTypes($passengerSequenceNumber, $types);
 
-        $this->boardingGroup = $boardingGroup;
+        $this->passengerSequenceNumber = $passengerSequenceNumber;
     }
 
 }

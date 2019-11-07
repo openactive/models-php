@@ -19,12 +19,12 @@ class Map extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Indicates the kind of Map, from the MapCategoryType Enumeration.
      *
      *
-     * @var Schema.NET.MapCategoryType|null
+     * @var \OpenActive\Enums\MapCategoryType|null
      */
     protected $mapType;
 
     /**
-     * @return Schema.NET.MapCategoryType|null
+     * @return \OpenActive\Enums\MapCategoryType|null
      */
     public function getMapType()
     {
@@ -32,14 +32,14 @@ class Map extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Schema.NET.MapCategoryType|null $mapType
+     * @param \OpenActive\Enums\MapCategoryType|null $mapType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMapType($mapType)
     {
         $types = array(
-            "Schema.NET.MapCategoryType",
+            "\OpenActive\Enums\MapCategoryType",
             "null",
         );
 

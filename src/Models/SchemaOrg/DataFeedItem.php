@@ -16,20 +16,12 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
+     * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
      *
      *
-     * @var DateTime|null
+     * @var \OpenActive\Models\SchemaOrg\Thing
      */
-    protected $dateModified;
-
-    /**
-     * The datetime the item was removed from the DataFeed.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $dateDeleted;
+    protected $item;
 
     /**
      * The date on which the CreativeWork was created or the item was added to a DataFeed.
@@ -40,36 +32,68 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $dateCreated;
 
     /**
-     * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
+     * The datetime the item was removed from the DataFeed.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing
+     * @var DateTime|null
      */
-    protected $item;
+    protected $dateDeleted;
+
+    /**
+     * The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
+     *
+     *
+     * @var DateTime|null
+     */
+    protected $dateModified;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing
+     */
+    public function getItem()
+    {
+        return $this->item;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing $item
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setItem($item)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Thing",
+        );
+
+        $item = self::checkTypes($item, $types);
+
+        $this->item = $item;
+    }
 
     /**
      * @return DateTime|null
      */
-    public function getDateModified()
+    public function getDateCreated()
     {
-        return $this->dateModified;
+        return $this->dateCreated;
     }
 
     /**
-     * @param DateTime|null $dateModified
+     * @param DateTime|null $dateCreated
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDateModified($dateModified)
+    public function setDateCreated($dateCreated)
     {
         $types = array(
             "DateTime",
             "null",
         );
 
-        $dateModified = self::checkTypes($dateModified, $types);
+        $dateCreated = self::checkTypes($dateCreated, $types);
 
-        $this->dateModified = $dateModified;
+        $this->dateCreated = $dateCreated;
     }
 
     /**
@@ -100,50 +124,26 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return DateTime|null
      */
-    public function getDateCreated()
+    public function getDateModified()
     {
-        return $this->dateCreated;
+        return $this->dateModified;
     }
 
     /**
-     * @param DateTime|null $dateCreated
+     * @param DateTime|null $dateModified
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDateCreated($dateCreated)
+    public function setDateModified($dateModified)
     {
         $types = array(
             "DateTime",
             "null",
         );
 
-        $dateCreated = self::checkTypes($dateCreated, $types);
+        $dateModified = self::checkTypes($dateModified, $types);
 
-        $this->dateCreated = $dateCreated;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getItem()
-    {
-        return $this->item;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $item
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setItem($item)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
-        );
-
-        $item = self::checkTypes($item, $types);
-
-        $this->item = $item;
+        $this->dateModified = $dateModified;
     }
 
 }

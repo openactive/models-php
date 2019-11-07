@@ -26,7 +26,7 @@ class Schedule extends \OpenActive\BaseModel
      * ]
      * ```
      *
-     * @var string[]|Schema.NET.DayOfWeek[]|null
+     * @var string[]|\OpenActive\Enums\DayOfWeek[]|null
      */
     protected $byDay;
 
@@ -185,7 +185,7 @@ class Schedule extends \OpenActive\BaseModel
     protected $urlTemplate;
 
     /**
-     * @return string[]|Schema.NET.DayOfWeek[]|null
+     * @return string[]|\OpenActive\Enums\DayOfWeek[]|null
      */
     public function getByDay()
     {
@@ -193,7 +193,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param string[]|Schema.NET.DayOfWeek[]|null $byDay
+     * @param string[]|\OpenActive\Enums\DayOfWeek[]|null $byDay
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -201,7 +201,7 @@ class Schedule extends \OpenActive\BaseModel
     {
         $types = array(
             "string[]",
-            "Schema.NET.DayOfWeek[]",
+            "\OpenActive\Enums\DayOfWeek[]",
             "null",
         );
 

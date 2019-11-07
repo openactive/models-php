@@ -46,7 +46,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      * paymentMethod must not be used, and is reserved for future versions of this specification.
      *
      *
-     * @var Schema.NET.PaymentMethod|null
+     * @var \OpenActive\Enums\PaymentMethod|null
      */
     protected $paymentMethod;
 
@@ -135,7 +135,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Schema.NET.PaymentMethod|null
+     * @return \OpenActive\Enums\PaymentMethod|null
      */
     public function getPaymentMethod()
     {
@@ -143,14 +143,14 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Schema.NET.PaymentMethod|null $paymentMethod
+     * @param \OpenActive\Enums\PaymentMethod|null $paymentMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentMethod($paymentMethod)
     {
         $types = array(
-            "Schema.NET.PaymentMethod",
+            "\OpenActive\Enums\PaymentMethod",
             "null",
         );
 

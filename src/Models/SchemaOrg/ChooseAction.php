@@ -21,7 +21,7 @@ class ChooseAction extends \OpenActive\Models\SchemaOrg\AssessAction
      *
      * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $actionOption;
+    protected $option;
 
     /**
      * A sub property of object. The options subject to this action.
@@ -29,32 +29,7 @@ class ChooseAction extends \OpenActive\Models\SchemaOrg\AssessAction
      *
      * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $option;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    public function getActionOption()
-    {
-        return $this->actionOption;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $actionOption
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActionOption($actionOption)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
-        );
-
-        $actionOption = self::checkTypes($actionOption, $types);
-
-        $this->actionOption = $actionOption;
-    }
+    protected $actionOption;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing|string
@@ -79,6 +54,31 @@ class ChooseAction extends \OpenActive\Models\SchemaOrg\AssessAction
         $option = self::checkTypes($option, $types);
 
         $this->option = $option;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    public function getActionOption()
+    {
+        return $this->actionOption;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $actionOption
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActionOption($actionOption)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
+        );
+
+        $actionOption = self::checkTypes($actionOption, $types);
+
+        $this->actionOption = $actionOption;
     }
 
 }

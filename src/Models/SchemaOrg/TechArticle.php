@@ -16,14 +16,6 @@ class TechArticle extends \OpenActive\Models\SchemaOrg\Article
     }
 
     /**
-     * Proficiency needed for this content; expected values: 'Beginner', 'Expert'.
-     *
-     *
-     * @var string
-     */
-    protected $proficiencyLevel;
-
-    /**
      * Prerequisites needed to fulfill steps in article.
      *
      *
@@ -32,28 +24,12 @@ class TechArticle extends \OpenActive\Models\SchemaOrg\Article
     protected $dependencies;
 
     /**
-     * @return string
+     * Proficiency needed for this content; expected values: 'Beginner', 'Expert'.
+     *
+     *
+     * @var string
      */
-    public function getProficiencyLevel()
-    {
-        return $this->proficiencyLevel;
-    }
-
-    /**
-     * @param string $proficiencyLevel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProficiencyLevel($proficiencyLevel)
-    {
-        $types = array(
-            "string",
-        );
-
-        $proficiencyLevel = self::checkTypes($proficiencyLevel, $types);
-
-        $this->proficiencyLevel = $proficiencyLevel;
-    }
+    protected $proficiencyLevel;
 
     /**
      * @return string
@@ -77,6 +53,30 @@ class TechArticle extends \OpenActive\Models\SchemaOrg\Article
         $dependencies = self::checkTypes($dependencies, $types);
 
         $this->dependencies = $dependencies;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProficiencyLevel()
+    {
+        return $this->proficiencyLevel;
+    }
+
+    /**
+     * @param string $proficiencyLevel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProficiencyLevel($proficiencyLevel)
+    {
+        $types = array(
+            "string",
+        );
+
+        $proficiencyLevel = self::checkTypes($proficiencyLevel, $types);
+
+        $this->proficiencyLevel = $proficiencyLevel;
     }
 
 }

@@ -16,12 +16,12 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
     }
 
     /**
-     * The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
+     * The event being broadcast such as a sporting event or awards ceremony.
      *
      *
-     * @var string
+     * @var Event
      */
-    protected $videoFormat;
+    protected $broadcastOfEvent;
 
     /**
      * True is the broadcast is of a live event.
@@ -32,35 +32,35 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
     protected $isLiveBroadcast;
 
     /**
-     * The event being broadcast such as a sporting event or awards ceremony.
+     * The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
      *
      *
-     * @var Event
+     * @var string
      */
-    protected $broadcastOfEvent;
+    protected $videoFormat;
 
     /**
-     * @return string
+     * @return Event
      */
-    public function getVideoFormat()
+    public function getBroadcastOfEvent()
     {
-        return $this->videoFormat;
+        return $this->broadcastOfEvent;
     }
 
     /**
-     * @param string $videoFormat
+     * @param Event $broadcastOfEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setVideoFormat($videoFormat)
+    public function setBroadcastOfEvent($broadcastOfEvent)
     {
         $types = array(
-            "string",
+            "Event",
         );
 
-        $videoFormat = self::checkTypes($videoFormat, $types);
+        $broadcastOfEvent = self::checkTypes($broadcastOfEvent, $types);
 
-        $this->videoFormat = $videoFormat;
+        $this->broadcastOfEvent = $broadcastOfEvent;
     }
 
     /**
@@ -89,27 +89,27 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
     }
 
     /**
-     * @return Event
+     * @return string
      */
-    public function getBroadcastOfEvent()
+    public function getVideoFormat()
     {
-        return $this->broadcastOfEvent;
+        return $this->videoFormat;
     }
 
     /**
-     * @param Event $broadcastOfEvent
+     * @param string $videoFormat
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBroadcastOfEvent($broadcastOfEvent)
+    public function setVideoFormat($videoFormat)
     {
         $types = array(
-            "Event",
+            "string",
         );
 
-        $broadcastOfEvent = self::checkTypes($broadcastOfEvent, $types);
+        $videoFormat = self::checkTypes($videoFormat, $types);
 
-        $this->broadcastOfEvent = $broadcastOfEvent;
+        $this->videoFormat = $videoFormat;
     }
 
 }

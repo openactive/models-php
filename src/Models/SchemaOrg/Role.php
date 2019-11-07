@@ -16,20 +16,12 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
+     * A role played, performed or filled by a person or organization. For example, the team of creators for a comic book might fill the roles named 'inker', 'penciller', and 'letterer'; or an athlete in a SportsTeam might play in the position named 'Quarterback'.
      *
      *
-     * @var DateTime|null
+     * @var string
      */
-    protected $endDate;
-
-    /**
-     * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $startDate;
+    protected $roleName;
 
     /**
      * A position played, performed or filled by a person or organization, as part of an organization. For example, an athlete in a SportsTeam might play in the position named 'Quarterback'.
@@ -40,36 +32,67 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
     protected $namedPosition;
 
     /**
-     * A role played, performed or filled by a person or organization. For example, the team of creators for a comic book might fill the roles named 'inker', 'penciller', and 'letterer'; or an athlete in a SportsTeam might play in the position named 'Quarterback'.
+     * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var string
+     * @var DateTime|null
      */
-    protected $roleName;
+    protected $startDate;
 
     /**
-     * @return DateTime|null
+     * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
+     *
+     *
+     * @var DateTime|null
      */
-    public function getEndDate()
+    protected $endDate;
+
+    /**
+     * @return string
+     */
+    public function getRoleName()
     {
-        return $this->endDate;
+        return $this->roleName;
     }
 
     /**
-     * @param DateTime|null $endDate
+     * @param string $roleName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEndDate($endDate)
+    public function setRoleName($roleName)
     {
         $types = array(
-            "DateTime",
-            "null",
+            "string",
         );
 
-        $endDate = self::checkTypes($endDate, $types);
+        $roleName = self::checkTypes($roleName, $types);
 
-        $this->endDate = $endDate;
+        $this->roleName = $roleName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNamedPosition()
+    {
+        return $this->namedPosition;
+    }
+
+    /**
+     * @param string $namedPosition
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNamedPosition($namedPosition)
+    {
+        $types = array(
+            "string",
+        );
+
+        $namedPosition = self::checkTypes($namedPosition, $types);
+
+        $this->namedPosition = $namedPosition;
     }
 
     /**
@@ -98,51 +121,28 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
+     * @return DateTime|null
      */
-    public function getNamedPosition()
+    public function getEndDate()
     {
-        return $this->namedPosition;
+        return $this->endDate;
     }
 
     /**
-     * @param string $namedPosition
+     * @param DateTime|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNamedPosition($namedPosition)
+    public function setEndDate($endDate)
     {
         $types = array(
-            "string",
+            "DateTime",
+            "null",
         );
 
-        $namedPosition = self::checkTypes($namedPosition, $types);
+        $endDate = self::checkTypes($endDate, $types);
 
-        $this->namedPosition = $namedPosition;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRoleName()
-    {
-        return $this->roleName;
-    }
-
-    /**
-     * @param string $roleName
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRoleName($roleName)
-    {
-        $types = array(
-            "string",
-        );
-
-        $roleName = self::checkTypes($roleName, $types);
-
-        $this->roleName = $roleName;
+        $this->endDate = $endDate;
     }
 
 }

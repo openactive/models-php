@@ -16,12 +16,20 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * The duration of the loan or credit agreement.
+     * Assets required to secure loan or credit repayments. It may take form of third party pledge, goods, financial instruments (cash, securities, etc.)
      *
      *
-     * @var QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $loanTerm;
+    protected $requiredCollateral;
+
+    /**
+     * The amount of money.
+     *
+     *
+     * @var float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     */
+    protected $amount;
 
     /**
      * The currency in which the monetary amount is expressed.<br/><br/>
@@ -34,43 +42,62 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     protected $currency;
 
     /**
-     * The amount of money.
+     * The duration of the loan or credit agreement.
      *
      *
-     * @var decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     * @var QuantitativeValue
      */
-    protected $amount;
+    protected $loanTerm;
 
     /**
-     * Assets required to secure loan or credit repayments. It may take form of third party pledge, goods, financial instruments (cash, securities, etc.)
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $requiredCollateral;
-
-    /**
-     * @return QuantitativeValue
-     */
-    public function getLoanTerm()
+    public function getRequiredCollateral()
     {
-        return $this->loanTerm;
+        return $this->requiredCollateral;
     }
 
     /**
-     * @param QuantitativeValue $loanTerm
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $requiredCollateral
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLoanTerm($loanTerm)
+    public function setRequiredCollateral($requiredCollateral)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
         );
 
-        $loanTerm = self::checkTypes($loanTerm, $types);
+        $requiredCollateral = self::checkTypes($requiredCollateral, $types);
 
-        $this->loanTerm = $loanTerm;
+        $this->requiredCollateral = $requiredCollateral;
+    }
+
+    /**
+     * @return float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $amount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAmount($amount)
+    {
+        $types = array(
+            "float",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "null",
+        );
+
+        $amount = self::checkTypes($amount, $types);
+
+        $this->amount = $amount;
     }
 
     /**
@@ -98,54 +125,27 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @return decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     * @return QuantitativeValue
      */
-    public function getAmount()
+    public function getLoanTerm()
     {
-        return $this->amount;
+        return $this->loanTerm;
     }
 
     /**
-     * @param decimal|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $amount
+     * @param QuantitativeValue $loanTerm
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAmount($amount)
+    public function setLoanTerm($loanTerm)
     {
         $types = array(
-            "decimal",
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "null",
+            "QuantitativeValue",
         );
 
-        $amount = self::checkTypes($amount, $types);
+        $loanTerm = self::checkTypes($loanTerm, $types);
 
-        $this->amount = $amount;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    public function getRequiredCollateral()
-    {
-        return $this->requiredCollateral;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $requiredCollateral
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRequiredCollateral($requiredCollateral)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
-        );
-
-        $requiredCollateral = self::checkTypes($requiredCollateral, $types);
-
-        $this->requiredCollateral = $requiredCollateral;
+        $this->loanTerm = $loanTerm;
     }
 
 }

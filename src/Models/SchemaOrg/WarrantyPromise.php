@@ -16,6 +16,14 @@ class WarrantyPromise extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
+     * The scope of the warranty promise.
+     *
+     *
+     * @var \OpenActive\Enums\WarrantyScope|null
+     */
+    protected $warrantyScope;
+
+    /**
      * The duration of the warranty promise. Common unitCode values are ANN for year, MON for months, or DAY for days.
      *
      *
@@ -24,12 +32,29 @@ class WarrantyPromise extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $durationOfWarranty;
 
     /**
-     * The scope of the warranty promise.
-     *
-     *
-     * @var Schema.NET.WarrantyScope|null
+     * @return \OpenActive\Enums\WarrantyScope|null
      */
-    protected $warrantyScope;
+    public function getWarrantyScope()
+    {
+        return $this->warrantyScope;
+    }
+
+    /**
+     * @param \OpenActive\Enums\WarrantyScope|null $warrantyScope
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setWarrantyScope($warrantyScope)
+    {
+        $types = array(
+            "\OpenActive\Enums\WarrantyScope",
+            "null",
+        );
+
+        $warrantyScope = self::checkTypes($warrantyScope, $types);
+
+        $this->warrantyScope = $warrantyScope;
+    }
 
     /**
      * @return QuantitativeValue
@@ -53,31 +78,6 @@ class WarrantyPromise extends \OpenActive\Models\SchemaOrg\StructuredValue
         $durationOfWarranty = self::checkTypes($durationOfWarranty, $types);
 
         $this->durationOfWarranty = $durationOfWarranty;
-    }
-
-    /**
-     * @return Schema.NET.WarrantyScope|null
-     */
-    public function getWarrantyScope()
-    {
-        return $this->warrantyScope;
-    }
-
-    /**
-     * @param Schema.NET.WarrantyScope|null $warrantyScope
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setWarrantyScope($warrantyScope)
-    {
-        $types = array(
-            "Schema.NET.WarrantyScope",
-            "null",
-        );
-
-        $warrantyScope = self::checkTypes($warrantyScope, $types);
-
-        $this->warrantyScope = $warrantyScope;
     }
 
 }

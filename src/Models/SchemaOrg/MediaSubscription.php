@@ -16,14 +16,6 @@ class MediaSubscription extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * The Organization responsible for authenticating the user's subscription. For example, many media apps require a cable/satellite provider to authenticate your subscription before playing media.
-     *
-     *
-     * @var Organization
-     */
-    protected $authenticator;
-
-    /**
      * An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it.
      *
      *
@@ -32,28 +24,12 @@ class MediaSubscription extends \OpenActive\Models\SchemaOrg\Intangible
     protected $expectsAcceptanceOf;
 
     /**
-     * @return Organization
+     * The Organization responsible for authenticating the user's subscription. For example, many media apps require a cable/satellite provider to authenticate your subscription before playing media.
+     *
+     *
+     * @var Organization
      */
-    public function getAuthenticator()
-    {
-        return $this->authenticator;
-    }
-
-    /**
-     * @param Organization $authenticator
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAuthenticator($authenticator)
-    {
-        $types = array(
-            "Organization",
-        );
-
-        $authenticator = self::checkTypes($authenticator, $types);
-
-        $this->authenticator = $authenticator;
-    }
+    protected $authenticator;
 
     /**
      * @return Offer
@@ -77,6 +53,30 @@ class MediaSubscription extends \OpenActive\Models\SchemaOrg\Intangible
         $expectsAcceptanceOf = self::checkTypes($expectsAcceptanceOf, $types);
 
         $this->expectsAcceptanceOf = $expectsAcceptanceOf;
+    }
+
+    /**
+     * @return Organization
+     */
+    public function getAuthenticator()
+    {
+        return $this->authenticator;
+    }
+
+    /**
+     * @param Organization $authenticator
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAuthenticator($authenticator)
+    {
+        $types = array(
+            "Organization",
+        );
+
+        $authenticator = self::checkTypes($authenticator, $types);
+
+        $this->authenticator = $authenticator;
     }
 
 }

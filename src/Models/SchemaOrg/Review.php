@@ -16,20 +16,12 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * The rating given in this review. Note that reviews can themselves be rated. The <code>reviewRating</code> applies to rating given by the review. The <a class="localLink" href="https://schema.org/aggregateRating">aggregateRating</a> property applies to the review itself, as a creative work.
+     * This Review or Rating is relevant to this part or facet of the itemReviewed.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Rating
+     * @var string
      */
-    protected $reviewRating;
-
-    /**
-     * The item that is being reviewed/rated.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $itemReviewed;
+    protected $reviewAspect;
 
     /**
      * The actual body of the review.
@@ -40,59 +32,43 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $reviewBody;
 
     /**
-     * This Review or Rating is relevant to this part or facet of the itemReviewed.
+     * The item that is being reviewed/rated.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\Thing
      */
-    protected $reviewAspect;
+    protected $itemReviewed;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Rating
+     * The rating given in this review. Note that reviews can themselves be rated. The <code>reviewRating</code> applies to rating given by the review. The <a class="localLink" href="https://schema.org/aggregateRating">aggregateRating</a> property applies to the review itself, as a creative work.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Rating
      */
-    public function getReviewRating()
+    protected $reviewRating;
+
+    /**
+     * @return string
+     */
+    public function getReviewAspect()
     {
-        return $this->reviewRating;
+        return $this->reviewAspect;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Rating $reviewRating
+     * @param string $reviewAspect
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setReviewRating($reviewRating)
+    public function setReviewAspect($reviewAspect)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Rating",
+            "string",
         );
 
-        $reviewRating = self::checkTypes($reviewRating, $types);
+        $reviewAspect = self::checkTypes($reviewAspect, $types);
 
-        $this->reviewRating = $reviewRating;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getItemReviewed()
-    {
-        return $this->itemReviewed;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $itemReviewed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setItemReviewed($itemReviewed)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
-        );
-
-        $itemReviewed = self::checkTypes($itemReviewed, $types);
-
-        $this->itemReviewed = $itemReviewed;
+        $this->reviewAspect = $reviewAspect;
     }
 
     /**
@@ -120,27 +96,51 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\Thing
      */
-    public function getReviewAspect()
+    public function getItemReviewed()
     {
-        return $this->reviewAspect;
+        return $this->itemReviewed;
     }
 
     /**
-     * @param string $reviewAspect
+     * @param \OpenActive\Models\SchemaOrg\Thing $itemReviewed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setReviewAspect($reviewAspect)
+    public function setItemReviewed($itemReviewed)
     {
         $types = array(
-            "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
         );
 
-        $reviewAspect = self::checkTypes($reviewAspect, $types);
+        $itemReviewed = self::checkTypes($itemReviewed, $types);
 
-        $this->reviewAspect = $reviewAspect;
+        $this->itemReviewed = $itemReviewed;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Rating
+     */
+    public function getReviewRating()
+    {
+        return $this->reviewRating;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Rating $reviewRating
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReviewRating($reviewRating)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Rating",
+        );
+
+        $reviewRating = self::checkTypes($reviewRating, $types);
+
+        $this->reviewRating = $reviewRating;
     }
 
 }

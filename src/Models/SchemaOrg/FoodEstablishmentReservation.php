@@ -16,14 +16,12 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. e.g. John wrote a book from <em>January</em> to December. For media, including audio and video, it's the time offset of the start of a clip within a larger file.<br/><br/>
-     * 
-     * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
+     * Number of people the reservation should accommodate.
      *
      *
-     * @var string|DateTime|null
+     * @var int|QuantitativeValue|null
      */
-    protected $startTime;
+    protected $partySize;
 
     /**
      * The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. e.g. John wrote a book from January to <em>December</em>. For media, including audio and video, it's the time offset of the end of a clip within a larger file.<br/><br/>
@@ -36,37 +34,39 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     protected $endTime;
 
     /**
-     * Number of people the reservation should accommodate.
+     * The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. e.g. John wrote a book from <em>January</em> to December. For media, including audio and video, it's the time offset of the start of a clip within a larger file.<br/><br/>
+     * 
+     * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      *
      *
-     * @var int|QuantitativeValue|null
+     * @var string|DateTime|null
      */
-    protected $partySize;
+    protected $startTime;
 
     /**
-     * @return string|DateTime|null
+     * @return int|QuantitativeValue|null
      */
-    public function getStartTime()
+    public function getPartySize()
     {
-        return $this->startTime;
+        return $this->partySize;
     }
 
     /**
-     * @param string|DateTime|null $startTime
+     * @param int|QuantitativeValue|null $partySize
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setStartTime($startTime)
+    public function setPartySize($partySize)
     {
         $types = array(
-            "Time",
-            "DateTime",
+            "int",
+            "QuantitativeValue",
             "null",
         );
 
-        $startTime = self::checkTypes($startTime, $types);
+        $partySize = self::checkTypes($partySize, $types);
 
-        $this->startTime = $startTime;
+        $this->partySize = $partySize;
     }
 
     /**
@@ -96,29 +96,29 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * @return int|QuantitativeValue|null
+     * @return string|DateTime|null
      */
-    public function getPartySize()
+    public function getStartTime()
     {
-        return $this->partySize;
+        return $this->startTime;
     }
 
     /**
-     * @param int|QuantitativeValue|null $partySize
+     * @param string|DateTime|null $startTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPartySize($partySize)
+    public function setStartTime($startTime)
     {
         $types = array(
-            "int",
-            "QuantitativeValue",
+            "Time",
+            "DateTime",
             "null",
         );
 
-        $partySize = self::checkTypes($partySize, $types);
+        $startTime = self::checkTypes($startTime, $types);
 
-        $this->partySize = $partySize;
+        $this->startTime = $startTime;
     }
 
 }

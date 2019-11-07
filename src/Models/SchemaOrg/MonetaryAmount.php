@@ -16,12 +16,38 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * The lower value of some characteristic or property.
+     * The upper value of some characteristic or property.
      *
      *
-     * @var decimal|null
+     * @var float|null
      */
-    protected $minValue;
+    protected $maxValue;
+
+    /**
+     * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
+     *
+     *
+     * @var DateTime|null
+     */
+    protected $validThrough;
+
+    /**
+     * The date when the item becomes valid.
+     *
+     *
+     * @var DateTime|null
+     */
+    protected $validFrom;
+
+    /**
+     * The currency in which the monetary amount is expressed.<br/><br/>
+     * 
+     * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
+     *
+     *
+     * @var string
+     */
+    protected $currency;
 
     /**
      * The value of the quantitative value or property value node.<br/><br/>
@@ -35,144 +61,41 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
      * 
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null
+     * @var \OpenActive\Models\SchemaOrg\StructuredValue|string|float|bool|null
      */
     protected $value;
 
     /**
-     * The currency in which the monetary amount is expressed.<br/><br/>
-     * 
-     * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
+     * The lower value of some characteristic or property.
      *
      *
-     * @var string
+     * @var float|null
      */
-    protected $currency;
+    protected $minValue;
 
     /**
-     * The date when the item becomes valid.
-     *
-     *
-     * @var DateTime|null
+     * @return float|null
      */
-    protected $validFrom;
-
-    /**
-     * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $validThrough;
-
-    /**
-     * The upper value of some characteristic or property.
-     *
-     *
-     * @var decimal|null
-     */
-    protected $maxValue;
-
-    /**
-     * @return decimal|null
-     */
-    public function getMinValue()
+    public function getMaxValue()
     {
-        return $this->minValue;
+        return $this->maxValue;
     }
 
     /**
-     * @param decimal|null $minValue
+     * @param float|null $maxValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMinValue($minValue)
+    public function setMaxValue($maxValue)
     {
         $types = array(
-            "decimal",
+            "float",
             "null",
         );
 
-        $minValue = self::checkTypes($minValue, $types);
+        $maxValue = self::checkTypes($maxValue, $types);
 
-        $this->minValue = $minValue;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\StructuredValue|string|decimal|bool|null $value
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setValue($value)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\StructuredValue",
-            "string",
-            "decimal",
-            "bool",
-            "null",
-        );
-
-        $value = self::checkTypes($value, $types);
-
-        $this->value = $value;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCurrency()
-    {
-        return $this->currency;
-    }
-
-    /**
-     * @param string $currency
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCurrency($currency)
-    {
-        $types = array(
-            "string",
-        );
-
-        $currency = self::checkTypes($currency, $types);
-
-        $this->currency = $currency;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getValidFrom()
-    {
-        return $this->validFrom;
-    }
-
-    /**
-     * @param DateTime|null $validFrom
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setValidFrom($validFrom)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $validFrom = self::checkTypes($validFrom, $types);
-
-        $this->validFrom = $validFrom;
+        $this->maxValue = $maxValue;
     }
 
     /**
@@ -201,28 +124,105 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return decimal|null
+     * @return DateTime|null
      */
-    public function getMaxValue()
+    public function getValidFrom()
     {
-        return $this->maxValue;
+        return $this->validFrom;
     }
 
     /**
-     * @param decimal|null $maxValue
+     * @param DateTime|null $validFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMaxValue($maxValue)
+    public function setValidFrom($validFrom)
     {
         $types = array(
-            "decimal",
+            "DateTime",
             "null",
         );
 
-        $maxValue = self::checkTypes($maxValue, $types);
+        $validFrom = self::checkTypes($validFrom, $types);
 
-        $this->maxValue = $maxValue;
+        $this->validFrom = $validFrom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param string $currency
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCurrency($currency)
+    {
+        $types = array(
+            "string",
+        );
+
+        $currency = self::checkTypes($currency, $types);
+
+        $this->currency = $currency;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\StructuredValue|string|float|bool|null
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\StructuredValue|string|float|bool|null $value
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValue($value)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\StructuredValue",
+            "string",
+            "float",
+            "bool",
+            "null",
+        );
+
+        $value = self::checkTypes($value, $types);
+
+        $this->value = $value;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getMinValue()
+    {
+        return $this->minValue;
+    }
+
+    /**
+     * @param float|null $minValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMinValue($minValue)
+    {
+        $types = array(
+            "float",
+            "null",
+        );
+
+        $minValue = self::checkTypes($minValue, $types);
+
+        $this->minValue = $minValue;
     }
 
 }

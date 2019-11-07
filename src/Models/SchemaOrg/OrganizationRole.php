@@ -19,12 +19,12 @@ class OrganizationRole extends \OpenActive\Models\SchemaOrg\Role
      * A number associated with a role in an organization, for example, the number on an athlete's jersey.
      *
      *
-     * @var decimal|null
+     * @var float|null
      */
     protected $numberedPosition;
 
     /**
-     * @return decimal|null
+     * @return float|null
      */
     public function getNumberedPosition()
     {
@@ -32,14 +32,14 @@ class OrganizationRole extends \OpenActive\Models\SchemaOrg\Role
     }
 
     /**
-     * @param decimal|null $numberedPosition
+     * @param float|null $numberedPosition
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberedPosition($numberedPosition)
     {
         $types = array(
-            "decimal",
+            "float",
             "null",
         );
 
