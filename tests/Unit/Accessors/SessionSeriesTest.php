@@ -37,7 +37,7 @@ class SessionSeriesTest extends TestCase
 
         // Accessor for SessionSeries.subEvent.name returns correct value
         $this->assertEquals(
-            $decodedJsonSessionSeries["subEvent"]["name"],
+            $decodedJsonSessionSeries["subEvent"][0]["name"],
             $sessionSeries->getSubEvent()->getName()
         );
     }
