@@ -56,6 +56,17 @@ class RpdeItem implements TypeCheckerInterface
         }
     }
 
+
+    public static function fieldList() {
+        return [
+            'state' => 'state',
+            'kind' => 'kind',
+            'id' => 'id',
+            'modified' => 'modified',
+            'data' => 'data'
+        ];
+    }
+
     /**
      * @return \OpenActive\Rpde\RpdeState
      */
