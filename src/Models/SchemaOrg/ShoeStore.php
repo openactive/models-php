@@ -15,4 +15,11 @@ class ShoeStore extends \OpenActive\Models\SchemaOrg\Store
         return "schema:ShoeStore";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

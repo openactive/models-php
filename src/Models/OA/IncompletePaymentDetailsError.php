@@ -15,4 +15,11 @@ class IncompletePaymentDetailsError extends \OpenActive\Models\OA\OpenBookingErr
         return "IncompletePaymentDetailsError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

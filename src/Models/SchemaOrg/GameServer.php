@@ -15,11 +15,21 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:GameServer";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "serverStatus" => "serverStatus",
+            "playersOnline" => "playersOnline",
+            "game" => "game",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Status of a game server.
      *
      *
-     * @var \OpenActive\Enums\GameServerStatus|null
+     * @var \OpenActive\Enums\SchemaOrg\GameServerStatus|null
      */
     protected $serverStatus;
 
@@ -40,7 +50,7 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
     protected $game;
 
     /**
-     * @return \OpenActive\Enums\GameServerStatus|null
+     * @return \OpenActive\Enums\SchemaOrg\GameServerStatus|null
      */
     public function getServerStatus()
     {
@@ -48,14 +58,14 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Enums\GameServerStatus|null $serverStatus
+     * @param \OpenActive\Enums\SchemaOrg\GameServerStatus|null $serverStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServerStatus($serverStatus)
     {
         $types = array(
-            "\OpenActive\Enums\GameServerStatus",
+            "\OpenActive\Enums\SchemaOrg\GameServerStatus",
             "null",
         );
 

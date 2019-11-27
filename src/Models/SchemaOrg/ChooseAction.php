@@ -15,6 +15,15 @@ class ChooseAction extends \OpenActive\Models\SchemaOrg\AssessAction
         return "schema:ChooseAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "option" => "option",
+            "actionOption" => "actionOption",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A sub property of object. The options subject to this action.
      *

@@ -15,4 +15,11 @@ class Plumber extends \OpenActive\Models\SchemaOrg\HomeAndConstructionBusiness
         return "schema:Plumber";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

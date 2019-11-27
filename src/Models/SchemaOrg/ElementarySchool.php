@@ -15,4 +15,11 @@ class ElementarySchool extends \OpenActive\Models\SchemaOrg\EducationalOrganizat
         return "schema:ElementarySchool";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

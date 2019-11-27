@@ -15,6 +15,20 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
         return "schema:QuantitativeValue";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "unitText" => "unitText",
+            "maxValue" => "maxValue",
+            "valueReference" => "valueReference",
+            "additionalProperty" => "additionalProperty",
+            "value" => "value",
+            "minValue" => "minValue",
+            "unitCode" => "unitCode",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for
      * <a href='unitCode'>unitCode</a>.
@@ -36,7 +50,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Enums\QualitativeValue|null
+     * @var \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
      */
     protected $valueReference;
 
@@ -46,7 +60,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
      *
      *
-     * @var PropertyValue
+     * @var \OpenActive\Models\SchemaOrg\PropertyValue
      */
     protected $additionalProperty;
 
@@ -132,7 +146,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Enums\QualitativeValue|null
+     * @return \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
      */
     public function getValueReference()
     {
@@ -140,7 +154,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Enumeration|PropertyValue|QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Enums\QualitativeValue|null $valueReference
+     * @param \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Enums\SchemaOrg\QualitativeValue|null $valueReference
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -148,10 +162,10 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\Enumeration",
-            "PropertyValue",
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "\OpenActive\Models\SchemaOrg\StructuredValue",
-            "\OpenActive\Enums\QualitativeValue",
+            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
             "null",
         );
 
@@ -161,7 +175,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return PropertyValue
+     * @return \OpenActive\Models\SchemaOrg\PropertyValue
      */
     public function getAdditionalProperty()
     {
@@ -169,14 +183,14 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param PropertyValue $additionalProperty
+     * @param \OpenActive\Models\SchemaOrg\PropertyValue $additionalProperty
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAdditionalProperty($additionalProperty)
     {
         $types = array(
-            "PropertyValue",
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
         );
 
         $additionalProperty = self::checkTypes($additionalProperty, $types);

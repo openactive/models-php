@@ -15,4 +15,11 @@ class SpreadsheetDigitalDocument extends \OpenActive\Models\SchemaOrg\DigitalDoc
         return "schema:SpreadsheetDigitalDocument";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

@@ -15,6 +15,15 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
         return "Lease";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "identifier" => "identifier",
+            "leaseExpires" => "leaseExpires",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Optional identifier of the Lease if useful for audit or debugging purposes.
      *
@@ -22,7 +31,7 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|PropertyValue|PropertyValue[]|null
+     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -35,7 +44,7 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
     protected $leaseExpires;
 
     /**
-     * @return int|string|PropertyValue|PropertyValue[]|null
+     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -43,7 +52,7 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param int|string|PropertyValue|PropertyValue[]|null $identifier
+     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -52,8 +61,8 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
         $types = array(
             "int",
             "string",
-            "PropertyValue",
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue",
+            "\OpenActive\Models\OA\PropertyValue[]",
             "null",
         );
 

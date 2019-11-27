@@ -15,6 +15,17 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:Review";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "reviewAspect" => "reviewAspect",
+            "reviewBody" => "reviewBody",
+            "itemReviewed" => "itemReviewed",
+            "reviewRating" => "reviewRating",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * This Review or Rating is relevant to this part or facet of the itemReviewed.
      *

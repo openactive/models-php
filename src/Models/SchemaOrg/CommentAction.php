@@ -15,6 +15,14 @@ class CommentAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
         return "schema:CommentAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "resultComment" => "resultComment",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A sub property of result. The Comment created or sent as a result of this action.
      *

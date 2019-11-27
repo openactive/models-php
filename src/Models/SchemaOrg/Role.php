@@ -15,6 +15,17 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:Role";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "roleName" => "roleName",
+            "namedPosition" => "namedPosition",
+            "startDate" => "startDate",
+            "endDate" => "endDate",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A role played, performed or filled by a person or organization. For example, the team of creators for a comic book might fill the roles named 'inker', 'penciller', and 'letterer'; or an athlete in a SportsTeam might play in the position named 'Quarterback'.
      *

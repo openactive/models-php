@@ -15,6 +15,16 @@ class ProductModel extends \OpenActive\Models\SchemaOrg\Product
         return "schema:ProductModel";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "isVariantOf" => "isVariantOf",
+            "successorOf" => "successorOf",
+            "predecessorOf" => "predecessorOf",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A pointer to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive.
      *

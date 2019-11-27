@@ -15,6 +15,37 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:SoftwareApplication";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "applicationSuite" => "applicationSuite",
+            "installUrl" => "installUrl",
+            "memoryRequirements" => "memoryRequirements",
+            "downloadUrl" => "downloadUrl",
+            "screenshot" => "screenshot",
+            "permissions" => "permissions",
+            "countriesSupported" => "countriesSupported",
+            "availableOnDevice" => "availableOnDevice",
+            "softwareHelp" => "softwareHelp",
+            "applicationSubCategory" => "applicationSubCategory",
+            "softwareAddOn" => "softwareAddOn",
+            "device" => "device",
+            "releaseNotes" => "releaseNotes",
+            "softwareVersion" => "softwareVersion",
+            "softwareRequirements" => "softwareRequirements",
+            "fileSize" => "fileSize",
+            "operatingSystem" => "operatingSystem",
+            "countriesNotSupported" => "countriesNotSupported",
+            "supportingData" => "supportingData",
+            "processorRequirements" => "processorRequirements",
+            "storageRequirements" => "storageRequirements",
+            "applicationCategory" => "applicationCategory",
+            "requirements" => "requirements",
+            "featureList" => "featureList",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The name of the application suite to which the application belongs (e.g. Excel belongs to Office).
      *
@@ -51,7 +82,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A link to a screenshot image of the app.
      *
      *
-     * @var ImageObject|string
+     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
      */
     protected $screenshot;
 
@@ -304,7 +335,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return ImageObject|string
+     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
      */
     public function getScreenshot()
     {
@@ -312,14 +343,14 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param ImageObject|string $screenshot
+     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $screenshot
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setScreenshot($screenshot)
     {
         $types = array(
-            "ImageObject",
+            "\OpenActive\Models\SchemaOrg\ImageObject",
             "string",
         );
 

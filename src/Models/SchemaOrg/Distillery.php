@@ -15,4 +15,11 @@ class Distillery extends \OpenActive\Models\SchemaOrg\FoodEstablishment
         return "schema:Distillery";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

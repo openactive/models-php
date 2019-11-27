@@ -16,6 +16,16 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyVa
         return "PropertyValueSpecification";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "name" => "name",
+            "description" => "description",
+            "valueRequired" => "valueRequired",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Display label for the field.
      *

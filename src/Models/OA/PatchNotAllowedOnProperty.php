@@ -15,4 +15,11 @@ class PatchNotAllowedOnProperty extends \OpenActive\Models\OA\OpenBookingError
         return "PatchNotAllowedOnProperty";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

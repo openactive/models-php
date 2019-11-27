@@ -15,6 +15,14 @@ class SocialMediaPosting extends \OpenActive\Models\SchemaOrg\Article
         return "schema:SocialMediaPosting";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "sharedContent" => "sharedContent",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A CreativeWork such as an image, video, or audio clip shared as part of this posting.
      *

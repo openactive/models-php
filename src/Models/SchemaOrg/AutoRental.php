@@ -15,4 +15,11 @@ class AutoRental extends \OpenActive\Models\SchemaOrg\AutomotiveBusiness
         return "schema:AutoRental";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

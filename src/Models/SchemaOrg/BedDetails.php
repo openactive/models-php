@@ -15,6 +15,15 @@ class BedDetails extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:BedDetails";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "numberOfBeds" => "numberOfBeds",
+            "typeOfBed" => "typeOfBed",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The quantity of the given bed type available in the HotelRoom, Suite, House, or Apartment.
      *

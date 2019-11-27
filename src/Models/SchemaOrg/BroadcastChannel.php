@@ -15,6 +15,19 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:BroadcastChannel";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "genre" => "genre",
+            "providesBroadcastService" => "providesBroadcastService",
+            "inBroadcastLineup" => "inBroadcastLineup",
+            "broadcastServiceTier" => "broadcastServiceTier",
+            "broadcastChannelId" => "broadcastChannelId",
+            "broadcastFrequency" => "broadcastFrequency",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Genre of the creative work, broadcast channel or group.
      *

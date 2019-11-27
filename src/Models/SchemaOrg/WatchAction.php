@@ -15,4 +15,11 @@ class WatchAction extends \OpenActive\Models\SchemaOrg\ConsumeAction
         return "schema:WatchAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

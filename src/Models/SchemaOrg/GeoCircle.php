@@ -15,11 +15,20 @@ class GeoCircle extends \OpenActive\Models\SchemaOrg\GeoShape
         return "schema:GeoCircle";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "geoMidpoint" => "geoMidpoint",
+            "geoRadius" => "geoRadius",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Indicates the GeoCoordinates at the centre of a GeoShape e.g. GeoCircle.
      *
      *
-     * @var GeoCoordinates
+     * @var \OpenActive\Models\SchemaOrg\GeoCoordinates
      */
     protected $geoMidpoint;
 
@@ -32,7 +41,7 @@ class GeoCircle extends \OpenActive\Models\SchemaOrg\GeoShape
     protected $geoRadius;
 
     /**
-     * @return GeoCoordinates
+     * @return \OpenActive\Models\SchemaOrg\GeoCoordinates
      */
     public function getGeoMidpoint()
     {
@@ -40,14 +49,14 @@ class GeoCircle extends \OpenActive\Models\SchemaOrg\GeoShape
     }
 
     /**
-     * @param GeoCoordinates $geoMidpoint
+     * @param \OpenActive\Models\SchemaOrg\GeoCoordinates $geoMidpoint
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGeoMidpoint($geoMidpoint)
     {
         $types = array(
-            "GeoCoordinates",
+            "\OpenActive\Models\SchemaOrg\GeoCoordinates",
         );
 
         $geoMidpoint = self::checkTypes($geoMidpoint, $types);

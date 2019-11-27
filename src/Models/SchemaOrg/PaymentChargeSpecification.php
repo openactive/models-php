@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [PriceSpecification](https://schema.org/PriceSpecification), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
@@ -16,11 +15,20 @@ class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
         return "schema:PaymentChargeSpecification";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "appliesToDeliveryMethod" => "appliesToDeliveryMethod",
+            "appliesToPaymentMethod" => "appliesToPaymentMethod",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The delivery method(s) to which the delivery charge or payment charge specification applies.
      *
      *
-     * @var \OpenActive\Enums\DeliveryMethod|null
+     * @var \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
      */
     protected $appliesToDeliveryMethod;
 
@@ -28,12 +36,12 @@ class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
      * The payment method(s) to which the payment charge specification applies.
      *
      *
-     * @var \OpenActive\Enums\PaymentMethod|null
+     * @var \OpenActive\Enums\SchemaOrg\PaymentMethod|null
      */
     protected $appliesToPaymentMethod;
 
     /**
-     * @return \OpenActive\Enums\DeliveryMethod|null
+     * @return \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
      */
     public function getAppliesToDeliveryMethod()
     {
@@ -41,14 +49,14 @@ class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
     }
 
     /**
-     * @param \OpenActive\Enums\DeliveryMethod|null $appliesToDeliveryMethod
+     * @param \OpenActive\Enums\SchemaOrg\DeliveryMethod|null $appliesToDeliveryMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAppliesToDeliveryMethod($appliesToDeliveryMethod)
     {
         $types = array(
-            "\OpenActive\Enums\DeliveryMethod",
+            "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
             "null",
         );
 
@@ -58,7 +66,7 @@ class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
     }
 
     /**
-     * @return \OpenActive\Enums\PaymentMethod|null
+     * @return \OpenActive\Enums\SchemaOrg\PaymentMethod|null
      */
     public function getAppliesToPaymentMethod()
     {
@@ -66,14 +74,14 @@ class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
     }
 
     /**
-     * @param \OpenActive\Enums\PaymentMethod|null $appliesToPaymentMethod
+     * @param \OpenActive\Enums\SchemaOrg\PaymentMethod|null $appliesToPaymentMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAppliesToPaymentMethod($appliesToPaymentMethod)
     {
         $types = array(
-            "\OpenActive\Enums\PaymentMethod",
+            "\OpenActive\Enums\SchemaOrg\PaymentMethod",
             "null",
         );
 

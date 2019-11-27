@@ -15,4 +15,11 @@ class Electrician extends \OpenActive\Models\SchemaOrg\HomeAndConstructionBusine
         return "schema:Electrician";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

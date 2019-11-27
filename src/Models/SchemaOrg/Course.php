@@ -15,23 +15,25 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:Course";
     }
 
-    /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * An related video object.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\VideoObject
-     */
-    protected $video;
+    public static function fieldList() {
+        $fields = [
+            "occupationalCredentialAwarded" => "occupationalCredentialAwarded",
+            "courseCode" => "courseCode",
+            "hasCourseInstance" => "hasCourseInstance",
+            "educationalCredentialAwarded" => "educationalCredentialAwarded",
+            "coursePrerequisites" => "coursePrerequisites",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * An associated logo for a course.
+     * A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.
      *
      *
-     * @var ImageObject
+     * @var \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
      */
-    protected $logo;
+    protected $occupationalCredentialAwarded;
 
     /**
      * The identifier for the <a class="localLink" href="https://schema.org/Course">Course</a> used by the course <a class="localLink" href="https://schema.org/provider">provider</a> (e.g. CS101 or 6.001).
@@ -45,7 +47,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
      * An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students.
      *
      *
-     * @var CourseInstance
+     * @var \OpenActive\Models\SchemaOrg\CourseInstance
      */
     protected $hasCourseInstance;
 
@@ -61,56 +63,33 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Requirements for taking the Course. May be completion of another <a class="localLink" href="https://schema.org/Course">Course</a> or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using <a class="localLink" href="https://schema.org/AlignmentObject">AlignmentObject</a>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\AlignmentObject|string|Course
+     * @var \OpenActive\Models\SchemaOrg\AlignmentObject|string|\OpenActive\Models\SchemaOrg\Course
      */
     protected $coursePrerequisites;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\VideoObject
+     * @return \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
      */
-    public function getVideo()
+    public function getOccupationalCredentialAwarded()
     {
-        return $this->video;
+        return $this->occupationalCredentialAwarded;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\VideoObject $video
+     * @param \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string $occupationalCredentialAwarded
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setVideo($video)
+    public function setOccupationalCredentialAwarded($occupationalCredentialAwarded)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\VideoObject",
+            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
+            "string",
         );
 
-        $video = self::checkTypes($video, $types);
+        $occupationalCredentialAwarded = self::checkTypes($occupationalCredentialAwarded, $types);
 
-        $this->video = $video;
-    }
-
-    /**
-     * @return ImageObject
-     */
-    public function getLogo()
-    {
-        return $this->logo;
-    }
-
-    /**
-     * @param ImageObject $logo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLogo($logo)
-    {
-        $types = array(
-            "ImageObject",
-        );
-
-        $logo = self::checkTypes($logo, $types);
-
-        $this->logo = $logo;
+        $this->occupationalCredentialAwarded = $occupationalCredentialAwarded;
     }
 
     /**
@@ -138,7 +117,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return CourseInstance
+     * @return \OpenActive\Models\SchemaOrg\CourseInstance
      */
     public function getHasCourseInstance()
     {
@@ -146,14 +125,14 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param CourseInstance $hasCourseInstance
+     * @param \OpenActive\Models\SchemaOrg\CourseInstance $hasCourseInstance
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasCourseInstance($hasCourseInstance)
     {
         $types = array(
-            "CourseInstance",
+            "\OpenActive\Models\SchemaOrg\CourseInstance",
         );
 
         $hasCourseInstance = self::checkTypes($hasCourseInstance, $types);
@@ -187,7 +166,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AlignmentObject|string|Course
+     * @return \OpenActive\Models\SchemaOrg\AlignmentObject|string|\OpenActive\Models\SchemaOrg\Course
      */
     public function getCoursePrerequisites()
     {
@@ -195,7 +174,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AlignmentObject|string|Course $coursePrerequisites
+     * @param \OpenActive\Models\SchemaOrg\AlignmentObject|string|\OpenActive\Models\SchemaOrg\Course $coursePrerequisites
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -204,7 +183,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
         $types = array(
             "\OpenActive\Models\SchemaOrg\AlignmentObject",
             "string",
-            "Course",
+            "\OpenActive\Models\SchemaOrg\Course",
         );
 
         $coursePrerequisites = self::checkTypes($coursePrerequisites, $types);

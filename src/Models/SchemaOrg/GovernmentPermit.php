@@ -15,4 +15,11 @@ class GovernmentPermit extends \OpenActive\Models\SchemaOrg\Permit
         return "schema:GovernmentPermit";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

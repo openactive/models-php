@@ -15,6 +15,37 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
         return "FacilityUse";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "identifier" => "identifier",
+            "name" => "name",
+            "description" => "description",
+            "accessibilityInformation" => "accessibilityInformation",
+            "accessibilitySupport" => "accessibilitySupport",
+            "activity" => "activity",
+            "attendeeInstructions" => "attendeeInstructions",
+            "category" => "category",
+            "event" => "event",
+            "hoursAvailable" => "hoursAvailable",
+            "image" => "image",
+            "individualFacilityUse" => "individualFacilityUse",
+            "location" => "location",
+            "offers" => "offers",
+            "potentialAction" => "potentialAction",
+            "provider" => "provider",
+            "url" => "url",
+            "isWheelchairAccessible" => "beta:isWheelchairAccessible",
+            "facilitySetting" => "beta:facilitySetting",
+            "facilityType" => "beta:facilityType",
+            "offerValidityPeriod" => "beta:offerValidityPeriod",
+            "sportsActivityLocation" => "beta:sportsActivityLocation",
+            "video" => "beta:video",
+            "formattedDescription" => "beta:formattedDescription",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A local non-URI identifier for the resource
      *
@@ -22,7 +53,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|PropertyValue|PropertyValue[]|null
+     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -73,7 +104,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * ]
      * ```
      *
-     * @var Concept[]
+     * @var \OpenActive\Models\OA\Concept[]
      */
     protected $accessibilitySupport;
 
@@ -91,7 +122,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * ]
      * ```
      *
-     * @var Concept[]
+     * @var \OpenActive\Models\OA\Concept[]
      */
     protected $activity;
 
@@ -120,7 +151,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * ]
      * ```
      *
-     * @var string[]|Concept[]
+     * @var string[]|\OpenActive\Models\OA\Concept[]
      */
     protected $category;
 
@@ -141,7 +172,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * ]
      * ```
      *
-     * @var Slot[]
+     * @var \OpenActive\Models\OA\Slot[]
      */
     protected $event;
 
@@ -149,7 +180,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * The times the facility use is available
      *
      *
-     * @var OpeningHoursSpecification[]
+     * @var \OpenActive\Models\OA\OpeningHoursSpecification[]
      */
     protected $hoursAvailable;
 
@@ -166,7 +197,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * ]
      * ```
      *
-     * @var ImageObject[]
+     * @var \OpenActive\Models\OA\ImageObject[]
      */
     protected $image;
 
@@ -183,7 +214,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * ]
      * ```
      *
-     * @var IndividualFacilityUse[]
+     * @var \OpenActive\Models\OA\IndividualFacilityUse[]
      */
     protected $individualFacilityUse;
 
@@ -213,7 +244,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * }
      * ```
      *
-     * @var Place
+     * @var \OpenActive\Models\OA\Place
      */
     protected $location;
 
@@ -231,7 +262,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * }
      * ```
      *
-     * @var Offer[]
+     * @var \OpenActive\Models\OA\Offer[]
      */
     protected $offers;
 
@@ -253,7 +284,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * ]
      * ```
      *
-     * @var Action[]
+     * @var \OpenActive\Models\OA\Action[]
      */
     protected $potentialAction;
 
@@ -268,7 +299,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * }
      * ```
      *
-     * @var Organization
+     * @var \OpenActive\Models\OA\Organization
      */
     protected $provider;
 
@@ -284,7 +315,84 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     protected $url;
 
     /**
-     * @return int|string|PropertyValue|PropertyValue[]|null
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * A property that details whether the event is suitable for wheelchair access. Placed on Event as this field could be used to detail whether the Event is suitable, as well as the Place.
+     * 
+     * If you are using this property, please join the discussion at proposal [#166](https://github.com/openactive/modelling-opportunity-data/issues/166).
+     *
+     *
+     * @var bool|null
+     */
+    protected $isWheelchairAccessible;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Whether the event or facility is indoor or outdoor.
+     * 
+     * If you are using this property, please join the discussion at proposal [#1](https://github.com/openactive/facility-types/issues/1).
+     *
+     *
+     * @var \OpenActive\Enums\FacilitySettingType|null
+     */
+    protected $facilitySetting;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * The type of facility in use.
+     * 
+     * If you are using this property, please join the discussion at proposal [#1](https://github.com/openactive/facility-types/issues/1).
+     *
+     *
+     * @var \OpenActive\Models\Concept[]
+     */
+    protected $facilityType;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Duration before the event for which the associated Offers are valid
+     * 
+     * If you are using this property, please join the discussion at proposal [#204](https://github.com/openactive/modelling-opportunity-data/issues/204).
+     *
+     *
+     * @var DateInterval|null
+     */
+    protected $offerValidityPeriod;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Internal location of the event, e.g. Court 1
+     * 
+     * If you are using this property, please join the discussion at proposal [#110](https://github.com/openactive/modelling-opportunity-data/issues/110).
+     *
+     *
+     * @var \OpenActive\Models\SportsActivityLocation[]
+     */
+    protected $sportsActivityLocation;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * An related video object.
+     * 
+     * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\VideoObject[]
+     */
+    protected $video;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * 
+     * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
+     *
+     *
+     * @var string
+     */
+    protected $formattedDescription;
+
+    /**
+     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -292,7 +400,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param int|string|PropertyValue|PropertyValue[]|null $identifier
+     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -301,8 +409,8 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
         $types = array(
             "int",
             "string",
-            "PropertyValue",
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue",
+            "\OpenActive\Models\OA\PropertyValue[]",
             "null",
         );
 
@@ -384,7 +492,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return Concept[]
+     * @return \OpenActive\Models\OA\Concept[]
      */
     public function getAccessibilitySupport()
     {
@@ -392,14 +500,14 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param Concept[] $accessibilitySupport
+     * @param \OpenActive\Models\OA\Concept[] $accessibilitySupport
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessibilitySupport($accessibilitySupport)
     {
         $types = array(
-            "Concept[]",
+            "\OpenActive\Models\OA\Concept[]",
         );
 
         $accessibilitySupport = self::checkTypes($accessibilitySupport, $types);
@@ -408,7 +516,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return Concept[]
+     * @return \OpenActive\Models\OA\Concept[]
      */
     public function getActivity()
     {
@@ -416,14 +524,14 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param Concept[] $activity
+     * @param \OpenActive\Models\OA\Concept[] $activity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActivity($activity)
     {
         $types = array(
-            "Concept[]",
+            "\OpenActive\Models\OA\Concept[]",
         );
 
         $activity = self::checkTypes($activity, $types);
@@ -456,7 +564,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return string[]|Concept[]
+     * @return string[]|\OpenActive\Models\OA\Concept[]
      */
     public function getCategory()
     {
@@ -464,7 +572,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param string[]|Concept[] $category
+     * @param string[]|\OpenActive\Models\OA\Concept[] $category
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -472,7 +580,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     {
         $types = array(
             "string[]",
-            "Concept[]",
+            "\OpenActive\Models\OA\Concept[]",
         );
 
         $category = self::checkTypes($category, $types);
@@ -481,7 +589,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return Slot[]
+     * @return \OpenActive\Models\OA\Slot[]
      */
     public function getEvent()
     {
@@ -489,14 +597,14 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param Slot[] $event
+     * @param \OpenActive\Models\OA\Slot[] $event
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEvent($event)
     {
         $types = array(
-            "Slot[]",
+            "\OpenActive\Models\OA\Slot[]",
         );
 
         $event = self::checkTypes($event, $types);
@@ -505,7 +613,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return OpeningHoursSpecification[]
+     * @return \OpenActive\Models\OA\OpeningHoursSpecification[]
      */
     public function getHoursAvailable()
     {
@@ -513,14 +621,14 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param OpeningHoursSpecification[] $hoursAvailable
+     * @param \OpenActive\Models\OA\OpeningHoursSpecification[] $hoursAvailable
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHoursAvailable($hoursAvailable)
     {
         $types = array(
-            "OpeningHoursSpecification[]",
+            "\OpenActive\Models\OA\OpeningHoursSpecification[]",
         );
 
         $hoursAvailable = self::checkTypes($hoursAvailable, $types);
@@ -529,7 +637,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return ImageObject[]
+     * @return \OpenActive\Models\OA\ImageObject[]
      */
     public function getImage()
     {
@@ -537,14 +645,14 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param ImageObject[] $image
+     * @param \OpenActive\Models\OA\ImageObject[] $image
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setImage($image)
     {
         $types = array(
-            "ImageObject[]",
+            "\OpenActive\Models\OA\ImageObject[]",
         );
 
         $image = self::checkTypes($image, $types);
@@ -553,7 +661,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return IndividualFacilityUse[]
+     * @return \OpenActive\Models\OA\IndividualFacilityUse[]
      */
     public function getIndividualFacilityUse()
     {
@@ -561,14 +669,14 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param IndividualFacilityUse[] $individualFacilityUse
+     * @param \OpenActive\Models\OA\IndividualFacilityUse[] $individualFacilityUse
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIndividualFacilityUse($individualFacilityUse)
     {
         $types = array(
-            "IndividualFacilityUse[]",
+            "\OpenActive\Models\OA\IndividualFacilityUse[]",
         );
 
         $individualFacilityUse = self::checkTypes($individualFacilityUse, $types);
@@ -577,7 +685,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return Place
+     * @return \OpenActive\Models\OA\Place
      */
     public function getLocation()
     {
@@ -585,14 +693,14 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param Place $location
+     * @param \OpenActive\Models\OA\Place $location
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLocation($location)
     {
         $types = array(
-            "Place",
+            "\OpenActive\Models\OA\Place",
         );
 
         $location = self::checkTypes($location, $types);
@@ -601,7 +709,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return Offer[]
+     * @return \OpenActive\Models\OA\Offer[]
      */
     public function getOffers()
     {
@@ -609,14 +717,14 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param Offer[] $offers
+     * @param \OpenActive\Models\OA\Offer[] $offers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
         $types = array(
-            "Offer[]",
+            "\OpenActive\Models\OA\Offer[]",
         );
 
         $offers = self::checkTypes($offers, $types);
@@ -625,7 +733,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return Action[]
+     * @return \OpenActive\Models\OA\Action[]
      */
     public function getPotentialAction()
     {
@@ -633,14 +741,14 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param Action[] $potentialAction
+     * @param \OpenActive\Models\OA\Action[] $potentialAction
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPotentialAction($potentialAction)
     {
         $types = array(
-            "Action[]",
+            "\OpenActive\Models\OA\Action[]",
         );
 
         $potentialAction = self::checkTypes($potentialAction, $types);
@@ -649,7 +757,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\OA\Organization
      */
     public function getProvider()
     {
@@ -657,14 +765,14 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param Organization $provider
+     * @param \OpenActive\Models\OA\Organization $provider
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvider($provider)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\OA\Organization",
         );
 
         $provider = self::checkTypes($provider, $types);
@@ -694,6 +802,177 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
         $url = self::checkTypes($url, $types);
 
         $this->url = $url;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getIsWheelchairAccessible()
+    {
+        return $this->isWheelchairAccessible;
+    }
+
+    /**
+     * @param bool|null $isWheelchairAccessible
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsWheelchairAccessible($isWheelchairAccessible)
+    {
+        $types = array(
+            "bool",
+            "null",
+        );
+
+        $isWheelchairAccessible = self::checkTypes($isWheelchairAccessible, $types);
+
+        $this->isWheelchairAccessible = $isWheelchairAccessible;
+    }
+
+    /**
+     * @return \OpenActive\Enums\FacilitySettingType|null
+     */
+    public function getFacilitySetting()
+    {
+        return $this->facilitySetting;
+    }
+
+    /**
+     * @param \OpenActive\Enums\FacilitySettingType|null $facilitySetting
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFacilitySetting($facilitySetting)
+    {
+        $types = array(
+            "\OpenActive\Enums\FacilitySettingType",
+            "null",
+        );
+
+        $facilitySetting = self::checkTypes($facilitySetting, $types);
+
+        $this->facilitySetting = $facilitySetting;
+    }
+
+    /**
+     * @return \OpenActive\Models\Concept[]
+     */
+    public function getFacilityType()
+    {
+        return $this->facilityType;
+    }
+
+    /**
+     * @param \OpenActive\Models\Concept[] $facilityType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFacilityType($facilityType)
+    {
+        $types = array(
+            "\OpenActive\Models\Concept[]",
+        );
+
+        $facilityType = self::checkTypes($facilityType, $types);
+
+        $this->facilityType = $facilityType;
+    }
+
+    /**
+     * @return DateInterval|null
+     */
+    public function getOfferValidityPeriod()
+    {
+        return $this->offerValidityPeriod;
+    }
+
+    /**
+     * @param DateInterval|null $offerValidityPeriod
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOfferValidityPeriod($offerValidityPeriod)
+    {
+        $types = array(
+            "DateInterval",
+            "null",
+        );
+
+        $offerValidityPeriod = self::checkTypes($offerValidityPeriod, $types);
+
+        $this->offerValidityPeriod = $offerValidityPeriod;
+    }
+
+    /**
+     * @return \OpenActive\Models\SportsActivityLocation[]
+     */
+    public function getSportsActivityLocation()
+    {
+        return $this->sportsActivityLocation;
+    }
+
+    /**
+     * @param \OpenActive\Models\SportsActivityLocation[] $sportsActivityLocation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSportsActivityLocation($sportsActivityLocation)
+    {
+        $types = array(
+            "\OpenActive\Models\SportsActivityLocation[]",
+        );
+
+        $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);
+
+        $this->sportsActivityLocation = $sportsActivityLocation;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\VideoObject[]
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\VideoObject[] $video
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVideo($video)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\VideoObject[]",
+        );
+
+        $video = self::checkTypes($video, $types);
+
+        $this->video = $video;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormattedDescription()
+    {
+        return $this->formattedDescription;
+    }
+
+    /**
+     * @param string $formattedDescription
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFormattedDescription($formattedDescription)
+    {
+        $types = array(
+            "string",
+        );
+
+        $formattedDescription = self::checkTypes($formattedDescription, $types);
+
+        $this->formattedDescription = $formattedDescription;
     }
 
 }

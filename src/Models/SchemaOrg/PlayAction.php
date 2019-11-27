@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [Action](https://schema.org/Action), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class PlayAction extends \OpenActive\Models\SchemaOrg\Action
@@ -16,11 +15,20 @@ class PlayAction extends \OpenActive\Models\SchemaOrg\Action
         return "schema:PlayAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "event" => "event",
+            "audience" => "audience",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Upcoming or past event associated with this place, organization, or action.
      *
      *
-     * @var Event
+     * @var \OpenActive\Models\SchemaOrg\Event
      */
     protected $event;
 
@@ -33,7 +41,7 @@ class PlayAction extends \OpenActive\Models\SchemaOrg\Action
     protected $audience;
 
     /**
-     * @return Event
+     * @return \OpenActive\Models\SchemaOrg\Event
      */
     public function getEvent()
     {
@@ -41,14 +49,14 @@ class PlayAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @param Event $event
+     * @param \OpenActive\Models\SchemaOrg\Event $event
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEvent($event)
     {
         $types = array(
-            "Event",
+            "\OpenActive\Models\SchemaOrg\Event",
         );
 
         $event = self::checkTypes($event, $types);

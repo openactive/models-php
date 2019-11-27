@@ -15,6 +15,18 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:Question";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "downvoteCount" => "downvoteCount",
+            "suggestedAnswer" => "suggestedAnswer",
+            "acceptedAnswer" => "acceptedAnswer",
+            "answerCount" => "answerCount",
+            "upvoteCount" => "upvoteCount",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The number of downvotes this question, answer or comment has received from the community.
      *

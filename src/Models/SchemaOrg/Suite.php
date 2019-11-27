@@ -15,12 +15,22 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
         return "schema:Suite";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "numberOfRooms" => "numberOfRooms",
+            "bed" => "bed",
+            "occupancy" => "occupancy",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business.
      * Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue.
      *
      *
-     * @var QuantitativeValue|float|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
      */
     protected $numberOfRooms;
 
@@ -38,12 +48,12 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
      * Typical unit code(s): C62 for person
      *
      *
-     * @var QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $occupancy;
 
     /**
-     * @return QuantitativeValue|float|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
      */
     public function getNumberOfRooms()
     {
@@ -51,14 +61,14 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
     }
 
     /**
-     * @param QuantitativeValue|float|null $numberOfRooms
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $numberOfRooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfRooms($numberOfRooms)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "float",
             "null",
         );
@@ -95,7 +105,7 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
     }
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getOccupancy()
     {
@@ -103,14 +113,14 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
     }
 
     /**
-     * @param QuantitativeValue $occupancy
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $occupancy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOccupancy($occupancy)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
         $occupancy = self::checkTypes($occupancy, $types);

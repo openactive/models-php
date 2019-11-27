@@ -15,11 +15,33 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
         return "schema:Flight";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "seller" => "seller",
+            "departureAirport" => "departureAirport",
+            "mealService" => "mealService",
+            "arrivalAirport" => "arrivalAirport",
+            "departureGate" => "departureGate",
+            "flightNumber" => "flightNumber",
+            "boardingPolicy" => "boardingPolicy",
+            "arrivalTerminal" => "arrivalTerminal",
+            "flightDistance" => "flightDistance",
+            "estimatedFlightDuration" => "estimatedFlightDuration",
+            "departureTerminal" => "departureTerminal",
+            "aircraft" => "aircraft",
+            "carrier" => "carrier",
+            "arrivalGate" => "arrivalGate",
+            "webCheckinTime" => "webCheckinTime",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * An entity which offers (sells / leases / lends / loans) the services / goods.  A seller may also be a provider.
      *
      *
-     * @var Person|Organization
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $seller;
 
@@ -67,7 +89,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
      * The type of boarding policy used by the airline (e.g. zone-based or group-based).
      *
      *
-     * @var \OpenActive\Enums\BoardingPolicyType|null
+     * @var \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null
      */
     protected $boardingPolicy;
 
@@ -115,7 +137,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
      * 'carrier' is an out-dated term indicating the 'provider' for parcel delivery and flights.
      *
      *
-     * @var Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
     protected $carrier;
 
@@ -136,7 +158,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     protected $webCheckinTime;
 
     /**
-     * @return Person|Organization
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getSeller()
     {
@@ -144,15 +166,15 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @param Person|Organization $seller
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $seller
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeller($seller)
     {
         $types = array(
-            "Person",
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $seller = self::checkTypes($seller, $types);
@@ -281,7 +303,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @return \OpenActive\Enums\BoardingPolicyType|null
+     * @return \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null
      */
     public function getBoardingPolicy()
     {
@@ -289,14 +311,14 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @param \OpenActive\Enums\BoardingPolicyType|null $boardingPolicy
+     * @param \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null $boardingPolicy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBoardingPolicy($boardingPolicy)
     {
         $types = array(
-            "\OpenActive\Enums\BoardingPolicyType",
+            "\OpenActive\Enums\SchemaOrg\BoardingPolicyType",
             "null",
         );
 
@@ -430,7 +452,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization
      */
     public function getCarrier()
     {
@@ -438,14 +460,14 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @param Organization $carrier
+     * @param \OpenActive\Models\SchemaOrg\Organization $carrier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCarrier($carrier)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $carrier = self::checkTypes($carrier, $types);

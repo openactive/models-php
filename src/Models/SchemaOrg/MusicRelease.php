@@ -15,11 +15,24 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
         return "schema:MusicRelease";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "musicReleaseFormat" => "musicReleaseFormat",
+            "duration" => "duration",
+            "releaseOf" => "releaseOf",
+            "creditedTo" => "creditedTo",
+            "catalogNumber" => "catalogNumber",
+            "recordLabel" => "recordLabel",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Format of this release (the type of recording media used, ie. compact disc, digital media, LP, etc.).
      *
      *
-     * @var \OpenActive\Enums\MusicReleaseFormatType|null
+     * @var \OpenActive\Enums\SchemaOrg\MusicReleaseFormatType|null
      */
     protected $musicReleaseFormat;
 
@@ -43,7 +56,7 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
      * The group the release is credited to if different than the byArtist. For example, Red and Blue is credited to "Stefani Germanotta Band", but by Lady Gaga.
      *
      *
-     * @var Person|Organization
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $creditedTo;
 
@@ -59,12 +72,12 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
      * The label that issued the release.
      *
      *
-     * @var Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
     protected $recordLabel;
 
     /**
-     * @return \OpenActive\Enums\MusicReleaseFormatType|null
+     * @return \OpenActive\Enums\SchemaOrg\MusicReleaseFormatType|null
      */
     public function getMusicReleaseFormat()
     {
@@ -72,14 +85,14 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     }
 
     /**
-     * @param \OpenActive\Enums\MusicReleaseFormatType|null $musicReleaseFormat
+     * @param \OpenActive\Enums\SchemaOrg\MusicReleaseFormatType|null $musicReleaseFormat
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicReleaseFormat($musicReleaseFormat)
     {
         $types = array(
-            "\OpenActive\Enums\MusicReleaseFormatType",
+            "\OpenActive\Enums\SchemaOrg\MusicReleaseFormatType",
             "null",
         );
 
@@ -138,7 +151,7 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     }
 
     /**
-     * @return Person|Organization
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getCreditedTo()
     {
@@ -146,15 +159,15 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     }
 
     /**
-     * @param Person|Organization $creditedTo
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $creditedTo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCreditedTo($creditedTo)
     {
         $types = array(
-            "Person",
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $creditedTo = self::checkTypes($creditedTo, $types);
@@ -187,7 +200,7 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     }
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization
      */
     public function getRecordLabel()
     {
@@ -195,14 +208,14 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     }
 
     /**
-     * @param Organization $recordLabel
+     * @param \OpenActive\Models\SchemaOrg\Organization $recordLabel
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecordLabel($recordLabel)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $recordLabel = self::checkTypes($recordLabel, $types);

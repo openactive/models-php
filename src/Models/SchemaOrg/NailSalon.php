@@ -15,4 +15,11 @@ class NailSalon extends \OpenActive\Models\SchemaOrg\HealthAndBeautyBusiness
         return "schema:NailSalon";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

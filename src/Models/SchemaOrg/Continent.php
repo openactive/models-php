@@ -15,4 +15,11 @@ class Continent extends \OpenActive\Models\SchemaOrg\Landform
         return "schema:Continent";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

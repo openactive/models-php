@@ -15,6 +15,24 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:CreativeWorkSeason";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "episodes" => "episodes",
+            "seasonNumber" => "seasonNumber",
+            "actor" => "actor",
+            "episode" => "episode",
+            "productionCompany" => "productionCompany",
+            "director" => "director",
+            "startDate" => "startDate",
+            "partOfSeries" => "partOfSeries",
+            "endDate" => "endDate",
+            "trailer" => "trailer",
+            "numberOfEpisodes" => "numberOfEpisodes",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * An episode of a TV/radio series or season.
      *
@@ -35,7 +53,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $actor;
 
@@ -51,7 +69,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The production company or studio responsible for the item e.g. series, video game, episode etc.
      *
      *
-     * @var Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
     protected $productionCompany;
 
@@ -59,7 +77,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $director;
 
@@ -154,7 +172,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getActor()
     {
@@ -162,14 +180,14 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person $actor
+     * @param \OpenActive\Models\SchemaOrg\Person $actor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActor($actor)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $actor = self::checkTypes($actor, $types);
@@ -202,7 +220,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization
      */
     public function getProductionCompany()
     {
@@ -210,14 +228,14 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Organization $productionCompany
+     * @param \OpenActive\Models\SchemaOrg\Organization $productionCompany
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProductionCompany($productionCompany)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $productionCompany = self::checkTypes($productionCompany, $types);
@@ -226,7 +244,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getDirector()
     {
@@ -234,14 +252,14 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person $director
+     * @param \OpenActive\Models\SchemaOrg\Person $director
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDirector($director)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $director = self::checkTypes($director, $types);

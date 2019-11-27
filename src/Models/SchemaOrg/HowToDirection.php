@@ -15,6 +15,21 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:HowToDirection";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "tool" => "tool",
+            "afterMedia" => "afterMedia",
+            "supply" => "supply",
+            "totalTime" => "totalTime",
+            "performTime" => "performTime",
+            "prepTime" => "prepTime",
+            "beforeMedia" => "beforeMedia",
+            "duringMedia" => "duringMedia",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A sub property of instrument. An object used (but not consumed) when performing instructions or a direction.
      *

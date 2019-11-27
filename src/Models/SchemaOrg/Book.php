@@ -15,6 +15,18 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:Book";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "numberOfPages" => "numberOfPages",
+            "illustrator" => "illustrator",
+            "bookFormat" => "bookFormat",
+            "bookEdition" => "bookEdition",
+            "isbn" => "isbn",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The number of pages in the book.
      *
@@ -27,7 +39,7 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The illustrator of the book.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $illustrator;
 
@@ -35,7 +47,7 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The format of the book.
      *
      *
-     * @var \OpenActive\Enums\BookFormatType|null
+     * @var \OpenActive\Enums\SchemaOrg\BookFormatType|null
      */
     protected $bookFormat;
 
@@ -81,7 +93,7 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getIllustrator()
     {
@@ -89,14 +101,14 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person $illustrator
+     * @param \OpenActive\Models\SchemaOrg\Person $illustrator
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIllustrator($illustrator)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $illustrator = self::checkTypes($illustrator, $types);
@@ -105,7 +117,7 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Enums\BookFormatType|null
+     * @return \OpenActive\Enums\SchemaOrg\BookFormatType|null
      */
     public function getBookFormat()
     {
@@ -113,14 +125,14 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Enums\BookFormatType|null $bookFormat
+     * @param \OpenActive\Enums\SchemaOrg\BookFormatType|null $bookFormat
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBookFormat($bookFormat)
     {
         $types = array(
-            "\OpenActive\Enums\BookFormatType",
+            "\OpenActive\Enums\SchemaOrg\BookFormatType",
             "null",
         );
 

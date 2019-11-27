@@ -15,6 +15,15 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
         return "schema:HotelRoom";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "bed" => "bed",
+            "occupancy" => "occupancy",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The type of bed or beds included in the accommodation. For the single case of just one bed of a certain type, you use bed directly with a text.
      *       If you want to indicate the quantity of a certain kind of bed, use an instance of BedDetails. For more detailed information, use the amenityFeature property.
@@ -29,7 +38,7 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
      * Typical unit code(s): C62 for person
      *
      *
-     * @var QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $occupancy;
 
@@ -60,7 +69,7 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
     }
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getOccupancy()
     {
@@ -68,14 +77,14 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
     }
 
     /**
-     * @param QuantitativeValue $occupancy
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $occupancy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOccupancy($occupancy)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
         $occupancy = self::checkTypes($occupancy, $types);

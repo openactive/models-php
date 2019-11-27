@@ -15,6 +15,15 @@ class WebPageElement extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:WebPageElement";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "xpath" => "xpath",
+            "cssSelector" => "cssSelector",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * An XPath, e.g. of a <a class="localLink" href="https://schema.org/SpeakableSpecification">SpeakableSpecification</a> or <a class="localLink" href="https://schema.org/WebPageElement">WebPageElement</a>. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element".
      *

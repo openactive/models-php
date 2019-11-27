@@ -15,6 +15,18 @@ class FoodEstablishment extends \OpenActive\Models\SchemaOrg\LocalBusiness
         return "schema:FoodEstablishment";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "acceptsReservations" => "acceptsReservations",
+            "starRating" => "starRating",
+            "menu" => "menu",
+            "hasMenu" => "hasMenu",
+            "servesCuisine" => "servesCuisine",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Indicates whether a FoodEstablishment accepts reservations. Values can be Boolean, an URL at which reservations can be made or (for backwards compatibility) the strings <code>Yes</code> or <code>No</code>.
      *

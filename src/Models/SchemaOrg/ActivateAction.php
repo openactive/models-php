@@ -15,4 +15,11 @@ class ActivateAction extends \OpenActive\Models\SchemaOrg\ControlAction
         return "schema:ActivateAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

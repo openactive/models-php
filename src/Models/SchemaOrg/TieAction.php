@@ -15,4 +15,11 @@ class TieAction extends \OpenActive\Models\SchemaOrg\AchieveAction
         return "schema:TieAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

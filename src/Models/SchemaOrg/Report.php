@@ -15,6 +15,14 @@ class Report extends \OpenActive\Models\SchemaOrg\Article
         return "schema:Report";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "reportNumber" => "reportNumber",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The number or other unique designator assigned to a Report by the publishing organization.
      *

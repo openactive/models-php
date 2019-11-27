@@ -15,16 +15,24 @@ class HowToItem extends \OpenActive\Models\SchemaOrg\ListItem
         return "schema:HowToItem";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "requiredQuantity" => "requiredQuantity",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The required quantity of the item(s).
      *
      *
-     * @var QuantitativeValue|string|float|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string|float|null
      */
     protected $requiredQuantity;
 
     /**
-     * @return QuantitativeValue|string|float|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string|float|null
      */
     public function getRequiredQuantity()
     {
@@ -32,14 +40,14 @@ class HowToItem extends \OpenActive\Models\SchemaOrg\ListItem
     }
 
     /**
-     * @param QuantitativeValue|string|float|null $requiredQuantity
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string|float|null $requiredQuantity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiredQuantity($requiredQuantity)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
             "float",
             "null",

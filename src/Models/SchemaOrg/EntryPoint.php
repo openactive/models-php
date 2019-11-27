@@ -15,6 +15,20 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:EntryPoint";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "contentType" => "contentType",
+            "encodingType" => "encodingType",
+            "httpMethod" => "httpMethod",
+            "actionPlatform" => "actionPlatform",
+            "application" => "application",
+            "actionApplication" => "actionApplication",
+            "urlTemplate" => "urlTemplate",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The supported content type(s) for an EntryPoint response.
      *

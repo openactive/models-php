@@ -15,4 +15,11 @@ class UnknownOfferError extends \OpenActive\Models\OA\OpenBookingError
         return "UnknownOfferError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

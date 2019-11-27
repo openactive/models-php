@@ -15,4 +15,11 @@ class Locksmith extends \OpenActive\Models\SchemaOrg\HomeAndConstructionBusiness
         return "schema:Locksmith";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

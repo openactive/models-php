@@ -15,6 +15,23 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:MusicComposition";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "musicalKey" => "musicalKey",
+            "composer" => "composer",
+            "iswcCode" => "iswcCode",
+            "lyrics" => "lyrics",
+            "musicArrangement" => "musicArrangement",
+            "firstPerformance" => "firstPerformance",
+            "recordedAs" => "recordedAs",
+            "lyricist" => "lyricist",
+            "includedComposition" => "includedComposition",
+            "musicCompositionForm" => "musicCompositionForm",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The key, mode, or scale this composition uses.
      *
@@ -27,7 +44,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The person or organization who wrote a composition, or who is the composer of a work performed at some event.
      *
      *
-     * @var Person|Organization
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $composer;
 
@@ -59,7 +76,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The date and place the work was first performed.
      *
      *
-     * @var Event
+     * @var \OpenActive\Models\SchemaOrg\Event
      */
     protected $firstPerformance;
 
@@ -75,7 +92,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The person who wrote the words.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $lyricist;
 
@@ -120,7 +137,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person|Organization
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getComposer()
     {
@@ -128,15 +145,15 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person|Organization $composer
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $composer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setComposer($composer)
     {
         $types = array(
-            "Person",
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $composer = self::checkTypes($composer, $types);
@@ -217,7 +234,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Event
+     * @return \OpenActive\Models\SchemaOrg\Event
      */
     public function getFirstPerformance()
     {
@@ -225,14 +242,14 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Event $firstPerformance
+     * @param \OpenActive\Models\SchemaOrg\Event $firstPerformance
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFirstPerformance($firstPerformance)
     {
         $types = array(
-            "Event",
+            "\OpenActive\Models\SchemaOrg\Event",
         );
 
         $firstPerformance = self::checkTypes($firstPerformance, $types);
@@ -265,7 +282,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getLyricist()
     {
@@ -273,14 +290,14 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person $lyricist
+     * @param \OpenActive\Models\SchemaOrg\Person $lyricist
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLyricist($lyricist)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $lyricist = self::checkTypes($lyricist, $types);

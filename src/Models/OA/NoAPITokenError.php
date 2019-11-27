@@ -15,4 +15,11 @@ class NoAPITokenError extends \OpenActive\Models\OA\OpenBookingError
         return "NoAPITokenError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

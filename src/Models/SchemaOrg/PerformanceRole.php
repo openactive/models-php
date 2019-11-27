@@ -15,6 +15,14 @@ class PerformanceRole extends \OpenActive\Models\SchemaOrg\Role
         return "schema:PerformanceRole";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "characterName" => "characterName",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The name of a character played in some acting or performing role, i.e. in a PerformanceRole.
      *

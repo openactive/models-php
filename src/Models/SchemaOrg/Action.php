@@ -15,6 +15,24 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
         return "schema:Action";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "endTime" => "endTime",
+            "location" => "location",
+            "result" => "result",
+            "error" => "error",
+            "object" => "object",
+            "instrument" => "instrument",
+            "participant" => "participant",
+            "startTime" => "startTime",
+            "agent" => "agent",
+            "target" => "target",
+            "actionStatus" => "actionStatus",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. e.g. John wrote a book from January to <em>December</em>. For media, including audio and video, it's the time offset of the end of a clip within a larger file.<br/><br/>
      * 
@@ -29,7 +47,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
      * The location of for example where the event is happening, an organization is located, or where an action takes place.
      *
      *
-     * @var Place|string|PostalAddress
+     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress
      */
     protected $location;
 
@@ -69,7 +87,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
      * Other co-agents that participated in the action indirectly. e.g. John wrote a book with <em>Steve</em>.
      *
      *
-     * @var Organization|Person
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $participant;
 
@@ -87,7 +105,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
      * The direct performer or driver of the action (animate or inanimate). e.g. <em>John</em> wrote a book.
      *
      *
-     * @var Person|Organization
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $agent;
 
@@ -95,7 +113,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
      * Indicates a target EntryPoint for an Action.
      *
      *
-     * @var EntryPoint
+     * @var \OpenActive\Models\SchemaOrg\EntryPoint
      */
     protected $target;
 
@@ -103,7 +121,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
      * Indicates the current disposition of the Action.
      *
      *
-     * @var \OpenActive\Enums\ActionStatusType|null
+     * @var \OpenActive\Enums\SchemaOrg\ActionStatusType|null
      */
     protected $actionStatus;
 
@@ -134,7 +152,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Place|string|PostalAddress
+     * @return \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function getLocation()
     {
@@ -142,16 +160,16 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Place|string|PostalAddress $location
+     * @param \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress $location
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLocation($location)
     {
         $types = array(
-            "Place",
+            "\OpenActive\Models\SchemaOrg\Place",
             "string",
-            "PostalAddress",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
         );
 
         $location = self::checkTypes($location, $types);
@@ -256,7 +274,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Organization|Person
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getParticipant()
     {
@@ -264,15 +282,15 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Organization|Person $participant
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $participant
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setParticipant($participant)
     {
         $types = array(
-            "Organization",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $participant = self::checkTypes($participant, $types);
@@ -307,7 +325,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Person|Organization
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getAgent()
     {
@@ -315,15 +333,15 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Person|Organization $agent
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $agent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAgent($agent)
     {
         $types = array(
-            "Person",
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $agent = self::checkTypes($agent, $types);
@@ -332,7 +350,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return EntryPoint
+     * @return \OpenActive\Models\SchemaOrg\EntryPoint
      */
     public function getTarget()
     {
@@ -340,14 +358,14 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param EntryPoint $target
+     * @param \OpenActive\Models\SchemaOrg\EntryPoint $target
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTarget($target)
     {
         $types = array(
-            "EntryPoint",
+            "\OpenActive\Models\SchemaOrg\EntryPoint",
         );
 
         $target = self::checkTypes($target, $types);
@@ -356,7 +374,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Enums\ActionStatusType|null
+     * @return \OpenActive\Enums\SchemaOrg\ActionStatusType|null
      */
     public function getActionStatus()
     {
@@ -364,14 +382,14 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Enums\ActionStatusType|null $actionStatus
+     * @param \OpenActive\Enums\SchemaOrg\ActionStatusType|null $actionStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActionStatus($actionStatus)
     {
         $types = array(
-            "\OpenActive\Enums\ActionStatusType",
+            "\OpenActive\Enums\SchemaOrg\ActionStatusType",
             "null",
         );
 

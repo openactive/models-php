@@ -15,4 +15,11 @@ class CampingPitch extends \OpenActive\Models\SchemaOrg\Accommodation
         return "schema:CampingPitch";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

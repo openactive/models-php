@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [Event](https://schema.org/Event), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
@@ -16,11 +15,21 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
         return "schema:SportsEvent";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "homeTeam" => "homeTeam",
+            "competitor" => "competitor",
+            "awayTeam" => "awayTeam",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The home team in a sports event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SportsTeam|Person
+     * @var \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person
      */
     protected $homeTeam;
 
@@ -28,7 +37,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
      * A competitor in a sports event.
      *
      *
-     * @var Person|\OpenActive\Models\SchemaOrg\SportsTeam
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam
      */
     protected $competitor;
 
@@ -36,12 +45,12 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
      * The away team in a sports event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SportsTeam|Person
+     * @var \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person
      */
     protected $awayTeam;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SportsTeam|Person
+     * @return \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person
      */
     public function getHomeTeam()
     {
@@ -49,7 +58,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SportsTeam|Person $homeTeam
+     * @param \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person $homeTeam
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -57,7 +66,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\SportsTeam",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $homeTeam = self::checkTypes($homeTeam, $types);
@@ -66,7 +75,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Person|\OpenActive\Models\SchemaOrg\SportsTeam
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam
      */
     public function getCompetitor()
     {
@@ -74,14 +83,14 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Person|\OpenActive\Models\SchemaOrg\SportsTeam $competitor
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam $competitor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCompetitor($competitor)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\SportsTeam",
         );
 
@@ -91,7 +100,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SportsTeam|Person
+     * @return \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person
      */
     public function getAwayTeam()
     {
@@ -99,7 +108,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SportsTeam|Person $awayTeam
+     * @param \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person $awayTeam
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -107,7 +116,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\SportsTeam",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $awayTeam = self::checkTypes($awayTeam, $types);

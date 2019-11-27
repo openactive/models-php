@@ -15,6 +15,19 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
         return "schema:GeoCoordinates";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "elevation" => "elevation",
+            "postalCode" => "postalCode",
+            "addressCountry" => "addressCountry",
+            "longitude" => "longitude",
+            "latitude" => "latitude",
+            "address" => "address",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The elevation of a location (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>). Values may be of the form 'NUMBER UNIT<em>OF</em>MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters.
      *
@@ -59,7 +72,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
      * Physical address of the item.
      *
      *
-     * @var string|PostalAddress
+     * @var string|\OpenActive\Models\SchemaOrg\PostalAddress
      */
     protected $address;
 
@@ -191,7 +204,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string|PostalAddress
+     * @return string|\OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function getAddress()
     {
@@ -199,7 +212,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param string|PostalAddress $address
+     * @param string|\OpenActive\Models\SchemaOrg\PostalAddress $address
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -207,7 +220,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     {
         $types = array(
             "string",
-            "PostalAddress",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
         );
 
         $address = self::checkTypes($address, $types);

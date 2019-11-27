@@ -15,4 +15,11 @@ class Attorney extends \OpenActive\Models\SchemaOrg\LegalService
         return "schema:Attorney";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

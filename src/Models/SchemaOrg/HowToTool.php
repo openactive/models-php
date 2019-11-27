@@ -15,4 +15,11 @@ class HowToTool extends \OpenActive\Models\SchemaOrg\HowToItem
         return "schema:HowToTool";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

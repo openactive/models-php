@@ -15,4 +15,11 @@ class LegislativeBuilding extends \OpenActive\Models\SchemaOrg\GovernmentBuildin
         return "schema:LegislativeBuilding";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

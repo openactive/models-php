@@ -15,11 +15,28 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:WebPage";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "specialty" => "specialty",
+            "significantLinks" => "significantLinks",
+            "primaryImageOfPage" => "primaryImageOfPage",
+            "reviewedBy" => "reviewedBy",
+            "mainContentOfPage" => "mainContentOfPage",
+            "relatedLink" => "relatedLink",
+            "significantLink" => "significantLink",
+            "breadcrumb" => "breadcrumb",
+            "speakable" => "speakable",
+            "lastReviewed" => "lastReviewed",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * One of the domain specialities to which this web page's content applies.
      *
      *
-     * @var \OpenActive\Enums\Specialty|null
+     * @var \OpenActive\Enums\SchemaOrg\Specialty|null
      */
     protected $specialty;
 
@@ -35,7 +52,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Indicates the main image on the page.
      *
      *
-     * @var ImageObject
+     * @var \OpenActive\Models\SchemaOrg\ImageObject
      */
     protected $primaryImageOfPage;
 
@@ -43,7 +60,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
      * People or organizations that have reviewed the content on this web page for accuracy and/or completeness.
      *
      *
-     * @var Person|Organization
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $reviewedBy;
 
@@ -107,7 +124,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $lastReviewed;
 
     /**
-     * @return \OpenActive\Enums\Specialty|null
+     * @return \OpenActive\Enums\SchemaOrg\Specialty|null
      */
     public function getSpecialty()
     {
@@ -115,14 +132,14 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Enums\Specialty|null $specialty
+     * @param \OpenActive\Enums\SchemaOrg\Specialty|null $specialty
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSpecialty($specialty)
     {
         $types = array(
-            "\OpenActive\Enums\Specialty",
+            "\OpenActive\Enums\SchemaOrg\Specialty",
             "null",
         );
 
@@ -156,7 +173,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return ImageObject
+     * @return \OpenActive\Models\SchemaOrg\ImageObject
      */
     public function getPrimaryImageOfPage()
     {
@@ -164,14 +181,14 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param ImageObject $primaryImageOfPage
+     * @param \OpenActive\Models\SchemaOrg\ImageObject $primaryImageOfPage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrimaryImageOfPage($primaryImageOfPage)
     {
         $types = array(
-            "ImageObject",
+            "\OpenActive\Models\SchemaOrg\ImageObject",
         );
 
         $primaryImageOfPage = self::checkTypes($primaryImageOfPage, $types);
@@ -180,7 +197,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person|Organization
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getReviewedBy()
     {
@@ -188,15 +205,15 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person|Organization $reviewedBy
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $reviewedBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReviewedBy($reviewedBy)
     {
         $types = array(
-            "Person",
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $reviewedBy = self::checkTypes($reviewedBy, $types);

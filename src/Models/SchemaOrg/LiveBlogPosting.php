@@ -15,6 +15,16 @@ class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
         return "schema:LiveBlogPosting";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "liveBlogUpdate" => "liveBlogUpdate",
+            "coverageEndTime" => "coverageEndTime",
+            "coverageStartTime" => "coverageStartTime",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * An update to the LiveBlog.
      *

@@ -16,11 +16,20 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\ImageObject
         return "ImageObject";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "thumbnail" => "thumbnail",
+            "url" => "url",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The URL for a thumbnail image for an image.
      *
      *
-     * @var ImageObject[]
+     * @var \OpenActive\Models\OA\ImageObject[]
      */
     protected $thumbnail;
 
@@ -36,7 +45,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\ImageObject
     protected $url;
 
     /**
-     * @return ImageObject[]
+     * @return \OpenActive\Models\OA\ImageObject[]
      */
     public function getThumbnail()
     {
@@ -44,14 +53,14 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\ImageObject
     }
 
     /**
-     * @param ImageObject[] $thumbnail
+     * @param \OpenActive\Models\OA\ImageObject[] $thumbnail
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setThumbnail($thumbnail)
     {
         $types = array(
-            "ImageObject[]",
+            "\OpenActive\Models\OA\ImageObject[]",
         );
 
         $thumbnail = self::checkTypes($thumbnail, $types);

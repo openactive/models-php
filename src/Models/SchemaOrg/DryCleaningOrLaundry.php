@@ -15,4 +15,11 @@ class DryCleaningOrLaundry extends \OpenActive\Models\SchemaOrg\LocalBusiness
         return "schema:DryCleaningOrLaundry";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

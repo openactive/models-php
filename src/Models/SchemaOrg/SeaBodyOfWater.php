@@ -15,4 +15,11 @@ class SeaBodyOfWater extends \OpenActive\Models\SchemaOrg\BodyOfWater
         return "schema:SeaBodyOfWater";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

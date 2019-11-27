@@ -15,4 +15,11 @@ class GoneError extends \OpenActive\Models\OA\OpenBookingError
         return "GoneError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

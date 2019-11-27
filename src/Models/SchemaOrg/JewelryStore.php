@@ -15,4 +15,11 @@ class JewelryStore extends \OpenActive\Models\SchemaOrg\Store
         return "schema:JewelryStore";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

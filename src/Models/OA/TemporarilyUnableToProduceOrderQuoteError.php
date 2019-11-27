@@ -15,4 +15,11 @@ class TemporarilyUnableToProduceOrderQuoteError extends \OpenActive\Models\OA\Op
         return "TemporarilyUnableToProduceOrderQuoteError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

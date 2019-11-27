@@ -15,6 +15,18 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
         return "Payment";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "identifier" => "identifier",
+            "name" => "name",
+            "accountId" => "accountId",
+            "paymentMethod" => "paymentMethod",
+            "paymentProviderId" => "paymentProviderId",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The identifier of the payment held by the Broker and/or Payment Provider.
      *
@@ -22,7 +34,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|PropertyValue|PropertyValue[]|null
+     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -46,7 +58,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      * paymentMethod must not be used, and is reserved for future versions of this specification.
      *
      *
-     * @var \OpenActive\Enums\PaymentMethod|null
+     * @var \OpenActive\Enums\SchemaOrg\PaymentMethod|null
      */
     protected $paymentMethod;
 
@@ -59,7 +71,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     protected $paymentProviderId;
 
     /**
-     * @return int|string|PropertyValue|PropertyValue[]|null
+     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -67,7 +79,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param int|string|PropertyValue|PropertyValue[]|null $identifier
+     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -76,8 +88,8 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
         $types = array(
             "int",
             "string",
-            "PropertyValue",
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue",
+            "\OpenActive\Models\OA\PropertyValue[]",
             "null",
         );
 
@@ -135,7 +147,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Enums\PaymentMethod|null
+     * @return \OpenActive\Enums\SchemaOrg\PaymentMethod|null
      */
     public function getPaymentMethod()
     {
@@ -143,14 +155,14 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Enums\PaymentMethod|null $paymentMethod
+     * @param \OpenActive\Enums\SchemaOrg\PaymentMethod|null $paymentMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentMethod($paymentMethod)
     {
         $types = array(
-            "\OpenActive\Enums\PaymentMethod",
+            "\OpenActive\Enums\SchemaOrg\PaymentMethod",
             "null",
         );
 

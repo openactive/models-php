@@ -15,6 +15,19 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:MusicRecording";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "duration" => "duration",
+            "byArtist" => "byArtist",
+            "inPlaylist" => "inPlaylist",
+            "inAlbum" => "inAlbum",
+            "isrcCode" => "isrcCode",
+            "recordingOf" => "recordingOf",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The duration of the item (movie, audio recording, event, etc.) in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.
      *
@@ -27,7 +40,7 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The artist that performed this album or recording.
      *
      *
-     * @var Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup
      */
     protected $byArtist;
 
@@ -89,7 +102,7 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup
      */
     public function getByArtist()
     {
@@ -97,14 +110,14 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person|\OpenActive\Models\SchemaOrg\MusicGroup $byArtist
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup $byArtist
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setByArtist($byArtist)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\MusicGroup",
         );
 

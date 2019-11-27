@@ -15,4 +15,11 @@ class HowToStep extends \OpenActive\Models\SchemaOrg\ItemList
         return "schema:HowToStep";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

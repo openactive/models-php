@@ -15,4 +15,11 @@ class HealthClub extends \OpenActive\Models\SchemaOrg\HealthAndBeautyBusiness
         return "schema:HealthClub";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

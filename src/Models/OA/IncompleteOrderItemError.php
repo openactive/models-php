@@ -15,4 +15,11 @@ class IncompleteOrderItemError extends \OpenActive\Models\OA\OpenBookingError
         return "IncompleteOrderItemError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

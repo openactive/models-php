@@ -15,6 +15,14 @@ class WebSite extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:WebSite";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "issn" => "issn",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication.
      *

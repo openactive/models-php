@@ -15,6 +15,18 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
         return "schema:NewsArticle";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "dateline" => "dateline",
+            "printPage" => "printPage",
+            "printSection" => "printSection",
+            "printEdition" => "printEdition",
+            "printColumn" => "printColumn",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A <a href="https://en.wikipedia.org/wiki/Dateline">dateline</a> is a brief piece of text included in news articles that describes where and when the story was written or filed though the date is often omitted. Sometimes only a placename is provided.<br/><br/>
      * 

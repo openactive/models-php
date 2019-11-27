@@ -16,6 +16,15 @@ class Action extends \OpenActive\Models\SchemaOrg\Action
         return "Action";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "name" => "name",
+            "target" => "target",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The name of the action
      *
@@ -39,7 +48,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Action
      * }
      * ```
      *
-     * @var EntryPoint
+     * @var \OpenActive\Models\OA\EntryPoint
      */
     protected $target;
 
@@ -68,7 +77,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @return EntryPoint
+     * @return \OpenActive\Models\OA\EntryPoint
      */
     public function getTarget()
     {
@@ -76,14 +85,14 @@ class Action extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @param EntryPoint $target
+     * @param \OpenActive\Models\OA\EntryPoint $target
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTarget($target)
     {
         $types = array(
-            "EntryPoint",
+            "\OpenActive\Models\OA\EntryPoint",
         );
 
         $target = self::checkTypes($target, $types);

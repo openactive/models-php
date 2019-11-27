@@ -15,6 +15,14 @@ class TravelAction extends \OpenActive\Models\SchemaOrg\MoveAction
         return "schema:TravelAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "distance" => "distance",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The distance travelled, e.g. exercising or travelling.
      *

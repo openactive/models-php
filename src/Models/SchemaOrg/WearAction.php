@@ -15,4 +15,11 @@ class WearAction extends \OpenActive\Models\SchemaOrg\UseAction
         return "schema:WearAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

@@ -15,6 +15,16 @@ class MusicPlaylist extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:MusicPlaylist";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "tracks" => "tracks",
+            "numTracks" => "numTracks",
+            "track" => "track",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A music recording (track)&#x2014;usually a single song.
      *

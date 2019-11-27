@@ -15,6 +15,29 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:Article";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "backstory" => "backstory",
+            "articleBody" => "articleBody",
+            "wordCount" => "wordCount",
+            "pageStart" => "pageStart",
+            "articleSection" => "articleSection",
+            "pageEnd" => "pageEnd",
+            "speakable" => "speakable",
+            "pagination" => "pagination",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
+    /**
+     * For an <a class="localLink" href="https://schema.org/Article">Article</a>, typically a <a class="localLink" href="https://schema.org/NewsArticle">NewsArticle</a>, the backstory property provides a textual summary giving a brief explanation of why and how an article was created. In a journalistic setting this could include information about reporting process, methods, interviews, data sources, etc.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    protected $backstory;
+
     /**
      * The actual body of the article.
      *
@@ -81,6 +104,31 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var string
      */
     protected $pagination;
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    public function getBackstory()
+    {
+        return $this->backstory;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $backstory
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBackstory($backstory)
+    {
+        $types = array(
+            "string",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+        );
+
+        $backstory = self::checkTypes($backstory, $types);
+
+        $this->backstory = $backstory;
+    }
 
     /**
      * @return string

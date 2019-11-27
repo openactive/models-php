@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [PriceSpecification](https://schema.org/PriceSpecification), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
@@ -14,6 +13,18 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     public static function getType()
     {
         return "schema:UnitPriceSpecification";
+    }
+
+    public static function fieldList() {
+        $fields = [
+            "priceType" => "priceType",
+            "unitText" => "unitText",
+            "referenceQuantity" => "referenceQuantity",
+            "billingIncrement" => "billingIncrement",
+            "unitCode" => "unitCode",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
     }
 
     /**
@@ -37,7 +48,7 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
      * The reference quantity for which a certain price applies, e.g. 1 EUR per 4 kWh of electricity. This property is a replacement for unitOfMeasurement for the advanced cases where the price does not relate to a standard unit.
      *
      *
-     * @var QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $referenceQuantity;
 
@@ -106,7 +117,7 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     }
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getReferenceQuantity()
     {
@@ -114,14 +125,14 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     }
 
     /**
-     * @param QuantitativeValue $referenceQuantity
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $referenceQuantity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReferenceQuantity($referenceQuantity)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
         $referenceQuantity = self::checkTypes($referenceQuantity, $types);

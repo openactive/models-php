@@ -15,4 +15,11 @@ class ScholarlyArticle extends \OpenActive\Models\SchemaOrg\Article
         return "schema:ScholarlyArticle";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

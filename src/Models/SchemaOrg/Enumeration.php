@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Enumeration extends \OpenActive\Models\SchemaOrg\Intangible
+class Enumeration extends \OpenActive\BaseModel
 {
     /**
      * @return string[]|null
@@ -13,6 +13,13 @@ class Enumeration extends \OpenActive\Models\SchemaOrg\Intangible
     public static function getType()
     {
         return "schema:Enumeration";
+    }
+
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
     }
 
 }

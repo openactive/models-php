@@ -15,4 +15,11 @@ class MobilePhoneStore extends \OpenActive\Models\SchemaOrg\Store
         return "schema:MobilePhoneStore";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

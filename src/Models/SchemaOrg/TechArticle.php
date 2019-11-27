@@ -15,6 +15,15 @@ class TechArticle extends \OpenActive\Models\SchemaOrg\Article
         return "schema:TechArticle";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "dependencies" => "dependencies",
+            "proficiencyLevel" => "proficiencyLevel",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Prerequisites needed to fulfill steps in article.
      *

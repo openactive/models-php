@@ -15,6 +15,18 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:AlignmentObject";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "educationalFramework" => "educationalFramework",
+            "alignmentType" => "alignmentType",
+            "targetName" => "targetName",
+            "targetUrl" => "targetUrl",
+            "targetDescription" => "targetDescription",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The framework to which the resource being described is aligned.
      *

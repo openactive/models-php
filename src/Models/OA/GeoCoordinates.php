@@ -16,11 +16,20 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\GeoCoordinates
         return "GeoCoordinates";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "latitude" => "latitude",
+            "longitude" => "longitude",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The latitude of a location. For example 51.522338 (WGS 84).
      *
      * ```json
-     * "latitude": 51.522338
+     * "latitude": "51.522338"
      * ```
      *
      * @var float|null
@@ -31,7 +40,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\GeoCoordinates
      * The longitude of a location. For example -0.083437 (WGS 84).
      *
      * ```json
-     * "longitude": -0.083437
+     * "longitude": "-0.083437"
      * ```
      *
      * @var float|null

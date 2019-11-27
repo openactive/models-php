@@ -15,4 +15,11 @@ class Intangible extends \OpenActive\Models\SchemaOrg\Thing
         return "schema:Intangible";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

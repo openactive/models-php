@@ -15,4 +15,11 @@ class UserCheckins extends \OpenActive\Models\SchemaOrg\UserInteraction
         return "schema:UserCheckins";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

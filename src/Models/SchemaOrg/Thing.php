@@ -15,11 +15,30 @@ class Thing extends \OpenActive\BaseModel
         return "schema:Thing";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "identifier" => "identifier",
+            "name" => "name",
+            "description" => "description",
+            "subjectOf" => "subjectOf",
+            "disambiguatingDescription" => "disambiguatingDescription",
+            "sameAs" => "sameAs",
+            "image" => "image",
+            "mainEntityOfPage" => "mainEntityOfPage",
+            "potentialAction" => "potentialAction",
+            "url" => "url",
+            "alternateName" => "alternateName",
+            "additionalType" => "additionalType",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The identifier property represents any kind of identifier for any kind of <a class="localLink" href="https://schema.org/Thing">Thing</a>, such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See <a href="/docs/datamodel.html#identifierBg">background notes</a> for more details.
      *
      *
-     * @var PropertyValue|string
+     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
     protected $identifier;
 
@@ -43,7 +62,7 @@ class Thing extends \OpenActive\BaseModel
      * A CreativeWork or Event about this Thing.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|Event
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Event
      */
     protected $subjectOf;
 
@@ -67,7 +86,7 @@ class Thing extends \OpenActive\BaseModel
      * An image of the item. This can be a <a class="localLink" href="https://schema.org/URL">URL</a> or a fully described <a class="localLink" href="https://schema.org/ImageObject">ImageObject</a>.
      *
      *
-     * @var ImageObject|string
+     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
      */
     protected $image;
 
@@ -83,7 +102,7 @@ class Thing extends \OpenActive\BaseModel
      * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
      *
      *
-     * @var Action
+     * @var \OpenActive\Models\SchemaOrg\Action
      */
     protected $potentialAction;
 
@@ -112,7 +131,7 @@ class Thing extends \OpenActive\BaseModel
     protected $additionalType;
 
     /**
-     * @return PropertyValue|string
+     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
     public function getIdentifier()
     {
@@ -120,14 +139,14 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @param PropertyValue|string $identifier
+     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
         $types = array(
-            "PropertyValue",
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
             "string",
         );
 
@@ -185,7 +204,7 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|Event
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Event
      */
     public function getSubjectOf()
     {
@@ -193,7 +212,7 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|Event $subjectOf
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Event $subjectOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -201,7 +220,7 @@ class Thing extends \OpenActive\BaseModel
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\CreativeWork",
-            "Event",
+            "\OpenActive\Models\SchemaOrg\Event",
         );
 
         $subjectOf = self::checkTypes($subjectOf, $types);
@@ -258,7 +277,7 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @return ImageObject|string
+     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
      */
     public function getImage()
     {
@@ -266,14 +285,14 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @param ImageObject|string $image
+     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $image
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setImage($image)
     {
         $types = array(
-            "ImageObject",
+            "\OpenActive\Models\SchemaOrg\ImageObject",
             "string",
         );
 
@@ -308,7 +327,7 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @return Action
+     * @return \OpenActive\Models\SchemaOrg\Action
      */
     public function getPotentialAction()
     {
@@ -316,14 +335,14 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @param Action $potentialAction
+     * @param \OpenActive\Models\SchemaOrg\Action $potentialAction
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPotentialAction($potentialAction)
     {
         $types = array(
-            "Action",
+            "\OpenActive\Models\SchemaOrg\Action",
         );
 
         $potentialAction = self::checkTypes($potentialAction, $types);

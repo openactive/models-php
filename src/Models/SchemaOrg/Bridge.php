@@ -15,4 +15,11 @@ class Bridge extends \OpenActive\Models\SchemaOrg\CivicStructure
         return "schema:Bridge";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

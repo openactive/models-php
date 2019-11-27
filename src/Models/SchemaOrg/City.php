@@ -15,4 +15,11 @@ class City extends \OpenActive\Models\SchemaOrg\AdministrativeArea
         return "schema:City";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

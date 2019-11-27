@@ -16,4 +16,11 @@ class ParagraphFormFieldSpecification extends \OpenActive\Models\OA\PropertyValu
         return "ParagraphFormFieldSpecification";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

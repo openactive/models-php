@@ -15,4 +15,11 @@ class TemporarilyUnableToDeleteOrderError extends \OpenActive\Models\OA\OpenBook
         return "TemporarilyUnableToDeleteOrderError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

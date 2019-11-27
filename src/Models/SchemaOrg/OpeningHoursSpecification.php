@@ -15,11 +15,23 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
         return "schema:OpeningHoursSpecification";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "dayOfWeek" => "dayOfWeek",
+            "closes" => "closes",
+            "opens" => "opens",
+            "validThrough" => "validThrough",
+            "validFrom" => "validFrom",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The day of the week for which these opening hours are valid.
      *
      *
-     * @var \OpenActive\Enums\DayOfWeek|null
+     * @var \OpenActive\Enums\SchemaOrg\DayOfWeek|null
      */
     protected $dayOfWeek;
 
@@ -56,7 +68,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     protected $validFrom;
 
     /**
-     * @return \OpenActive\Enums\DayOfWeek|null
+     * @return \OpenActive\Enums\SchemaOrg\DayOfWeek|null
      */
     public function getDayOfWeek()
     {
@@ -64,14 +76,14 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     }
 
     /**
-     * @param \OpenActive\Enums\DayOfWeek|null $dayOfWeek
+     * @param \OpenActive\Enums\SchemaOrg\DayOfWeek|null $dayOfWeek
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDayOfWeek($dayOfWeek)
     {
         $types = array(
-            "\OpenActive\Enums\DayOfWeek",
+            "\OpenActive\Enums\SchemaOrg\DayOfWeek",
             "null",
         );
 

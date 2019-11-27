@@ -15,4 +15,11 @@ class AppendAction extends \OpenActive\Models\SchemaOrg\InsertAction
         return "schema:AppendAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

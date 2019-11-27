@@ -15,6 +15,14 @@ class AskAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
         return "schema:AskAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "question" => "question",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A sub property of object. A question.
      *

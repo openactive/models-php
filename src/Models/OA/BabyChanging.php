@@ -16,6 +16,14 @@ class BabyChanging extends \OpenActive\Models\OA\LocationFeatureSpecification
         return "BabyChanging";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "name" => "name",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A string, suitable for presentation in user interfaces.
      *

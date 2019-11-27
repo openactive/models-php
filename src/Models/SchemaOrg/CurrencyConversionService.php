@@ -15,4 +15,11 @@ class CurrencyConversionService extends \OpenActive\Models\SchemaOrg\FinancialPr
         return "schema:CurrencyConversionService";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

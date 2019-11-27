@@ -15,4 +15,11 @@ class DislikeAction extends \OpenActive\Models\SchemaOrg\ReactAction
         return "schema:DislikeAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

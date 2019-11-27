@@ -15,4 +15,11 @@ class UnknownOpportunityDetailsError extends \OpenActive\Models\OA\OpenBookingEr
         return "UnknownOpportunityDetailsError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

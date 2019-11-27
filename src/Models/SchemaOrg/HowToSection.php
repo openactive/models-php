@@ -15,6 +15,14 @@ class HowToSection extends \OpenActive\Models\SchemaOrg\ItemList
         return "schema:HowToSection";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "steps" => "steps",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed 'steps'; 'step' is preferred).
      *

@@ -15,4 +15,11 @@ class MovingCompany extends \OpenActive\Models\SchemaOrg\HomeAndConstructionBusi
         return "schema:MovingCompany";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

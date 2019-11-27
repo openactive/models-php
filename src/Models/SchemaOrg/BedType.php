@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class BedType extends \OpenActive\Models\SchemaOrg\QualitativeValue
+class BedType extends \OpenActive\BaseModel
 {
     /**
      * @return string[]|null
@@ -13,6 +13,13 @@ class BedType extends \OpenActive\Models\SchemaOrg\QualitativeValue
     public static function getType()
     {
         return "schema:BedType";
+    }
+
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
     }
 
 }

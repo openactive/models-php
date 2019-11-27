@@ -15,11 +15,20 @@ class IndividualFacilityUse extends \OpenActive\Models\OA\FacilityUse
         return "IndividualFacilityUse";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "aggregateFacilityUse" => "aggregateFacilityUse",
+            "event" => "event",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Inverse of the oa:individualFacilityUse property. Relates an oa:IndividualFacilityUse (e.g. an opportunity to play tennis on a specific court) to a oa:FacilityUse (e.g. an opportunity to play tennis at a specific location).
      *
      *
-     * @var FacilityUse
+     * @var \OpenActive\Models\OA\FacilityUse
      */
     protected $aggregateFacilityUse;
 
@@ -40,12 +49,12 @@ class IndividualFacilityUse extends \OpenActive\Models\OA\FacilityUse
      * ]
      * ```
      *
-     * @var Slot[]
+     * @var \OpenActive\Models\OA\Slot[]
      */
     protected $event;
 
     /**
-     * @return FacilityUse
+     * @return \OpenActive\Models\OA\FacilityUse
      */
     public function getAggregateFacilityUse()
     {
@@ -53,14 +62,14 @@ class IndividualFacilityUse extends \OpenActive\Models\OA\FacilityUse
     }
 
     /**
-     * @param FacilityUse $aggregateFacilityUse
+     * @param \OpenActive\Models\OA\FacilityUse $aggregateFacilityUse
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAggregateFacilityUse($aggregateFacilityUse)
     {
         $types = array(
-            "FacilityUse",
+            "\OpenActive\Models\OA\FacilityUse",
         );
 
         $aggregateFacilityUse = self::checkTypes($aggregateFacilityUse, $types);
@@ -69,7 +78,7 @@ class IndividualFacilityUse extends \OpenActive\Models\OA\FacilityUse
     }
 
     /**
-     * @return Slot[]
+     * @return \OpenActive\Models\OA\Slot[]
      */
     public function getEvent()
     {
@@ -77,14 +86,14 @@ class IndividualFacilityUse extends \OpenActive\Models\OA\FacilityUse
     }
 
     /**
-     * @param Slot[] $event
+     * @param \OpenActive\Models\OA\Slot[] $event
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEvent($event)
     {
         $types = array(
-            "Slot[]",
+            "\OpenActive\Models\OA\Slot[]",
         );
 
         $event = self::checkTypes($event, $types);

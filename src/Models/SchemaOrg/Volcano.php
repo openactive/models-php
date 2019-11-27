@@ -15,4 +15,11 @@ class Volcano extends \OpenActive\Models\SchemaOrg\Landform
         return "schema:Volcano";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

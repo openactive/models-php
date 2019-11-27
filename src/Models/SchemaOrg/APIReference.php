@@ -15,6 +15,18 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
         return "schema:APIReference";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "targetPlatform" => "targetPlatform",
+            "assembly" => "assembly",
+            "programmingModel" => "programmingModel",
+            "assemblyVersion" => "assemblyVersion",
+            "executableLibraryName" => "executableLibraryName",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Type of app development: phone, Metro style, desktop, XBox, etc.
      *

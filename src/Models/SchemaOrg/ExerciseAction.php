@@ -15,11 +15,27 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
         return "schema:ExerciseAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "exerciseCourse" => "exerciseCourse",
+            "fromLocation" => "fromLocation",
+            "toLocation" => "toLocation",
+            "sportsActivityLocation" => "sportsActivityLocation",
+            "opponent" => "opponent",
+            "distance" => "distance",
+            "sportsEvent" => "sportsEvent",
+            "sportsTeam" => "sportsTeam",
+            "course" => "course",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A sub property of location. The course where this action was taken.
      *
      *
-     * @var Place
+     * @var \OpenActive\Models\SchemaOrg\Place
      */
     protected $exerciseCourse;
 
@@ -27,7 +43,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
      * A sub property of location. The original location of the object or the agent before the action.
      *
      *
-     * @var Place
+     * @var \OpenActive\Models\SchemaOrg\Place
      */
     protected $fromLocation;
 
@@ -35,7 +51,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
      * A sub property of location. The final location of the object or the agent after the action.
      *
      *
-     * @var Place
+     * @var \OpenActive\Models\SchemaOrg\Place
      */
     protected $toLocation;
 
@@ -43,7 +59,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
      * A sub property of location. The sports activity location where this action occurred.
      *
      *
-     * @var SportsActivityLocation
+     * @var \OpenActive\Models\SchemaOrg\SportsActivityLocation
      */
     protected $sportsActivityLocation;
 
@@ -51,7 +67,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
      * A sub property of participant. The opponent on this action.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $opponent;
 
@@ -83,12 +99,12 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
      * A sub property of location. The course where this action was taken.
      *
      *
-     * @var Place
+     * @var \OpenActive\Models\SchemaOrg\Place
      */
     protected $course;
 
     /**
-     * @return Place
+     * @return \OpenActive\Models\SchemaOrg\Place
      */
     public function getExerciseCourse()
     {
@@ -96,14 +112,14 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     }
 
     /**
-     * @param Place $exerciseCourse
+     * @param \OpenActive\Models\SchemaOrg\Place $exerciseCourse
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExerciseCourse($exerciseCourse)
     {
         $types = array(
-            "Place",
+            "\OpenActive\Models\SchemaOrg\Place",
         );
 
         $exerciseCourse = self::checkTypes($exerciseCourse, $types);
@@ -112,7 +128,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     }
 
     /**
-     * @return Place
+     * @return \OpenActive\Models\SchemaOrg\Place
      */
     public function getFromLocation()
     {
@@ -120,14 +136,14 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     }
 
     /**
-     * @param Place $fromLocation
+     * @param \OpenActive\Models\SchemaOrg\Place $fromLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFromLocation($fromLocation)
     {
         $types = array(
-            "Place",
+            "\OpenActive\Models\SchemaOrg\Place",
         );
 
         $fromLocation = self::checkTypes($fromLocation, $types);
@@ -136,7 +152,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     }
 
     /**
-     * @return Place
+     * @return \OpenActive\Models\SchemaOrg\Place
      */
     public function getToLocation()
     {
@@ -144,14 +160,14 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     }
 
     /**
-     * @param Place $toLocation
+     * @param \OpenActive\Models\SchemaOrg\Place $toLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setToLocation($toLocation)
     {
         $types = array(
-            "Place",
+            "\OpenActive\Models\SchemaOrg\Place",
         );
 
         $toLocation = self::checkTypes($toLocation, $types);
@@ -160,7 +176,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     }
 
     /**
-     * @return SportsActivityLocation
+     * @return \OpenActive\Models\SchemaOrg\SportsActivityLocation
      */
     public function getSportsActivityLocation()
     {
@@ -168,14 +184,14 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     }
 
     /**
-     * @param SportsActivityLocation $sportsActivityLocation
+     * @param \OpenActive\Models\SchemaOrg\SportsActivityLocation $sportsActivityLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSportsActivityLocation($sportsActivityLocation)
     {
         $types = array(
-            "SportsActivityLocation",
+            "\OpenActive\Models\SchemaOrg\SportsActivityLocation",
         );
 
         $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);
@@ -184,7 +200,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getOpponent()
     {
@@ -192,14 +208,14 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     }
 
     /**
-     * @param Person $opponent
+     * @param \OpenActive\Models\SchemaOrg\Person $opponent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOpponent($opponent)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $opponent = self::checkTypes($opponent, $types);
@@ -280,7 +296,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     }
 
     /**
-     * @return Place
+     * @return \OpenActive\Models\SchemaOrg\Place
      */
     public function getCourse()
     {
@@ -288,14 +304,14 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     }
 
     /**
-     * @param Place $course
+     * @param \OpenActive\Models\SchemaOrg\Place $course
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCourse($course)
     {
         $types = array(
-            "Place",
+            "\OpenActive\Models\SchemaOrg\Place",
         );
 
         $course = self::checkTypes($course, $types);

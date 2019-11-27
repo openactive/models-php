@@ -15,4 +15,11 @@ class TooManyRequestsError extends \OpenActive\Models\OA\OpenBookingError
         return "TooManyRequestsError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

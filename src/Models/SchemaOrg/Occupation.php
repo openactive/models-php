@@ -15,6 +15,37 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:Occupation";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "qualifications" => "qualifications",
+            "educationRequirements" => "educationRequirements",
+            "estimatedSalary" => "estimatedSalary",
+            "experienceRequirements" => "experienceRequirements",
+            "occupationalCategory" => "occupationalCategory",
+            "responsibilities" => "responsibilities",
+            "skills" => "skills",
+            "occupationLocation" => "occupationLocation",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
+    /**
+     * Specific qualifications required for this role or Occupation.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     */
+    protected $qualifications;
+
+    /**
+     * Educational background needed for the position or Occupation.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
+     */
+    protected $educationRequirements;
+
     /**
      * An estimated salary for a job posting or occupation, based on a variety of variables including, but not limited to industry, job title, and location. Estimated salaries  are often computed by outside organizations rather than the hiring organization, who may not have committed to the estimated value.
      *
@@ -64,6 +95,56 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
      * @var \OpenActive\Models\SchemaOrg\AdministrativeArea
      */
     protected $occupationLocation;
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     */
+    public function getQualifications()
+    {
+        return $this->qualifications;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $qualifications
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setQualifications($qualifications)
+    {
+        $types = array(
+            "string",
+            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
+        );
+
+        $qualifications = self::checkTypes($qualifications, $types);
+
+        $this->qualifications = $qualifications;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
+     */
+    public function getEducationRequirements()
+    {
+        return $this->educationRequirements;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string $educationRequirements
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEducationRequirements($educationRequirements)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
+            "string",
+        );
+
+        $educationRequirements = self::checkTypes($educationRequirements, $types);
+
+        $this->educationRequirements = $educationRequirements;
+    }
 
     /**
      * @return float|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|null

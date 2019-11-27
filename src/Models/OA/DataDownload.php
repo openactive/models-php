@@ -21,6 +21,17 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
         return "DataDownload";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "name" => "name",
+            "additionalType" => "additionalType",
+            "contentUrl" => "contentUrl",
+            "encodingFormat" => "encodingFormat",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The name of the type of feed
      *
@@ -56,8 +67,8 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
 
     /**
      * Must always be present and set to ```json
-"encodingFormat": "application/vnd.openactive.rpde+json; version=1"
-```
+     * "encodingFormat": "application/vnd.openactive.rpde+json; version=1"
+     * ```
      *
      * ```json
      * "encodingFormat": "application/vnd.openactive.rpde+json; version=1"

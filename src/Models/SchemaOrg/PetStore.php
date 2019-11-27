@@ -15,4 +15,11 @@ class PetStore extends \OpenActive\Models\SchemaOrg\Store
         return "schema:PetStore";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

@@ -15,4 +15,11 @@ class AMRadioChannel extends \OpenActive\Models\SchemaOrg\RadioChannel
         return "schema:AMRadioChannel";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

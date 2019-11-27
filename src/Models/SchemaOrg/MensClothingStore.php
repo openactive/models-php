@@ -15,4 +15,11 @@ class MensClothingStore extends \OpenActive\Models\SchemaOrg\Store
         return "schema:MensClothingStore";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

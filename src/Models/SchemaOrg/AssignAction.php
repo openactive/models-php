@@ -15,4 +15,11 @@ class AssignAction extends \OpenActive\Models\SchemaOrg\AllocateAction
         return "schema:AssignAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

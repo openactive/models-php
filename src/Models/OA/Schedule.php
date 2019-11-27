@@ -16,6 +16,28 @@ class Schedule extends \OpenActive\BaseModel
         return "Schedule";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "byDay" => "byDay",
+            "byMonth" => "byMonth",
+            "byMonthDay" => "byMonthDay",
+            "duration" => "duration",
+            "endTime" => "endTime",
+            "exceptDate" => "exceptDate",
+            "idTemplate" => "idTemplate",
+            "repeatCount" => "repeatCount",
+            "repeatFrequency" => "repeatFrequency",
+            "scheduledEventType" => "scheduledEventType",
+            "startDate" => "startDate",
+            "endDate" => "endDate",
+            "startTime" => "startTime",
+            "urlTemplate" => "urlTemplate",
+            "timeZone" => "beta:timeZone",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Defines the day of the week upon which the Event takes place.
      * When using string values, this MUST conform to iCal BYDAY rule.
@@ -26,7 +48,7 @@ class Schedule extends \OpenActive\BaseModel
      * ]
      * ```
      *
-     * @var string[]|\OpenActive\Enums\DayOfWeek[]|null
+     * @var string[]|\OpenActive\Enums\SchemaOrg\DayOfWeek[]|null
      */
     protected $byDay;
 
@@ -185,7 +207,18 @@ class Schedule extends \OpenActive\BaseModel
     protected $urlTemplate;
 
     /**
-     * @return string[]|\OpenActive\Enums\DayOfWeek[]|null
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * The time zone used to generate occurrences, same as iCal TZID. E.g. 'Europe/London'.
+     * 
+     * If you are using this property, please join the discussion at proposal [#197](https://github.com/openactive/modelling-opportunity-data/issues/197).
+     *
+     *
+     * @var string
+     */
+    protected $timeZone;
+
+    /**
+     * @return string[]|\OpenActive\Enums\SchemaOrg\DayOfWeek[]|null
      */
     public function getByDay()
     {
@@ -193,7 +226,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param string[]|\OpenActive\Enums\DayOfWeek[]|null $byDay
+     * @param string[]|\OpenActive\Enums\SchemaOrg\DayOfWeek[]|null $byDay
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -201,7 +234,7 @@ class Schedule extends \OpenActive\BaseModel
     {
         $types = array(
             "string[]",
-            "\OpenActive\Enums\DayOfWeek[]",
+            "\OpenActive\Enums\SchemaOrg\DayOfWeek[]",
             "null",
         );
 
@@ -530,6 +563,30 @@ class Schedule extends \OpenActive\BaseModel
         $urlTemplate = self::checkTypes($urlTemplate, $types);
 
         $this->urlTemplate = $urlTemplate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTimeZone()
+    {
+        return $this->timeZone;
+    }
+
+    /**
+     * @param string $timeZone
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTimeZone($timeZone)
+    {
+        $types = array(
+            "string",
+        );
+
+        $timeZone = self::checkTypes($timeZone, $types);
+
+        $this->timeZone = $timeZone;
     }
 
 }

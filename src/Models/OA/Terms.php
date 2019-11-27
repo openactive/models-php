@@ -15,6 +15,16 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
         return "Terms";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "name" => "name",
+            "requiresExplicitConsent" => "requiresExplicitConsent",
+            "url" => "url",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The name of the terms. The name must distinguish this from other terms fields provided, e.g. 'Terms and Conditions' or 'Privacy Policy'.
      *

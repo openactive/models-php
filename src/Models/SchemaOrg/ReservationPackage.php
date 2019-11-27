@@ -15,6 +15,14 @@ class ReservationPackage extends \OpenActive\Models\SchemaOrg\Reservation
         return "schema:ReservationPackage";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "subReservation" => "subReservation",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The individual reservations included in the package. Typically a repeated property.
      *

@@ -15,6 +15,15 @@ class MenuSection extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:MenuSection";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "hasMenuSection" => "hasMenuSection",
+            "hasMenuItem" => "hasMenuItem",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A subgrouping of the menu (by dishes, course, serving time period, etc.).
      *

@@ -15,6 +15,15 @@ class WriteAction extends \OpenActive\Models\SchemaOrg\CreateAction
         return "schema:WriteAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "language" => "language",
+            "inLanguage" => "inLanguage",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A sub property of instrument. The language used on this action.
      *

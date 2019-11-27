@@ -15,21 +15,45 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:Demand";
     }
 
-    /**
-     * The GTIN-14 code of the product, or the product to which the offer refers. See <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1 GTIN Summary</a> for more details.
-     *
-     *
-     * @var string
-     */
-    protected $gtin14;
+    public static function fieldList() {
+        $fields = [
+            "gtin13" => "gtin13",
+            "ineligibleRegion" => "ineligibleRegion",
+            "gtin12" => "gtin12",
+            "sku" => "sku",
+            "seller" => "seller",
+            "availableDeliveryMethod" => "availableDeliveryMethod",
+            "deliveryLeadTime" => "deliveryLeadTime",
+            "serialNumber" => "serialNumber",
+            "availabilityEnds" => "availabilityEnds",
+            "availability" => "availability",
+            "includesObject" => "includesObject",
+            "inventoryLevel" => "inventoryLevel",
+            "businessFunction" => "businessFunction",
+            "availableAtOrFrom" => "availableAtOrFrom",
+            "eligibleCustomerType" => "eligibleCustomerType",
+            "eligibleQuantity" => "eligibleQuantity",
+            "itemCondition" => "itemCondition",
+            "validThrough" => "validThrough",
+            "itemOffered" => "itemOffered",
+            "availabilityStarts" => "availabilityStarts",
+            "eligibleDuration" => "eligibleDuration",
+            "gtin8" => "gtin8",
+            "acceptedPaymentMethod" => "acceptedPaymentMethod",
+            "eligibleTransactionVolume" => "eligibleTransactionVolume",
+            "validFrom" => "validFrom",
+            "gtin" => "gtin",
+            "advanceBookingRequirement" => "advanceBookingRequirement",
+            "eligibleRegion" => "eligibleRegion",
+            "areaServed" => "areaServed",
+            "gtin14" => "gtin14",
+            "warranty" => "warranty",
+            "priceSpecification" => "priceSpecification",
+            "mpn" => "mpn",
+        ];
 
-    /**
-     * The amount of time that is required between accepting the offer and the actual usage of the resource or service.
-     *
-     *
-     * @var QuantitativeValue
-     */
-    protected $advanceBookingRequirement;
+        return array_merge(parent::fieldList(), $fields);
+    }
 
     /**
      * The GTIN-13 code of the product, or the product to which the offer refers. This is equivalent to 13-digit ISBN codes and EAN UCC-13. Former 12-digit UPC codes can be converted into a GTIN-13 code by simply adding a preceeding zero. See <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1 GTIN Summary</a> for more details.
@@ -40,12 +64,14 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $gtin13;
 
     /**
-     * The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers.
+     * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.<br/><br/>
+     * 
+     * See also <a class="localLink" href="https://schema.org/eligibleRegion">eligibleRegion</a>.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string
      */
-    protected $sku;
+    protected $ineligibleRegion;
 
     /**
      * The GTIN-12 code of the product, or the product to which the offer refers. The GTIN-12 is the 12-digit GS1 Identification Key composed of a U.P.C. Company Prefix, Item Reference, and Check Digit used to identify trade items. See <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1 GTIN Summary</a> for more details.
@@ -56,20 +82,36 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $gtin12;
 
     /**
-     * The delivery method(s) available for this offer.
+     * The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers.
      *
      *
-     * @var \OpenActive\Enums\DeliveryMethod|null
+     * @var string
      */
-    protected $availableDeliveryMethod;
+    protected $sku;
 
     /**
      * An entity which offers (sells / leases / lends / loans) the services / goods.  A seller may also be a provider.
      *
      *
-     * @var Person|Organization
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $seller;
+
+    /**
+     * The delivery method(s) available for this offer.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
+     */
+    protected $availableDeliveryMethod;
+
+    /**
+     * The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    protected $deliveryLeadTime;
 
     /**
      * The serial number or any alphanumeric identifier of a particular product. When attached to an offer, it is a shortcut for the serial number of the product included in the offer.
@@ -80,22 +122,6 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $serialNumber;
 
     /**
-     * The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup.
-     *
-     *
-     * @var QuantitativeValue
-     */
-    protected $deliveryLeadTime;
-
-    /**
-     * The availability of this item&#x2014;for example In stock, Out of stock, Pre-order, etc.
-     *
-     *
-     * @var \OpenActive\Enums\ItemAvailability|null
-     */
-    protected $availability;
-
-    /**
      * The end of the availability of the product or service included in the offer.
      *
      *
@@ -104,12 +130,12 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $availabilityEnds;
 
     /**
-     * The current approximate inventory level for the item or items.
+     * The availability of this item&#x2014;for example In stock, Out of stock, Pre-order, etc.
      *
      *
-     * @var QuantitativeValue
+     * @var \OpenActive\Enums\SchemaOrg\ItemAvailability|null
      */
-    protected $inventoryLevel;
+    protected $availability;
 
     /**
      * This links to a node or nodes indicating the exact quantity of the products included in the offer.
@@ -120,36 +146,52 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $includesObject;
 
     /**
-     * The place(s) from which the offer can be obtained (e.g. store locations).
+     * The current approximate inventory level for the item or items.
      *
      *
-     * @var Place
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    protected $availableAtOrFrom;
+    protected $inventoryLevel;
 
     /**
      * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
      *
      *
-     * @var \OpenActive\Enums\BusinessFunction|null
+     * @var \OpenActive\Enums\SchemaOrg\BusinessFunction|null
      */
     protected $businessFunction;
 
     /**
-     * The interval and unit of measurement of ordering quantities for which the offer or price specification is valid. This allows e.g. specifying that a certain freight charge is valid only for a certain quantity.
+     * The place(s) from which the offer can be obtained (e.g. store locations).
      *
      *
-     * @var QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\Place
      */
-    protected $eligibleQuantity;
+    protected $availableAtOrFrom;
 
     /**
      * The type(s) of customers for which the given offer is valid.
      *
      *
-     * @var \OpenActive\Enums\BusinessEntityType|null
+     * @var \OpenActive\Enums\SchemaOrg\BusinessEntityType|null
      */
     protected $eligibleCustomerType;
+
+    /**
+     * The interval and unit of measurement of ordering quantities for which the offer or price specification is valid. This allows e.g. specifying that a certain freight charge is valid only for a certain quantity.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    protected $eligibleQuantity;
+
+    /**
+     * A predefined value from OfferItemCondition or a textual description of the condition of the product or service, or the products or services included in the offer.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\OfferItemCondition|null
+     */
+    protected $itemCondition;
 
     /**
      * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
@@ -160,102 +202,12 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $validThrough;
 
     /**
-     * A predefined value from OfferItemCondition or a textual description of the condition of the product or service, or the products or services included in the offer.
-     *
-     *
-     * @var \OpenActive\Enums\OfferItemCondition|null
-     */
-    protected $itemCondition;
-
-    /**
-     * The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.
-     *
-     *
-     * @var string
-     */
-    protected $mpn;
-
-    /**
      * The item being offered.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
      */
     protected $itemOffered;
-
-    /**
-     * One or more detailed price specifications, indicating the unit price and delivery or payment charges.
-     *
-     *
-     * @var PriceSpecification
-     */
-    protected $priceSpecification;
-
-    /**
-     * The warranty promise(s) included in the offer.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\WarrantyPromise
-     */
-    protected $warranty;
-
-    /**
-     * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.<br/><br/>
-     * 
-     * See also <a class="localLink" href="https://schema.org/ineligibleRegion">ineligibleRegion</a>.
-     *
-     *
-     * @var Place|string|\OpenActive\Models\SchemaOrg\GeoShape
-     */
-    protected $eligibleRegion;
-
-    /**
-     * The geographic area where a service or offered item is provided.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|Place
-     */
-    protected $areaServed;
-
-    /**
-     * The payment method(s) accepted by seller for this offer.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\LoanOrCredit|\OpenActive\Enums\PaymentMethod|null
-     */
-    protected $acceptedPaymentMethod;
-
-    /**
-     * The duration for which the given offer is valid.
-     *
-     *
-     * @var QuantitativeValue
-     */
-    protected $eligibleDuration;
-
-    /**
-     * The date when the item becomes valid.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $validFrom;
-
-    /**
-     * The transaction volume, in a monetary unit, for which the offer or price specification is valid, e.g. for indicating a minimal purchasing volume, to express free shipping above a certain order volume, or to limit the acceptance of credit cards to purchases to a certain minimal amount.
-     *
-     *
-     * @var PriceSpecification
-     */
-    protected $eligibleTransactionVolume;
-
-    /**
-     * The <a href="http://apps.gs1.org/GDD/glossary/Pages/GTIN-8.aspx">GTIN-8</a> code of the product, or the product to which the offer refers. This code is also known as EAN/UCC-8 or 8-digit EAN. See <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1 GTIN Summary</a> for more details.
-     *
-     *
-     * @var string
-     */
-    protected $gtin8;
 
     /**
      * The beginning of the availability of the product or service included in the offer.
@@ -266,52 +218,110 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $availabilityStarts;
 
     /**
-     * @return string
+     * The duration for which the given offer is valid.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    public function getGtin14()
-    {
-        return $this->gtin14;
-    }
+    protected $eligibleDuration;
 
     /**
-     * @param string $gtin14
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The <a href="http://apps.gs1.org/GDD/glossary/Pages/GTIN-8.aspx">GTIN-8</a> code of the product, or the product to which the offer refers. This code is also known as EAN/UCC-8 or 8-digit EAN. See <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1 GTIN Summary</a> for more details.
+     *
+     *
+     * @var string
      */
-    public function setGtin14($gtin14)
-    {
-        $types = array(
-            "string",
-        );
-
-        $gtin14 = self::checkTypes($gtin14, $types);
-
-        $this->gtin14 = $gtin14;
-    }
+    protected $gtin8;
 
     /**
-     * @return QuantitativeValue
+     * The payment method(s) accepted by seller for this offer.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\LoanOrCredit|\OpenActive\Enums\SchemaOrg\PaymentMethod|null
      */
-    public function getAdvanceBookingRequirement()
-    {
-        return $this->advanceBookingRequirement;
-    }
+    protected $acceptedPaymentMethod;
 
     /**
-     * @param QuantitativeValue $advanceBookingRequirement
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The transaction volume, in a monetary unit, for which the offer or price specification is valid, e.g. for indicating a minimal purchasing volume, to express free shipping above a certain order volume, or to limit the acceptance of credit cards to purchases to a certain minimal amount.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PriceSpecification
      */
-    public function setAdvanceBookingRequirement($advanceBookingRequirement)
-    {
-        $types = array(
-            "QuantitativeValue",
-        );
+    protected $eligibleTransactionVolume;
 
-        $advanceBookingRequirement = self::checkTypes($advanceBookingRequirement, $types);
+    /**
+     * The date when the item becomes valid.
+     *
+     *
+     * @var DateTime|null
+     */
+    protected $validFrom;
 
-        $this->advanceBookingRequirement = $advanceBookingRequirement;
-    }
+    /**
+     * A Global Trade Item Number (<a href="https://www.gs1.org/standards/id-keys/gtin">GTIN</a>). GTINs identify trade items, including products and services, using numeric identification codes. The <a class="localLink" href="https://schema.org/gtin">gtin</a> property generalizes the earlier <a class="localLink" href="https://schema.org/gtin8">gtin8</a>, <a class="localLink" href="https://schema.org/gtin12">gtin12</a>, <a class="localLink" href="https://schema.org/gtin13">gtin13</a>, and <a class="localLink" href="https://schema.org/gtin14">gtin14</a> properties. The GS1 <a href="https://www.gs1.org/standards/Digital-Link/">digital link specifications</a> express GTINs as URLs. A correct <a class="localLink" href="https://schema.org/gtin">gtin</a> value should be a valid GTIN, which means that it should be an all-numeric string of either 8, 12, 13 or 14 digits, or a "GS1 Digital Link" URL based on such a string. The numeric component should also have a <a href="https://www.gs1.org/services/check-digit-calculator">valid GS1 check digit</a> and meet the other rules for valid GTINs. See also <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1's GTIN Summary</a> and <a href="https://en.wikipedia.org/wiki/Global_Trade_Item_Number">Wikipedia</a> for more details. Left-padding of the gtin values is not required or encouraged.
+     *
+     *
+     * @var string
+     */
+    protected $gtin;
+
+    /**
+     * The amount of time that is required between accepting the offer and the actual usage of the resource or service.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    protected $advanceBookingRequirement;
+
+    /**
+     * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.<br/><br/>
+     * 
+     * See also <a class="localLink" href="https://schema.org/ineligibleRegion">ineligibleRegion</a>.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\GeoShape
+     */
+    protected $eligibleRegion;
+
+    /**
+     * The geographic area where a service or offered item is provided.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place
+     */
+    protected $areaServed;
+
+    /**
+     * The GTIN-14 code of the product, or the product to which the offer refers. See <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1 GTIN Summary</a> for more details.
+     *
+     *
+     * @var string
+     */
+    protected $gtin14;
+
+    /**
+     * The warranty promise(s) included in the offer.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\WarrantyPromise
+     */
+    protected $warranty;
+
+    /**
+     * One or more detailed price specifications, indicating the unit price and delivery or payment charges.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PriceSpecification
+     */
+    protected $priceSpecification;
+
+    /**
+     * The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.
+     *
+     *
+     * @var string
+     */
+    protected $mpn;
 
     /**
      * @return string
@@ -338,27 +348,29 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string
      */
-    public function getSku()
+    public function getIneligibleRegion()
     {
-        return $this->sku;
+        return $this->ineligibleRegion;
     }
 
     /**
-     * @param string $sku
+     * @param \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string $ineligibleRegion
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSku($sku)
+    public function setIneligibleRegion($ineligibleRegion)
     {
         $types = array(
+            "\OpenActive\Models\SchemaOrg\GeoShape",
+            "\OpenActive\Models\SchemaOrg\Place",
             "string",
         );
 
-        $sku = self::checkTypes($sku, $types);
+        $ineligibleRegion = self::checkTypes($ineligibleRegion, $types);
 
-        $this->sku = $sku;
+        $this->ineligibleRegion = $ineligibleRegion;
     }
 
     /**
@@ -386,7 +398,56 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Enums\DeliveryMethod|null
+     * @return string
+     */
+    public function getSku()
+    {
+        return $this->sku;
+    }
+
+    /**
+     * @param string $sku
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSku($sku)
+    {
+        $types = array(
+            "string",
+        );
+
+        $sku = self::checkTypes($sku, $types);
+
+        $this->sku = $sku;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     */
+    public function getSeller()
+    {
+        return $this->seller;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $seller
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSeller($seller)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+        );
+
+        $seller = self::checkTypes($seller, $types);
+
+        $this->seller = $seller;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
      */
     public function getAvailableDeliveryMethod()
     {
@@ -394,14 +455,14 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Enums\DeliveryMethod|null $availableDeliveryMethod
+     * @param \OpenActive\Enums\SchemaOrg\DeliveryMethod|null $availableDeliveryMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableDeliveryMethod($availableDeliveryMethod)
     {
         $types = array(
-            "\OpenActive\Enums\DeliveryMethod",
+            "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
             "null",
         );
 
@@ -411,28 +472,27 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Person|Organization
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    public function getSeller()
+    public function getDeliveryLeadTime()
     {
-        return $this->seller;
+        return $this->deliveryLeadTime;
     }
 
     /**
-     * @param Person|Organization $seller
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $deliveryLeadTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSeller($seller)
+    public function setDeliveryLeadTime($deliveryLeadTime)
     {
         $types = array(
-            "Person",
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
-        $seller = self::checkTypes($seller, $types);
+        $deliveryLeadTime = self::checkTypes($deliveryLeadTime, $types);
 
-        $this->seller = $seller;
+        $this->deliveryLeadTime = $deliveryLeadTime;
     }
 
     /**
@@ -457,55 +517,6 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
         $serialNumber = self::checkTypes($serialNumber, $types);
 
         $this->serialNumber = $serialNumber;
-    }
-
-    /**
-     * @return QuantitativeValue
-     */
-    public function getDeliveryLeadTime()
-    {
-        return $this->deliveryLeadTime;
-    }
-
-    /**
-     * @param QuantitativeValue $deliveryLeadTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDeliveryLeadTime($deliveryLeadTime)
-    {
-        $types = array(
-            "QuantitativeValue",
-        );
-
-        $deliveryLeadTime = self::checkTypes($deliveryLeadTime, $types);
-
-        $this->deliveryLeadTime = $deliveryLeadTime;
-    }
-
-    /**
-     * @return \OpenActive\Enums\ItemAvailability|null
-     */
-    public function getAvailability()
-    {
-        return $this->availability;
-    }
-
-    /**
-     * @param \OpenActive\Enums\ItemAvailability|null $availability
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAvailability($availability)
-    {
-        $types = array(
-            "\OpenActive\Enums\ItemAvailability",
-            "null",
-        );
-
-        $availability = self::checkTypes($availability, $types);
-
-        $this->availability = $availability;
     }
 
     /**
@@ -535,27 +546,28 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Enums\SchemaOrg\ItemAvailability|null
      */
-    public function getInventoryLevel()
+    public function getAvailability()
     {
-        return $this->inventoryLevel;
+        return $this->availability;
     }
 
     /**
-     * @param QuantitativeValue $inventoryLevel
+     * @param \OpenActive\Enums\SchemaOrg\ItemAvailability|null $availability
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setInventoryLevel($inventoryLevel)
+    public function setAvailability($availability)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Enums\SchemaOrg\ItemAvailability",
+            "null",
         );
 
-        $inventoryLevel = self::checkTypes($inventoryLevel, $types);
+        $availability = self::checkTypes($availability, $types);
 
-        $this->inventoryLevel = $inventoryLevel;
+        $this->availability = $availability;
     }
 
     /**
@@ -583,31 +595,31 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Place
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    public function getAvailableAtOrFrom()
+    public function getInventoryLevel()
     {
-        return $this->availableAtOrFrom;
+        return $this->inventoryLevel;
     }
 
     /**
-     * @param Place $availableAtOrFrom
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $inventoryLevel
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAvailableAtOrFrom($availableAtOrFrom)
+    public function setInventoryLevel($inventoryLevel)
     {
         $types = array(
-            "Place",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
-        $availableAtOrFrom = self::checkTypes($availableAtOrFrom, $types);
+        $inventoryLevel = self::checkTypes($inventoryLevel, $types);
 
-        $this->availableAtOrFrom = $availableAtOrFrom;
+        $this->inventoryLevel = $inventoryLevel;
     }
 
     /**
-     * @return \OpenActive\Enums\BusinessFunction|null
+     * @return \OpenActive\Enums\SchemaOrg\BusinessFunction|null
      */
     public function getBusinessFunction()
     {
@@ -615,14 +627,14 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Enums\BusinessFunction|null $businessFunction
+     * @param \OpenActive\Enums\SchemaOrg\BusinessFunction|null $businessFunction
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBusinessFunction($businessFunction)
     {
         $types = array(
-            "\OpenActive\Enums\BusinessFunction",
+            "\OpenActive\Enums\SchemaOrg\BusinessFunction",
             "null",
         );
 
@@ -632,7 +644,56 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\Place
+     */
+    public function getAvailableAtOrFrom()
+    {
+        return $this->availableAtOrFrom;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Place $availableAtOrFrom
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAvailableAtOrFrom($availableAtOrFrom)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Place",
+        );
+
+        $availableAtOrFrom = self::checkTypes($availableAtOrFrom, $types);
+
+        $this->availableAtOrFrom = $availableAtOrFrom;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\BusinessEntityType|null
+     */
+    public function getEligibleCustomerType()
+    {
+        return $this->eligibleCustomerType;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\BusinessEntityType|null $eligibleCustomerType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEligibleCustomerType($eligibleCustomerType)
+    {
+        $types = array(
+            "\OpenActive\Enums\SchemaOrg\BusinessEntityType",
+            "null",
+        );
+
+        $eligibleCustomerType = self::checkTypes($eligibleCustomerType, $types);
+
+        $this->eligibleCustomerType = $eligibleCustomerType;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getEligibleQuantity()
     {
@@ -640,14 +701,14 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param QuantitativeValue $eligibleQuantity
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $eligibleQuantity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleQuantity($eligibleQuantity)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
         $eligibleQuantity = self::checkTypes($eligibleQuantity, $types);
@@ -656,28 +717,28 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Enums\BusinessEntityType|null
+     * @return \OpenActive\Enums\SchemaOrg\OfferItemCondition|null
      */
-    public function getEligibleCustomerType()
+    public function getItemCondition()
     {
-        return $this->eligibleCustomerType;
+        return $this->itemCondition;
     }
 
     /**
-     * @param \OpenActive\Enums\BusinessEntityType|null $eligibleCustomerType
+     * @param \OpenActive\Enums\SchemaOrg\OfferItemCondition|null $itemCondition
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEligibleCustomerType($eligibleCustomerType)
+    public function setItemCondition($itemCondition)
     {
         $types = array(
-            "\OpenActive\Enums\BusinessEntityType",
+            "\OpenActive\Enums\SchemaOrg\OfferItemCondition",
             "null",
         );
 
-        $eligibleCustomerType = self::checkTypes($eligibleCustomerType, $types);
+        $itemCondition = self::checkTypes($itemCondition, $types);
 
-        $this->eligibleCustomerType = $eligibleCustomerType;
+        $this->itemCondition = $itemCondition;
     }
 
     /**
@@ -706,55 +767,6 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Enums\OfferItemCondition|null
-     */
-    public function getItemCondition()
-    {
-        return $this->itemCondition;
-    }
-
-    /**
-     * @param \OpenActive\Enums\OfferItemCondition|null $itemCondition
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setItemCondition($itemCondition)
-    {
-        $types = array(
-            "\OpenActive\Enums\OfferItemCondition",
-            "null",
-        );
-
-        $itemCondition = self::checkTypes($itemCondition, $types);
-
-        $this->itemCondition = $itemCondition;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMpn()
-    {
-        return $this->mpn;
-    }
-
-    /**
-     * @param string $mpn
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMpn($mpn)
-    {
-        $types = array(
-            "string",
-        );
-
-        $mpn = self::checkTypes($mpn, $types);
-
-        $this->mpn = $mpn;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
      */
     public function getItemOffered()
@@ -780,108 +792,81 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return PriceSpecification
+     * @return DateTime|string|null
      */
-    public function getPriceSpecification()
+    public function getAvailabilityStarts()
     {
-        return $this->priceSpecification;
+        return $this->availabilityStarts;
     }
 
     /**
-     * @param PriceSpecification $priceSpecification
+     * @param DateTime|string|null $availabilityStarts
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPriceSpecification($priceSpecification)
+    public function setAvailabilityStarts($availabilityStarts)
     {
         $types = array(
-            "PriceSpecification",
+            "DateTime",
+            "Time",
+            "null",
         );
 
-        $priceSpecification = self::checkTypes($priceSpecification, $types);
+        $availabilityStarts = self::checkTypes($availabilityStarts, $types);
 
-        $this->priceSpecification = $priceSpecification;
+        $this->availabilityStarts = $availabilityStarts;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\WarrantyPromise
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    public function getWarranty()
+    public function getEligibleDuration()
     {
-        return $this->warranty;
+        return $this->eligibleDuration;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\WarrantyPromise $warranty
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $eligibleDuration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setWarranty($warranty)
+    public function setEligibleDuration($eligibleDuration)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\WarrantyPromise",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
-        $warranty = self::checkTypes($warranty, $types);
+        $eligibleDuration = self::checkTypes($eligibleDuration, $types);
 
-        $this->warranty = $warranty;
+        $this->eligibleDuration = $eligibleDuration;
     }
 
     /**
-     * @return Place|string|\OpenActive\Models\SchemaOrg\GeoShape
+     * @return string
      */
-    public function getEligibleRegion()
+    public function getGtin8()
     {
-        return $this->eligibleRegion;
+        return $this->gtin8;
     }
 
     /**
-     * @param Place|string|\OpenActive\Models\SchemaOrg\GeoShape $eligibleRegion
+     * @param string $gtin8
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEligibleRegion($eligibleRegion)
-    {
-        $types = array(
-            "Place",
-            "string",
-            "\OpenActive\Models\SchemaOrg\GeoShape",
-        );
-
-        $eligibleRegion = self::checkTypes($eligibleRegion, $types);
-
-        $this->eligibleRegion = $eligibleRegion;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|Place
-     */
-    public function getAreaServed()
-    {
-        return $this->areaServed;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|Place $areaServed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAreaServed($areaServed)
+    public function setGtin8($gtin8)
     {
         $types = array(
             "string",
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-            "\OpenActive\Models\SchemaOrg\GeoShape",
-            "Place",
         );
 
-        $areaServed = self::checkTypes($areaServed, $types);
+        $gtin8 = self::checkTypes($gtin8, $types);
 
-        $this->areaServed = $areaServed;
+        $this->gtin8 = $gtin8;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\LoanOrCredit|\OpenActive\Enums\PaymentMethod|null
+     * @return \OpenActive\Models\SchemaOrg\LoanOrCredit|\OpenActive\Enums\SchemaOrg\PaymentMethod|null
      */
     public function getAcceptedPaymentMethod()
     {
@@ -889,7 +874,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\LoanOrCredit|\OpenActive\Enums\PaymentMethod|null $acceptedPaymentMethod
+     * @param \OpenActive\Models\SchemaOrg\LoanOrCredit|\OpenActive\Enums\SchemaOrg\PaymentMethod|null $acceptedPaymentMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -897,7 +882,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\LoanOrCredit",
-            "\OpenActive\Enums\PaymentMethod",
+            "\OpenActive\Enums\SchemaOrg\PaymentMethod",
             "null",
         );
 
@@ -907,27 +892,27 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\PriceSpecification
      */
-    public function getEligibleDuration()
+    public function getEligibleTransactionVolume()
     {
-        return $this->eligibleDuration;
+        return $this->eligibleTransactionVolume;
     }
 
     /**
-     * @param QuantitativeValue $eligibleDuration
+     * @param \OpenActive\Models\SchemaOrg\PriceSpecification $eligibleTransactionVolume
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEligibleDuration($eligibleDuration)
+    public function setEligibleTransactionVolume($eligibleTransactionVolume)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
         );
 
-        $eligibleDuration = self::checkTypes($eligibleDuration, $types);
+        $eligibleTransactionVolume = self::checkTypes($eligibleTransactionVolume, $types);
 
-        $this->eligibleDuration = $eligibleDuration;
+        $this->eligibleTransactionVolume = $eligibleTransactionVolume;
     }
 
     /**
@@ -956,77 +941,200 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return PriceSpecification
-     */
-    public function getEligibleTransactionVolume()
-    {
-        return $this->eligibleTransactionVolume;
-    }
-
-    /**
-     * @param PriceSpecification $eligibleTransactionVolume
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEligibleTransactionVolume($eligibleTransactionVolume)
-    {
-        $types = array(
-            "PriceSpecification",
-        );
-
-        $eligibleTransactionVolume = self::checkTypes($eligibleTransactionVolume, $types);
-
-        $this->eligibleTransactionVolume = $eligibleTransactionVolume;
-    }
-
-    /**
      * @return string
      */
-    public function getGtin8()
+    public function getGtin()
     {
-        return $this->gtin8;
+        return $this->gtin;
     }
 
     /**
-     * @param string $gtin8
+     * @param string $gtin
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setGtin8($gtin8)
+    public function setGtin($gtin)
     {
         $types = array(
             "string",
         );
 
-        $gtin8 = self::checkTypes($gtin8, $types);
+        $gtin = self::checkTypes($gtin, $types);
 
-        $this->gtin8 = $gtin8;
+        $this->gtin = $gtin;
     }
 
     /**
-     * @return DateTime|string|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    public function getAvailabilityStarts()
+    public function getAdvanceBookingRequirement()
     {
-        return $this->availabilityStarts;
+        return $this->advanceBookingRequirement;
     }
 
     /**
-     * @param DateTime|string|null $availabilityStarts
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $advanceBookingRequirement
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAvailabilityStarts($availabilityStarts)
+    public function setAdvanceBookingRequirement($advanceBookingRequirement)
     {
         $types = array(
-            "DateTime",
-            "Time",
-            "null",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
-        $availabilityStarts = self::checkTypes($availabilityStarts, $types);
+        $advanceBookingRequirement = self::checkTypes($advanceBookingRequirement, $types);
 
-        $this->availabilityStarts = $availabilityStarts;
+        $this->advanceBookingRequirement = $advanceBookingRequirement;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\GeoShape
+     */
+    public function getEligibleRegion()
+    {
+        return $this->eligibleRegion;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\GeoShape $eligibleRegion
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEligibleRegion($eligibleRegion)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Place",
+            "string",
+            "\OpenActive\Models\SchemaOrg\GeoShape",
+        );
+
+        $eligibleRegion = self::checkTypes($eligibleRegion, $types);
+
+        $this->eligibleRegion = $eligibleRegion;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place
+     */
+    public function getAreaServed()
+    {
+        return $this->areaServed;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place $areaServed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAreaServed($areaServed)
+    {
+        $types = array(
+            "string",
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+            "\OpenActive\Models\SchemaOrg\GeoShape",
+            "\OpenActive\Models\SchemaOrg\Place",
+        );
+
+        $areaServed = self::checkTypes($areaServed, $types);
+
+        $this->areaServed = $areaServed;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGtin14()
+    {
+        return $this->gtin14;
+    }
+
+    /**
+     * @param string $gtin14
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGtin14($gtin14)
+    {
+        $types = array(
+            "string",
+        );
+
+        $gtin14 = self::checkTypes($gtin14, $types);
+
+        $this->gtin14 = $gtin14;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\WarrantyPromise
+     */
+    public function getWarranty()
+    {
+        return $this->warranty;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\WarrantyPromise $warranty
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setWarranty($warranty)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\WarrantyPromise",
+        );
+
+        $warranty = self::checkTypes($warranty, $types);
+
+        $this->warranty = $warranty;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\PriceSpecification
+     */
+    public function getPriceSpecification()
+    {
+        return $this->priceSpecification;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\PriceSpecification $priceSpecification
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPriceSpecification($priceSpecification)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
+        );
+
+        $priceSpecification = self::checkTypes($priceSpecification, $types);
+
+        $this->priceSpecification = $priceSpecification;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMpn()
+    {
+        return $this->mpn;
+    }
+
+    /**
+     * @param string $mpn
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMpn($mpn)
+    {
+        $types = array(
+            "string",
+        );
+
+        $mpn = self::checkTypes($mpn, $types);
+
+        $this->mpn = $mpn;
     }
 
 }

@@ -15,4 +15,11 @@ class AutoDealer extends \OpenActive\Models\SchemaOrg\AutomotiveBusiness
         return "schema:AutoDealer";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

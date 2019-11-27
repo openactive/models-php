@@ -15,16 +15,24 @@ class LendAction extends \OpenActive\Models\SchemaOrg\TransferAction
         return "schema:LendAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "borrower" => "borrower",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A sub property of participant. The person that borrows the object being lent.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $borrower;
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getBorrower()
     {
@@ -32,14 +40,14 @@ class LendAction extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @param Person $borrower
+     * @param \OpenActive\Models\SchemaOrg\Person $borrower
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBorrower($borrower)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $borrower = self::checkTypes($borrower, $types);

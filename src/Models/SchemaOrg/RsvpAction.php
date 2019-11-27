@@ -15,11 +15,21 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
         return "schema:RsvpAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "rsvpResponse" => "rsvpResponse",
+            "comment" => "comment",
+            "additionalNumberOfGuests" => "additionalNumberOfGuests",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The response (yes, no, maybe) to the RSVP.
      *
      *
-     * @var \OpenActive\Enums\RsvpResponseType|null
+     * @var \OpenActive\Enums\SchemaOrg\RsvpResponseType|null
      */
     protected $rsvpResponse;
 
@@ -40,7 +50,7 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     protected $additionalNumberOfGuests;
 
     /**
-     * @return \OpenActive\Enums\RsvpResponseType|null
+     * @return \OpenActive\Enums\SchemaOrg\RsvpResponseType|null
      */
     public function getRsvpResponse()
     {
@@ -48,14 +58,14 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     }
 
     /**
-     * @param \OpenActive\Enums\RsvpResponseType|null $rsvpResponse
+     * @param \OpenActive\Enums\SchemaOrg\RsvpResponseType|null $rsvpResponse
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRsvpResponse($rsvpResponse)
     {
         $types = array(
-            "\OpenActive\Enums\RsvpResponseType",
+            "\OpenActive\Enums\SchemaOrg\RsvpResponseType",
             "null",
         );
 

@@ -16,6 +16,19 @@ class Concept extends \OpenActive\BaseModel
         return "Concept";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "altLabel" => "altLabel",
+            "broader" => "broader",
+            "inScheme" => "inScheme",
+            "narrower" => "narrower",
+            "notation" => "notation",
+            "prefLabel" => "prefLabel",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * An alternative human readable string for use in user interfaces.
      *

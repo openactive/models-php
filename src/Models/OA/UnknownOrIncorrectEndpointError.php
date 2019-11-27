@@ -15,4 +15,11 @@ class UnknownOrIncorrectEndpointError extends \OpenActive\Models\OA\OpenBookingE
         return "UnknownOrIncorrectEndpointError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

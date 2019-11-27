@@ -15,4 +15,11 @@ class OutletStore extends \OpenActive\Models\SchemaOrg\Store
         return "schema:OutletStore";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

@@ -15,6 +15,14 @@ class FinancialService extends \OpenActive\Models\SchemaOrg\LocalBusiness
         return "schema:FinancialService";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "feesAndCommissionsSpecification" => "feesAndCommissionsSpecification",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Description of fees, commissions, and other terms applied either to a class of financial product, or by a financial service organization.
      *

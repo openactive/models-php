@@ -16,6 +16,27 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
         return "Order";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "identifier" => "identifier",
+            "bookingService" => "bookingService",
+            "broker" => "broker",
+            "brokerRole" => "brokerRole",
+            "customer" => "customer",
+            "orderCreationStatus" => "orderCreationStatus",
+            "orderedItem" => "orderedItem",
+            "orderNumber" => "orderNumber",
+            "orderProposalVersion" => "orderProposalVersion",
+            "payment" => "payment",
+            "seller" => "seller",
+            "taxCalculationExcluded" => "taxCalculationExcluded",
+            "totalPaymentDue" => "totalPaymentDue",
+            "totalPaymentTax" => "totalPaymentTax",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A local non-URI identifier for the resource
      *
@@ -23,7 +44,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|PropertyValue|PropertyValue[]|null
+     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -31,7 +52,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      * Details about the Booking System
      *
      *
-     * @var BookingService
+     * @var \OpenActive\Models\OA\BookingService
      */
     protected $bookingService;
 
@@ -39,7 +60,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      * The organisation or developer providing an application that allows Customers to make bookings. Those applications will be clients of the API defined in this specification. If brokerRole is set to https://openactive.io/NoBroker this is not required.
      *
      *
-     * @var Organization
+     * @var \OpenActive\Models\OA\Organization
      */
     protected $broker;
 
@@ -55,7 +76,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      * The person or organization purchasing the Order.
      *
      *
-     * @var Organization|Person
+     * @var \OpenActive\Models\OA\Organization|\OpenActive\Models\OA\Person
      */
     protected $customer;
 
@@ -71,7 +92,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      * The items that constitute the Order.
      *
      *
-     * @var OrderItem[]
+     * @var \OpenActive\Models\OA\OrderItem[]
      */
     protected $orderedItem;
 
@@ -95,15 +116,15 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      * The payment associated with the Order by the Broker. It is required for cases where a payment has been taken.
      *
      *
-     * @var Payment
+     * @var \OpenActive\Models\OA\Payment
      */
     protected $payment;
 
     /**
-     * The organisation (schema:Organization) providing access to events or facilities via a Booking System. e.g. a leisure provider running yoga classes.
+     * The organisation (schema:Organization) or person (schema:Person) providing access to events or facilities via a Booking System. e.g. a leisure provider or independent instructor running a yoga classes.
      *
      *
-     * @var Organization
+     * @var \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization
      */
     protected $seller;
 
@@ -118,7 +139,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     /**
      *
      *
-     * @var PriceSpecification
+     * @var \OpenActive\Models\OA\PriceSpecification
      */
     protected $totalPaymentDue;
 
@@ -126,12 +147,12 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      * Breakdown of tax payable for the Order.
      *
      *
-     * @var TaxChargeSpecification[]
+     * @var \OpenActive\Models\OA\TaxChargeSpecification[]
      */
     protected $totalPaymentTax;
 
     /**
-     * @return int|string|PropertyValue|PropertyValue[]|null
+     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -139,7 +160,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @param int|string|PropertyValue|PropertyValue[]|null $identifier
+     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -148,8 +169,8 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
         $types = array(
             "int",
             "string",
-            "PropertyValue",
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue",
+            "\OpenActive\Models\OA\PropertyValue[]",
             "null",
         );
 
@@ -159,7 +180,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @return BookingService
+     * @return \OpenActive\Models\OA\BookingService
      */
     public function getBookingService()
     {
@@ -167,14 +188,14 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @param BookingService $bookingService
+     * @param \OpenActive\Models\OA\BookingService $bookingService
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBookingService($bookingService)
     {
         $types = array(
-            "BookingService",
+            "\OpenActive\Models\OA\BookingService",
         );
 
         $bookingService = self::checkTypes($bookingService, $types);
@@ -183,7 +204,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\OA\Organization
      */
     public function getBroker()
     {
@@ -191,14 +212,14 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @param Organization $broker
+     * @param \OpenActive\Models\OA\Organization $broker
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroker($broker)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\OA\Organization",
         );
 
         $broker = self::checkTypes($broker, $types);
@@ -232,7 +253,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @return Organization|Person
+     * @return \OpenActive\Models\OA\Organization|\OpenActive\Models\OA\Person
      */
     public function getCustomer()
     {
@@ -240,15 +261,15 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @param Organization|Person $customer
+     * @param \OpenActive\Models\OA\Organization|\OpenActive\Models\OA\Person $customer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCustomer($customer)
     {
         $types = array(
-            "Organization",
-            "Person",
+            "\OpenActive\Models\OA\Organization",
+            "\OpenActive\Models\OA\Person",
         );
 
         $customer = self::checkTypes($customer, $types);
@@ -282,7 +303,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @return OrderItem[]
+     * @return \OpenActive\Models\OA\OrderItem[]
      */
     public function getOrderedItem()
     {
@@ -290,14 +311,14 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @param OrderItem[] $orderedItem
+     * @param \OpenActive\Models\OA\OrderItem[] $orderedItem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderedItem($orderedItem)
     {
         $types = array(
-            "OrderItem[]",
+            "\OpenActive\Models\OA\OrderItem[]",
         );
 
         $orderedItem = self::checkTypes($orderedItem, $types);
@@ -354,7 +375,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @return Payment
+     * @return \OpenActive\Models\OA\Payment
      */
     public function getPayment()
     {
@@ -362,14 +383,14 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @param Payment $payment
+     * @param \OpenActive\Models\OA\Payment $payment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPayment($payment)
     {
         $types = array(
-            "Payment",
+            "\OpenActive\Models\OA\Payment",
         );
 
         $payment = self::checkTypes($payment, $types);
@@ -378,7 +399,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization
      */
     public function getSeller()
     {
@@ -386,14 +407,15 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @param Organization $seller
+     * @param \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization $seller
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeller($seller)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\OA\Person",
+            "\OpenActive\Models\OA\Organization",
         );
 
         $seller = self::checkTypes($seller, $types);
@@ -427,7 +449,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @return PriceSpecification
+     * @return \OpenActive\Models\OA\PriceSpecification
      */
     public function getTotalPaymentDue()
     {
@@ -435,14 +457,14 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @param PriceSpecification $totalPaymentDue
+     * @param \OpenActive\Models\OA\PriceSpecification $totalPaymentDue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalPaymentDue($totalPaymentDue)
     {
         $types = array(
-            "PriceSpecification",
+            "\OpenActive\Models\OA\PriceSpecification",
         );
 
         $totalPaymentDue = self::checkTypes($totalPaymentDue, $types);
@@ -451,7 +473,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @return TaxChargeSpecification[]
+     * @return \OpenActive\Models\OA\TaxChargeSpecification[]
      */
     public function getTotalPaymentTax()
     {
@@ -459,14 +481,14 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @param TaxChargeSpecification[] $totalPaymentTax
+     * @param \OpenActive\Models\OA\TaxChargeSpecification[] $totalPaymentTax
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalPaymentTax($totalPaymentTax)
     {
         $types = array(
-            "TaxChargeSpecification[]",
+            "\OpenActive\Models\OA\TaxChargeSpecification[]",
         );
 
         $totalPaymentTax = self::checkTypes($totalPaymentTax, $types);

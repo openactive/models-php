@@ -15,4 +15,11 @@ class ProfessionalService extends \OpenActive\Models\SchemaOrg\LocalBusiness
         return "schema:ProfessionalService";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

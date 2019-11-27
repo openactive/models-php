@@ -15,4 +15,11 @@ class TemporarilyUnableToUpdateOrderError extends \OpenActive\Models\OA\OpenBook
         return "TemporarilyUnableToUpdateOrderError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

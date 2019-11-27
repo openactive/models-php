@@ -16,6 +16,14 @@ class BooleanFormFieldSpecification extends \OpenActive\Models\OA\PropertyValueS
         return "BooleanFormFieldSpecification";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "valueRequired" => "valueRequired",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Specifies that a value for the field is required to proceed with the booking.
      *

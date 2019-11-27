@@ -15,4 +15,11 @@ class PreOrderAction extends \OpenActive\Models\SchemaOrg\TradeAction
         return "schema:PreOrderAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

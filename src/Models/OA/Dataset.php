@@ -21,6 +21,29 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
         return "Dataset";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "name" => "name",
+            "description" => "description",
+            "accessService" => "accessService",
+            "backgroundImage" => "backgroundImage",
+            "bookingService" => "bookingService",
+            "dateModified" => "dateModified",
+            "datePublished" => "datePublished",
+            "discussionUrl" => "discussionUrl",
+            "distribution" => "distribution",
+            "documentation" => "documentation",
+            "inLanguage" => "inLanguage",
+            "keywords" => "keywords",
+            "license" => "license",
+            "publisher" => "publisher",
+            "schemaVersion" => "schemaVersion",
+            "url" => "url",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The name of the Dataset
      *
@@ -47,7 +70,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      * Information about the Open Booking API. Note this property is in EARLY RELEASE AND IS SUBJECT TO CHANGE.
      *
      *
-     * @var WebAPI
+     * @var \OpenActive\Models\OA\WebAPI
      */
     protected $accessService;
 
@@ -61,7 +84,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      * }
      * ```
      *
-     * @var ImageObject
+     * @var \OpenActive\Models\OA\ImageObject
      */
     protected $backgroundImage;
 
@@ -69,7 +92,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      * Information about the Booking System or publishing platform
      *
      *
-     * @var BookingService
+     * @var \OpenActive\Models\OA\BookingService
      */
     protected $bookingService;
 
@@ -121,7 +144,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      * ]
      * ```
      *
-     * @var DataDownload[]
+     * @var \OpenActive\Models\OA\DataDownload[]
      */
     protected $distribution;
 
@@ -169,8 +192,8 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
 
     /**
      * Must always be present and set to ```json
-"license": "https://creativecommons.org/licenses/by/4.0/"
-```
+     * "license": "https://creativecommons.org/licenses/by/4.0/"
+     * ```
      *
      * ```json
      * "license": "https://creativecommons.org/licenses/by/4.0/"
@@ -191,7 +214,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      * }
      * ```
      *
-     * @var Organization
+     * @var \OpenActive\Models\OA\Organization
      */
     protected $publisher;
 
@@ -266,7 +289,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @return WebAPI
+     * @return \OpenActive\Models\OA\WebAPI
      */
     public function getAccessService()
     {
@@ -274,14 +297,14 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @param WebAPI $accessService
+     * @param \OpenActive\Models\OA\WebAPI $accessService
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessService($accessService)
     {
         $types = array(
-            "WebAPI",
+            "\OpenActive\Models\OA\WebAPI",
         );
 
         $accessService = self::checkTypes($accessService, $types);
@@ -290,7 +313,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @return ImageObject
+     * @return \OpenActive\Models\OA\ImageObject
      */
     public function getBackgroundImage()
     {
@@ -298,14 +321,14 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @param ImageObject $backgroundImage
+     * @param \OpenActive\Models\OA\ImageObject $backgroundImage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBackgroundImage($backgroundImage)
     {
         $types = array(
-            "ImageObject",
+            "\OpenActive\Models\OA\ImageObject",
         );
 
         $backgroundImage = self::checkTypes($backgroundImage, $types);
@@ -314,7 +337,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @return BookingService
+     * @return \OpenActive\Models\OA\BookingService
      */
     public function getBookingService()
     {
@@ -322,14 +345,14 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @param BookingService $bookingService
+     * @param \OpenActive\Models\OA\BookingService $bookingService
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBookingService($bookingService)
     {
         $types = array(
-            "BookingService",
+            "\OpenActive\Models\OA\BookingService",
         );
 
         $bookingService = self::checkTypes($bookingService, $types);
@@ -412,7 +435,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @return DataDownload[]
+     * @return \OpenActive\Models\OA\DataDownload[]
      */
     public function getDistribution()
     {
@@ -420,14 +443,14 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @param DataDownload[] $distribution
+     * @param \OpenActive\Models\OA\DataDownload[] $distribution
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDistribution($distribution)
     {
         $types = array(
-            "DataDownload[]",
+            "\OpenActive\Models\OA\DataDownload[]",
         );
 
         $distribution = self::checkTypes($distribution, $types);
@@ -532,7 +555,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\OA\Organization
      */
     public function getPublisher()
     {
@@ -540,14 +563,14 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @param Organization $publisher
+     * @param \OpenActive\Models\OA\Organization $publisher
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPublisher($publisher)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\OA\Organization",
         );
 
         $publisher = self::checkTypes($publisher, $types);

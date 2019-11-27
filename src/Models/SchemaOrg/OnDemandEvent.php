@@ -15,4 +15,11 @@ class OnDemandEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
         return "schema:OnDemandEvent";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

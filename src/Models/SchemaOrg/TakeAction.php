@@ -15,4 +15,11 @@ class TakeAction extends \OpenActive\Models\SchemaOrg\TransferAction
         return "schema:TakeAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

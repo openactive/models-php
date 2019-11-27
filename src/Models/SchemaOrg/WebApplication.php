@@ -15,6 +15,14 @@ class WebApplication extends \OpenActive\Models\SchemaOrg\SoftwareApplication
         return "schema:WebApplication";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "browserRequirements" => "browserRequirements",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Specifies browser requirements in human-readable text. For example, 'requires HTML5 support'.
      *

@@ -16,4 +16,47 @@ class CourseInstance extends \OpenActive\Models\OA\Event
         return "CourseInstance";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "course" => "beta:course",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * This course for which this is an offering.
+     * 
+     * If you are using this property, please join the discussion at proposal [#164](https://github.com/openactive/modelling-opportunity-data/issues/164).
+     *
+     *
+     * @var \OpenActive\Models\Course
+     */
+    protected $course;
+
+    /**
+     * @return \OpenActive\Models\Course
+     */
+    public function getCourse()
+    {
+        return $this->course;
+    }
+
+    /**
+     * @param \OpenActive\Models\Course $course
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCourse($course)
+    {
+        $types = array(
+            "\OpenActive\Models\Course",
+        );
+
+        $course = self::checkTypes($course, $types);
+
+        $this->course = $course;
+    }
+
 }

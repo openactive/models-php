@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [Action](https://schema.org/Action), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class TradeAction extends \OpenActive\Models\SchemaOrg\Action
@@ -14,6 +13,16 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
     public static function getType()
     {
         return "schema:TradeAction";
+    }
+
+    public static function fieldList() {
+        $fields = [
+            "price" => "price",
+            "priceCurrency" => "priceCurrency",
+            "priceSpecification" => "priceSpecification",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
     }
 
     /**
@@ -48,7 +57,7 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
      * One or more detailed price specifications, indicating the unit price and delivery or payment charges.
      *
      *
-     * @var PriceSpecification
+     * @var \OpenActive\Models\SchemaOrg\PriceSpecification
      */
     protected $priceSpecification;
 
@@ -103,7 +112,7 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @return PriceSpecification
+     * @return \OpenActive\Models\SchemaOrg\PriceSpecification
      */
     public function getPriceSpecification()
     {
@@ -111,14 +120,14 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @param PriceSpecification $priceSpecification
+     * @param \OpenActive\Models\SchemaOrg\PriceSpecification $priceSpecification
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceSpecification($priceSpecification)
     {
         $types = array(
-            "PriceSpecification",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
         );
 
         $priceSpecification = self::checkTypes($priceSpecification, $types);

@@ -8,7 +8,7 @@ namespace OpenActive\Enums;
  */
 class GenderRestrictionType
 {
-    const NoRestriction = \OpenActive\Enums\OA\GenderRestrictionType\NoRestriction::class;
-    const MaleOnly = \OpenActive\Enums\OA\GenderRestrictionType\MaleOnly::class;
-    const FemaleOnly = \OpenActive\Enums\OA\GenderRestrictionType\FemaleOnly::class;
+    const NoRestriction = \OpenActive\Enums\GenderRestrictionType\NoRestriction::class;
+    const MaleOnly = \OpenActive\Enums\GenderRestrictionType\MaleOnly::class;
+    const FemaleOnly = \OpenActive\Enums\GenderRestrictionType\FemaleOnly::class;
 }

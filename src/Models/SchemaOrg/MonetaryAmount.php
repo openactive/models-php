@@ -15,6 +15,19 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
         return "schema:MonetaryAmount";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "maxValue" => "maxValue",
+            "validThrough" => "validThrough",
+            "validFrom" => "validFrom",
+            "currency" => "currency",
+            "value" => "value",
+            "minValue" => "minValue",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The upper value of some characteristic or property.
      *

@@ -15,4 +15,11 @@ class GatedResidenceCommunity extends \OpenActive\Models\SchemaOrg\Residence
         return "schema:GatedResidenceCommunity";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

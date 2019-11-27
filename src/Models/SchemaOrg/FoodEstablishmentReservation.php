@@ -15,11 +15,21 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
         return "schema:FoodEstablishmentReservation";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "partySize" => "partySize",
+            "endTime" => "endTime",
+            "startTime" => "startTime",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Number of people the reservation should accommodate.
      *
      *
-     * @var int|QuantitativeValue|null
+     * @var int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $partySize;
 
@@ -44,7 +54,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     protected $startTime;
 
     /**
-     * @return int|QuantitativeValue|null
+     * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getPartySize()
     {
@@ -52,7 +62,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * @param int|QuantitativeValue|null $partySize
+     * @param int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $partySize
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -60,7 +70,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     {
         $types = array(
             "int",
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
         );
 

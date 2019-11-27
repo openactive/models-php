@@ -15,6 +15,16 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:Comment";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "downvoteCount" => "downvoteCount",
+            "parentItem" => "parentItem",
+            "upvoteCount" => "upvoteCount",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The number of downvotes this question, answer or comment has received from the community.
      *

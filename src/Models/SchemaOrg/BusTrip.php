@@ -15,6 +15,17 @@ class BusTrip extends \OpenActive\Models\SchemaOrg\Trip
         return "schema:BusTrip";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "busNumber" => "busNumber",
+            "arrivalBusStop" => "arrivalBusStop",
+            "departureBusStop" => "departureBusStop",
+            "busName" => "busName",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The unique identifier for the bus.
      *

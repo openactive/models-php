@@ -15,6 +15,14 @@ class MonetaryAmountDistribution extends \OpenActive\Models\SchemaOrg\Quantitati
         return "schema:MonetaryAmountDistribution";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "currency" => "currency",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The currency in which the monetary amount is expressed.<br/><br/>
      * 

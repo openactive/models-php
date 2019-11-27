@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [Event](https://schema.org/Event), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class ScreeningEvent extends \OpenActive\Models\SchemaOrg\Event
@@ -15,6 +14,24 @@ class ScreeningEvent extends \OpenActive\Models\SchemaOrg\Event
     {
         return "schema:ScreeningEvent";
     }
+
+    public static function fieldList() {
+        $fields = [
+            "subtitleLanguage" => "subtitleLanguage",
+            "workPresented" => "workPresented",
+            "videoFormat" => "videoFormat",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
+    /**
+     * Languages in which subtitles/captions are available, in <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard format</a>.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Language
+     */
+    protected $subtitleLanguage;
 
     /**
      * The movie presented during this event.
@@ -31,6 +48,31 @@ class ScreeningEvent extends \OpenActive\Models\SchemaOrg\Event
      * @var string
      */
     protected $videoFormat;
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Language
+     */
+    public function getSubtitleLanguage()
+    {
+        return $this->subtitleLanguage;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Language $subtitleLanguage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSubtitleLanguage($subtitleLanguage)
+    {
+        $types = array(
+            "string",
+            "\OpenActive\Models\SchemaOrg\Language",
+        );
+
+        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
+
+        $this->subtitleLanguage = $subtitleLanguage;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Movie

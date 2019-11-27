@@ -15,4 +15,11 @@ class ElectronicsStore extends \OpenActive\Models\SchemaOrg\Store
         return "schema:ElectronicsStore";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

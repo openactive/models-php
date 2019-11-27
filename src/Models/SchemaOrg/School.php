@@ -15,4 +15,11 @@ class School extends \OpenActive\Models\SchemaOrg\EducationalOrganization
         return "schema:School";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

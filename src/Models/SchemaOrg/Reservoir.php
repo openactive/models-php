@@ -15,4 +15,11 @@ class Reservoir extends \OpenActive\Models\SchemaOrg\BodyOfWater
         return "schema:Reservoir";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

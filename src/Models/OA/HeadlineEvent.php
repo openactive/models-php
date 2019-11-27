@@ -16,6 +16,14 @@ class HeadlineEvent extends \OpenActive\Models\OA\Event
         return "HeadlineEvent";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "eventSchedule" => "eventSchedule",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A an array of oa:Schedule or oa:PartialSchedule, which represents a recurrence pattern.
      *
@@ -33,13 +41,13 @@ class HeadlineEvent extends \OpenActive\Models\OA\Event
      * ]
      * ```
      *
-     * @var Schedule[]
+     * @var \OpenActive\Models\OA\Schedule[]
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $eventSchedule;
 
     /**
-     * @return Schedule[]
+     * @return \OpenActive\Models\OA\Schedule[]
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getEventSchedule()
@@ -48,7 +56,7 @@ class HeadlineEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param Schedule[] $eventSchedule
+     * @param \OpenActive\Models\OA\Schedule[] $eventSchedule
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -56,7 +64,7 @@ class HeadlineEvent extends \OpenActive\Models\OA\Event
     public function setEventSchedule($eventSchedule)
     {
         $types = array(
-            "Schedule[]",
+            "\OpenActive\Models\OA\Schedule[]",
         );
 
         $eventSchedule = self::checkTypes($eventSchedule, $types);

@@ -15,11 +15,21 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
         return "schema:InteractionCounter";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "interactionType" => "interactionType",
+            "userInteractionCount" => "userInteractionCount",
+            "interactionService" => "interactionService",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The Action representing the type of interaction. For up votes, +1s, etc. use <a class="localLink" href="https://schema.org/LikeAction">LikeAction</a>. For down votes use <a class="localLink" href="https://schema.org/DislikeAction">DislikeAction</a>. Otherwise, use the most specific Action.
      *
      *
-     * @var Action
+     * @var \OpenActive\Models\SchemaOrg\Action
      */
     protected $interactionType;
 
@@ -40,7 +50,7 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $interactionService;
 
     /**
-     * @return Action
+     * @return \OpenActive\Models\SchemaOrg\Action
      */
     public function getInteractionType()
     {
@@ -48,14 +58,14 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param Action $interactionType
+     * @param \OpenActive\Models\SchemaOrg\Action $interactionType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInteractionType($interactionType)
     {
         $types = array(
-            "Action",
+            "\OpenActive\Models\SchemaOrg\Action",
         );
 
         $interactionType = self::checkTypes($interactionType, $types);

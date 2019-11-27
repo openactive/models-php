@@ -15,4 +15,11 @@ class DownloadAction extends \OpenActive\Models\SchemaOrg\TransferAction
         return "schema:DownloadAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

@@ -15,11 +15,26 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:VisualArtwork";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "depth" => "depth",
+            "surface" => "surface",
+            "width" => "width",
+            "artEdition" => "artEdition",
+            "artworkSurface" => "artworkSurface",
+            "artform" => "artform",
+            "artMedium" => "artMedium",
+            "height" => "height",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The depth of the item.
      *
      *
-     * @var QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     protected $depth;
 
@@ -35,7 +50,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The width of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $width;
 
@@ -75,12 +90,12 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The height of the item.
      *
      *
-     * @var QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     protected $height;
 
     /**
-     * @return QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     public function getDepth()
     {
@@ -88,14 +103,14 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $depth
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $depth
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDepth($depth)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "\OpenActive\Models\SchemaOrg\Distance",
         );
 
@@ -129,7 +144,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getWidth()
     {
@@ -137,7 +152,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $width
+     * @param \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue $width
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -145,7 +160,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\Distance",
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
         $width = self::checkTypes($width, $types);
@@ -252,7 +267,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     public function getHeight()
     {
@@ -260,14 +275,14 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $height
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $height
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHeight($height)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "\OpenActive\Models\SchemaOrg\Distance",
         );
 

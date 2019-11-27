@@ -16,6 +16,15 @@ class Barcode extends \OpenActive\Models\OA\ImageObject
         return "Barcode";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "text" => "text",
+            "url" => "url",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The barcode number
      *

@@ -15,4 +15,11 @@ class HairSalon extends \OpenActive\Models\SchemaOrg\HealthAndBeautyBusiness
         return "schema:HairSalon";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

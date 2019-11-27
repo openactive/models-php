@@ -16,6 +16,15 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Location
         return "LocationFeatureSpecification";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "name" => "name",
+            "value" => "value",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A string, suitable for presentation in user interfaces.
      *

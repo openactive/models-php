@@ -15,6 +15,16 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\Series
         return "schema:CreativeWorkSeries";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "startDate" => "startDate",
+            "issn" => "issn",
+            "endDate" => "endDate",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
