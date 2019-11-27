@@ -15,6 +15,14 @@ class EducationalAudience extends \OpenActive\Models\SchemaOrg\Audience
         return "schema:EducationalAudience";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "educationalRole" => "educationalRole",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * An educationalRole of an EducationalAudience.
      *

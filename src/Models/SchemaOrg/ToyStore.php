@@ -15,4 +15,11 @@ class ToyStore extends \OpenActive\Models\SchemaOrg\Store
         return "schema:ToyStore";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

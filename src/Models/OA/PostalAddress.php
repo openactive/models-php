@@ -16,6 +16,18 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
         return "PostalAddress";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "addressCountry" => "addressCountry",
+            "addressLocality" => "addressLocality",
+            "addressRegion" => "addressRegion",
+            "postalCode" => "postalCode",
+            "streetAddress" => "streetAddress",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The country, expressed as a two-letter ISO 3166-1 alpha-2 country code.
      *

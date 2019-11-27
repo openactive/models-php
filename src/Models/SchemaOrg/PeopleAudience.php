@@ -15,6 +15,19 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
         return "schema:PeopleAudience";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "suggestedMinAge" => "suggestedMinAge",
+            "requiredMaxAge" => "requiredMaxAge",
+            "suggestedGender" => "suggestedGender",
+            "requiredGender" => "requiredGender",
+            "requiredMinAge" => "requiredMinAge",
+            "suggestedMaxAge" => "suggestedMaxAge",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Minimal age recommended for viewing content.
      *

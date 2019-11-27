@@ -16,6 +16,18 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
         return "TaxChargeSpecification";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "identifier" => "identifier",
+            "name" => "name",
+            "price" => "price",
+            "priceCurrency" => "priceCurrency",
+            "rate" => "rate",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A local non-URI identifier for the resource
      *
@@ -23,7 +35,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|PropertyValue|PropertyValue[]|null
+     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -60,7 +72,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     protected $rate;
 
     /**
-     * @return int|string|PropertyValue|PropertyValue[]|null
+     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -68,7 +80,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     }
 
     /**
-     * @param int|string|PropertyValue|PropertyValue[]|null $identifier
+     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -77,8 +89,8 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
         $types = array(
             "int",
             "string",
-            "PropertyValue",
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue",
+            "\OpenActive\Models\OA\PropertyValue[]",
             "null",
         );
 

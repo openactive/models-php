@@ -15,4 +15,11 @@ class UserPageVisits extends \OpenActive\Models\SchemaOrg\UserInteraction
         return "schema:UserPageVisits";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

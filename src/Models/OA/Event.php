@@ -16,6 +16,58 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
         return "Event";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "identifier" => "identifier",
+            "name" => "name",
+            "description" => "description",
+            "accessibilityInformation" => "accessibilityInformation",
+            "accessibilitySupport" => "accessibilitySupport",
+            "activity" => "activity",
+            "ageRange" => "ageRange",
+            "attendeeInstructions" => "attendeeInstructions",
+            "category" => "category",
+            "contributor" => "contributor",
+            "duration" => "duration",
+            "eventSchedule" => "eventSchedule",
+            "eventStatus" => "eventStatus",
+            "genderRestriction" => "genderRestriction",
+            "image" => "image",
+            "isAccessibleForFree" => "isAccessibleForFree",
+            "isCoached" => "isCoached",
+            "leader" => "leader",
+            "level" => "level",
+            "location" => "location",
+            "maximumAttendeeCapacity" => "maximumAttendeeCapacity",
+            "meetingPoint" => "meetingPoint",
+            "offers" => "offers",
+            "organizer" => "organizer",
+            "potentialAction" => "potentialAction",
+            "programme" => "programme",
+            "remainingAttendeeCapacity" => "remainingAttendeeCapacity",
+            "schedulingNote" => "schedulingNote",
+            "startDate" => "startDate",
+            "endDate" => "endDate",
+            "subEvent" => "subEvent",
+            "superEvent" => "superEvent",
+            "url" => "url",
+            "distance" => "beta:distance",
+            "estimatedDuration" => "beta:estimatedDuration",
+            "isVirtuallyCoached" => "beta:isVirtuallyCoached",
+            "formattedDescription" => "beta:formattedDescription",
+            "facilitySetting" => "beta:facilitySetting",
+            "offerValidityPeriod" => "beta:offerValidityPeriod",
+            "sportsActivityLocation" => "beta:sportsActivityLocation",
+            "video" => "beta:video",
+            "availability" => "beta:availability",
+            "isWheelchairAccessible" => "beta:isWheelchairAccessible",
+            "registrationCount" => "beta:registrationCount",
+            "attendeeCount" => "beta:attendeeCount",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A local non-URI identifier for the resource
      *
@@ -23,7 +75,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|PropertyValue|PropertyValue[]|null
+     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -74,7 +126,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ]
      * ```
      *
-     * @var Concept[]
+     * @var \OpenActive\Models\OA\Concept[]
      */
     protected $accessibilitySupport;
 
@@ -92,7 +144,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ]
      * ```
      *
-     * @var Concept[]
+     * @var \OpenActive\Models\OA\Concept[]
      */
     protected $activity;
 
@@ -107,7 +159,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * }
      * ```
      *
-     * @var QuantitativeValue
+     * @var \OpenActive\Models\OA\QuantitativeValue
      */
     protected $ageRange;
 
@@ -131,7 +183,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ]
      * ```
      *
-     * @var string[]|Concept[]
+     * @var string[]|\OpenActive\Models\OA\Concept[]
      */
     protected $category;
 
@@ -150,7 +202,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ]
      * ```
      *
-     * @var Person[]
+     * @var \OpenActive\Models\OA\Person[]
      */
     protected $contributor;
 
@@ -182,7 +234,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ]
      * ```
      *
-     * @var Schedule[]
+     * @var \OpenActive\Models\OA\Schedule[]
      */
     protected $eventSchedule;
 
@@ -193,7 +245,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "eventStatus": "https://schema.org/EventScheduled"
      * ```
      *
-     * @var \OpenActive\Enums\EventStatusType|null
+     * @var \OpenActive\Enums\SchemaOrg\EventStatusType|null
      */
     protected $eventStatus;
 
@@ -226,7 +278,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ]
      * ```
      *
-     * @var ImageObject[]
+     * @var \OpenActive\Models\OA\ImageObject[]
      */
     protected $image;
 
@@ -268,7 +320,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ]
      * ```
      *
-     * @var Person[]
+     * @var \OpenActive\Models\OA\Person[]
      */
     protected $leader;
 
@@ -281,7 +333,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ]
      * ```
      *
-     * @var string[]|Concept[]
+     * @var string[]|\OpenActive\Models\OA\Concept[]
      */
     protected $level;
 
@@ -314,7 +366,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * }
      * ```
      *
-     * @var Place
+     * @var \OpenActive\Models\OA\Place
      */
     protected $location;
 
@@ -356,7 +408,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ]
      * ```
      *
-     * @var Offer[]
+     * @var \OpenActive\Models\OA\Offer[]
      */
     protected $offers;
 
@@ -371,7 +423,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * }
      * ```
      *
-     * @var Person|Organization
+     * @var \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization
      */
     protected $organizer;
 
@@ -393,7 +445,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ]
      * ```
      *
-     * @var Action[]
+     * @var \OpenActive\Models\OA\Action[]
      */
     protected $potentialAction;
 
@@ -408,7 +460,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * }
      * ```
      *
-     * @var Brand
+     * @var \OpenActive\Models\OA\Brand
      */
     protected $programme;
 
@@ -461,7 +513,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * Relates a parent event to a child event. Properties describing the parent event can be assumed to apply to the child, unless otherwise specified. A child event might be a specific instance of an Event within a schedule
      *
      *
-     * @var Event[]
+     * @var \OpenActive\Models\OA\Event[]
      */
     protected $subEvent;
 
@@ -469,7 +521,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * Relates a child event to a parent event. Properties describing the parent event can be assumed to apply to the child, unless otherwise specified. A parent event might specify a recurring schedule, of which the child event is one specific instance
      *
      *
-     * @var Event
+     * @var \OpenActive\Models\OA\Event
      */
     protected $superEvent;
 
@@ -485,7 +537,139 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     protected $url;
 
     /**
-     * @return int|string|PropertyValue|PropertyValue[]|null
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * The distance of a run, cycle or other activity. Must also include units.
+     * 
+     * If you are using this property, please join the discussion at proposal [#3](https://github.com/openactive/ns-beta/issues/3).
+     *
+     *
+     * @var \OpenActive\Models\QuantitativeValue
+     */
+    protected $distance;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * A property that allows an Event duration to be represented as a range (e.g. 0-30mins, 30-60mins, 60-90mins, 90+).
+     * 
+     * If you are using this property, please join the discussion at proposal [#201](https://github.com/openactive/modelling-opportunity-data/issues/201).
+     *
+     *
+     * @var \OpenActive\Models\QuantitativeValue
+     */
+    protected $estimatedDuration;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * A property that indicates whether the event is led by a virtual coach. Only relevant if an event `isCoached`.
+     * 
+     * If you are using this property, please join the discussion at proposal [#71](https://github.com/openactive/modelling-opportunity-data/issues/71).
+     *
+     *
+     * @var bool|null
+     */
+    protected $isVirtuallyCoached;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * 
+     * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
+     *
+     *
+     * @var string
+     */
+    protected $formattedDescription;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Whether the event or facility is indoor or outdoor.
+     * 
+     * If you are using this property, please join the discussion at proposal [#1](https://github.com/openactive/facility-types/issues/1).
+     *
+     *
+     * @var \OpenActive\Enums\FacilitySettingType|null
+     */
+    protected $facilitySetting;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Duration before the event for which the associated Offers are valid
+     * 
+     * If you are using this property, please join the discussion at proposal [#204](https://github.com/openactive/modelling-opportunity-data/issues/204).
+     *
+     *
+     * @var DateInterval|null
+     */
+    protected $offerValidityPeriod;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Internal location of the event, e.g. Court 1
+     * 
+     * If you are using this property, please join the discussion at proposal [#110](https://github.com/openactive/modelling-opportunity-data/issues/110).
+     *
+     *
+     * @var \OpenActive\Models\SportsActivityLocation[]
+     */
+    protected $sportsActivityLocation;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * An related video object.
+     * 
+     * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\VideoObject[]
+     */
+    protected $video;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * For data publishers not wishing to disclose the granular availability of their sessions openly.
+     * 
+     * If you are using this property, please join the discussion at proposal [#9](https://github.com/openactive/ns-beta/issues/9).
+     *
+     *
+     * @var string
+     */
+    protected $availability;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * A property that details whether the event is suitable for wheelchair access. Placed on Event as this field could be used to detail whether the Event is suitable, as well as the Place.
+     * 
+     * If you are using this property, please join the discussion at proposal [#166](https://github.com/openactive/modelling-opportunity-data/issues/166).
+     *
+     *
+     * @var bool|null
+     */
+    protected $isWheelchairAccessible;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * For events that have an unlimited number of tickets, captures the number of registrations (intention to attend).
+     * 
+     * If you are using this property, please join the discussion at proposal [#13](https://github.com/openactive/ns-beta/issues/13).
+     *
+     *
+     * @var int|null
+     */
+    protected $registrationCount;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * For events that have an unlimited number of tickets, captures the number of attendees (actual attendance).
+     * 
+     * If you are using this property, please join the discussion at proposal [#12](https://github.com/openactive/ns-beta/issues/12).
+     *
+     *
+     * @var int|null
+     */
+    protected $attendeeCount;
+
+    /**
+     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -493,7 +677,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param int|string|PropertyValue|PropertyValue[]|null $identifier
+     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -502,8 +686,8 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
         $types = array(
             "int",
             "string",
-            "PropertyValue",
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue",
+            "\OpenActive\Models\OA\PropertyValue[]",
             "null",
         );
 
@@ -585,7 +769,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Concept[]
+     * @return \OpenActive\Models\OA\Concept[]
      */
     public function getAccessibilitySupport()
     {
@@ -593,14 +777,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Concept[] $accessibilitySupport
+     * @param \OpenActive\Models\OA\Concept[] $accessibilitySupport
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessibilitySupport($accessibilitySupport)
     {
         $types = array(
-            "Concept[]",
+            "\OpenActive\Models\OA\Concept[]",
         );
 
         $accessibilitySupport = self::checkTypes($accessibilitySupport, $types);
@@ -609,7 +793,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Concept[]
+     * @return \OpenActive\Models\OA\Concept[]
      */
     public function getActivity()
     {
@@ -617,14 +801,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Concept[] $activity
+     * @param \OpenActive\Models\OA\Concept[] $activity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActivity($activity)
     {
         $types = array(
-            "Concept[]",
+            "\OpenActive\Models\OA\Concept[]",
         );
 
         $activity = self::checkTypes($activity, $types);
@@ -633,7 +817,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Models\OA\QuantitativeValue
      */
     public function getAgeRange()
     {
@@ -641,14 +825,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param QuantitativeValue $ageRange
+     * @param \OpenActive\Models\OA\QuantitativeValue $ageRange
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAgeRange($ageRange)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\OA\QuantitativeValue",
         );
 
         $ageRange = self::checkTypes($ageRange, $types);
@@ -681,7 +865,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return string[]|Concept[]
+     * @return string[]|\OpenActive\Models\OA\Concept[]
      */
     public function getCategory()
     {
@@ -689,7 +873,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param string[]|Concept[] $category
+     * @param string[]|\OpenActive\Models\OA\Concept[] $category
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -697,7 +881,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     {
         $types = array(
             "string[]",
-            "Concept[]",
+            "\OpenActive\Models\OA\Concept[]",
         );
 
         $category = self::checkTypes($category, $types);
@@ -706,7 +890,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Person[]
+     * @return \OpenActive\Models\OA\Person[]
      */
     public function getContributor()
     {
@@ -714,14 +898,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Person[] $contributor
+     * @param \OpenActive\Models\OA\Person[] $contributor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContributor($contributor)
     {
         $types = array(
-            "Person[]",
+            "\OpenActive\Models\OA\Person[]",
         );
 
         $contributor = self::checkTypes($contributor, $types);
@@ -755,7 +939,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Schedule[]
+     * @return \OpenActive\Models\OA\Schedule[]
      */
     public function getEventSchedule()
     {
@@ -763,14 +947,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Schedule[] $eventSchedule
+     * @param \OpenActive\Models\OA\Schedule[] $eventSchedule
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEventSchedule($eventSchedule)
     {
         $types = array(
-            "Schedule[]",
+            "\OpenActive\Models\OA\Schedule[]",
         );
 
         $eventSchedule = self::checkTypes($eventSchedule, $types);
@@ -779,7 +963,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Enums\EventStatusType|null
+     * @return \OpenActive\Enums\SchemaOrg\EventStatusType|null
      */
     public function getEventStatus()
     {
@@ -787,14 +971,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Enums\EventStatusType|null $eventStatus
+     * @param \OpenActive\Enums\SchemaOrg\EventStatusType|null $eventStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEventStatus($eventStatus)
     {
         $types = array(
-            "\OpenActive\Enums\EventStatusType",
+            "\OpenActive\Enums\SchemaOrg\EventStatusType",
             "null",
         );
 
@@ -829,7 +1013,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return ImageObject[]
+     * @return \OpenActive\Models\OA\ImageObject[]
      */
     public function getImage()
     {
@@ -837,14 +1021,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param ImageObject[] $image
+     * @param \OpenActive\Models\OA\ImageObject[] $image
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setImage($image)
     {
         $types = array(
-            "ImageObject[]",
+            "\OpenActive\Models\OA\ImageObject[]",
         );
 
         $image = self::checkTypes($image, $types);
@@ -903,7 +1087,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Person[]
+     * @return \OpenActive\Models\OA\Person[]
      */
     public function getLeader()
     {
@@ -911,14 +1095,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Person[] $leader
+     * @param \OpenActive\Models\OA\Person[] $leader
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLeader($leader)
     {
         $types = array(
-            "Person[]",
+            "\OpenActive\Models\OA\Person[]",
         );
 
         $leader = self::checkTypes($leader, $types);
@@ -927,7 +1111,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return string[]|Concept[]
+     * @return string[]|\OpenActive\Models\OA\Concept[]
      */
     public function getLevel()
     {
@@ -935,7 +1119,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param string[]|Concept[] $level
+     * @param string[]|\OpenActive\Models\OA\Concept[] $level
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -943,7 +1127,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     {
         $types = array(
             "string[]",
-            "Concept[]",
+            "\OpenActive\Models\OA\Concept[]",
         );
 
         $level = self::checkTypes($level, $types);
@@ -952,7 +1136,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Place
+     * @return \OpenActive\Models\OA\Place
      */
     public function getLocation()
     {
@@ -960,14 +1144,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Place $location
+     * @param \OpenActive\Models\OA\Place $location
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLocation($location)
     {
         $types = array(
-            "Place",
+            "\OpenActive\Models\OA\Place",
         );
 
         $location = self::checkTypes($location, $types);
@@ -1025,7 +1209,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Offer[]
+     * @return \OpenActive\Models\OA\Offer[]
      */
     public function getOffers()
     {
@@ -1033,14 +1217,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Offer[] $offers
+     * @param \OpenActive\Models\OA\Offer[] $offers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
         $types = array(
-            "Offer[]",
+            "\OpenActive\Models\OA\Offer[]",
         );
 
         $offers = self::checkTypes($offers, $types);
@@ -1049,7 +1233,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Person|Organization
+     * @return \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization
      */
     public function getOrganizer()
     {
@@ -1057,15 +1241,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Person|Organization $organizer
+     * @param \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization $organizer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrganizer($organizer)
     {
         $types = array(
-            "Person",
-            "Organization",
+            "\OpenActive\Models\OA\Person",
+            "\OpenActive\Models\OA\Organization",
         );
 
         $organizer = self::checkTypes($organizer, $types);
@@ -1074,7 +1258,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Action[]
+     * @return \OpenActive\Models\OA\Action[]
      */
     public function getPotentialAction()
     {
@@ -1082,14 +1266,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Action[] $potentialAction
+     * @param \OpenActive\Models\OA\Action[] $potentialAction
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPotentialAction($potentialAction)
     {
         $types = array(
-            "Action[]",
+            "\OpenActive\Models\OA\Action[]",
         );
 
         $potentialAction = self::checkTypes($potentialAction, $types);
@@ -1098,7 +1282,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Brand
+     * @return \OpenActive\Models\OA\Brand
      */
     public function getProgramme()
     {
@@ -1106,14 +1290,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Brand $programme
+     * @param \OpenActive\Models\OA\Brand $programme
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProgramme($programme)
     {
         $types = array(
-            "Brand",
+            "\OpenActive\Models\OA\Brand",
         );
 
         $programme = self::checkTypes($programme, $types);
@@ -1221,7 +1405,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Event[]
+     * @return \OpenActive\Models\OA\Event[]
      */
     public function getSubEvent()
     {
@@ -1229,14 +1413,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Event[] $subEvent
+     * @param \OpenActive\Models\OA\Event[] $subEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSubEvent($subEvent)
     {
         $types = array(
-            "Event[]",
+            "\OpenActive\Models\OA\Event[]",
         );
 
         $subEvent = self::checkTypes($subEvent, $types);
@@ -1245,7 +1429,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Event
+     * @return \OpenActive\Models\OA\Event
      */
     public function getSuperEvent()
     {
@@ -1253,14 +1437,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Event $superEvent
+     * @param \OpenActive\Models\OA\Event $superEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuperEvent($superEvent)
     {
         $types = array(
-            "Event",
+            "\OpenActive\Models\OA\Event",
         );
 
         $superEvent = self::checkTypes($superEvent, $types);
@@ -1290,6 +1474,300 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
         $url = self::checkTypes($url, $types);
 
         $this->url = $url;
+    }
+
+    /**
+     * @return \OpenActive\Models\QuantitativeValue
+     */
+    public function getDistance()
+    {
+        return $this->distance;
+    }
+
+    /**
+     * @param \OpenActive\Models\QuantitativeValue $distance
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDistance($distance)
+    {
+        $types = array(
+            "\OpenActive\Models\QuantitativeValue",
+        );
+
+        $distance = self::checkTypes($distance, $types);
+
+        $this->distance = $distance;
+    }
+
+    /**
+     * @return \OpenActive\Models\QuantitativeValue
+     */
+    public function getEstimatedDuration()
+    {
+        return $this->estimatedDuration;
+    }
+
+    /**
+     * @param \OpenActive\Models\QuantitativeValue $estimatedDuration
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEstimatedDuration($estimatedDuration)
+    {
+        $types = array(
+            "\OpenActive\Models\QuantitativeValue",
+        );
+
+        $estimatedDuration = self::checkTypes($estimatedDuration, $types);
+
+        $this->estimatedDuration = $estimatedDuration;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getIsVirtuallyCoached()
+    {
+        return $this->isVirtuallyCoached;
+    }
+
+    /**
+     * @param bool|null $isVirtuallyCoached
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsVirtuallyCoached($isVirtuallyCoached)
+    {
+        $types = array(
+            "bool",
+            "null",
+        );
+
+        $isVirtuallyCoached = self::checkTypes($isVirtuallyCoached, $types);
+
+        $this->isVirtuallyCoached = $isVirtuallyCoached;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormattedDescription()
+    {
+        return $this->formattedDescription;
+    }
+
+    /**
+     * @param string $formattedDescription
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFormattedDescription($formattedDescription)
+    {
+        $types = array(
+            "string",
+        );
+
+        $formattedDescription = self::checkTypes($formattedDescription, $types);
+
+        $this->formattedDescription = $formattedDescription;
+    }
+
+    /**
+     * @return \OpenActive\Enums\FacilitySettingType|null
+     */
+    public function getFacilitySetting()
+    {
+        return $this->facilitySetting;
+    }
+
+    /**
+     * @param \OpenActive\Enums\FacilitySettingType|null $facilitySetting
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFacilitySetting($facilitySetting)
+    {
+        $types = array(
+            "\OpenActive\Enums\FacilitySettingType",
+            "null",
+        );
+
+        $facilitySetting = self::checkTypes($facilitySetting, $types);
+
+        $this->facilitySetting = $facilitySetting;
+    }
+
+    /**
+     * @return DateInterval|null
+     */
+    public function getOfferValidityPeriod()
+    {
+        return $this->offerValidityPeriod;
+    }
+
+    /**
+     * @param DateInterval|null $offerValidityPeriod
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOfferValidityPeriod($offerValidityPeriod)
+    {
+        $types = array(
+            "DateInterval",
+            "null",
+        );
+
+        $offerValidityPeriod = self::checkTypes($offerValidityPeriod, $types);
+
+        $this->offerValidityPeriod = $offerValidityPeriod;
+    }
+
+    /**
+     * @return \OpenActive\Models\SportsActivityLocation[]
+     */
+    public function getSportsActivityLocation()
+    {
+        return $this->sportsActivityLocation;
+    }
+
+    /**
+     * @param \OpenActive\Models\SportsActivityLocation[] $sportsActivityLocation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSportsActivityLocation($sportsActivityLocation)
+    {
+        $types = array(
+            "\OpenActive\Models\SportsActivityLocation[]",
+        );
+
+        $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);
+
+        $this->sportsActivityLocation = $sportsActivityLocation;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\VideoObject[]
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\VideoObject[] $video
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVideo($video)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\VideoObject[]",
+        );
+
+        $video = self::checkTypes($video, $types);
+
+        $this->video = $video;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvailability()
+    {
+        return $this->availability;
+    }
+
+    /**
+     * @param string $availability
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAvailability($availability)
+    {
+        $types = array(
+            "string",
+        );
+
+        $availability = self::checkTypes($availability, $types);
+
+        $this->availability = $availability;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getIsWheelchairAccessible()
+    {
+        return $this->isWheelchairAccessible;
+    }
+
+    /**
+     * @param bool|null $isWheelchairAccessible
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsWheelchairAccessible($isWheelchairAccessible)
+    {
+        $types = array(
+            "bool",
+            "null",
+        );
+
+        $isWheelchairAccessible = self::checkTypes($isWheelchairAccessible, $types);
+
+        $this->isWheelchairAccessible = $isWheelchairAccessible;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getRegistrationCount()
+    {
+        return $this->registrationCount;
+    }
+
+    /**
+     * @param int|null $registrationCount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRegistrationCount($registrationCount)
+    {
+        $types = array(
+            "int",
+            "null",
+        );
+
+        $registrationCount = self::checkTypes($registrationCount, $types);
+
+        $this->registrationCount = $registrationCount;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getAttendeeCount()
+    {
+        return $this->attendeeCount;
+    }
+
+    /**
+     * @param int|null $attendeeCount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAttendeeCount($attendeeCount)
+    {
+        $types = array(
+            "int",
+            "null",
+        );
+
+        $attendeeCount = self::checkTypes($attendeeCount, $types);
+
+        $this->attendeeCount = $attendeeCount;
     }
 
 }

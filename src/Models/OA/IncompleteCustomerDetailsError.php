@@ -15,4 +15,11 @@ class IncompleteCustomerDetailsError extends \OpenActive\Models\OA\OpenBookingEr
         return "IncompleteCustomerDetailsError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

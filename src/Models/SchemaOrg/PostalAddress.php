@@ -15,6 +15,19 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
         return "schema:PostalAddress";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "addressLocality" => "addressLocality",
+            "postalCode" => "postalCode",
+            "addressRegion" => "addressRegion",
+            "addressCountry" => "addressCountry",
+            "streetAddress" => "streetAddress",
+            "postOfficeBoxNumber" => "postOfficeBoxNumber",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The locality in which the street address is, and which is in the region. For example, Mountain View.
      *

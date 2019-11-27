@@ -15,13 +15,37 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:ActionAccessSpecification";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "ineligibleRegion" => "ineligibleRegion",
+            "eligibleRegion" => "eligibleRegion",
+            "expectsAcceptanceOf" => "expectsAcceptanceOf",
+            "availabilityEnds" => "availabilityEnds",
+            "category" => "category",
+            "requiresSubscription" => "requiresSubscription",
+            "availabilityStarts" => "availabilityStarts",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
+    /**
+     * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.<br/><br/>
+     * 
+     * See also <a class="localLink" href="https://schema.org/eligibleRegion">eligibleRegion</a>.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string
+     */
+    protected $ineligibleRegion;
+
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.<br/><br/>
      * 
      * See also <a class="localLink" href="https://schema.org/ineligibleRegion">ineligibleRegion</a>.
      *
      *
-     * @var Place|string|\OpenActive\Models\SchemaOrg\GeoShape
+     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\GeoShape
      */
     protected $eligibleRegion;
 
@@ -29,7 +53,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it.
      *
      *
-     * @var Offer
+     * @var \OpenActive\Models\SchemaOrg\Offer
      */
     protected $expectsAcceptanceOf;
 
@@ -45,7 +69,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory
+     * @var string|\OpenActive\Models\SchemaOrg\Thing
      */
     protected $category;
 
@@ -66,7 +90,33 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     protected $availabilityStarts;
 
     /**
-     * @return Place|string|\OpenActive\Models\SchemaOrg\GeoShape
+     * @return \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string
+     */
+    public function getIneligibleRegion()
+    {
+        return $this->ineligibleRegion;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string $ineligibleRegion
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIneligibleRegion($ineligibleRegion)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\GeoShape",
+            "\OpenActive\Models\SchemaOrg\Place",
+            "string",
+        );
+
+        $ineligibleRegion = self::checkTypes($ineligibleRegion, $types);
+
+        $this->ineligibleRegion = $ineligibleRegion;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\GeoShape
      */
     public function getEligibleRegion()
     {
@@ -74,14 +124,14 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Place|string|\OpenActive\Models\SchemaOrg\GeoShape $eligibleRegion
+     * @param \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\GeoShape $eligibleRegion
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleRegion($eligibleRegion)
     {
         $types = array(
-            "Place",
+            "\OpenActive\Models\SchemaOrg\Place",
             "string",
             "\OpenActive\Models\SchemaOrg\GeoShape",
         );
@@ -92,7 +142,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Offer
+     * @return \OpenActive\Models\SchemaOrg\Offer
      */
     public function getExpectsAcceptanceOf()
     {
@@ -100,14 +150,14 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Offer $expectsAcceptanceOf
+     * @param \OpenActive\Models\SchemaOrg\Offer $expectsAcceptanceOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExpectsAcceptanceOf($expectsAcceptanceOf)
     {
         $types = array(
-            "Offer",
+            "\OpenActive\Models\SchemaOrg\Offer",
         );
 
         $expectsAcceptanceOf = self::checkTypes($expectsAcceptanceOf, $types);
@@ -142,7 +192,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory
+     * @return string|\OpenActive\Models\SchemaOrg\Thing
      */
     public function getCategory()
     {
@@ -150,7 +200,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\PhysicalActivityCategory $category
+     * @param string|\OpenActive\Models\SchemaOrg\Thing $category
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -159,7 +209,6 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
         $types = array(
             "string",
             "\OpenActive\Models\SchemaOrg\Thing",
-            "\OpenActive\Models\SchemaOrg\PhysicalActivityCategory",
         );
 
         $category = self::checkTypes($category, $types);

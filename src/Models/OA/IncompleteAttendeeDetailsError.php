@@ -15,4 +15,11 @@ class IncompleteAttendeeDetailsError extends \OpenActive\Models\OA\OpenBookingEr
         return "IncompleteAttendeeDetailsError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

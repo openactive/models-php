@@ -15,6 +15,15 @@ class AudioObject extends \OpenActive\Models\SchemaOrg\MediaObject
         return "schema:AudioObject";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "caption" => "caption",
+            "transcript" => "transcript",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the <a class="localLink" href="https://schema.org/encodingFormat">encodingFormat</a>.
      *

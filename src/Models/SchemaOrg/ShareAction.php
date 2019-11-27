@@ -15,4 +15,11 @@ class ShareAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
         return "schema:ShareAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

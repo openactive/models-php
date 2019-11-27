@@ -15,4 +15,11 @@ class GroceryStore extends \OpenActive\Models\SchemaOrg\Store
         return "schema:GroceryStore";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

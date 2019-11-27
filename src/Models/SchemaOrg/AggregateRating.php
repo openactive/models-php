@@ -15,6 +15,16 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
         return "schema:AggregateRating";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "ratingCount" => "ratingCount",
+            "reviewCount" => "reviewCount",
+            "itemReviewed" => "itemReviewed",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The count of total number of ratings.
      *

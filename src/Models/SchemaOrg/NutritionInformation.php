@@ -15,6 +15,25 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
         return "schema:NutritionInformation";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "proteinContent" => "proteinContent",
+            "servingSize" => "servingSize",
+            "saturatedFatContent" => "saturatedFatContent",
+            "calories" => "calories",
+            "fiberContent" => "fiberContent",
+            "transFatContent" => "transFatContent",
+            "sodiumContent" => "sodiumContent",
+            "fatContent" => "fatContent",
+            "carbohydrateContent" => "carbohydrateContent",
+            "cholesterolContent" => "cholesterolContent",
+            "sugarContent" => "sugarContent",
+            "unsaturatedFatContent" => "unsaturatedFatContent",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The number of grams of protein.
      *

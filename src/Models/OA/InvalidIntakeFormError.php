@@ -15,4 +15,11 @@ class InvalidIntakeFormError extends \OpenActive\Models\OA\OpenBookingError
         return "InvalidIntakeFormError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

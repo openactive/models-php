@@ -15,6 +15,21 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:Ticket";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "dateIssued" => "dateIssued",
+            "ticketedSeat" => "ticketedSeat",
+            "ticketToken" => "ticketToken",
+            "issuedBy" => "issuedBy",
+            "ticketNumber" => "ticketNumber",
+            "priceCurrency" => "priceCurrency",
+            "totalPrice" => "totalPrice",
+            "underName" => "underName",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The date the ticket was issued.
      *
@@ -43,7 +58,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
      * The organization issuing the ticket or permit.
      *
      *
-     * @var Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
     protected $issuedBy;
 
@@ -77,7 +92,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
      * 
      *
      *
-     * @var string|float|PriceSpecification|null
+     * @var string|float|\OpenActive\Models\SchemaOrg\PriceSpecification|null
      */
     protected $totalPrice;
 
@@ -85,7 +100,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
      * The person or organization the reservation or ticket is for.
      *
      *
-     * @var Organization|Person
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $underName;
 
@@ -163,7 +178,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization
      */
     public function getIssuedBy()
     {
@@ -171,14 +186,14 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Organization $issuedBy
+     * @param \OpenActive\Models\SchemaOrg\Organization $issuedBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIssuedBy($issuedBy)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $issuedBy = self::checkTypes($issuedBy, $types);
@@ -235,7 +250,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|float|PriceSpecification|null
+     * @return string|float|\OpenActive\Models\SchemaOrg\PriceSpecification|null
      */
     public function getTotalPrice()
     {
@@ -243,7 +258,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|float|PriceSpecification|null $totalPrice
+     * @param string|float|\OpenActive\Models\SchemaOrg\PriceSpecification|null $totalPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -252,7 +267,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
         $types = array(
             "string",
             "float",
-            "PriceSpecification",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
             "null",
         );
 
@@ -262,7 +277,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Organization|Person
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getUnderName()
     {
@@ -270,15 +285,15 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Organization|Person $underName
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $underName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnderName($underName)
     {
         $types = array(
-            "Organization",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $underName = self::checkTypes($underName, $types);

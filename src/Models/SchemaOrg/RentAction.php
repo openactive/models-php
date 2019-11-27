@@ -15,6 +15,15 @@ class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
         return "schema:RentAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "realEstateAgent" => "realEstateAgent",
+            "landlord" => "landlord",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A sub property of participant. The real estate agent involved in the action.
      *
@@ -27,7 +36,7 @@ class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
      * A sub property of participant. The owner of the real estate property.
      *
      *
-     * @var Organization|Person
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $landlord;
 
@@ -56,7 +65,7 @@ class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
-     * @return Organization|Person
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getLandlord()
     {
@@ -64,15 +73,15 @@ class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
-     * @param Organization|Person $landlord
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $landlord
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLandlord($landlord)
     {
         $types = array(
-            "Organization",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $landlord = self::checkTypes($landlord, $types);

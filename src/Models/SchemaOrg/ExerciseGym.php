@@ -15,4 +15,11 @@ class ExerciseGym extends \OpenActive\Models\SchemaOrg\SportsActivityLocation
         return "schema:ExerciseGym";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

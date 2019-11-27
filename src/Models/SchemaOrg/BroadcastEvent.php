@@ -15,11 +15,30 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
         return "schema:BroadcastEvent";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "subtitleLanguage" => "subtitleLanguage",
+            "broadcastOfEvent" => "broadcastOfEvent",
+            "isLiveBroadcast" => "isLiveBroadcast",
+            "videoFormat" => "videoFormat",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
+    /**
+     * Languages in which subtitles/captions are available, in <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard format</a>.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Language
+     */
+    protected $subtitleLanguage;
+
     /**
      * The event being broadcast such as a sporting event or awards ceremony.
      *
      *
-     * @var Event
+     * @var \OpenActive\Models\SchemaOrg\Event
      */
     protected $broadcastOfEvent;
 
@@ -40,7 +59,32 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
     protected $videoFormat;
 
     /**
-     * @return Event
+     * @return string|\OpenActive\Models\SchemaOrg\Language
+     */
+    public function getSubtitleLanguage()
+    {
+        return $this->subtitleLanguage;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Language $subtitleLanguage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSubtitleLanguage($subtitleLanguage)
+    {
+        $types = array(
+            "string",
+            "\OpenActive\Models\SchemaOrg\Language",
+        );
+
+        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
+
+        $this->subtitleLanguage = $subtitleLanguage;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Event
      */
     public function getBroadcastOfEvent()
     {
@@ -48,14 +92,14 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
     }
 
     /**
-     * @param Event $broadcastOfEvent
+     * @param \OpenActive\Models\SchemaOrg\Event $broadcastOfEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastOfEvent($broadcastOfEvent)
     {
         $types = array(
-            "Event",
+            "\OpenActive\Models\SchemaOrg\Event",
         );
 
         $broadcastOfEvent = self::checkTypes($broadcastOfEvent, $types);

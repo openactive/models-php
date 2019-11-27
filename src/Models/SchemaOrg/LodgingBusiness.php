@@ -15,12 +15,27 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
         return "schema:LodgingBusiness";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "numberOfRooms" => "numberOfRooms",
+            "checkoutTime" => "checkoutTime",
+            "starRating" => "starRating",
+            "amenityFeature" => "amenityFeature",
+            "availableLanguage" => "availableLanguage",
+            "petsAllowed" => "petsAllowed",
+            "checkinTime" => "checkinTime",
+            "audience" => "audience",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business.
      * Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue.
      *
      *
-     * @var QuantitativeValue|float|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
      */
     protected $numberOfRooms;
 
@@ -44,7 +59,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
      * An amenity feature (e.g. a characteristic or service) of the Accommodation. This generic property does not make a statement about whether the feature is included in an offer for the main accommodation or available at extra costs.
      *
      *
-     * @var LocationFeatureSpecification
+     * @var \OpenActive\Models\SchemaOrg\LocationFeatureSpecification
      */
     protected $amenityFeature;
 
@@ -81,7 +96,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     protected $audience;
 
     /**
-     * @return QuantitativeValue|float|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
      */
     public function getNumberOfRooms()
     {
@@ -89,14 +104,14 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @param QuantitativeValue|float|null $numberOfRooms
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $numberOfRooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfRooms($numberOfRooms)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "float",
             "null",
         );
@@ -157,7 +172,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @return LocationFeatureSpecification
+     * @return \OpenActive\Models\SchemaOrg\LocationFeatureSpecification
      */
     public function getAmenityFeature()
     {
@@ -165,14 +180,14 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @param LocationFeatureSpecification $amenityFeature
+     * @param \OpenActive\Models\SchemaOrg\LocationFeatureSpecification $amenityFeature
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAmenityFeature($amenityFeature)
     {
         $types = array(
-            "LocationFeatureSpecification",
+            "\OpenActive\Models\SchemaOrg\LocationFeatureSpecification",
         );
 
         $amenityFeature = self::checkTypes($amenityFeature, $types);

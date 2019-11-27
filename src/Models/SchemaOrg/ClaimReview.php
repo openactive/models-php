@@ -15,6 +15,14 @@ class ClaimReview extends \OpenActive\Models\SchemaOrg\Review
         return "schema:ClaimReview";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "claimReviewed" => "claimReviewed",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A short summary of the specific claims reviewed in a ClaimReview.
      *

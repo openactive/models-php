@@ -15,6 +15,15 @@ class Airport extends \OpenActive\Models\SchemaOrg\CivicStructure
         return "schema:Airport";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "icaoCode" => "icaoCode",
+            "iataCode" => "iataCode",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * ICAO identifier for an airport.
      *

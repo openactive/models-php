@@ -16,6 +16,19 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
         return "Brand";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "identifier" => "identifier",
+            "name" => "name",
+            "description" => "description",
+            "logo" => "logo",
+            "url" => "url",
+            "video" => "beta:video",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A local non-URI identifier for the resource
      *
@@ -23,7 +36,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      * "identifier": "BR1234"
      * ```
      *
-     * @var int|string|PropertyValue|PropertyValue[]|null
+     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -59,7 +72,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      * }
      * ```
      *
-     * @var ImageObject
+     * @var \OpenActive\Models\OA\ImageObject
      */
     protected $logo;
 
@@ -75,7 +88,18 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     protected $url;
 
     /**
-     * @return int|string|PropertyValue|PropertyValue[]|null
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * An related video object.
+     * 
+     * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\VideoObject[]
+     */
+    protected $video;
+
+    /**
+     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -83,7 +107,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     }
 
     /**
-     * @param int|string|PropertyValue|PropertyValue[]|null $identifier
+     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -92,8 +116,8 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
         $types = array(
             "int",
             "string",
-            "PropertyValue",
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue",
+            "\OpenActive\Models\OA\PropertyValue[]",
             "null",
         );
 
@@ -151,7 +175,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     }
 
     /**
-     * @return ImageObject
+     * @return \OpenActive\Models\OA\ImageObject
      */
     public function getLogo()
     {
@@ -159,14 +183,14 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     }
 
     /**
-     * @param ImageObject $logo
+     * @param \OpenActive\Models\OA\ImageObject $logo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLogo($logo)
     {
         $types = array(
-            "ImageObject",
+            "\OpenActive\Models\OA\ImageObject",
         );
 
         $logo = self::checkTypes($logo, $types);
@@ -196,6 +220,30 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
         $url = self::checkTypes($url, $types);
 
         $this->url = $url;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\VideoObject[]
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\VideoObject[] $video
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVideo($video)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\VideoObject[]",
+        );
+
+        $video = self::checkTypes($video, $types);
+
+        $this->video = $video;
     }
 
 }

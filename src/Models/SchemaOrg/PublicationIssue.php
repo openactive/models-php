@@ -15,6 +15,17 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:PublicationIssue";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "pageStart" => "pageStart",
+            "pageEnd" => "pageEnd",
+            "issueNumber" => "issueNumber",
+            "pagination" => "pagination",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The page on which the work starts; for example "135" or "xiii".
      *

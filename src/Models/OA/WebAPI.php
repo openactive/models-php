@@ -21,6 +21,21 @@ class WebAPI extends \OpenActive\BaseModel
         return "WebAPI";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "name" => "name",
+            "description" => "description",
+            "conformsTo" => "conformsTo",
+            "documentation" => "documentation",
+            "endpointDescription" => "endpointDescription",
+            "endpointURL" => "endpointURL",
+            "landingPage" => "landingPage",
+            "termsOfService" => "termsOfService",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The name of the WebAPI
      *

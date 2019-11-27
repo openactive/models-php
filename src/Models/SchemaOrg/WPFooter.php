@@ -15,4 +15,11 @@ class WPFooter extends \OpenActive\Models\SchemaOrg\WebPageElement
         return "schema:WPFooter";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

@@ -15,6 +15,14 @@ class PlanAction extends \OpenActive\Models\SchemaOrg\OrganizeAction
         return "schema:PlanAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "scheduledTime" => "scheduledTime",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The time the object is scheduled to.
      *

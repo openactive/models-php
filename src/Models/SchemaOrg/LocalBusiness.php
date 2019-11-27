@@ -15,6 +15,18 @@ class LocalBusiness extends \OpenActive\Models\SchemaOrg\Place
         return "schema:LocalBusiness";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "currenciesAccepted" => "currenciesAccepted",
+            "openingHours" => "openingHours",
+            "paymentAccepted" => "paymentAccepted",
+            "branchOf" => "branchOf",
+            "priceRange" => "priceRange",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The currency accepted.<br/><br/>
      * 
@@ -53,7 +65,7 @@ class LocalBusiness extends \OpenActive\Models\SchemaOrg\Place
      * The larger organization that this local business is a branch of, if any. Not to be confused with (anatomical)<a class="localLink" href="https://schema.org/branch">branch</a>.
      *
      *
-     * @var Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
     protected $branchOf;
 
@@ -138,7 +150,7 @@ class LocalBusiness extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization
      */
     public function getBranchOf()
     {
@@ -146,14 +158,14 @@ class LocalBusiness extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param Organization $branchOf
+     * @param \OpenActive\Models\SchemaOrg\Organization $branchOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBranchOf($branchOf)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $branchOf = self::checkTypes($branchOf, $types);

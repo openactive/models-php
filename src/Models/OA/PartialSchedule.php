@@ -16,4 +16,47 @@ class PartialSchedule extends \OpenActive\Models\OA\Schedule
         return "PartialSchedule";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "timeZone" => "beta:timeZone",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * The time zone used to generate occurrences, same as iCal TZID. E.g. 'Europe/London'.
+     * 
+     * If you are using this property, please join the discussion at proposal [#197](https://github.com/openactive/modelling-opportunity-data/issues/197).
+     *
+     *
+     * @var string
+     */
+    protected $timeZone;
+
+    /**
+     * @return string
+     */
+    public function getTimeZone()
+    {
+        return $this->timeZone;
+    }
+
+    /**
+     * @param string $timeZone
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTimeZone($timeZone)
+    {
+        $types = array(
+            "string",
+        );
+
+        $timeZone = self::checkTypes($timeZone, $types);
+
+        $this->timeZone = $timeZone;
+    }
+
 }

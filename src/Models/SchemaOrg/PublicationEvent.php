@@ -15,6 +15,16 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
         return "schema:PublicationEvent";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "isAccessibleForFree" => "isAccessibleForFree",
+            "free" => "free",
+            "publishedOn" => "publishedOn",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A flag to signal that the item, event, or place is accessible for free.
      *

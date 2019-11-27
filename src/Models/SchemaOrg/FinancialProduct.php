@@ -15,11 +15,21 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
         return "schema:FinancialProduct";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "interestRate" => "interestRate",
+            "feesAndCommissionsSpecification" => "feesAndCommissionsSpecification",
+            "annualPercentageRate" => "annualPercentageRate",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The interest rate, charged or paid, applicable to the financial product. Note: This is different from the calculated annualPercentageRate.
      *
      *
-     * @var float|QuantitativeValue|null
+     * @var float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $interestRate;
 
@@ -35,12 +45,12 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
      * The annual rate that is charged for borrowing (or made by investing), expressed as a single percentage number that represents the actual yearly cost of funds over the term of a loan. This includes any fees or additional costs associated with the transaction.
      *
      *
-     * @var float|QuantitativeValue|null
+     * @var float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $annualPercentageRate;
 
     /**
-     * @return float|QuantitativeValue|null
+     * @return float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getInterestRate()
     {
@@ -48,7 +58,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @param float|QuantitativeValue|null $interestRate
+     * @param float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $interestRate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -56,7 +66,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     {
         $types = array(
             "float",
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
         );
 
@@ -90,7 +100,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @return float|QuantitativeValue|null
+     * @return float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getAnnualPercentageRate()
     {
@@ -98,7 +108,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @param float|QuantitativeValue|null $annualPercentageRate
+     * @param float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $annualPercentageRate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -106,7 +116,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     {
         $types = array(
             "float",
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
         );
 

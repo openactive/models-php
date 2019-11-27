@@ -17,4 +17,11 @@ class Cafe extends \OpenActive\Models\OA\LocationFeatureSpecification
         return "beta:Cafe";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

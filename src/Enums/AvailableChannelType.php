@@ -9,8 +9,8 @@ namespace OpenActive\Enums;
  */
 class AvailableChannelType
 {
-    const TelephoneAdvanceBooking = \OpenActive\Enums\OA\AvailableChannelType\TelephoneAdvanceBooking::class;
-    const TelephonePrepayment = \OpenActive\Enums\OA\AvailableChannelType\TelephonePrepayment::class;
-    const OnlinePrepayment = \OpenActive\Enums\OA\AvailableChannelType\OnlinePrepayment::class;
-    const OpenBookingPrepayment = \OpenActive\Enums\OA\AvailableChannelType\OpenBookingPrepayment::class;
+    const TelephoneAdvanceBooking = \OpenActive\Enums\AvailableChannelType\TelephoneAdvanceBooking::class;
+    const TelephonePrepayment = \OpenActive\Enums\AvailableChannelType\TelephonePrepayment::class;
+    const OnlinePrepayment = \OpenActive\Enums\AvailableChannelType\OnlinePrepayment::class;
+    const OpenBookingPrepayment = \OpenActive\Enums\AvailableChannelType\OpenBookingPrepayment::class;
 }

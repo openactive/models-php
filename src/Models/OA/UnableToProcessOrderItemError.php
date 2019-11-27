@@ -15,4 +15,11 @@ class UnableToProcessOrderItemError extends \OpenActive\Models\OA\OpenBookingErr
         return "UnableToProcessOrderItemError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

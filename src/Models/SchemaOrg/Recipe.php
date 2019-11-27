@@ -15,6 +15,23 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
         return "schema:Recipe";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "ingredients" => "ingredients",
+            "cookingMethod" => "cookingMethod",
+            "cookTime" => "cookTime",
+            "recipeCuisine" => "recipeCuisine",
+            "suitableForDiet" => "suitableForDiet",
+            "nutrition" => "nutrition",
+            "recipeInstructions" => "recipeInstructions",
+            "recipeIngredient" => "recipeIngredient",
+            "recipeCategory" => "recipeCategory",
+            "recipeYield" => "recipeYield",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A single ingredient used in the recipe, e.g. sugar, flour or garlic.
      *
@@ -51,7 +68,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
      * Indicates a dietary restriction or guideline for which this recipe or menu item is suitable, e.g. diabetic, halal etc.
      *
      *
-     * @var \OpenActive\Enums\RestrictedDiet|null
+     * @var \OpenActive\Enums\SchemaOrg\RestrictedDiet|null
      */
     protected $suitableForDiet;
 
@@ -91,7 +108,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
      * The quantity produced by the recipe (for example, number of people served, number of servings, etc).
      *
      *
-     * @var QuantitativeValue|string
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
     protected $recipeYield;
 
@@ -193,7 +210,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     }
 
     /**
-     * @return \OpenActive\Enums\RestrictedDiet|null
+     * @return \OpenActive\Enums\SchemaOrg\RestrictedDiet|null
      */
     public function getSuitableForDiet()
     {
@@ -201,14 +218,14 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     }
 
     /**
-     * @param \OpenActive\Enums\RestrictedDiet|null $suitableForDiet
+     * @param \OpenActive\Enums\SchemaOrg\RestrictedDiet|null $suitableForDiet
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuitableForDiet($suitableForDiet)
     {
         $types = array(
-            "\OpenActive\Enums\RestrictedDiet",
+            "\OpenActive\Enums\SchemaOrg\RestrictedDiet",
             "null",
         );
 
@@ -316,7 +333,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     }
 
     /**
-     * @return QuantitativeValue|string
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
     public function getRecipeYield()
     {
@@ -324,14 +341,14 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     }
 
     /**
-     * @param QuantitativeValue|string $recipeYield
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $recipeYield
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecipeYield($recipeYield)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
         );
 

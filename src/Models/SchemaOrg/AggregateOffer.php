@@ -15,6 +15,17 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
         return "schema:AggregateOffer";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "highPrice" => "highPrice",
+            "lowPrice" => "lowPrice",
+            "offerCount" => "offerCount",
+            "offers" => "offers",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The highest price of all offers available.<br/><br/>
      * 
@@ -59,7 +70,7 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
      * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
      *
      *
-     * @var Offer
+     * @var \OpenActive\Models\SchemaOrg\Offer
      */
     protected $offers;
 
@@ -141,7 +152,7 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return Offer
+     * @return \OpenActive\Models\SchemaOrg\Offer
      */
     public function getOffers()
     {
@@ -149,14 +160,14 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param Offer $offers
+     * @param \OpenActive\Models\SchemaOrg\Offer $offers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
         $types = array(
-            "Offer",
+            "\OpenActive\Models\SchemaOrg\Offer",
         );
 
         $offers = self::checkTypes($offers, $types);

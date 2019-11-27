@@ -15,6 +15,27 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
         return "schema:RadioSeries";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "containsSeason" => "containsSeason",
+            "episode" => "episode",
+            "directors" => "directors",
+            "seasons" => "seasons",
+            "numberOfEpisodes" => "numberOfEpisodes",
+            "actors" => "actors",
+            "productionCompany" => "productionCompany",
+            "director" => "director",
+            "numberOfSeasons" => "numberOfSeasons",
+            "trailer" => "trailer",
+            "actor" => "actor",
+            "musicBy" => "musicBy",
+            "episodes" => "episodes",
+            "season" => "season",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A season that is part of the media series.
      *
@@ -35,7 +56,7 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $directors;
 
@@ -59,7 +80,7 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $actors;
 
@@ -67,7 +88,7 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * The production company or studio responsible for the item e.g. series, video game, episode etc.
      *
      *
-     * @var Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
     protected $productionCompany;
 
@@ -75,7 +96,7 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $director;
 
@@ -99,7 +120,7 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $actor;
 
@@ -107,7 +128,7 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * The composer of the soundtrack.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MusicGroup|Person
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
      */
     protected $musicBy;
 
@@ -176,7 +197,7 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getDirectors()
     {
@@ -184,14 +205,14 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param Person $directors
+     * @param \OpenActive\Models\SchemaOrg\Person $directors
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDirectors($directors)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $directors = self::checkTypes($directors, $types);
@@ -249,7 +270,7 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getActors()
     {
@@ -257,14 +278,14 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param Person $actors
+     * @param \OpenActive\Models\SchemaOrg\Person $actors
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActors($actors)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $actors = self::checkTypes($actors, $types);
@@ -273,7 +294,7 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization
      */
     public function getProductionCompany()
     {
@@ -281,14 +302,14 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param Organization $productionCompany
+     * @param \OpenActive\Models\SchemaOrg\Organization $productionCompany
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProductionCompany($productionCompany)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $productionCompany = self::checkTypes($productionCompany, $types);
@@ -297,7 +318,7 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getDirector()
     {
@@ -305,14 +326,14 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param Person $director
+     * @param \OpenActive\Models\SchemaOrg\Person $director
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDirector($director)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $director = self::checkTypes($director, $types);
@@ -370,7 +391,7 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getActor()
     {
@@ -378,14 +399,14 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param Person $actor
+     * @param \OpenActive\Models\SchemaOrg\Person $actor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActor($actor)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $actor = self::checkTypes($actor, $types);
@@ -394,7 +415,7 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MusicGroup|Person
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
      */
     public function getMusicBy()
     {
@@ -402,7 +423,7 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MusicGroup|Person $musicBy
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person $musicBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -410,7 +431,7 @@ class RadioSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\MusicGroup",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $musicBy = self::checkTypes($musicBy, $types);

@@ -15,6 +15,22 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
         return "schema:PriceSpecification";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "valueAddedTaxIncluded" => "valueAddedTaxIncluded",
+            "price" => "price",
+            "validThrough" => "validThrough",
+            "validFrom" => "validFrom",
+            "eligibleQuantity" => "eligibleQuantity",
+            "priceCurrency" => "priceCurrency",
+            "maxPrice" => "maxPrice",
+            "eligibleTransactionVolume" => "eligibleTransactionVolume",
+            "minPrice" => "minPrice",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Specifies whether the applicable value-added tax (VAT) is included in the price specification or not.
      *
@@ -61,7 +77,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The interval and unit of measurement of ordering quantities for which the offer or price specification is valid. This allows e.g. specifying that a certain freight charge is valid only for a certain quantity.
      *
      *
-     * @var QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $eligibleQuantity;
 
@@ -87,7 +103,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The transaction volume, in a monetary unit, for which the offer or price specification is valid, e.g. for indicating a minimal purchasing volume, to express free shipping above a certain order volume, or to limit the acceptance of credit cards to purchases to a certain minimal amount.
      *
      *
-     * @var PriceSpecification
+     * @var \OpenActive\Models\SchemaOrg\PriceSpecification
      */
     protected $eligibleTransactionVolume;
 
@@ -201,7 +217,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getEligibleQuantity()
     {
@@ -209,14 +225,14 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param QuantitativeValue $eligibleQuantity
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $eligibleQuantity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleQuantity($eligibleQuantity)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
         $eligibleQuantity = self::checkTypes($eligibleQuantity, $types);
@@ -274,7 +290,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return PriceSpecification
+     * @return \OpenActive\Models\SchemaOrg\PriceSpecification
      */
     public function getEligibleTransactionVolume()
     {
@@ -282,14 +298,14 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param PriceSpecification $eligibleTransactionVolume
+     * @param \OpenActive\Models\SchemaOrg\PriceSpecification $eligibleTransactionVolume
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEligibleTransactionVolume($eligibleTransactionVolume)
     {
         $types = array(
-            "PriceSpecification",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
         );
 
         $eligibleTransactionVolume = self::checkTypes($eligibleTransactionVolume, $types);

@@ -16,6 +16,18 @@ class ConceptScheme extends \OpenActive\BaseModel
         return "ConceptScheme";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "title" => "title",
+            "description" => "description",
+            "concept" => "concept",
+            "license" => "license",
+            "url" => "url",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The title of the scheme
      *
@@ -53,7 +65,7 @@ class ConceptScheme extends \OpenActive\BaseModel
      * ]
      * ```
      *
-     * @var Concept[]
+     * @var \OpenActive\Models\OA\Concept[]
      */
     protected $concept;
 
@@ -128,7 +140,7 @@ class ConceptScheme extends \OpenActive\BaseModel
     }
 
     /**
-     * @return Concept[]
+     * @return \OpenActive\Models\OA\Concept[]
      */
     public function getConcept()
     {
@@ -136,14 +148,14 @@ class ConceptScheme extends \OpenActive\BaseModel
     }
 
     /**
-     * @param Concept[] $concept
+     * @param \OpenActive\Models\OA\Concept[] $concept
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setConcept($concept)
     {
         $types = array(
-            "Concept[]",
+            "\OpenActive\Models\OA\Concept[]",
         );
 
         $concept = self::checkTypes($concept, $types);

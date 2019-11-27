@@ -15,4 +15,11 @@ class MovieClip extends \OpenActive\Models\SchemaOrg\Clip
         return "schema:MovieClip";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

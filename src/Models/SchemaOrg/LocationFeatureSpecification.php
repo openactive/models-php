@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [PropertyValue](https://schema.org/PropertyValue), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\PropertyValue
@@ -14,6 +13,16 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     public static function getType()
     {
         return "schema:LocationFeatureSpecification";
+    }
+
+    public static function fieldList() {
+        $fields = [
+            "validThrough" => "validThrough",
+            "validFrom" => "validFrom",
+            "hoursAvailable" => "hoursAvailable",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
     }
 
     /**
@@ -36,7 +45,7 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
      * The hours during which this service or contact is available.
      *
      *
-     * @var OpeningHoursSpecification
+     * @var \OpenActive\Models\SchemaOrg\OpeningHoursSpecification
      */
     protected $hoursAvailable;
 
@@ -91,7 +100,7 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     }
 
     /**
-     * @return OpeningHoursSpecification
+     * @return \OpenActive\Models\SchemaOrg\OpeningHoursSpecification
      */
     public function getHoursAvailable()
     {
@@ -99,14 +108,14 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     }
 
     /**
-     * @param OpeningHoursSpecification $hoursAvailable
+     * @param \OpenActive\Models\SchemaOrg\OpeningHoursSpecification $hoursAvailable
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHoursAvailable($hoursAvailable)
     {
         $types = array(
-            "OpeningHoursSpecification",
+            "\OpenActive\Models\SchemaOrg\OpeningHoursSpecification",
         );
 
         $hoursAvailable = self::checkTypes($hoursAvailable, $types);

@@ -15,6 +15,14 @@ class HowToSupply extends \OpenActive\Models\SchemaOrg\HowToItem
         return "schema:HowToSupply";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "estimatedCost" => "estimatedCost",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The estimated cost of the supply or supplies consumed when performing instructions.
      *

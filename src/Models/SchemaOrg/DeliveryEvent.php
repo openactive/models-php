@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [Event](https://schema.org/Event), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
@@ -14,6 +13,17 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     public static function getType()
     {
         return "schema:DeliveryEvent";
+    }
+
+    public static function fieldList() {
+        $fields = [
+            "accessCode" => "accessCode",
+            "availableFrom" => "availableFrom",
+            "availableThrough" => "availableThrough",
+            "hasDeliveryMethod" => "hasDeliveryMethod",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
     }
 
     /**
@@ -44,7 +54,7 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
      * Method used for delivery or shipping.
      *
      *
-     * @var \OpenActive\Enums\DeliveryMethod|null
+     * @var \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
      */
     protected $hasDeliveryMethod;
 
@@ -123,7 +133,7 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Enums\DeliveryMethod|null
+     * @return \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
      */
     public function getHasDeliveryMethod()
     {
@@ -131,14 +141,14 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Enums\DeliveryMethod|null $hasDeliveryMethod
+     * @param \OpenActive\Enums\SchemaOrg\DeliveryMethod|null $hasDeliveryMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasDeliveryMethod($hasDeliveryMethod)
     {
         $types = array(
-            "\OpenActive\Enums\DeliveryMethod",
+            "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
             "null",
         );
 

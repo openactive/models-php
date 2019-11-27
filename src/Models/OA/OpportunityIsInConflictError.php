@@ -15,4 +15,11 @@ class OpportunityIsInConflictError extends \OpenActive\Models\OA\OpenBookingErro
         return "OpportunityIsInConflictError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

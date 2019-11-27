@@ -63,6 +63,11 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
             return;
         }
 
+        //strip off the prefix if there is one
+        if (($pos = strpos($key, ':')) !== false) {
+            $key = substr($key, $pos + 1);
+        }
+
         // Build setter name
         $setterName = "set" . Str::pascal($key);
 
@@ -172,5 +177,11 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
         if ($this->__get($name) === null) {
             return false;
         }
+    }
+
+    public static function fieldList() {
+        return [
+            'id' => 'id'
+        ];
     }
 }

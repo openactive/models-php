@@ -15,11 +15,23 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:Game";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "numberOfPlayers" => "numberOfPlayers",
+            "quest" => "quest",
+            "gameLocation" => "gameLocation",
+            "characterAttribute" => "characterAttribute",
+            "gameItem" => "gameItem",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Indicate how many people can play this game (minimum, maximum, or range).
      *
      *
-     * @var QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $numberOfPlayers;
 
@@ -35,7 +47,7 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Real or fictional location of the game (or part of game).
      *
      *
-     * @var Place|PostalAddress|string
+     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress|string
      */
     protected $gameLocation;
 
@@ -56,7 +68,7 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $gameItem;
 
     /**
-     * @return QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getNumberOfPlayers()
     {
@@ -64,14 +76,14 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param QuantitativeValue $numberOfPlayers
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $numberOfPlayers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfPlayers($numberOfPlayers)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
         $numberOfPlayers = self::checkTypes($numberOfPlayers, $types);
@@ -104,7 +116,7 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Place|PostalAddress|string
+     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress|string
      */
     public function getGameLocation()
     {
@@ -112,15 +124,15 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Place|PostalAddress|string $gameLocation
+     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress|string $gameLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGameLocation($gameLocation)
     {
         $types = array(
-            "Place",
-            "PostalAddress",
+            "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
             "string",
         );
 

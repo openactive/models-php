@@ -15,11 +15,21 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
         return "schema:TaxiReservation";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "pickupLocation" => "pickupLocation",
+            "partySize" => "partySize",
+            "pickupTime" => "pickupTime",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Where a taxi will pick up a passenger or a rental car can be picked up.
      *
      *
-     * @var Place
+     * @var \OpenActive\Models\SchemaOrg\Place
      */
     protected $pickupLocation;
 
@@ -27,7 +37,7 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * Number of people the reservation should accommodate.
      *
      *
-     * @var int|QuantitativeValue|null
+     * @var int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $partySize;
 
@@ -40,7 +50,7 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $pickupTime;
 
     /**
-     * @return Place
+     * @return \OpenActive\Models\SchemaOrg\Place
      */
     public function getPickupLocation()
     {
@@ -48,14 +58,14 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param Place $pickupLocation
+     * @param \OpenActive\Models\SchemaOrg\Place $pickupLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPickupLocation($pickupLocation)
     {
         $types = array(
-            "Place",
+            "\OpenActive\Models\SchemaOrg\Place",
         );
 
         $pickupLocation = self::checkTypes($pickupLocation, $types);
@@ -64,7 +74,7 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return int|QuantitativeValue|null
+     * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getPartySize()
     {
@@ -72,7 +82,7 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param int|QuantitativeValue|null $partySize
+     * @param int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $partySize
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -80,7 +90,7 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     {
         $types = array(
             "int",
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
         );
 

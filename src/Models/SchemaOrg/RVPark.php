@@ -15,4 +15,11 @@ class RVPark extends \OpenActive\Models\SchemaOrg\CivicStructure
         return "schema:RVPark";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

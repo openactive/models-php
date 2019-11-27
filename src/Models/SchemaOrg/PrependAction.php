@@ -15,4 +15,11 @@ class PrependAction extends \OpenActive\Models\SchemaOrg\InsertAction
         return "schema:PrependAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

@@ -15,6 +15,14 @@ class ReviewAction extends \OpenActive\Models\SchemaOrg\AssessAction
         return "schema:ReviewAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "resultReview" => "resultReview",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A sub property of result. The review that resulted in the performing of the action.
      *

@@ -15,6 +15,17 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:ListItem";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "item" => "item",
+            "previousItem" => "previousItem",
+            "position" => "position",
+            "nextItem" => "nextItem",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
      *

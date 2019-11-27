@@ -15,6 +15,14 @@ class MobileApplication extends \OpenActive\Models\SchemaOrg\SoftwareApplication
         return "schema:MobileApplication";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "carrierRequirements" => "carrierRequirements",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Specifies specific carrier(s) requirements for the application (e.g. an application may only work on a specific carrier network).
      *

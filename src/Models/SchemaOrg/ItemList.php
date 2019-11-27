@@ -15,6 +15,16 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:ItemList";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "numberOfItems" => "numberOfItems",
+            "itemListOrder" => "itemListOrder",
+            "itemListElement" => "itemListElement",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The number of items in an ItemList. Note that some descriptions might not fully describe all items in a list (e.g., multi-page pagination); in such cases, the numberOfItems would be for the entire list.
      *
@@ -27,7 +37,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
      * Type of ordering (e.g. Ascending, Descending, Unordered).
      *
      *
-     * @var \OpenActive\Enums\ItemListOrderType|string|null
+     * @var \OpenActive\Enums\SchemaOrg\ItemListOrderType|string|null
      */
     protected $itemListOrder;
 
@@ -69,7 +79,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Enums\ItemListOrderType|string|null
+     * @return \OpenActive\Enums\SchemaOrg\ItemListOrderType|string|null
      */
     public function getItemListOrder()
     {
@@ -77,14 +87,14 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Enums\ItemListOrderType|string|null $itemListOrder
+     * @param \OpenActive\Enums\SchemaOrg\ItemListOrderType|string|null $itemListOrder
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemListOrder($itemListOrder)
     {
         $types = array(
-            "\OpenActive\Enums\ItemListOrderType",
+            "\OpenActive\Enums\SchemaOrg\ItemListOrderType",
             "string",
             "null",
         );

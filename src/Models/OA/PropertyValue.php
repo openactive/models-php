@@ -16,6 +16,17 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
         return "PropertyValue";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "name" => "name",
+            "description" => "description",
+            "propertyID" => "propertyID",
+            "value" => "value",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The name of this PropertyValue
      *

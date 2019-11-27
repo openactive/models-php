@@ -15,6 +15,19 @@ class TrainTrip extends \OpenActive\Models\SchemaOrg\Trip
         return "schema:TrainTrip";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "arrivalStation" => "arrivalStation",
+            "trainNumber" => "trainNumber",
+            "trainName" => "trainName",
+            "departurePlatform" => "departurePlatform",
+            "arrivalPlatform" => "arrivalPlatform",
+            "departureStation" => "departureStation",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The station where the train trip ends.
      *

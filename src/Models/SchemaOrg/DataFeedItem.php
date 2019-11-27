@@ -15,6 +15,17 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:DataFeedItem";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "item" => "item",
+            "dateCreated" => "dateCreated",
+            "dateDeleted" => "dateDeleted",
+            "dateModified" => "dateModified",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
      *

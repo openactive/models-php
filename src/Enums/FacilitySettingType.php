@@ -9,6 +9,6 @@ namespace OpenActive\Enums;
  */
 class FacilitySettingType
 {
-    const IndoorFacility = \OpenActive\Enums\OA\FacilitySettingType\IndoorFacility::class;
-    const OutdoorFacility = \OpenActive\Enums\OA\FacilitySettingType\OutdoorFacility::class;
+    const IndoorFacility = \OpenActive\Enums\FacilitySettingType\IndoorFacility::class;
+    const OutdoorFacility = \OpenActive\Enums\FacilitySettingType\OutdoorFacility::class;
 }

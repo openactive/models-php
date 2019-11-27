@@ -15,11 +15,36 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:Movie";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "subtitleLanguage" => "subtitleLanguage",
+            "actors" => "actors",
+            "duration" => "duration",
+            "productionCompany" => "productionCompany",
+            "director" => "director",
+            "directors" => "directors",
+            "musicBy" => "musicBy",
+            "countryOfOrigin" => "countryOfOrigin",
+            "trailer" => "trailer",
+            "actor" => "actor",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
+    /**
+     * Languages in which subtitles/captions are available, in <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard format</a>.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Language
+     */
+    protected $subtitleLanguage;
+
     /**
      * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $actors;
 
@@ -35,7 +60,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The production company or studio responsible for the item e.g. series, video game, episode etc.
      *
      *
-     * @var Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
     protected $productionCompany;
 
@@ -43,7 +68,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $director;
 
@@ -51,7 +76,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $directors;
 
@@ -59,7 +84,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The composer of the soundtrack.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MusicGroup|Person
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
      */
     protected $musicBy;
 
@@ -83,12 +108,37 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
      * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $actor;
 
     /**
-     * @return Person
+     * @return string|\OpenActive\Models\SchemaOrg\Language
+     */
+    public function getSubtitleLanguage()
+    {
+        return $this->subtitleLanguage;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Language $subtitleLanguage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSubtitleLanguage($subtitleLanguage)
+    {
+        $types = array(
+            "string",
+            "\OpenActive\Models\SchemaOrg\Language",
+        );
+
+        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
+
+        $this->subtitleLanguage = $subtitleLanguage;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getActors()
     {
@@ -96,14 +146,14 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person $actors
+     * @param \OpenActive\Models\SchemaOrg\Person $actors
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActors($actors)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $actors = self::checkTypes($actors, $types);
@@ -137,7 +187,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization
      */
     public function getProductionCompany()
     {
@@ -145,14 +195,14 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Organization $productionCompany
+     * @param \OpenActive\Models\SchemaOrg\Organization $productionCompany
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProductionCompany($productionCompany)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $productionCompany = self::checkTypes($productionCompany, $types);
@@ -161,7 +211,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getDirector()
     {
@@ -169,14 +219,14 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person $director
+     * @param \OpenActive\Models\SchemaOrg\Person $director
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDirector($director)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $director = self::checkTypes($director, $types);
@@ -185,7 +235,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getDirectors()
     {
@@ -193,14 +243,14 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person $directors
+     * @param \OpenActive\Models\SchemaOrg\Person $directors
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDirectors($directors)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $directors = self::checkTypes($directors, $types);
@@ -209,7 +259,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MusicGroup|Person
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
      */
     public function getMusicBy()
     {
@@ -217,7 +267,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MusicGroup|Person $musicBy
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person $musicBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -225,7 +275,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\MusicGroup",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $musicBy = self::checkTypes($musicBy, $types);
@@ -282,7 +332,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getActor()
     {
@@ -290,14 +340,14 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person $actor
+     * @param \OpenActive\Models\SchemaOrg\Person $actor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActor($actor)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $actor = self::checkTypes($actor, $types);

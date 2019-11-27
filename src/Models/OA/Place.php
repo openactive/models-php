@@ -16,6 +16,26 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
         return "Place";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "identifier" => "identifier",
+            "name" => "name",
+            "description" => "description",
+            "address" => "address",
+            "amenityFeature" => "amenityFeature",
+            "containedInPlace" => "containedInPlace",
+            "containsPlace" => "containsPlace",
+            "geo" => "geo",
+            "image" => "image",
+            "openingHoursSpecification" => "openingHoursSpecification",
+            "telephone" => "telephone",
+            "url" => "url",
+            "formattedDescription" => "beta:formattedDescription",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A local non-URI identifier for the resource
      *
@@ -23,7 +43,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|PropertyValue|PropertyValue[]|null
+     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -64,7 +84,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * }
      * ```
      *
-     * @var string|PostalAddress
+     * @var string|\OpenActive\Models\OA\PostalAddress
      */
     protected $address;
 
@@ -106,7 +126,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * ]
      * ```
      *
-     * @var LocationFeatureSpecification[]
+     * @var \OpenActive\Models\OA\LocationFeatureSpecification[]
      */
     protected $amenityFeature;
 
@@ -121,7 +141,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * }
      * ```
      *
-     * @var Place
+     * @var \OpenActive\Models\OA\Place
      */
     protected $containedInPlace;
 
@@ -136,7 +156,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * }
      * ```
      *
-     * @var Place[]
+     * @var \OpenActive\Models\OA\Place[]
      */
     protected $containsPlace;
 
@@ -151,7 +171,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * }
      * ```
      *
-     * @var GeoCoordinates
+     * @var \OpenActive\Models\OA\GeoCoordinates
      */
     protected $geo;
 
@@ -168,7 +188,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * ]
      * ```
      *
-     * @var ImageObject[]
+     * @var \OpenActive\Models\OA\ImageObject[]
      */
     protected $image;
 
@@ -176,7 +196,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * The times the Place is open
      *
      *
-     * @var OpeningHoursSpecification[]
+     * @var \OpenActive\Models\OA\OpeningHoursSpecification[]
      */
     protected $openingHoursSpecification;
 
@@ -203,7 +223,18 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     protected $url;
 
     /**
-     * @return int|string|PropertyValue|PropertyValue[]|null
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * 
+     * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
+     *
+     *
+     * @var string
+     */
+    protected $formattedDescription;
+
+    /**
+     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -211,7 +242,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param int|string|PropertyValue|PropertyValue[]|null $identifier
+     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -220,8 +251,8 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
         $types = array(
             "int",
             "string",
-            "PropertyValue",
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue",
+            "\OpenActive\Models\OA\PropertyValue[]",
             "null",
         );
 
@@ -279,7 +310,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return string|PostalAddress
+     * @return string|\OpenActive\Models\OA\PostalAddress
      */
     public function getAddress()
     {
@@ -287,7 +318,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param string|PostalAddress $address
+     * @param string|\OpenActive\Models\OA\PostalAddress $address
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -295,7 +326,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     {
         $types = array(
             "string",
-            "PostalAddress",
+            "\OpenActive\Models\OA\PostalAddress",
         );
 
         $address = self::checkTypes($address, $types);
@@ -304,7 +335,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return LocationFeatureSpecification[]
+     * @return \OpenActive\Models\OA\LocationFeatureSpecification[]
      */
     public function getAmenityFeature()
     {
@@ -312,14 +343,14 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param LocationFeatureSpecification[] $amenityFeature
+     * @param \OpenActive\Models\OA\LocationFeatureSpecification[] $amenityFeature
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAmenityFeature($amenityFeature)
     {
         $types = array(
-            "LocationFeatureSpecification[]",
+            "\OpenActive\Models\OA\LocationFeatureSpecification[]",
         );
 
         $amenityFeature = self::checkTypes($amenityFeature, $types);
@@ -328,7 +359,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return Place
+     * @return \OpenActive\Models\OA\Place
      */
     public function getContainedInPlace()
     {
@@ -336,14 +367,14 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param Place $containedInPlace
+     * @param \OpenActive\Models\OA\Place $containedInPlace
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContainedInPlace($containedInPlace)
     {
         $types = array(
-            "Place",
+            "\OpenActive\Models\OA\Place",
         );
 
         $containedInPlace = self::checkTypes($containedInPlace, $types);
@@ -352,7 +383,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return Place[]
+     * @return \OpenActive\Models\OA\Place[]
      */
     public function getContainsPlace()
     {
@@ -360,14 +391,14 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param Place[] $containsPlace
+     * @param \OpenActive\Models\OA\Place[] $containsPlace
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContainsPlace($containsPlace)
     {
         $types = array(
-            "Place[]",
+            "\OpenActive\Models\OA\Place[]",
         );
 
         $containsPlace = self::checkTypes($containsPlace, $types);
@@ -376,7 +407,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return GeoCoordinates
+     * @return \OpenActive\Models\OA\GeoCoordinates
      */
     public function getGeo()
     {
@@ -384,14 +415,14 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param GeoCoordinates $geo
+     * @param \OpenActive\Models\OA\GeoCoordinates $geo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGeo($geo)
     {
         $types = array(
-            "GeoCoordinates",
+            "\OpenActive\Models\OA\GeoCoordinates",
         );
 
         $geo = self::checkTypes($geo, $types);
@@ -400,7 +431,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return ImageObject[]
+     * @return \OpenActive\Models\OA\ImageObject[]
      */
     public function getImage()
     {
@@ -408,14 +439,14 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param ImageObject[] $image
+     * @param \OpenActive\Models\OA\ImageObject[] $image
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setImage($image)
     {
         $types = array(
-            "ImageObject[]",
+            "\OpenActive\Models\OA\ImageObject[]",
         );
 
         $image = self::checkTypes($image, $types);
@@ -424,7 +455,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return OpeningHoursSpecification[]
+     * @return \OpenActive\Models\OA\OpeningHoursSpecification[]
      */
     public function getOpeningHoursSpecification()
     {
@@ -432,14 +463,14 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param OpeningHoursSpecification[] $openingHoursSpecification
+     * @param \OpenActive\Models\OA\OpeningHoursSpecification[] $openingHoursSpecification
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOpeningHoursSpecification($openingHoursSpecification)
     {
         $types = array(
-            "OpeningHoursSpecification[]",
+            "\OpenActive\Models\OA\OpeningHoursSpecification[]",
         );
 
         $openingHoursSpecification = self::checkTypes($openingHoursSpecification, $types);
@@ -493,6 +524,30 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
         $url = self::checkTypes($url, $types);
 
         $this->url = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormattedDescription()
+    {
+        return $this->formattedDescription;
+    }
+
+    /**
+     * @param string $formattedDescription
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFormattedDescription($formattedDescription)
+    {
+        $types = array(
+            "string",
+        );
+
+        $formattedDescription = self::checkTypes($formattedDescription, $types);
+
+        $this->formattedDescription = $formattedDescription;
     }
 
 }

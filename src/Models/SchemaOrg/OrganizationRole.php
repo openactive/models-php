@@ -15,6 +15,14 @@ class OrganizationRole extends \OpenActive\Models\SchemaOrg\Role
         return "schema:OrganizationRole";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "numberedPosition" => "numberedPosition",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A number associated with a role in an organization, for example, the number on an athlete's jersey.
      *

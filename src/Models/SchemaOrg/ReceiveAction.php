@@ -15,11 +15,20 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
         return "schema:ReceiveAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "sender" => "sender",
+            "deliveryMethod" => "deliveryMethod",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A sub property of participant. The participant who is at the sending end of the action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Audience|Person|Organization
+     * @var \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $sender;
 
@@ -27,12 +36,12 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
      * A sub property of instrument. The method of delivery.
      *
      *
-     * @var \OpenActive\Enums\DeliveryMethod|null
+     * @var \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
      */
     protected $deliveryMethod;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Audience|Person|Organization
+     * @return \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getSender()
     {
@@ -40,7 +49,7 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Audience|Person|Organization $sender
+     * @param \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $sender
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,8 +57,8 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\Audience",
-            "Person",
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $sender = self::checkTypes($sender, $types);
@@ -58,7 +67,7 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @return \OpenActive\Enums\DeliveryMethod|null
+     * @return \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
      */
     public function getDeliveryMethod()
     {
@@ -66,14 +75,14 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @param \OpenActive\Enums\DeliveryMethod|null $deliveryMethod
+     * @param \OpenActive\Enums\SchemaOrg\DeliveryMethod|null $deliveryMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDeliveryMethod($deliveryMethod)
     {
         $types = array(
-            "\OpenActive\Enums\DeliveryMethod",
+            "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
             "null",
         );
 

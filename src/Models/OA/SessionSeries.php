@@ -16,6 +16,15 @@ class SessionSeries extends \OpenActive\Models\OA\Event
         return "SessionSeries";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "remainingAttendeeCapacity" => "remainingAttendeeCapacity",
+            "subEvent" => "subEvent",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The number of places that are still available for the Event.
      *
@@ -32,7 +41,7 @@ class SessionSeries extends \OpenActive\Models\OA\Event
      * Relates a parent event to a child event. Properties describing the parent event can be assumed to apply to the child, unless otherwise specified. A child event might be a specific instance of an Event within a schedule
      *
      *
-     * @var ScheduledSession[]
+     * @var \OpenActive\Models\OA\ScheduledSession[]
      */
     protected $subEvent;
 
@@ -64,7 +73,7 @@ class SessionSeries extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return ScheduledSession[]
+     * @return \OpenActive\Models\OA\ScheduledSession[]
      */
     public function getSubEvent()
     {
@@ -72,14 +81,14 @@ class SessionSeries extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param ScheduledSession[] $subEvent
+     * @param \OpenActive\Models\OA\ScheduledSession[] $subEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSubEvent($subEvent)
     {
         $types = array(
-            "ScheduledSession[]",
+            "\OpenActive\Models\OA\ScheduledSession[]",
         );
 
         $subEvent = self::checkTypes($subEvent, $types);

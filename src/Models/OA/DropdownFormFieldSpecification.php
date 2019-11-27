@@ -16,6 +16,14 @@ class DropdownFormFieldSpecification extends \OpenActive\Models\OA\PropertyValue
         return "DropdownFormFieldSpecification";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "valueOption" => "valueOption",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Specifies an array of display values for the dropdown.
      *

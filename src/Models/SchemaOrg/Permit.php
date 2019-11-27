@@ -15,6 +15,20 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:Permit";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "validIn" => "validIn",
+            "permitAudience" => "permitAudience",
+            "issuedThrough" => "issuedThrough",
+            "issuedBy" => "issuedBy",
+            "validFrom" => "validFrom",
+            "validUntil" => "validUntil",
+            "validFor" => "validFor",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The geographic area where a permit or similar thing is valid.
      *
@@ -43,7 +57,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
      * The organization issuing the ticket or permit.
      *
      *
-     * @var Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
     protected $issuedBy;
 
@@ -144,7 +158,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization
      */
     public function getIssuedBy()
     {
@@ -152,14 +166,14 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Organization $issuedBy
+     * @param \OpenActive\Models\SchemaOrg\Organization $issuedBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIssuedBy($issuedBy)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $issuedBy = self::checkTypes($issuedBy, $types);

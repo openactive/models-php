@@ -15,4 +15,11 @@ class DepartmentStore extends \OpenActive\Models\SchemaOrg\Store
         return "schema:DepartmentStore";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

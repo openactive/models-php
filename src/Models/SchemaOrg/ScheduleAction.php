@@ -15,4 +15,11 @@ class ScheduleAction extends \OpenActive\Models\SchemaOrg\PlanAction
         return "schema:ScheduleAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

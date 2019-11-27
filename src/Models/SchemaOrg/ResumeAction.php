@@ -15,4 +15,11 @@ class ResumeAction extends \OpenActive\Models\SchemaOrg\ControlAction
         return "schema:ResumeAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

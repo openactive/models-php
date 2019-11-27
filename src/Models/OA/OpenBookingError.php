@@ -15,6 +15,20 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
         return "OpenBookingError";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "name" => "name",
+            "description" => "description",
+            "instance" => "instance",
+            "invalidParams" => "invalidParams",
+            "method" => "method",
+            "requestId" => "requestId",
+            "statusCode" => "statusCode",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A short, human-readable summary of the problem type. It should not change from occurrence to occurrence of the problem, except for purposes of localization.
      *

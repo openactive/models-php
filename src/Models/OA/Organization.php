@@ -16,6 +16,28 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
         return "Organization";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "identifier" => "identifier",
+            "name" => "name",
+            "description" => "description",
+            "address" => "address",
+            "email" => "email",
+            "legalName" => "legalName",
+            "logo" => "logo",
+            "sameAs" => "sameAs",
+            "taxMode" => "taxMode",
+            "telephone" => "telephone",
+            "termsOfService" => "termsOfService",
+            "url" => "url",
+            "vatID" => "vatID",
+            "video" => "beta:video",
+            "formattedDescription" => "beta:formattedDescription",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A local non-URI identifier for the resource
      *
@@ -23,7 +45,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|PropertyValue|PropertyValue[]|null
+     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -53,7 +75,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      * Address of the Seller, used on tax receipts.
      *
      *
-     * @var PostalAddress
+     * @var \OpenActive\Models\OA\PostalAddress
      */
     protected $address;
 
@@ -89,7 +111,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      * }
      * ```
      *
-     * @var ImageObject
+     * @var \OpenActive\Models\OA\ImageObject
      */
     protected $logo;
 
@@ -130,7 +152,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      * The terms of service of the Seller.
      *
      *
-     * @var Terms[]
+     * @var \OpenActive\Models\OA\Terms[]
      */
     protected $termsOfService;
 
@@ -154,7 +176,29 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     protected $vatID;
 
     /**
-     * @return int|string|PropertyValue|PropertyValue[]|null
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * An related video object.
+     * 
+     * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\VideoObject[]
+     */
+    protected $video;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * 
+     * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
+     *
+     *
+     * @var string
+     */
+    protected $formattedDescription;
+
+    /**
+     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -162,7 +206,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param int|string|PropertyValue|PropertyValue[]|null $identifier
+     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -171,8 +215,8 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
         $types = array(
             "int",
             "string",
-            "PropertyValue",
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue",
+            "\OpenActive\Models\OA\PropertyValue[]",
             "null",
         );
 
@@ -230,7 +274,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @return PostalAddress
+     * @return \OpenActive\Models\OA\PostalAddress
      */
     public function getAddress()
     {
@@ -238,14 +282,14 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param PostalAddress $address
+     * @param \OpenActive\Models\OA\PostalAddress $address
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddress($address)
     {
         $types = array(
-            "PostalAddress",
+            "\OpenActive\Models\OA\PostalAddress",
         );
 
         $address = self::checkTypes($address, $types);
@@ -302,7 +346,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @return ImageObject
+     * @return \OpenActive\Models\OA\ImageObject
      */
     public function getLogo()
     {
@@ -310,14 +354,14 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param ImageObject $logo
+     * @param \OpenActive\Models\OA\ImageObject $logo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLogo($logo)
     {
         $types = array(
-            "ImageObject",
+            "\OpenActive\Models\OA\ImageObject",
         );
 
         $logo = self::checkTypes($logo, $types);
@@ -399,7 +443,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @return Terms[]
+     * @return \OpenActive\Models\OA\Terms[]
      */
     public function getTermsOfService()
     {
@@ -407,14 +451,14 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param Terms[] $termsOfService
+     * @param \OpenActive\Models\OA\Terms[] $termsOfService
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTermsOfService($termsOfService)
     {
         $types = array(
-            "Terms[]",
+            "\OpenActive\Models\OA\Terms[]",
         );
 
         $termsOfService = self::checkTypes($termsOfService, $types);
@@ -468,6 +512,54 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
         $vatID = self::checkTypes($vatID, $types);
 
         $this->vatID = $vatID;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\VideoObject[]
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\VideoObject[] $video
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVideo($video)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\VideoObject[]",
+        );
+
+        $video = self::checkTypes($video, $types);
+
+        $this->video = $video;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormattedDescription()
+    {
+        return $this->formattedDescription;
+    }
+
+    /**
+     * @param string $formattedDescription
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFormattedDescription($formattedDescription)
+    {
+        $types = array(
+            "string",
+        );
+
+        $formattedDescription = self::checkTypes($formattedDescription, $types);
+
+        $this->formattedDescription = $formattedDescription;
     }
 
 }

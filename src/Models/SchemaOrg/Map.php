@@ -15,16 +15,24 @@ class Map extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:Map";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "mapType" => "mapType",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Indicates the kind of Map, from the MapCategoryType Enumeration.
      *
      *
-     * @var \OpenActive\Enums\MapCategoryType|null
+     * @var \OpenActive\Enums\SchemaOrg\MapCategoryType|null
      */
     protected $mapType;
 
     /**
-     * @return \OpenActive\Enums\MapCategoryType|null
+     * @return \OpenActive\Enums\SchemaOrg\MapCategoryType|null
      */
     public function getMapType()
     {
@@ -32,14 +40,14 @@ class Map extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Enums\MapCategoryType|null $mapType
+     * @param \OpenActive\Enums\SchemaOrg\MapCategoryType|null $mapType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMapType($mapType)
     {
         $types = array(
-            "\OpenActive\Enums\MapCategoryType",
+            "\OpenActive\Enums\SchemaOrg\MapCategoryType",
             "null",
         );
 

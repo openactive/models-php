@@ -15,16 +15,24 @@ class WinAction extends \OpenActive\Models\SchemaOrg\AchieveAction
         return "schema:WinAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "loser" => "loser",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A sub property of participant. The loser of the action.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $loser;
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getLoser()
     {
@@ -32,14 +40,14 @@ class WinAction extends \OpenActive\Models\SchemaOrg\AchieveAction
     }
 
     /**
-     * @param Person $loser
+     * @param \OpenActive\Models\SchemaOrg\Person $loser
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLoser($loser)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $loser = self::checkTypes($loser, $types);

@@ -15,14 +15,16 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:Brand";
     }
 
-    /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * An related video object.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\VideoObject
-     */
-    protected $video;
+    public static function fieldList() {
+        $fields = [
+            "slogan" => "slogan",
+            "review" => "review",
+            "logo" => "logo",
+            "aggregateRating" => "aggregateRating",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
 
     /**
      * A slogan or motto associated with the item.
@@ -44,7 +46,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
      * An associated logo.
      *
      *
-     * @var ImageObject|string
+     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
      */
     protected $logo;
 
@@ -55,30 +57,6 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
      * @var \OpenActive\Models\SchemaOrg\AggregateRating
      */
     protected $aggregateRating;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\VideoObject
-     */
-    public function getVideo()
-    {
-        return $this->video;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\VideoObject $video
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVideo($video)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\VideoObject",
-        );
-
-        $video = self::checkTypes($video, $types);
-
-        $this->video = $video;
-    }
 
     /**
      * @return string
@@ -129,7 +107,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return ImageObject|string
+     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
      */
     public function getLogo()
     {
@@ -137,14 +115,14 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param ImageObject|string $logo
+     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $logo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLogo($logo)
     {
         $types = array(
-            "ImageObject",
+            "\OpenActive\Models\SchemaOrg\ImageObject",
             "string",
         );
 

@@ -16,10 +16,20 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\EntryPoint
         return "EntryPoint";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "encodingType" => "encodingType",
+            "httpMethod" => "httpMethod",
+            "urlTemplate" => "urlTemplate",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Must always be present and set to ```json
-"encodingType": "application/vnd.openactive.v1.0+json"
-```
+     * "encodingType": "application/vnd.openactive.v1.0+json"
+     * ```
      *
      * ```json
      * "encodingType": "application/vnd.openactive.v1.0+json"

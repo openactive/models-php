@@ -15,4 +15,11 @@ class HobbyShop extends \OpenActive\Models\SchemaOrg\Store
         return "schema:HobbyShop";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

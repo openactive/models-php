@@ -15,4 +15,11 @@ class RadioChannel extends \OpenActive\Models\SchemaOrg\BroadcastChannel
         return "schema:RadioChannel";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

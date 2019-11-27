@@ -15,4 +15,11 @@ class UnacceptableOfferError extends \OpenActive\Models\OA\OpenBookingError
         return "UnacceptableOfferError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

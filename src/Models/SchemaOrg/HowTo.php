@@ -15,11 +15,27 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:HowTo";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "yield" => "yield",
+            "tool" => "tool",
+            "supply" => "supply",
+            "totalTime" => "totalTime",
+            "estimatedCost" => "estimatedCost",
+            "performTime" => "performTime",
+            "step" => "step",
+            "steps" => "steps",
+            "prepTime" => "prepTime",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The quantity that results by performing instructions. For example, a paper airplane, 10 personalized candles.
      *
      *
-     * @var string|QuantitativeValue
+     * @var string|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $yield;
 
@@ -88,7 +104,7 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $prepTime;
 
     /**
-     * @return string|QuantitativeValue
+     * @return string|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getYield()
     {
@@ -96,7 +112,7 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|QuantitativeValue $yield
+     * @param string|\OpenActive\Models\SchemaOrg\QuantitativeValue $yield
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -104,7 +120,7 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     {
         $types = array(
             "string",
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
         $yield = self::checkTypes($yield, $types);

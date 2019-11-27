@@ -15,6 +15,15 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:TVSeason";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "countryOfOrigin" => "countryOfOrigin",
+            "partOfTVSeries" => "partOfTVSeries",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The country of the principal offices of the production company or individual responsible for the movie or program.
      *

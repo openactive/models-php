@@ -15,6 +15,18 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
         return "schema:UserComments";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "replyToUrl" => "replyToUrl",
+            "creator" => "creator",
+            "commentTime" => "commentTime",
+            "discusses" => "discusses",
+            "commentText" => "commentText",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The URL at which a reply may be posted to the specified UserComment.
      *
@@ -27,7 +39,7 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
      * The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.
      *
      *
-     * @var Organization|Person
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $creator;
 
@@ -80,7 +92,7 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     }
 
     /**
-     * @return Organization|Person
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getCreator()
     {
@@ -88,15 +100,15 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     }
 
     /**
-     * @param Organization|Person $creator
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $creator
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCreator($creator)
     {
         $types = array(
-            "Organization",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $creator = self::checkTypes($creator, $types);

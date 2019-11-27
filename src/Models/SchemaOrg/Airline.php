@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [Organization](https://schema.org/Organization), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class Airline extends \OpenActive\Models\SchemaOrg\Organization
@@ -16,11 +15,20 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
         return "schema:Airline";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "boardingPolicy" => "boardingPolicy",
+            "iataCode" => "iataCode",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The type of boarding policy used by the airline (e.g. zone-based or group-based).
      *
      *
-     * @var \OpenActive\Enums\BoardingPolicyType|null
+     * @var \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null
      */
     protected $boardingPolicy;
 
@@ -33,7 +41,7 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
     protected $iataCode;
 
     /**
-     * @return \OpenActive\Enums\BoardingPolicyType|null
+     * @return \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null
      */
     public function getBoardingPolicy()
     {
@@ -41,14 +49,14 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param \OpenActive\Enums\BoardingPolicyType|null $boardingPolicy
+     * @param \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null $boardingPolicy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBoardingPolicy($boardingPolicy)
     {
         $types = array(
-            "\OpenActive\Enums\BoardingPolicyType",
+            "\OpenActive\Enums\SchemaOrg\BoardingPolicyType",
             "null",
         );
 

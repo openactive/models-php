@@ -15,4 +15,11 @@ class UserLikes extends \OpenActive\Models\SchemaOrg\UserInteraction
         return "schema:UserLikes";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

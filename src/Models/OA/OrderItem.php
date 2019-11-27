@@ -16,11 +16,33 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
         return "OrderItem";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "acceptedOffer" => "acceptedOffer",
+            "accessCode" => "accessCode",
+            "accessToken" => "accessToken",
+            "additionalProperty" => "additionalProperty",
+            "allowCustomerCancellationFullRefund" => "allowCustomerCancellationFullRefund",
+            "attendee" => "attendee",
+            "attendeeDetailsRequired" => "attendeeDetailsRequired",
+            "cancellationMessage" => "cancellationMessage",
+            "customerNotice" => "customerNotice",
+            "error" => "error",
+            "orderedItem" => "orderedItem",
+            "orderItemIntakeForm" => "orderItemIntakeForm",
+            "orderItemIntakeFormResponse" => "orderItemIntakeFormResponse",
+            "orderItemStatus" => "orderItemStatus",
+            "unitTaxSpecification" => "unitTaxSpecification",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The offer from the associated orderedItem that has been selected by the Customer. The price of this includes or excludes tax depending on the taxMode of the Order.
      *
      *
-     * @var Offer
+     * @var \OpenActive\Models\OA\Offer
      */
     protected $acceptedOffer;
 
@@ -28,7 +50,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      * PropertyValue that contains a text value usable for entrance. Not applicable for an  OrderQuote.
      *
      *
-     * @var PropertyValue[]
+     * @var \OpenActive\Models\OA\PropertyValue[]
      */
     protected $accessCode;
 
@@ -36,7 +58,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      * ImageObject or Barcode that contains reference to an asset (e.g. Barcode, QR code image or PDF) usable for entrance. Not applicable for an OrderQuote.
      *
      *
-     * @var Barcode|ImageObject
+     * @var \OpenActive\Models\OA\ImageObject[]
      */
     protected $accessToken;
 
@@ -44,7 +66,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      * PropertyValue that contains a text value useful for reconciliation.
      *
      *
-     * @var PropertyValue[]
+     * @var \OpenActive\Models\OA\PropertyValue[]
      */
     protected $additionalProperty;
 
@@ -59,7 +81,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\OA\Person
      */
     protected $attendee;
 
@@ -90,7 +112,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      * Array of errors related to the OrderItem being included in the Order, only applicable for an  OrderQuote.
      *
      *
-     * @var OpenBookingError[]
+     * @var \OpenActive\Models\OA\OpenBookingError[]
      */
     protected $error;
 
@@ -98,7 +120,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      * The specific bookable Thing that has been selected by the Customer. See the [Modelling-Opportunity-Data] for more information on these types. Note that the Broker Request and Orders feed only require id within these objects to be included; in these contexts, all other properties are ignored.
      *
      *
-     * @var Event
+     * @var \OpenActive\Models\OA\Event
      */
     protected $orderedItem;
 
@@ -106,7 +128,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      * PropertyValueSpecifications that describe fields in the orderItemIntakeForm.
      *
      *
-     * @var PropertyValueSpecification[]
+     * @var \OpenActive\Models\OA\PropertyValueSpecification[]
      */
     protected $orderItemIntakeForm;
 
@@ -114,7 +136,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      * PropertyValues that contains a text value responses to the orderItemIntakeForm.
      *
      *
-     * @var PropertyValue[]
+     * @var \OpenActive\Models\OA\PropertyValue[]
      */
     protected $orderItemIntakeFormResponse;
 
@@ -129,12 +151,12 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      * Breakdown of tax payable for the OrderItem.
      *
      *
-     * @var TaxChargeSpecification[]
+     * @var \OpenActive\Models\OA\TaxChargeSpecification[]
      */
     protected $unitTaxSpecification;
 
     /**
-     * @return Offer
+     * @return \OpenActive\Models\OA\Offer
      */
     public function getAcceptedOffer()
     {
@@ -142,14 +164,14 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param Offer $acceptedOffer
+     * @param \OpenActive\Models\OA\Offer $acceptedOffer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcceptedOffer($acceptedOffer)
     {
         $types = array(
-            "Offer",
+            "\OpenActive\Models\OA\Offer",
         );
 
         $acceptedOffer = self::checkTypes($acceptedOffer, $types);
@@ -158,7 +180,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return PropertyValue[]
+     * @return \OpenActive\Models\OA\PropertyValue[]
      */
     public function getAccessCode()
     {
@@ -166,14 +188,14 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param PropertyValue[] $accessCode
+     * @param \OpenActive\Models\OA\PropertyValue[] $accessCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessCode($accessCode)
     {
         $types = array(
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue[]",
         );
 
         $accessCode = self::checkTypes($accessCode, $types);
@@ -182,7 +204,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return Barcode|ImageObject
+     * @return \OpenActive\Models\OA\ImageObject[]
      */
     public function getAccessToken()
     {
@@ -190,15 +212,14 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param Barcode|ImageObject $accessToken
+     * @param \OpenActive\Models\OA\ImageObject[] $accessToken
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAccessToken($accessToken)
     {
         $types = array(
-            "Barcode",
-            "ImageObject",
+            "\OpenActive\Models\OA\ImageObject[]",
         );
 
         $accessToken = self::checkTypes($accessToken, $types);
@@ -207,7 +228,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return PropertyValue[]
+     * @return \OpenActive\Models\OA\PropertyValue[]
      */
     public function getAdditionalProperty()
     {
@@ -215,14 +236,14 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param PropertyValue[] $additionalProperty
+     * @param \OpenActive\Models\OA\PropertyValue[] $additionalProperty
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAdditionalProperty($additionalProperty)
     {
         $types = array(
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue[]",
         );
 
         $additionalProperty = self::checkTypes($additionalProperty, $types);
@@ -256,7 +277,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\OA\Person
      */
     public function getAttendee()
     {
@@ -264,14 +285,14 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param Person $attendee
+     * @param \OpenActive\Models\OA\Person $attendee
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAttendee($attendee)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\OA\Person",
         );
 
         $attendee = self::checkTypes($attendee, $types);
@@ -352,7 +373,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return OpenBookingError[]
+     * @return \OpenActive\Models\OA\OpenBookingError[]
      */
     public function getError()
     {
@@ -360,14 +381,14 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param OpenBookingError[] $error
+     * @param \OpenActive\Models\OA\OpenBookingError[] $error
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setError($error)
     {
         $types = array(
-            "OpenBookingError[]",
+            "\OpenActive\Models\OA\OpenBookingError[]",
         );
 
         $error = self::checkTypes($error, $types);
@@ -376,7 +397,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return Event
+     * @return \OpenActive\Models\OA\Event
      */
     public function getOrderedItem()
     {
@@ -384,14 +405,14 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param Event $orderedItem
+     * @param \OpenActive\Models\OA\Event $orderedItem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderedItem($orderedItem)
     {
         $types = array(
-            "Event",
+            "\OpenActive\Models\OA\Event",
         );
 
         $orderedItem = self::checkTypes($orderedItem, $types);
@@ -400,7 +421,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return PropertyValueSpecification[]
+     * @return \OpenActive\Models\OA\PropertyValueSpecification[]
      */
     public function getOrderItemIntakeForm()
     {
@@ -408,14 +429,14 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param PropertyValueSpecification[] $orderItemIntakeForm
+     * @param \OpenActive\Models\OA\PropertyValueSpecification[] $orderItemIntakeForm
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderItemIntakeForm($orderItemIntakeForm)
     {
         $types = array(
-            "PropertyValueSpecification[]",
+            "\OpenActive\Models\OA\PropertyValueSpecification[]",
         );
 
         $orderItemIntakeForm = self::checkTypes($orderItemIntakeForm, $types);
@@ -424,7 +445,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return PropertyValue[]
+     * @return \OpenActive\Models\OA\PropertyValue[]
      */
     public function getOrderItemIntakeFormResponse()
     {
@@ -432,14 +453,14 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param PropertyValue[] $orderItemIntakeFormResponse
+     * @param \OpenActive\Models\OA\PropertyValue[] $orderItemIntakeFormResponse
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderItemIntakeFormResponse($orderItemIntakeFormResponse)
     {
         $types = array(
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue[]",
         );
 
         $orderItemIntakeFormResponse = self::checkTypes($orderItemIntakeFormResponse, $types);
@@ -473,7 +494,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return TaxChargeSpecification[]
+     * @return \OpenActive\Models\OA\TaxChargeSpecification[]
      */
     public function getUnitTaxSpecification()
     {
@@ -481,14 +502,14 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param TaxChargeSpecification[] $unitTaxSpecification
+     * @param \OpenActive\Models\OA\TaxChargeSpecification[] $unitTaxSpecification
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnitTaxSpecification($unitTaxSpecification)
     {
         $types = array(
-            "TaxChargeSpecification[]",
+            "\OpenActive\Models\OA\TaxChargeSpecification[]",
         );
 
         $unitTaxSpecification = self::checkTypes($unitTaxSpecification, $types);

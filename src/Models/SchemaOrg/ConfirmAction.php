@@ -15,4 +15,11 @@ class ConfirmAction extends \OpenActive\Models\SchemaOrg\InformAction
         return "schema:ConfirmAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

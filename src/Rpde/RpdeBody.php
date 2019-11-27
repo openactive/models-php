@@ -20,16 +20,16 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
     use Serializer, TypeChecker;
 
     /**
+     * @var string
+     */
+    protected $next;
+
+    /**
      * The default value for the license.
      *
      * @var string
      */
     protected static $default_license = "https://creativecommons.org/licenses/by/4.0/";
-
-    /**
-     * @var string
-     */
-    protected $next;
 
     /**
      * @var \OpenActive\Rpde\RpdeItem[]
@@ -57,6 +57,14 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
                 $this->$methodName($value);
             }
         }
+    }
+
+    public static function fieldList() {
+        return [
+            'next' => 'next',
+            'items' => 'items',
+            'license' => 'license'
+        ];
     }
 
     /**

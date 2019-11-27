@@ -15,4 +15,11 @@ class ComedyClub extends \OpenActive\Models\SchemaOrg\EntertainmentBusiness
         return "schema:ComedyClub";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

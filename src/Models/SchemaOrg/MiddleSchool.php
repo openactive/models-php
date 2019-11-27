@@ -15,4 +15,11 @@ class MiddleSchool extends \OpenActive\Models\SchemaOrg\EducationalOrganization
         return "schema:MiddleSchool";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

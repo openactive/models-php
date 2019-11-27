@@ -15,6 +15,15 @@ class ReplaceAction extends \OpenActive\Models\SchemaOrg\UpdateAction
         return "schema:ReplaceAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "replacer" => "replacer",
+            "replacee" => "replacee",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A sub property of object. The object that replaces.
      *

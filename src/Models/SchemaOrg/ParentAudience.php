@@ -15,6 +15,15 @@ class ParentAudience extends \OpenActive\Models\SchemaOrg\PeopleAudience
         return "schema:ParentAudience";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "childMinAge" => "childMinAge",
+            "childMaxAge" => "childMaxAge",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Minimal age of the child.
      *

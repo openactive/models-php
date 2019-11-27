@@ -15,6 +15,30 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:MediaObject";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "contentSize" => "contentSize",
+            "encodingFormat" => "encodingFormat",
+            "embedUrl" => "embedUrl",
+            "startTime" => "startTime",
+            "width" => "width",
+            "playerType" => "playerType",
+            "contentUrl" => "contentUrl",
+            "bitrate" => "bitrate",
+            "regionsAllowed" => "regionsAllowed",
+            "encodesCreativeWork" => "encodesCreativeWork",
+            "duration" => "duration",
+            "productionCompany" => "productionCompany",
+            "associatedArticle" => "associatedArticle",
+            "endTime" => "endTime",
+            "requiresSubscription" => "requiresSubscription",
+            "height" => "height",
+            "uploadDate" => "uploadDate",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * File size in (mega/kilo) bytes.
      *
@@ -57,7 +81,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The width of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $width;
 
@@ -89,7 +113,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The regions where the media is allowed. If not specified, then it's assumed to be allowed everywhere. Specify the countries in <a href="http://en.wikipedia.org/wiki/ISO_3166">ISO 3166 format</a>.
      *
      *
-     * @var Place
+     * @var \OpenActive\Models\SchemaOrg\Place
      */
     protected $regionsAllowed;
 
@@ -113,7 +137,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The production company or studio responsible for the item e.g. series, video game, episode etc.
      *
      *
-     * @var Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
     protected $productionCompany;
 
@@ -147,7 +171,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The height of the item.
      *
      *
-     * @var QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     protected $height;
 
@@ -258,7 +282,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getWidth()
     {
@@ -266,7 +290,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Distance|QuantitativeValue $width
+     * @param \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue $width
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -274,7 +298,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\Distance",
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
         $width = self::checkTypes($width, $types);
@@ -355,7 +379,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Place
+     * @return \OpenActive\Models\SchemaOrg\Place
      */
     public function getRegionsAllowed()
     {
@@ -363,14 +387,14 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Place $regionsAllowed
+     * @param \OpenActive\Models\SchemaOrg\Place $regionsAllowed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRegionsAllowed($regionsAllowed)
     {
         $types = array(
-            "Place",
+            "\OpenActive\Models\SchemaOrg\Place",
         );
 
         $regionsAllowed = self::checkTypes($regionsAllowed, $types);
@@ -428,7 +452,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization
      */
     public function getProductionCompany()
     {
@@ -436,14 +460,14 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Organization $productionCompany
+     * @param \OpenActive\Models\SchemaOrg\Organization $productionCompany
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProductionCompany($productionCompany)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $productionCompany = self::checkTypes($productionCompany, $types);
@@ -528,7 +552,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     public function getHeight()
     {
@@ -536,14 +560,14 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $height
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $height
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHeight($height)
     {
         $types = array(
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "\OpenActive\Models\SchemaOrg\Distance",
         );
 

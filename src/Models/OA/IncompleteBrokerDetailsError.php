@@ -15,4 +15,11 @@ class IncompleteBrokerDetailsError extends \OpenActive\Models\OA\OpenBookingErro
         return "IncompleteBrokerDetailsError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

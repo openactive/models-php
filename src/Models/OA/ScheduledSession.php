@@ -16,6 +16,16 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
         return "ScheduledSession";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "eventSchedule" => "eventSchedule",
+            "subEvent" => "subEvent",
+            "superEvent" => "superEvent",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A an array of oa:Schedule or oa:PartialSchedule, which represents a recurrence pattern.
      *
@@ -33,7 +43,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
      * ]
      * ```
      *
-     * @var Schedule[]
+     * @var \OpenActive\Models\OA\Schedule[]
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $eventSchedule;
@@ -42,7 +52,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
      * Relates a parent event to a child event. Properties describing the parent event can be assumed to apply to the child, unless otherwise specified. A child event might be a specific instance of an Event within a schedule
      *
      *
-     * @var Event[]
+     * @var \OpenActive\Models\OA\Event[]
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $subEvent;
@@ -51,12 +61,12 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
      * Relates a child event to a parent event. Properties describing the parent event can be assumed to apply to the child, unless otherwise specified. A parent event might specify a recurring schedule, of which the child event is one specific instance
      *
      *
-     * @var string|Event
+     * @var string|\OpenActive\Models\OA\Event
      */
     protected $superEvent;
 
     /**
-     * @return Schedule[]
+     * @return \OpenActive\Models\OA\Schedule[]
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getEventSchedule()
@@ -65,7 +75,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param Schedule[] $eventSchedule
+     * @param \OpenActive\Models\OA\Schedule[] $eventSchedule
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -73,7 +83,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
     public function setEventSchedule($eventSchedule)
     {
         $types = array(
-            "Schedule[]",
+            "\OpenActive\Models\OA\Schedule[]",
         );
 
         $eventSchedule = self::checkTypes($eventSchedule, $types);
@@ -82,7 +92,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return Event[]
+     * @return \OpenActive\Models\OA\Event[]
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getSubEvent()
@@ -91,7 +101,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param Event[] $subEvent
+     * @param \OpenActive\Models\OA\Event[] $subEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -99,7 +109,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
     public function setSubEvent($subEvent)
     {
         $types = array(
-            "Event[]",
+            "\OpenActive\Models\OA\Event[]",
         );
 
         $subEvent = self::checkTypes($subEvent, $types);
@@ -108,7 +118,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return string|Event
+     * @return string|\OpenActive\Models\OA\Event
      */
     public function getSuperEvent()
     {
@@ -116,7 +126,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param string|Event $superEvent
+     * @param string|\OpenActive\Models\OA\Event $superEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -124,7 +134,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
     {
         $types = array(
             "string",
-            "Event",
+            "\OpenActive\Models\OA\Event",
         );
 
         $superEvent = self::checkTypes($superEvent, $types);

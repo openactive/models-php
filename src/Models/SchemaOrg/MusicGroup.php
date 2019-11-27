@@ -15,6 +15,19 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
         return "schema:MusicGroup";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "album" => "album",
+            "tracks" => "tracks",
+            "genre" => "genre",
+            "track" => "track",
+            "musicGroupMember" => "musicGroupMember",
+            "albums" => "albums",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A music album.
      *
@@ -51,7 +64,7 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
      * A member of a music group&#x2014;for example, John, Paul, George, or Ringo.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $musicGroupMember;
 
@@ -161,7 +174,7 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getMusicGroupMember()
     {
@@ -169,14 +182,14 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
     }
 
     /**
-     * @param Person $musicGroupMember
+     * @param \OpenActive\Models\SchemaOrg\Person $musicGroupMember
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicGroupMember($musicGroupMember)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $musicGroupMember = self::checkTypes($musicGroupMember, $types);

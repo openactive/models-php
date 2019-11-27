@@ -15,6 +15,15 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
         return "schema:SellAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "warrantyPromise" => "warrantyPromise",
+            "buyer" => "buyer",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The warranty promise(s) included in the offer.
      *
@@ -27,7 +36,7 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
      * A sub property of participant. The participant/person/organization that bought the object.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $buyer;
 
@@ -56,7 +65,7 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getBuyer()
     {
@@ -64,14 +73,14 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
-     * @param Person $buyer
+     * @param \OpenActive\Models\SchemaOrg\Person $buyer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBuyer($buyer)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $buyer = self::checkTypes($buyer, $types);

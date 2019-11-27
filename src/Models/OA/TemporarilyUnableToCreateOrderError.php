@@ -15,4 +15,11 @@ class TemporarilyUnableToCreateOrderError extends \OpenActive\Models\OA\OpenBook
         return "TemporarilyUnableToCreateOrderError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

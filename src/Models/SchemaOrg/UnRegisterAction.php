@@ -15,4 +15,11 @@ class UnRegisterAction extends \OpenActive\Models\SchemaOrg\InteractAction
         return "schema:UnRegisterAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

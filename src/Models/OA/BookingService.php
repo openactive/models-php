@@ -15,6 +15,17 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
         return "BookingService";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "name" => "name",
+            "softwareVersion" => "softwareVersion",
+            "termsOfService" => "termsOfService",
+            "url" => "url",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The name of the Booking System.
      *
@@ -35,7 +46,7 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
      * The terms of service of the Booking System.
      *
      *
-     * @var Terms[]
+     * @var \OpenActive\Models\OA\Terms[]
      */
     protected $termsOfService;
 
@@ -96,7 +107,7 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @return Terms[]
+     * @return \OpenActive\Models\OA\Terms[]
      */
     public function getTermsOfService()
     {
@@ -104,14 +115,14 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @param Terms[] $termsOfService
+     * @param \OpenActive\Models\OA\Terms[] $termsOfService
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTermsOfService($termsOfService)
     {
         $types = array(
-            "Terms[]",
+            "\OpenActive\Models\OA\Terms[]",
         );
 
         $termsOfService = self::checkTypes($termsOfService, $types);

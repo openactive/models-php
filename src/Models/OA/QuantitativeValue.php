@@ -16,6 +16,15 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
         return "QuantitativeValue";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "maxValue" => "maxValue",
+            "minValue" => "minValue",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The maximum value.
      *

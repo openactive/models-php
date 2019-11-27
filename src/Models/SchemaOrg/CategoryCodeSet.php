@@ -1,0 +1,58 @@
+<?php
+
+namespace OpenActive\Models\SchemaOrg;
+
+/**
+ *
+ */
+class CategoryCodeSet extends \OpenActive\Models\SchemaOrg\DefinedTermSet
+{
+    /**
+     * @return string[]|null
+     */
+    public static function getType()
+    {
+        return "schema:CategoryCodeSet";
+    }
+
+    public static function fieldList() {
+        $fields = [
+            "hasCategoryCode" => "hasCategoryCode",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
+    /**
+     * A Category code contained in this code set.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CategoryCode
+     */
+    protected $hasCategoryCode;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CategoryCode
+     */
+    public function getHasCategoryCode()
+    {
+        return $this->hasCategoryCode;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CategoryCode $hasCategoryCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasCategoryCode($hasCategoryCode)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\CategoryCode",
+        );
+
+        $hasCategoryCode = self::checkTypes($hasCategoryCode, $types);
+
+        $this->hasCategoryCode = $hasCategoryCode;
+    }
+
+}

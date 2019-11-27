@@ -15,4 +15,11 @@ class QuoteAction extends \OpenActive\Models\SchemaOrg\TradeAction
         return "schema:QuoteAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

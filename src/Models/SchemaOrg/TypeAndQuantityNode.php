@@ -15,6 +15,18 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
         return "schema:TypeAndQuantityNode";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "unitText" => "unitText",
+            "businessFunction" => "businessFunction",
+            "amountOfThisGood" => "amountOfThisGood",
+            "typeOfGood" => "typeOfGood",
+            "unitCode" => "unitCode",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for
      * <a href='unitCode'>unitCode</a>.
@@ -28,7 +40,7 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
      *
      *
-     * @var \OpenActive\Enums\BusinessFunction|null
+     * @var \OpenActive\Enums\SchemaOrg\BusinessFunction|null
      */
     protected $businessFunction;
 
@@ -81,7 +93,7 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Enums\BusinessFunction|null
+     * @return \OpenActive\Enums\SchemaOrg\BusinessFunction|null
      */
     public function getBusinessFunction()
     {
@@ -89,14 +101,14 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param \OpenActive\Enums\BusinessFunction|null $businessFunction
+     * @param \OpenActive\Enums\SchemaOrg\BusinessFunction|null $businessFunction
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBusinessFunction($businessFunction)
     {
         $types = array(
-            "\OpenActive\Enums\BusinessFunction",
+            "\OpenActive\Enums\SchemaOrg\BusinessFunction",
             "null",
         );
 

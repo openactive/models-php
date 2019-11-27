@@ -15,4 +15,11 @@ class TotalPaymentDueMismatchError extends \OpenActive\Models\OA\OpenBookingErro
         return "TotalPaymentDueMismatchError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

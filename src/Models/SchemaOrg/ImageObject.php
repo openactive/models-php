@@ -15,6 +15,17 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
         return "schema:ImageObject";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "caption" => "caption",
+            "thumbnail" => "thumbnail",
+            "representativeOfPage" => "representativeOfPage",
+            "exifData" => "exifData",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the <a class="localLink" href="https://schema.org/encodingFormat">encodingFormat</a>.
      *
@@ -27,7 +38,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
      * Thumbnail image for an image or video.
      *
      *
-     * @var ImageObject
+     * @var \OpenActive\Models\SchemaOrg\ImageObject
      */
     protected $thumbnail;
 
@@ -43,7 +54,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
      * exif data for this object.
      *
      *
-     * @var string|PropertyValue
+     * @var string|\OpenActive\Models\SchemaOrg\PropertyValue
      */
     protected $exifData;
 
@@ -73,7 +84,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return ImageObject
+     * @return \OpenActive\Models\SchemaOrg\ImageObject
      */
     public function getThumbnail()
     {
@@ -81,14 +92,14 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param ImageObject $thumbnail
+     * @param \OpenActive\Models\SchemaOrg\ImageObject $thumbnail
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setThumbnail($thumbnail)
     {
         $types = array(
-            "ImageObject",
+            "\OpenActive\Models\SchemaOrg\ImageObject",
         );
 
         $thumbnail = self::checkTypes($thumbnail, $types);
@@ -122,7 +133,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return string|PropertyValue
+     * @return string|\OpenActive\Models\SchemaOrg\PropertyValue
      */
     public function getExifData()
     {
@@ -130,7 +141,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param string|PropertyValue $exifData
+     * @param string|\OpenActive\Models\SchemaOrg\PropertyValue $exifData
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -138,7 +149,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     {
         $types = array(
             "string",
-            "PropertyValue",
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
         );
 
         $exifData = self::checkTypes($exifData, $types);

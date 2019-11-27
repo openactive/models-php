@@ -15,4 +15,11 @@ class LikeAction extends \OpenActive\Models\SchemaOrg\ReactAction
         return "schema:LikeAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

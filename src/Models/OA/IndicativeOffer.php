@@ -17,4 +17,11 @@ class IndicativeOffer extends \OpenActive\Models\OA\Offer
         return "beta:IndicativeOffer";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

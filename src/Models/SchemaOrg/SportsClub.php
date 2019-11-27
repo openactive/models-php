@@ -15,4 +15,11 @@ class SportsClub extends \OpenActive\Models\SchemaOrg\SportsActivityLocation
         return "schema:SportsClub";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

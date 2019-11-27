@@ -15,6 +15,14 @@ class CivicStructure extends \OpenActive\Models\SchemaOrg\Place
         return "schema:CivicStructure";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "openingHours" => "openingHours",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. Multiple days can be listed with commas ',' separating each day. Day or time ranges are specified using a hyphen '-'.<br/><br/>
      * 

@@ -15,6 +15,26 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:Reservation";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "reservationFor" => "reservationFor",
+            "reservedTicket" => "reservedTicket",
+            "priceCurrency" => "priceCurrency",
+            "provider" => "provider",
+            "reservationStatus" => "reservationStatus",
+            "reservationId" => "reservationId",
+            "bookingTime" => "bookingTime",
+            "modifiedTime" => "modifiedTime",
+            "broker" => "broker",
+            "underName" => "underName",
+            "programMembershipUsed" => "programMembershipUsed",
+            "totalPrice" => "totalPrice",
+            "bookingAgent" => "bookingAgent",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The thing -- flight, event, restaurant,etc. being reserved.
      *
@@ -45,7 +65,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
      *
      *
-     * @var Organization|Person
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $provider;
 
@@ -53,7 +73,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * The current status of the reservation.
      *
      *
-     * @var \OpenActive\Enums\ReservationStatusType|null
+     * @var \OpenActive\Enums\SchemaOrg\ReservationStatusType|null
      */
     protected $reservationStatus;
 
@@ -85,7 +105,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * An entity that arranges for an exchange between a buyer and a seller.  In most cases a broker never acquires or releases ownership of a product or service involved in an exchange.  If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred.
      *
      *
-     * @var Organization|Person
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $broker;
 
@@ -93,7 +113,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * The person or organization the reservation or ticket is for.
      *
      *
-     * @var Organization|Person
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $underName;
 
@@ -117,7 +137,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * 
      *
      *
-     * @var string|float|PriceSpecification|null
+     * @var string|float|\OpenActive\Models\SchemaOrg\PriceSpecification|null
      */
     protected $totalPrice;
 
@@ -125,7 +145,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * 'bookingAgent' is an out-dated term indicating a 'broker' that serves as a booking agent.
      *
      *
-     * @var Organization|Person
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $bookingAgent;
 
@@ -202,7 +222,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Organization|Person
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getProvider()
     {
@@ -210,15 +230,15 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Organization|Person $provider
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $provider
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvider($provider)
     {
         $types = array(
-            "Organization",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $provider = self::checkTypes($provider, $types);
@@ -227,7 +247,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Enums\ReservationStatusType|null
+     * @return \OpenActive\Enums\SchemaOrg\ReservationStatusType|null
      */
     public function getReservationStatus()
     {
@@ -235,14 +255,14 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Enums\ReservationStatusType|null $reservationStatus
+     * @param \OpenActive\Enums\SchemaOrg\ReservationStatusType|null $reservationStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReservationStatus($reservationStatus)
     {
         $types = array(
-            "\OpenActive\Enums\ReservationStatusType",
+            "\OpenActive\Enums\SchemaOrg\ReservationStatusType",
             "null",
         );
 
@@ -326,7 +346,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Organization|Person
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getBroker()
     {
@@ -334,15 +354,15 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Organization|Person $broker
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $broker
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroker($broker)
     {
         $types = array(
-            "Organization",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $broker = self::checkTypes($broker, $types);
@@ -351,7 +371,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Organization|Person
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getUnderName()
     {
@@ -359,15 +379,15 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Organization|Person $underName
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $underName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnderName($underName)
     {
         $types = array(
-            "Organization",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $underName = self::checkTypes($underName, $types);
@@ -400,7 +420,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|float|PriceSpecification|null
+     * @return string|float|\OpenActive\Models\SchemaOrg\PriceSpecification|null
      */
     public function getTotalPrice()
     {
@@ -408,7 +428,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|float|PriceSpecification|null $totalPrice
+     * @param string|float|\OpenActive\Models\SchemaOrg\PriceSpecification|null $totalPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -417,7 +437,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
         $types = array(
             "string",
             "float",
-            "PriceSpecification",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
             "null",
         );
 
@@ -427,7 +447,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Organization|Person
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getBookingAgent()
     {
@@ -435,15 +455,15 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Organization|Person $bookingAgent
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $bookingAgent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBookingAgent($bookingAgent)
     {
         $types = array(
-            "Organization",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $bookingAgent = self::checkTypes($bookingAgent, $types);

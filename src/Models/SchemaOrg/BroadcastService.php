@@ -15,11 +15,36 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
         return "schema:BroadcastService";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "callSign" => "callSign",
+            "broadcaster" => "broadcaster",
+            "hasBroadcastChannel" => "hasBroadcastChannel",
+            "area" => "area",
+            "broadcastDisplayName" => "broadcastDisplayName",
+            "parentService" => "parentService",
+            "broadcastAffiliateOf" => "broadcastAffiliateOf",
+            "videoFormat" => "videoFormat",
+            "broadcastTimezone" => "broadcastTimezone",
+            "broadcastFrequency" => "broadcastFrequency",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
+    /**
+     * A <a href="https://en.wikipedia.org/wiki/Call_sign">callsign</a>, as used in broadcasting and radio communications to identify people, radio and TV stations, or vehicles.
+     *
+     *
+     * @var string
+     */
+    protected $callSign;
+
     /**
      * The organization owning or operating the broadcast service.
      *
      *
-     * @var Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
     protected $broadcaster;
 
@@ -35,7 +60,7 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
      * The area within which users can expect to reach the broadcast service.
      *
      *
-     * @var Place
+     * @var \OpenActive\Models\SchemaOrg\Place
      */
     protected $area;
 
@@ -59,7 +84,7 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
      * The media network(s) whose content is broadcast on this station.
      *
      *
-     * @var Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
     protected $broadcastAffiliateOf;
 
@@ -88,7 +113,31 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     protected $broadcastFrequency;
 
     /**
-     * @return Organization
+     * @return string
+     */
+    public function getCallSign()
+    {
+        return $this->callSign;
+    }
+
+    /**
+     * @param string $callSign
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCallSign($callSign)
+    {
+        $types = array(
+            "string",
+        );
+
+        $callSign = self::checkTypes($callSign, $types);
+
+        $this->callSign = $callSign;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization
      */
     public function getBroadcaster()
     {
@@ -96,14 +145,14 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @param Organization $broadcaster
+     * @param \OpenActive\Models\SchemaOrg\Organization $broadcaster
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcaster($broadcaster)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $broadcaster = self::checkTypes($broadcaster, $types);
@@ -136,7 +185,7 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @return Place
+     * @return \OpenActive\Models\SchemaOrg\Place
      */
     public function getArea()
     {
@@ -144,14 +193,14 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @param Place $area
+     * @param \OpenActive\Models\SchemaOrg\Place $area
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArea($area)
     {
         $types = array(
-            "Place",
+            "\OpenActive\Models\SchemaOrg\Place",
         );
 
         $area = self::checkTypes($area, $types);
@@ -208,7 +257,7 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization
      */
     public function getBroadcastAffiliateOf()
     {
@@ -216,14 +265,14 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @param Organization $broadcastAffiliateOf
+     * @param \OpenActive\Models\SchemaOrg\Organization $broadcastAffiliateOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastAffiliateOf($broadcastAffiliateOf)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $broadcastAffiliateOf = self::checkTypes($broadcastAffiliateOf, $types);

@@ -15,4 +15,11 @@ class HVACBusiness extends \OpenActive\Models\SchemaOrg\HomeAndConstructionBusin
         return "schema:HVACBusiness";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

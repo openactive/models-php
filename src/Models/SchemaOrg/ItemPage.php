@@ -15,4 +15,11 @@ class ItemPage extends \OpenActive\Models\SchemaOrg\WebPage
         return "schema:ItemPage";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

@@ -15,4 +15,11 @@ class CableOrSatelliteService extends \OpenActive\Models\SchemaOrg\Service
         return "schema:CableOrSatelliteService";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

@@ -15,6 +15,15 @@ class Audience extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:Audience";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "geographicArea" => "geographicArea",
+            "audienceType" => "audienceType",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The geographic area associated with the audience.
      *

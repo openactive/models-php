@@ -16,6 +16,21 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
         return "Course";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "identifier" => "identifier",
+            "name" => "name",
+            "description" => "description",
+            "activity" => "activity",
+            "author" => "author",
+            "url" => "url",
+            "video" => "beta:video",
+            "logo" => "beta:logo",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A local non-URI identifier for the resource
      *
@@ -23,7 +38,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      * "identifier": "BR1234"
      * ```
      *
-     * @var int|string|PropertyValue|PropertyValue[]|null
+     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -67,7 +82,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      * ]
      * ```
      *
-     * @var Concept[]
+     * @var \OpenActive\Models\OA\Concept[]
      */
     protected $activity;
 
@@ -82,23 +97,9 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      * }
      * ```
      *
-     * @var Person|Organization
+     * @var \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization
      */
     protected $author;
-
-    /**
-     * A logo for the Course.
-     *
-     * ```json
-     * "logo": {
-     *   "@type": "ImageObject",
-     *   "url": "http://example.com/static/image/speedball_large.jpg"
-     * }
-     * ```
-     *
-     * @var ImageObject
-     */
-    protected $logo;
 
     /**
      * A definitive canonical URL for the Course.
@@ -112,7 +113,29 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     protected $url;
 
     /**
-     * @return int|string|PropertyValue|PropertyValue[]|null
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * An related video object.
+     * 
+     * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\VideoObject[]
+     */
+    protected $video;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * An associated logo for a course.
+     * 
+     * If you are using this property, please join the discussion at proposal [#164](https://github.com/openactive/modelling-opportunity-data/issues/164).
+     *
+     *
+     * @var \OpenActive\Models\ImageObject
+     */
+    protected $logo;
+
+    /**
+     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -120,7 +143,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     }
 
     /**
-     * @param int|string|PropertyValue|PropertyValue[]|null $identifier
+     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -129,8 +152,8 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
         $types = array(
             "int",
             "string",
-            "PropertyValue",
-            "PropertyValue[]",
+            "\OpenActive\Models\OA\PropertyValue",
+            "\OpenActive\Models\OA\PropertyValue[]",
             "null",
         );
 
@@ -188,7 +211,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     }
 
     /**
-     * @return Concept[]
+     * @return \OpenActive\Models\OA\Concept[]
      */
     public function getActivity()
     {
@@ -196,14 +219,14 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     }
 
     /**
-     * @param Concept[] $activity
+     * @param \OpenActive\Models\OA\Concept[] $activity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActivity($activity)
     {
         $types = array(
-            "Concept[]",
+            "\OpenActive\Models\OA\Concept[]",
         );
 
         $activity = self::checkTypes($activity, $types);
@@ -212,7 +235,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     }
 
     /**
-     * @return Person|Organization
+     * @return \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization
      */
     public function getAuthor()
     {
@@ -220,44 +243,20 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     }
 
     /**
-     * @param Person|Organization $author
+     * @param \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization $author
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAuthor($author)
     {
         $types = array(
-            "Person",
-            "Organization",
+            "\OpenActive\Models\OA\Person",
+            "\OpenActive\Models\OA\Organization",
         );
 
         $author = self::checkTypes($author, $types);
 
         $this->author = $author;
-    }
-
-    /**
-     * @return ImageObject
-     */
-    public function getLogo()
-    {
-        return $this->logo;
-    }
-
-    /**
-     * @param ImageObject $logo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLogo($logo)
-    {
-        $types = array(
-            "ImageObject",
-        );
-
-        $logo = self::checkTypes($logo, $types);
-
-        $this->logo = $logo;
     }
 
     /**
@@ -282,6 +281,54 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
         $url = self::checkTypes($url, $types);
 
         $this->url = $url;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\VideoObject[]
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\VideoObject[] $video
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVideo($video)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\VideoObject[]",
+        );
+
+        $video = self::checkTypes($video, $types);
+
+        $this->video = $video;
+    }
+
+    /**
+     * @return \OpenActive\Models\ImageObject
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * @param \OpenActive\Models\ImageObject $logo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLogo($logo)
+    {
+        $types = array(
+            "\OpenActive\Models\ImageObject",
+        );
+
+        $logo = self::checkTypes($logo, $types);
+
+        $this->logo = $logo;
     }
 
 }

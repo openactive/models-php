@@ -15,4 +15,11 @@ class OpportunityIsFullError extends \OpenActive\Models\OA\OpenBookingError
         return "OpportunityIsFullError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

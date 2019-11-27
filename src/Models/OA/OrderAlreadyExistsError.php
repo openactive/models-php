@@ -15,4 +15,11 @@ class OrderAlreadyExistsError extends \OpenActive\Models\OA\OpenBookingError
         return "OrderAlreadyExistsError";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

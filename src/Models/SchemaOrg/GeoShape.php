@@ -15,6 +15,21 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
         return "schema:GeoShape";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "line" => "line",
+            "polygon" => "polygon",
+            "elevation" => "elevation",
+            "postalCode" => "postalCode",
+            "addressCountry" => "addressCountry",
+            "box" => "box",
+            "circle" => "circle",
+            "address" => "address",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space.
      *
@@ -75,7 +90,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
      * Physical address of the item.
      *
      *
-     * @var string|PostalAddress
+     * @var string|\OpenActive\Models\SchemaOrg\PostalAddress
      */
     protected $address;
 
@@ -251,7 +266,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string|PostalAddress
+     * @return string|\OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function getAddress()
     {
@@ -259,7 +274,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param string|PostalAddress $address
+     * @param string|\OpenActive\Models\SchemaOrg\PostalAddress $address
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -267,7 +282,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     {
         $types = array(
             "string",
-            "PostalAddress",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
         );
 
         $address = self::checkTypes($address, $types);

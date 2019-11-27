@@ -15,6 +15,14 @@ class PerformAction extends \OpenActive\Models\SchemaOrg\PlayAction
         return "schema:PerformAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "entertainmentBusiness" => "entertainmentBusiness",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A sub property of location. The entertainment business where the action occurred.
      *

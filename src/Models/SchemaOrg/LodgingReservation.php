@@ -15,11 +15,24 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
         return "schema:LodgingReservation";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "numAdults" => "numAdults",
+            "lodgingUnitType" => "lodgingUnitType",
+            "checkoutTime" => "checkoutTime",
+            "lodgingUnitDescription" => "lodgingUnitDescription",
+            "numChildren" => "numChildren",
+            "checkinTime" => "checkinTime",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The number of adults staying in the unit.
      *
      *
-     * @var int|QuantitativeValue|null
+     * @var int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $numAdults;
 
@@ -27,7 +40,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * Textual description of the unit type (including suite vs. room, size of bed, etc.).
      *
      *
-     * @var \OpenActive\Enums\QualitativeValue|string|null
+     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
      */
     protected $lodgingUnitType;
 
@@ -51,7 +64,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * The number of children staying in the unit.
      *
      *
-     * @var int|QuantitativeValue|null
+     * @var int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $numChildren;
 
@@ -64,7 +77,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $checkinTime;
 
     /**
-     * @return int|QuantitativeValue|null
+     * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getNumAdults()
     {
@@ -72,7 +85,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param int|QuantitativeValue|null $numAdults
+     * @param int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numAdults
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -80,7 +93,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     {
         $types = array(
             "int",
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
         );
 
@@ -90,7 +103,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return \OpenActive\Enums\QualitativeValue|string|null
+     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
      */
     public function getLodgingUnitType()
     {
@@ -98,14 +111,14 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param \OpenActive\Enums\QualitativeValue|string|null $lodgingUnitType
+     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null $lodgingUnitType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLodgingUnitType($lodgingUnitType)
     {
         $types = array(
-            "\OpenActive\Enums\QualitativeValue",
+            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
             "string",
             "null",
         );
@@ -166,7 +179,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return int|QuantitativeValue|null
+     * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getNumChildren()
     {
@@ -174,7 +187,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param int|QuantitativeValue|null $numChildren
+     * @param int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numChildren
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -182,7 +195,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     {
         $types = array(
             "int",
-            "QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
         );
 

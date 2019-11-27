@@ -15,6 +15,24 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:PropertyValueSpecification";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "readonlyValue" => "readonlyValue",
+            "valueRequired" => "valueRequired",
+            "defaultValue" => "defaultValue",
+            "multipleValues" => "multipleValues",
+            "valueName" => "valueName",
+            "maxValue" => "maxValue",
+            "valueMinLength" => "valueMinLength",
+            "minValue" => "minValue",
+            "valueMaxLength" => "valueMaxLength",
+            "stepValue" => "stepValue",
+            "valuePattern" => "valuePattern",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Whether or not a property is mutable.  Default is false. Specifying this for a property that also has a value makes it act similar to a "hidden" input in an HTML form.
      *

@@ -15,6 +15,14 @@ class TVClip extends \OpenActive\Models\SchemaOrg\Clip
         return "schema:TVClip";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "partOfTVSeries" => "partOfTVSeries",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The TV series to which this episode or season belongs.
      *

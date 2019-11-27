@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [Organization](https://schema.org/Organization), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class EducationalOrganization extends \OpenActive\Models\SchemaOrg\Organization
@@ -16,16 +15,24 @@ class EducationalOrganization extends \OpenActive\Models\SchemaOrg\Organization
         return "schema:EducationalOrganization";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "alumni" => "alumni",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Alumni of an organization.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $alumni;
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getAlumni()
     {
@@ -33,14 +40,14 @@ class EducationalOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param Person $alumni
+     * @param \OpenActive\Models\SchemaOrg\Person $alumni
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAlumni($alumni)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $alumni = self::checkTypes($alumni, $types);

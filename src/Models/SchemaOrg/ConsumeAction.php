@@ -3,7 +3,6 @@
 namespace OpenActive\Models\SchemaOrg;
 
 /**
- * This type is derived from [Action](https://schema.org/Action), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
  *
  */
 class ConsumeAction extends \OpenActive\Models\SchemaOrg\Action
@@ -16,11 +15,20 @@ class ConsumeAction extends \OpenActive\Models\SchemaOrg\Action
         return "schema:ConsumeAction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "expectsAcceptanceOf" => "expectsAcceptanceOf",
+            "actionAccessibilityRequirement" => "actionAccessibilityRequirement",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it.
      *
      *
-     * @var Offer
+     * @var \OpenActive\Models\SchemaOrg\Offer
      */
     protected $expectsAcceptanceOf;
 
@@ -33,7 +41,7 @@ class ConsumeAction extends \OpenActive\Models\SchemaOrg\Action
     protected $actionAccessibilityRequirement;
 
     /**
-     * @return Offer
+     * @return \OpenActive\Models\SchemaOrg\Offer
      */
     public function getExpectsAcceptanceOf()
     {
@@ -41,14 +49,14 @@ class ConsumeAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @param Offer $expectsAcceptanceOf
+     * @param \OpenActive\Models\SchemaOrg\Offer $expectsAcceptanceOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExpectsAcceptanceOf($expectsAcceptanceOf)
     {
         $types = array(
-            "Offer",
+            "\OpenActive\Models\SchemaOrg\Offer",
         );
 
         $expectsAcceptanceOf = self::checkTypes($expectsAcceptanceOf, $types);

@@ -15,11 +15,30 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:ParcelDelivery";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "carrier" => "carrier",
+            "expectedArrivalUntil" => "expectedArrivalUntil",
+            "provider" => "provider",
+            "expectedArrivalFrom" => "expectedArrivalFrom",
+            "partOfOrder" => "partOfOrder",
+            "itemShipped" => "itemShipped",
+            "originAddress" => "originAddress",
+            "trackingUrl" => "trackingUrl",
+            "deliveryStatus" => "deliveryStatus",
+            "hasDeliveryMethod" => "hasDeliveryMethod",
+            "trackingNumber" => "trackingNumber",
+            "deliveryAddress" => "deliveryAddress",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * 'carrier' is an out-dated term indicating the 'provider' for parcel delivery and flights.
      *
      *
-     * @var Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
     protected $carrier;
 
@@ -35,7 +54,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
      * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
      *
      *
-     * @var Organization|Person
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $provider;
 
@@ -51,7 +70,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
      * The overall order the items in this delivery were included in.
      *
      *
-     * @var Order
+     * @var \OpenActive\Models\SchemaOrg\Order
      */
     protected $partOfOrder;
 
@@ -67,7 +86,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
      * Shipper's address.
      *
      *
-     * @var PostalAddress
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress
      */
     protected $originAddress;
 
@@ -91,7 +110,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
      * Method used for delivery or shipping.
      *
      *
-     * @var \OpenActive\Enums\DeliveryMethod|null
+     * @var \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
      */
     protected $hasDeliveryMethod;
 
@@ -107,12 +126,12 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
      * Destination address.
      *
      *
-     * @var PostalAddress
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress
      */
     protected $deliveryAddress;
 
     /**
-     * @return Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization
      */
     public function getCarrier()
     {
@@ -120,14 +139,14 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Organization $carrier
+     * @param \OpenActive\Models\SchemaOrg\Organization $carrier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCarrier($carrier)
     {
         $types = array(
-            "Organization",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $carrier = self::checkTypes($carrier, $types);
@@ -161,7 +180,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Organization|Person
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getProvider()
     {
@@ -169,15 +188,15 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Organization|Person $provider
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $provider
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvider($provider)
     {
         $types = array(
-            "Organization",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $provider = self::checkTypes($provider, $types);
@@ -211,7 +230,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Order
+     * @return \OpenActive\Models\SchemaOrg\Order
      */
     public function getPartOfOrder()
     {
@@ -219,14 +238,14 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Order $partOfOrder
+     * @param \OpenActive\Models\SchemaOrg\Order $partOfOrder
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPartOfOrder($partOfOrder)
     {
         $types = array(
-            "Order",
+            "\OpenActive\Models\SchemaOrg\Order",
         );
 
         $partOfOrder = self::checkTypes($partOfOrder, $types);
@@ -259,7 +278,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return PostalAddress
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function getOriginAddress()
     {
@@ -267,14 +286,14 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param PostalAddress $originAddress
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress $originAddress
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOriginAddress($originAddress)
     {
         $types = array(
-            "PostalAddress",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
         );
 
         $originAddress = self::checkTypes($originAddress, $types);
@@ -331,7 +350,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Enums\DeliveryMethod|null
+     * @return \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
      */
     public function getHasDeliveryMethod()
     {
@@ -339,14 +358,14 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Enums\DeliveryMethod|null $hasDeliveryMethod
+     * @param \OpenActive\Enums\SchemaOrg\DeliveryMethod|null $hasDeliveryMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHasDeliveryMethod($hasDeliveryMethod)
     {
         $types = array(
-            "\OpenActive\Enums\DeliveryMethod",
+            "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
             "null",
         );
 
@@ -380,7 +399,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return PostalAddress
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function getDeliveryAddress()
     {
@@ -388,14 +407,14 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param PostalAddress $deliveryAddress
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress $deliveryAddress
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDeliveryAddress($deliveryAddress)
     {
         $types = array(
-            "PostalAddress",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
         );
 
         $deliveryAddress = self::checkTypes($deliveryAddress, $types);

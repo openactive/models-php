@@ -15,4 +15,11 @@ class Taxi extends \OpenActive\Models\SchemaOrg\Service
         return "schema:Taxi";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

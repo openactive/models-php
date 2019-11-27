@@ -16,4 +16,11 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
         return "OfferOverride";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

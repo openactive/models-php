@@ -15,6 +15,56 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:Clip";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "directors" => "directors",
+            "startOffset" => "startOffset",
+            "actor" => "actor",
+            "endOffset" => "endOffset",
+            "clipNumber" => "clipNumber",
+            "actors" => "actors",
+            "director" => "director",
+            "partOfSeries" => "partOfSeries",
+            "musicBy" => "musicBy",
+            "partOfSeason" => "partOfSeason",
+            "partOfEpisode" => "partOfEpisode",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
+    /**
+     * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person
+     */
+    protected $directors;
+
+    /**
+     * The start time of the clip expressed as the number of seconds from the beginning of the work.
+     *
+     *
+     * @var float|null
+     */
+    protected $startOffset;
+
+    /**
+     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person
+     */
+    protected $actor;
+
+    /**
+     * The end time of the clip expressed as the number of seconds from the beginning of the work.
+     *
+     *
+     * @var float|null
+     */
+    protected $endOffset;
+
     /**
      * Position of the clip within an ordered group of clips.
      *
@@ -27,7 +77,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
      * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $actors;
 
@@ -35,23 +85,23 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $director;
 
     /**
-     * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
+     * The series to which this episode or season belongs.
      *
      *
-     * @var Person
+     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      */
-    protected $directors;
+    protected $partOfSeries;
 
     /**
      * The composer of the soundtrack.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MusicGroup|Person
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
      */
     protected $musicBy;
 
@@ -72,20 +122,102 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $partOfEpisode;
 
     /**
-     * The series to which this episode or season belongs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeries
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
-    protected $partOfSeries;
+    public function getDirectors()
+    {
+        return $this->directors;
+    }
 
     /**
-     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
-     *
-     *
-     * @var Person
+     * @param \OpenActive\Models\SchemaOrg\Person $directors
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $actor;
+    public function setDirectors($directors)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Person",
+        );
+
+        $directors = self::checkTypes($directors, $types);
+
+        $this->directors = $directors;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getStartOffset()
+    {
+        return $this->startOffset;
+    }
+
+    /**
+     * @param float|null $startOffset
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setStartOffset($startOffset)
+    {
+        $types = array(
+            "float",
+            "null",
+        );
+
+        $startOffset = self::checkTypes($startOffset, $types);
+
+        $this->startOffset = $startOffset;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person
+     */
+    public function getActor()
+    {
+        return $this->actor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person $actor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActor($actor)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Person",
+        );
+
+        $actor = self::checkTypes($actor, $types);
+
+        $this->actor = $actor;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getEndOffset()
+    {
+        return $this->endOffset;
+    }
+
+    /**
+     * @param float|null $endOffset
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEndOffset($endOffset)
+    {
+        $types = array(
+            "float",
+            "null",
+        );
+
+        $endOffset = self::checkTypes($endOffset, $types);
+
+        $this->endOffset = $endOffset;
+    }
 
     /**
      * @return string|int|null
@@ -114,7 +246,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getActors()
     {
@@ -122,14 +254,14 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person $actors
+     * @param \OpenActive\Models\SchemaOrg\Person $actors
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActors($actors)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $actors = self::checkTypes($actors, $types);
@@ -138,7 +270,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getDirector()
     {
@@ -146,14 +278,14 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Person $director
+     * @param \OpenActive\Models\SchemaOrg\Person $director
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDirector($director)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $director = self::checkTypes($director, $types);
@@ -162,31 +294,31 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Person
+     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      */
-    public function getDirectors()
+    public function getPartOfSeries()
     {
-        return $this->directors;
+        return $this->partOfSeries;
     }
 
     /**
-     * @param Person $directors
+     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeries $partOfSeries
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDirectors($directors)
+    public function setPartOfSeries($partOfSeries)
     {
         $types = array(
-            "Person",
+            "\OpenActive\Models\SchemaOrg\CreativeWorkSeries",
         );
 
-        $directors = self::checkTypes($directors, $types);
+        $partOfSeries = self::checkTypes($partOfSeries, $types);
 
-        $this->directors = $directors;
+        $this->partOfSeries = $partOfSeries;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MusicGroup|Person
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
      */
     public function getMusicBy()
     {
@@ -194,7 +326,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MusicGroup|Person $musicBy
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person $musicBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -202,7 +334,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\MusicGroup",
-            "Person",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $musicBy = self::checkTypes($musicBy, $types);
@@ -256,54 +388,6 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
         $partOfEpisode = self::checkTypes($partOfEpisode, $types);
 
         $this->partOfEpisode = $partOfEpisode;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeries
-     */
-    public function getPartOfSeries()
-    {
-        return $this->partOfSeries;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeries $partOfSeries
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPartOfSeries($partOfSeries)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWorkSeries",
-        );
-
-        $partOfSeries = self::checkTypes($partOfSeries, $types);
-
-        $this->partOfSeries = $partOfSeries;
-    }
-
-    /**
-     * @return Person
-     */
-    public function getActor()
-    {
-        return $this->actor;
-    }
-
-    /**
-     * @param Person $actor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActor($actor)
-    {
-        $types = array(
-            "Person",
-        );
-
-        $actor = self::checkTypes($actor, $types);
-
-        $this->actor = $actor;
     }
 
 }

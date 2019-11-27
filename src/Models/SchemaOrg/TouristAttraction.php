@@ -15,6 +15,15 @@ class TouristAttraction extends \OpenActive\Models\SchemaOrg\Place
         return "schema:TouristAttraction";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "availableLanguage" => "availableLanguage",
+            "touristType" => "touristType",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * A language someone may use with or at the item, service or place. Please use one of the language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>. See also <a class="localLink" href="https://schema.org/inLanguage">inLanguage</a>
      *

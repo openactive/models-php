@@ -15,6 +15,14 @@ class MovieTheater extends \OpenActive\Models\SchemaOrg\CivicStructure
         return "schema:MovieTheater";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "screenCount" => "screenCount",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The number of screens in the movie theater.
      *

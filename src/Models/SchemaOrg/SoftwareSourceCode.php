@@ -15,6 +15,20 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:SoftwareSourceCode";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "runtime" => "runtime",
+            "sampleType" => "sampleType",
+            "runtimePlatform" => "runtimePlatform",
+            "codeSampleType" => "codeSampleType",
+            "programmingLanguage" => "programmingLanguage",
+            "codeRepository" => "codeRepository",
+            "targetProduct" => "targetProduct",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Runtime platform or script interpreter dependencies (Example - Java v1, Python2.3, .Net Framework 3.0).
      *

@@ -15,6 +15,17 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
         return "schema:PublicationVolume";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "pageStart" => "pageStart",
+            "volumeNumber" => "volumeNumber",
+            "pageEnd" => "pageEnd",
+            "pagination" => "pagination",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The page on which the work starts; for example "135" or "xiii".
      *

@@ -16,6 +16,15 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
         return "PriceSpecification";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "price" => "price",
+            "priceCurrency" => "priceCurrency",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The total amount.
      *

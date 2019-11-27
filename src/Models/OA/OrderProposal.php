@@ -16,6 +16,16 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
         return "OrderProposal";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "orderCustomerNote" => "orderCustomerNote",
+            "orderProposalStatus" => "orderProposalStatus",
+            "orderSellerNote" => "orderSellerNote",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      *
      *

@@ -15,4 +15,11 @@ class Country extends \OpenActive\Models\SchemaOrg\AdministrativeArea
         return "schema:Country";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

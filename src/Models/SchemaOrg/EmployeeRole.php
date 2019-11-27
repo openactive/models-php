@@ -15,11 +15,20 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
         return "schema:EmployeeRole";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "baseSalary" => "baseSalary",
+            "salaryCurrency" => "salaryCurrency",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The base salary of the job or of an employee in an EmployeeRole.
      *
      *
-     * @var PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|float|null
+     * @var \OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|float|null
      */
     protected $baseSalary;
 
@@ -32,7 +41,7 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
     protected $salaryCurrency;
 
     /**
-     * @return PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|float|null
+     * @return \OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|float|null
      */
     public function getBaseSalary()
     {
@@ -40,14 +49,14 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
     }
 
     /**
-     * @param PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|float|null $baseSalary
+     * @param \OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|float|null $baseSalary
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBaseSalary($baseSalary)
     {
         $types = array(
-            "PriceSpecification",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "float",
             "null",

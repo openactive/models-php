@@ -15,11 +15,22 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
         return "schema:MenuItem";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "suitableForDiet" => "suitableForDiet",
+            "offers" => "offers",
+            "nutrition" => "nutrition",
+            "menuAddOn" => "menuAddOn",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * Indicates a dietary restriction or guideline for which this recipe or menu item is suitable, e.g. diabetic, halal etc.
      *
      *
-     * @var \OpenActive\Enums\RestrictedDiet|null
+     * @var \OpenActive\Enums\SchemaOrg\RestrictedDiet|null
      */
     protected $suitableForDiet;
 
@@ -27,7 +38,7 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
      * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
      *
      *
-     * @var Offer
+     * @var \OpenActive\Models\SchemaOrg\Offer
      */
     protected $offers;
 
@@ -48,7 +59,7 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $menuAddOn;
 
     /**
-     * @return \OpenActive\Enums\RestrictedDiet|null
+     * @return \OpenActive\Enums\SchemaOrg\RestrictedDiet|null
      */
     public function getSuitableForDiet()
     {
@@ -56,14 +67,14 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Enums\RestrictedDiet|null $suitableForDiet
+     * @param \OpenActive\Enums\SchemaOrg\RestrictedDiet|null $suitableForDiet
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuitableForDiet($suitableForDiet)
     {
         $types = array(
-            "\OpenActive\Enums\RestrictedDiet",
+            "\OpenActive\Enums\SchemaOrg\RestrictedDiet",
             "null",
         );
 
@@ -73,7 +84,7 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Offer
+     * @return \OpenActive\Models\SchemaOrg\Offer
      */
     public function getOffers()
     {
@@ -81,14 +92,14 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Offer $offers
+     * @param \OpenActive\Models\SchemaOrg\Offer $offers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
         $types = array(
-            "Offer",
+            "\OpenActive\Models\SchemaOrg\Offer",
         );
 
         $offers = self::checkTypes($offers, $types);

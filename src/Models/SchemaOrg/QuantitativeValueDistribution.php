@@ -15,6 +15,19 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
         return "schema:QuantitativeValueDistribution";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "percentile75" => "percentile75",
+            "percentile90" => "percentile90",
+            "duration" => "duration",
+            "percentile10" => "percentile10",
+            "median" => "median",
+            "percentile25" => "percentile25",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The 75th percentile value.
      *

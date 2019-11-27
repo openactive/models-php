@@ -15,4 +15,11 @@ class TouristInformationCenter extends \OpenActive\Models\SchemaOrg\LocalBusines
         return "schema:TouristInformationCenter";
     }
 
+    public static function fieldList() {
+        $fields = [
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
 }

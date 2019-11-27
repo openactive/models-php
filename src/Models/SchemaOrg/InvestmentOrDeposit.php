@@ -15,6 +15,14 @@ class InvestmentOrDeposit extends \OpenActive\Models\SchemaOrg\FinancialProduct
         return "schema:InvestmentOrDeposit";
     }
 
+    public static function fieldList() {
+        $fields = [
+            "amount" => "amount",
+        ];
+
+        return array_merge(parent::fieldList(), $fields);
+    }
+
     /**
      * The amount of money.
      *

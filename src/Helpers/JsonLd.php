@@ -65,22 +65,12 @@ class JsonLd
             $data["@context"] = static::$defaultContext;
         }
 
-        // Get all defined methods for the object
-        // Please note we don't use get_object_vars() here,
-        // As it would only return the public attributes
-        // (BaseModel's are all protected)
-        $classMethods = get_class_methods($obj);
+        $fields = $obj->fieldList();
 
         // Loop all class methods, find the getters
         // and map defined attributes, normalizing attribute name
-        foreach ($classMethods as $methodName) {
-            if (substr($methodName, 0, 3) !== "get") {
-                continue;
-            }
-
-            // Attribute name is method name without the leading "get" string,
-            // and camel-cased
-            $attrName = Str::camel(substr($methodName, 3));
+        foreach ($fields as $propName => $attrName) {
+            $methodName = "get" . Str::pascal($propName);
 
             // Attribute value is the result of calling $methodName on $obj
             $attrValue = $obj->$methodName();
