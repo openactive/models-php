@@ -91,11 +91,11 @@ class SessionSeriesTest extends TestCase
 
         // Deserialization checks (deserialised value is same as JSON)
         $this->assertEquals(
-            $decodedSessionSeries["id"],
+            $decodedSessionSeries["@id"],
             $id
         );
         $this->assertEquals(
-            $decodedSessionSeries["activity"][0]["id"],
+            $decodedSessionSeries["activity"][0]["@id"],
             $activityId
         );
         $this->assertEquals(

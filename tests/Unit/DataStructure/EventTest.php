@@ -50,7 +50,7 @@ class EventTest extends TestCase
     public function testEventHasCorrectProperties($model, $classname)
     {
         $correctProperties = array(
-            "type",
+            "@type",
             "url",
             "name",
             "activity",

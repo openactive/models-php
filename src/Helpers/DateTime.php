@@ -30,8 +30,7 @@ class DateTime
         // So perform a check on the original date's timezone name
         // To see how it was instantiated originally
         } elseif (
-            $date->getTimezone()->getName() === $date->format("e") &&
-            $date->format("e") === "Z"
+            $date->getTimezone()->getName() === ($e = $date->format("e")) && $e === "Z"
         ) {
             $format = "Y-m-d\TH:i:se";
 
