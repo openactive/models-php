@@ -1,25 +1,25 @@
 {
   "@context":"https://openactive.io/",
-  "type":"FacilityUse",
+  "@type":"FacilityUse",
   "url":"http://www.example.org/facility-use/1",
   "name":"Example Leisure Centre Table Tennis",
   "description":"Table tennis tables are available to hire for thirty minute slots",
   "activity":[
     {
-      "type":"Concept",
+      "@type":"Concept",
       "prefLabel":"Table Tennis",
-      "id":"https://activity-list-editor.openactive.io/_1a05993d-b206-4efe-85da-646fa340bdf4"
+      "@id":"https://activity-list-editor.openactive.io/_1a05993d-b206-4efe-85da-646fa340bdf4"
     }
   ],
   "provider":{
-    "type":"Organization",
+    "@type":"Organization",
     "name":"Leisure Centre Ltd"
   },
   "location":{
-    "type":"Place",
+    "@type":"Place",
     "name":"Example Leisure Centre",
     "address":{
-      "type":"PostalAddress",
+      "@type":"PostalAddress",
       "streetAddress":"1 High Street",
       "addressLocality":"Bristol",
       "addressRegion":"Somerset",
@@ -29,7 +29,7 @@
   },
   "offers":[
     {
-      "type":"Offer",
+      "@type":"Offer",
       "name":"30 minute hire",
       "price":10,
       "priceCurrency":"GBP"
@@ -37,8 +37,8 @@
   ],
   "event":[
     {
-      "type":"Slot",
-      "id":"http://www.example.org/facility-use/slots/1",
+      "@type":"Slot",
+      "@id":"http://www.example.org/facility-use/slots/1",
       "facilityUse":"http://www.example.org/facility-use/1",
       "startDate":"2018-03-01T10:00:00Z",
       "duration":"PT30M",
@@ -46,8 +46,8 @@
       "maximumUses":4
     },
     {
-      "type":"Slot",
-      "id":"http://www.example.org/facility-use/slots/2",
+      "@type":"Slot",
+      "@id":"http://www.example.org/facility-use/slots/2",
       "facilityUse":"http://www.example.org/facility-use/1",
       "startDate":"2018-03-01T10:30:00Z",
       "duration":"PT30M",

@@ -61,7 +61,7 @@ class ExampleEventTest extends TestCase
      */
     public function testSerializeEncodeDecode()
     {
-        $original = "{\"@context\":[\"https:\\/\\/openactive.io\\/\",\"https:\\/\\/openactive.io\\/ns-beta\"],\"type\":\"Concept\",\"id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}";
+        $original = "{\"@context\":[\"https:\\/\\/openactive.io\\/\",\"https:\\/\\/openactive.io\\/ns-beta\"],\"@type\":\"Concept\",\"@id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}";
         $decode = Concept::deserialize($original);
         $encode = Concept::serialize($decode);
 
@@ -71,6 +71,30 @@ class ExampleEventTest extends TestCase
         // );
         $this->assertEquals(
             json_decode($original, true),
+            json_decode($encode, true)
+        );
+    }
+
+    /**
+     * Test that serialization and deserialization return the same result (but with @ prefixes added)
+     * after the process.
+     *
+     * @return void
+     */
+    public function testNonPrefixedSerializeEncodeDecode()
+    {
+        $original = "{\"@context\":[\"https:\\/\\/openactive.io\\/\",\"https:\\/\\/openactive.io\\/ns-beta\"],\"type\":\"Concept\",\"id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}";
+        $expected = "{\"@context\":[\"https:\\/\\/openactive.io\\/\",\"https:\\/\\/openactive.io\\/ns-beta\"],\"@type\":\"Concept\",\"@id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}";
+
+        $decode = Concept::deserialize($original);
+        $encode = Concept::serialize($decode);
+
+        // $this->assertSame(
+        //     "https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd",
+        //     $decode->getId()
+        // );
+        $this->assertEquals(
+            json_decode($expected, true),
             json_decode($encode, true)
         );
     }

@@ -86,8 +86,8 @@ class OrderTest extends TestCase
     public function testOrderHasCorrectProperties($model, $classname)
     {
         $correctProperties = array(
-            "type",
-            "id",
+            "@type",
+            "@id",
             "orderedItem",
             "seller",
             "broker",

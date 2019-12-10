@@ -1,13 +1,13 @@
 {
   "@context":"https://openactive.io/",
-  "type":"Event",
+  "@type":"Event",
   "url":"http://www.example.org/events/1",
   "name":"Tai chi Class",
   "activity":[
     {
-      "type": "Concept",
+      "@type": "Concept",
       "prefLabel": "Tai Chi",
-      "id":"https://activity-list-editor.openactive.io/_c16df6ed-a4a0-4275-a8c3-1c8cff56856f"
+      "@id":"https://activity-list-editor.openactive.io/_c16df6ed-a4a0-4275-a8c3-1c8cff56856f"
     }
   ],
   "description":"A tai chi class intended for beginners",
@@ -15,15 +15,15 @@
   "startDate":"2017-03-22T20:00:00Z",
   "duration":"PT60M",
   "organizer":{
-    "type":"Organization",
+    "@type":"Organization",
     "url":"http://example.org/orgs/bristol-tai-chi",
     "name":"Bristol Tai Chi"
   },
   "location":{
-    "type":"Place",
+    "@type":"Place",
     "name":"ExampleCo Gym",
     "address":{
-      "type":"PostalAddress",
+      "@type":"PostalAddress",
       "streetAddress":"1 High Street",
       "addressLocality":"Bristol",
       "addressCountry":"GB",

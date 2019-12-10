@@ -30,9 +30,9 @@ class DataTypingTest extends TestCase
             true
         );
 
-        $this->assertTrue(array_key_exists("type", $serializedData));
-        $this->assertTrue(empty($serializedData["type"]) === FALSE);
-        $this->assertEquals($decodedJson["type"], $serializedData["type"]);
+        $this->assertTrue(array_key_exists("@type", $serializedData));
+        $this->assertTrue(empty($serializedData["@type"]) === FALSE);
+        $this->assertEquals($decodedJson["@type"], $serializedData["@type"]);
     }
 
     /**

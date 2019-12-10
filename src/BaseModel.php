@@ -58,14 +58,16 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
 
     public function defineProperty($key, $value)
     {
-        // Don't try to set "@context" or type
-        if ($key === "@context" || $key === "type") {
-            return;
-        }
-
         //strip off the prefix if there is one
         if (($pos = strpos($key, ':')) !== false) {
             $key = substr($key, $pos + 1);
+        } elseif ($key[0] === '@') {
+            $key = substr($key, 1);
+        }
+
+        // Don't try to set "@context" or type
+        if ($key === "context" || $key === "type") {
+            return;
         }
 
         // Build setter name
@@ -121,13 +123,17 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
         // If an associative array with a type, return its deserialization form,
         // so that it gets converted from array to object
         // (associative arrays are still arrays in PHP)
-        if (array_key_exists("type", $value)) {
+        $type = null;
+        if (array_key_exists('@type', $value)) { $type = $value['@type']; }
+        if (array_key_exists('type', $value)) { $type = $value['type']; }
+
+        if ($type) {
             // If type is schema.org target right namespace
-            if(strpos($value["type"], "schema:") === 0) {
+            if(strpos($type, "schema:") === 0) {
                 $classname = "\\OpenActive\\Models\\SchemaOrg\\".
-                    str_replace("schema:", "", $value["type"]);
+                    str_replace("schema:", "", $type);
             } else {
-                $classname = "\\OpenActive\\Models\\OA\\".$value["type"];
+                $classname = "\\OpenActive\\Models\\OA\\".$type;
             }
 
             return $classname::deserialize($value);
@@ -181,7 +187,7 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
 
     public static function fieldList() {
         return [
-            'id' => 'id'
+            'id' => '@id'
         ];
     }
 }

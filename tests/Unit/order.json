@@ -1,15 +1,15 @@
 {
   "@context": "https://openactive.io/",
-  "type":"Order",
-  "id":"https://openactive.example.com/Orders/12345",
+  "@type":"Order",
+  "@id":"https://openactive.example.com/Orders/12345",
   "orderedItem":[
     {
-      "type":"OrderItem",
-      "id":"https://fencing-book/item/12345",
+      "@type":"OrderItem",
+      "@id":"https://fencing-book/item/12345",
       "orderItemStatus":"https://openactive.io/OrderConfirmed",
       "unitTaxSpecification":[
         {
-          "type":"TaxChargeSpecification",
+          "@type":"TaxChargeSpecification",
           "name":"VAT at 20%",
           "price":1.00,
           "priceCurrency":"GBP",
@@ -17,18 +17,18 @@
         }
       ],
       "orderedItem":{
-        "type":"ScheduledSession",
-        "id":"https://pimlico-fencing-club.example.com/intermediate/12345",
+        "@type":"ScheduledSession",
+        "@id":"https://pimlico-fencing-club.example.com/intermediate/12345",
         "url":"https://pimlico-fencing-club.example.com/intermediate-classes/juniors",
         "activity":[
           {
-            "type":"Concept",
+            "@type":"Concept",
             "prefLabel":"Fencing",
-            "id":"https://activity-list-editor.openactive.io/_92808e60-820c-4ee2-89ec-ea8d99d3f528"
+            "@id":"https://activity-list-editor.openactive.io/_92808e60-820c-4ee2-89ec-ea8d99d3f528"
           }
         ],
         "ageRange":{
-          "type":"QuantitativeValue",
+          "@type":"QuantitativeValue",
           "minValue":11,
           "maxValue":17
         },
@@ -37,17 +37,17 @@
         "endDate":"2019-10-04T20:30:00Z",
         "duration":"PT90M",
         "location":{
-          "type":"Place",
+          "@type":"Place",
           "name":"Pimlico Fencing Club Suite"
         },
         "organizer":{
-          "type":"Organization",
+          "@type":"Organization",
           "name":"Pimlico Fencing Club"
         }
       },
       "acceptedOffer":{
-        "type":"Offer",
-        "id":"https://pimlico-fencing-club.example.com/junior-regular/12345",
+        "@type":"Offer",
+        "@id":"https://pimlico-fencing-club.example.com/junior-regular/12345",
         "price":6.00,
         "priceCurrency":"GBP",
         "availableChannel":[
@@ -58,13 +58,13 @@
     }
   ],
   "seller":{
-    "type":"Organization",
+    "@type":"Organization",
     "name":"Pimlico Fencing Club",
     "legalName":"Pimlico Fencing Club (PFC)",
     "taxMode":"https://openactive.io/TaxGross",
     "vatID":"12345",
     "address":{
-      "type":"PostalAddress",
+      "@type":"PostalAddress",
       "addressCountry":"United Kingdom",
       "addressLocality":"Pimlico",
       "postalCode":"SW55 P23",
@@ -72,28 +72,28 @@
     }
   },
   "broker":{
-    "type":"Organization",
+    "@type":"Organization",
     "name":"Fencing Booking Partners"
   },
   "brokerRole":"https://openactive.io/AgentBroker",
   "customer":{
-    "type":"Person",
+    "@type":"Person",
     "name":"Errol Flynn",
     "email":"swordz@sabres.org"
   },
   "taxCalculationExcluded":false,
   "bookingService":{
-    "type":"BookingService",
+    "@type":"BookingService",
     "name":"Fencing EZ App"
   },
   "totalPaymentDue":{
-    "type":"PriceSpecification",
+    "@type":"PriceSpecification",
     "price":6.00,
     "priceCurrency":"GBP"
   },
   "totalPaymentTax":[
     {
-      "type":"TaxChargeSpecification",
+      "@type":"TaxChargeSpecification",
       "name":"VAT at 20%",
       "price":1.00,
       "priceCurrency":"GBP",

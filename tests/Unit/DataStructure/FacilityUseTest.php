@@ -51,7 +51,7 @@ class FacilityUseTest extends TestCase
     public function testFacilityUseHasCorrectProperties($model, $classname)
     {
         $correctProperties = array(
-            "type",
+            "@type",
             "url",
             "name",
             "description",

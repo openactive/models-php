@@ -47,7 +47,7 @@ class JsonLd
             $fq_classname !== "\\OpenActive\\Rpde\\RpdeBody" &&
             $fq_classname !== "\\OpenActive\\Rpde\\RpdeItem"
         ) {
-            $data["type"] = $obj->getType();
+            $data["@type"] = $obj->getType();
         }
 
         // Only add context if object is subclass of BaseModel
@@ -110,7 +110,7 @@ class JsonLd
         // Remove empty elements
         return array_filter(
             $data,
-            function ($value) {
+            static function ($value) {
                 if (is_array($value) === true && count($value) === 0) {
                     // Filter out empty arrays
                     return false;
