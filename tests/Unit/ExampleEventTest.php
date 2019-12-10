@@ -92,6 +92,24 @@ class ExampleEventTest extends TestCase
     }
 
     /**
+     * Test that serialization and deserialization return the same result (but with @ prefixes added)
+     * after the process.
+     *
+     * @return void
+     */
+    public function testSchemaContext()
+    {
+        $original = "{\"@context\":[\"https:\\/\\/openactive.io\\/\",\"https:\\/\\/openactive.io\\/ns-beta\"],\"@type\":\"Concept\",\"@id\":\"https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd\",\"prefLabel\":\"Grass\",\"inScheme\":\"https://openactive.io/facility-types\"}";
+
+        $decode = Concept::deserialize($original);
+        $encode = Concept::serialize($decode, false, true);
+
+        $decoded = json_decode($encode, true);
+
+        $this->assertContains("https://schema.org", $decoded["@context"]);
+    }
+
+    /**
      * A basic test example.
      *
      * @return void
