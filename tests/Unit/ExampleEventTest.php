@@ -65,10 +65,6 @@ class ExampleEventTest extends TestCase
         $decode = Concept::deserialize($original);
         $encode = Concept::serialize($decode);
 
-        // $this->assertSame(
-        //     "https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd",
-        //     $decode->getId()
-        // );
         $this->assertEquals(
             json_decode($original, true),
             json_decode($encode, true)
@@ -89,10 +85,6 @@ class ExampleEventTest extends TestCase
         $decode = Concept::deserialize($original);
         $encode = Concept::serialize($decode);
 
-        // $this->assertSame(
-        //     "https://openactive.io/facility-types#37bbed12-270b-42b1-9af2-70f0273990dd",
-        //     $decode->getId()
-        // );
         $this->assertEquals(
             json_decode($expected, true),
             json_decode($encode, true)
