@@ -22,9 +22,10 @@ class JsonLd
      *
      * @param \OpenActive\BaseModel $obj The given instance to convert to JSON-LD
      * @param object|null $parent The parent node in the structure.
+     * @param bool $schema Whether to add a Schema.org context
      * @return array
      */
-    public static function prepareDataForSerialization($obj, $parent = null)
+    public static function prepareDataForSerialization($obj, $parent = null, $schema = false)
     {
         // Get fully qualified namespace of the object's class name
         $fq_classname = "\\".get_class($obj);
@@ -62,7 +63,10 @@ class JsonLd
                 )
             )
         ) {
-            $data["@context"] = static::$defaultContext;
+            $data["@context"] = array_merge(
+                $schema ? ['https://schema.org'] : [],
+                static::$defaultContext
+            );
         }
 
         $fields = $obj->fieldList();
@@ -85,7 +89,8 @@ class JsonLd
 
                         $item = self::prepareDataForSerialization(
                             $item,
-                            $attrValue
+                            $attrValue,
+                            $schema
                         );
                     }
 
@@ -100,7 +105,8 @@ class JsonLd
 
                 $attrValue = self::prepareDataForSerialization(
                     $attrValue,
-                    $obj
+                    $obj,
+                    $schema
                 );
             }
 

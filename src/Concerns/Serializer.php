@@ -12,11 +12,12 @@ trait Serializer
      *
      * @param object $obj The given instance to convert to JSON-LD
      * @param bool $prettyPrint Whether to pretty-print the JSON-LD output
+     * @param bool $schema Whether to add a Schema.org context
      * @return string JSON-LD string representation of the given instance.
      */
-    public static function serialize($obj, $prettyPrint = false)
+    public static function serialize($obj, $prettyPrint = false, $schema = false)
     {
-        $data = static::toArray($obj);
+        $data = static::toArray($obj, $schema);
 
         if($prettyPrint === true) {
             return json_encode($data, JSON_PRETTY_PRINT);
@@ -29,12 +30,12 @@ trait Serializer
      * Returns the JSON-LD associative array representation of the given instance.
      *
      * @param object $obj The given instance to convert to JSON-LD
-     * @param bool $prettyPrint Whether to pretty-print the JSON-LD output
+     * @param bool $schema Whether to add a Schema.org context
      * @return array JSON-LD associative array representation of the given instance.
      */
-    public static function toArray($obj)
+    public static function toArray($obj, $schema = false)
     {
-        return JsonLdHelper::prepareDataForSerialization($obj);
+        return JsonLdHelper::prepareDataForSerialization($obj, null, $schema);
     }
 
     /**
