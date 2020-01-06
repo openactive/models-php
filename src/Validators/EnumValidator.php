@@ -48,7 +48,7 @@ class EnumValidator extends BaseValidator
                 return false;
             }
 
-            $value = $value::memberVal;
+            $value = $memberVal;
         }
 
         // Enum value is usually in a URL form
