@@ -2,6 +2,8 @@
 
 namespace OpenActive\Validators;
 
+use ReflectionClass;
+
 class EnumValidator extends BaseValidator
 {
     public function __construct($classname)
@@ -30,12 +32,32 @@ class EnumValidator extends BaseValidator
      */
     public function run($value)
     {
+        if (! is_string($value) && ! is_object($value)) {
+            return false;
+        }
+
+        if (is_object($value)) {
+            $reflection = new \ReflectionClass($value);
+
+            $memberVal = $reflection->getConstant('memberVal');
+
+            if (
+                $memberVal === false ||
+                $reflection->getConstant('value') === false
+            ) {
+                return false;
+            }
+
+            $value = $value::memberVal;
+        }
+
         // Enum value is usually in a URL form
         // Replace the base so that have a classname to use for the enum value
         $enumValueClassname = str_replace(
             array(
                 "https://openactive.io/ns-beta#",
                 "https://openactive.io/",
+                "https://schema.org/",
             ),
             "",
             $value
