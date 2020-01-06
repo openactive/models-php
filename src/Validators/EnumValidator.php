@@ -39,11 +39,14 @@ class EnumValidator extends BaseValidator
         if (is_object($value)) {
             $reflection = new \ReflectionClass($value);
 
+            $classname = $reflection->getName();
+
             $memberVal = $reflection->getConstant('memberVal');
 
             if (
                 $memberVal === false ||
-                $reflection->getConstant('value') === false
+                $reflection->getConstant('value') === false ||
+                strpos($classname, 'OpenActive\Enums\\') === 0
             ) {
                 return false;
             }
