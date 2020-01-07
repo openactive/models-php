@@ -21,4 +21,25 @@ class EnumTest extends TestCase
 
         $this->assertInstanceOf(ScheduledSession::class, $session);
     }
+
+    public function testEnumSerialization()
+    {
+        $eventStatus = new EventStatusType\EventCancelled();
+        $scheduledSessionData = [
+            'id' => '124',
+            'identifier' => '1234',
+            'duration' => 'PT1H',
+            'eventStatus' => $eventStatus
+        ];
+        $session = new ScheduledSession($scheduledSessionData);
+
+        $classname = ScheduledSession::class;
+
+        $serializedData = json_decode($classname::serialize($session), true);
+
+        $this->assertEquals(
+            $serializedData['eventStatus'],
+            $eventStatus::memberVal
+        );
+    }
 }
