@@ -19,10 +19,28 @@ class EnumValidator extends BaseValidator
      * @param mixed $value The value to coerce.
      * @return int The coerced value
      */
-    // public function coerce($value)
-    // {
-    //     return $value;
-    // }
+    public function coerce($value)
+    {
+        if (! is_string($value)) {
+            return $value;
+        }
+
+        // Enum value is usually in a URL form
+        // Replace the base so that have a classname to use for the enum value
+        $enumValueClassname = str_replace(
+            array(
+                "https://openactive.io/ns-beta#",
+                "https://openactive.io/",
+                "https://schema.org/",
+            ),
+            "",
+            $value
+        );
+
+        $fqEnumClassname = $this->classname."\\".$enumValueClassname;
+
+        return new $fqEnumClassname();
+    }
 
     /**
      * Run validation on the given value.
