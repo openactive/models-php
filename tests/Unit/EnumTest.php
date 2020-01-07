@@ -20,6 +20,10 @@ class EnumTest extends TestCase
         $session = new ScheduledSession($scheduledSessionData);
 
         $this->assertInstanceOf(ScheduledSession::class, $session);
+        $this->assertInstanceOf(
+            EventStatusType\EventCancelled::class,
+            $session->getEventStatus()
+        );
     }
 
     public function testConstructionFromStr()
@@ -34,6 +38,10 @@ class EnumTest extends TestCase
         $session = new ScheduledSession($scheduledsessionOptions);
 
         $this->assertInstanceOf(ScheduledSession::class, $session);
+        $this->assertInstanceOf(
+            EventStatusType\EventCancelled::class,
+            $session->getEventStatus()
+        );
     }
 
     public function testEnumSerialization()
