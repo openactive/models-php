@@ -2,6 +2,8 @@
 
 namespace OpenActive\Validators;
 
+use ReflectionClass;
+
 class EnumValidator extends BaseValidator
 {
     public function __construct($classname)
@@ -17,10 +19,16 @@ class EnumValidator extends BaseValidator
      * @param mixed $value The value to coerce.
      * @return int The coerced value
      */
-    // public function coerce($value)
-    // {
-    //     return $value;
-    // }
+    public function coerce($value)
+    {
+        if (! is_string($value)) {
+            return $value;
+        }
+
+        $fqEnumClassname = $this->getFullQualifiedEnumClassname($value);
+
+        return new $fqEnumClassname();
+    }
 
     /**
      * Run validation on the given value.
@@ -30,18 +38,29 @@ class EnumValidator extends BaseValidator
      */
     public function run($value)
     {
-        // Enum value is usually in a URL form
-        // Replace the base so that have a classname to use for the enum value
-        $enumValueClassname = str_replace(
-            array(
-                "https://openactive.io/ns-beta#",
-                "https://openactive.io/",
-            ),
-            "",
-            $value
-        );
+        if (! is_string($value) && ! is_object($value)) {
+            return false;
+        }
 
-        $fqEnumClassname = $this->classname."\\".$enumValueClassname;
+        if (is_object($value)) {
+            $reflection = new \ReflectionClass($value);
+
+            $classname = $reflection->getName();
+
+            $memberVal = $reflection->getConstant('memberVal');
+
+            if (
+                $memberVal === false ||
+                $reflection->getConstant('value') === false ||
+                strpos($classname, 'OpenActive\Enums\\') !== 0
+            ) {
+                return false;
+            }
+
+            $value = $memberVal;
+        }
+
+        $fqEnumClassname = $this->getFullQualifiedEnumClassname($value);
 
         // $this->classname also represents the root namespace
         // of the enum value classname,
@@ -49,5 +68,27 @@ class EnumValidator extends BaseValidator
         // and has the same value passed to the validator, pass!
         return class_exists($fqEnumClassname) &&
             $fqEnumClassname::memberVal === $value;
+    }
+
+    /**
+     * Return the fully-qualified Enum classname from a given URL value
+     *
+     * @return string
+     */
+    private function getFullQualifiedEnumClassname($url)
+    {
+        // Enum value is usually in a URL form
+        // Replace the base so that have a classname to use for the enum value
+        $enumValueClassname = str_replace(
+            array(
+                "https://openactive.io/ns-beta#",
+                "https://openactive.io/",
+                "https://schema.org/",
+            ),
+            "",
+            $url
+        );
+
+        return $this->classname."\\".$enumValueClassname;
     }
 }
