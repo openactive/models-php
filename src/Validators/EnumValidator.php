@@ -25,19 +25,7 @@ class EnumValidator extends BaseValidator
             return $value;
         }
 
-        // Enum value is usually in a URL form
-        // Replace the base so that have a classname to use for the enum value
-        $enumValueClassname = str_replace(
-            array(
-                "https://openactive.io/ns-beta#",
-                "https://openactive.io/",
-                "https://schema.org/",
-            ),
-            "",
-            $value
-        );
-
-        $fqEnumClassname = $this->classname."\\".$enumValueClassname;
+        $fqEnumClassname = $this->getFullQualifiedEnumClassname($value);
 
         return new $fqEnumClassname();
     }
@@ -72,6 +60,23 @@ class EnumValidator extends BaseValidator
             $value = $memberVal;
         }
 
+        $fqEnumClassname = $this->getFullQualifiedEnumClassname($value);
+
+        // $this->classname also represents the root namespace
+        // of the enum value classname,
+        // if a class with that namespace plus its name exists
+        // and has the same value passed to the validator, pass!
+        return class_exists($fqEnumClassname) &&
+            $fqEnumClassname::memberVal === $value;
+    }
+
+    /**
+     * Return the fully-qualified Enum classname from a given URL value
+     *
+     * @return string
+     */
+    private function getFullQualifiedEnumClassname($url)
+    {
         // Enum value is usually in a URL form
         // Replace the base so that have a classname to use for the enum value
         $enumValueClassname = str_replace(
@@ -81,16 +86,9 @@ class EnumValidator extends BaseValidator
                 "https://schema.org/",
             ),
             "",
-            $value
+            $url
         );
 
-        $fqEnumClassname = $this->classname."\\".$enumValueClassname;
-
-        // $this->classname also represents the root namespace
-        // of the enum value classname,
-        // if a class with that namespace plus its name exists
-        // and has the same value passed to the validator, pass!
-        return class_exists($fqEnumClassname) &&
-            $fqEnumClassname::memberVal === $value;
+        return $this->classname."\\".$enumValueClassname;
     }
 }
