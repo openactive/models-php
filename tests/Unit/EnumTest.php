@@ -8,7 +8,7 @@ use OpenActive\Models\OA\ScheduledSession;
 
 class EnumTest extends TestCase
 {
-    public function testConstruction()
+    public function testConstructionFromObj()
     {
         $eventStatus = new EventStatusType\EventCancelled();
         $scheduledSessionData = [
@@ -18,6 +18,20 @@ class EnumTest extends TestCase
             'eventStatus' => $eventStatus
         ];
         $session = new ScheduledSession($scheduledSessionData);
+
+        $this->assertInstanceOf(ScheduledSession::class, $session);
+    }
+
+    public function testConstructionFromStr()
+    {
+        $eventStatus = "https://schema.org/EventCancelled";
+        $scheduledsessionOptions = [
+            'id' => '124',
+            'identifier' => '1234',
+            'duration' => 'PT1H',
+            'eventStatus' => $eventStatus
+        ];
+        $session = new ScheduledSession($scheduledsessionOptions);
 
         $this->assertInstanceOf(ScheduledSession::class, $session);
     }
