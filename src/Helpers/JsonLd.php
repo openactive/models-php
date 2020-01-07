@@ -41,6 +41,11 @@ class JsonLd
             return DateTimeHelper::iso8601($obj);
         }
 
+        // Enums should return memberVal const
+        if(strpos($fq_classname, "\\OpenActive\\Enums\\") === 0) {
+            return $obj::memberVal;
+        }
+
         $data = array();
 
         // Add type to data if not an RpdeItem
