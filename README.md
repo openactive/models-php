@@ -189,16 +189,16 @@ e.g. Adding days of the week to a Schedule:
 
 ```php
 use OpenActive\Models\OA\Schedule;
-use OpenActive\Enums\DayOfWeek;
+use OpenActive\Enums\SchemaOrg\DayOfWeek;
 
 new Schedule([
     "scheduledEventType" => "Event",
     "startTime" => "12:00:00",
-    "endTime" => "14:00:00"
+    "endTime" => "14:00:00",
     "byDay" => [
-        DayOfWeek::Monday,
-        DayOfWeek::Wednesday,
-        DayOfWeek::Friday
+        new DayOfWeek\Monday,
+        new DayOfWeek\Wednesday,
+        new DayOfWeek\Friday
     ],
     ...
 ]);
