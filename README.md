@@ -1,4 +1,4 @@
-# models-php
+# models-php [![Latest Stable Version](https://poser.pugx.org/openactive/models/v/stable)](https://packagist.org/packages/openactive/models) [![Total Downloads](https://poser.pugx.org/openactive/models/downloads)](https://packagist.org/packages/openactive/models) 
 PHP Models for the OpenActive Opportunity and Booking Specifications
 
 OpenActive aims to provide model files for all classes defined in its Opportunity and Booking specifications across the PHP, Ruby, and .NET languages. This repository is intended for the PHP files; see also the [Ruby](https://github.com/openactive/models-ruby/) and [.NET](https://github.com/openactive/OpenActive.NET) implementations.
