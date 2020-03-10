@@ -61,6 +61,10 @@ class BaseValidator implements ValidatorInterface
             return new $validatorName();
         }
 
+        if ($type === "Date") {
+            return new DateValidator();
+        }
+
         if ($type === "DateTime") {
             return new DateTimeValidator();
         }
