@@ -2,7 +2,7 @@
 
 namespace OpenActive\Validators;
 
-use OpenActive\Helpers\Date as Date;
+use OpenActive\Helpers\Date;
 
 class DateValidator extends BaseValidator
 {
