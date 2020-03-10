@@ -17,29 +17,13 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
 
     public static function fieldList() {
         $fields = [
-            "ratingCount" => "ratingCount",
-            "reviewCount" => "reviewCount",
             "itemReviewed" => "itemReviewed",
+            "reviewCount" => "reviewCount",
+            "ratingCount" => "ratingCount",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The count of total number of ratings.
-     *
-     *
-     * @var int|null
-     */
-    protected $ratingCount;
-
-    /**
-     * The count of total number of reviews.
-     *
-     *
-     * @var int|null
-     */
-    protected $reviewCount;
 
     /**
      * The item that is being reviewed/rated.
@@ -50,28 +34,43 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
     protected $itemReviewed;
 
     /**
-     * @return int|null
+     * The count of total number of reviews.
+     *
+     *
+     * @var int|null
      */
-    public function getRatingCount()
+    protected $reviewCount;
+
+    /**
+     * The count of total number of ratings.
+     *
+     *
+     * @var int|null
+     */
+    protected $ratingCount;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing
+     */
+    public function getItemReviewed()
     {
-        return $this->ratingCount;
+        return $this->itemReviewed;
     }
 
     /**
-     * @param int|null $ratingCount
+     * @param \OpenActive\Models\SchemaOrg\Thing $itemReviewed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRatingCount($ratingCount)
+    public function setItemReviewed($itemReviewed)
     {
         $types = array(
-            "int",
-            "null",
+            "\OpenActive\Models\SchemaOrg\Thing",
         );
 
-        $ratingCount = self::checkTypes($ratingCount, $types);
+        $itemReviewed = self::checkTypes($itemReviewed, $types);
 
-        $this->ratingCount = $ratingCount;
+        $this->itemReviewed = $itemReviewed;
     }
 
     /**
@@ -100,27 +99,28 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
+     * @return int|null
      */
-    public function getItemReviewed()
+    public function getRatingCount()
     {
-        return $this->itemReviewed;
+        return $this->ratingCount;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $itemReviewed
+     * @param int|null $ratingCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setItemReviewed($itemReviewed)
+    public function setRatingCount($ratingCount)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
+            "int",
+            "null",
         );
 
-        $itemReviewed = self::checkTypes($itemReviewed, $types);
+        $ratingCount = self::checkTypes($ratingCount, $types);
 
-        $this->itemReviewed = $itemReviewed;
+        $this->ratingCount = $ratingCount;
     }
 
 }

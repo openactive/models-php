@@ -24,6 +24,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
             "acceptedPaymentMethod" => "acceptedPaymentMethod",
             "advanceBooking" => "advanceBooking",
             "ageRange" => "ageRange",
+            "availableChannel" => "availableChannel",
             "latestCancellationBeforeStartDate" => "latestCancellationBeforeStartDate",
             "openBookingFlowRequirement" => "openBookingFlowRequirement",
             "prepayment" => "prepayment",
@@ -31,7 +32,6 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
             "priceCurrency" => "priceCurrency",
             "url" => "url",
             "validFromBeforeStartDate" => "validFromBeforeStartDate",
-            "availableChannel" => "beta:availableChannel",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -111,6 +111,13 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     protected $ageRange;
 
     /**
+     *
+     *
+     * @var \OpenActive\Enums\AvailableChannelType[]|null
+     */
+    protected $availableChannel;
+
+    /**
      * The duration before the startDate during which this Offer may not be cancelled, given in ISO 8601 format.
      *
      *
@@ -180,17 +187,6 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * @var DateInterval|null
      */
     protected $validFromBeforeStartDate;
-
-    /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * The channels through which a booking can be made.
-     * 
-     * If you are using this property, please join the discussion at proposal [#161](https://github.com/openactive/modelling-opportunity-data/issues/161).
-     *
-     *
-     * @var \OpenActive\Enums\AvailableChannelType[]|null
-     */
-    protected $availableChannel;
 
     /**
      * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
@@ -340,6 +336,31 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
         $ageRange = self::checkTypes($ageRange, $types);
 
         $this->ageRange = $ageRange;
+    }
+
+    /**
+     * @return \OpenActive\Enums\AvailableChannelType[]|null
+     */
+    public function getAvailableChannel()
+    {
+        return $this->availableChannel;
+    }
+
+    /**
+     * @param \OpenActive\Enums\AvailableChannelType[]|null $availableChannel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAvailableChannel($availableChannel)
+    {
+        $types = array(
+            "\OpenActive\Enums\AvailableChannelType[]",
+            "null",
+        );
+
+        $availableChannel = self::checkTypes($availableChannel, $types);
+
+        $this->availableChannel = $availableChannel;
     }
 
     /**
@@ -513,31 +534,6 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
         $validFromBeforeStartDate = self::checkTypes($validFromBeforeStartDate, $types);
 
         $this->validFromBeforeStartDate = $validFromBeforeStartDate;
-    }
-
-    /**
-     * @return \OpenActive\Enums\AvailableChannelType[]|null
-     */
-    public function getAvailableChannel()
-    {
-        return $this->availableChannel;
-    }
-
-    /**
-     * @param \OpenActive\Enums\AvailableChannelType[]|null $availableChannel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAvailableChannel($availableChannel)
-    {
-        $types = array(
-            "\OpenActive\Enums\AvailableChannelType[]",
-            "null",
-        );
-
-        $availableChannel = self::checkTypes($availableChannel, $types);
-
-        $this->availableChannel = $availableChannel;
     }
 
 }

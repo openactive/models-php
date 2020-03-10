@@ -17,29 +17,13 @@ class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
 
     public static function fieldList() {
         $fields = [
-            "liveBlogUpdate" => "liveBlogUpdate",
-            "coverageEndTime" => "coverageEndTime",
             "coverageStartTime" => "coverageStartTime",
+            "coverageEndTime" => "coverageEndTime",
+            "liveBlogUpdate" => "liveBlogUpdate",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * An update to the LiveBlog.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\BlogPosting
-     */
-    protected $liveBlogUpdate;
-
-    /**
-     * The time when the live blog will stop covering the Event. Note that coverage may continue after the Event concludes.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $coverageEndTime;
 
     /**
      * The time when the live blog will begin covering the Event. Note that coverage may begin before the Event's start time. The LiveBlogPosting may also be created before coverage begins.
@@ -50,27 +34,44 @@ class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
     protected $coverageStartTime;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\BlogPosting
+     * The time when the live blog will stop covering the Event. Note that coverage may continue after the Event concludes.
+     *
+     *
+     * @var DateTime|null
      */
-    public function getLiveBlogUpdate()
+    protected $coverageEndTime;
+
+    /**
+     * An update to the LiveBlog.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\BlogPosting
+     */
+    protected $liveBlogUpdate;
+
+    /**
+     * @return DateTime|null
+     */
+    public function getCoverageStartTime()
     {
-        return $this->liveBlogUpdate;
+        return $this->coverageStartTime;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\BlogPosting $liveBlogUpdate
+     * @param DateTime|null $coverageStartTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLiveBlogUpdate($liveBlogUpdate)
+    public function setCoverageStartTime($coverageStartTime)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\BlogPosting",
+            "DateTime",
+            "null",
         );
 
-        $liveBlogUpdate = self::checkTypes($liveBlogUpdate, $types);
+        $coverageStartTime = self::checkTypes($coverageStartTime, $types);
 
-        $this->liveBlogUpdate = $liveBlogUpdate;
+        $this->coverageStartTime = $coverageStartTime;
     }
 
     /**
@@ -99,28 +100,27 @@ class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
     }
 
     /**
-     * @return DateTime|null
+     * @return \OpenActive\Models\SchemaOrg\BlogPosting
      */
-    public function getCoverageStartTime()
+    public function getLiveBlogUpdate()
     {
-        return $this->coverageStartTime;
+        return $this->liveBlogUpdate;
     }
 
     /**
-     * @param DateTime|null $coverageStartTime
+     * @param \OpenActive\Models\SchemaOrg\BlogPosting $liveBlogUpdate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCoverageStartTime($coverageStartTime)
+    public function setLiveBlogUpdate($liveBlogUpdate)
     {
         $types = array(
-            "DateTime",
-            "null",
+            "\OpenActive\Models\SchemaOrg\BlogPosting",
         );
 
-        $coverageStartTime = self::checkTypes($coverageStartTime, $types);
+        $liveBlogUpdate = self::checkTypes($liveBlogUpdate, $types);
 
-        $this->coverageStartTime = $coverageStartTime;
+        $this->liveBlogUpdate = $liveBlogUpdate;
     }
 
 }

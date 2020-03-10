@@ -17,21 +17,21 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "populationType" => "populationType",
-            "constrainingProperty" => "constrainingProperty",
             "numConstraints" => "numConstraints",
+            "constrainingProperty" => "constrainingProperty",
+            "populationType" => "populationType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Indicates the populationType common to all members of a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>.
+     * Indicates the number of constraints (not counting <a class="localLink" href="https://schema.org/populationType">populationType</a>) defined for a particular <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>. This helps applications understand if they have access to a sufficiently complete description of a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>.
      *
      *
-     * @var 
+     * @var int|null
      */
-    protected $populationType;
+    protected $numConstraints;
 
     /**
      * Indicates a property used as a constraint to define a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a> with respect to the set of entities
@@ -43,34 +43,36 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $constrainingProperty;
 
     /**
-     * Indicates the number of constraints (not counting <a class="localLink" href="https://schema.org/populationType">populationType</a>) defined for a particular <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>. This helps applications understand if they have access to a sufficiently complete description of a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>.
+     * Indicates the populationType common to all members of a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>.
      *
      *
-     * @var int|null
+     * @var 
      */
-    protected $numConstraints;
+    protected $populationType;
 
     /**
-     * @return 
+     * @return int|null
      */
-    public function getPopulationType()
+    public function getNumConstraints()
     {
-        return $this->populationType;
+        return $this->numConstraints;
     }
 
     /**
-     * @param  $populationType
+     * @param int|null $numConstraints
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPopulationType($populationType)
+    public function setNumConstraints($numConstraints)
     {
         $types = array(
+            "int",
+            "null",
         );
 
-        $populationType = self::checkTypes($populationType, $types);
+        $numConstraints = self::checkTypes($numConstraints, $types);
 
-        $this->populationType = $populationType;
+        $this->numConstraints = $numConstraints;
     }
 
     /**
@@ -99,28 +101,26 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return int|null
+     * @return 
      */
-    public function getNumConstraints()
+    public function getPopulationType()
     {
-        return $this->numConstraints;
+        return $this->populationType;
     }
 
     /**
-     * @param int|null $numConstraints
+     * @param  $populationType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumConstraints($numConstraints)
+    public function setPopulationType($populationType)
     {
         $types = array(
-            "int",
-            "null",
         );
 
-        $numConstraints = self::checkTypes($numConstraints, $types);
+        $populationType = self::checkTypes($populationType, $types);
 
-        $this->numConstraints = $numConstraints;
+        $this->populationType = $populationType;
     }
 
 }

@@ -17,111 +17,80 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
 
     public static function fieldList() {
         $fields = [
-            "additionalName" => "additionalName",
-            "gender" => "gender",
-            "siblings" => "siblings",
             "memberOf" => "memberOf",
-            "telephone" => "telephone",
             "spouse" => "spouse",
-            "email" => "email",
-            "colleagues" => "colleagues",
-            "weight" => "weight",
-            "height" => "height",
-            "contactPoint" => "contactPoint",
-            "netWorth" => "netWorth",
-            "colleague" => "colleague",
-            "hasOfferCatalog" => "hasOfferCatalog",
-            "children" => "children",
-            "globalLocationNumber" => "globalLocationNumber",
-            "naics" => "naics",
-            "parents" => "parents",
-            "hasPOS" => "hasPOS",
-            "homeLocation" => "homeLocation",
-            "parent" => "parent",
-            "taxID" => "taxID",
-            "owns" => "owns",
-            "birthDate" => "birthDate",
-            "affiliation" => "affiliation",
-            "givenName" => "givenName",
-            "publishingPrinciples" => "publishingPrinciples",
-            "awards" => "awards",
-            "sponsor" => "sponsor",
-            "seeks" => "seeks",
-            "isicV4" => "isicV4",
-            "performerIn" => "performerIn",
-            "brand" => "brand",
-            "address" => "address",
-            "honorificSuffix" => "honorificSuffix",
-            "deathDate" => "deathDate",
-            "vatID" => "vatID",
-            "hasOccupation" => "hasOccupation",
-            "nationality" => "nationality",
-            "birthPlace" => "birthPlace",
-            "faxNumber" => "faxNumber",
-            "duns" => "duns",
-            "relatedTo" => "relatedTo",
-            "makesOffer" => "makesOffer",
-            "follows" => "follows",
-            "familyName" => "familyName",
-            "knows" => "knows",
-            "honorificPrefix" => "honorificPrefix",
-            "worksFor" => "worksFor",
-            "workLocation" => "workLocation",
-            "callSign" => "callSign",
-            "alumniOf" => "alumniOf",
-            "contactPoints" => "contactPoints",
-            "knowsAbout" => "knowsAbout",
-            "knowsLanguage" => "knowsLanguage",
-            "hasCredential" => "hasCredential",
-            "jobTitle" => "jobTitle",
-            "sibling" => "sibling",
-            "award" => "award",
-            "deathPlace" => "deathPlace",
             "funder" => "funder",
+            "colleagues" => "colleagues",
+            "sponsor" => "sponsor",
+            "deathDate" => "deathDate",
+            "height" => "height",
+            "workLocation" => "workLocation",
+            "children" => "children",
+            "hasOccupation" => "hasOccupation",
+            "hasOfferCatalog" => "hasOfferCatalog",
+            "deathPlace" => "deathPlace",
+            "globalLocationNumber" => "globalLocationNumber",
+            "birthPlace" => "birthPlace",
+            "alumniOf" => "alumniOf",
+            "homeLocation" => "homeLocation",
+            "duns" => "duns",
+            "taxID" => "taxID",
+            "award" => "award",
+            "birthDate" => "birthDate",
+            "makesOffer" => "makesOffer",
+            "contactPoints" => "contactPoints",
+            "awards" => "awards",
+            "familyName" => "familyName",
+            "seeks" => "seeks",
+            "sibling" => "sibling",
+            "address" => "address",
+            "performerIn" => "performerIn",
+            "honorificPrefix" => "honorificPrefix",
+            "additionalName" => "additionalName",
+            "interactionStatistic" => "interactionStatistic",
+            "siblings" => "siblings",
+            "telephone" => "telephone",
+            "email" => "email",
+            "weight" => "weight",
+            "contactPoint" => "contactPoint",
+            "colleague" => "colleague",
+            "parents" => "parents",
+            "givenName" => "givenName",
+            "naics" => "naics",
+            "hasPOS" => "hasPOS",
+            "parent" => "parent",
+            "owns" => "owns",
+            "affiliation" => "affiliation",
+            "publishingPrinciples" => "publishingPrinciples",
+            "isicV4" => "isicV4",
+            "brand" => "brand",
+            "honorificSuffix" => "honorificSuffix",
+            "netWorth" => "netWorth",
+            "vatID" => "vatID",
+            "nationality" => "nationality",
+            "faxNumber" => "faxNumber",
+            "relatedTo" => "relatedTo",
+            "follows" => "follows",
+            "knows" => "knows",
+            "worksFor" => "worksFor",
+            "callSign" => "callSign",
+            "jobTitle" => "jobTitle",
+            "hasCredential" => "hasCredential",
+            "knowsLanguage" => "knowsLanguage",
+            "knowsAbout" => "knowsAbout",
+            "gender" => "gender",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * An additional name for a Person, can be used for a middle name.
-     *
-     *
-     * @var string
-     */
-    protected $additionalName;
-
-    /**
-     * Gender of something, typically a <a class="localLink" href="https://schema.org/Person">Person</a>, but possibly also fictional characters, animals, etc. While https://schema.org/Male and https://schema.org/Female may be used, text strings are also acceptable for people who do not identify as a binary gender. The <a class="localLink" href="https://schema.org/gender">gender</a> property can also be used in an extended sense to cover e.g. the gender of sports teams. As with the gender of individuals, we do not try to enumerate all possibilities. A mixed-gender <a class="localLink" href="https://schema.org/SportsTeam">SportsTeam</a> can be indicated with a text value of "Mixed".
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\GenderType|string|null
-     */
-    protected $gender;
-
-    /**
-     * A sibling of the person.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person
-     */
-    protected $siblings;
-
-    /**
      * An Organization (or ProgramMembership) to which this Person or Organization belongs.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ProgramMembership|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ProgramMembership
      */
     protected $memberOf;
-
-    /**
-     * The telephone number.
-     *
-     *
-     * @var string
-     */
-    protected $telephone;
 
     /**
      * The person's spouse.
@@ -132,12 +101,12 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $spouse;
 
     /**
-     * Email address.
+     * A person or organization that supports (sponsors) something through some kind of financial contribution.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
-    protected $email;
+    protected $funder;
 
     /**
      * A colleague of the person.
@@ -148,52 +117,36 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $colleagues;
 
     /**
-     * The weight of the product or person.
+     * A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
-    protected $weight;
+    protected $sponsor;
+
+    /**
+     * Date of death.
+     *
+     *
+     * @var Date|null
+     */
+    protected $deathDate;
 
     /**
      * The height of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * @var \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $height;
 
     /**
-     * A contact point for a person or organization.
+     * A contact location for a person's place of work.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ContactPoint
+     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\ContactPoint
      */
-    protected $contactPoint;
-
-    /**
-     * The total financial value of the person as calculated by subtracting assets from liabilities.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification
-     */
-    protected $netWorth;
-
-    /**
-     * A colleague of the person.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Person
-     */
-    protected $colleague;
-
-    /**
-     * Indicates an OfferCatalog listing for this Organization, Person, or Service.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\OfferCatalog
-     */
-    protected $hasOfferCatalog;
+    protected $workLocation;
 
     /**
      * A child of the person.
@@ -204,6 +157,30 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $children;
 
     /**
+     * The Person's occupation. For past professions, use Role for expressing dates.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Occupation
+     */
+    protected $hasOccupation;
+
+    /**
+     * Indicates an OfferCatalog listing for this Organization, Person, or Service.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\OfferCatalog
+     */
+    protected $hasOfferCatalog;
+
+    /**
+     * The place where the person died.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place
+     */
+    protected $deathPlace;
+
+    /**
      * The <a href="http://www.gs1.org/gln">Global Location Number</a> (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations.
      *
      *
@@ -212,28 +189,20 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $globalLocationNumber;
 
     /**
-     * The North American Industry Classification System (NAICS) code for a particular organization or business person.
-     *
-     *
-     * @var string
-     */
-    protected $naics;
-
-    /**
-     * A parents of the person.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person
-     */
-    protected $parents;
-
-    /**
-     * Points-of-Sales operated by the organization or person.
+     * The place where the person was born.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Place
      */
-    protected $hasPOS;
+    protected $birthPlace;
+
+    /**
+     * An organization that the person is an alumni of.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\EducationalOrganization
+     */
+    protected $alumniOf;
 
     /**
      * A contact location for a person's residence.
@@ -244,12 +213,12 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $homeLocation;
 
     /**
-     * A parent of this person.
+     * The Dun &amp; Bradstreet DUNS number for identifying an organization or business person.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person
+     * @var string
      */
-    protected $parent;
+    protected $duns;
 
     /**
      * The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain.
@@ -260,28 +229,164 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $taxID;
 
     /**
-     * Products owned by the organization or person.
+     * An award won by or for this item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\OwnershipInfo|\OpenActive\Models\SchemaOrg\Product
+     * @var string
      */
-    protected $owns;
+    protected $award;
 
     /**
      * Date of birth.
      *
      *
-     * @var DateTime|null
+     * @var Date|null
      */
     protected $birthDate;
 
     /**
-     * An organization that this person is affiliated with. For example, a school/university, a club, or a team.
+     * A pointer to products or services offered by the organization or person.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Offer
      */
-    protected $affiliation;
+    protected $makesOffer;
+
+    /**
+     * A contact point for a person or organization.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ContactPoint
+     */
+    protected $contactPoints;
+
+    /**
+     * Awards won by or for this item.
+     *
+     *
+     * @var string
+     */
+    protected $awards;
+
+    /**
+     * Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property.
+     *
+     *
+     * @var string
+     */
+    protected $familyName;
+
+    /**
+     * A pointer to products or services sought by the organization or person (demand).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Demand
+     */
+    protected $seeks;
+
+    /**
+     * A sibling of the person.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person
+     */
+    protected $sibling;
+
+    /**
+     * Physical address of the item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string
+     */
+    protected $address;
+
+    /**
+     * Event that this person is a performer or participant in.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Event
+     */
+    protected $performerIn;
+
+    /**
+     * An honorific prefix preceding a Person's name such as Dr/Mrs/Mr.
+     *
+     *
+     * @var string
+     */
+    protected $honorificPrefix;
+
+    /**
+     * An additional name for a Person, can be used for a middle name.
+     *
+     *
+     * @var string
+     */
+    protected $additionalName;
+
+    /**
+     * The number of interactions for the CreativeWork using the WebSite or SoftwareApplication. The most specific child type of InteractionCounter should be used.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\InteractionCounter
+     */
+    protected $interactionStatistic;
+
+    /**
+     * A sibling of the person.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person
+     */
+    protected $siblings;
+
+    /**
+     * The telephone number.
+     *
+     *
+     * @var string
+     */
+    protected $telephone;
+
+    /**
+     * Email address.
+     *
+     *
+     * @var string
+     */
+    protected $email;
+
+    /**
+     * The weight of the product or person.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    protected $weight;
+
+    /**
+     * A contact point for a person or organization.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ContactPoint
+     */
+    protected $contactPoint;
+
+    /**
+     * A colleague of the person.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $colleague;
+
+    /**
+     * A parents of the person.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person
+     */
+    protected $parents;
 
     /**
      * Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property.
@@ -290,6 +395,46 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
      * @var string
      */
     protected $givenName;
+
+    /**
+     * The North American Industry Classification System (NAICS) code for a particular organization or business person.
+     *
+     *
+     * @var string
+     */
+    protected $naics;
+
+    /**
+     * Points-of-Sales operated by the organization or person.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place
+     */
+    protected $hasPOS;
+
+    /**
+     * A parent of this person.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person
+     */
+    protected $parent;
+
+    /**
+     * Products owned by the organization or person.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\OwnershipInfo
+     */
+    protected $owns;
+
+    /**
+     * An organization that this person is affiliated with. For example, a school/university, a club, or a team.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization
+     */
+    protected $affiliation;
 
     /**
      * The publishingPrinciples property indicates (typically via <a class="localLink" href="https://schema.org/URL">URL</a>) a document describing the editorial principles of an <a class="localLink" href="https://schema.org/Organization">Organization</a> (or individual e.g. a <a class="localLink" href="https://schema.org/Person">Person</a> writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a <a class="localLink" href="https://schema.org/CreativeWork">CreativeWork</a> (e.g. <a class="localLink" href="https://schema.org/NewsArticle">NewsArticle</a>) the principles are those of the party primarily responsible for the creation of the <a class="localLink" href="https://schema.org/CreativeWork">CreativeWork</a>.<br/><br/>
@@ -302,30 +447,6 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $publishingPrinciples;
 
     /**
-     * Awards won by or for this item.
-     *
-     *
-     * @var string
-     */
-    protected $awards;
-
-    /**
-     * A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    protected $sponsor;
-
-    /**
-     * A pointer to products or services sought by the organization or person (demand).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Demand
-     */
-    protected $seeks;
-
-    /**
      * The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place.
      *
      *
@@ -334,28 +455,12 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $isicV4;
 
     /**
-     * Event that this person is a performer or participant in.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Event
-     */
-    protected $performerIn;
-
-    /**
      * The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Brand|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Brand
      */
     protected $brand;
-
-    /**
-     * Physical address of the item.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\PostalAddress
-     */
-    protected $address;
 
     /**
      * An honorific suffix preceding a Person's name such as M.D. /PhD/MSCSW.
@@ -366,12 +471,12 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $honorificSuffix;
 
     /**
-     * Date of death.
+     * The total financial value of the person as calculated by subtracting assets from liabilities.
      *
      *
-     * @var DateTime|null
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification
      */
-    protected $deathDate;
+    protected $netWorth;
 
     /**
      * The Value-added Tax ID of the organization or person.
@@ -382,28 +487,12 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $vatID;
 
     /**
-     * The Person's occupation. For past professions, use Role for expressing dates.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Occupation
-     */
-    protected $hasOccupation;
-
-    /**
      * Nationality of the person.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Country
      */
     protected $nationality;
-
-    /**
-     * The place where the person was born.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Place
-     */
-    protected $birthPlace;
 
     /**
      * The fax number.
@@ -414,28 +503,12 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $faxNumber;
 
     /**
-     * The Dun &amp; Bradstreet DUNS number for identifying an organization or business person.
-     *
-     *
-     * @var string
-     */
-    protected $duns;
-
-    /**
      * The most generic familial relation.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $relatedTo;
-
-    /**
-     * A pointer to products or services offered by the organization or person.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Offer
-     */
-    protected $makesOffer;
 
     /**
      * The most generic uni-directional social relation.
@@ -446,28 +519,12 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $follows;
 
     /**
-     * Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property.
-     *
-     *
-     * @var string
-     */
-    protected $familyName;
-
-    /**
      * The most generic bi-directional social/work relation.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $knows;
-
-    /**
-     * An honorific prefix preceding a Person's name such as Dr/Mrs/Mr.
-     *
-     *
-     * @var string
-     */
-    protected $honorificPrefix;
 
     /**
      * Organizations that the person works for.
@@ -478,14 +535,6 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $worksFor;
 
     /**
-     * A contact location for a person's place of work.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Place
-     */
-    protected $workLocation;
-
-    /**
      * A <a href="https://en.wikipedia.org/wiki/Call_sign">callsign</a>, as used in broadcasting and radio communications to identify people, radio and TV stations, or vehicles.
      *
      *
@@ -494,36 +543,12 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $callSign;
 
     /**
-     * An organization that the person is an alumni of.
+     * The job title of the person (for example, Financial Manager).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\EducationalOrganization|\OpenActive\Models\SchemaOrg\Organization
+     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
-    protected $alumniOf;
-
-    /**
-     * A contact point for a person or organization.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ContactPoint
-     */
-    protected $contactPoints;
-
-    /**
-     * Of a <a class="localLink" href="https://schema.org/Person">Person</a>, and less typically of an <a class="localLink" href="https://schema.org/Organization">Organization</a>, to indicate a topic that is known about - suggesting possible expertise but not implying it. We do not distinguish skill levels here, or relate this to educational content, events, objectives or <a class="localLink" href="https://schema.org/JobPosting">JobPosting</a> descriptions.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $knowsAbout;
-
-    /**
-     * Of a <a class="localLink" href="https://schema.org/Person">Person</a>, and less typically of an <a class="localLink" href="https://schema.org/Organization">Organization</a>, to indicate a known language. We do not distinguish skill levels or reading/writing/speaking/signing here. Use language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Language|string
-     */
-    protected $knowsLanguage;
+    protected $jobTitle;
 
     /**
      * A credential awarded to the Person or Organization.
@@ -534,121 +559,31 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     protected $hasCredential;
 
     /**
-     * The job title of the person (for example, Financial Manager).
+     * Of a <a class="localLink" href="https://schema.org/Person">Person</a>, and less typically of an <a class="localLink" href="https://schema.org/Organization">Organization</a>, to indicate a known language. We do not distinguish skill levels or reading/writing/speaking/signing here. Use language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     * @var string|\OpenActive\Models\SchemaOrg\Language
      */
-    protected $jobTitle;
+    protected $knowsLanguage;
 
     /**
-     * A sibling of the person.
+     * Of a <a class="localLink" href="https://schema.org/Person">Person</a>, and less typically of an <a class="localLink" href="https://schema.org/Organization">Organization</a>, to indicate a topic that is known about - suggesting possible expertise but not implying it. We do not distinguish skill levels here, or relate this to educational content, events, objectives or <a class="localLink" href="https://schema.org/JobPosting">JobPosting</a> descriptions.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person
+     * @var string|\OpenActive\Models\SchemaOrg\Thing
      */
-    protected $sibling;
+    protected $knowsAbout;
 
     /**
-     * An award won by or for this item.
+     * Gender of something, typically a <a class="localLink" href="https://schema.org/Person">Person</a>, but possibly also fictional characters, animals, etc. While https://schema.org/Male and https://schema.org/Female may be used, text strings are also acceptable for people who do not identify as a binary gender. The <a class="localLink" href="https://schema.org/gender">gender</a> property can also be used in an extended sense to cover e.g. the gender of sports teams. As with the gender of individuals, we do not try to enumerate all possibilities. A mixed-gender <a class="localLink" href="https://schema.org/SportsTeam">SportsTeam</a> can be indicated with a text value of "Mixed".
      *
      *
-     * @var string
+     * @var \OpenActive\Enums\SchemaOrg\GenderType|string|null
      */
-    protected $award;
+    protected $gender;
 
     /**
-     * The place where the person died.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Place
-     */
-    protected $deathPlace;
-
-    /**
-     * A person or organization that supports (sponsors) something through some kind of financial contribution.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    protected $funder;
-
-    /**
-     * @return string
-     */
-    public function getAdditionalName()
-    {
-        return $this->additionalName;
-    }
-
-    /**
-     * @param string $additionalName
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAdditionalName($additionalName)
-    {
-        $types = array(
-            "string",
-        );
-
-        $additionalName = self::checkTypes($additionalName, $types);
-
-        $this->additionalName = $additionalName;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\GenderType|string|null
-     */
-    public function getGender()
-    {
-        return $this->gender;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\GenderType|string|null $gender
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGender($gender)
-    {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\GenderType",
-            "string",
-            "null",
-        );
-
-        $gender = self::checkTypes($gender, $types);
-
-        $this->gender = $gender;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person
-     */
-    public function getSiblings()
-    {
-        return $this->siblings;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person $siblings
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSiblings($siblings)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
-        );
-
-        $siblings = self::checkTypes($siblings, $types);
-
-        $this->siblings = $siblings;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ProgramMembership|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ProgramMembership
      */
     public function getMemberOf()
     {
@@ -656,44 +591,20 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ProgramMembership|\OpenActive\Models\SchemaOrg\Organization $memberOf
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ProgramMembership $memberOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMemberOf($memberOf)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\ProgramMembership",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\ProgramMembership",
         );
 
         $memberOf = self::checkTypes($memberOf, $types);
 
         $this->memberOf = $memberOf;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTelephone()
-    {
-        return $this->telephone;
-    }
-
-    /**
-     * @param string $telephone
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTelephone($telephone)
-    {
-        $types = array(
-            "string",
-        );
-
-        $telephone = self::checkTypes($telephone, $types);
-
-        $this->telephone = $telephone;
     }
 
     /**
@@ -721,27 +632,28 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
-    public function getEmail()
+    public function getFunder()
     {
-        return $this->email;
+        return $this->funder;
     }
 
     /**
-     * @param string $email
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $funder
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEmail($email)
+    public function setFunder($funder)
     {
         $types = array(
-            "string",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
-        $email = self::checkTypes($email, $types);
+        $funder = self::checkTypes($funder, $types);
 
-        $this->email = $email;
+        $this->funder = $funder;
     }
 
     /**
@@ -769,31 +681,57 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
-    public function getWeight()
+    public function getSponsor()
     {
-        return $this->weight;
+        return $this->sponsor;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $weight
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $sponsor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setWeight($weight)
+    public function setSponsor($sponsor)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
-        $weight = self::checkTypes($weight, $types);
+        $sponsor = self::checkTypes($sponsor, $types);
 
-        $this->weight = $weight;
+        $this->sponsor = $sponsor;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * @return Date|null
+     */
+    public function getDeathDate()
+    {
+        return $this->deathDate;
+    }
+
+    /**
+     * @param Date|null $deathDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDeathDate($deathDate)
+    {
+        $types = array(
+            "Date",
+            "null",
+        );
+
+        $deathDate = self::checkTypes($deathDate, $types);
+
+        $this->deathDate = $deathDate;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getHeight()
     {
@@ -801,15 +739,15 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $height
+     * @param \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue $height
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHeight($height)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "\OpenActive\Models\SchemaOrg\Distance",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
         $height = self::checkTypes($height, $types);
@@ -818,101 +756,28 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ContactPoint
+     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\ContactPoint
      */
-    public function getContactPoint()
+    public function getWorkLocation()
     {
-        return $this->contactPoint;
+        return $this->workLocation;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ContactPoint $contactPoint
+     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\ContactPoint $workLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setContactPoint($contactPoint)
+    public function setWorkLocation($workLocation)
     {
         $types = array(
+            "\OpenActive\Models\SchemaOrg\Place",
             "\OpenActive\Models\SchemaOrg\ContactPoint",
         );
 
-        $contactPoint = self::checkTypes($contactPoint, $types);
+        $workLocation = self::checkTypes($workLocation, $types);
 
-        $this->contactPoint = $contactPoint;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification
-     */
-    public function getNetWorth()
-    {
-        return $this->netWorth;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification $netWorth
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNetWorth($netWorth)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "\OpenActive\Models\SchemaOrg\PriceSpecification",
-        );
-
-        $netWorth = self::checkTypes($netWorth, $types);
-
-        $this->netWorth = $netWorth;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Person
-     */
-    public function getColleague()
-    {
-        return $this->colleague;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Person $colleague
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setColleague($colleague)
-    {
-        $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\Person",
-        );
-
-        $colleague = self::checkTypes($colleague, $types);
-
-        $this->colleague = $colleague;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\OfferCatalog
-     */
-    public function getHasOfferCatalog()
-    {
-        return $this->hasOfferCatalog;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\OfferCatalog $hasOfferCatalog
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHasOfferCatalog($hasOfferCatalog)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\OfferCatalog",
-        );
-
-        $hasOfferCatalog = self::checkTypes($hasOfferCatalog, $types);
-
-        $this->hasOfferCatalog = $hasOfferCatalog;
+        $this->workLocation = $workLocation;
     }
 
     /**
@@ -940,6 +805,78 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\Occupation
+     */
+    public function getHasOccupation()
+    {
+        return $this->hasOccupation;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Occupation $hasOccupation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasOccupation($hasOccupation)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Occupation",
+        );
+
+        $hasOccupation = self::checkTypes($hasOccupation, $types);
+
+        $this->hasOccupation = $hasOccupation;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\OfferCatalog
+     */
+    public function getHasOfferCatalog()
+    {
+        return $this->hasOfferCatalog;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\OfferCatalog $hasOfferCatalog
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasOfferCatalog($hasOfferCatalog)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\OfferCatalog",
+        );
+
+        $hasOfferCatalog = self::checkTypes($hasOfferCatalog, $types);
+
+        $this->hasOfferCatalog = $hasOfferCatalog;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Place
+     */
+    public function getDeathPlace()
+    {
+        return $this->deathPlace;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Place $deathPlace
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDeathPlace($deathPlace)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Place",
+        );
+
+        $deathPlace = self::checkTypes($deathPlace, $types);
+
+        $this->deathPlace = $deathPlace;
+    }
+
+    /**
      * @return string
      */
     public function getGlobalLocationNumber()
@@ -964,75 +901,52 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string
-     */
-    public function getNaics()
-    {
-        return $this->naics;
-    }
-
-    /**
-     * @param string $naics
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNaics($naics)
-    {
-        $types = array(
-            "string",
-        );
-
-        $naics = self::checkTypes($naics, $types);
-
-        $this->naics = $naics;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person
-     */
-    public function getParents()
-    {
-        return $this->parents;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person $parents
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setParents($parents)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
-        );
-
-        $parents = self::checkTypes($parents, $types);
-
-        $this->parents = $parents;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Place
      */
-    public function getHasPOS()
+    public function getBirthPlace()
     {
-        return $this->hasPOS;
+        return $this->birthPlace;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place $hasPOS
+     * @param \OpenActive\Models\SchemaOrg\Place $birthPlace
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHasPOS($hasPOS)
+    public function setBirthPlace($birthPlace)
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\Place",
         );
 
-        $hasPOS = self::checkTypes($hasPOS, $types);
+        $birthPlace = self::checkTypes($birthPlace, $types);
 
-        $this->hasPOS = $hasPOS;
+        $this->birthPlace = $birthPlace;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\EducationalOrganization
+     */
+    public function getAlumniOf()
+    {
+        return $this->alumniOf;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\EducationalOrganization $alumniOf
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAlumniOf($alumniOf)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\EducationalOrganization",
+        );
+
+        $alumniOf = self::checkTypes($alumniOf, $types);
+
+        $this->alumniOf = $alumniOf;
     }
 
     /**
@@ -1061,27 +975,27 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return string
      */
-    public function getParent()
+    public function getDuns()
     {
-        return $this->parent;
+        return $this->duns;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $parent
+     * @param string $duns
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setParent($parent)
+    public function setDuns($duns)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         );
 
-        $parent = self::checkTypes($parent, $types);
+        $duns = self::checkTypes($duns, $types);
 
-        $this->parent = $parent;
+        $this->duns = $duns;
     }
 
     /**
@@ -1109,32 +1023,31 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\OwnershipInfo|\OpenActive\Models\SchemaOrg\Product
+     * @return string
      */
-    public function getOwns()
+    public function getAward()
     {
-        return $this->owns;
+        return $this->award;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\OwnershipInfo|\OpenActive\Models\SchemaOrg\Product $owns
+     * @param string $award
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOwns($owns)
+    public function setAward($award)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\OwnershipInfo",
-            "\OpenActive\Models\SchemaOrg\Product",
+            "string",
         );
 
-        $owns = self::checkTypes($owns, $types);
+        $award = self::checkTypes($award, $types);
 
-        $this->owns = $owns;
+        $this->award = $award;
     }
 
     /**
-     * @return DateTime|null
+     * @return Date|null
      */
     public function getBirthDate()
     {
@@ -1142,14 +1055,14 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param DateTime|null $birthDate
+     * @param Date|null $birthDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBirthDate($birthDate)
     {
         $types = array(
-            "DateTime",
+            "Date",
             "null",
         );
 
@@ -1159,27 +1072,437 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Offer
      */
-    public function getAffiliation()
+    public function getMakesOffer()
     {
-        return $this->affiliation;
+        return $this->makesOffer;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization $affiliation
+     * @param \OpenActive\Models\SchemaOrg\Offer $makesOffer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAffiliation($affiliation)
+    public function setMakesOffer($makesOffer)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Offer",
         );
 
-        $affiliation = self::checkTypes($affiliation, $types);
+        $makesOffer = self::checkTypes($makesOffer, $types);
 
-        $this->affiliation = $affiliation;
+        $this->makesOffer = $makesOffer;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ContactPoint
+     */
+    public function getContactPoints()
+    {
+        return $this->contactPoints;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ContactPoint $contactPoints
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setContactPoints($contactPoints)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
+        );
+
+        $contactPoints = self::checkTypes($contactPoints, $types);
+
+        $this->contactPoints = $contactPoints;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAwards()
+    {
+        return $this->awards;
+    }
+
+    /**
+     * @param string $awards
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAwards($awards)
+    {
+        $types = array(
+            "string",
+        );
+
+        $awards = self::checkTypes($awards, $types);
+
+        $this->awards = $awards;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFamilyName()
+    {
+        return $this->familyName;
+    }
+
+    /**
+     * @param string $familyName
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFamilyName($familyName)
+    {
+        $types = array(
+            "string",
+        );
+
+        $familyName = self::checkTypes($familyName, $types);
+
+        $this->familyName = $familyName;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Demand
+     */
+    public function getSeeks()
+    {
+        return $this->seeks;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Demand $seeks
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSeeks($seeks)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Demand",
+        );
+
+        $seeks = self::checkTypes($seeks, $types);
+
+        $this->seeks = $seeks;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person
+     */
+    public function getSibling()
+    {
+        return $this->sibling;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person $sibling
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSibling($sibling)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Person",
+        );
+
+        $sibling = self::checkTypes($sibling, $types);
+
+        $this->sibling = $sibling;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress|string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress|string $address
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAddress($address)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "string",
+        );
+
+        $address = self::checkTypes($address, $types);
+
+        $this->address = $address;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Event
+     */
+    public function getPerformerIn()
+    {
+        return $this->performerIn;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Event $performerIn
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPerformerIn($performerIn)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Event",
+        );
+
+        $performerIn = self::checkTypes($performerIn, $types);
+
+        $this->performerIn = $performerIn;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHonorificPrefix()
+    {
+        return $this->honorificPrefix;
+    }
+
+    /**
+     * @param string $honorificPrefix
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHonorificPrefix($honorificPrefix)
+    {
+        $types = array(
+            "string",
+        );
+
+        $honorificPrefix = self::checkTypes($honorificPrefix, $types);
+
+        $this->honorificPrefix = $honorificPrefix;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdditionalName()
+    {
+        return $this->additionalName;
+    }
+
+    /**
+     * @param string $additionalName
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAdditionalName($additionalName)
+    {
+        $types = array(
+            "string",
+        );
+
+        $additionalName = self::checkTypes($additionalName, $types);
+
+        $this->additionalName = $additionalName;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\InteractionCounter
+     */
+    public function getInteractionStatistic()
+    {
+        return $this->interactionStatistic;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\InteractionCounter $interactionStatistic
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInteractionStatistic($interactionStatistic)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\InteractionCounter",
+        );
+
+        $interactionStatistic = self::checkTypes($interactionStatistic, $types);
+
+        $this->interactionStatistic = $interactionStatistic;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person
+     */
+    public function getSiblings()
+    {
+        return $this->siblings;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person $siblings
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSiblings($siblings)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Person",
+        );
+
+        $siblings = self::checkTypes($siblings, $types);
+
+        $this->siblings = $siblings;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param string $telephone
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTelephone($telephone)
+    {
+        $types = array(
+            "string",
+        );
+
+        $telephone = self::checkTypes($telephone, $types);
+
+        $this->telephone = $telephone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEmail($email)
+    {
+        $types = array(
+            "string",
+        );
+
+        $email = self::checkTypes($email, $types);
+
+        $this->email = $email;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $weight
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setWeight($weight)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+        );
+
+        $weight = self::checkTypes($weight, $types);
+
+        $this->weight = $weight;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ContactPoint
+     */
+    public function getContactPoint()
+    {
+        return $this->contactPoint;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ContactPoint $contactPoint
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setContactPoint($contactPoint)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
+        );
+
+        $contactPoint = self::checkTypes($contactPoint, $types);
+
+        $this->contactPoint = $contactPoint;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getColleague()
+    {
+        return $this->colleague;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $colleague
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setColleague($colleague)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        );
+
+        $colleague = self::checkTypes($colleague, $types);
+
+        $this->colleague = $colleague;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person
+     */
+    public function getParents()
+    {
+        return $this->parents;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person $parents
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setParents($parents)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Person",
+        );
+
+        $parents = self::checkTypes($parents, $types);
+
+        $this->parents = $parents;
     }
 
     /**
@@ -1204,6 +1527,127 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
         $givenName = self::checkTypes($givenName, $types);
 
         $this->givenName = $givenName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNaics()
+    {
+        return $this->naics;
+    }
+
+    /**
+     * @param string $naics
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNaics($naics)
+    {
+        $types = array(
+            "string",
+        );
+
+        $naics = self::checkTypes($naics, $types);
+
+        $this->naics = $naics;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Place
+     */
+    public function getHasPOS()
+    {
+        return $this->hasPOS;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Place $hasPOS
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasPOS($hasPOS)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Place",
+        );
+
+        $hasPOS = self::checkTypes($hasPOS, $types);
+
+        $this->hasPOS = $hasPOS;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person $parent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setParent($parent)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Person",
+        );
+
+        $parent = self::checkTypes($parent, $types);
+
+        $this->parent = $parent;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\OwnershipInfo
+     */
+    public function getOwns()
+    {
+        return $this->owns;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\OwnershipInfo $owns
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOwns($owns)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Product",
+            "\OpenActive\Models\SchemaOrg\OwnershipInfo",
+        );
+
+        $owns = self::checkTypes($owns, $types);
+
+        $this->owns = $owns;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization
+     */
+    public function getAffiliation()
+    {
+        return $this->affiliation;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization $affiliation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAffiliation($affiliation)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Organization",
+        );
+
+        $affiliation = self::checkTypes($affiliation, $types);
+
+        $this->affiliation = $affiliation;
     }
 
     /**
@@ -1234,79 +1678,6 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @return string
      */
-    public function getAwards()
-    {
-        return $this->awards;
-    }
-
-    /**
-     * @param string $awards
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAwards($awards)
-    {
-        $types = array(
-            "string",
-        );
-
-        $awards = self::checkTypes($awards, $types);
-
-        $this->awards = $awards;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    public function getSponsor()
-    {
-        return $this->sponsor;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $sponsor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSponsor($sponsor)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-        );
-
-        $sponsor = self::checkTypes($sponsor, $types);
-
-        $this->sponsor = $sponsor;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Demand
-     */
-    public function getSeeks()
-    {
-        return $this->seeks;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Demand $seeks
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSeeks($seeks)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Demand",
-        );
-
-        $seeks = self::checkTypes($seeks, $types);
-
-        $this->seeks = $seeks;
-    }
-
-    /**
-     * @return string
-     */
     public function getIsicV4()
     {
         return $this->isicV4;
@@ -1329,31 +1700,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Event
-     */
-    public function getPerformerIn()
-    {
-        return $this->performerIn;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Event $performerIn
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPerformerIn($performerIn)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Event",
-        );
-
-        $performerIn = self::checkTypes($performerIn, $types);
-
-        $this->performerIn = $performerIn;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Brand|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Brand
      */
     public function getBrand()
     {
@@ -1361,45 +1708,20 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Brand|\OpenActive\Models\SchemaOrg\Organization $brand
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Brand $brand
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBrand($brand)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Brand",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Brand",
         );
 
         $brand = self::checkTypes($brand, $types);
 
         $this->brand = $brand;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\PostalAddress
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\PostalAddress $address
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAddress($address)
-    {
-        $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
-        );
-
-        $address = self::checkTypes($address, $types);
-
-        $this->address = $address;
     }
 
     /**
@@ -1427,28 +1749,28 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return DateTime|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification
      */
-    public function getDeathDate()
+    public function getNetWorth()
     {
-        return $this->deathDate;
+        return $this->netWorth;
     }
 
     /**
-     * @param DateTime|null $deathDate
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification $netWorth
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDeathDate($deathDate)
+    public function setNetWorth($netWorth)
     {
         $types = array(
-            "DateTime",
-            "null",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
         );
 
-        $deathDate = self::checkTypes($deathDate, $types);
+        $netWorth = self::checkTypes($netWorth, $types);
 
-        $this->deathDate = $deathDate;
+        $this->netWorth = $netWorth;
     }
 
     /**
@@ -1476,30 +1798,6 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Occupation
-     */
-    public function getHasOccupation()
-    {
-        return $this->hasOccupation;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Occupation $hasOccupation
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHasOccupation($hasOccupation)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Occupation",
-        );
-
-        $hasOccupation = self::checkTypes($hasOccupation, $types);
-
-        $this->hasOccupation = $hasOccupation;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Country
      */
     public function getNationality()
@@ -1521,30 +1819,6 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
         $nationality = self::checkTypes($nationality, $types);
 
         $this->nationality = $nationality;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Place
-     */
-    public function getBirthPlace()
-    {
-        return $this->birthPlace;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Place $birthPlace
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBirthPlace($birthPlace)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Place",
-        );
-
-        $birthPlace = self::checkTypes($birthPlace, $types);
-
-        $this->birthPlace = $birthPlace;
     }
 
     /**
@@ -1572,30 +1846,6 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string
-     */
-    public function getDuns()
-    {
-        return $this->duns;
-    }
-
-    /**
-     * @param string $duns
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDuns($duns)
-    {
-        $types = array(
-            "string",
-        );
-
-        $duns = self::checkTypes($duns, $types);
-
-        $this->duns = $duns;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getRelatedTo()
@@ -1617,30 +1867,6 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
         $relatedTo = self::checkTypes($relatedTo, $types);
 
         $this->relatedTo = $relatedTo;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Offer
-     */
-    public function getMakesOffer()
-    {
-        return $this->makesOffer;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Offer $makesOffer
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMakesOffer($makesOffer)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Offer",
-        );
-
-        $makesOffer = self::checkTypes($makesOffer, $types);
-
-        $this->makesOffer = $makesOffer;
     }
 
     /**
@@ -1668,30 +1894,6 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string
-     */
-    public function getFamilyName()
-    {
-        return $this->familyName;
-    }
-
-    /**
-     * @param string $familyName
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFamilyName($familyName)
-    {
-        $types = array(
-            "string",
-        );
-
-        $familyName = self::checkTypes($familyName, $types);
-
-        $this->familyName = $familyName;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getKnows()
@@ -1713,30 +1915,6 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
         $knows = self::checkTypes($knows, $types);
 
         $this->knows = $knows;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHonorificPrefix()
-    {
-        return $this->honorificPrefix;
-    }
-
-    /**
-     * @param string $honorificPrefix
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHonorificPrefix($honorificPrefix)
-    {
-        $types = array(
-            "string",
-        );
-
-        $honorificPrefix = self::checkTypes($honorificPrefix, $types);
-
-        $this->honorificPrefix = $honorificPrefix;
     }
 
     /**
@@ -1764,31 +1942,6 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Place
-     */
-    public function getWorkLocation()
-    {
-        return $this->workLocation;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Place $workLocation
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setWorkLocation($workLocation)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
-            "\OpenActive\Models\SchemaOrg\Place",
-        );
-
-        $workLocation = self::checkTypes($workLocation, $types);
-
-        $this->workLocation = $workLocation;
-    }
-
-    /**
      * @return string
      */
     public function getCallSign()
@@ -1813,52 +1966,77 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\EducationalOrganization|\OpenActive\Models\SchemaOrg\Organization
+     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
-    public function getAlumniOf()
+    public function getJobTitle()
     {
-        return $this->alumniOf;
+        return $this->jobTitle;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\EducationalOrganization|\OpenActive\Models\SchemaOrg\Organization $alumniOf
+     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $jobTitle
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAlumniOf($alumniOf)
+    public function setJobTitle($jobTitle)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\EducationalOrganization",
-            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
         );
 
-        $alumniOf = self::checkTypes($alumniOf, $types);
+        $jobTitle = self::checkTypes($jobTitle, $types);
 
-        $this->alumniOf = $alumniOf;
+        $this->jobTitle = $jobTitle;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ContactPoint
+     * @return \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
      */
-    public function getContactPoints()
+    public function getHasCredential()
     {
-        return $this->contactPoints;
+        return $this->hasCredential;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ContactPoint $contactPoints
+     * @param \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $hasCredential
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setContactPoints($contactPoints)
+    public function setHasCredential($hasCredential)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
+            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
         );
 
-        $contactPoints = self::checkTypes($contactPoints, $types);
+        $hasCredential = self::checkTypes($hasCredential, $types);
 
-        $this->contactPoints = $contactPoints;
+        $this->hasCredential = $hasCredential;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Language
+     */
+    public function getKnowsLanguage()
+    {
+        return $this->knowsLanguage;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Language $knowsLanguage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setKnowsLanguage($knowsLanguage)
+    {
+        $types = array(
+            "string",
+            "\OpenActive\Models\SchemaOrg\Language",
+        );
+
+        $knowsLanguage = self::checkTypes($knowsLanguage, $types);
+
+        $this->knowsLanguage = $knowsLanguage;
     }
 
     /**
@@ -1887,174 +2065,29 @@ class Person extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Language|string
+     * @return \OpenActive\Enums\SchemaOrg\GenderType|string|null
      */
-    public function getKnowsLanguage()
+    public function getGender()
     {
-        return $this->knowsLanguage;
+        return $this->gender;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Language|string $knowsLanguage
+     * @param \OpenActive\Enums\SchemaOrg\GenderType|string|null $gender
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setKnowsLanguage($knowsLanguage)
+    public function setGender($gender)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Language",
+            "\OpenActive\Enums\SchemaOrg\GenderType",
             "string",
+            "null",
         );
 
-        $knowsLanguage = self::checkTypes($knowsLanguage, $types);
+        $gender = self::checkTypes($gender, $types);
 
-        $this->knowsLanguage = $knowsLanguage;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
-     */
-    public function getHasCredential()
-    {
-        return $this->hasCredential;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $hasCredential
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHasCredential($hasCredential)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
-        );
-
-        $hasCredential = self::checkTypes($hasCredential, $types);
-
-        $this->hasCredential = $hasCredential;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
-     */
-    public function getJobTitle()
-    {
-        return $this->jobTitle;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $jobTitle
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setJobTitle($jobTitle)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-            "string",
-        );
-
-        $jobTitle = self::checkTypes($jobTitle, $types);
-
-        $this->jobTitle = $jobTitle;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person
-     */
-    public function getSibling()
-    {
-        return $this->sibling;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person $sibling
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSibling($sibling)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
-        );
-
-        $sibling = self::checkTypes($sibling, $types);
-
-        $this->sibling = $sibling;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAward()
-    {
-        return $this->award;
-    }
-
-    /**
-     * @param string $award
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAward($award)
-    {
-        $types = array(
-            "string",
-        );
-
-        $award = self::checkTypes($award, $types);
-
-        $this->award = $award;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Place
-     */
-    public function getDeathPlace()
-    {
-        return $this->deathPlace;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Place $deathPlace
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDeathPlace($deathPlace)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Place",
-        );
-
-        $deathPlace = self::checkTypes($deathPlace, $types);
-
-        $this->deathPlace = $deathPlace;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    public function getFunder()
-    {
-        return $this->funder;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $funder
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFunder($funder)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-        );
-
-        $funder = self::checkTypes($funder, $types);
-
-        $this->funder = $funder;
+        $this->gender = $gender;
     }
 
 }

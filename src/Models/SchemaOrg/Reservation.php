@@ -17,49 +17,23 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "reservationFor" => "reservationFor",
-            "reservedTicket" => "reservedTicket",
-            "priceCurrency" => "priceCurrency",
             "provider" => "provider",
-            "reservationStatus" => "reservationStatus",
-            "reservationId" => "reservationId",
-            "bookingTime" => "bookingTime",
-            "modifiedTime" => "modifiedTime",
-            "broker" => "broker",
-            "underName" => "underName",
             "programMembershipUsed" => "programMembershipUsed",
-            "totalPrice" => "totalPrice",
+            "reservationStatus" => "reservationStatus",
+            "underName" => "underName",
             "bookingAgent" => "bookingAgent",
+            "totalPrice" => "totalPrice",
+            "reservationFor" => "reservationFor",
+            "priceCurrency" => "priceCurrency",
+            "broker" => "broker",
+            "modifiedTime" => "modifiedTime",
+            "bookingTime" => "bookingTime",
+            "reservationId" => "reservationId",
+            "reservedTicket" => "reservedTicket",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The thing -- flight, event, restaurant,etc. being reserved.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $reservationFor;
-
-    /**
-     * A ticket associated with the reservation.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Ticket
-     */
-    protected $reservedTicket;
-
-    /**
-     * The currency of the price, or a price component when attached to <a class="localLink" href="https://schema.org/PriceSpecification">PriceSpecification</a> and its subtypes.<br/><br/>
-     * 
-     * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
-     *
-     *
-     * @var string
-     */
-    protected $priceCurrency;
 
     /**
      * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
@@ -70,6 +44,14 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $provider;
 
     /**
+     * Any membership in a frequent flyer, hotel loyalty program, etc. being applied to the reservation.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ProgramMembership
+     */
+    protected $programMembershipUsed;
+
+    /**
      * The current status of the reservation.
      *
      *
@@ -78,52 +60,20 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $reservationStatus;
 
     /**
-     * A unique identifier for the reservation.
-     *
-     *
-     * @var string
-     */
-    protected $reservationId;
-
-    /**
-     * The date and time the reservation was booked.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $bookingTime;
-
-    /**
-     * The date and time the reservation was modified.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $modifiedTime;
-
-    /**
-     * An entity that arranges for an exchange between a buyer and a seller.  In most cases a broker never acquires or releases ownership of a product or service involved in an exchange.  If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    protected $broker;
-
-    /**
      * The person or organization the reservation or ticket is for.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $underName;
 
     /**
-     * Any membership in a frequent flyer, hotel loyalty program, etc. being applied to the reservation.
+     * 'bookingAgent' is an out-dated term indicating a 'broker' that serves as a booking agent.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ProgramMembership
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
-    protected $programMembershipUsed;
+    protected $bookingAgent;
 
     /**
      * The total price for the reservation or ticket, including applicable taxes, shipping, etc.<br/><br/>
@@ -142,84 +92,62 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $totalPrice;
 
     /**
-     * 'bookingAgent' is an out-dated term indicating a 'broker' that serves as a booking agent.
+     * The thing -- flight, event, restaurant,etc. being reserved.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Thing
      */
-    protected $bookingAgent;
+    protected $reservationFor;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
+     * The currency of the price, or a price component when attached to <a class="localLink" href="https://schema.org/PriceSpecification">PriceSpecification</a> and its subtypes.<br/><br/>
+     * 
+     * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
+     *
+     *
+     * @var string
      */
-    public function getReservationFor()
-    {
-        return $this->reservationFor;
-    }
+    protected $priceCurrency;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $reservationFor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * An entity that arranges for an exchange between a buyer and a seller.  In most cases a broker never acquires or releases ownership of a product or service involved in an exchange.  If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
-    public function setReservationFor($reservationFor)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
-        );
-
-        $reservationFor = self::checkTypes($reservationFor, $types);
-
-        $this->reservationFor = $reservationFor;
-    }
+    protected $broker;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Ticket
+     * The date and time the reservation was modified.
+     *
+     *
+     * @var DateTime|null
      */
-    public function getReservedTicket()
-    {
-        return $this->reservedTicket;
-    }
+    protected $modifiedTime;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Ticket $reservedTicket
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The date and time the reservation was booked.
+     *
+     *
+     * @var DateTime|null
      */
-    public function setReservedTicket($reservedTicket)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Ticket",
-        );
-
-        $reservedTicket = self::checkTypes($reservedTicket, $types);
-
-        $this->reservedTicket = $reservedTicket;
-    }
+    protected $bookingTime;
 
     /**
-     * @return string
+     * A unique identifier for the reservation.
+     *
+     *
+     * @var string
      */
-    public function getPriceCurrency()
-    {
-        return $this->priceCurrency;
-    }
+    protected $reservationId;
 
     /**
-     * @param string $priceCurrency
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * A ticket associated with the reservation.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Ticket
      */
-    public function setPriceCurrency($priceCurrency)
-    {
-        $types = array(
-            "string",
-        );
-
-        $priceCurrency = self::checkTypes($priceCurrency, $types);
-
-        $this->priceCurrency = $priceCurrency;
-    }
+    protected $reservedTicket;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
@@ -244,6 +172,30 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
         $provider = self::checkTypes($provider, $types);
 
         $this->provider = $provider;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ProgramMembership
+     */
+    public function getProgramMembershipUsed()
+    {
+        return $this->programMembershipUsed;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ProgramMembership $programMembershipUsed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProgramMembershipUsed($programMembershipUsed)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\ProgramMembership",
+        );
+
+        $programMembershipUsed = self::checkTypes($programMembershipUsed, $types);
+
+        $this->programMembershipUsed = $programMembershipUsed;
     }
 
     /**
@@ -272,106 +224,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
-     */
-    public function getReservationId()
-    {
-        return $this->reservationId;
-    }
-
-    /**
-     * @param string $reservationId
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReservationId($reservationId)
-    {
-        $types = array(
-            "string",
-        );
-
-        $reservationId = self::checkTypes($reservationId, $types);
-
-        $this->reservationId = $reservationId;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getBookingTime()
-    {
-        return $this->bookingTime;
-    }
-
-    /**
-     * @param DateTime|null $bookingTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBookingTime($bookingTime)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $bookingTime = self::checkTypes($bookingTime, $types);
-
-        $this->bookingTime = $bookingTime;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getModifiedTime()
-    {
-        return $this->modifiedTime;
-    }
-
-    /**
-     * @param DateTime|null $modifiedTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setModifiedTime($modifiedTime)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $modifiedTime = self::checkTypes($modifiedTime, $types);
-
-        $this->modifiedTime = $modifiedTime;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    public function getBroker()
-    {
-        return $this->broker;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $broker
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBroker($broker)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-        );
-
-        $broker = self::checkTypes($broker, $types);
-
-        $this->broker = $broker;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getUnderName()
     {
@@ -379,15 +232,15 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $underName
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $underName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnderName($underName)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $underName = self::checkTypes($underName, $types);
@@ -396,27 +249,28 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ProgramMembership
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
-    public function getProgramMembershipUsed()
+    public function getBookingAgent()
     {
-        return $this->programMembershipUsed;
+        return $this->bookingAgent;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ProgramMembership $programMembershipUsed
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $bookingAgent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setProgramMembershipUsed($programMembershipUsed)
+    public function setBookingAgent($bookingAgent)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\ProgramMembership",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
-        $programMembershipUsed = self::checkTypes($programMembershipUsed, $types);
+        $bookingAgent = self::checkTypes($bookingAgent, $types);
 
-        $this->programMembershipUsed = $programMembershipUsed;
+        $this->bookingAgent = $bookingAgent;
     }
 
     /**
@@ -447,28 +301,174 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Thing
      */
-    public function getBookingAgent()
+    public function getReservationFor()
     {
-        return $this->bookingAgent;
+        return $this->reservationFor;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $bookingAgent
+     * @param \OpenActive\Models\SchemaOrg\Thing $reservationFor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBookingAgent($bookingAgent)
+    public function setReservationFor($reservationFor)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Thing",
         );
 
-        $bookingAgent = self::checkTypes($bookingAgent, $types);
+        $reservationFor = self::checkTypes($reservationFor, $types);
 
-        $this->bookingAgent = $bookingAgent;
+        $this->reservationFor = $reservationFor;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPriceCurrency()
+    {
+        return $this->priceCurrency;
+    }
+
+    /**
+     * @param string $priceCurrency
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPriceCurrency($priceCurrency)
+    {
+        $types = array(
+            "string",
+        );
+
+        $priceCurrency = self::checkTypes($priceCurrency, $types);
+
+        $this->priceCurrency = $priceCurrency;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     */
+    public function getBroker()
+    {
+        return $this->broker;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $broker
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBroker($broker)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+        );
+
+        $broker = self::checkTypes($broker, $types);
+
+        $this->broker = $broker;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getModifiedTime()
+    {
+        return $this->modifiedTime;
+    }
+
+    /**
+     * @param DateTime|null $modifiedTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setModifiedTime($modifiedTime)
+    {
+        $types = array(
+            "DateTime",
+            "null",
+        );
+
+        $modifiedTime = self::checkTypes($modifiedTime, $types);
+
+        $this->modifiedTime = $modifiedTime;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getBookingTime()
+    {
+        return $this->bookingTime;
+    }
+
+    /**
+     * @param DateTime|null $bookingTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBookingTime($bookingTime)
+    {
+        $types = array(
+            "DateTime",
+            "null",
+        );
+
+        $bookingTime = self::checkTypes($bookingTime, $types);
+
+        $this->bookingTime = $bookingTime;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReservationId()
+    {
+        return $this->reservationId;
+    }
+
+    /**
+     * @param string $reservationId
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReservationId($reservationId)
+    {
+        $types = array(
+            "string",
+        );
+
+        $reservationId = self::checkTypes($reservationId, $types);
+
+        $this->reservationId = $reservationId;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Ticket
+     */
+    public function getReservedTicket()
+    {
+        return $this->reservedTicket;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Ticket $reservedTicket
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReservedTicket($reservedTicket)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Ticket",
+        );
+
+        $reservedTicket = self::checkTypes($reservedTicket, $types);
+
+        $this->reservedTicket = $reservedTicket;
     }
 
 }

@@ -17,45 +17,25 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "repeatFrequency" => "repeatFrequency",
-            "exceptDate" => "exceptDate",
-            "byMonthDay" => "byMonthDay",
+            "scheduleTimezone" => "scheduleTimezone",
             "byMonth" => "byMonth",
             "repeatCount" => "repeatCount",
-            "eventSchedule" => "eventSchedule",
             "byDay" => "byDay",
+            "byMonthDay" => "byMonthDay",
+            "exceptDate" => "exceptDate",
+            "repeatFrequency" => "repeatFrequency",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Defines the frequency at which <a class="localLink" href="https://schema.org/Events">Events</a> will occur according to a schedule <a class="localLink" href="https://schema.org/Schedule">Schedule</a>. The intervals between
-     *       events should be defined as a <a class="localLink" href="https://schema.org/Duration">Duration</a> of time.
+     * Indicates the timezone for which the time(s) indicated in the <a class="localLink" href="https://schema.org/Schedule">Schedule</a> are given. The value provided should be among those listed in the IANA Time Zone Database.
      *
      *
-     * @var string|DateInterval|null
+     * @var string
      */
-    protected $repeatFrequency;
-
-    /**
-     * Defines a <a class="localLink" href="https://schema.org/Date">Date</a> or <a class="localLink" href="https://schema.org/DateTime">DateTime</a> during which a scheduled <a class="localLink" href="https://schema.org/Event">Event</a> will not take place. The property allows exceptions to
-     *       a <a class="localLink" href="https://schema.org/Schedule">Schedule</a> to be specified. If an exception is specified as a <a class="localLink" href="https://schema.org/DateTime">DateTime</a> then only the event that would have started at that specific date and time
-     *       should be excluded from the schedule. If an exception is specified as a <a class="localLink" href="https://schema.org/Date">Date</a> then any event that is scheduled for that 24 hour period should be
-     *       excluded from the schedule. This allows a whole day to be excluded from the schedule without having to itemise every scheduled event.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $exceptDate;
-
-    /**
-     * Defines the day(s) of the month on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place. Specified as an <a class="localLink" href="https://schema.org/Integer">Integer</a> between 1-31.
-     *
-     *
-     * @var int|null
-     */
-    protected $byMonthDay;
+    protected $scheduleTimezone;
 
     /**
      * Defines the month(s) of the year on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place. Specified as an <a class="localLink" href="https://schema.org/Integer">Integer</a> between 1-12. January is 1.
@@ -74,100 +54,63 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     protected $repeatCount;
 
     /**
-     * Associates an <a class="localLink" href="https://schema.org/Event">Event</a> with a <a class="localLink" href="https://schema.org/Schedule">Schedule</a>. There are circumstances where it is preferable to share a schedule for a series of
-     *       repeating events rather than data on the individual events themselves. For example, a website or application might prefer to publish a schedule for a weekly
-     *       gym class rather than provide data on every event. A schedule could be processed by applications to add forthcoming events to a calendar. An <a class="localLink" href="https://schema.org/Event">Event</a> that
-     *       is associated with a <a class="localLink" href="https://schema.org/Schedule">Schedule</a> using this property should not have <a class="localLink" href="https://schema.org/startDate">startDate</a> or <a class="localLink" href="https://schema.org/endDate">endDate</a> properties. These are instead defined within the associated
-     *       <a class="localLink" href="https://schema.org/Schedule">Schedule</a>, this avoids any ambiguity for clients using the data. The propery might have repeated values to specify different schedules, e.g. for different months
-     *       or seasons.
+     * Defines the day(s) of the week on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place. May be specified using either <a class="localLink" href="https://schema.org/DayOfWeek">DayOfWeek</a>, or alternatively <a class="localLink" href="https://schema.org/Text">Text</a> conforming to iCal's syntax for byDay recurrence rules
      *
      *
-     * @var DateInterval|null
-     */
-    protected $eventSchedule;
-
-    /**
-     * Defines the day(s) of the week on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\DayOfWeek|null
+     * @var \OpenActive\Enums\SchemaOrg\DayOfWeek|string|null
      */
     protected $byDay;
 
     /**
-     * @return string|DateInterval|null
+     * Defines the day(s) of the month on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place. Specified as an <a class="localLink" href="https://schema.org/Integer">Integer</a> between 1-31.
+     *
+     *
+     * @var int|null
      */
-    public function getRepeatFrequency()
+    protected $byMonthDay;
+
+    /**
+     * Defines a <a class="localLink" href="https://schema.org/Date">Date</a> or <a class="localLink" href="https://schema.org/DateTime">DateTime</a> during which a scheduled <a class="localLink" href="https://schema.org/Event">Event</a> will not take place. The property allows exceptions to
+     *       a <a class="localLink" href="https://schema.org/Schedule">Schedule</a> to be specified. If an exception is specified as a <a class="localLink" href="https://schema.org/DateTime">DateTime</a> then only the event that would have started at that specific date and time
+     *       should be excluded from the schedule. If an exception is specified as a <a class="localLink" href="https://schema.org/Date">Date</a> then any event that is scheduled for that 24 hour period should be
+     *       excluded from the schedule. This allows a whole day to be excluded from the schedule without having to itemise every scheduled event.
+     *
+     *
+     * @var DateTime|Date|null
+     */
+    protected $exceptDate;
+
+    /**
+     * Defines the frequency at which <a class="localLink" href="https://schema.org/Events">Events</a> will occur according to a schedule <a class="localLink" href="https://schema.org/Schedule">Schedule</a>. The intervals between
+     *       events should be defined as a <a class="localLink" href="https://schema.org/Duration">Duration</a> of time.
+     *
+     *
+     * @var string|DateInterval|null
+     */
+    protected $repeatFrequency;
+
+    /**
+     * @return string
+     */
+    public function getScheduleTimezone()
     {
-        return $this->repeatFrequency;
+        return $this->scheduleTimezone;
     }
 
     /**
-     * @param string|DateInterval|null $repeatFrequency
+     * @param string $scheduleTimezone
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRepeatFrequency($repeatFrequency)
+    public function setScheduleTimezone($scheduleTimezone)
     {
         $types = array(
             "string",
-            "DateInterval",
-            "null",
         );
 
-        $repeatFrequency = self::checkTypes($repeatFrequency, $types);
+        $scheduleTimezone = self::checkTypes($scheduleTimezone, $types);
 
-        $this->repeatFrequency = $repeatFrequency;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getExceptDate()
-    {
-        return $this->exceptDate;
-    }
-
-    /**
-     * @param DateTime|null $exceptDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setExceptDate($exceptDate)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $exceptDate = self::checkTypes($exceptDate, $types);
-
-        $this->exceptDate = $exceptDate;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getByMonthDay()
-    {
-        return $this->byMonthDay;
-    }
-
-    /**
-     * @param int|null $byMonthDay
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setByMonthDay($byMonthDay)
-    {
-        $types = array(
-            "int",
-            "null",
-        );
-
-        $byMonthDay = self::checkTypes($byMonthDay, $types);
-
-        $this->byMonthDay = $byMonthDay;
+        $this->scheduleTimezone = $scheduleTimezone;
     }
 
     /**
@@ -221,32 +164,7 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateInterval|null
-     */
-    public function getEventSchedule()
-    {
-        return $this->eventSchedule;
-    }
-
-    /**
-     * @param DateInterval|null $eventSchedule
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEventSchedule($eventSchedule)
-    {
-        $types = array(
-            "DateInterval",
-            "null",
-        );
-
-        $eventSchedule = self::checkTypes($eventSchedule, $types);
-
-        $this->eventSchedule = $eventSchedule;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\DayOfWeek|null
+     * @return \OpenActive\Enums\SchemaOrg\DayOfWeek|string|null
      */
     public function getByDay()
     {
@@ -254,7 +172,7 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\DayOfWeek|null $byDay
+     * @param \OpenActive\Enums\SchemaOrg\DayOfWeek|string|null $byDay
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -262,12 +180,90 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "\OpenActive\Enums\SchemaOrg\DayOfWeek",
+            "string",
             "null",
         );
 
         $byDay = self::checkTypes($byDay, $types);
 
         $this->byDay = $byDay;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getByMonthDay()
+    {
+        return $this->byMonthDay;
+    }
+
+    /**
+     * @param int|null $byMonthDay
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setByMonthDay($byMonthDay)
+    {
+        $types = array(
+            "int",
+            "null",
+        );
+
+        $byMonthDay = self::checkTypes($byMonthDay, $types);
+
+        $this->byMonthDay = $byMonthDay;
+    }
+
+    /**
+     * @return DateTime|Date|null
+     */
+    public function getExceptDate()
+    {
+        return $this->exceptDate;
+    }
+
+    /**
+     * @param DateTime|Date|null $exceptDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setExceptDate($exceptDate)
+    {
+        $types = array(
+            "DateTime",
+            "Date",
+            "null",
+        );
+
+        $exceptDate = self::checkTypes($exceptDate, $types);
+
+        $this->exceptDate = $exceptDate;
+    }
+
+    /**
+     * @return string|DateInterval|null
+     */
+    public function getRepeatFrequency()
+    {
+        return $this->repeatFrequency;
+    }
+
+    /**
+     * @param string|DateInterval|null $repeatFrequency
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRepeatFrequency($repeatFrequency)
+    {
+        $types = array(
+            "string",
+            "DateInterval",
+            "null",
+        );
+
+        $repeatFrequency = self::checkTypes($repeatFrequency, $types);
+
+        $this->repeatFrequency = $repeatFrequency;
     }
 
 }

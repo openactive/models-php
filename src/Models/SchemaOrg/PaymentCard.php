@@ -17,21 +17,21 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
 
     public static function fieldList() {
         $fields = [
-            "floorLimit" => "floorLimit",
-            "contactlessPayment" => "contactlessPayment",
             "cashBack" => "cashBack",
+            "contactlessPayment" => "contactlessPayment",
+            "floorLimit" => "floorLimit",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A floor limit is the amount of money above which credit card transactions must be authorized.
+     * A cardholder benefit that pays the cardholder a small percentage of their net expenditures.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount
+     * @var float|bool|null
      */
-    protected $floorLimit;
+    protected $cashBack;
 
     /**
      * A secure method for consumers to purchase products or services via debit, credit or smartcards by using RFID or NFC technology.
@@ -42,35 +42,37 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
     protected $contactlessPayment;
 
     /**
-     * A cardholder benefit that pays the cardholder a small percentage of their net expenditures.
+     * A floor limit is the amount of money above which credit card transactions must be authorized.
      *
      *
-     * @var bool|float|null
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount
      */
-    protected $cashBack;
+    protected $floorLimit;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount
+     * @return float|bool|null
      */
-    public function getFloorLimit()
+    public function getCashBack()
     {
-        return $this->floorLimit;
+        return $this->cashBack;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount $floorLimit
+     * @param float|bool|null $cashBack
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setFloorLimit($floorLimit)
+    public function setCashBack($cashBack)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "float",
+            "bool",
+            "null",
         );
 
-        $floorLimit = self::checkTypes($floorLimit, $types);
+        $cashBack = self::checkTypes($cashBack, $types);
 
-        $this->floorLimit = $floorLimit;
+        $this->cashBack = $cashBack;
     }
 
     /**
@@ -99,29 +101,27 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @return bool|float|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount
      */
-    public function getCashBack()
+    public function getFloorLimit()
     {
-        return $this->cashBack;
+        return $this->floorLimit;
     }
 
     /**
-     * @param bool|float|null $cashBack
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount $floorLimit
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCashBack($cashBack)
+    public function setFloorLimit($floorLimit)
     {
         $types = array(
-            "bool",
-            "float",
-            "null",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
         );
 
-        $cashBack = self::checkTypes($cashBack, $types);
+        $floorLimit = self::checkTypes($floorLimit, $types);
 
-        $this->cashBack = $cashBack;
+        $this->floorLimit = $floorLimit;
     }
 
 }

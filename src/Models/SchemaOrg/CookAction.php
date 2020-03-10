@@ -17,21 +17,21 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
 
     public static function fieldList() {
         $fields = [
-            "foodEvent" => "foodEvent",
-            "recipe" => "recipe",
             "foodEstablishment" => "foodEstablishment",
+            "recipe" => "recipe",
+            "foodEvent" => "foodEvent",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A sub property of location. The specific food event where the action occurred.
+     * A sub property of location. The specific food establishment where the action occurred.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\FoodEvent
+     * @var \OpenActive\Models\SchemaOrg\FoodEstablishment|\OpenActive\Models\SchemaOrg\Place
      */
-    protected $foodEvent;
+    protected $foodEstablishment;
 
     /**
      * A sub property of instrument. The recipe/instructions used to perform the action.
@@ -42,35 +42,36 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     protected $recipe;
 
     /**
-     * A sub property of location. The specific food establishment where the action occurred.
+     * A sub property of location. The specific food event where the action occurred.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment
+     * @var \OpenActive\Models\SchemaOrg\FoodEvent
      */
-    protected $foodEstablishment;
+    protected $foodEvent;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\FoodEvent
+     * @return \OpenActive\Models\SchemaOrg\FoodEstablishment|\OpenActive\Models\SchemaOrg\Place
      */
-    public function getFoodEvent()
+    public function getFoodEstablishment()
     {
-        return $this->foodEvent;
+        return $this->foodEstablishment;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\FoodEvent $foodEvent
+     * @param \OpenActive\Models\SchemaOrg\FoodEstablishment|\OpenActive\Models\SchemaOrg\Place $foodEstablishment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setFoodEvent($foodEvent)
+    public function setFoodEstablishment($foodEstablishment)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\FoodEvent",
+            "\OpenActive\Models\SchemaOrg\FoodEstablishment",
+            "\OpenActive\Models\SchemaOrg\Place",
         );
 
-        $foodEvent = self::checkTypes($foodEvent, $types);
+        $foodEstablishment = self::checkTypes($foodEstablishment, $types);
 
-        $this->foodEvent = $foodEvent;
+        $this->foodEstablishment = $foodEstablishment;
     }
 
     /**
@@ -98,28 +99,27 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment
+     * @return \OpenActive\Models\SchemaOrg\FoodEvent
      */
-    public function getFoodEstablishment()
+    public function getFoodEvent()
     {
-        return $this->foodEstablishment;
+        return $this->foodEvent;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment $foodEstablishment
+     * @param \OpenActive\Models\SchemaOrg\FoodEvent $foodEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setFoodEstablishment($foodEstablishment)
+    public function setFoodEvent($foodEvent)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Place",
-            "\OpenActive\Models\SchemaOrg\FoodEstablishment",
+            "\OpenActive\Models\SchemaOrg\FoodEvent",
         );
 
-        $foodEstablishment = self::checkTypes($foodEstablishment, $types);
+        $foodEvent = self::checkTypes($foodEvent, $types);
 
-        $this->foodEstablishment = $foodEstablishment;
+        $this->foodEvent = $foodEvent;
     }
 
 }

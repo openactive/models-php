@@ -17,12 +17,20 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
 
     public static function fieldList() {
         $fields = [
-            "domiciledMortgage" => "domiciledMortgage",
             "loanMortgageMandateAmount" => "loanMortgageMandateAmount",
+            "domiciledMortgage" => "domiciledMortgage",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Amount of mortgage mandate that can be converted into a proper mortgage at a later stage.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount
+     */
+    protected $loanMortgageMandateAmount;
 
     /**
      * Whether borrower is a resident of the jurisdiction where the property is located.
@@ -33,12 +41,28 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
     protected $domiciledMortgage;
 
     /**
-     * Amount of mortgage mandate that can be converted into a proper mortgage at a later stage.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount
      */
-    protected $loanMortgageMandateAmount;
+    public function getLoanMortgageMandateAmount()
+    {
+        return $this->loanMortgageMandateAmount;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount $loanMortgageMandateAmount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLoanMortgageMandateAmount($loanMortgageMandateAmount)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+        );
+
+        $loanMortgageMandateAmount = self::checkTypes($loanMortgageMandateAmount, $types);
+
+        $this->loanMortgageMandateAmount = $loanMortgageMandateAmount;
+    }
 
     /**
      * @return bool|null
@@ -63,30 +87,6 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
         $domiciledMortgage = self::checkTypes($domiciledMortgage, $types);
 
         $this->domiciledMortgage = $domiciledMortgage;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount
-     */
-    public function getLoanMortgageMandateAmount()
-    {
-        return $this->loanMortgageMandateAmount;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount $loanMortgageMandateAmount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLoanMortgageMandateAmount($loanMortgageMandateAmount)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-        );
-
-        $loanMortgageMandateAmount = self::checkTypes($loanMortgageMandateAmount, $types);
-
-        $this->loanMortgageMandateAmount = $loanMortgageMandateAmount;
     }
 
 }

@@ -17,22 +17,22 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
 
     public static function fieldList() {
         $fields = [
-            "startDate" => "startDate",
-            "amount" => "amount",
-            "currency" => "currency",
             "endDate" => "endDate",
+            "amount" => "amount",
+            "startDate" => "startDate",
+            "currency" => "currency",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
+     * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var DateTime|null
+     * @var Date|DateTime|null
      */
-    protected $startDate;
+    protected $endDate;
 
     /**
      * The amount of money.
@@ -41,6 +41,14 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
      * @var float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
      */
     protected $amount;
+
+    /**
+     * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
+     *
+     *
+     * @var DateTime|Date|null
+     */
+    protected $startDate;
 
     /**
      * The currency in which the monetary amount is expressed.<br/><br/>
@@ -53,36 +61,29 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     protected $currency;
 
     /**
-     * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
-     *
-     *
-     * @var DateTime|null
+     * @return Date|DateTime|null
      */
-    protected $endDate;
-
-    /**
-     * @return DateTime|null
-     */
-    public function getStartDate()
+    public function getEndDate()
     {
-        return $this->startDate;
+        return $this->endDate;
     }
 
     /**
-     * @param DateTime|null $startDate
+     * @param Date|DateTime|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setStartDate($startDate)
+    public function setEndDate($endDate)
     {
         $types = array(
+            "Date",
             "DateTime",
             "null",
         );
 
-        $startDate = self::checkTypes($startDate, $types);
+        $endDate = self::checkTypes($endDate, $types);
 
-        $this->startDate = $startDate;
+        $this->endDate = $endDate;
     }
 
     /**
@@ -112,6 +113,32 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     }
 
     /**
+     * @return DateTime|Date|null
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @param DateTime|Date|null $startDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setStartDate($startDate)
+    {
+        $types = array(
+            "DateTime",
+            "Date",
+            "null",
+        );
+
+        $startDate = self::checkTypes($startDate, $types);
+
+        $this->startDate = $startDate;
+    }
+
+    /**
      * @return string
      */
     public function getCurrency()
@@ -133,31 +160,6 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
         $currency = self::checkTypes($currency, $types);
 
         $this->currency = $currency;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
-    /**
-     * @param DateTime|null $endDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEndDate($endDate)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $endDate = self::checkTypes($endDate, $types);
-
-        $this->endDate = $endDate;
     }
 
 }

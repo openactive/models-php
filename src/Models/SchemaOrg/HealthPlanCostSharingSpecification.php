@@ -17,15 +17,23 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
 
     public static function fieldList() {
         $fields = [
-            "healthPlanCopayOption" => "healthPlanCopayOption",
-            "healthPlanCopay" => "healthPlanCopay",
-            "healthPlanCoinsuranceRate" => "healthPlanCoinsuranceRate",
-            "healthPlanCoinsuranceOption" => "healthPlanCoinsuranceOption",
             "healthPlanPharmacyCategory" => "healthPlanPharmacyCategory",
+            "healthPlanCopayOption" => "healthPlanCopayOption",
+            "healthPlanCoinsuranceOption" => "healthPlanCoinsuranceOption",
+            "healthPlanCoinsuranceRate" => "healthPlanCoinsuranceRate",
+            "healthPlanCopay" => "healthPlanCopay",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The category or type of pharmacy associated with this cost sharing.
+     *
+     *
+     * @var string
+     */
+    protected $healthPlanPharmacyCategory;
 
     /**
      * Whether the copay is before or after deductible, etc. TODO: Is this a closed set?
@@ -36,12 +44,12 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
     protected $healthPlanCopayOption;
 
     /**
-     * Whether The copay amount.
+     * Whether the coinsurance applies before or after deductible, etc. TODO: Is this a closed set?
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PriceSpecification
+     * @var string
      */
-    protected $healthPlanCopay;
+    protected $healthPlanCoinsuranceOption;
 
     /**
      * Whether The rate of coinsurance expressed as a number between 0.0 and 1.0.
@@ -52,20 +60,36 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
     protected $healthPlanCoinsuranceRate;
 
     /**
-     * Whether the coinsurance applies before or after deductible, etc. TODO: Is this a closed set?
+     * Whether The copay amount.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\PriceSpecification
      */
-    protected $healthPlanCoinsuranceOption;
+    protected $healthPlanCopay;
 
     /**
-     * The category or type of pharmacy associated with this cost sharing.
-     *
-     *
-     * @var string
+     * @return string
      */
-    protected $healthPlanPharmacyCategory;
+    public function getHealthPlanPharmacyCategory()
+    {
+        return $this->healthPlanPharmacyCategory;
+    }
+
+    /**
+     * @param string $healthPlanPharmacyCategory
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHealthPlanPharmacyCategory($healthPlanPharmacyCategory)
+    {
+        $types = array(
+            "string",
+        );
+
+        $healthPlanPharmacyCategory = self::checkTypes($healthPlanPharmacyCategory, $types);
+
+        $this->healthPlanPharmacyCategory = $healthPlanPharmacyCategory;
+    }
 
     /**
      * @return string
@@ -92,27 +116,27 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PriceSpecification
+     * @return string
      */
-    public function getHealthPlanCopay()
+    public function getHealthPlanCoinsuranceOption()
     {
-        return $this->healthPlanCopay;
+        return $this->healthPlanCoinsuranceOption;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PriceSpecification $healthPlanCopay
+     * @param string $healthPlanCoinsuranceOption
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHealthPlanCopay($healthPlanCopay)
+    public function setHealthPlanCoinsuranceOption($healthPlanCoinsuranceOption)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\PriceSpecification",
+            "string",
         );
 
-        $healthPlanCopay = self::checkTypes($healthPlanCopay, $types);
+        $healthPlanCoinsuranceOption = self::checkTypes($healthPlanCoinsuranceOption, $types);
 
-        $this->healthPlanCopay = $healthPlanCopay;
+        $this->healthPlanCoinsuranceOption = $healthPlanCoinsuranceOption;
     }
 
     /**
@@ -141,51 +165,27 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\PriceSpecification
      */
-    public function getHealthPlanCoinsuranceOption()
+    public function getHealthPlanCopay()
     {
-        return $this->healthPlanCoinsuranceOption;
+        return $this->healthPlanCopay;
     }
 
     /**
-     * @param string $healthPlanCoinsuranceOption
+     * @param \OpenActive\Models\SchemaOrg\PriceSpecification $healthPlanCopay
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHealthPlanCoinsuranceOption($healthPlanCoinsuranceOption)
+    public function setHealthPlanCopay($healthPlanCopay)
     {
         $types = array(
-            "string",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
         );
 
-        $healthPlanCoinsuranceOption = self::checkTypes($healthPlanCoinsuranceOption, $types);
+        $healthPlanCopay = self::checkTypes($healthPlanCopay, $types);
 
-        $this->healthPlanCoinsuranceOption = $healthPlanCoinsuranceOption;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHealthPlanPharmacyCategory()
-    {
-        return $this->healthPlanPharmacyCategory;
-    }
-
-    /**
-     * @param string $healthPlanPharmacyCategory
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHealthPlanPharmacyCategory($healthPlanPharmacyCategory)
-    {
-        $types = array(
-            "string",
-        );
-
-        $healthPlanPharmacyCategory = self::checkTypes($healthPlanPharmacyCategory, $types);
-
-        $this->healthPlanPharmacyCategory = $healthPlanPharmacyCategory;
+        $this->healthPlanCopay = $healthPlanCopay;
     }
 
 }

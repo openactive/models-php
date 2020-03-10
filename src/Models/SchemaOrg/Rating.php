@@ -17,56 +17,16 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "ratingExplanation" => "ratingExplanation",
-            "reviewAspect" => "reviewAspect",
-            "worstRating" => "worstRating",
-            "author" => "author",
-            "bestRating" => "bestRating",
             "ratingValue" => "ratingValue",
+            "bestRating" => "bestRating",
+            "author" => "author",
+            "worstRating" => "worstRating",
+            "reviewAspect" => "reviewAspect",
+            "ratingExplanation" => "ratingExplanation",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A short explanation (e.g. one to two sentences) providing background context and other information that led to the conclusion expressed in the rating. This is particularly applicable to ratings associated with "fact check" markup using <a class="localLink" href="https://schema.org/ClaimReview">ClaimReview</a>.
-     *
-     *
-     * @var string
-     */
-    protected $ratingExplanation;
-
-    /**
-     * This Review or Rating is relevant to this part or facet of the itemReviewed.
-     *
-     *
-     * @var string
-     */
-    protected $reviewAspect;
-
-    /**
-     * The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed.
-     *
-     *
-     * @var string|float|null
-     */
-    protected $worstRating;
-
-    /**
-     * The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    protected $author;
-
-    /**
-     * The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed.
-     *
-     *
-     * @var string|float|null
-     */
-    protected $bestRating;
 
     /**
      * The rating for the content.<br/><br/>
@@ -85,51 +45,120 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     protected $ratingValue;
 
     /**
-     * @return string
+     * The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed.
+     *
+     *
+     * @var float|string|null
      */
-    public function getRatingExplanation()
+    protected $bestRating;
+
+    /**
+     * The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     */
+    protected $author;
+
+    /**
+     * The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed.
+     *
+     *
+     * @var string|float|null
+     */
+    protected $worstRating;
+
+    /**
+     * This Review or Rating is relevant to this part or facet of the itemReviewed.
+     *
+     *
+     * @var string
+     */
+    protected $reviewAspect;
+
+    /**
+     * A short explanation (e.g. one to two sentences) providing background context and other information that led to the conclusion expressed in the rating. This is particularly applicable to ratings associated with "fact check" markup using <a class="localLink" href="https://schema.org/ClaimReview">ClaimReview</a>.
+     *
+     *
+     * @var string
+     */
+    protected $ratingExplanation;
+
+    /**
+     * @return string|float|null
+     */
+    public function getRatingValue()
     {
-        return $this->ratingExplanation;
+        return $this->ratingValue;
     }
 
     /**
-     * @param string $ratingExplanation
+     * @param string|float|null $ratingValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRatingExplanation($ratingExplanation)
+    public function setRatingValue($ratingValue)
     {
         $types = array(
             "string",
+            "float",
+            "null",
         );
 
-        $ratingExplanation = self::checkTypes($ratingExplanation, $types);
+        $ratingValue = self::checkTypes($ratingValue, $types);
 
-        $this->ratingExplanation = $ratingExplanation;
+        $this->ratingValue = $ratingValue;
     }
 
     /**
-     * @return string
+     * @return float|string|null
      */
-    public function getReviewAspect()
+    public function getBestRating()
     {
-        return $this->reviewAspect;
+        return $this->bestRating;
     }
 
     /**
-     * @param string $reviewAspect
+     * @param float|string|null $bestRating
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setReviewAspect($reviewAspect)
+    public function setBestRating($bestRating)
     {
         $types = array(
+            "float",
             "string",
+            "null",
         );
 
-        $reviewAspect = self::checkTypes($reviewAspect, $types);
+        $bestRating = self::checkTypes($bestRating, $types);
 
-        $this->reviewAspect = $reviewAspect;
+        $this->bestRating = $bestRating;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $author
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAuthor($author)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+        );
+
+        $author = self::checkTypes($author, $types);
+
+        $this->author = $author;
     }
 
     /**
@@ -159,80 +188,51 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @return string
      */
-    public function getAuthor()
+    public function getReviewAspect()
     {
-        return $this->author;
+        return $this->reviewAspect;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $author
+     * @param string $reviewAspect
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAuthor($author)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-        );
-
-        $author = self::checkTypes($author, $types);
-
-        $this->author = $author;
-    }
-
-    /**
-     * @return string|float|null
-     */
-    public function getBestRating()
-    {
-        return $this->bestRating;
-    }
-
-    /**
-     * @param string|float|null $bestRating
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBestRating($bestRating)
+    public function setReviewAspect($reviewAspect)
     {
         $types = array(
             "string",
-            "float",
-            "null",
         );
 
-        $bestRating = self::checkTypes($bestRating, $types);
+        $reviewAspect = self::checkTypes($reviewAspect, $types);
 
-        $this->bestRating = $bestRating;
+        $this->reviewAspect = $reviewAspect;
     }
 
     /**
-     * @return string|float|null
+     * @return string
      */
-    public function getRatingValue()
+    public function getRatingExplanation()
     {
-        return $this->ratingValue;
+        return $this->ratingExplanation;
     }
 
     /**
-     * @param string|float|null $ratingValue
+     * @param string $ratingExplanation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRatingValue($ratingValue)
+    public function setRatingExplanation($ratingExplanation)
     {
         $types = array(
             "string",
-            "float",
-            "null",
         );
 
-        $ratingValue = self::checkTypes($ratingValue, $types);
+        $ratingExplanation = self::checkTypes($ratingExplanation, $types);
 
-        $this->ratingValue = $ratingValue;
+        $this->ratingExplanation = $ratingExplanation;
     }
 
 }

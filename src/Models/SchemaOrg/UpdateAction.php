@@ -17,8 +17,8 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
 
     public static function fieldList() {
         $fields = [
-            "targetCollection" => "targetCollection",
             "collection" => "collection",
+            "targetCollection" => "targetCollection",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -30,7 +30,7 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
      *
      * @var \OpenActive\Models\SchemaOrg\Thing
      */
-    protected $targetCollection;
+    protected $collection;
 
     /**
      * A sub property of object. The collection target of the action.
@@ -38,31 +38,7 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
      *
      * @var \OpenActive\Models\SchemaOrg\Thing
      */
-    protected $collection;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getTargetCollection()
-    {
-        return $this->targetCollection;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $targetCollection
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTargetCollection($targetCollection)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
-        );
-
-        $targetCollection = self::checkTypes($targetCollection, $types);
-
-        $this->targetCollection = $targetCollection;
-    }
+    protected $targetCollection;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing
@@ -86,6 +62,30 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
         $collection = self::checkTypes($collection, $types);
 
         $this->collection = $collection;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing
+     */
+    public function getTargetCollection()
+    {
+        return $this->targetCollection;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing $targetCollection
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTargetCollection($targetCollection)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Thing",
+        );
+
+        $targetCollection = self::checkTypes($targetCollection, $types);
+
+        $this->targetCollection = $targetCollection;
     }
 
 }

@@ -17,29 +17,13 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
 
     public static function fieldList() {
         $fields = [
-            "subtitleLanguage" => "subtitleLanguage",
-            "countryOfOrigin" => "countryOfOrigin",
             "partOfTVSeries" => "partOfTVSeries",
+            "countryOfOrigin" => "countryOfOrigin",
+            "subtitleLanguage" => "subtitleLanguage",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Languages in which subtitles/captions are available, in <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard format</a>.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Language
-     */
-    protected $subtitleLanguage;
-
-    /**
-     * The country of the principal offices of the production company or individual responsible for the movie or program.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Country
-     */
-    protected $countryOfOrigin;
 
     /**
      * The TV series to which this episode or season belongs.
@@ -50,28 +34,43 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     protected $partOfTVSeries;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Language
+     * The country of the principal offices of the production company or individual responsible for the movie or program.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Country
      */
-    public function getSubtitleLanguage()
+    protected $countryOfOrigin;
+
+    /**
+     * Languages in which subtitles/captions are available, in <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard format</a>.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Language|string
+     */
+    protected $subtitleLanguage;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\TVSeries
+     */
+    public function getPartOfTVSeries()
     {
-        return $this->subtitleLanguage;
+        return $this->partOfTVSeries;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Language $subtitleLanguage
+     * @param \OpenActive\Models\SchemaOrg\TVSeries $partOfTVSeries
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSubtitleLanguage($subtitleLanguage)
+    public function setPartOfTVSeries($partOfTVSeries)
     {
         $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\Language",
+            "\OpenActive\Models\SchemaOrg\TVSeries",
         );
 
-        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
+        $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
 
-        $this->subtitleLanguage = $subtitleLanguage;
+        $this->partOfTVSeries = $partOfTVSeries;
     }
 
     /**
@@ -99,27 +98,28 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\TVSeries
+     * @return \OpenActive\Models\SchemaOrg\Language|string
      */
-    public function getPartOfTVSeries()
+    public function getSubtitleLanguage()
     {
-        return $this->partOfTVSeries;
+        return $this->subtitleLanguage;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\TVSeries $partOfTVSeries
+     * @param \OpenActive\Models\SchemaOrg\Language|string $subtitleLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPartOfTVSeries($partOfTVSeries)
+    public function setSubtitleLanguage($subtitleLanguage)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\TVSeries",
+            "\OpenActive\Models\SchemaOrg\Language",
+            "string",
         );
 
-        $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
+        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
 
-        $this->partOfTVSeries = $partOfTVSeries;
+        $this->subtitleLanguage = $subtitleLanguage;
     }
 
 }

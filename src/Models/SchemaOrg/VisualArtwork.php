@@ -17,66 +17,26 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "depth" => "depth",
-            "surface" => "surface",
-            "width" => "width",
-            "artEdition" => "artEdition",
-            "artworkSurface" => "artworkSurface",
-            "artform" => "artform",
-            "artMedium" => "artMedium",
             "height" => "height",
+            "artMedium" => "artMedium",
+            "artform" => "artform",
+            "artworkSurface" => "artworkSurface",
+            "artEdition" => "artEdition",
+            "width" => "width",
+            "surface" => "surface",
+            "depth" => "depth",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The depth of the item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
-     */
-    protected $depth;
-
-    /**
-     * A material used as a surface in some artwork, e.g. Canvas, Paper, Wood, Board, etc.
-     *
-     *
-     * @var string
-     */
-    protected $surface;
-
-    /**
-     * The width of the item.
+     * The height of the item.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    protected $width;
-
-    /**
-     * The number of copies when multiple copies of a piece of artwork are produced - e.g. for a limited edition of 20 prints, 'artEdition' refers to the total number of copies (in this example "20").
-     *
-     *
-     * @var int|string|null
-     */
-    protected $artEdition;
-
-    /**
-     * The supporting materials for the artwork, e.g. Canvas, Paper, Wood, Board, etc.
-     *
-     *
-     * @var string
-     */
-    protected $artworkSurface;
-
-    /**
-     * e.g. Painting, Drawing, Sculpture, Print, Photograph, Assemblage, Collage, etc.
-     *
-     *
-     * @var string
-     */
-    protected $artform;
+    protected $height;
 
     /**
      * The material used. (e.g. Oil, Watercolour, Acrylic, Linoprint, Marble, Cyanotype, Digital, Lithograph, DryPoint, Intaglio, Pastel, Woodcut, Pencil, Mixed Media, etc.)
@@ -87,135 +47,100 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $artMedium;
 
     /**
-     * The height of the item.
+     * e.g. Painting, Drawing, Sculpture, Print, Photograph, Assemblage, Collage, etc.
+     *
+     *
+     * @var string
+     */
+    protected $artform;
+
+    /**
+     * The supporting materials for the artwork, e.g. Canvas, Paper, Wood, Board, etc.
+     *
+     *
+     * @var string
+     */
+    protected $artworkSurface;
+
+    /**
+     * The number of copies when multiple copies of a piece of artwork are produced - e.g. for a limited edition of 20 prints, 'artEdition' refers to the total number of copies (in this example "20").
+     *
+     *
+     * @var string|int|null
+     */
+    protected $artEdition;
+
+    /**
+     * The width of the item.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
-    protected $height;
+    protected $width;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * A material used as a surface in some artwork, e.g. Canvas, Paper, Wood, Board, etc.
+     *
+     *
+     * @var string
      */
-    public function getDepth()
-    {
-        return $this->depth;
-    }
+    protected $surface;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $depth
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The depth of the item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
-    public function setDepth($depth)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "\OpenActive\Models\SchemaOrg\Distance",
-        );
-
-        $depth = self::checkTypes($depth, $types);
-
-        $this->depth = $depth;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSurface()
-    {
-        return $this->surface;
-    }
-
-    /**
-     * @param string $surface
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSurface($surface)
-    {
-        $types = array(
-            "string",
-        );
-
-        $surface = self::checkTypes($surface, $types);
-
-        $this->surface = $surface;
-    }
+    protected $depth;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    public function getWidth()
+    public function getHeight()
     {
-        return $this->width;
+        return $this->height;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue $width
+     * @param \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue $height
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setWidth($width)
+    public function setHeight($height)
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\Distance",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
-        $width = self::checkTypes($width, $types);
+        $height = self::checkTypes($height, $types);
 
-        $this->width = $width;
-    }
-
-    /**
-     * @return int|string|null
-     */
-    public function getArtEdition()
-    {
-        return $this->artEdition;
-    }
-
-    /**
-     * @param int|string|null $artEdition
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setArtEdition($artEdition)
-    {
-        $types = array(
-            "int",
-            "string",
-            "null",
-        );
-
-        $artEdition = self::checkTypes($artEdition, $types);
-
-        $this->artEdition = $artEdition;
+        $this->height = $height;
     }
 
     /**
      * @return string
      */
-    public function getArtworkSurface()
+    public function getArtMedium()
     {
-        return $this->artworkSurface;
+        return $this->artMedium;
     }
 
     /**
-     * @param string $artworkSurface
+     * @param string $artMedium
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setArtworkSurface($artworkSurface)
+    public function setArtMedium($artMedium)
     {
         $types = array(
             "string",
         );
 
-        $artworkSurface = self::checkTypes($artworkSurface, $types);
+        $artMedium = self::checkTypes($artMedium, $types);
 
-        $this->artworkSurface = $artworkSurface;
+        $this->artMedium = $artMedium;
     }
 
     /**
@@ -245,50 +170,125 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @return string
      */
-    public function getArtMedium()
+    public function getArtworkSurface()
     {
-        return $this->artMedium;
+        return $this->artworkSurface;
     }
 
     /**
-     * @param string $artMedium
+     * @param string $artworkSurface
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setArtMedium($artMedium)
+    public function setArtworkSurface($artworkSurface)
     {
         $types = array(
             "string",
         );
 
-        $artMedium = self::checkTypes($artMedium, $types);
+        $artworkSurface = self::checkTypes($artworkSurface, $types);
 
-        $this->artMedium = $artMedium;
+        $this->artworkSurface = $artworkSurface;
+    }
+
+    /**
+     * @return string|int|null
+     */
+    public function getArtEdition()
+    {
+        return $this->artEdition;
+    }
+
+    /**
+     * @param string|int|null $artEdition
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setArtEdition($artEdition)
+    {
+        $types = array(
+            "string",
+            "int",
+            "null",
+        );
+
+        $artEdition = self::checkTypes($artEdition, $types);
+
+        $this->artEdition = $artEdition;
     }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
-    public function getHeight()
+    public function getWidth()
     {
-        return $this->height;
+        return $this->width;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $height
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $width
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHeight($height)
+    public function setWidth($width)
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "\OpenActive\Models\SchemaOrg\Distance",
         );
 
-        $height = self::checkTypes($height, $types);
+        $width = self::checkTypes($width, $types);
 
-        $this->height = $height;
+        $this->width = $width;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSurface()
+    {
+        return $this->surface;
+    }
+
+    /**
+     * @param string $surface
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSurface($surface)
+    {
+        $types = array(
+            "string",
+        );
+
+        $surface = self::checkTypes($surface, $types);
+
+        $this->surface = $surface;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     */
+    public function getDepth()
+    {
+        return $this->depth;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $depth
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDepth($depth)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\Distance",
+        );
+
+        $depth = self::checkTypes($depth, $types);
+
+        $this->depth = $depth;
     }
 
 }

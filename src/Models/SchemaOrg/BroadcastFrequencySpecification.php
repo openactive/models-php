@@ -17,29 +17,13 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
 
     public static function fieldList() {
         $fields = [
-            "broadcastSignalModulation" => "broadcastSignalModulation",
-            "broadcastSubChannel" => "broadcastSubChannel",
             "broadcastFrequencyValue" => "broadcastFrequencyValue",
+            "broadcastSubChannel" => "broadcastSubChannel",
+            "broadcastSignalModulation" => "broadcastSignalModulation",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The modulation (e.g. FM, AM, etc) used by a particular broadcast service
-     *
-     *
-     * @var string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
-     */
-    protected $broadcastSignalModulation;
-
-    /**
-     * The subchannel used for the broadcast.
-     *
-     *
-     * @var string
-     */
-    protected $broadcastSubChannel;
 
     /**
      * The frequency in MHz for a particular broadcast.
@@ -50,29 +34,45 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     protected $broadcastFrequencyValue;
 
     /**
-     * @return string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
+     * The subchannel used for the broadcast.
+     *
+     *
+     * @var string
      */
-    public function getBroadcastSignalModulation()
+    protected $broadcastSubChannel;
+
+    /**
+     * The modulation (e.g. FM, AM, etc) used by a particular broadcast service
+     *
+     *
+     * @var string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
+     */
+    protected $broadcastSignalModulation;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     */
+    public function getBroadcastFrequencyValue()
     {
-        return $this->broadcastSignalModulation;
+        return $this->broadcastFrequencyValue;
     }
 
     /**
-     * @param string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null $broadcastSignalModulation
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $broadcastFrequencyValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBroadcastSignalModulation($broadcastSignalModulation)
+    public function setBroadcastFrequencyValue($broadcastFrequencyValue)
     {
         $types = array(
-            "string",
-            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "float",
             "null",
         );
 
-        $broadcastSignalModulation = self::checkTypes($broadcastSignalModulation, $types);
+        $broadcastFrequencyValue = self::checkTypes($broadcastFrequencyValue, $types);
 
-        $this->broadcastSignalModulation = $broadcastSignalModulation;
+        $this->broadcastFrequencyValue = $broadcastFrequencyValue;
     }
 
     /**
@@ -100,29 +100,29 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @return string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
      */
-    public function getBroadcastFrequencyValue()
+    public function getBroadcastSignalModulation()
     {
-        return $this->broadcastFrequencyValue;
+        return $this->broadcastSignalModulation;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $broadcastFrequencyValue
+     * @param string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null $broadcastSignalModulation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBroadcastFrequencyValue($broadcastFrequencyValue)
+    public function setBroadcastSignalModulation($broadcastSignalModulation)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "float",
+            "string",
+            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
             "null",
         );
 
-        $broadcastFrequencyValue = self::checkTypes($broadcastFrequencyValue, $types);
+        $broadcastSignalModulation = self::checkTypes($broadcastSignalModulation, $types);
 
-        $this->broadcastFrequencyValue = $broadcastFrequencyValue;
+        $this->broadcastSignalModulation = $broadcastSignalModulation;
     }
 
 }

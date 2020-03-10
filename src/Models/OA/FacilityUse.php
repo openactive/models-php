@@ -34,13 +34,13 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
             "potentialAction" => "potentialAction",
             "provider" => "provider",
             "url" => "url",
-            "isWheelchairAccessible" => "beta:isWheelchairAccessible",
-            "facilitySetting" => "beta:facilitySetting",
-            "facilityType" => "beta:facilityType",
-            "offerValidityPeriod" => "beta:offerValidityPeriod",
-            "sportsActivityLocation" => "beta:sportsActivityLocation",
-            "video" => "beta:video",
             "formattedDescription" => "beta:formattedDescription",
+            "isWheelchairAccessible" => "beta:isWheelchairAccessible",
+            "video" => "beta:video",
+            "sportsActivityLocation" => "beta:sportsActivityLocation",
+            "offerValidityPeriod" => "beta:offerValidityPeriod",
+            "facilityType" => "beta:facilityType",
+            "facilitySetting" => "beta:facilitySetting",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -316,9 +316,16 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     *
+     *
+     * @var string
+     */
+    protected $formattedDescription;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * A property that details whether the event is suitable for wheelchair access. Placed on Event as this field could be used to detail whether the Event is suitable, as well as the Place.
-     * 
-     * If you are using this property, please join the discussion at proposal [#166](https://github.com/openactive/modelling-opportunity-data/issues/166).
      *
      *
      * @var bool|null
@@ -327,31 +334,25 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * Whether the event or facility is indoor or outdoor.
-     * 
-     * If you are using this property, please join the discussion at proposal [#1](https://github.com/openactive/facility-types/issues/1).
+     * An related video object.
      *
      *
-     * @var \OpenActive\Enums\FacilitySettingType|null
+     * @var \OpenActive\Models\SchemaOrg\VideoObject
      */
-    protected $facilitySetting;
+    protected $video;
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * The type of facility in use.
-     * 
-     * If you are using this property, please join the discussion at proposal [#1](https://github.com/openactive/facility-types/issues/1).
+     * Internal location of the event, e.g. Court 1
      *
      *
-     * @var \OpenActive\Models\Concept[]
+     * @var \OpenActive\Models\SportsActivityLocation
      */
-    protected $facilityType;
+    protected $sportsActivityLocation;
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * Duration before the event for which the associated Offers are valid
-     * 
-     * If you are using this property, please join the discussion at proposal [#204](https://github.com/openactive/modelling-opportunity-data/issues/204).
      *
      *
      * @var DateInterval|null
@@ -360,36 +361,21 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * Internal location of the event, e.g. Court 1
-     * 
-     * If you are using this property, please join the discussion at proposal [#110](https://github.com/openactive/modelling-opportunity-data/issues/110).
+     * The type of facility in use.
      *
      *
-     * @var \OpenActive\Models\SportsActivityLocation[]
+     * @var \OpenActive\Models\Concept
      */
-    protected $sportsActivityLocation;
+    protected $facilityType;
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * An related video object.
-     * 
-     * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
+     * Whether the event or facility is indoor or outdoor.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\VideoObject[]
+     * @var \OpenActive\Enums\FacilitySettingType|null
      */
-    protected $video;
-
-    /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
-     * 
-     * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
-     *
-     *
-     * @var string
-     */
-    protected $formattedDescription;
+    protected $facilitySetting;
 
     /**
      * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
@@ -805,6 +791,30 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
+     * @return string
+     */
+    public function getFormattedDescription()
+    {
+        return $this->formattedDescription;
+    }
+
+    /**
+     * @param string $formattedDescription
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFormattedDescription($formattedDescription)
+    {
+        $types = array(
+            "string",
+        );
+
+        $formattedDescription = self::checkTypes($formattedDescription, $types);
+
+        $this->formattedDescription = $formattedDescription;
+    }
+
+    /**
      * @return bool|null
      */
     public function getIsWheelchairAccessible()
@@ -830,52 +840,51 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Enums\FacilitySettingType|null
+     * @return \OpenActive\Models\SchemaOrg\VideoObject
      */
-    public function getFacilitySetting()
+    public function getVideo()
     {
-        return $this->facilitySetting;
+        return $this->video;
     }
 
     /**
-     * @param \OpenActive\Enums\FacilitySettingType|null $facilitySetting
+     * @param \OpenActive\Models\SchemaOrg\VideoObject $video
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setFacilitySetting($facilitySetting)
+    public function setVideo($video)
     {
         $types = array(
-            "\OpenActive\Enums\FacilitySettingType",
-            "null",
+            "\OpenActive\Models\SchemaOrg\VideoObject",
         );
 
-        $facilitySetting = self::checkTypes($facilitySetting, $types);
+        $video = self::checkTypes($video, $types);
 
-        $this->facilitySetting = $facilitySetting;
+        $this->video = $video;
     }
 
     /**
-     * @return \OpenActive\Models\Concept[]
+     * @return \OpenActive\Models\SportsActivityLocation
      */
-    public function getFacilityType()
+    public function getSportsActivityLocation()
     {
-        return $this->facilityType;
+        return $this->sportsActivityLocation;
     }
 
     /**
-     * @param \OpenActive\Models\Concept[] $facilityType
+     * @param \OpenActive\Models\SportsActivityLocation $sportsActivityLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setFacilityType($facilityType)
+    public function setSportsActivityLocation($sportsActivityLocation)
     {
         $types = array(
-            "\OpenActive\Models\Concept[]",
+            "\OpenActive\Models\SportsActivityLocation",
         );
 
-        $facilityType = self::checkTypes($facilityType, $types);
+        $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);
 
-        $this->facilityType = $facilityType;
+        $this->sportsActivityLocation = $sportsActivityLocation;
     }
 
     /**
@@ -904,75 +913,52 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\SportsActivityLocation[]
+     * @return \OpenActive\Models\Concept
      */
-    public function getSportsActivityLocation()
+    public function getFacilityType()
     {
-        return $this->sportsActivityLocation;
+        return $this->facilityType;
     }
 
     /**
-     * @param \OpenActive\Models\SportsActivityLocation[] $sportsActivityLocation
+     * @param \OpenActive\Models\Concept $facilityType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSportsActivityLocation($sportsActivityLocation)
+    public function setFacilityType($facilityType)
     {
         $types = array(
-            "\OpenActive\Models\SportsActivityLocation[]",
+            "\OpenActive\Models\Concept",
         );
 
-        $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);
+        $facilityType = self::checkTypes($facilityType, $types);
 
-        $this->sportsActivityLocation = $sportsActivityLocation;
+        $this->facilityType = $facilityType;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\VideoObject[]
+     * @return \OpenActive\Enums\FacilitySettingType|null
      */
-    public function getVideo()
+    public function getFacilitySetting()
     {
-        return $this->video;
+        return $this->facilitySetting;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\VideoObject[] $video
+     * @param \OpenActive\Enums\FacilitySettingType|null $facilitySetting
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setVideo($video)
+    public function setFacilitySetting($facilitySetting)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\VideoObject[]",
+            "\OpenActive\Enums\FacilitySettingType",
+            "null",
         );
 
-        $video = self::checkTypes($video, $types);
+        $facilitySetting = self::checkTypes($facilitySetting, $types);
 
-        $this->video = $video;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFormattedDescription()
-    {
-        return $this->formattedDescription;
-    }
-
-    /**
-     * @param string $formattedDescription
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFormattedDescription($formattedDescription)
-    {
-        $types = array(
-            "string",
-        );
-
-        $formattedDescription = self::checkTypes($formattedDescription, $types);
-
-        $this->formattedDescription = $formattedDescription;
+        $this->facilitySetting = $facilitySetting;
     }
 
 }

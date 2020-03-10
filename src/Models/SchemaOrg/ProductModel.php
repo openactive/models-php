@@ -17,29 +17,13 @@ class ProductModel extends \OpenActive\Models\SchemaOrg\Product
 
     public static function fieldList() {
         $fields = [
-            "isVariantOf" => "isVariantOf",
-            "successorOf" => "successorOf",
             "predecessorOf" => "predecessorOf",
+            "successorOf" => "successorOf",
+            "isVariantOf" => "isVariantOf",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A pointer to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ProductModel
-     */
-    protected $isVariantOf;
-
-    /**
-     * A pointer from a newer variant of a product  to its previous, often discontinued predecessor.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ProductModel
-     */
-    protected $successorOf;
 
     /**
      * A pointer from a previous, often discontinued variant of the product to its newer variant.
@@ -50,27 +34,43 @@ class ProductModel extends \OpenActive\Models\SchemaOrg\Product
     protected $predecessorOf;
 
     /**
+     * A pointer from a newer variant of a product  to its previous, often discontinued predecessor.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ProductModel
+     */
+    protected $successorOf;
+
+    /**
+     * A pointer to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ProductModel
+     */
+    protected $isVariantOf;
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\ProductModel
      */
-    public function getIsVariantOf()
+    public function getPredecessorOf()
     {
-        return $this->isVariantOf;
+        return $this->predecessorOf;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ProductModel $isVariantOf
+     * @param \OpenActive\Models\SchemaOrg\ProductModel $predecessorOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIsVariantOf($isVariantOf)
+    public function setPredecessorOf($predecessorOf)
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\ProductModel",
         );
 
-        $isVariantOf = self::checkTypes($isVariantOf, $types);
+        $predecessorOf = self::checkTypes($predecessorOf, $types);
 
-        $this->isVariantOf = $isVariantOf;
+        $this->predecessorOf = $predecessorOf;
     }
 
     /**
@@ -100,25 +100,25 @@ class ProductModel extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @return \OpenActive\Models\SchemaOrg\ProductModel
      */
-    public function getPredecessorOf()
+    public function getIsVariantOf()
     {
-        return $this->predecessorOf;
+        return $this->isVariantOf;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ProductModel $predecessorOf
+     * @param \OpenActive\Models\SchemaOrg\ProductModel $isVariantOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPredecessorOf($predecessorOf)
+    public function setIsVariantOf($isVariantOf)
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\ProductModel",
         );
 
-        $predecessorOf = self::checkTypes($predecessorOf, $types);
+        $isVariantOf = self::checkTypes($isVariantOf, $types);
 
-        $this->predecessorOf = $predecessorOf;
+        $this->isVariantOf = $isVariantOf;
     }
 
 }

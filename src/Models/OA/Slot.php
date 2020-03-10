@@ -541,7 +541,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * "startDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var DateTime|null
+     * @var Date|DateTime|null
      */
     protected $startDate;
 
@@ -553,7 +553,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * "endDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var DateTime|null
+     * @var Date|DateTime|null
      */
     protected $endDate;
 
@@ -590,11 +590,9 @@ class Slot extends \OpenActive\Models\OA\Event
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * Internal location of the event, e.g. Court 1
-     * 
-     * If you are using this property, please join the discussion at proposal [#110](https://github.com/openactive/modelling-opportunity-data/issues/110).
      *
      *
-     * @var \OpenActive\Models\SportsActivityLocation[]
+     * @var \OpenActive\Models\SportsActivityLocation
      */
     protected $sportsActivityLocation;
 
@@ -1411,7 +1409,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return DateTime|null
+     * @return Date|DateTime|null
      */
     public function getStartDate()
     {
@@ -1419,13 +1417,14 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param DateTime|null $startDate
+     * @param Date|DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
         $types = array(
+            "Date",
             "DateTime",
             "null",
         );
@@ -1436,7 +1435,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return DateTime|null
+     * @return Date|DateTime|null
      */
     public function getEndDate()
     {
@@ -1444,13 +1443,14 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param DateTime|null $endDate
+     * @param Date|DateTime|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
         $types = array(
+            "Date",
             "DateTime",
             "null",
         );
@@ -1539,7 +1539,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return \OpenActive\Models\SportsActivityLocation[]
+     * @return \OpenActive\Models\SportsActivityLocation
      */
     public function getSportsActivityLocation()
     {
@@ -1547,14 +1547,14 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param \OpenActive\Models\SportsActivityLocation[] $sportsActivityLocation
+     * @param \OpenActive\Models\SportsActivityLocation $sportsActivityLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSportsActivityLocation($sportsActivityLocation)
     {
         $types = array(
-            "\OpenActive\Models\SportsActivityLocation[]",
+            "\OpenActive\Models\SportsActivityLocation",
         );
 
         $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);

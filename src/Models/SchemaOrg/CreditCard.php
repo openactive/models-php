@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class CreditCard extends \OpenActive\Models\SchemaOrg\LoanOrCredit
+class CreditCard extends \OpenActive\Models\SchemaOrg\PaymentCard
 {
     /**
      * @return string[]|null
@@ -27,12 +27,12 @@ class CreditCard extends \OpenActive\Models\SchemaOrg\LoanOrCredit
      * The minimum payment is the lowest amount of money that one is required to pay on a credit card statement each month.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null
+     * @var float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
      */
     protected $monthlyMinimumRepaymentAmount;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null
+     * @return float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
      */
     public function getMonthlyMinimumRepaymentAmount()
     {
@@ -40,15 +40,15 @@ class CreditCard extends \OpenActive\Models\SchemaOrg\LoanOrCredit
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null $monthlyMinimumRepaymentAmount
+     * @param float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $monthlyMinimumRepaymentAmount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMonthlyMinimumRepaymentAmount($monthlyMinimumRepaymentAmount)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "float",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "null",
         );
 

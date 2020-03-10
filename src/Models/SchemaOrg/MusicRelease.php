@@ -17,32 +17,32 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
 
     public static function fieldList() {
         $fields = [
-            "musicReleaseFormat" => "musicReleaseFormat",
-            "duration" => "duration",
+            "recordLabel" => "recordLabel",
+            "catalogNumber" => "catalogNumber",
             "releaseOf" => "releaseOf",
             "creditedTo" => "creditedTo",
-            "catalogNumber" => "catalogNumber",
-            "recordLabel" => "recordLabel",
+            "duration" => "duration",
+            "musicReleaseFormat" => "musicReleaseFormat",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Format of this release (the type of recording media used, ie. compact disc, digital media, LP, etc.).
+     * The label that issued the release.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\MusicReleaseFormatType|null
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
-    protected $musicReleaseFormat;
+    protected $recordLabel;
 
     /**
-     * The duration of the item (movie, audio recording, event, etc.) in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.
+     * The catalog number for the release.
      *
      *
-     * @var DateInterval|null
+     * @var string
      */
-    protected $duration;
+    protected $catalogNumber;
 
     /**
      * The album this is a release of.
@@ -56,49 +56,121 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
      * The group the release is credited to if different than the byArtist. For example, Red and Blue is credited to "Stefani Germanotta Band", but by Lady Gaga.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $creditedTo;
 
     /**
-     * The catalog number for the release.
+     * The duration of the item (movie, audio recording, event, etc.) in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.
      *
      *
-     * @var string
+     * @var DateInterval|null
      */
-    protected $catalogNumber;
+    protected $duration;
 
     /**
-     * The label that issued the release.
+     * Format of this release (the type of recording media used, ie. compact disc, digital media, LP, etc.).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Enums\SchemaOrg\MusicReleaseFormatType|null
      */
-    protected $recordLabel;
+    protected $musicReleaseFormat;
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\MusicReleaseFormatType|null
+     * @return \OpenActive\Models\SchemaOrg\Organization
      */
-    public function getMusicReleaseFormat()
+    public function getRecordLabel()
     {
-        return $this->musicReleaseFormat;
+        return $this->recordLabel;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\MusicReleaseFormatType|null $musicReleaseFormat
+     * @param \OpenActive\Models\SchemaOrg\Organization $recordLabel
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMusicReleaseFormat($musicReleaseFormat)
+    public function setRecordLabel($recordLabel)
     {
         $types = array(
-            "\OpenActive\Enums\SchemaOrg\MusicReleaseFormatType",
-            "null",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
-        $musicReleaseFormat = self::checkTypes($musicReleaseFormat, $types);
+        $recordLabel = self::checkTypes($recordLabel, $types);
 
-        $this->musicReleaseFormat = $musicReleaseFormat;
+        $this->recordLabel = $recordLabel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCatalogNumber()
+    {
+        return $this->catalogNumber;
+    }
+
+    /**
+     * @param string $catalogNumber
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCatalogNumber($catalogNumber)
+    {
+        $types = array(
+            "string",
+        );
+
+        $catalogNumber = self::checkTypes($catalogNumber, $types);
+
+        $this->catalogNumber = $catalogNumber;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MusicAlbum
+     */
+    public function getReleaseOf()
+    {
+        return $this->releaseOf;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MusicAlbum $releaseOf
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReleaseOf($releaseOf)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\MusicAlbum",
+        );
+
+        $releaseOf = self::checkTypes($releaseOf, $types);
+
+        $this->releaseOf = $releaseOf;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     */
+    public function getCreditedTo()
+    {
+        return $this->creditedTo;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $creditedTo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCreditedTo($creditedTo)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+        );
+
+        $creditedTo = self::checkTypes($creditedTo, $types);
+
+        $this->creditedTo = $creditedTo;
     }
 
     /**
@@ -127,100 +199,28 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MusicAlbum
+     * @return \OpenActive\Enums\SchemaOrg\MusicReleaseFormatType|null
      */
-    public function getReleaseOf()
+    public function getMusicReleaseFormat()
     {
-        return $this->releaseOf;
+        return $this->musicReleaseFormat;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MusicAlbum $releaseOf
+     * @param \OpenActive\Enums\SchemaOrg\MusicReleaseFormatType|null $musicReleaseFormat
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setReleaseOf($releaseOf)
+    public function setMusicReleaseFormat($musicReleaseFormat)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\MusicAlbum",
+            "\OpenActive\Enums\SchemaOrg\MusicReleaseFormatType",
+            "null",
         );
 
-        $releaseOf = self::checkTypes($releaseOf, $types);
+        $musicReleaseFormat = self::checkTypes($musicReleaseFormat, $types);
 
-        $this->releaseOf = $releaseOf;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    public function getCreditedTo()
-    {
-        return $this->creditedTo;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $creditedTo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCreditedTo($creditedTo)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-        );
-
-        $creditedTo = self::checkTypes($creditedTo, $types);
-
-        $this->creditedTo = $creditedTo;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCatalogNumber()
-    {
-        return $this->catalogNumber;
-    }
-
-    /**
-     * @param string $catalogNumber
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCatalogNumber($catalogNumber)
-    {
-        $types = array(
-            "string",
-        );
-
-        $catalogNumber = self::checkTypes($catalogNumber, $types);
-
-        $this->catalogNumber = $catalogNumber;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization
-     */
-    public function getRecordLabel()
-    {
-        return $this->recordLabel;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization $recordLabel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRecordLabel($recordLabel)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
-        );
-
-        $recordLabel = self::checkTypes($recordLabel, $types);
-
-        $this->recordLabel = $recordLabel;
+        $this->musicReleaseFormat = $musicReleaseFormat;
     }
 
 }

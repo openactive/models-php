@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class ImageGallery extends \OpenActive\Models\SchemaOrg\CollectionPage
+class ImageGallery extends \OpenActive\Models\SchemaOrg\MediaGallery
 {
     /**
      * @return string[]|null

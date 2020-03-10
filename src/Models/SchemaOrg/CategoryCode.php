@@ -36,7 +36,7 @@ class CategoryCode extends \OpenActive\Models\SchemaOrg\DefinedTerm
      * A <a class="localLink" href="https://schema.org/CategoryCodeSet">CategoryCodeSet</a> that contains this category code.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CategoryCodeSet|string
+     * @var string|\OpenActive\Models\SchemaOrg\CategoryCodeSet
      */
     protected $inCodeSet;
 
@@ -65,7 +65,7 @@ class CategoryCode extends \OpenActive\Models\SchemaOrg\DefinedTerm
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CategoryCodeSet|string
+     * @return string|\OpenActive\Models\SchemaOrg\CategoryCodeSet
      */
     public function getInCodeSet()
     {
@@ -73,15 +73,15 @@ class CategoryCode extends \OpenActive\Models\SchemaOrg\DefinedTerm
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CategoryCodeSet|string $inCodeSet
+     * @param string|\OpenActive\Models\SchemaOrg\CategoryCodeSet $inCodeSet
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInCodeSet($inCodeSet)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\CategoryCodeSet",
             "string",
+            "\OpenActive\Models\SchemaOrg\CategoryCodeSet",
         );
 
         $inCodeSet = self::checkTypes($inCodeSet, $types);

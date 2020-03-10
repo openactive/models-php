@@ -114,7 +114,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      * "datePublished": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var DateTime|null
+     * @var Date|DateTime|null
      */
     protected $datePublished;
 
@@ -386,7 +386,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @return DateTime|null
+     * @return Date|DateTime|null
      */
     public function getDatePublished()
     {
@@ -394,13 +394,14 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @param DateTime|null $datePublished
+     * @param Date|DateTime|null $datePublished
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDatePublished($datePublished)
     {
         $types = array(
+            "Date",
             "DateTime",
             "null",
         );

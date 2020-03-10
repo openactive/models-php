@@ -17,30 +17,30 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
 
     public static function fieldList() {
         $fields = [
-            "highPrice" => "highPrice",
-            "lowPrice" => "lowPrice",
-            "offerCount" => "offerCount",
             "offers" => "offers",
+            "offerCount" => "offerCount",
+            "lowPrice" => "lowPrice",
+            "highPrice" => "highPrice",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The highest price of all offers available.<br/><br/>
-     * 
-     * Usage guidelines:<br/><br/>
-     * 
-     * <ul>
-     * <li>Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.</li>
-     * <li>Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.</li>
-     * </ul>
-     * 
+     * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use <a class="localLink" href="https://schema.org/businessFunction">businessFunction</a> to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a <a class="localLink" href="https://schema.org/Demand">Demand</a>. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer.
      *
      *
-     * @var float|string|null
+     * @var \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer
      */
-    protected $highPrice;
+    protected $offers;
+
+    /**
+     * The number of offers for the product.
+     *
+     *
+     * @var int|null
+     */
+    protected $offerCount;
 
     /**
      * The lowest price of all offers available.<br/><br/>
@@ -59,45 +59,69 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     protected $lowPrice;
 
     /**
-     * The number of offers for the product.
+     * The highest price of all offers available.<br/><br/>
+     * 
+     * Usage guidelines:<br/><br/>
+     * 
+     * <ul>
+     * <li>Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.</li>
+     * <li>Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.</li>
+     * </ul>
+     * 
      *
      *
-     * @var int|null
+     * @var float|string|null
      */
-    protected $offerCount;
+    protected $highPrice;
 
     /**
-     * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Offer
+     * @return \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer
      */
-    protected $offers;
-
-    /**
-     * @return float|string|null
-     */
-    public function getHighPrice()
+    public function getOffers()
     {
-        return $this->highPrice;
+        return $this->offers;
     }
 
     /**
-     * @param float|string|null $highPrice
+     * @param \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer $offers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHighPrice($highPrice)
+    public function setOffers($offers)
     {
         $types = array(
-            "float",
-            "string",
+            "\OpenActive\Models\SchemaOrg\Demand",
+            "\OpenActive\Models\SchemaOrg\Offer",
+        );
+
+        $offers = self::checkTypes($offers, $types);
+
+        $this->offers = $offers;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getOfferCount()
+    {
+        return $this->offerCount;
+    }
+
+    /**
+     * @param int|null $offerCount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOfferCount($offerCount)
+    {
+        $types = array(
+            "int",
             "null",
         );
 
-        $highPrice = self::checkTypes($highPrice, $types);
+        $offerCount = self::checkTypes($offerCount, $types);
 
-        $this->highPrice = $highPrice;
+        $this->offerCount = $offerCount;
     }
 
     /**
@@ -127,52 +151,29 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return int|null
+     * @return float|string|null
      */
-    public function getOfferCount()
+    public function getHighPrice()
     {
-        return $this->offerCount;
+        return $this->highPrice;
     }
 
     /**
-     * @param int|null $offerCount
+     * @param float|string|null $highPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOfferCount($offerCount)
+    public function setHighPrice($highPrice)
     {
         $types = array(
-            "int",
+            "float",
+            "string",
             "null",
         );
 
-        $offerCount = self::checkTypes($offerCount, $types);
+        $highPrice = self::checkTypes($highPrice, $types);
 
-        $this->offerCount = $offerCount;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Offer
-     */
-    public function getOffers()
-    {
-        return $this->offers;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Offer $offers
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOffers($offers)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Offer",
-        );
-
-        $offers = self::checkTypes($offers, $types);
-
-        $this->offers = $offers;
+        $this->highPrice = $highPrice;
     }
 
 }

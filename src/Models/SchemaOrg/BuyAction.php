@@ -17,29 +17,13 @@ class BuyAction extends \OpenActive\Models\SchemaOrg\TradeAction
 
     public static function fieldList() {
         $fields = [
-            "warrantyPromise" => "warrantyPromise",
-            "seller" => "seller",
             "vendor" => "vendor",
+            "seller" => "seller",
+            "warrantyPromise" => "warrantyPromise",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The warranty promise(s) included in the offer.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\WarrantyPromise
-     */
-    protected $warrantyPromise;
-
-    /**
-     * An entity which offers (sells / leases / lends / loans) the services / goods.  A seller may also be a provider.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    protected $seller;
 
     /**
      * 'vendor' is an earlier term for 'seller'.
@@ -50,27 +34,44 @@ class BuyAction extends \OpenActive\Models\SchemaOrg\TradeAction
     protected $vendor;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\WarrantyPromise
+     * An entity which offers (sells / leases / lends / loans) the services / goods.  A seller may also be a provider.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
-    public function getWarrantyPromise()
+    protected $seller;
+
+    /**
+     * The warranty promise(s) included in the offer.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\WarrantyPromise
+     */
+    protected $warrantyPromise;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     */
+    public function getVendor()
     {
-        return $this->warrantyPromise;
+        return $this->vendor;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\WarrantyPromise $warrantyPromise
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $vendor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setWarrantyPromise($warrantyPromise)
+    public function setVendor($vendor)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\WarrantyPromise",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
-        $warrantyPromise = self::checkTypes($warrantyPromise, $types);
+        $vendor = self::checkTypes($vendor, $types);
 
-        $this->warrantyPromise = $warrantyPromise;
+        $this->vendor = $vendor;
     }
 
     /**
@@ -99,28 +100,27 @@ class BuyAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\WarrantyPromise
      */
-    public function getVendor()
+    public function getWarrantyPromise()
     {
-        return $this->vendor;
+        return $this->warrantyPromise;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $vendor
+     * @param \OpenActive\Models\SchemaOrg\WarrantyPromise $warrantyPromise
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setVendor($vendor)
+    public function setWarrantyPromise($warrantyPromise)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\WarrantyPromise",
         );
 
-        $vendor = self::checkTypes($vendor, $types);
+        $warrantyPromise = self::checkTypes($warrantyPromise, $types);
 
-        $this->vendor = $vendor;
+        $this->warrantyPromise = $warrantyPromise;
     }
 
 }

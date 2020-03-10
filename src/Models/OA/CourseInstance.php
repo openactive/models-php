@@ -27,8 +27,6 @@ class CourseInstance extends \OpenActive\Models\OA\Event
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * This course for which this is an offering.
-     * 
-     * If you are using this property, please join the discussion at proposal [#164](https://github.com/openactive/modelling-opportunity-data/issues/164).
      *
      *
      * @var \OpenActive\Models\Course

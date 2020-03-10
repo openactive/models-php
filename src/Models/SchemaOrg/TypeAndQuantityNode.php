@@ -17,15 +17,39 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
+            "typeOfGood" => "typeOfGood",
+            "amountOfThisGood" => "amountOfThisGood",
+            "unitCode" => "unitCode",
             "unitText" => "unitText",
             "businessFunction" => "businessFunction",
-            "amountOfThisGood" => "amountOfThisGood",
-            "typeOfGood" => "typeOfGood",
-            "unitCode" => "unitCode",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The product that this structured value is referring to.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
+     */
+    protected $typeOfGood;
+
+    /**
+     * The quantity of the goods included in the offer.
+     *
+     *
+     * @var float|null
+     */
+    protected $amountOfThisGood;
+
+    /**
+     * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
+     *
+     *
+     * @var string
+     */
+    protected $unitCode;
 
     /**
      * A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for
@@ -45,28 +69,78 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $businessFunction;
 
     /**
-     * The quantity of the goods included in the offer.
-     *
-     *
-     * @var float|null
+     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
      */
-    protected $amountOfThisGood;
+    public function getTypeOfGood()
+    {
+        return $this->typeOfGood;
+    }
 
     /**
-     * The product that this structured value is referring to.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
+     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $typeOfGood
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $typeOfGood;
+    public function setTypeOfGood($typeOfGood)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Service",
+            "\OpenActive\Models\SchemaOrg\Product",
+        );
+
+        $typeOfGood = self::checkTypes($typeOfGood, $types);
+
+        $this->typeOfGood = $typeOfGood;
+    }
 
     /**
-     * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
-     *
-     *
-     * @var string
+     * @return float|null
      */
-    protected $unitCode;
+    public function getAmountOfThisGood()
+    {
+        return $this->amountOfThisGood;
+    }
+
+    /**
+     * @param float|null $amountOfThisGood
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAmountOfThisGood($amountOfThisGood)
+    {
+        $types = array(
+            "float",
+            "null",
+        );
+
+        $amountOfThisGood = self::checkTypes($amountOfThisGood, $types);
+
+        $this->amountOfThisGood = $amountOfThisGood;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUnitCode()
+    {
+        return $this->unitCode;
+    }
+
+    /**
+     * @param string $unitCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUnitCode($unitCode)
+    {
+        $types = array(
+            "string",
+        );
+
+        $unitCode = self::checkTypes($unitCode, $types);
+
+        $this->unitCode = $unitCode;
+    }
 
     /**
      * @return string
@@ -115,80 +189,6 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
         $businessFunction = self::checkTypes($businessFunction, $types);
 
         $this->businessFunction = $businessFunction;
-    }
-
-    /**
-     * @return float|null
-     */
-    public function getAmountOfThisGood()
-    {
-        return $this->amountOfThisGood;
-    }
-
-    /**
-     * @param float|null $amountOfThisGood
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAmountOfThisGood($amountOfThisGood)
-    {
-        $types = array(
-            "float",
-            "null",
-        );
-
-        $amountOfThisGood = self::checkTypes($amountOfThisGood, $types);
-
-        $this->amountOfThisGood = $amountOfThisGood;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
-     */
-    public function getTypeOfGood()
-    {
-        return $this->typeOfGood;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $typeOfGood
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTypeOfGood($typeOfGood)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Service",
-            "\OpenActive\Models\SchemaOrg\Product",
-        );
-
-        $typeOfGood = self::checkTypes($typeOfGood, $types);
-
-        $this->typeOfGood = $typeOfGood;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUnitCode()
-    {
-        return $this->unitCode;
-    }
-
-    /**
-     * @param string $unitCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setUnitCode($unitCode)
-    {
-        $types = array(
-            "string",
-        );
-
-        $unitCode = self::checkTypes($unitCode, $types);
-
-        $this->unitCode = $unitCode;
     }
 
 }

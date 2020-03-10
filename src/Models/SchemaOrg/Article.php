@@ -17,66 +17,26 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "backstory" => "backstory",
-            "articleBody" => "articleBody",
-            "wordCount" => "wordCount",
-            "pageStart" => "pageStart",
-            "articleSection" => "articleSection",
-            "pageEnd" => "pageEnd",
-            "speakable" => "speakable",
             "pagination" => "pagination",
+            "speakable" => "speakable",
+            "pageEnd" => "pageEnd",
+            "articleSection" => "articleSection",
+            "wordCount" => "wordCount",
+            "articleBody" => "articleBody",
+            "pageStart" => "pageStart",
+            "backstory" => "backstory",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * For an <a class="localLink" href="https://schema.org/Article">Article</a>, typically a <a class="localLink" href="https://schema.org/NewsArticle">NewsArticle</a>, the backstory property provides a textual summary giving a brief explanation of why and how an article was created. In a journalistic setting this could include information about reporting process, methods, interviews, data sources, etc.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    protected $backstory;
-
-    /**
-     * The actual body of the article.
+     * Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49".
      *
      *
      * @var string
      */
-    protected $articleBody;
-
-    /**
-     * The number of words in the text of the Article.
-     *
-     *
-     * @var int|null
-     */
-    protected $wordCount;
-
-    /**
-     * The page on which the work starts; for example "135" or "xiii".
-     *
-     *
-     * @var int|string|null
-     */
-    protected $pageStart;
-
-    /**
-     * Articles may belong to one or more 'sections' in a magazine or newspaper, such as Sports, Lifestyle, etc.
-     *
-     *
-     * @var string
-     */
-    protected $articleSection;
-
-    /**
-     * The page on which the work ends; for example "138" or "xvi".
-     *
-     *
-     * @var string|int|null
-     */
-    protected $pageEnd;
+    protected $pagination;
 
     /**
      * Indicates sections of a Web page that are particularly 'speakable' in the sense of being highlighted as being especially appropriate for text-to-speech conversion. Other sections of a page may also be usefully spoken in particular circumstances; the 'speakable' property serves to indicate the parts most likely to be generally useful for speech.<br/><br/>
@@ -93,65 +53,155 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
      * we define a supporting type, <a class="localLink" href="https://schema.org/SpeakableSpecification">SpeakableSpecification</a>  which is defined to be a possible value of the <em>speakable</em> property.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\SpeakableSpecification
+     * @var \OpenActive\Models\SchemaOrg\SpeakableSpecification|string
      */
     protected $speakable;
 
     /**
-     * Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49".
+     * The page on which the work ends; for example "138" or "xvi".
+     *
+     *
+     * @var int|string|null
+     */
+    protected $pageEnd;
+
+    /**
+     * Articles may belong to one or more 'sections' in a magazine or newspaper, such as Sports, Lifestyle, etc.
      *
      *
      * @var string
      */
-    protected $pagination;
+    protected $articleSection;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * The number of words in the text of the Article.
+     *
+     *
+     * @var int|null
      */
-    public function getBackstory()
+    protected $wordCount;
+
+    /**
+     * The actual body of the article.
+     *
+     *
+     * @var string
+     */
+    protected $articleBody;
+
+    /**
+     * The page on which the work starts; for example "135" or "xiii".
+     *
+     *
+     * @var string|int|null
+     */
+    protected $pageStart;
+
+    /**
+     * For an <a class="localLink" href="https://schema.org/Article">Article</a>, typically a <a class="localLink" href="https://schema.org/NewsArticle">NewsArticle</a>, the backstory property provides a textual summary giving a brief explanation of why and how an article was created. In a journalistic setting this could include information about reporting process, methods, interviews, data sources, etc.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    protected $backstory;
+
+    /**
+     * @return string
+     */
+    public function getPagination()
     {
-        return $this->backstory;
+        return $this->pagination;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $backstory
+     * @param string $pagination
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBackstory($backstory)
+    public function setPagination($pagination)
     {
         $types = array(
             "string",
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
         );
 
-        $backstory = self::checkTypes($backstory, $types);
+        $pagination = self::checkTypes($pagination, $types);
 
-        $this->backstory = $backstory;
+        $this->pagination = $pagination;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\SpeakableSpecification|string
+     */
+    public function getSpeakable()
+    {
+        return $this->speakable;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\SpeakableSpecification|string $speakable
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSpeakable($speakable)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\SpeakableSpecification",
+            "string",
+        );
+
+        $speakable = self::checkTypes($speakable, $types);
+
+        $this->speakable = $speakable;
+    }
+
+    /**
+     * @return int|string|null
+     */
+    public function getPageEnd()
+    {
+        return $this->pageEnd;
+    }
+
+    /**
+     * @param int|string|null $pageEnd
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPageEnd($pageEnd)
+    {
+        $types = array(
+            "int",
+            "string",
+            "null",
+        );
+
+        $pageEnd = self::checkTypes($pageEnd, $types);
+
+        $this->pageEnd = $pageEnd;
     }
 
     /**
      * @return string
      */
-    public function getArticleBody()
+    public function getArticleSection()
     {
-        return $this->articleBody;
+        return $this->articleSection;
     }
 
     /**
-     * @param string $articleBody
+     * @param string $articleSection
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setArticleBody($articleBody)
+    public function setArticleSection($articleSection)
     {
         $types = array(
             "string",
         );
 
-        $articleBody = self::checkTypes($articleBody, $types);
+        $articleSection = self::checkTypes($articleSection, $types);
 
-        $this->articleBody = $articleBody;
+        $this->articleSection = $articleSection;
     }
 
     /**
@@ -180,7 +230,31 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|string|null
+     * @return string
+     */
+    public function getArticleBody()
+    {
+        return $this->articleBody;
+    }
+
+    /**
+     * @param string $articleBody
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setArticleBody($articleBody)
+    {
+        $types = array(
+            "string",
+        );
+
+        $articleBody = self::checkTypes($articleBody, $types);
+
+        $this->articleBody = $articleBody;
+    }
+
+    /**
+     * @return string|int|null
      */
     public function getPageStart()
     {
@@ -188,15 +262,15 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param int|string|null $pageStart
+     * @param string|int|null $pageStart
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPageStart($pageStart)
     {
         $types = array(
-            "int",
             "string",
+            "int",
             "null",
         );
 
@@ -206,102 +280,28 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
-    public function getArticleSection()
+    public function getBackstory()
     {
-        return $this->articleSection;
+        return $this->backstory;
     }
 
     /**
-     * @param string $articleSection
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $backstory
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setArticleSection($articleSection)
+    public function setBackstory($backstory)
     {
         $types = array(
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
             "string",
         );
 
-        $articleSection = self::checkTypes($articleSection, $types);
+        $backstory = self::checkTypes($backstory, $types);
 
-        $this->articleSection = $articleSection;
-    }
-
-    /**
-     * @return string|int|null
-     */
-    public function getPageEnd()
-    {
-        return $this->pageEnd;
-    }
-
-    /**
-     * @param string|int|null $pageEnd
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPageEnd($pageEnd)
-    {
-        $types = array(
-            "string",
-            "int",
-            "null",
-        );
-
-        $pageEnd = self::checkTypes($pageEnd, $types);
-
-        $this->pageEnd = $pageEnd;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\SpeakableSpecification
-     */
-    public function getSpeakable()
-    {
-        return $this->speakable;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\SpeakableSpecification $speakable
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSpeakable($speakable)
-    {
-        $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\SpeakableSpecification",
-        );
-
-        $speakable = self::checkTypes($speakable, $types);
-
-        $this->speakable = $speakable;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPagination()
-    {
-        return $this->pagination;
-    }
-
-    /**
-     * @param string $pagination
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPagination($pagination)
-    {
-        $types = array(
-            "string",
-        );
-
-        $pagination = self::checkTypes($pagination, $types);
-
-        $this->pagination = $pagination;
+        $this->backstory = $backstory;
     }
 
 }

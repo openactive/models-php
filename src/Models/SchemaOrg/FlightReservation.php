@@ -18,9 +18,9 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     public static function fieldList() {
         $fields = [
             "boardingGroup" => "boardingGroup",
-            "passengerPriorityStatus" => "passengerPriorityStatus",
-            "securityScreening" => "securityScreening",
             "passengerSequenceNumber" => "passengerSequenceNumber",
+            "securityScreening" => "securityScreening",
+            "passengerPriorityStatus" => "passengerPriorityStatus",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -35,12 +35,12 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $boardingGroup;
 
     /**
-     * The priority status assigned to a passenger for security or boarding (e.g. FastTrack or Priority).
+     * The passenger's sequence number as assigned by the airline.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     * @var string
      */
-    protected $passengerPriorityStatus;
+    protected $passengerSequenceNumber;
 
     /**
      * The type of security screening the passenger is subject to.
@@ -51,12 +51,12 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $securityScreening;
 
     /**
-     * The passenger's sequence number as assigned by the airline.
+     * The priority status assigned to a passenger for security or boarding (e.g. FastTrack or Priority).
      *
      *
-     * @var string
+     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
      */
-    protected $passengerSequenceNumber;
+    protected $passengerPriorityStatus;
 
     /**
      * @return string
@@ -83,29 +83,27 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     * @return string
      */
-    public function getPassengerPriorityStatus()
+    public function getPassengerSequenceNumber()
     {
-        return $this->passengerPriorityStatus;
+        return $this->passengerSequenceNumber;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null $passengerPriorityStatus
+     * @param string $passengerSequenceNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPassengerPriorityStatus($passengerPriorityStatus)
+    public function setPassengerSequenceNumber($passengerSequenceNumber)
     {
         $types = array(
-            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
             "string",
-            "null",
         );
 
-        $passengerPriorityStatus = self::checkTypes($passengerPriorityStatus, $types);
+        $passengerSequenceNumber = self::checkTypes($passengerSequenceNumber, $types);
 
-        $this->passengerPriorityStatus = $passengerPriorityStatus;
+        $this->passengerSequenceNumber = $passengerSequenceNumber;
     }
 
     /**
@@ -133,27 +131,29 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
      */
-    public function getPassengerSequenceNumber()
+    public function getPassengerPriorityStatus()
     {
-        return $this->passengerSequenceNumber;
+        return $this->passengerPriorityStatus;
     }
 
     /**
-     * @param string $passengerSequenceNumber
+     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null $passengerPriorityStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPassengerSequenceNumber($passengerSequenceNumber)
+    public function setPassengerPriorityStatus($passengerPriorityStatus)
     {
         $types = array(
+            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
             "string",
+            "null",
         );
 
-        $passengerSequenceNumber = self::checkTypes($passengerSequenceNumber, $types);
+        $passengerPriorityStatus = self::checkTypes($passengerPriorityStatus, $types);
 
-        $this->passengerSequenceNumber = $passengerSequenceNumber;
+        $this->passengerPriorityStatus = $passengerPriorityStatus;
     }
 
 }

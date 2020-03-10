@@ -17,38 +17,14 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "slogan" => "slogan",
-            "review" => "review",
-            "logo" => "logo",
             "aggregateRating" => "aggregateRating",
+            "logo" => "logo",
+            "review" => "review",
+            "slogan" => "slogan",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A slogan or motto associated with the item.
-     *
-     *
-     * @var string
-     */
-    protected $slogan;
-
-    /**
-     * A review of the item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Review
-     */
-    protected $review;
-
-    /**
-     * An associated logo.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
-     */
-    protected $logo;
 
     /**
      * The overall rating, based on a collection of reviews or ratings, of the item.
@@ -59,27 +35,76 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $aggregateRating;
 
     /**
-     * @return string
+     * An associated logo.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\ImageObject
      */
-    public function getSlogan()
+    protected $logo;
+
+    /**
+     * A review of the item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Review
+     */
+    protected $review;
+
+    /**
+     * A slogan or motto associated with the item.
+     *
+     *
+     * @var string
+     */
+    protected $slogan;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AggregateRating
+     */
+    public function getAggregateRating()
     {
-        return $this->slogan;
+        return $this->aggregateRating;
     }
 
     /**
-     * @param string $slogan
+     * @param \OpenActive\Models\SchemaOrg\AggregateRating $aggregateRating
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSlogan($slogan)
+    public function setAggregateRating($aggregateRating)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\AggregateRating",
+        );
+
+        $aggregateRating = self::checkTypes($aggregateRating, $types);
+
+        $this->aggregateRating = $aggregateRating;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\ImageObject
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\ImageObject $logo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLogo($logo)
     {
         $types = array(
             "string",
+            "\OpenActive\Models\SchemaOrg\ImageObject",
         );
 
-        $slogan = self::checkTypes($slogan, $types);
+        $logo = self::checkTypes($logo, $types);
 
-        $this->slogan = $slogan;
+        $this->logo = $logo;
     }
 
     /**
@@ -107,52 +132,27 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
+     * @return string
      */
-    public function getLogo()
+    public function getSlogan()
     {
-        return $this->logo;
+        return $this->slogan;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $logo
+     * @param string $slogan
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLogo($logo)
+    public function setSlogan($slogan)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\ImageObject",
             "string",
         );
 
-        $logo = self::checkTypes($logo, $types);
+        $slogan = self::checkTypes($slogan, $types);
 
-        $this->logo = $logo;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\AggregateRating
-     */
-    public function getAggregateRating()
-    {
-        return $this->aggregateRating;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\AggregateRating $aggregateRating
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAggregateRating($aggregateRating)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\AggregateRating",
-        );
-
-        $aggregateRating = self::checkTypes($aggregateRating, $types);
-
-        $this->aggregateRating = $aggregateRating;
+        $this->slogan = $slogan;
     }
 
 }

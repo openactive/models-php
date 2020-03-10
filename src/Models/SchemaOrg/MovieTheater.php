@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class MovieTheater extends \OpenActive\Models\SchemaOrg\CivicStructure
+class MovieTheater extends \OpenActive\Models\SchemaOrg\EntertainmentBusiness
 {
     /**
      * @return string[]|null

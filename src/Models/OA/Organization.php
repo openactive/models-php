@@ -31,8 +31,8 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
             "termsOfService" => "termsOfService",
             "url" => "url",
             "vatID" => "vatID",
-            "video" => "beta:video",
             "formattedDescription" => "beta:formattedDescription",
+            "video" => "beta:video",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -177,25 +177,21 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * An related video object.
-     * 
-     * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\VideoObject[]
-     */
-    protected $video;
-
-    /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
-     * 
-     * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
      *
      *
      * @var string
      */
     protected $formattedDescription;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * An related video object.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\VideoObject
+     */
+    protected $video;
 
     /**
      * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
@@ -515,30 +511,6 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\VideoObject[]
-     */
-    public function getVideo()
-    {
-        return $this->video;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\VideoObject[] $video
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVideo($video)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\VideoObject[]",
-        );
-
-        $video = self::checkTypes($video, $types);
-
-        $this->video = $video;
-    }
-
-    /**
      * @return string
      */
     public function getFormattedDescription()
@@ -560,6 +532,30 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
         $formattedDescription = self::checkTypes($formattedDescription, $types);
 
         $this->formattedDescription = $formattedDescription;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\VideoObject
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\VideoObject $video
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVideo($video)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\VideoObject",
+        );
+
+        $video = self::checkTypes($video, $types);
+
+        $this->video = $video;
     }
 
 }

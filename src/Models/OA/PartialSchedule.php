@@ -26,9 +26,7 @@ class PartialSchedule extends \OpenActive\Models\OA\Schedule
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * The time zone used to generate occurrences, same as iCal TZID. E.g. 'Europe/London'.
-     * 
-     * If you are using this property, please join the discussion at proposal [#197](https://github.com/openactive/modelling-opportunity-data/issues/197).
+     * [DEPRECATED: This beta property is now deprecated, please use `schema:scheduleTimezone` instead.] The time zone used to generate occurrences, same as iCal TZID. E.g. 'Europe/London'.
      *
      *
      * @var string

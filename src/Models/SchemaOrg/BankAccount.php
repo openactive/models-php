@@ -17,21 +17,13 @@ class BankAccount extends \OpenActive\Models\SchemaOrg\FinancialProduct
 
     public static function fieldList() {
         $fields = [
-            "accountOverdraftLimit" => "accountOverdraftLimit",
             "accountMinimumInflow" => "accountMinimumInflow",
             "bankAccountType" => "bankAccountType",
+            "accountOverdraftLimit" => "accountOverdraftLimit",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * An overdraft is an extension of credit from a lending institution when an account reaches zero. An overdraft allows the individual to continue withdrawing money even if the account has no funds in it. Basically the bank allows people to borrow a set amount of money.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount
-     */
-    protected $accountOverdraftLimit;
 
     /**
      * A minimum amount that has to be paid in every month.
@@ -50,28 +42,12 @@ class BankAccount extends \OpenActive\Models\SchemaOrg\FinancialProduct
     protected $bankAccountType;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount
+     * An overdraft is an extension of credit from a lending institution when an account reaches zero. An overdraft allows the individual to continue withdrawing money even if the account has no funds in it. Basically the bank allows people to borrow a set amount of money.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount
      */
-    public function getAccountOverdraftLimit()
-    {
-        return $this->accountOverdraftLimit;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount $accountOverdraftLimit
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAccountOverdraftLimit($accountOverdraftLimit)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-        );
-
-        $accountOverdraftLimit = self::checkTypes($accountOverdraftLimit, $types);
-
-        $this->accountOverdraftLimit = $accountOverdraftLimit;
-    }
+    protected $accountOverdraftLimit;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MonetaryAmount
@@ -119,6 +95,30 @@ class BankAccount extends \OpenActive\Models\SchemaOrg\FinancialProduct
         $bankAccountType = self::checkTypes($bankAccountType, $types);
 
         $this->bankAccountType = $bankAccountType;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount
+     */
+    public function getAccountOverdraftLimit()
+    {
+        return $this->accountOverdraftLimit;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount $accountOverdraftLimit
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAccountOverdraftLimit($accountOverdraftLimit)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+        );
+
+        $accountOverdraftLimit = self::checkTypes($accountOverdraftLimit, $types);
+
+        $this->accountOverdraftLimit = $accountOverdraftLimit;
     }
 
 }

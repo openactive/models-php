@@ -114,7 +114,7 @@ class Schedule extends \OpenActive\BaseModel
      * ]
      * ```
      *
-     * @var DateTime[]|null
+     * @var DateTime[]|Date[]|null
      */
     protected $exceptDate;
 
@@ -169,7 +169,7 @@ class Schedule extends \OpenActive\BaseModel
      * "startDate": "2018-01-27"
      * ```
      *
-     * @var DateTime|null
+     * @var Date|null
      */
     protected $startDate;
 
@@ -180,7 +180,7 @@ class Schedule extends \OpenActive\BaseModel
      * "endDate": "2018-01-27"
      * ```
      *
-     * @var DateTime|null
+     * @var Date|null
      */
     protected $endDate;
 
@@ -208,9 +208,7 @@ class Schedule extends \OpenActive\BaseModel
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * The time zone used to generate occurrences, same as iCal TZID. E.g. 'Europe/London'.
-     * 
-     * If you are using this property, please join the discussion at proposal [#197](https://github.com/openactive/modelling-opportunity-data/issues/197).
+     * [DEPRECATED: This beta property is now deprecated, please use `schema:scheduleTimezone` instead.] The time zone used to generate occurrences, same as iCal TZID. E.g. 'Europe/London'.
      *
      *
      * @var string
@@ -344,7 +342,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return DateTime[]|null
+     * @return DateTime[]|Date[]|null
      */
     public function getExceptDate()
     {
@@ -352,7 +350,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param DateTime[]|null $exceptDate
+     * @param DateTime[]|Date[]|null $exceptDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -360,6 +358,7 @@ class Schedule extends \OpenActive\BaseModel
     {
         $types = array(
             "DateTime[]",
+            "Date[]",
             "null",
         );
 
@@ -467,7 +466,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return DateTime|null
+     * @return Date|null
      */
     public function getStartDate()
     {
@@ -475,14 +474,14 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param DateTime|null $startDate
+     * @param Date|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
         $types = array(
-            "DateTime",
+            "Date",
             "null",
         );
 
@@ -492,7 +491,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return DateTime|null
+     * @return Date|null
      */
     public function getEndDate()
     {
@@ -500,14 +499,14 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param DateTime|null $endDate
+     * @param Date|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
         $types = array(
-            "DateTime",
+            "Date",
             "null",
         );
 
