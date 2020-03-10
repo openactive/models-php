@@ -20,9 +20,9 @@ class DateValidator extends BaseValidator
             return $value;
         }
         if ($value instanceof \DateTime) {
-            return Date::fromDateTime($value);
+            return Date::createFromDateTime($value);
         }
-        return Date::fromISO8601($value);
+        return Date::createFromISO8601($value);
     }
 
     /**

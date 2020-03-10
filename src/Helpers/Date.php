@@ -2,6 +2,8 @@
 
 namespace OpenActive\Helpers;
 
+use \OpenActive\Exceptions\InvalidArgumentException;
+
 /**
  * A class that represents a Date, somewhat DateTime'ey.
  */
@@ -92,7 +94,7 @@ class Date {
         return $this->format('Y-m-d');
     }
 
-    public static function fromDateTime($dt) {
+    public static function createFromDateTime($dt) {
         $year = $dt->format('Y');
         $month = $dt->format('m');
         $day = $dt->format('d');
@@ -100,10 +102,10 @@ class Date {
         return new self($year, $month, $day);
     }
 
-    public static function fromISO8601($iso) {
+    public static function createFromISO8601($iso) {
         $matches = null;
-        if (!preg_match("/^(?<year>\d{4})-(?<month>\d{1,2})-(?<day>\d{1,2})$/", $iso, $matches)) {
-            throw new Exception('Invalid ISO8601 date');
+        if (!preg_match(self::ISO8601_REGEX, $iso, $matches)) {
+            throw new InvalidArgumentException('Invalid ISO8601 date');
         }
 
         new self($matches['year'], $matches['month'], $matches['day']);
