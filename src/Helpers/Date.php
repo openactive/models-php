@@ -23,37 +23,64 @@ class Date {
         $this->day = $day;
     }
 
+    /**
+     * @param int|string $year Year component of the date
+     * @return $this
+     */
     public function setYear($year) {
         $this->year = $year;
         return $this;
     }
 
+    /**
+     * @return int|string Year component of the date
+     */
     public function getYear() {
         return $this->year;
     }
 
+    /**
+     * @param int|string Month component of the date
+     * @return $this
+     */
     public function setMonth($month) {
         $this->month = $month;
         return $this;
     }
 
+    /**
+     * @return int|string Month component of the date
+     */
     public function getMonth() {
         return $this->month;
     }
 
+    /**
+     * @param int|string Day component of the date
+     * @return $this
+     */
     public function setDay($day) {
         $this->day = $day;
         return $this;
     }
 
+    /**
+     * @return int|string Day component of the date
+     */
     public function getDay() {
         return $this->day;
     }
 
+    /**
+     * @return string ISO8601 formatted string (YYYY-MM-DD)
+     */
     public function toISO8601() {
         return "{$this->year}-{$this->month}-{$this->day}";
     }
 
+    /**
+     * @return \DateTime|false
+     */
     public function toDateTime() {
         return \DateTime::createFromFormat('Y-m-d', $this->toISO8601());
     }
@@ -90,10 +117,17 @@ class Date {
         return $this;
     }
 
+    /**
+     * @return string ISO8601 (YYYY-MM-DD) formatted date
+     */
     public function __toString() {
         return $this->format('Y-m-d');
     }
 
+    /**
+     * @param \DateTime $dt DateTime object to be converted into a Date
+     * @return Date
+     */
     public static function createFromDateTime($dt) {
         $year = $dt->format('Y');
         $month = $dt->format('m');
@@ -102,6 +136,10 @@ class Date {
         return new self($year, $month, $day);
     }
 
+    /**
+     * @param \DateTime $iso ISO8601 string to be converted into a Date
+     * @return Date
+     */
     public static function createFromISO8601($iso) {
         $matches = null;
         if (!preg_match(self::ISO8601_REGEX, $iso, $matches)) {
