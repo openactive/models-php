@@ -71,10 +71,14 @@ class Date {
         return $this->day;
     }
 
+    public function toISO8601() {
+        return $this->format('Y-m-d');
+    }
+
     /**
      * @return string ISO8601 formatted string (YYYY-MM-DD)
      */
-    public function toISO8601() {
+    private function toISO8601String() {
         return "{$this->year}-{$this->month}-{$this->day}";
     }
 
@@ -82,7 +86,7 @@ class Date {
      * @return \DateTime|false
      */
     public function toDateTime() {
-        return \DateTime::createFromFormat('Y-m-d', $this->toISO8601());
+        return \DateTime::createFromFormat('Y-m-d', $this->toISO8601String());
     }
 
     /**
@@ -121,7 +125,7 @@ class Date {
      * @return string ISO8601 (YYYY-MM-DD) formatted date
      */
     public function __toString() {
-        return $this->format('Y-m-d');
+        return $this->toISO8601();
     }
 
     /**
