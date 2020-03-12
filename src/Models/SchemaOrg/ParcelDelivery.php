@@ -118,7 +118,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
      * The earliest date the package may arrive.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $expectedArrivalFrom;
 
@@ -126,7 +126,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
      * The latest date the package may arrive.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $expectedArrivalUntil;
 
@@ -373,7 +373,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getExpectedArrivalFrom()
     {
@@ -381,16 +381,16 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|DateTime|null $expectedArrivalFrom
+     * @param null|DateTime|Date $expectedArrivalFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExpectedArrivalFrom($expectedArrivalFrom)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $expectedArrivalFrom = self::checkTypes($expectedArrivalFrom, $types);
@@ -399,7 +399,7 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getExpectedArrivalUntil()
     {
@@ -407,16 +407,16 @@ class ParcelDelivery extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|DateTime|null $expectedArrivalUntil
+     * @param null|DateTime|Date $expectedArrivalUntil
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExpectedArrivalUntil($expectedArrivalUntil)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $expectedArrivalUntil = self::checkTypes($expectedArrivalUntil, $types);

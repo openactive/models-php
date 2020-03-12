@@ -64,7 +64,7 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
      * The duration of the item (movie, audio recording, event, etc.) in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $duration;
 
@@ -174,7 +174,7 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getDuration()
     {
@@ -182,15 +182,15 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     }
 
     /**
-     * @param DateInterval|null $duration
+     * @param null|DateInterval $duration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $duration = self::checkTypes($duration, $types);

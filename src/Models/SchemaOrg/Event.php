@@ -111,7 +111,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The number of attendee places for an event that remain unallocated.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $remainingAttendeeCapacity;
 
@@ -135,7 +135,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $endDate;
 
@@ -143,7 +143,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The time admission will commence.
      *
      *
-     * @var string|DateTime|null
+     * @var null|string|DateTime
      */
     protected $doorTime;
 
@@ -159,7 +159,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The total number of individuals that may attend an event or venue.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $maximumAttendeeCapacity;
 
@@ -247,7 +247,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var DateTime|Date|null
+     * @var null|DateTime|Date
      */
     protected $startDate;
 
@@ -271,7 +271,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The duration of the item (movie, audio recording, event, etc.) in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $duration;
 
@@ -287,7 +287,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * Used in conjunction with eventStatus for rescheduled or cancelled events. This property contains the previously scheduled start date. For rescheduled events, the startDate property should be used for the newly scheduled start date. In the (rare) case of an event that has been postponed and rescheduled multiple times, this field may be repeated.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $previousStartDate;
 
@@ -499,7 +499,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getRemainingAttendeeCapacity()
     {
@@ -507,15 +507,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param int|null $remainingAttendeeCapacity
+     * @param null|int $remainingAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $remainingAttendeeCapacity = self::checkTypes($remainingAttendeeCapacity, $types);
@@ -573,7 +573,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getEndDate()
     {
@@ -581,16 +581,16 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Date|DateTime|null $endDate
+     * @param null|DateTime|Date $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $endDate = self::checkTypes($endDate, $types);
@@ -599,7 +599,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string|DateTime|null
+     * @return null|string|DateTime
      */
     public function getDoorTime()
     {
@@ -607,16 +607,16 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param string|DateTime|null $doorTime
+     * @param null|string|DateTime $doorTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDoorTime($doorTime)
     {
         $types = array(
+            "null",
             "Time",
             "DateTime",
-            "null",
         );
 
         $doorTime = self::checkTypes($doorTime, $types);
@@ -650,7 +650,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getMaximumAttendeeCapacity()
     {
@@ -658,15 +658,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param int|null $maximumAttendeeCapacity
+     * @param null|int $maximumAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $maximumAttendeeCapacity = self::checkTypes($maximumAttendeeCapacity, $types);
@@ -921,7 +921,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return DateTime|Date|null
+     * @return null|DateTime|Date
      */
     public function getStartDate()
     {
@@ -929,16 +929,16 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param DateTime|Date|null $startDate
+     * @param null|DateTime|Date $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
         $types = array(
+            "null",
             "DateTime",
             "Date",
-            "null",
         );
 
         $startDate = self::checkTypes($startDate, $types);
@@ -995,7 +995,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getDuration()
     {
@@ -1003,15 +1003,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param DateInterval|null $duration
+     * @param null|DateInterval $duration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $duration = self::checkTypes($duration, $types);
@@ -1045,7 +1045,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getPreviousStartDate()
     {
@@ -1053,15 +1053,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Date|null $previousStartDate
+     * @param null|Date $previousStartDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPreviousStartDate($previousStartDate)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $previousStartDate = self::checkTypes($previousStartDate, $types);

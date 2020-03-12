@@ -29,7 +29,7 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
      * If responding yes, the number of guests who will attend in addition to the invitee.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $additionalNumberOfGuests;
 
@@ -50,7 +50,7 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     protected $rsvpResponse;
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getAdditionalNumberOfGuests()
     {
@@ -58,15 +58,15 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     }
 
     /**
-     * @param float|null $additionalNumberOfGuests
+     * @param null|float $additionalNumberOfGuests
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAdditionalNumberOfGuests($additionalNumberOfGuests)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $additionalNumberOfGuests = self::checkTypes($additionalNumberOfGuests, $types);

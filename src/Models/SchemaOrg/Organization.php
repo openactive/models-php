@@ -232,7 +232,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
      * The date that this organization was founded.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $foundingDate;
 
@@ -272,7 +272,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
      * The date that this organization was dissolved.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $dissolutionDate;
 
@@ -1024,7 +1024,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getFoundingDate()
     {
@@ -1032,15 +1032,15 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Date|null $foundingDate
+     * @param null|Date $foundingDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFoundingDate($foundingDate)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $foundingDate = self::checkTypes($foundingDate, $types);
@@ -1146,7 +1146,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getDissolutionDate()
     {
@@ -1154,15 +1154,15 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Date|null $dissolutionDate
+     * @param null|Date $dissolutionDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDissolutionDate($dissolutionDate)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $dissolutionDate = self::checkTypes($dissolutionDate, $types);

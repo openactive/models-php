@@ -93,7 +93,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
      * Typical unit code(s): C62 for persons.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
     protected $vehicleSeatingCapacity;
 
@@ -109,7 +109,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
      * The release date of a vehicle model (often used to differentiate versions of the same make and model).
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $vehicleModelDate;
 
@@ -119,7 +119,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
      * Typical unit code(s): C62
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
     protected $numberOfDoors;
 
@@ -193,7 +193,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
      * Typical unit code(s): C62
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
     protected $numberOfAxles;
 
@@ -209,7 +209,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
      * The number or type of airbags in the vehicle.
      *
      *
-     * @var float|string|null
+     * @var null|float|string
      */
     protected $numberOfAirbags;
 
@@ -217,7 +217,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
      * The type of component used for transmitting the power from a rotating power source to the wheels or other relevant component(s) ("gearbox" for cars).
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string
      */
     protected $vehicleTransmission;
 
@@ -225,7 +225,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
      * The date of the first registration of the vehicle with the respective public authorities.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $dateVehicleFirstRegistered;
 
@@ -233,7 +233,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
      * The date the item e.g. vehicle was purchased by the current owner.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $purchaseDate;
 
@@ -241,7 +241,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
      * The date of production of the item, e.g. vehicle.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $productionDate;
 
@@ -376,7 +376,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
     public function getVehicleSeatingCapacity()
     {
@@ -384,7 +384,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $vehicleSeatingCapacity
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float $vehicleSeatingCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -392,8 +392,8 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "float",
             "null",
+            "float",
         );
 
         $vehicleSeatingCapacity = self::checkTypes($vehicleSeatingCapacity, $types);
@@ -426,7 +426,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getVehicleModelDate()
     {
@@ -434,15 +434,15 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param Date|null $vehicleModelDate
+     * @param null|Date $vehicleModelDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVehicleModelDate($vehicleModelDate)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $vehicleModelDate = self::checkTypes($vehicleModelDate, $types);
@@ -451,7 +451,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
     public function getNumberOfDoors()
     {
@@ -459,7 +459,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $numberOfDoors
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float $numberOfDoors
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -467,8 +467,8 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "float",
             "null",
+            "float",
         );
 
         $numberOfDoors = self::checkTypes($numberOfDoors, $types);
@@ -625,7 +625,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
     public function getNumberOfAxles()
     {
@@ -633,7 +633,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $numberOfAxles
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float $numberOfAxles
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -641,8 +641,8 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "float",
             "null",
+            "float",
         );
 
         $numberOfAxles = self::checkTypes($numberOfAxles, $types);
@@ -675,7 +675,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return float|string|null
+     * @return null|float|string
      */
     public function getNumberOfAirbags()
     {
@@ -683,16 +683,16 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param float|string|null $numberOfAirbags
+     * @param null|float|string $numberOfAirbags
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfAirbags($numberOfAirbags)
     {
         $types = array(
+            "null",
             "float",
             "string",
-            "null",
         );
 
         $numberOfAirbags = self::checkTypes($numberOfAirbags, $types);
@@ -701,7 +701,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string
      */
     public function getVehicleTransmission()
     {
@@ -709,7 +709,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null $vehicleTransmission
+     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string $vehicleTransmission
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -717,8 +717,8 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     {
         $types = array(
             "\OpenActive\Enums\SchemaOrg\QualitativeValue",
-            "string",
             "null",
+            "string",
         );
 
         $vehicleTransmission = self::checkTypes($vehicleTransmission, $types);
@@ -727,7 +727,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getDateVehicleFirstRegistered()
     {
@@ -735,15 +735,15 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param Date|null $dateVehicleFirstRegistered
+     * @param null|Date $dateVehicleFirstRegistered
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateVehicleFirstRegistered($dateVehicleFirstRegistered)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $dateVehicleFirstRegistered = self::checkTypes($dateVehicleFirstRegistered, $types);
@@ -752,7 +752,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getPurchaseDate()
     {
@@ -760,15 +760,15 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param Date|null $purchaseDate
+     * @param null|Date $purchaseDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPurchaseDate($purchaseDate)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $purchaseDate = self::checkTypes($purchaseDate, $types);
@@ -777,7 +777,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getProductionDate()
     {
@@ -785,15 +785,15 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param Date|null $productionDate
+     * @param null|Date $productionDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProductionDate($productionDate)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $productionDate = self::checkTypes($productionDate, $types);

@@ -66,7 +66,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The number of copies when multiple copies of a piece of artwork are produced - e.g. for a limited edition of 20 prints, 'artEdition' refers to the total number of copies (in this example "20").
      *
      *
-     * @var string|int|null
+     * @var null|int|string
      */
     protected $artEdition;
 
@@ -192,7 +192,7 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string|int|null
+     * @return null|int|string
      */
     public function getArtEdition()
     {
@@ -200,16 +200,16 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|int|null $artEdition
+     * @param null|int|string $artEdition
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArtEdition($artEdition)
     {
         $types = array(
-            "string",
-            "int",
             "null",
+            "int",
+            "string",
         );
 
         $artEdition = self::checkTypes($artEdition, $types);

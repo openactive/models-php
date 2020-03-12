@@ -101,7 +101,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Position of the clip within an ordered group of clips.
      *
      *
-     * @var string|int|null
+     * @var null|int|string
      */
     protected $clipNumber;
 
@@ -109,7 +109,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The end time of the clip expressed as the number of seconds from the beginning of the work.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $endOffset;
 
@@ -117,7 +117,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The start time of the clip expressed as the number of seconds from the beginning of the work.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $startOffset;
 
@@ -315,7 +315,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string|int|null
+     * @return null|int|string
      */
     public function getClipNumber()
     {
@@ -323,16 +323,16 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|int|null $clipNumber
+     * @param null|int|string $clipNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setClipNumber($clipNumber)
     {
         $types = array(
-            "string",
-            "int",
             "null",
+            "int",
+            "string",
         );
 
         $clipNumber = self::checkTypes($clipNumber, $types);
@@ -341,7 +341,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getEndOffset()
     {
@@ -349,15 +349,15 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param float|null $endOffset
+     * @param null|float $endOffset
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndOffset($endOffset)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $endOffset = self::checkTypes($endOffset, $types);
@@ -366,7 +366,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getStartOffset()
     {
@@ -374,15 +374,15 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param float|null $startOffset
+     * @param null|float $startOffset
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartOffset($startOffset)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $startOffset = self::checkTypes($startOffset, $types);

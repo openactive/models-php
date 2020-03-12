@@ -45,7 +45,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      *
      *
-     * @var DateTime|string|null
+     * @var null|string|DateTime
      */
     protected $startTime;
 
@@ -53,7 +53,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Date when this media object was uploaded to this site.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $uploadDate;
 
@@ -103,7 +103,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      *
      *
-     * @var DateTime|string|null
+     * @var null|string|DateTime
      */
     protected $endTime;
 
@@ -159,7 +159,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The duration of the item (movie, audio recording, event, etc.) in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $duration;
 
@@ -184,7 +184,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $encodingFormat;
 
     /**
-     * @return DateTime|string|null
+     * @return null|string|DateTime
      */
     public function getStartTime()
     {
@@ -192,16 +192,16 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateTime|string|null $startTime
+     * @param null|string|DateTime $startTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartTime($startTime)
     {
         $types = array(
-            "DateTime",
-            "Time",
             "null",
+            "Time",
+            "DateTime",
         );
 
         $startTime = self::checkTypes($startTime, $types);
@@ -210,7 +210,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getUploadDate()
     {
@@ -218,15 +218,15 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Date|null $uploadDate
+     * @param null|Date $uploadDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUploadDate($uploadDate)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $uploadDate = self::checkTypes($uploadDate, $types);
@@ -358,7 +358,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return DateTime|string|null
+     * @return null|string|DateTime
      */
     public function getEndTime()
     {
@@ -366,16 +366,16 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateTime|string|null $endTime
+     * @param null|string|DateTime $endTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndTime($endTime)
     {
         $types = array(
-            "DateTime",
-            "Time",
             "null",
+            "Time",
+            "DateTime",
         );
 
         $endTime = self::checkTypes($endTime, $types);
@@ -529,7 +529,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getDuration()
     {
@@ -537,15 +537,15 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateInterval|null $duration
+     * @param null|DateInterval $duration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $duration = self::checkTypes($duration, $types);

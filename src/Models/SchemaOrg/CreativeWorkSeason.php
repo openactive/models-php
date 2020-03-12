@@ -53,7 +53,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The number of episodes in this season or series.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $numberOfEpisodes;
 
@@ -69,7 +69,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $endDate;
 
@@ -85,7 +85,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var DateTime|Date|null
+     * @var null|DateTime|Date
      */
     protected $startDate;
 
@@ -117,7 +117,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Position of the season within an ordered group of seasons.
      *
      *
-     * @var int|string|null
+     * @var null|int|string
      */
     protected $seasonNumber;
 
@@ -170,7 +170,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getNumberOfEpisodes()
     {
@@ -178,15 +178,15 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param int|null $numberOfEpisodes
+     * @param null|int $numberOfEpisodes
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfEpisodes($numberOfEpisodes)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $numberOfEpisodes = self::checkTypes($numberOfEpisodes, $types);
@@ -219,7 +219,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getEndDate()
     {
@@ -227,16 +227,16 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Date|DateTime|null $endDate
+     * @param null|DateTime|Date $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $endDate = self::checkTypes($endDate, $types);
@@ -269,7 +269,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return DateTime|Date|null
+     * @return null|DateTime|Date
      */
     public function getStartDate()
     {
@@ -277,16 +277,16 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateTime|Date|null $startDate
+     * @param null|DateTime|Date $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
         $types = array(
+            "null",
             "DateTime",
             "Date",
-            "null",
         );
 
         $startDate = self::checkTypes($startDate, $types);
@@ -367,7 +367,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|string|null
+     * @return null|int|string
      */
     public function getSeasonNumber()
     {
@@ -375,16 +375,16 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param int|string|null $seasonNumber
+     * @param null|int|string $seasonNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeasonNumber($seasonNumber)
     {
         $types = array(
+            "null",
             "int",
             "string",
-            "null",
         );
 
         $seasonNumber = self::checkTypes($seasonNumber, $types);

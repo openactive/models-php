@@ -89,7 +89,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
      * The time when a passenger can check into the flight online.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $webCheckinTime;
 
@@ -129,7 +129,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
      * The estimated time the flight will take.
      *
      *
-     * @var string|DateInterval|null
+     * @var null|string|DateInterval
      */
     protected $estimatedFlightDuration;
 
@@ -304,7 +304,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getWebCheckinTime()
     {
@@ -312,15 +312,15 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @param DateTime|null $webCheckinTime
+     * @param null|DateTime $webCheckinTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWebCheckinTime($webCheckinTime)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $webCheckinTime = self::checkTypes($webCheckinTime, $types);
@@ -426,7 +426,7 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @return string|DateInterval|null
+     * @return null|string|DateInterval
      */
     public function getEstimatedFlightDuration()
     {
@@ -434,16 +434,16 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @param string|DateInterval|null $estimatedFlightDuration
+     * @param null|string|DateInterval $estimatedFlightDuration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEstimatedFlightDuration($estimatedFlightDuration)
     {
         $types = array(
+            "null",
             "string",
             "DateInterval",
-            "null",
         );
 
         $estimatedFlightDuration = self::checkTypes($estimatedFlightDuration, $types);

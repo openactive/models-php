@@ -49,7 +49,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
      * The expected arrival time.
      *
      *
-     * @var DateTime|string|null
+     * @var null|string|DateTime
      */
     protected $arrivalTime;
 
@@ -57,7 +57,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
      * The expected departure time.
      *
      *
-     * @var string|DateTime|null
+     * @var null|string|DateTime
      */
     protected $departureTime;
 
@@ -136,7 +136,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateTime|string|null
+     * @return null|string|DateTime
      */
     public function getArrivalTime()
     {
@@ -144,16 +144,16 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateTime|string|null $arrivalTime
+     * @param null|string|DateTime $arrivalTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArrivalTime($arrivalTime)
     {
         $types = array(
-            "DateTime",
-            "Time",
             "null",
+            "Time",
+            "DateTime",
         );
 
         $arrivalTime = self::checkTypes($arrivalTime, $types);
@@ -162,7 +162,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|DateTime|null
+     * @return null|string|DateTime
      */
     public function getDepartureTime()
     {
@@ -170,16 +170,16 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|DateTime|null $departureTime
+     * @param null|string|DateTime $departureTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDepartureTime($departureTime)
     {
         $types = array(
+            "null",
             "Time",
             "DateTime",
-            "null",
         );
 
         $departureTime = self::checkTypes($departureTime, $types);

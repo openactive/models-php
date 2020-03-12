@@ -50,7 +50,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
      * The date that payment is due.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $paymentDue;
 
@@ -58,7 +58,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
      * The time interval used to compute the invoice.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $billingPeriod;
 
@@ -82,7 +82,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
      * The date the invoice is scheduled to be paid.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $scheduledPaymentDate;
 
@@ -106,7 +106,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
      * The status of payment; whether the invoice has been paid or not.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\PaymentStatusType|string|null
+     * @var \OpenActive\Enums\SchemaOrg\PaymentStatusType|null|string
      */
     protected $paymentStatus;
 
@@ -162,7 +162,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
      * The date that payment is due.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $paymentDueDate;
 
@@ -192,7 +192,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getPaymentDue()
     {
@@ -200,15 +200,15 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateTime|null $paymentDue
+     * @param null|DateTime $paymentDue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentDue($paymentDue)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $paymentDue = self::checkTypes($paymentDue, $types);
@@ -217,7 +217,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getBillingPeriod()
     {
@@ -225,15 +225,15 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateInterval|null $billingPeriod
+     * @param null|DateInterval $billingPeriod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBillingPeriod($billingPeriod)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $billingPeriod = self::checkTypes($billingPeriod, $types);
@@ -290,7 +290,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getScheduledPaymentDate()
     {
@@ -298,15 +298,15 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|null $scheduledPaymentDate
+     * @param null|Date $scheduledPaymentDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setScheduledPaymentDate($scheduledPaymentDate)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $scheduledPaymentDate = self::checkTypes($scheduledPaymentDate, $types);
@@ -365,7 +365,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\PaymentStatusType|string|null
+     * @return \OpenActive\Enums\SchemaOrg\PaymentStatusType|null|string
      */
     public function getPaymentStatus()
     {
@@ -373,7 +373,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\PaymentStatusType|string|null $paymentStatus
+     * @param \OpenActive\Enums\SchemaOrg\PaymentStatusType|null|string $paymentStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -381,8 +381,8 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "\OpenActive\Enums\SchemaOrg\PaymentStatusType",
-            "string",
             "null",
+            "string",
         );
 
         $paymentStatus = self::checkTypes($paymentStatus, $types);
@@ -539,7 +539,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getPaymentDueDate()
     {
@@ -547,16 +547,16 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|DateTime|null $paymentDueDate
+     * @param null|DateTime|Date $paymentDueDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentDueDate($paymentDueDate)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $paymentDueDate = self::checkTypes($paymentDueDate, $types);

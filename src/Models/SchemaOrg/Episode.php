@@ -84,7 +84,7 @@ class Episode extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Position of the episode within an ordered group of episodes.
      *
      *
-     * @var int|string|null
+     * @var null|int|string
      */
     protected $episodeNumber;
 
@@ -258,7 +258,7 @@ class Episode extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|string|null
+     * @return null|int|string
      */
     public function getEpisodeNumber()
     {
@@ -266,16 +266,16 @@ class Episode extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param int|string|null $episodeNumber
+     * @param null|int|string $episodeNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEpisodeNumber($episodeNumber)
     {
         $types = array(
+            "null",
             "int",
             "string",
-            "null",
         );
 
         $episodeNumber = self::checkTypes($episodeNumber, $types);

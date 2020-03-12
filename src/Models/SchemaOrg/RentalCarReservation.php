@@ -30,7 +30,7 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * When a taxi will pickup a passenger or a rental car can be picked up.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $pickupTime;
 
@@ -38,7 +38,7 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * When a rental car can be dropped off.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $dropoffTime;
 
@@ -59,7 +59,7 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $pickupLocation;
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getPickupTime()
     {
@@ -67,15 +67,15 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param DateTime|null $pickupTime
+     * @param null|DateTime $pickupTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPickupTime($pickupTime)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $pickupTime = self::checkTypes($pickupTime, $types);
@@ -84,7 +84,7 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getDropoffTime()
     {
@@ -92,15 +92,15 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param DateTime|null $dropoffTime
+     * @param null|DateTime $dropoffTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDropoffTime($dropoffTime)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $dropoffTime = self::checkTypes($dropoffTime, $types);

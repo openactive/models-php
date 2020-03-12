@@ -37,7 +37,7 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The number of interactions for the CreativeWork using the WebSite or SoftwareApplication.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $userInteractionCount;
 
@@ -75,7 +75,7 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getUserInteractionCount()
     {
@@ -83,15 +83,15 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param int|null $userInteractionCount
+     * @param null|int $userInteractionCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUserInteractionCount($userInteractionCount)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $userInteractionCount = self::checkTypes($userInteractionCount, $types);

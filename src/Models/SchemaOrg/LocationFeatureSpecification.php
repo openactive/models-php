@@ -37,7 +37,7 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
      * The date when the item becomes valid.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $validFrom;
 
@@ -45,7 +45,7 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
      * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $validThrough;
 
@@ -74,7 +74,7 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getValidFrom()
     {
@@ -82,16 +82,16 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     }
 
     /**
-     * @param Date|DateTime|null $validFrom
+     * @param null|DateTime|Date $validFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFrom($validFrom)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $validFrom = self::checkTypes($validFrom, $types);
@@ -100,7 +100,7 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getValidThrough()
     {
@@ -108,16 +108,16 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     }
 
     /**
-     * @param Date|DateTime|null $validThrough
+     * @param null|DateTime|Date $validThrough
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidThrough($validThrough)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $validThrough = self::checkTypes($validThrough, $types);

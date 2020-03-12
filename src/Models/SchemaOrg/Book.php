@@ -63,7 +63,7 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The number of pages in the book.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $numberOfPages;
 
@@ -165,7 +165,7 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getNumberOfPages()
     {
@@ -173,15 +173,15 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param int|null $numberOfPages
+     * @param null|int $numberOfPages
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfPages($numberOfPages)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $numberOfPages = self::checkTypes($numberOfPages, $types);

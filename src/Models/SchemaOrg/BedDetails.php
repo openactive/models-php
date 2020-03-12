@@ -28,7 +28,7 @@ class BedDetails extends \OpenActive\Models\SchemaOrg\Intangible
      * The quantity of the given bed type available in the HotelRoom, Suite, House, or Apartment.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $numberOfBeds;
 
@@ -41,7 +41,7 @@ class BedDetails extends \OpenActive\Models\SchemaOrg\Intangible
     protected $typeOfBed;
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getNumberOfBeds()
     {
@@ -49,15 +49,15 @@ class BedDetails extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param float|null $numberOfBeds
+     * @param null|float $numberOfBeds
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfBeds($numberOfBeds)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $numberOfBeds = self::checkTypes($numberOfBeds, $types);

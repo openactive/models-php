@@ -29,7 +29,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
      * The total amount.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $price;
 
@@ -42,7 +42,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
     protected $priceCurrency;
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getPrice()
     {
@@ -50,15 +50,15 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
     }
 
     /**
-     * @param float|null $price
+     * @param null|float $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $price = self::checkTypes($price, $types);

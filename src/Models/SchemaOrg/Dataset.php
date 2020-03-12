@@ -42,7 +42,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The range of temporal applicability of a dataset, e.g. for a 2011 census dataset, the year 2011 (in ISO 8601 time interval format).
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $datasetTimeInterval;
 
@@ -126,7 +126,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getDatasetTimeInterval()
     {
@@ -134,15 +134,15 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateTime|null $datasetTimeInterval
+     * @param null|DateTime $datasetTimeInterval
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDatasetTimeInterval($datasetTimeInterval)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $datasetTimeInterval = self::checkTypes($datasetTimeInterval, $types);

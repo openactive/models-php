@@ -298,7 +298,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * The date the item e.g. vehicle was purchased by the current owner.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $purchaseDate;
 
@@ -314,7 +314,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * The date of production of the item, e.g. vehicle.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $productionDate;
 
@@ -338,7 +338,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * The release date of a product or product model. This can be used to distinguish the exact variant of a product.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $releaseDate;
 
@@ -1073,7 +1073,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getPurchaseDate()
     {
@@ -1081,15 +1081,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Date|null $purchaseDate
+     * @param null|Date $purchaseDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPurchaseDate($purchaseDate)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $purchaseDate = self::checkTypes($purchaseDate, $types);
@@ -1123,7 +1123,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getProductionDate()
     {
@@ -1131,15 +1131,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Date|null $productionDate
+     * @param null|Date $productionDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProductionDate($productionDate)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $productionDate = self::checkTypes($productionDate, $types);
@@ -1197,7 +1197,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getReleaseDate()
     {
@@ -1205,15 +1205,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Date|null $releaseDate
+     * @param null|Date $releaseDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReleaseDate($releaseDate)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $releaseDate = self::checkTypes($releaseDate, $types);

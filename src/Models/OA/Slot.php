@@ -214,7 +214,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * "duration": "PT1H"
      * ```
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $duration;
 
@@ -398,7 +398,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * "maximumAttendeeCapacity": 30
      * ```
      *
-     * @var int|null
+     * @var null|int
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $maximumAttendeeCapacity;
@@ -410,7 +410,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * "maximumUses": 16
      * ```
      *
-     * @var int|null
+     * @var null|int
      */
     protected $maximumUses;
 
@@ -506,7 +506,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * "remainingAttendeeCapacity": 20
      * ```
      *
-     * @var int|null
+     * @var null|int
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $remainingAttendeeCapacity;
@@ -518,7 +518,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * "remainingUses": 5
      * ```
      *
-     * @var int|null
+     * @var null|int
      */
     protected $remainingUses;
 
@@ -541,7 +541,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * "startDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $startDate;
 
@@ -553,7 +553,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * "endDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $endDate;
 
@@ -860,7 +860,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getDuration()
     {
@@ -868,15 +868,15 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param DateInterval|null $duration
+     * @param null|DateInterval $duration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $duration = self::checkTypes($duration, $types);
@@ -1150,7 +1150,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return int|null
+     * @return null|int
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getMaximumAttendeeCapacity()
@@ -1159,7 +1159,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param int|null $maximumAttendeeCapacity
+     * @param null|int $maximumAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -1167,8 +1167,8 @@ class Slot extends \OpenActive\Models\OA\Event
     public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $maximumAttendeeCapacity = self::checkTypes($maximumAttendeeCapacity, $types);
@@ -1177,7 +1177,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getMaximumUses()
     {
@@ -1185,15 +1185,15 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param int|null $maximumUses
+     * @param null|int $maximumUses
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaximumUses($maximumUses)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $maximumUses = self::checkTypes($maximumUses, $types);
@@ -1331,7 +1331,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return int|null
+     * @return null|int
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getRemainingAttendeeCapacity()
@@ -1340,7 +1340,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param int|null $remainingAttendeeCapacity
+     * @param null|int $remainingAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -1348,8 +1348,8 @@ class Slot extends \OpenActive\Models\OA\Event
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $remainingAttendeeCapacity = self::checkTypes($remainingAttendeeCapacity, $types);
@@ -1358,7 +1358,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getRemainingUses()
     {
@@ -1366,15 +1366,15 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param int|null $remainingUses
+     * @param null|int $remainingUses
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRemainingUses($remainingUses)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $remainingUses = self::checkTypes($remainingUses, $types);
@@ -1409,7 +1409,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getStartDate()
     {
@@ -1417,16 +1417,16 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param Date|DateTime|null $startDate
+     * @param null|DateTime|Date $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $startDate = self::checkTypes($startDate, $types);
@@ -1435,7 +1435,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getEndDate()
     {
@@ -1443,16 +1443,16 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param Date|DateTime|null $endDate
+     * @param null|DateTime|Date $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $endDate = self::checkTypes($endDate, $types);

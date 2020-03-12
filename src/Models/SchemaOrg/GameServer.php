@@ -37,7 +37,7 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
      * Number of players on the server.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $playersOnline;
 
@@ -74,7 +74,7 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getPlayersOnline()
     {
@@ -82,15 +82,15 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param int|null $playersOnline
+     * @param null|int $playersOnline
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPlayersOnline($playersOnline)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $playersOnline = self::checkTypes($playersOnline, $types);

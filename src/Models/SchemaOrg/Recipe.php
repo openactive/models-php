@@ -92,7 +92,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
      * The time it takes to actually cook the dish, in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 duration format</a>.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $cookTime;
 
@@ -285,7 +285,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getCookTime()
     {
@@ -293,15 +293,15 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     }
 
     /**
-     * @param DateInterval|null $cookTime
+     * @param null|DateInterval $cookTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCookTime($cookTime)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $cookTime = self::checkTypes($cookTime, $types);

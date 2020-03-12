@@ -34,7 +34,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The lower value of some characteristic or property.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $minValue;
 
@@ -61,7 +61,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * 
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\StructuredValue|string|float|bool|null
+     * @var \OpenActive\Models\SchemaOrg\StructuredValue|null|float|string|bool
      */
     protected $value;
 
@@ -77,7 +77,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The upper value of some characteristic or property.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $maxValue;
 
@@ -114,7 +114,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $measurementTechnique;
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getMinValue()
     {
@@ -122,15 +122,15 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param float|null $minValue
+     * @param null|float $minValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMinValue($minValue)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $minValue = self::checkTypes($minValue, $types);
@@ -163,7 +163,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\StructuredValue|string|float|bool|null
+     * @return \OpenActive\Models\SchemaOrg\StructuredValue|null|float|string|bool
      */
     public function getValue()
     {
@@ -171,7 +171,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\StructuredValue|string|float|bool|null $value
+     * @param \OpenActive\Models\SchemaOrg\StructuredValue|null|float|string|bool $value
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -179,10 +179,10 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\StructuredValue",
-            "string",
-            "float",
-            "bool",
             "null",
+            "float",
+            "string",
+            "bool",
         );
 
         $value = self::checkTypes($value, $types);
@@ -220,7 +220,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getMaxValue()
     {
@@ -228,15 +228,15 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param float|null $maxValue
+     * @param null|float $maxValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaxValue($maxValue)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $maxValue = self::checkTypes($maxValue, $types);

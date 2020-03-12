@@ -39,7 +39,7 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The quantity of the goods included in the offer.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $amountOfThisGood;
 
@@ -94,7 +94,7 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getAmountOfThisGood()
     {
@@ -102,15 +102,15 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param float|null $amountOfThisGood
+     * @param null|float $amountOfThisGood
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAmountOfThisGood($amountOfThisGood)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $amountOfThisGood = self::checkTypes($amountOfThisGood, $types);

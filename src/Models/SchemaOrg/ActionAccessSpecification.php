@@ -33,7 +33,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * The beginning of the availability of the product or service included in the offer.
      *
      *
-     * @var Date|string|DateTime|null
+     * @var null|string|DateTime|Date
      */
     protected $availabilityStarts;
 
@@ -57,7 +57,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * The end of the availability of the product or service included in the offer.
      *
      *
-     * @var Date|DateTime|string|null
+     * @var null|string|DateTime|Date
      */
     protected $availabilityEnds;
 
@@ -90,7 +90,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     protected $ineligibleRegion;
 
     /**
-     * @return Date|string|DateTime|null
+     * @return null|string|DateTime|Date
      */
     public function getAvailabilityStarts()
     {
@@ -98,17 +98,17 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|string|DateTime|null $availabilityStarts
+     * @param null|string|DateTime|Date $availabilityStarts
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailabilityStarts($availabilityStarts)
     {
         $types = array(
-            "Date",
+            "null",
             "Time",
             "DateTime",
-            "null",
+            "Date",
         );
 
         $availabilityStarts = self::checkTypes($availabilityStarts, $types);
@@ -168,7 +168,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|DateTime|string|null
+     * @return null|string|DateTime|Date
      */
     public function getAvailabilityEnds()
     {
@@ -176,17 +176,17 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|DateTime|string|null $availabilityEnds
+     * @param null|string|DateTime|Date $availabilityEnds
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailabilityEnds($availabilityEnds)
     {
         $types = array(
-            "Date",
-            "DateTime",
-            "Time",
             "null",
+            "Time",
+            "DateTime",
+            "Date",
         );
 
         $availabilityEnds = self::checkTypes($availabilityEnds, $types);

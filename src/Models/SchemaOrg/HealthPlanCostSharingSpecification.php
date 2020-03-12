@@ -55,7 +55,7 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
      * Whether The rate of coinsurance expressed as a number between 0.0 and 1.0.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $healthPlanCoinsuranceRate;
 
@@ -140,7 +140,7 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getHealthPlanCoinsuranceRate()
     {
@@ -148,15 +148,15 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
     }
 
     /**
-     * @param float|null $healthPlanCoinsuranceRate
+     * @param null|float $healthPlanCoinsuranceRate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHealthPlanCoinsuranceRate($healthPlanCoinsuranceRate)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $healthPlanCoinsuranceRate = self::checkTypes($healthPlanCoinsuranceRate, $types);

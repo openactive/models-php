@@ -32,7 +32,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
      * The 25th percentile value.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $percentile25;
 
@@ -40,7 +40,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
      * The median value.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $median;
 
@@ -48,7 +48,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
      * The 10th percentile value.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $percentile10;
 
@@ -56,7 +56,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
      * The duration of the item (movie, audio recording, event, etc.) in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $duration;
 
@@ -64,7 +64,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
      * The 90th percentile value.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $percentile90;
 
@@ -72,12 +72,12 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
      * The 75th percentile value.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $percentile75;
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getPercentile25()
     {
@@ -85,15 +85,15 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @param float|null $percentile25
+     * @param null|float $percentile25
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPercentile25($percentile25)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $percentile25 = self::checkTypes($percentile25, $types);
@@ -102,7 +102,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getMedian()
     {
@@ -110,15 +110,15 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @param float|null $median
+     * @param null|float $median
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMedian($median)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $median = self::checkTypes($median, $types);
@@ -127,7 +127,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getPercentile10()
     {
@@ -135,15 +135,15 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @param float|null $percentile10
+     * @param null|float $percentile10
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPercentile10($percentile10)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $percentile10 = self::checkTypes($percentile10, $types);
@@ -152,7 +152,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getDuration()
     {
@@ -160,15 +160,15 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @param DateInterval|null $duration
+     * @param null|DateInterval $duration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $duration = self::checkTypes($duration, $types);
@@ -177,7 +177,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getPercentile90()
     {
@@ -185,15 +185,15 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @param float|null $percentile90
+     * @param null|float $percentile90
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPercentile90($percentile90)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $percentile90 = self::checkTypes($percentile90, $types);
@@ -202,7 +202,7 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getPercentile75()
     {
@@ -210,15 +210,15 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @param float|null $percentile75
+     * @param null|float $percentile75
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPercentile75($percentile75)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $percentile75 = self::checkTypes($percentile75, $types);

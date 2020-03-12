@@ -29,7 +29,7 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $endDate;
 
@@ -45,12 +45,12 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var DateTime|Date|null
+     * @var null|DateTime|Date
      */
     protected $startDate;
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getEndDate()
     {
@@ -58,16 +58,16 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Date|DateTime|null $endDate
+     * @param null|DateTime|Date $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $endDate = self::checkTypes($endDate, $types);
@@ -100,7 +100,7 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return DateTime|Date|null
+     * @return null|DateTime|Date
      */
     public function getStartDate()
     {
@@ -108,16 +108,16 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateTime|Date|null $startDate
+     * @param null|DateTime|Date $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
         $types = array(
+            "null",
             "DateTime",
             "Date",
-            "null",
         );
 
         $startDate = self::checkTypes($startDate, $types);

@@ -35,7 +35,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The lowest price if the price is a range.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $minPrice;
 
@@ -51,7 +51,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The highest price if the price is a range.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $maxPrice;
 
@@ -77,7 +77,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The date when the item becomes valid.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $validFrom;
 
@@ -85,7 +85,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $validThrough;
 
@@ -103,7 +103,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
      * 
      *
      *
-     * @var string|float|null
+     * @var null|float|string
      */
     protected $price;
 
@@ -116,7 +116,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $valueAddedTaxIncluded;
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getMinPrice()
     {
@@ -124,15 +124,15 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param float|null $minPrice
+     * @param null|float $minPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMinPrice($minPrice)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $minPrice = self::checkTypes($minPrice, $types);
@@ -165,7 +165,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getMaxPrice()
     {
@@ -173,15 +173,15 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param float|null $maxPrice
+     * @param null|float $maxPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaxPrice($maxPrice)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $maxPrice = self::checkTypes($maxPrice, $types);
@@ -238,7 +238,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getValidFrom()
     {
@@ -246,16 +246,16 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param Date|DateTime|null $validFrom
+     * @param null|DateTime|Date $validFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFrom($validFrom)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $validFrom = self::checkTypes($validFrom, $types);
@@ -264,7 +264,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getValidThrough()
     {
@@ -272,16 +272,16 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param Date|DateTime|null $validThrough
+     * @param null|DateTime|Date $validThrough
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidThrough($validThrough)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $validThrough = self::checkTypes($validThrough, $types);
@@ -290,7 +290,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string|float|null
+     * @return null|float|string
      */
     public function getPrice()
     {
@@ -298,16 +298,16 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param string|float|null $price
+     * @param null|float|string $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
         $types = array(
-            "string",
-            "float",
             "null",
+            "float",
+            "string",
         );
 
         $price = self::checkTypes($price, $types);

@@ -31,7 +31,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
      * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      *
      *
-     * @var DateTime|string|null
+     * @var null|string|DateTime
      */
     protected $startTime;
 
@@ -41,7 +41,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
      * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      *
      *
-     * @var DateTime|string|null
+     * @var null|string|DateTime
      */
     protected $endTime;
 
@@ -54,7 +54,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     protected $partySize;
 
     /**
-     * @return DateTime|string|null
+     * @return null|string|DateTime
      */
     public function getStartTime()
     {
@@ -62,16 +62,16 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * @param DateTime|string|null $startTime
+     * @param null|string|DateTime $startTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartTime($startTime)
     {
         $types = array(
-            "DateTime",
-            "Time",
             "null",
+            "Time",
+            "DateTime",
         );
 
         $startTime = self::checkTypes($startTime, $types);
@@ -80,7 +80,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * @return DateTime|string|null
+     * @return null|string|DateTime
      */
     public function getEndTime()
     {
@@ -88,16 +88,16 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * @param DateTime|string|null $endTime
+     * @param null|string|DateTime $endTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndTime($endTime)
     {
         $types = array(
-            "DateTime",
-            "Time",
             "null",
+            "Time",
+            "DateTime",
         );
 
         $endTime = self::checkTypes($endTime, $types);

@@ -40,7 +40,7 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
      * The merchantReturnDays property indicates the number of days (from purchase) within which relevant merchant return policy is applicable.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $merchantReturnDays;
 
@@ -101,7 +101,7 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getMerchantReturnDays()
     {
@@ -109,15 +109,15 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param int|null $merchantReturnDays
+     * @param null|int $merchantReturnDays
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMerchantReturnDays($merchantReturnDays)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $merchantReturnDays = self::checkTypes($merchantReturnDays, $types);

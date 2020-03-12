@@ -31,7 +31,7 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
      * Frequency of payments due, i.e. number of months between payments. This is defined as a frequency, i.e. the reciprocal of a period of time.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $loanPaymentFrequency;
 
@@ -47,7 +47,7 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
      * a type of payment made in cash during the onset of the purchase of an expensive good/service. The payment typically represents only a percentage of the full purchase price.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|null|float
      */
     protected $downPayment;
 
@@ -63,12 +63,12 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
      * The number of payments contractually required at origination to repay the loan. For monthly paying loans this is the number of months from the contractual first payment date to the maturity date.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $numberOfLoanPayments;
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getLoanPaymentFrequency()
     {
@@ -76,15 +76,15 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
     }
 
     /**
-     * @param float|null $loanPaymentFrequency
+     * @param null|float $loanPaymentFrequency
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLoanPaymentFrequency($loanPaymentFrequency)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $loanPaymentFrequency = self::checkTypes($loanPaymentFrequency, $types);
@@ -117,7 +117,7 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|null|float
      */
     public function getDownPayment()
     {
@@ -125,7 +125,7 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null $downPayment
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|null|float $downPayment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -133,8 +133,8 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "float",
             "null",
+            "float",
         );
 
         $downPayment = self::checkTypes($downPayment, $types);
@@ -167,7 +167,7 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getNumberOfLoanPayments()
     {
@@ -175,15 +175,15 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
     }
 
     /**
-     * @param float|null $numberOfLoanPayments
+     * @param null|float $numberOfLoanPayments
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfLoanPayments($numberOfLoanPayments)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $numberOfLoanPayments = self::checkTypes($numberOfLoanPayments, $types);

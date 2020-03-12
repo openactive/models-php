@@ -42,7 +42,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
      * The earliest someone may check into a lodging establishment.
      *
      *
-     * @var DateTime|string|null
+     * @var null|string|DateTime
      */
     protected $checkinTime;
 
@@ -50,7 +50,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
      * Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value.
      *
      *
-     * @var bool|string|null
+     * @var bool|null|string
      */
     protected $petsAllowed;
 
@@ -82,7 +82,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
      * The latest someone may check out of a lodging establishment.
      *
      *
-     * @var DateTime|string|null
+     * @var null|string|DateTime
      */
     protected $checkoutTime;
 
@@ -120,7 +120,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @return DateTime|string|null
+     * @return null|string|DateTime
      */
     public function getCheckinTime()
     {
@@ -128,16 +128,16 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @param DateTime|string|null $checkinTime
+     * @param null|string|DateTime $checkinTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCheckinTime($checkinTime)
     {
         $types = array(
-            "DateTime",
-            "Time",
             "null",
+            "Time",
+            "DateTime",
         );
 
         $checkinTime = self::checkTypes($checkinTime, $types);
@@ -146,7 +146,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @return bool|string|null
+     * @return bool|null|string
      */
     public function getPetsAllowed()
     {
@@ -154,7 +154,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @param bool|string|null $petsAllowed
+     * @param bool|null|string $petsAllowed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -162,8 +162,8 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     {
         $types = array(
             "bool",
-            "string",
             "null",
+            "string",
         );
 
         $petsAllowed = self::checkTypes($petsAllowed, $types);
@@ -245,7 +245,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @return DateTime|string|null
+     * @return null|string|DateTime
      */
     public function getCheckoutTime()
     {
@@ -253,16 +253,16 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @param DateTime|string|null $checkoutTime
+     * @param null|string|DateTime $checkoutTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCheckoutTime($checkoutTime)
     {
         $types = array(
-            "DateTime",
-            "Time",
             "null",
+            "Time",
+            "DateTime",
         );
 
         $checkoutTime = self::checkTypes($checkoutTime, $types);

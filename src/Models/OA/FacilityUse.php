@@ -355,7 +355,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * Duration before the event for which the associated Offers are valid
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $offerValidityPeriod;
 
@@ -888,7 +888,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getOfferValidityPeriod()
     {
@@ -896,15 +896,15 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param DateInterval|null $offerValidityPeriod
+     * @param null|DateInterval $offerValidityPeriod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOfferValidityPeriod($offerValidityPeriod)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $offerValidityPeriod = self::checkTypes($offerValidityPeriod, $types);

@@ -29,7 +29,7 @@ class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
      * The time when the live blog will begin covering the Event. Note that coverage may begin before the Event's start time. The LiveBlogPosting may also be created before coverage begins.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $coverageStartTime;
 
@@ -37,7 +37,7 @@ class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
      * The time when the live blog will stop covering the Event. Note that coverage may continue after the Event concludes.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $coverageEndTime;
 
@@ -50,7 +50,7 @@ class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
     protected $liveBlogUpdate;
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getCoverageStartTime()
     {
@@ -58,15 +58,15 @@ class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
     }
 
     /**
-     * @param DateTime|null $coverageStartTime
+     * @param null|DateTime $coverageStartTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCoverageStartTime($coverageStartTime)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $coverageStartTime = self::checkTypes($coverageStartTime, $types);
@@ -75,7 +75,7 @@ class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getCoverageEndTime()
     {
@@ -83,15 +83,15 @@ class LiveBlogPosting extends \OpenActive\Models\SchemaOrg\BlogPosting
     }
 
     /**
-     * @param DateTime|null $coverageEndTime
+     * @param null|DateTime $coverageEndTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCoverageEndTime($coverageEndTime)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $coverageEndTime = self::checkTypes($coverageEndTime, $types);

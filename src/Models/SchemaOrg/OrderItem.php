@@ -39,7 +39,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
      * The number of the item ordered. If the property is not set, assume the quantity is one.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $orderQuantity;
 
@@ -93,7 +93,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getOrderQuantity()
     {
@@ -101,15 +101,15 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param float|null $orderQuantity
+     * @param null|float $orderQuantity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderQuantity($orderQuantity)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $orderQuantity = self::checkTypes($orderQuantity, $types);

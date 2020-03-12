@@ -35,7 +35,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The date/time at which the message has been read by the recipient if a single recipient exists.
      *
      *
-     * @var DateTime|Date|null
+     * @var null|DateTime|Date
      */
     protected $dateRead;
 
@@ -51,7 +51,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The date/time at which the message was sent.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $dateSent;
 
@@ -91,7 +91,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The date/time the message was received if a single recipient exists.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $dateReceived;
 
@@ -104,7 +104,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $toRecipient;
 
     /**
-     * @return DateTime|Date|null
+     * @return null|DateTime|Date
      */
     public function getDateRead()
     {
@@ -112,16 +112,16 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateTime|Date|null $dateRead
+     * @param null|DateTime|Date $dateRead
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateRead($dateRead)
     {
         $types = array(
+            "null",
             "DateTime",
             "Date",
-            "null",
         );
 
         $dateRead = self::checkTypes($dateRead, $types);
@@ -156,7 +156,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getDateSent()
     {
@@ -164,15 +164,15 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateTime|null $dateSent
+     * @param null|DateTime $dateSent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateSent($dateSent)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $dateSent = self::checkTypes($dateSent, $types);
@@ -284,7 +284,7 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getDateReceived()
     {
@@ -292,15 +292,15 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateTime|null $dateReceived
+     * @param null|DateTime $dateReceived
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateReceived($dateReceived)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $dateReceived = self::checkTypes($dateReceived, $types);

@@ -57,7 +57,7 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The number of episodes in this season or series.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $numberOfEpisodes;
 
@@ -121,7 +121,7 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The number of seasons in this series.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $numberOfSeasons;
 
@@ -206,7 +206,7 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getNumberOfEpisodes()
     {
@@ -214,15 +214,15 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param int|null $numberOfEpisodes
+     * @param null|int $numberOfEpisodes
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfEpisodes($numberOfEpisodes)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $numberOfEpisodes = self::checkTypes($numberOfEpisodes, $types);
@@ -401,7 +401,7 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getNumberOfSeasons()
     {
@@ -409,15 +409,15 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param int|null $numberOfSeasons
+     * @param null|int $numberOfSeasons
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfSeasons($numberOfSeasons)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $numberOfSeasons = self::checkTypes($numberOfSeasons, $types);

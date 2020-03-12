@@ -87,7 +87,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * 
      *
      *
-     * @var string|float|\OpenActive\Models\SchemaOrg\PriceSpecification|null
+     * @var null|float|string|\OpenActive\Models\SchemaOrg\PriceSpecification
      */
     protected $totalPrice;
 
@@ -121,7 +121,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * The date and time the reservation was modified.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $modifiedTime;
 
@@ -129,7 +129,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * The date and time the reservation was booked.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $bookingTime;
 
@@ -274,7 +274,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|float|\OpenActive\Models\SchemaOrg\PriceSpecification|null
+     * @return null|float|string|\OpenActive\Models\SchemaOrg\PriceSpecification
      */
     public function getTotalPrice()
     {
@@ -282,17 +282,17 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|float|\OpenActive\Models\SchemaOrg\PriceSpecification|null $totalPrice
+     * @param null|float|string|\OpenActive\Models\SchemaOrg\PriceSpecification $totalPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalPrice($totalPrice)
     {
         $types = array(
-            "string",
-            "float",
-            "\OpenActive\Models\SchemaOrg\PriceSpecification",
             "null",
+            "float",
+            "string",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
         );
 
         $totalPrice = self::checkTypes($totalPrice, $types);
@@ -374,7 +374,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getModifiedTime()
     {
@@ -382,15 +382,15 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateTime|null $modifiedTime
+     * @param null|DateTime $modifiedTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setModifiedTime($modifiedTime)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $modifiedTime = self::checkTypes($modifiedTime, $types);
@@ -399,7 +399,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getBookingTime()
     {
@@ -407,15 +407,15 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateTime|null $bookingTime
+     * @param null|DateTime $bookingTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBookingTime($bookingTime)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $bookingTime = self::checkTypes($bookingTime, $types);

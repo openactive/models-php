@@ -38,7 +38,7 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The date and time of giving up ownership on the product.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $ownedThrough;
 
@@ -54,7 +54,7 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The date and time of obtaining the product.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $ownedFrom;
 
@@ -84,7 +84,7 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getOwnedThrough()
     {
@@ -92,15 +92,15 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param DateTime|null $ownedThrough
+     * @param null|DateTime $ownedThrough
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOwnedThrough($ownedThrough)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $ownedThrough = self::checkTypes($ownedThrough, $types);
@@ -134,7 +134,7 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getOwnedFrom()
     {
@@ -142,15 +142,15 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param DateTime|null $ownedFrom
+     * @param null|DateTime $ownedFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOwnedFrom($ownedFrom)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $ownedFrom = self::checkTypes($ownedFrom, $types);

@@ -38,7 +38,7 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The page on which the work ends; for example "138" or "xvi".
      *
      *
-     * @var int|string|null
+     * @var null|int|string
      */
     protected $pageEnd;
 
@@ -46,7 +46,7 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Identifies the volume of publication or multi-part work; for example, "iii" or "2".
      *
      *
-     * @var string|int|null
+     * @var null|int|string
      */
     protected $volumeNumber;
 
@@ -54,7 +54,7 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The page on which the work starts; for example "135" or "xiii".
      *
      *
-     * @var string|int|null
+     * @var null|int|string
      */
     protected $pageStart;
 
@@ -83,7 +83,7 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|string|null
+     * @return null|int|string
      */
     public function getPageEnd()
     {
@@ -91,16 +91,16 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param int|string|null $pageEnd
+     * @param null|int|string $pageEnd
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPageEnd($pageEnd)
     {
         $types = array(
+            "null",
             "int",
             "string",
-            "null",
         );
 
         $pageEnd = self::checkTypes($pageEnd, $types);
@@ -109,7 +109,7 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string|int|null
+     * @return null|int|string
      */
     public function getVolumeNumber()
     {
@@ -117,16 +117,16 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|int|null $volumeNumber
+     * @param null|int|string $volumeNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVolumeNumber($volumeNumber)
     {
         $types = array(
-            "string",
-            "int",
             "null",
+            "int",
+            "string",
         );
 
         $volumeNumber = self::checkTypes($volumeNumber, $types);
@@ -135,7 +135,7 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string|int|null
+     * @return null|int|string
      */
     public function getPageStart()
     {
@@ -143,16 +143,16 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|int|null $pageStart
+     * @param null|int|string $pageStart
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPageStart($pageStart)
     {
         $types = array(
-            "string",
-            "int",
             "null",
+            "int",
+            "string",
         );
 
         $pageStart = self::checkTypes($pageStart, $types);

@@ -38,7 +38,7 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
      * The position of an item in a series or sequence of items.
      *
      *
-     * @var int|string|null
+     * @var null|int|string
      */
     protected $position;
 
@@ -83,7 +83,7 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return int|string|null
+     * @return null|int|string
      */
     public function getPosition()
     {
@@ -91,16 +91,16 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param int|string|null $position
+     * @param null|int|string $position
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPosition($position)
     {
         $types = array(
+            "null",
             "int",
             "string",
-            "null",
         );
 
         $position = self::checkTypes($position, $types);

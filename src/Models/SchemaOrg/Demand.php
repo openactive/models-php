@@ -67,7 +67,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
      * The beginning of the availability of the product or service included in the offer.
      *
      *
-     * @var Date|string|DateTime|null
+     * @var null|string|DateTime|Date
      */
     protected $availabilityStarts;
 
@@ -163,7 +163,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
      * The date when the item becomes valid.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $validFrom;
 
@@ -171,7 +171,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
      * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $validThrough;
 
@@ -219,7 +219,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
      * The end of the availability of the product or service included in the offer.
      *
      *
-     * @var Date|DateTime|string|null
+     * @var null|string|DateTime|Date
      */
     protected $availabilityEnds;
 
@@ -348,7 +348,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|string|DateTime|null
+     * @return null|string|DateTime|Date
      */
     public function getAvailabilityStarts()
     {
@@ -356,17 +356,17 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|string|DateTime|null $availabilityStarts
+     * @param null|string|DateTime|Date $availabilityStarts
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailabilityStarts($availabilityStarts)
     {
         $types = array(
-            "Date",
+            "null",
             "Time",
             "DateTime",
-            "null",
+            "Date",
         );
 
         $availabilityStarts = self::checkTypes($availabilityStarts, $types);
@@ -643,7 +643,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getValidFrom()
     {
@@ -651,16 +651,16 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|DateTime|null $validFrom
+     * @param null|DateTime|Date $validFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFrom($validFrom)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $validFrom = self::checkTypes($validFrom, $types);
@@ -669,7 +669,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getValidThrough()
     {
@@ -677,16 +677,16 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|DateTime|null $validThrough
+     * @param null|DateTime|Date $validThrough
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidThrough($validThrough)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $validThrough = self::checkTypes($validThrough, $types);
@@ -816,7 +816,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|DateTime|string|null
+     * @return null|string|DateTime|Date
      */
     public function getAvailabilityEnds()
     {
@@ -824,17 +824,17 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|DateTime|string|null $availabilityEnds
+     * @param null|string|DateTime|Date $availabilityEnds
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailabilityEnds($availabilityEnds)
     {
         $types = array(
-            "Date",
-            "DateTime",
-            "Time",
             "null",
+            "Time",
+            "DateTime",
+            "Date",
         );
 
         $availabilityEnds = self::checkTypes($availabilityEnds, $types);

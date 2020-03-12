@@ -94,7 +94,7 @@ class Legislation extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The date of adoption or signature of the legislation. This is the date at which the text is officially aknowledged to be a legislation, even though it might not even be published or in force.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $legislationDate;
 
@@ -126,7 +126,7 @@ class Legislation extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The point-in-time at which the provided description of the legislation is valid (e.g. : when looking at the law on the 2016-04-07 (= dateVersion), I get the consolidation of 2015-04-12 of the "National Insurance Contributions Act 2015")
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $legislationDateVersion;
 
@@ -302,7 +302,7 @@ class Legislation extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getLegislationDate()
     {
@@ -310,15 +310,15 @@ class Legislation extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Date|null $legislationDate
+     * @param null|Date $legislationDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLegislationDate($legislationDate)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $legislationDate = self::checkTypes($legislationDate, $types);
@@ -401,7 +401,7 @@ class Legislation extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getLegislationDateVersion()
     {
@@ -409,15 +409,15 @@ class Legislation extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Date|null $legislationDateVersion
+     * @param null|Date $legislationDateVersion
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLegislationDateVersion($legislationDateVersion)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $legislationDateVersion = self::checkTypes($legislationDateVersion, $types);

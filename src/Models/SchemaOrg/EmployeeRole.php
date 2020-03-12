@@ -36,7 +36,7 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
      * The base salary of the job or of an employee in an EmployeeRole.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|float|null
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|null|float
      */
     protected $baseSalary;
 
@@ -65,7 +65,7 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|float|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|null|float
      */
     public function getBaseSalary()
     {
@@ -73,7 +73,7 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|float|null $baseSalary
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|null|float $baseSalary
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -82,8 +82,8 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
         $types = array(
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "\OpenActive\Models\SchemaOrg\PriceSpecification",
-            "float",
             "null",
+            "float",
         );
 
         $baseSalary = self::checkTypes($baseSalary, $types);

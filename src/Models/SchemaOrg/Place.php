@@ -92,7 +92,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
      * The latitude of a location. For example <code>37.42242</code> (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>).
      *
      *
-     * @var float|string|null
+     * @var null|float|string
      */
     protected $latitude;
 
@@ -148,7 +148,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
      * The total number of individuals that may attend an event or venue.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $maximumAttendeeCapacity;
 
@@ -206,7 +206,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
      * The longitude of a location. For example <code>-122.08585</code> (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>).
      *
      *
-     * @var float|string|null
+     * @var null|float|string
      */
     protected $longitude;
 
@@ -482,7 +482,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return float|string|null
+     * @return null|float|string
      */
     public function getLatitude()
     {
@@ -490,16 +490,16 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param float|string|null $latitude
+     * @param null|float|string $latitude
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLatitude($latitude)
     {
         $types = array(
+            "null",
             "float",
             "string",
-            "null",
         );
 
         $latitude = self::checkTypes($latitude, $types);
@@ -654,7 +654,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getMaximumAttendeeCapacity()
     {
@@ -662,15 +662,15 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param int|null $maximumAttendeeCapacity
+     * @param null|int $maximumAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $maximumAttendeeCapacity = self::checkTypes($maximumAttendeeCapacity, $types);
@@ -825,7 +825,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return float|string|null
+     * @return null|float|string
      */
     public function getLongitude()
     {
@@ -833,16 +833,16 @@ class Place extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param float|string|null $longitude
+     * @param null|float|string $longitude
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLongitude($longitude)
     {
         $types = array(
+            "null",
             "float",
             "string",
-            "null",
         );
 
         $longitude = self::checkTypes($longitude, $types);

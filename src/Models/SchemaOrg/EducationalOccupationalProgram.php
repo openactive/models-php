@@ -56,7 +56,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The number of times terms of study are offered per year. Semesters and quarters are common units for term. For example, if the student can only take 2 semesters for the program in one year, then termsPerYear should be 2.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $termsPerYear;
 
@@ -72,7 +72,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The amount of time in a term as defined by the institution. A term is a length of time where students take one or more classes. Semesters and quarters are common units for term.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $termDuration;
 
@@ -88,7 +88,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The expected length of time to complete the program if attending full-time.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $timeToComplete;
 
@@ -112,7 +112,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The maximum number of students who may be enrolled in the program.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $maximumEnrollment;
 
@@ -120,7 +120,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The date at which the program stops collecting applications for the next enrollment cycle.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $applicationDeadline;
 
@@ -144,7 +144,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The date at which the program begins collecting applications for the next enrollment cycle.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $applicationStartDate;
 
@@ -202,7 +202,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getTermsPerYear()
     {
@@ -210,15 +210,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param float|null $termsPerYear
+     * @param null|float $termsPerYear
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTermsPerYear($termsPerYear)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $termsPerYear = self::checkTypes($termsPerYear, $types);
@@ -251,7 +251,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getTermDuration()
     {
@@ -259,15 +259,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param DateInterval|null $termDuration
+     * @param null|DateInterval $termDuration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTermDuration($termDuration)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $termDuration = self::checkTypes($termDuration, $types);
@@ -300,7 +300,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getTimeToComplete()
     {
@@ -308,15 +308,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param DateInterval|null $timeToComplete
+     * @param null|DateInterval $timeToComplete
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTimeToComplete($timeToComplete)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $timeToComplete = self::checkTypes($timeToComplete, $types);
@@ -376,7 +376,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getMaximumEnrollment()
     {
@@ -384,15 +384,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param int|null $maximumEnrollment
+     * @param null|int $maximumEnrollment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaximumEnrollment($maximumEnrollment)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $maximumEnrollment = self::checkTypes($maximumEnrollment, $types);
@@ -401,7 +401,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getApplicationDeadline()
     {
@@ -409,15 +409,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param Date|null $applicationDeadline
+     * @param null|Date $applicationDeadline
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setApplicationDeadline($applicationDeadline)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $applicationDeadline = self::checkTypes($applicationDeadline, $types);
@@ -475,7 +475,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getApplicationStartDate()
     {
@@ -483,15 +483,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param Date|null $applicationStartDate
+     * @param null|Date $applicationStartDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setApplicationStartDate($applicationStartDate)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $applicationStartDate = self::checkTypes($applicationStartDate, $types);

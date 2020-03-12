@@ -38,7 +38,7 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
      * After this date, the item will no longer be available for pickup.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $availableThrough;
 
@@ -46,7 +46,7 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
      * When the item is available for pickup from the store, locker, etc.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $availableFrom;
 
@@ -84,7 +84,7 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getAvailableThrough()
     {
@@ -92,15 +92,15 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param DateTime|null $availableThrough
+     * @param null|DateTime $availableThrough
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableThrough($availableThrough)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $availableThrough = self::checkTypes($availableThrough, $types);
@@ -109,7 +109,7 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getAvailableFrom()
     {
@@ -117,15 +117,15 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param DateTime|null $availableFrom
+     * @param null|DateTime $availableFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableFrom($availableFrom)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $availableFrom = self::checkTypes($availableFrom, $types);

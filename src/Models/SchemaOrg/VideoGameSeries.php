@@ -80,7 +80,7 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * The number of episodes in this season or series.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $numberOfEpisodes;
 
@@ -168,7 +168,7 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * The number of seasons in this series.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $numberOfSeasons;
 
@@ -318,7 +318,7 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getNumberOfEpisodes()
     {
@@ -326,15 +326,15 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param int|null $numberOfEpisodes
+     * @param null|int $numberOfEpisodes
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfEpisodes($numberOfEpisodes)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $numberOfEpisodes = self::checkTypes($numberOfEpisodes, $types);
@@ -588,7 +588,7 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getNumberOfSeasons()
     {
@@ -596,15 +596,15 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param int|null $numberOfSeasons
+     * @param null|int $numberOfSeasons
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfSeasons($numberOfSeasons)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $numberOfSeasons = self::checkTypes($numberOfSeasons, $types);

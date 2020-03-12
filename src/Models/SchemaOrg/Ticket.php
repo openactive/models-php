@@ -42,7 +42,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
      * The date the ticket was issued.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $dateIssued;
 
@@ -58,7 +58,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
      * 
      *
      *
-     * @var string|float|\OpenActive\Models\SchemaOrg\PriceSpecification|null
+     * @var null|float|string|\OpenActive\Models\SchemaOrg\PriceSpecification
      */
     protected $totalPrice;
 
@@ -130,7 +130,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getDateIssued()
     {
@@ -138,16 +138,16 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|DateTime|null $dateIssued
+     * @param null|DateTime|Date $dateIssued
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateIssued($dateIssued)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $dateIssued = self::checkTypes($dateIssued, $types);
@@ -156,7 +156,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|float|\OpenActive\Models\SchemaOrg\PriceSpecification|null
+     * @return null|float|string|\OpenActive\Models\SchemaOrg\PriceSpecification
      */
     public function getTotalPrice()
     {
@@ -164,17 +164,17 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|float|\OpenActive\Models\SchemaOrg\PriceSpecification|null $totalPrice
+     * @param null|float|string|\OpenActive\Models\SchemaOrg\PriceSpecification $totalPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalPrice($totalPrice)
     {
         $types = array(
-            "string",
-            "float",
-            "\OpenActive\Models\SchemaOrg\PriceSpecification",
             "null",
+            "float",
+            "string",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
         );
 
         $totalPrice = self::checkTypes($totalPrice, $types);

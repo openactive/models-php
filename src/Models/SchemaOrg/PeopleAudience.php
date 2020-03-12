@@ -32,7 +32,7 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
      * Maximal age recommended for viewing content.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $suggestedMaxAge;
 
@@ -40,7 +40,7 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
      * Audiences defined by a person's minimum age.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $requiredMinAge;
 
@@ -64,7 +64,7 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
      * Audiences defined by a person's maximum age.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $requiredMaxAge;
 
@@ -72,12 +72,12 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
      * Minimal age recommended for viewing content.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $suggestedMinAge;
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getSuggestedMaxAge()
     {
@@ -85,15 +85,15 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     }
 
     /**
-     * @param float|null $suggestedMaxAge
+     * @param null|float $suggestedMaxAge
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuggestedMaxAge($suggestedMaxAge)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $suggestedMaxAge = self::checkTypes($suggestedMaxAge, $types);
@@ -102,7 +102,7 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getRequiredMinAge()
     {
@@ -110,15 +110,15 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     }
 
     /**
-     * @param int|null $requiredMinAge
+     * @param null|int $requiredMinAge
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiredMinAge($requiredMinAge)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $requiredMinAge = self::checkTypes($requiredMinAge, $types);
@@ -175,7 +175,7 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getRequiredMaxAge()
     {
@@ -183,15 +183,15 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     }
 
     /**
-     * @param int|null $requiredMaxAge
+     * @param null|int $requiredMaxAge
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiredMaxAge($requiredMaxAge)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $requiredMaxAge = self::checkTypes($requiredMaxAge, $types);
@@ -200,7 +200,7 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getSuggestedMinAge()
     {
@@ -208,15 +208,15 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     }
 
     /**
-     * @param float|null $suggestedMinAge
+     * @param null|float $suggestedMinAge
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuggestedMinAge($suggestedMinAge)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $suggestedMinAge = self::checkTypes($suggestedMinAge, $types);

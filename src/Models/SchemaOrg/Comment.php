@@ -29,7 +29,7 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The number of upvotes this question, answer or comment has received from the community.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $upvoteCount;
 
@@ -45,12 +45,12 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The number of downvotes this question, answer or comment has received from the community.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $downvoteCount;
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getUpvoteCount()
     {
@@ -58,15 +58,15 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param int|null $upvoteCount
+     * @param null|int $upvoteCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUpvoteCount($upvoteCount)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $upvoteCount = self::checkTypes($upvoteCount, $types);
@@ -99,7 +99,7 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getDownvoteCount()
     {
@@ -107,15 +107,15 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param int|null $downvoteCount
+     * @param null|int $downvoteCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDownvoteCount($downvoteCount)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $downvoteCount = self::checkTypes($downvoteCount, $types);

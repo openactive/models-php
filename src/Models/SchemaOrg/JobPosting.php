@@ -116,7 +116,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
      * Publication date of an online listing.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $datePosted;
 
@@ -148,7 +148,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
      * The base salary of the job or of an employee in an EmployeeRole.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|float|null
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|null|float
      */
     protected $baseSalary;
 
@@ -156,7 +156,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
      * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $validThrough;
 
@@ -230,7 +230,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
      * The number of positions open for this job posting. Use a positive integer. Do not use if the number of positions is unclear or not known.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $totalJobOpenings;
 
@@ -262,7 +262,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
      * The date on which a successful applicant for this job would be expected to start work. Choose a specific date in the future or use the jobImmediateStart property to indicate the position is to be filled as soon as possible.
      *
      *
-     * @var string|Date|null
+     * @var null|string|Date
      */
     protected $jobStartDate;
 
@@ -499,7 +499,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getDatePosted()
     {
@@ -507,15 +507,15 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|null $datePosted
+     * @param null|Date $datePosted
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDatePosted($datePosted)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $datePosted = self::checkTypes($datePosted, $types);
@@ -597,7 +597,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|float|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|null|float
      */
     public function getBaseSalary()
     {
@@ -605,7 +605,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|float|null $baseSalary
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|null|float $baseSalary
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -614,8 +614,8 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
         $types = array(
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "\OpenActive\Models\SchemaOrg\PriceSpecification",
-            "float",
             "null",
+            "float",
         );
 
         $baseSalary = self::checkTypes($baseSalary, $types);
@@ -624,7 +624,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getValidThrough()
     {
@@ -632,16 +632,16 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|DateTime|null $validThrough
+     * @param null|DateTime|Date $validThrough
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidThrough($validThrough)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $validThrough = self::checkTypes($validThrough, $types);
@@ -847,7 +847,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getTotalJobOpenings()
     {
@@ -855,15 +855,15 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param int|null $totalJobOpenings
+     * @param null|int $totalJobOpenings
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalJobOpenings($totalJobOpenings)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $totalJobOpenings = self::checkTypes($totalJobOpenings, $types);
@@ -945,7 +945,7 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|Date|null
+     * @return null|string|Date
      */
     public function getJobStartDate()
     {
@@ -953,16 +953,16 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|Date|null $jobStartDate
+     * @param null|string|Date $jobStartDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setJobStartDate($jobStartDate)
     {
         $types = array(
+            "null",
             "string",
             "Date",
-            "null",
         );
 
         $jobStartDate = self::checkTypes($jobStartDate, $types);

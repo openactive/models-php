@@ -87,7 +87,7 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
      * An integer representing the HTTP status code.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $statusCode;
 
@@ -236,7 +236,7 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getStatusCode()
     {
@@ -244,15 +244,15 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param int|null $statusCode
+     * @param null|int $statusCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStatusCode($statusCode)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $statusCode = self::checkTypes($statusCode, $types);

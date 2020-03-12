@@ -29,7 +29,7 @@ class MusicPlaylist extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The number of tracks in this album or playlist.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $numTracks;
 
@@ -50,7 +50,7 @@ class MusicPlaylist extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $tracks;
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getNumTracks()
     {
@@ -58,15 +58,15 @@ class MusicPlaylist extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param int|null $numTracks
+     * @param null|int $numTracks
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumTracks($numTracks)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $numTracks = self::checkTypes($numTracks, $types);

@@ -31,7 +31,7 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
      * This property specifies the minimal quantity and rounding increment that will be the basis for the billing. The unit of measurement is specified by the unitCode property.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $billingIncrement;
 
@@ -69,7 +69,7 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     protected $priceType;
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getBillingIncrement()
     {
@@ -77,15 +77,15 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     }
 
     /**
-     * @param float|null $billingIncrement
+     * @param null|float $billingIncrement
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBillingIncrement($billingIncrement)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $billingIncrement = self::checkTypes($billingIncrement, $types);

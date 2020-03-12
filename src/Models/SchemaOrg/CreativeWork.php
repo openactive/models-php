@@ -265,7 +265,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * Date the content expires and is no longer useful or available. For example a <a class="localLink" href="https://schema.org/VideoObject">VideoObject</a> or <a class="localLink" href="https://schema.org/NewsArticle">NewsArticle</a> whose availability or relevance is time-limited, or a <a class="localLink" href="https://schema.org/ClaimReview">ClaimReview</a> fact check whose publisher wants to indicate that it may no longer be relevant (or helpful to highlight) after some date.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $expires;
 
@@ -297,7 +297,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The position of an item in a series or sequence of items.
      *
      *
-     * @var int|string|null
+     * @var null|int|string
      */
     protected $position;
 
@@ -373,7 +373,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * Open-ended date ranges can be written with ".." in place of the end date. For example, "2015-11/.." indicates a range beginning in November 2015 and with no specified final date. This is tentative and might be updated in future when ISO 8601 is officially updated.
      *
      *
-     * @var DateTime|string|null
+     * @var null|string|DateTime
      */
     protected $temporalCoverage;
 
@@ -455,7 +455,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The year during which the claimed copyright for the CreativeWork was first asserted.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $copyrightYear;
 
@@ -488,7 +488,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The number of comments this CreativeWork (e.g. Article, Question or Answer) has received. This is most applicable to works published in Web sites with commenting system; additional comments may exist elsewhere.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $commentCount;
 
@@ -513,7 +513,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * (e.g. <a class="localLink" href="https://schema.org/temporalCoverage">temporalCoverage</a>, <a class="localLink" href="https://schema.org/dateCreated">dateCreated</a>, <a class="localLink" href="https://schema.org/dateModified">dateModified</a>, <a class="localLink" href="https://schema.org/datePublished">datePublished</a>) are not known to be appropriate.
      *
      *
-     * @var DateTime|string|null
+     * @var null|string|DateTime
      */
     protected $temporal;
 
@@ -585,7 +585,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The version of the CreativeWork embodied by a specified resource.
      *
      *
-     * @var string|float|null
+     * @var null|float|string
      */
     protected $version;
 
@@ -593,7 +593,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $dateModified;
 
@@ -657,7 +657,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * Approximate or typical time it takes to work with or through this learning resource for the typical intended target audience, e.g. 'PT30M', 'PT1H25M'.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $timeRequired;
 
@@ -783,7 +783,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The date on which the CreativeWork was created or the item was added to a DataFeed.
      *
      *
-     * @var DateTime|Date|null
+     * @var null|DateTime|Date
      */
     protected $dateCreated;
 
@@ -791,7 +791,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * Date of first broadcast/publication.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $datePublished;
 
@@ -839,7 +839,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The specific time described by a creative work, for works (e.g. articles, video objects etc.) that emphasise a particular moment within an Event.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $contentReferenceTime;
 
@@ -871,7 +871,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * Indicates the date on which the current structured data was generated / published. Typically used alongside <a class="localLink" href="https://schema.org/sdPublisher">sdPublisher</a>
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $sdDatePublished;
 
@@ -1334,7 +1334,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getExpires()
     {
@@ -1342,15 +1342,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Date|null $expires
+     * @param null|Date $expires
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExpires($expires)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $expires = self::checkTypes($expires, $types);
@@ -1433,7 +1433,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return int|string|null
+     * @return null|int|string
      */
     public function getPosition()
     {
@@ -1441,16 +1441,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param int|string|null $position
+     * @param null|int|string $position
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPosition($position)
     {
         $types = array(
+            "null",
             "int",
             "string",
-            "null",
         );
 
         $position = self::checkTypes($position, $types);
@@ -1651,7 +1651,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return DateTime|string|null
+     * @return null|string|DateTime
      */
     public function getTemporalCoverage()
     {
@@ -1659,16 +1659,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param DateTime|string|null $temporalCoverage
+     * @param null|string|DateTime $temporalCoverage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTemporalCoverage($temporalCoverage)
     {
         $types = array(
-            "DateTime",
-            "string",
             "null",
+            "string",
+            "DateTime",
         );
 
         $temporalCoverage = self::checkTypes($temporalCoverage, $types);
@@ -1895,7 +1895,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getCopyrightYear()
     {
@@ -1903,15 +1903,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param float|null $copyrightYear
+     * @param null|float $copyrightYear
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCopyrightYear($copyrightYear)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $copyrightYear = self::checkTypes($copyrightYear, $types);
@@ -1992,7 +1992,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getCommentCount()
     {
@@ -2000,15 +2000,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param int|null $commentCount
+     * @param null|int $commentCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCommentCount($commentCount)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $commentCount = self::checkTypes($commentCount, $types);
@@ -2066,7 +2066,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return DateTime|string|null
+     * @return null|string|DateTime
      */
     public function getTemporal()
     {
@@ -2074,16 +2074,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param DateTime|string|null $temporal
+     * @param null|string|DateTime $temporal
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTemporal($temporal)
     {
         $types = array(
-            "DateTime",
-            "string",
             "null",
+            "string",
+            "DateTime",
         );
 
         $temporal = self::checkTypes($temporal, $types);
@@ -2287,7 +2287,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string|float|null
+     * @return null|float|string
      */
     public function getVersion()
     {
@@ -2295,16 +2295,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param string|float|null $version
+     * @param null|float|string $version
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVersion($version)
     {
         $types = array(
-            "string",
-            "float",
             "null",
+            "float",
+            "string",
         );
 
         $version = self::checkTypes($version, $types);
@@ -2313,7 +2313,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getDateModified()
     {
@@ -2321,16 +2321,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Date|DateTime|null $dateModified
+     * @param null|DateTime|Date $dateModified
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateModified($dateModified)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $dateModified = self::checkTypes($dateModified, $types);
@@ -2510,7 +2510,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getTimeRequired()
     {
@@ -2518,15 +2518,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param DateInterval|null $timeRequired
+     * @param null|DateInterval $timeRequired
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTimeRequired($timeRequired)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $timeRequired = self::checkTypes($timeRequired, $types);
@@ -2878,7 +2878,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return DateTime|Date|null
+     * @return null|DateTime|Date
      */
     public function getDateCreated()
     {
@@ -2886,16 +2886,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param DateTime|Date|null $dateCreated
+     * @param null|DateTime|Date $dateCreated
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateCreated($dateCreated)
     {
         $types = array(
+            "null",
             "DateTime",
             "Date",
-            "null",
         );
 
         $dateCreated = self::checkTypes($dateCreated, $types);
@@ -2904,7 +2904,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getDatePublished()
     {
@@ -2912,16 +2912,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Date|DateTime|null $datePublished
+     * @param null|DateTime|Date $datePublished
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDatePublished($datePublished)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $datePublished = self::checkTypes($datePublished, $types);
@@ -3054,7 +3054,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getContentReferenceTime()
     {
@@ -3062,15 +3062,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param DateTime|null $contentReferenceTime
+     * @param null|DateTime $contentReferenceTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContentReferenceTime($contentReferenceTime)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $contentReferenceTime = self::checkTypes($contentReferenceTime, $types);
@@ -3154,7 +3154,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getSdDatePublished()
     {
@@ -3162,15 +3162,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param Date|null $sdDatePublished
+     * @param null|Date $sdDatePublished
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSdDatePublished($sdDatePublished)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $sdDatePublished = self::checkTypes($sdDatePublished, $types);

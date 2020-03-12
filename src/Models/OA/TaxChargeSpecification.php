@@ -51,7 +51,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
      * The total amount.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $price;
 
@@ -67,7 +67,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
      * The rate of VAT.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $rate;
 
@@ -124,7 +124,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getPrice()
     {
@@ -132,15 +132,15 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     }
 
     /**
-     * @param float|null $price
+     * @param null|float $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $price = self::checkTypes($price, $types);
@@ -173,7 +173,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getRate()
     {
@@ -181,15 +181,15 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     }
 
     /**
-     * @param float|null $rate
+     * @param null|float $rate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRate($rate)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $rate = self::checkTypes($rate, $types);

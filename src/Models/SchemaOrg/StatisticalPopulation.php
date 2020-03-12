@@ -29,7 +29,7 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
      * Indicates the number of constraints (not counting <a class="localLink" href="https://schema.org/populationType">populationType</a>) defined for a particular <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>. This helps applications understand if they have access to a sufficiently complete description of a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $numConstraints;
 
@@ -38,7 +38,7 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
      *   corresponding to an indicated type (via <a class="localLink" href="https://schema.org/populationType">populationType</a>).
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $constrainingProperty;
 
@@ -51,7 +51,7 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $populationType;
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getNumConstraints()
     {
@@ -59,15 +59,15 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param int|null $numConstraints
+     * @param null|int $numConstraints
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumConstraints($numConstraints)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $numConstraints = self::checkTypes($numConstraints, $types);
@@ -76,7 +76,7 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getConstrainingProperty()
     {
@@ -84,15 +84,15 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param int|null $constrainingProperty
+     * @param null|int $constrainingProperty
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setConstrainingProperty($constrainingProperty)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $constrainingProperty = self::checkTypes($constrainingProperty, $types);

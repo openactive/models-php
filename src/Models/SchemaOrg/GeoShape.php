@@ -74,7 +74,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The elevation of a location (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>). Values may be of the form 'NUMBER UNIT<em>OF</em>MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters.
      *
      *
-     * @var float|string|null
+     * @var null|float|string
      */
     protected $elevation;
 
@@ -217,7 +217,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return float|string|null
+     * @return null|float|string
      */
     public function getElevation()
     {
@@ -225,16 +225,16 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param float|string|null $elevation
+     * @param null|float|string $elevation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setElevation($elevation)
     {
         $types = array(
+            "null",
             "float",
             "string",
-            "null",
         );
 
         $elevation = self::checkTypes($elevation, $types);

@@ -32,7 +32,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The latitude of a location. For example <code>37.42242</code> (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>).
      *
      *
-     * @var float|string|null
+     * @var null|float|string
      */
     protected $latitude;
 
@@ -40,7 +40,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The longitude of a location. For example <code>-122.08585</code> (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>).
      *
      *
-     * @var float|string|null
+     * @var null|float|string
      */
     protected $longitude;
 
@@ -72,12 +72,12 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The elevation of a location (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>). Values may be of the form 'NUMBER UNIT<em>OF</em>MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters.
      *
      *
-     * @var float|string|null
+     * @var null|float|string
      */
     protected $elevation;
 
     /**
-     * @return float|string|null
+     * @return null|float|string
      */
     public function getLatitude()
     {
@@ -85,16 +85,16 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param float|string|null $latitude
+     * @param null|float|string $latitude
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLatitude($latitude)
     {
         $types = array(
+            "null",
             "float",
             "string",
-            "null",
         );
 
         $latitude = self::checkTypes($latitude, $types);
@@ -103,7 +103,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return float|string|null
+     * @return null|float|string
      */
     public function getLongitude()
     {
@@ -111,16 +111,16 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param float|string|null $longitude
+     * @param null|float|string $longitude
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLongitude($longitude)
     {
         $types = array(
+            "null",
             "float",
             "string",
-            "null",
         );
 
         $longitude = self::checkTypes($longitude, $types);
@@ -203,7 +203,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return float|string|null
+     * @return null|float|string
      */
     public function getElevation()
     {
@@ -211,16 +211,16 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param float|string|null $elevation
+     * @param null|float|string $elevation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setElevation($elevation)
     {
         $types = array(
+            "null",
             "float",
             "string",
-            "null",
         );
 
         $elevation = self::checkTypes($elevation, $types);

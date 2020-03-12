@@ -213,7 +213,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "duration": "PT1H"
      * ```
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $duration;
 
@@ -377,7 +377,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "maximumAttendeeCapacity": 30
      * ```
      *
-     * @var int|null
+     * @var null|int
      */
     protected $maximumAttendeeCapacity;
 
@@ -471,7 +471,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "remainingAttendeeCapacity": 20
      * ```
      *
-     * @var int|null
+     * @var null|int
      */
     protected $remainingAttendeeCapacity;
 
@@ -493,7 +493,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "startDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $startDate;
 
@@ -505,7 +505,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "endDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $endDate;
 
@@ -568,7 +568,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * For events that have an unlimited number of tickets, captures the number of attendees (actual attendance).
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $attendeeCount;
 
@@ -577,7 +577,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * For events that have an unlimited number of tickets, captures the number of registrations (intention to attend).
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $registrationCount;
 
@@ -622,7 +622,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * Duration before the event for which the associated Offers are valid
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $offerValidityPeriod;
 
@@ -890,7 +890,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getDuration()
     {
@@ -898,15 +898,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param DateInterval|null $duration
+     * @param null|DateInterval $duration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $duration = self::checkTypes($duration, $types);
@@ -1136,7 +1136,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getMaximumAttendeeCapacity()
     {
@@ -1144,15 +1144,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param int|null $maximumAttendeeCapacity
+     * @param null|int $maximumAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $maximumAttendeeCapacity = self::checkTypes($maximumAttendeeCapacity, $types);
@@ -1282,7 +1282,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getRemainingAttendeeCapacity()
     {
@@ -1290,15 +1290,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param int|null $remainingAttendeeCapacity
+     * @param null|int $remainingAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $remainingAttendeeCapacity = self::checkTypes($remainingAttendeeCapacity, $types);
@@ -1331,7 +1331,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getStartDate()
     {
@@ -1339,16 +1339,16 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Date|DateTime|null $startDate
+     * @param null|DateTime|Date $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $startDate = self::checkTypes($startDate, $types);
@@ -1357,7 +1357,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getEndDate()
     {
@@ -1365,16 +1365,16 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Date|DateTime|null $endDate
+     * @param null|DateTime|Date $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $endDate = self::checkTypes($endDate, $types);
@@ -1527,7 +1527,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getAttendeeCount()
     {
@@ -1535,15 +1535,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param int|null $attendeeCount
+     * @param null|int $attendeeCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAttendeeCount($attendeeCount)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $attendeeCount = self::checkTypes($attendeeCount, $types);
@@ -1552,7 +1552,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getRegistrationCount()
     {
@@ -1560,15 +1560,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param int|null $registrationCount
+     * @param null|int $registrationCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRegistrationCount($registrationCount)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $registrationCount = self::checkTypes($registrationCount, $types);
@@ -1674,7 +1674,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getOfferValidityPeriod()
     {
@@ -1682,15 +1682,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param DateInterval|null $offerValidityPeriod
+     * @param null|DateInterval $offerValidityPeriod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOfferValidityPeriod($offerValidityPeriod)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $offerValidityPeriod = self::checkTypes($offerValidityPeriod, $types);

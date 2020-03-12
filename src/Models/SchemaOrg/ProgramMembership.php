@@ -72,7 +72,7 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
      * The number of membership points earned by the member. If necessary, the unitText can be used to express the units the points are issued in. (e.g. stars, miles, etc.)
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
     protected $membershipPointsEarned;
 
@@ -199,7 +199,7 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
     public function getMembershipPointsEarned()
     {
@@ -207,7 +207,7 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $membershipPointsEarned
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float $membershipPointsEarned
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -215,8 +215,8 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "float",
             "null",
+            "float",
         );
 
         $membershipPointsEarned = self::checkTypes($membershipPointsEarned, $types);

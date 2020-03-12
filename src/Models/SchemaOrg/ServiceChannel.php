@@ -90,7 +90,7 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
      * Estimated processing time for the service using this channel.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $processingTime;
 
@@ -264,7 +264,7 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getProcessingTime()
     {
@@ -272,15 +272,15 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateInterval|null $processingTime
+     * @param null|DateInterval $processingTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProcessingTime($processingTime)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $processingTime = self::checkTypes($processingTime, $types);

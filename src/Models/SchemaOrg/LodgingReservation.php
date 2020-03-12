@@ -32,7 +32,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * The earliest someone may check into a lodging establishment.
      *
      *
-     * @var DateTime|string|null
+     * @var null|string|DateTime
      */
     protected $checkinTime;
 
@@ -56,7 +56,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * The latest someone may check out of a lodging establishment.
      *
      *
-     * @var DateTime|string|null
+     * @var null|string|DateTime
      */
     protected $checkoutTime;
 
@@ -64,7 +64,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * Textual description of the unit type (including suite vs. room, size of bed, etc.).
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string
      */
     protected $lodgingUnitType;
 
@@ -72,12 +72,12 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * The number of adults staying in the unit.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|int|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int
      */
     protected $numAdults;
 
     /**
-     * @return DateTime|string|null
+     * @return null|string|DateTime
      */
     public function getCheckinTime()
     {
@@ -85,16 +85,16 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param DateTime|string|null $checkinTime
+     * @param null|string|DateTime $checkinTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCheckinTime($checkinTime)
     {
         $types = array(
-            "DateTime",
-            "Time",
             "null",
+            "Time",
+            "DateTime",
         );
 
         $checkinTime = self::checkTypes($checkinTime, $types);
@@ -153,7 +153,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return DateTime|string|null
+     * @return null|string|DateTime
      */
     public function getCheckoutTime()
     {
@@ -161,16 +161,16 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param DateTime|string|null $checkoutTime
+     * @param null|string|DateTime $checkoutTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCheckoutTime($checkoutTime)
     {
         $types = array(
-            "DateTime",
-            "Time",
             "null",
+            "Time",
+            "DateTime",
         );
 
         $checkoutTime = self::checkTypes($checkoutTime, $types);
@@ -179,7 +179,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string
      */
     public function getLodgingUnitType()
     {
@@ -187,7 +187,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null $lodgingUnitType
+     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string $lodgingUnitType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -195,8 +195,8 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     {
         $types = array(
             "\OpenActive\Enums\SchemaOrg\QualitativeValue",
-            "string",
             "null",
+            "string",
         );
 
         $lodgingUnitType = self::checkTypes($lodgingUnitType, $types);
@@ -205,7 +205,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|int|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int
      */
     public function getNumAdults()
     {
@@ -213,7 +213,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|int|null $numAdults
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int $numAdults
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -221,8 +221,8 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "int",
             "null",
+            "int",
         );
 
         $numAdults = self::checkTypes($numAdults, $types);

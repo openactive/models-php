@@ -79,7 +79,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Date on which the content on this web page was last reviewed for accuracy and/or completeness.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $lastReviewed;
 
@@ -222,7 +222,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getLastReviewed()
     {
@@ -230,15 +230,15 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param Date|null $lastReviewed
+     * @param null|Date $lastReviewed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLastReviewed($lastReviewed)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $lastReviewed = self::checkTypes($lastReviewed, $types);

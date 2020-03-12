@@ -101,7 +101,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
      * The period of time after any due date that the borrower has to fulfil its obligations before a default (failure to pay) is deemed to have occurred.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $gracePeriod;
 
@@ -303,7 +303,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getGracePeriod()
     {
@@ -311,15 +311,15 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @param DateInterval|null $gracePeriod
+     * @param null|DateInterval $gracePeriod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGracePeriod($gracePeriod)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $gracePeriod = self::checkTypes($gracePeriod, $types);

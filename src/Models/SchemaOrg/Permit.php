@@ -33,7 +33,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
      * The duration of validity of a permit or similar thing.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $validFor;
 
@@ -41,7 +41,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
      * The date when the item is no longer valid.
      *
      *
-     * @var Date|null
+     * @var null|Date
      */
     protected $validUntil;
 
@@ -49,7 +49,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
      * The date when the item becomes valid.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $validFrom;
 
@@ -86,7 +86,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     protected $validIn;
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getValidFor()
     {
@@ -94,15 +94,15 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateInterval|null $validFor
+     * @param null|DateInterval $validFor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFor($validFor)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $validFor = self::checkTypes($validFor, $types);
@@ -111,7 +111,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|null
+     * @return null|Date
      */
     public function getValidUntil()
     {
@@ -119,15 +119,15 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|null $validUntil
+     * @param null|Date $validUntil
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidUntil($validUntil)
     {
         $types = array(
-            "Date",
             "null",
+            "Date",
         );
 
         $validUntil = self::checkTypes($validUntil, $types);
@@ -136,7 +136,7 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getValidFrom()
     {
@@ -144,16 +144,16 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|DateTime|null $validFrom
+     * @param null|DateTime|Date $validFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFrom($validFrom)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $validFrom = self::checkTypes($validFrom, $types);

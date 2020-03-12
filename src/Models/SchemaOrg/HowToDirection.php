@@ -42,7 +42,7 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The length of time it takes to prepare the items to be used in instructions or a direction, in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 duration format</a>.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $prepTime;
 
@@ -58,7 +58,7 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The length of time it takes to perform instructions or a direction (not including time to prepare the supplies), in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 duration format</a>.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $performTime;
 
@@ -66,7 +66,7 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The total time required to perform instructions or a direction (including time to prepare the supplies), in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 duration format</a>.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $totalTime;
 
@@ -120,7 +120,7 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getPrepTime()
     {
@@ -128,15 +128,15 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateInterval|null $prepTime
+     * @param null|DateInterval $prepTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrepTime($prepTime)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $prepTime = self::checkTypes($prepTime, $types);
@@ -170,7 +170,7 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getPerformTime()
     {
@@ -178,15 +178,15 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateInterval|null $performTime
+     * @param null|DateInterval $performTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPerformTime($performTime)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $performTime = self::checkTypes($performTime, $types);
@@ -195,7 +195,7 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getTotalTime()
     {
@@ -203,15 +203,15 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateInterval|null $totalTime
+     * @param null|DateInterval $totalTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalTime($totalTime)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $totalTime = self::checkTypes($totalTime, $types);

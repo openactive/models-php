@@ -37,7 +37,7 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
      * The count of total number of reviews.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $reviewCount;
 
@@ -45,7 +45,7 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
      * The count of total number of ratings.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $ratingCount;
 
@@ -74,7 +74,7 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getReviewCount()
     {
@@ -82,15 +82,15 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
     }
 
     /**
-     * @param int|null $reviewCount
+     * @param null|int $reviewCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReviewCount($reviewCount)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $reviewCount = self::checkTypes($reviewCount, $types);
@@ -99,7 +99,7 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getRatingCount()
     {
@@ -107,15 +107,15 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
     }
 
     /**
-     * @param int|null $ratingCount
+     * @param null|int $ratingCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRatingCount($ratingCount)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $ratingCount = self::checkTypes($ratingCount, $types);

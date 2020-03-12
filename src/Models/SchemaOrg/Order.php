@@ -48,7 +48,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
      * Date order was placed.
      *
      *
-     * @var DateTime|Date|null
+     * @var null|DateTime|Date
      */
     protected $orderDate;
 
@@ -56,7 +56,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
      * The date that payment is due.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $paymentDue;
 
@@ -176,7 +176,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
      * Any discount applied (to an Order).
      *
      *
-     * @var float|string|null
+     * @var null|float|string
      */
     protected $discount;
 
@@ -210,7 +210,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
      * The date that payment is due.
      *
      *
-     * @var Date|DateTime|null
+     * @var null|DateTime|Date
      */
     protected $paymentDueDate;
 
@@ -223,7 +223,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     protected $discountCode;
 
     /**
-     * @return DateTime|Date|null
+     * @return null|DateTime|Date
      */
     public function getOrderDate()
     {
@@ -231,16 +231,16 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateTime|Date|null $orderDate
+     * @param null|DateTime|Date $orderDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderDate($orderDate)
     {
         $types = array(
+            "null",
             "DateTime",
             "Date",
-            "null",
         );
 
         $orderDate = self::checkTypes($orderDate, $types);
@@ -249,7 +249,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getPaymentDue()
     {
@@ -257,15 +257,15 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateTime|null $paymentDue
+     * @param null|DateTime $paymentDue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentDue($paymentDue)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $paymentDue = self::checkTypes($paymentDue, $types);
@@ -619,7 +619,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return float|string|null
+     * @return null|float|string
      */
     public function getDiscount()
     {
@@ -627,16 +627,16 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param float|string|null $discount
+     * @param null|float|string $discount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDiscount($discount)
     {
         $types = array(
+            "null",
             "float",
             "string",
-            "null",
         );
 
         $discount = self::checkTypes($discount, $types);
@@ -717,7 +717,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return null|DateTime|Date
      */
     public function getPaymentDueDate()
     {
@@ -725,16 +725,16 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param Date|DateTime|null $paymentDueDate
+     * @param null|DateTime|Date $paymentDueDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentDueDate($paymentDueDate)
     {
         $types = array(
-            "Date",
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
         $paymentDueDate = self::checkTypes($paymentDueDate, $types);

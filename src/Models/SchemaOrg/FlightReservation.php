@@ -54,7 +54,7 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * The priority status assigned to a passenger for security or boarding (e.g. FastTrack or Priority).
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string
      */
     protected $passengerPriorityStatus;
 
@@ -131,7 +131,7 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string
      */
     public function getPassengerPriorityStatus()
     {
@@ -139,7 +139,7 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null $passengerPriorityStatus
+     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string $passengerPriorityStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -147,8 +147,8 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     {
         $types = array(
             "\OpenActive\Enums\SchemaOrg\QualitativeValue",
-            "string",
             "null",
+            "string",
         );
 
         $passengerPriorityStatus = self::checkTypes($passengerPriorityStatus, $types);

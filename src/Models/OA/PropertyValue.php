@@ -64,7 +64,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
      * "value": "SB1234"
      * ```
      *
-     * @var int|string|null
+     * @var null|int|string
      */
     protected $value;
 
@@ -141,7 +141,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
     }
 
     /**
-     * @return int|string|null
+     * @return null|int|string
      */
     public function getValue()
     {
@@ -149,16 +149,16 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
     }
 
     /**
-     * @param int|string|null $value
+     * @param null|int|string $value
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValue($value)
     {
         $types = array(
+            "null",
             "int",
             "string",
-            "null",
         );
 
         $value = self::checkTypes($value, $types);

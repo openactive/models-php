@@ -49,7 +49,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
      * The number of items in an ItemList. Note that some descriptions might not fully describe all items in a list (e.g., multi-page pagination); in such cases, the numberOfItems would be for the entire list.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $numberOfItems;
 
@@ -106,7 +106,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getNumberOfItems()
     {
@@ -114,15 +114,15 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param int|null $numberOfItems
+     * @param null|int $numberOfItems
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfItems($numberOfItems)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $numberOfItems = self::checkTypes($numberOfItems, $types);

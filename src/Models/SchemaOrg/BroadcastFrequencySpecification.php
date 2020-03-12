@@ -29,7 +29,7 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
      * The frequency in MHz for a particular broadcast.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
     protected $broadcastFrequencyValue;
 
@@ -50,7 +50,7 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     protected $broadcastSignalModulation;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
     public function getBroadcastFrequencyValue()
     {
@@ -58,7 +58,7 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $broadcastFrequencyValue
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float $broadcastFrequencyValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -66,8 +66,8 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "float",
             "null",
+            "float",
         );
 
         $broadcastFrequencyValue = self::checkTypes($broadcastFrequencyValue, $types);

@@ -45,7 +45,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * The lower value of some characteristic or property.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $minValue;
 
@@ -61,7 +61,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * The stepValue attribute indicates the granularity that is expected (and required) of the value in a PropertyValueSpecification.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $stepValue;
 
@@ -69,7 +69,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * Specifies the allowed range for number of characters in a literal value.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $valueMaxLength;
 
@@ -85,7 +85,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * Specifies the minimum allowed range for number of characters in a literal value.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $valueMinLength;
 
@@ -93,7 +93,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * The upper value of some characteristic or property.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $maxValue;
 
@@ -147,7 +147,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getMinValue()
     {
@@ -155,15 +155,15 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param float|null $minValue
+     * @param null|float $minValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMinValue($minValue)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $minValue = self::checkTypes($minValue, $types);
@@ -196,7 +196,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getStepValue()
     {
@@ -204,15 +204,15 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param float|null $stepValue
+     * @param null|float $stepValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStepValue($stepValue)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $stepValue = self::checkTypes($stepValue, $types);
@@ -221,7 +221,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getValueMaxLength()
     {
@@ -229,15 +229,15 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param float|null $valueMaxLength
+     * @param null|float $valueMaxLength
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueMaxLength($valueMaxLength)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $valueMaxLength = self::checkTypes($valueMaxLength, $types);
@@ -271,7 +271,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getValueMinLength()
     {
@@ -279,15 +279,15 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param float|null $valueMinLength
+     * @param null|float $valueMinLength
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueMinLength($valueMinLength)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $valueMinLength = self::checkTypes($valueMinLength, $types);
@@ -296,7 +296,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getMaxValue()
     {
@@ -304,15 +304,15 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param float|null $maxValue
+     * @param null|float $maxValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaxValue($maxValue)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $maxValue = self::checkTypes($maxValue, $types);
