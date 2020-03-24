@@ -15,3 +15,6 @@ fix: fix_codestyle
 
 # some of the tools are lint only
 lint_fix: fix_codestyle lint_phan
+
+test:
+	./vendor/bin/phpunit
