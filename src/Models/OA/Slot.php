@@ -29,6 +29,7 @@ class Slot extends \OpenActive\Models\OA\Event
             "category" => "category",
             "contributor" => "contributor",
             "duration" => "duration",
+            "eventAttendanceMode" => "eventAttendanceMode",
             "eventSchedule" => "eventSchedule",
             "eventStatus" => "eventStatus",
             "facilityUse" => "facilityUse",
@@ -41,10 +42,9 @@ class Slot extends \OpenActive\Models\OA\Event
             "location" => "location",
             "maximumAttendeeCapacity" => "maximumAttendeeCapacity",
             "maximumUses" => "maximumUses",
+            "maximumVirtualAttendeeCapacity" => "maximumVirtualAttendeeCapacity",
             "meetingPoint" => "meetingPoint",
             "offers" => "offers",
-            "organizer" => "organizer",
-            "potentialAction" => "potentialAction",
             "programme" => "programme",
             "remainingAttendeeCapacity" => "remainingAttendeeCapacity",
             "remainingUses" => "remainingUses",
@@ -219,6 +219,18 @@ class Slot extends \OpenActive\Models\OA\Event
     protected $duration;
 
     /**
+     * The eventAttendanceMode of an event indicates whether it occurs online, offline, or a mix.
+     *
+     * ```json
+     * "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode"
+     * ```
+     *
+     * @var \OpenActive\Enums\SchemaOrg\EventAttendanceModeEnumeration|null
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    protected $eventAttendanceMode;
+
+    /**
      * A an array of oa:Schedule or oa:PartialSchedule, which represents a recurrence pattern.
      *
      * ```json
@@ -305,7 +317,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * "isAccessibleForFree": "true"
      * ```
      *
-     * @var bool|null
+     * @var null|bool
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $isAccessibleForFree;
@@ -317,7 +329,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * "isCoached": "true"
      * ```
      *
-     * @var bool|null
+     * @var null|bool
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $isCoached;
@@ -415,6 +427,18 @@ class Slot extends \OpenActive\Models\OA\Event
     protected $maximumUses;
 
     /**
+     * Indicates the maximum number of connections to a shared virtual space.
+     *
+     * ```json
+     * "maximumVirtualAttendeeCapacity": 20
+     * ```
+     *
+     * @var null|int
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    protected $maximumVirtualAttendeeCapacity;
+
+    /**
      * Instructions for the attendees of an Event about where they should meet the organizer or leader at the start of the event. Some larger locations may have several possible meeting points, so this property provides additional more specific directions.
      *
      * ```json
@@ -443,45 +467,6 @@ class Slot extends \OpenActive\Models\OA\Event
      * @var \OpenActive\Models\OA\Offer[]
      */
     protected $offers;
-
-    /**
-     * The person or organization ultimately responsible for an event. An organizer might be an  schema:Organization or a schema:Person.
-     *
-     * ```json
-     * "organizer": {
-     *   "name": "Central Speedball Association",
-     *   "type": "Organization",
-     *   "url": "http://www.speedball-world.com"
-     * }
-     * ```
-     *
-     * @var \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    protected $organizer;
-
-    /**
-     * The possible actions that a user may make. e.g. Book.
-     *
-     * ```json
-     * "potentialAction": [
-     *   {
-     *     "name": "Book",
-     *     "target": {
-     *       "encodingType": "application/vnd.openactive.v1.0+json",
-     *       "httpMethod": "POST",
-     *       "type": "EntryPoint",
-     *       "url": "https://example.com/orders"
-     *     },
-     *     "type": "Action"
-     *   }
-     * ]
-     * ```
-     *
-     * @var \OpenActive\Models\OA\Action[]
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    protected $potentialAction;
 
     /**
      * Indicates that an event will be organised according to a specific Programme.
@@ -590,9 +575,11 @@ class Slot extends \OpenActive\Models\OA\Event
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * Internal location of the event, e.g. Court 1
+     * 
+     * If you are using this property, please join the discussion at proposal [#110](https://github.com/openactive/modelling-opportunity-data/issues/110).
      *
      *
-     * @var \OpenActive\Models\SportsActivityLocation
+     * @var \OpenActive\Models\SportsActivityLocation[]
      */
     protected $sportsActivityLocation;
 
@@ -885,6 +872,33 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
+     * @return \OpenActive\Enums\SchemaOrg\EventAttendanceModeEnumeration|null
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function getEventAttendanceMode()
+    {
+        return $this->eventAttendanceMode;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\EventAttendanceModeEnumeration|null $eventAttendanceMode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function setEventAttendanceMode($eventAttendanceMode)
+    {
+        $types = array(
+            "\OpenActive\Enums\SchemaOrg\EventAttendanceModeEnumeration",
+            "null",
+        );
+
+        $eventAttendanceMode = self::checkTypes($eventAttendanceMode, $types);
+
+        $this->eventAttendanceMode = $eventAttendanceMode;
+    }
+
+    /**
      * @return \OpenActive\Models\OA\Schedule[]
      * @deprecated This property is disinherited in this type, and must not be used.
      */
@@ -1017,7 +1031,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return bool|null
+     * @return null|bool
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getIsAccessibleForFree()
@@ -1026,7 +1040,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param bool|null $isAccessibleForFree
+     * @param null|bool $isAccessibleForFree
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -1034,8 +1048,8 @@ class Slot extends \OpenActive\Models\OA\Event
     public function setIsAccessibleForFree($isAccessibleForFree)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $isAccessibleForFree = self::checkTypes($isAccessibleForFree, $types);
@@ -1044,7 +1058,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return bool|null
+     * @return null|bool
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getIsCoached()
@@ -1053,7 +1067,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param bool|null $isCoached
+     * @param null|bool $isCoached
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -1061,8 +1075,8 @@ class Slot extends \OpenActive\Models\OA\Event
     public function setIsCoached($isCoached)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $isCoached = self::checkTypes($isCoached, $types);
@@ -1202,6 +1216,33 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
+     * @return null|int
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function getMaximumVirtualAttendeeCapacity()
+    {
+        return $this->maximumVirtualAttendeeCapacity;
+    }
+
+    /**
+     * @param null|int $maximumVirtualAttendeeCapacity
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function setMaximumVirtualAttendeeCapacity($maximumVirtualAttendeeCapacity)
+    {
+        $types = array(
+            "null",
+            "int",
+        );
+
+        $maximumVirtualAttendeeCapacity = self::checkTypes($maximumVirtualAttendeeCapacity, $types);
+
+        $this->maximumVirtualAttendeeCapacity = $maximumVirtualAttendeeCapacity;
+    }
+
+    /**
      * @return string
      * @deprecated This property is disinherited in this type, and must not be used.
      */
@@ -1249,59 +1290,6 @@ class Slot extends \OpenActive\Models\OA\Event
         $offers = self::checkTypes($offers, $types);
 
         $this->offers = $offers;
-    }
-
-    /**
-     * @return \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    public function getOrganizer()
-    {
-        return $this->organizer;
-    }
-
-    /**
-     * @param \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization $organizer
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    public function setOrganizer($organizer)
-    {
-        $types = array(
-            "\OpenActive\Models\OA\Person",
-            "\OpenActive\Models\OA\Organization",
-        );
-
-        $organizer = self::checkTypes($organizer, $types);
-
-        $this->organizer = $organizer;
-    }
-
-    /**
-     * @return \OpenActive\Models\OA\Action[]
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    public function getPotentialAction()
-    {
-        return $this->potentialAction;
-    }
-
-    /**
-     * @param \OpenActive\Models\OA\Action[] $potentialAction
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    public function setPotentialAction($potentialAction)
-    {
-        $types = array(
-            "\OpenActive\Models\OA\Action[]",
-        );
-
-        $potentialAction = self::checkTypes($potentialAction, $types);
-
-        $this->potentialAction = $potentialAction;
     }
 
     /**
@@ -1539,7 +1527,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return \OpenActive\Models\SportsActivityLocation
+     * @return \OpenActive\Models\SportsActivityLocation[]
      */
     public function getSportsActivityLocation()
     {
@@ -1547,14 +1535,14 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param \OpenActive\Models\SportsActivityLocation $sportsActivityLocation
+     * @param \OpenActive\Models\SportsActivityLocation[] $sportsActivityLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSportsActivityLocation($sportsActivityLocation)
     {
         $types = array(
-            "\OpenActive\Models\SportsActivityLocation",
+            "\OpenActive\Models\SportsActivityLocation[]",
         );
 
         $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);

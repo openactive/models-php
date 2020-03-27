@@ -28,7 +28,7 @@ class WriteAction extends \OpenActive\Models\SchemaOrg\CreateAction
      * The language of the content or performance or used in an action. Please use one of the language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>. See also <a class="localLink" href="https://schema.org/availableLanguage">availableLanguage</a>.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Language
+     * @var \OpenActive\Models\SchemaOrg\Language|string
      */
     protected $inLanguage;
 
@@ -41,7 +41,7 @@ class WriteAction extends \OpenActive\Models\SchemaOrg\CreateAction
     protected $language;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Language
+     * @return \OpenActive\Models\SchemaOrg\Language|string
      */
     public function getInLanguage()
     {
@@ -49,15 +49,15 @@ class WriteAction extends \OpenActive\Models\SchemaOrg\CreateAction
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Language $inLanguage
+     * @param \OpenActive\Models\SchemaOrg\Language|string $inLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInLanguage($inLanguage)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\Language",
+            "string",
         );
 
         $inLanguage = self::checkTypes($inLanguage, $types);

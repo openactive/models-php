@@ -18,11 +18,11 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     public static function fieldList() {
         $fields = [
             "minValue" => "minValue",
+            "currency" => "currency",
             "value" => "value",
             "validFrom" => "validFrom",
             "validThrough" => "validThrough",
             "maxValue" => "maxValue",
-            "currency" => "currency",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -37,6 +37,16 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $minValue;
 
     /**
+     * The currency in which the monetary amount is expressed.<br/><br/>
+     * 
+     * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
+     *
+     *
+     * @var string
+     */
+    protected $currency;
+
+    /**
      * The value of the quantitative value or property value node.<br/><br/>
      * 
      * <ul>
@@ -48,7 +58,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
      * 
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\StructuredValue|null|float|string|bool
+     * @var float|bool|\OpenActive\Models\SchemaOrg\StructuredValue|null|string
      */
     protected $value;
 
@@ -77,16 +87,6 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $maxValue;
 
     /**
-     * The currency in which the monetary amount is expressed.<br/><br/>
-     * 
-     * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
-     *
-     *
-     * @var string
-     */
-    protected $currency;
-
-    /**
      * @return null|float
      */
     public function getMinValue()
@@ -112,7 +112,31 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\StructuredValue|null|float|string|bool
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param string $currency
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCurrency($currency)
+    {
+        $types = array(
+            "string",
+        );
+
+        $currency = self::checkTypes($currency, $types);
+
+        $this->currency = $currency;
+    }
+
+    /**
+     * @return float|bool|\OpenActive\Models\SchemaOrg\StructuredValue|null|string
      */
     public function getValue()
     {
@@ -120,18 +144,18 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\StructuredValue|null|float|string|bool $value
+     * @param float|bool|\OpenActive\Models\SchemaOrg\StructuredValue|null|string $value
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValue($value)
     {
         $types = array(
+            "float",
+            "bool",
             "\OpenActive\Models\SchemaOrg\StructuredValue",
             "null",
-            "float",
             "string",
-            "bool",
         );
 
         $value = self::checkTypes($value, $types);
@@ -214,30 +238,6 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
         $maxValue = self::checkTypes($maxValue, $types);
 
         $this->maxValue = $maxValue;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCurrency()
-    {
-        return $this->currency;
-    }
-
-    /**
-     * @param string $currency
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCurrency($currency)
-    {
-        $types = array(
-            "string",
-        );
-
-        $currency = self::checkTypes($currency, $types);
-
-        $this->currency = $currency;
     }
 
 }

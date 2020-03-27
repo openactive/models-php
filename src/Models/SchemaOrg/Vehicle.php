@@ -18,10 +18,9 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     public static function fieldList() {
         $fields = [
             "numberOfForwardGears" => "numberOfForwardGears",
-            "mileageFromOdometer" => "mileageFromOdometer",
             "cargoVolume" => "cargoVolume",
             "vehicleInteriorColor" => "vehicleInteriorColor",
-            "vehicleSeatingCapacity" => "vehicleSeatingCapacity",
+            "steeringPosition" => "steeringPosition",
             "vehicleEngine" => "vehicleEngine",
             "vehicleModelDate" => "vehicleModelDate",
             "numberOfDoors" => "numberOfDoors",
@@ -30,15 +29,16 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
             "vehicleIdentificationNumber" => "vehicleIdentificationNumber",
             "fuelConsumption" => "fuelConsumption",
             "numberOfPreviousOwners" => "numberOfPreviousOwners",
+            "mileageFromOdometer" => "mileageFromOdometer",
             "fuelEfficiency" => "fuelEfficiency",
             "numberOfAxles" => "numberOfAxles",
             "vehicleInteriorType" => "vehicleInteriorType",
             "numberOfAirbags" => "numberOfAirbags",
+            "vehicleSeatingCapacity" => "vehicleSeatingCapacity",
             "vehicleTransmission" => "vehicleTransmission",
             "dateVehicleFirstRegistered" => "dateVehicleFirstRegistered",
             "purchaseDate" => "purchaseDate",
             "productionDate" => "productionDate",
-            "steeringPosition" => "steeringPosition",
             "knownVehicleDamages" => "knownVehicleDamages",
             "driveWheelConfiguration" => "driveWheelConfiguration",
             "callSign" => "callSign",
@@ -53,19 +53,9 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
      * Typical unit code(s): C62
      *
      *
-     * @var float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
     protected $numberOfForwardGears;
-
-    /**
-     * The total distance travelled by the particular vehicle since its initial production, as read from its odometer.<br/><br/>
-     * 
-     * Typical unit code(s): KMT for kilometers, SMI for statute miles
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    protected $mileageFromOdometer;
 
     /**
      * The available volume for cargo or luggage. For automobiles, this is usually the trunk volume.<br/><br/>
@@ -88,14 +78,12 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     protected $vehicleInteriorColor;
 
     /**
-     * The number of passengers that can be seated in the vehicle, both in terms of the physical space available, and in terms of limitations set by law.<br/><br/>
-     * 
-     * Typical unit code(s): C62 for persons.
+     * The position of the steering wheel or similar device (mostly for cars).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
+     * @var \OpenActive\Models\SchemaOrg\SteeringPositionValue
      */
-    protected $vehicleSeatingCapacity;
+    protected $steeringPosition;
 
     /**
      * Information about the engine or engines of the vehicle.
@@ -119,7 +107,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
      * Typical unit code(s): C62
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
+     * @var float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $numberOfDoors;
 
@@ -173,6 +161,16 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     protected $numberOfPreviousOwners;
 
     /**
+     * The total distance travelled by the particular vehicle since its initial production, as read from its odometer.<br/><br/>
+     * 
+     * Typical unit code(s): KMT for kilometers, SMI for statute miles
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    protected $mileageFromOdometer;
+
+    /**
      * The distance traveled per unit of fuel used; most commonly miles per gallon (mpg) or kilometers per liter (km/L).<br/><br/>
      * 
      * <ul>
@@ -214,10 +212,20 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     protected $numberOfAirbags;
 
     /**
+     * The number of passengers that can be seated in the vehicle, both in terms of the physical space available, and in terms of limitations set by law.<br/><br/>
+     * 
+     * Typical unit code(s): C62 for persons.
+     *
+     *
+     * @var float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     */
+    protected $vehicleSeatingCapacity;
+
+    /**
      * The type of component used for transmitting the power from a rotating power source to the wheels or other relevant component(s) ("gearbox" for cars).
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string
+     * @var string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
      */
     protected $vehicleTransmission;
 
@@ -246,14 +254,6 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     protected $productionDate;
 
     /**
-     * The position of the steering wheel or similar device (mostly for cars).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\SteeringPositionValue
-     */
-    protected $steeringPosition;
-
-    /**
      * A textual description of known damages, both repaired and unrepaired.
      *
      *
@@ -278,7 +278,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     protected $callSign;
 
     /**
-     * @return float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
     public function getNumberOfForwardGears()
     {
@@ -286,45 +286,21 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numberOfForwardGears
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float $numberOfForwardGears
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfForwardGears($numberOfForwardGears)
     {
         $types = array(
-            "float",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
+            "float",
         );
 
         $numberOfForwardGears = self::checkTypes($numberOfForwardGears, $types);
 
         $this->numberOfForwardGears = $numberOfForwardGears;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    public function getMileageFromOdometer()
-    {
-        return $this->mileageFromOdometer;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $mileageFromOdometer
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMileageFromOdometer($mileageFromOdometer)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
-
-        $mileageFromOdometer = self::checkTypes($mileageFromOdometer, $types);
-
-        $this->mileageFromOdometer = $mileageFromOdometer;
     }
 
     /**
@@ -376,29 +352,27 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
+     * @return \OpenActive\Models\SchemaOrg\SteeringPositionValue
      */
-    public function getVehicleSeatingCapacity()
+    public function getSteeringPosition()
     {
-        return $this->vehicleSeatingCapacity;
+        return $this->steeringPosition;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float $vehicleSeatingCapacity
+     * @param \OpenActive\Models\SchemaOrg\SteeringPositionValue $steeringPosition
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setVehicleSeatingCapacity($vehicleSeatingCapacity)
+    public function setSteeringPosition($steeringPosition)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "null",
-            "float",
+            "\OpenActive\Models\SchemaOrg\SteeringPositionValue",
         );
 
-        $vehicleSeatingCapacity = self::checkTypes($vehicleSeatingCapacity, $types);
+        $steeringPosition = self::checkTypes($steeringPosition, $types);
 
-        $this->vehicleSeatingCapacity = $vehicleSeatingCapacity;
+        $this->steeringPosition = $steeringPosition;
     }
 
     /**
@@ -451,7 +425,7 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
+     * @return float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getNumberOfDoors()
     {
@@ -459,16 +433,16 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float $numberOfDoors
+     * @param float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numberOfDoors
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfDoors($numberOfDoors)
     {
         $types = array(
+            "float",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
-            "float",
         );
 
         $numberOfDoors = self::checkTypes($numberOfDoors, $types);
@@ -603,6 +577,30 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
+    public function getMileageFromOdometer()
+    {
+        return $this->mileageFromOdometer;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $mileageFromOdometer
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMileageFromOdometer($mileageFromOdometer)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+        );
+
+        $mileageFromOdometer = self::checkTypes($mileageFromOdometer, $types);
+
+        $this->mileageFromOdometer = $mileageFromOdometer;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
     public function getFuelEfficiency()
     {
         return $this->fuelEfficiency;
@@ -701,7 +699,33 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string
+     * @return float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     */
+    public function getVehicleSeatingCapacity()
+    {
+        return $this->vehicleSeatingCapacity;
+    }
+
+    /**
+     * @param float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $vehicleSeatingCapacity
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVehicleSeatingCapacity($vehicleSeatingCapacity)
+    {
+        $types = array(
+            "float",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "null",
+        );
+
+        $vehicleSeatingCapacity = self::checkTypes($vehicleSeatingCapacity, $types);
+
+        $this->vehicleSeatingCapacity = $vehicleSeatingCapacity;
+    }
+
+    /**
+     * @return string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
      */
     public function getVehicleTransmission()
     {
@@ -709,16 +733,16 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string $vehicleTransmission
+     * @param string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null $vehicleTransmission
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVehicleTransmission($vehicleTransmission)
     {
         $types = array(
+            "string",
             "\OpenActive\Enums\SchemaOrg\QualitativeValue",
             "null",
-            "string",
         );
 
         $vehicleTransmission = self::checkTypes($vehicleTransmission, $types);
@@ -799,30 +823,6 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
         $productionDate = self::checkTypes($productionDate, $types);
 
         $this->productionDate = $productionDate;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\SteeringPositionValue
-     */
-    public function getSteeringPosition()
-    {
-        return $this->steeringPosition;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\SteeringPositionValue $steeringPosition
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSteeringPosition($steeringPosition)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\SteeringPositionValue",
-        );
-
-        $steeringPosition = self::checkTypes($steeringPosition, $types);
-
-        $this->steeringPosition = $steeringPosition;
     }
 
     /**

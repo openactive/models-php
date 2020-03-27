@@ -37,7 +37,7 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * Number of people the reservation should accommodate.
      *
      *
-     * @var int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int
      */
     protected $partySize;
 
@@ -75,7 +75,7 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int
      */
     public function getPartySize()
     {
@@ -83,16 +83,16 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $partySize
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int $partySize
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPartySize($partySize)
     {
         $types = array(
-            "int",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
+            "int",
         );
 
         $partySize = self::checkTypes($partySize, $types);

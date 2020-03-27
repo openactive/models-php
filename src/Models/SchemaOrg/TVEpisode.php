@@ -45,7 +45,7 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
      * Languages in which subtitles/captions are available, in <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard format</a>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Language|string
+     * @var string|\OpenActive\Models\SchemaOrg\Language
      */
     protected $subtitleLanguage;
 
@@ -98,7 +98,7 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Language|string
+     * @return string|\OpenActive\Models\SchemaOrg\Language
      */
     public function getSubtitleLanguage()
     {
@@ -106,15 +106,15 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Language|string $subtitleLanguage
+     * @param string|\OpenActive\Models\SchemaOrg\Language $subtitleLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSubtitleLanguage($subtitleLanguage)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Language",
             "string",
+            "\OpenActive\Models\SchemaOrg\Language",
         );
 
         $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);

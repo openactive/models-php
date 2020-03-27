@@ -3,33 +3,36 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [Action](https://schema.org/Action), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * 
+ * ## **Error Use Case**
+ * B failed due to a newer version of the `OrderProposal` existing than that specified by the Broker in `orderProposalVersion`.
+ * 
  *
  */
-class Action extends \OpenActive\Models\SchemaOrg\Action
+class OrderProposalVersionOutdatedError extends \OpenActive\Models\OA\OpenBookingError
 {
     /**
      * @return string[]|null
      */
     public static function getType()
     {
-        return "Action";
+        return "OrderProposalVersionOutdatedError";
     }
 
     public static function fieldList() {
         $fields = [
             "name" => "name",
-            "target" => "target",
+            "statusCode" => "statusCode",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The name of the action
+     * A short, human-readable summary of the problem type. It should not change from occurrence to occurrence of the problem, except for purposes of localization.
      *
      * ```json
-     * "name": "Book"
+     * "name": "B failed due to a newer version of the 'OrderProposal' existing than that specified by the Broker in 'orderProposalVersion'."
      * ```
      *
      * @var string
@@ -37,20 +40,14 @@ class Action extends \OpenActive\Models\SchemaOrg\Action
     protected $name;
 
     /**
-     * A definition of the target of the action.
-     *
-     * ```json
-     * "target": {
-     *   "encodingType": "application/vnd.openactive.v1.0+json",
-     *   "httpMethod": "POST",
-     *   "type": "EntryPoint",
-     *   "url": "https://example.com/orders"
-     * }
+     * Must always be present and set to ```json
+     * "statusCode": 500
      * ```
      *
-     * @var \OpenActive\Models\OA\EntryPoint
+     *
+     * @var null|int
      */
-    protected $target;
+    protected $statusCode;
 
     /**
      * @return string
@@ -77,27 +74,28 @@ class Action extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @return \OpenActive\Models\OA\EntryPoint
+     * @return null|int
      */
-    public function getTarget()
+    public function getStatusCode()
     {
-        return $this->target;
+        return $this->statusCode;
     }
 
     /**
-     * @param \OpenActive\Models\OA\EntryPoint $target
+     * @param null|int $statusCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTarget($target)
+    public function setStatusCode($statusCode)
     {
         $types = array(
-            "\OpenActive\Models\OA\EntryPoint",
+            "null",
+            "int",
         );
 
-        $target = self::checkTypes($target, $types);
+        $statusCode = self::checkTypes($statusCode, $types);
 
-        $this->target = $target;
+        $this->statusCode = $statusCode;
     }
 
 }

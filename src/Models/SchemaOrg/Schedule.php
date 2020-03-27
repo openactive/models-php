@@ -17,17 +17,25 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
+            "byDay" => "byDay",
             "scheduleTimezone" => "scheduleTimezone",
             "byMonth" => "byMonth",
+            "repeatFrequency" => "repeatFrequency",
             "repeatCount" => "repeatCount",
-            "byDay" => "byDay",
             "byMonthDay" => "byMonthDay",
             "exceptDate" => "exceptDate",
-            "repeatFrequency" => "repeatFrequency",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Defines the day(s) of the week on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place. May be specified using either <a class="localLink" href="https://schema.org/DayOfWeek">DayOfWeek</a>, or alternatively <a class="localLink" href="https://schema.org/Text">Text</a> conforming to iCal's syntax for byDay recurrence rules
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\DayOfWeek|null|string
+     */
+    protected $byDay;
 
     /**
      * Indicates the timezone for which the time(s) indicated in the <a class="localLink" href="https://schema.org/Schedule">Schedule</a> are given. The value provided should be among those listed in the IANA Time Zone Database.
@@ -46,20 +54,21 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     protected $byMonth;
 
     /**
+     * Defines the frequency at which <a class="localLink" href="https://schema.org/Events">Events</a> will occur according to a schedule <a class="localLink" href="https://schema.org/Schedule">Schedule</a>. The intervals between
+     *       events should be defined as a <a class="localLink" href="https://schema.org/Duration">Duration</a> of time.
+     *
+     *
+     * @var null|string|DateInterval
+     */
+    protected $repeatFrequency;
+
+    /**
      * Defines the number of times a recurring <a class="localLink" href="https://schema.org/Event">Event</a> will take place
      *
      *
      * @var null|int
      */
     protected $repeatCount;
-
-    /**
-     * Defines the day(s) of the week on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place. May be specified using either <a class="localLink" href="https://schema.org/DayOfWeek">DayOfWeek</a>, or alternatively <a class="localLink" href="https://schema.org/Text">Text</a> conforming to iCal's syntax for byDay recurrence rules
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\DayOfWeek|null|string
-     */
-    protected $byDay;
 
     /**
      * Defines the day(s) of the month on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place. Specified as an <a class="localLink" href="https://schema.org/Integer">Integer</a> between 1-31.
@@ -81,13 +90,30 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     protected $exceptDate;
 
     /**
-     * Defines the frequency at which <a class="localLink" href="https://schema.org/Events">Events</a> will occur according to a schedule <a class="localLink" href="https://schema.org/Schedule">Schedule</a>. The intervals between
-     *       events should be defined as a <a class="localLink" href="https://schema.org/Duration">Duration</a> of time.
-     *
-     *
-     * @var null|string|DateInterval
+     * @return \OpenActive\Enums\SchemaOrg\DayOfWeek|null|string
      */
-    protected $repeatFrequency;
+    public function getByDay()
+    {
+        return $this->byDay;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\DayOfWeek|null|string $byDay
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setByDay($byDay)
+    {
+        $types = array(
+            "\OpenActive\Enums\SchemaOrg\DayOfWeek",
+            "null",
+            "string",
+        );
+
+        $byDay = self::checkTypes($byDay, $types);
+
+        $this->byDay = $byDay;
+    }
 
     /**
      * @return string
@@ -139,6 +165,32 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
+     * @return null|string|DateInterval
+     */
+    public function getRepeatFrequency()
+    {
+        return $this->repeatFrequency;
+    }
+
+    /**
+     * @param null|string|DateInterval $repeatFrequency
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRepeatFrequency($repeatFrequency)
+    {
+        $types = array(
+            "null",
+            "string",
+            "DateInterval",
+        );
+
+        $repeatFrequency = self::checkTypes($repeatFrequency, $types);
+
+        $this->repeatFrequency = $repeatFrequency;
+    }
+
+    /**
      * @return null|int
      */
     public function getRepeatCount()
@@ -161,32 +213,6 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
         $repeatCount = self::checkTypes($repeatCount, $types);
 
         $this->repeatCount = $repeatCount;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\DayOfWeek|null|string
-     */
-    public function getByDay()
-    {
-        return $this->byDay;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\DayOfWeek|null|string $byDay
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setByDay($byDay)
-    {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\DayOfWeek",
-            "null",
-            "string",
-        );
-
-        $byDay = self::checkTypes($byDay, $types);
-
-        $this->byDay = $byDay;
     }
 
     /**
@@ -238,32 +264,6 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
         $exceptDate = self::checkTypes($exceptDate, $types);
 
         $this->exceptDate = $exceptDate;
-    }
-
-    /**
-     * @return null|string|DateInterval
-     */
-    public function getRepeatFrequency()
-    {
-        return $this->repeatFrequency;
-    }
-
-    /**
-     * @param null|string|DateInterval $repeatFrequency
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRepeatFrequency($repeatFrequency)
-    {
-        $types = array(
-            "null",
-            "string",
-            "DateInterval",
-        );
-
-        $repeatFrequency = self::checkTypes($repeatFrequency, $types);
-
-        $this->repeatFrequency = $repeatFrequency;
     }
 
 }

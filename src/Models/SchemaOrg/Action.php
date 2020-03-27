@@ -121,7 +121,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
      * The location of for example where the event is happening, an organization is located, or where an action takes place.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress|string
+     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\VirtualLocation
      */
     protected $location;
 
@@ -373,7 +373,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress|string
+     * @return \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\VirtualLocation
      */
     public function getLocation()
     {
@@ -381,7 +381,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress|string $location
+     * @param \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\VirtualLocation $location
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -389,8 +389,9 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\Place",
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
             "string",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "\OpenActive\Models\SchemaOrg\VirtualLocation",
         );
 
         $location = self::checkTypes($location, $types);

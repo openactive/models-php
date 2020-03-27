@@ -18,12 +18,24 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
 
     public static function fieldList() {
         $fields = [
+            "prepayment" => "prepayment",
             "price" => "price",
             "priceCurrency" => "priceCurrency",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Indicates if proceeding with booking requires a Customer to pay in advance, pay when attending, or have the option to do either. Values must be one of  https://openactive.io/Required,  https://openactive.io/Optional or  https://openactive.io/Unavailable.
+     *
+     * ```json
+     * "prepayment": "https://openactive.io/Required"
+     * ```
+     *
+     * @var \OpenActive\Enums\RequiredStatusType|null
+     */
+    protected $prepayment;
 
     /**
      * The total amount.
@@ -40,6 +52,31 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
      * @var string
      */
     protected $priceCurrency;
+
+    /**
+     * @return \OpenActive\Enums\RequiredStatusType|null
+     */
+    public function getPrepayment()
+    {
+        return $this->prepayment;
+    }
+
+    /**
+     * @param \OpenActive\Enums\RequiredStatusType|null $prepayment
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPrepayment($prepayment)
+    {
+        $types = array(
+            "\OpenActive\Enums\RequiredStatusType",
+            "null",
+        );
+
+        $prepayment = self::checkTypes($prepayment, $types);
+
+        $this->prepayment = $prepayment;
+    }
 
     /**
      * @return null|float

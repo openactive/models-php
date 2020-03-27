@@ -17,21 +17,13 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "numConstraints" => "numConstraints",
             "constrainingProperty" => "constrainingProperty",
+            "numConstraints" => "numConstraints",
             "populationType" => "populationType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Indicates the number of constraints (not counting <a class="localLink" href="https://schema.org/populationType">populationType</a>) defined for a particular <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>. This helps applications understand if they have access to a sufficiently complete description of a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>.
-     *
-     *
-     * @var null|int
-     */
-    protected $numConstraints;
 
     /**
      * Indicates a property used as a constraint to define a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a> with respect to the set of entities
@@ -43,37 +35,20 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $constrainingProperty;
 
     /**
+     * Indicates the number of constraints (not counting <a class="localLink" href="https://schema.org/populationType">populationType</a>) defined for a particular <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>. This helps applications understand if they have access to a sufficiently complete description of a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>.
+     *
+     *
+     * @var null|int
+     */
+    protected $numConstraints;
+
+    /**
      * Indicates the populationType common to all members of a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>.
      *
      *
      * @var 
      */
     protected $populationType;
-
-    /**
-     * @return null|int
-     */
-    public function getNumConstraints()
-    {
-        return $this->numConstraints;
-    }
-
-    /**
-     * @param null|int $numConstraints
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNumConstraints($numConstraints)
-    {
-        $types = array(
-            "null",
-            "int",
-        );
-
-        $numConstraints = self::checkTypes($numConstraints, $types);
-
-        $this->numConstraints = $numConstraints;
-    }
 
     /**
      * @return null|int
@@ -98,6 +73,31 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
         $constrainingProperty = self::checkTypes($constrainingProperty, $types);
 
         $this->constrainingProperty = $constrainingProperty;
+    }
+
+    /**
+     * @return null|int
+     */
+    public function getNumConstraints()
+    {
+        return $this->numConstraints;
+    }
+
+    /**
+     * @param null|int $numConstraints
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumConstraints($numConstraints)
+    {
+        $types = array(
+            "null",
+            "int",
+        );
+
+        $numConstraints = self::checkTypes($numConstraints, $types);
+
+        $this->numConstraints = $numConstraints;
     }
 
     /**

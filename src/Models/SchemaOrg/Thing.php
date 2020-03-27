@@ -78,7 +78,7 @@ class Thing extends \OpenActive\BaseModel
      * An image of the item. This can be a <a class="localLink" href="https://schema.org/URL">URL</a> or a fully described <a class="localLink" href="https://schema.org/ImageObject">ImageObject</a>.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\ImageObject
+     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
      */
     protected $image;
 
@@ -252,7 +252,7 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\ImageObject
+     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
      */
     public function getImage()
     {
@@ -260,15 +260,15 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\ImageObject $image
+     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $image
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setImage($image)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\ImageObject",
+            "string",
         );
 
         $image = self::checkTypes($image, $types);

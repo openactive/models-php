@@ -85,7 +85,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Indicates if use of the media require a subscription  (either paid or free). Allowed values are <code>true</code> or <code>false</code> (note that an earlier version had 'yes', 'no').
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null
+     * @var \OpenActive\Models\SchemaOrg\MediaSubscription|null|bool
      */
     protected $requiresSubscription;
 
@@ -127,7 +127,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The width of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * @var \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $width;
 
@@ -308,7 +308,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null
+     * @return \OpenActive\Models\SchemaOrg\MediaSubscription|null|bool
      */
     public function getRequiresSubscription()
     {
@@ -316,7 +316,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null $requiresSubscription
+     * @param \OpenActive\Models\SchemaOrg\MediaSubscription|null|bool $requiresSubscription
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -324,8 +324,8 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\MediaSubscription",
-            "bool",
             "null",
+            "bool",
         );
 
         $requiresSubscription = self::checkTypes($requiresSubscription, $types);
@@ -432,7 +432,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
+     * @return \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getWidth()
     {
@@ -440,15 +440,15 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $width
+     * @param \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue $width
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWidth($width)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "\OpenActive\Models\SchemaOrg\Distance",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
         $width = self::checkTypes($width, $types);

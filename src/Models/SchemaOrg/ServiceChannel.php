@@ -58,7 +58,7 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
      * A language someone may use with or at the item, service or place. Please use one of the language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>. See also <a class="localLink" href="https://schema.org/inLanguage">inLanguage</a>
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Language|string
+     * @var string|\OpenActive\Models\SchemaOrg\Language
      */
     protected $availableLanguage;
 
@@ -167,7 +167,7 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Language|string
+     * @return string|\OpenActive\Models\SchemaOrg\Language
      */
     public function getAvailableLanguage()
     {
@@ -175,15 +175,15 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Language|string $availableLanguage
+     * @param string|\OpenActive\Models\SchemaOrg\Language $availableLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableLanguage($availableLanguage)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Language",
             "string",
+            "\OpenActive\Models\SchemaOrg\Language",
         );
 
         $availableLanguage = self::checkTypes($availableLanguage, $types);

@@ -77,7 +77,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * Whether or not a property is mutable.  Default is false. Specifying this for a property that also has a value makes it act similar to a "hidden" input in an HTML form.
      *
      *
-     * @var bool|null
+     * @var null|bool
      */
     protected $readonlyValue;
 
@@ -109,7 +109,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * Whether multiple values are allowed for the property.  Default is false.
      *
      *
-     * @var bool|null
+     * @var null|bool
      */
     protected $multipleValues;
 
@@ -117,7 +117,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * Whether the property must be filled in to complete the action.  Default is false.
      *
      *
-     * @var bool|null
+     * @var null|bool
      */
     protected $valueRequired;
 
@@ -246,7 +246,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return bool|null
+     * @return null|bool
      */
     public function getReadonlyValue()
     {
@@ -254,15 +254,15 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param bool|null $readonlyValue
+     * @param null|bool $readonlyValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReadonlyValue($readonlyValue)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $readonlyValue = self::checkTypes($readonlyValue, $types);
@@ -345,7 +345,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return bool|null
+     * @return null|bool
      */
     public function getMultipleValues()
     {
@@ -353,15 +353,15 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param bool|null $multipleValues
+     * @param null|bool $multipleValues
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMultipleValues($multipleValues)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $multipleValues = self::checkTypes($multipleValues, $types);
@@ -370,7 +370,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return bool|null
+     * @return null|bool
      */
     public function getValueRequired()
     {
@@ -378,15 +378,15 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param bool|null $valueRequired
+     * @param null|bool $valueRequired
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueRequired($valueRequired)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $valueRequired = self::checkTypes($valueRequired, $types);

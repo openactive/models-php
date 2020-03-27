@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class VideoGame extends \OpenActive\Models\SchemaOrg\Game
+class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
 {
     /**
      * @return string[]|null

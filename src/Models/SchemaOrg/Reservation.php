@@ -63,7 +63,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * The person or organization the reservation or ticket is for.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $underName;
 
@@ -71,7 +71,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * 'bookingAgent' is an out-dated term indicating a 'broker' that serves as a booking agent.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $bookingAgent;
 
@@ -87,7 +87,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * 
      *
      *
-     * @var null|float|string|\OpenActive\Models\SchemaOrg\PriceSpecification
+     * @var \OpenActive\Models\SchemaOrg\PriceSpecification|null|float|string
      */
     protected $totalPrice;
 
@@ -224,7 +224,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getUnderName()
     {
@@ -232,15 +232,15 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $underName
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $underName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnderName($underName)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $underName = self::checkTypes($underName, $types);
@@ -249,7 +249,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getBookingAgent()
     {
@@ -257,15 +257,15 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $bookingAgent
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $bookingAgent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBookingAgent($bookingAgent)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $bookingAgent = self::checkTypes($bookingAgent, $types);
@@ -274,7 +274,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|float|string|\OpenActive\Models\SchemaOrg\PriceSpecification
+     * @return \OpenActive\Models\SchemaOrg\PriceSpecification|null|float|string
      */
     public function getTotalPrice()
     {
@@ -282,17 +282,17 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|float|string|\OpenActive\Models\SchemaOrg\PriceSpecification $totalPrice
+     * @param \OpenActive\Models\SchemaOrg\PriceSpecification|null|float|string $totalPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalPrice($totalPrice)
     {
         $types = array(
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
             "null",
             "float",
             "string",
-            "\OpenActive\Models\SchemaOrg\PriceSpecification",
         );
 
         $totalPrice = self::checkTypes($totalPrice, $types);

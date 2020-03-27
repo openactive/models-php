@@ -28,6 +28,7 @@ class Schedule extends \OpenActive\BaseModel
             "repeatCount" => "repeatCount",
             "repeatFrequency" => "repeatFrequency",
             "scheduledEventType" => "scheduledEventType",
+            "scheduleTimezone" => "scheduleTimezone",
             "startDate" => "startDate",
             "endDate" => "endDate",
             "startTime" => "startTime",
@@ -163,6 +164,17 @@ class Schedule extends \OpenActive\BaseModel
     protected $scheduledEventType;
 
     /**
+     * Indicates the timezone for which the time(s) indicated in the Schedule are given. The value provided should be among those listed in the IANA Time Zone Database.
+     *
+     * ```json
+     * "scheduleTimezone": "Europe/London"
+     * ```
+     *
+     * @var string
+     */
+    protected $scheduleTimezone;
+
+    /**
      * The start date of the event.
      *
      * ```json
@@ -209,6 +221,8 @@ class Schedule extends \OpenActive\BaseModel
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * [DEPRECATED: This beta property is now deprecated, please use `schema:scheduleTimezone` instead.] The time zone used to generate occurrences, same as iCal TZID. E.g. 'Europe/London'.
+     * 
+     * If you are using this property, please join the discussion at proposal [#197](https://github.com/openactive/modelling-opportunity-data/issues/197).
      *
      *
      * @var string
@@ -463,6 +477,30 @@ class Schedule extends \OpenActive\BaseModel
         $scheduledEventType = self::checkTypes($scheduledEventType, $types);
 
         $this->scheduledEventType = $scheduledEventType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getScheduleTimezone()
+    {
+        return $this->scheduleTimezone;
+    }
+
+    /**
+     * @param string $scheduleTimezone
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setScheduleTimezone($scheduleTimezone)
+    {
+        $types = array(
+            "string",
+        );
+
+        $scheduleTimezone = self::checkTypes($scheduleTimezone, $types);
+
+        $this->scheduleTimezone = $scheduleTimezone;
     }
 
     /**

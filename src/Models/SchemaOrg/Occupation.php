@@ -20,10 +20,10 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
             "occupationLocation" => "occupationLocation",
             "skills" => "skills",
             "responsibilities" => "responsibilities",
-            "occupationalCategory" => "occupationalCategory",
             "experienceRequirements" => "experienceRequirements",
             "estimatedSalary" => "estimatedSalary",
             "qualifications" => "qualifications",
+            "occupationalCategory" => "occupationalCategory",
             "educationRequirements" => "educationRequirements",
         ];
 
@@ -55,16 +55,6 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $responsibilities;
 
     /**
-     * A category describing the job, preferably using a term from a taxonomy such as <a href="http://www.onetcenter.org/taxonomy.html">BLS O*NET-SOC</a>, <a href="https://www.ilo.org/public/english/bureau/stat/isco/isco08/">ISCO-08</a> or similar, with the property repeated for each applicable value. Ideally the taxonomy should be identified, and both the textual label and formal code for the category should be provided.<br/><br/>
-     * 
-     * Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CategoryCode|string
-     */
-    protected $occupationalCategory;
-
-    /**
      * Description of skills and experience needed for the position or Occupation.
      *
      *
@@ -76,7 +66,7 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
      * An estimated salary for a job posting or occupation, based on a variety of variables including, but not limited to industry, job title, and location. Estimated salaries  are often computed by outside organizations rather than the hiring organization, who may not have committed to the estimated value.
      *
      *
-     * @var float|\OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|null
+     * @var float|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
      */
     protected $estimatedSalary;
 
@@ -84,15 +74,25 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
      * Specific qualifications required for this role or Occupation.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
+     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
      */
     protected $qualifications;
+
+    /**
+     * A category describing the job, preferably using a term from a taxonomy such as <a href="http://www.onetcenter.org/taxonomy.html">BLS O*NET-SOC</a>, <a href="https://www.ilo.org/public/english/bureau/stat/isco/isco08/">ISCO-08</a> or similar, with the property repeated for each applicable value. Ideally the taxonomy should be identified, and both the textual label and formal code for the category should be provided.<br/><br/>
+     * 
+     * Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\CategoryCode
+     */
+    protected $occupationalCategory;
 
     /**
      * Educational background needed for the position or Occupation.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
+     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
      */
     protected $educationRequirements;
 
@@ -170,31 +170,6 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CategoryCode|string
-     */
-    public function getOccupationalCategory()
-    {
-        return $this->occupationalCategory;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CategoryCode|string $occupationalCategory
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOccupationalCategory($occupationalCategory)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\CategoryCode",
-            "string",
-        );
-
-        $occupationalCategory = self::checkTypes($occupationalCategory, $types);
-
-        $this->occupationalCategory = $occupationalCategory;
-    }
-
-    /**
      * @return string
      */
     public function getExperienceRequirements()
@@ -219,7 +194,7 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return float|\OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|null
+     * @return float|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
      */
     public function getEstimatedSalary()
     {
@@ -227,7 +202,7 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param float|\OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|null $estimatedSalary
+     * @param float|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $estimatedSalary
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -235,8 +210,8 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "float",
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "null",
         );
 
@@ -246,7 +221,7 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
+     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
      */
     public function getQualifications()
     {
@@ -254,15 +229,15 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string $qualifications
+     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $qualifications
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setQualifications($qualifications)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
             "string",
+            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
         );
 
         $qualifications = self::checkTypes($qualifications, $types);
@@ -271,7 +246,32 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
+     * @return string|\OpenActive\Models\SchemaOrg\CategoryCode
+     */
+    public function getOccupationalCategory()
+    {
+        return $this->occupationalCategory;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\CategoryCode $occupationalCategory
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOccupationalCategory($occupationalCategory)
+    {
+        $types = array(
+            "string",
+            "\OpenActive\Models\SchemaOrg\CategoryCode",
+        );
+
+        $occupationalCategory = self::checkTypes($occupationalCategory, $types);
+
+        $this->occupationalCategory = $occupationalCategory;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
      */
     public function getEducationRequirements()
     {
@@ -279,15 +279,15 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string $educationRequirements
+     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $educationRequirements
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEducationRequirements($educationRequirements)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
             "string",
+            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
         );
 
         $educationRequirements = self::checkTypes($educationRequirements, $types);

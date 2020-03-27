@@ -40,7 +40,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * The number of children staying in the unit.
      *
      *
-     * @var int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int
      */
     protected $numChildren;
 
@@ -64,7 +64,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * Textual description of the unit type (including suite vs. room, size of bed, etc.).
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string
+     * @var string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
      */
     protected $lodgingUnitType;
 
@@ -72,7 +72,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * The number of adults staying in the unit.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int
+     * @var int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $numAdults;
 
@@ -103,7 +103,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int
      */
     public function getNumChildren()
     {
@@ -111,16 +111,16 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numChildren
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int $numChildren
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumChildren($numChildren)
     {
         $types = array(
-            "int",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
+            "int",
         );
 
         $numChildren = self::checkTypes($numChildren, $types);
@@ -179,7 +179,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string
+     * @return string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
      */
     public function getLodgingUnitType()
     {
@@ -187,16 +187,16 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|null|string $lodgingUnitType
+     * @param string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null $lodgingUnitType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLodgingUnitType($lodgingUnitType)
     {
         $types = array(
+            "string",
             "\OpenActive\Enums\SchemaOrg\QualitativeValue",
             "null",
-            "string",
         );
 
         $lodgingUnitType = self::checkTypes($lodgingUnitType, $types);
@@ -205,7 +205,7 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int
+     * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getNumAdults()
     {
@@ -213,16 +213,16 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int $numAdults
+     * @param int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numAdults
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumAdults($numAdults)
     {
         $types = array(
+            "int",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
-            "int",
         );
 
         $numAdults = self::checkTypes($numAdults, $types);

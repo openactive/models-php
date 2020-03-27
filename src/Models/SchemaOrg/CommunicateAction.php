@@ -38,7 +38,7 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
      * The language of the content or performance or used in an action. Please use one of the language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>. See also <a class="localLink" href="https://schema.org/availableLanguage">availableLanguage</a>.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Language
+     * @var \OpenActive\Models\SchemaOrg\Language|string
      */
     protected $inLanguage;
 
@@ -46,7 +46,7 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
      * A sub property of participant. The participant who is at the receiving end of the action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person
      */
     protected $recipient;
 
@@ -83,7 +83,7 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Language
+     * @return \OpenActive\Models\SchemaOrg\Language|string
      */
     public function getInLanguage()
     {
@@ -91,15 +91,15 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Language $inLanguage
+     * @param \OpenActive\Models\SchemaOrg\Language|string $inLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInLanguage($inLanguage)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\Language",
+            "string",
         );
 
         $inLanguage = self::checkTypes($inLanguage, $types);
@@ -108,7 +108,7 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person
      */
     public function getRecipient()
     {
@@ -116,16 +116,16 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $recipient
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person $recipient
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecipient($recipient)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Audience",
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
+            "\OpenActive\Models\SchemaOrg\Audience",
             "\OpenActive\Models\SchemaOrg\Person",
         );
 

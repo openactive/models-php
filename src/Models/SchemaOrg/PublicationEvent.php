@@ -37,7 +37,7 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
      * A flag to signal that the item, event, or place is accessible for free.
      *
      *
-     * @var bool|null
+     * @var null|bool
      */
     protected $free;
 
@@ -45,7 +45,7 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
      * A flag to signal that the item, event, or place is accessible for free.
      *
      *
-     * @var bool|null
+     * @var null|bool
      */
     protected $isAccessibleForFree;
 
@@ -74,7 +74,7 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return bool|null
+     * @return null|bool
      */
     public function getFree()
     {
@@ -82,15 +82,15 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param bool|null $free
+     * @param null|bool $free
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFree($free)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $free = self::checkTypes($free, $types);
@@ -99,7 +99,7 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return bool|null
+     * @return null|bool
      */
     public function getIsAccessibleForFree()
     {
@@ -107,15 +107,15 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param bool|null $isAccessibleForFree
+     * @param null|bool $isAccessibleForFree
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsAccessibleForFree($isAccessibleForFree)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $isAccessibleForFree = self::checkTypes($isAccessibleForFree, $types);

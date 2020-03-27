@@ -46,7 +46,7 @@ class MusicAlbum extends \OpenActive\Models\SchemaOrg\MusicPlaylist
      * The artist that performed this album or recording.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup
      */
     protected $byArtist;
 
@@ -109,7 +109,7 @@ class MusicAlbum extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup
      */
     public function getByArtist()
     {
@@ -117,15 +117,15 @@ class MusicAlbum extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person $byArtist
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup $byArtist
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setByArtist($byArtist)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\MusicGroup",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\MusicGroup",
         );
 
         $byArtist = self::checkTypes($byArtist, $types);

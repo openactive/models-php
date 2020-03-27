@@ -63,7 +63,7 @@ class FoodEstablishment extends \OpenActive\Models\SchemaOrg\LocalBusiness
      * Indicates whether a FoodEstablishment accepts reservations. Values can be Boolean, an URL at which reservations can be made or (for backwards compatibility) the strings <code>Yes</code> or <code>No</code>.
      *
      *
-     * @var string|bool|null
+     * @var null|string|bool
      */
     protected $acceptsReservations;
 
@@ -166,7 +166,7 @@ class FoodEstablishment extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @return string|bool|null
+     * @return null|string|bool
      */
     public function getAcceptsReservations()
     {
@@ -174,16 +174,16 @@ class FoodEstablishment extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @param string|bool|null $acceptsReservations
+     * @param null|string|bool $acceptsReservations
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcceptsReservations($acceptsReservations)
     {
         $types = array(
+            "null",
             "string",
             "bool",
-            "null",
         );
 
         $acceptsReservations = self::checkTypes($acceptsReservations, $types);

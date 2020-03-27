@@ -35,7 +35,7 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
     protected $name;
 
     /**
-     * The version of the application, useful for on-premise installations.
+     * The version of the application, useful for on-premise installations. Note this property is in EARLY RELEASE AND IS SUBJECT TO CHANGE, as the [Dataset API Discovery specification](https://www.openactive.io/dataset-api-discovery/EditorsDraft/) evolves.
      *
      *
      * @var string

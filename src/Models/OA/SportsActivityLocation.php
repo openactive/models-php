@@ -18,11 +18,23 @@ class SportsActivityLocation extends \OpenActive\Models\SchemaOrg\SportsActivity
 
     public static function fieldList() {
         $fields = [
+            "name" => "name",
             "containedInPlace" => "containedInPlace",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The name of the internal location where the activity is taking place
+     *
+     * ```json
+     * "name": "Court 1"
+     * ```
+     *
+     * @var string
+     */
+    protected $name;
 
     /**
      * While a `url` is not specified as an option in the Modelling Specification, it is necessary to link entities in RPDE.
@@ -34,6 +46,30 @@ class SportsActivityLocation extends \OpenActive\Models\SchemaOrg\SportsActivity
      * @var string|\OpenActive\Models\OA\Place
      */
     protected $containedInPlace;
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setName($name)
+    {
+        $types = array(
+            "string",
+        );
+
+        $name = self::checkTypes($name, $types);
+
+        $this->name = $name;
+    }
 
     /**
      * @return string|\OpenActive\Models\OA\Place

@@ -24,6 +24,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
             "availableOnDevice" => "availableOnDevice",
             "featureList" => "featureList",
             "applicationSubCategory" => "applicationSubCategory",
+            "requirements" => "requirements",
             "device" => "device",
             "applicationCategory" => "applicationCategory",
             "softwareVersion" => "softwareVersion",
@@ -36,7 +37,6 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
             "softwareAddOn" => "softwareAddOn",
             "releaseNotes" => "releaseNotes",
             "supportingData" => "supportingData",
-            "requirements" => "requirements",
             "countriesNotSupported" => "countriesNotSupported",
             "operatingSystem" => "operatingSystem",
             "fileSize" => "fileSize",
@@ -101,6 +101,14 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var string
      */
     protected $applicationSubCategory;
+
+    /**
+     * Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime).
+     *
+     *
+     * @var string
+     */
+    protected $requirements;
 
     /**
      * Device required to run the application. Used in cases where a specific make/model is required to run the application.
@@ -197,14 +205,6 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var \OpenActive\Models\SchemaOrg\DataFeed
      */
     protected $supportingData;
-
-    /**
-     * Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime).
-     *
-     *
-     * @var string
-     */
-    protected $requirements;
 
     /**
      * Countries for which the application is not supported. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
@@ -404,6 +404,30 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
         $applicationSubCategory = self::checkTypes($applicationSubCategory, $types);
 
         $this->applicationSubCategory = $applicationSubCategory;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRequirements()
+    {
+        return $this->requirements;
+    }
+
+    /**
+     * @param string $requirements
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRequirements($requirements)
+    {
+        $types = array(
+            "string",
+        );
+
+        $requirements = self::checkTypes($requirements, $types);
+
+        $this->requirements = $requirements;
     }
 
     /**
@@ -693,30 +717,6 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
         $supportingData = self::checkTypes($supportingData, $types);
 
         $this->supportingData = $supportingData;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRequirements()
-    {
-        return $this->requirements;
-    }
-
-    /**
-     * @param string $requirements
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRequirements($requirements)
-    {
-        $types = array(
-            "string",
-        );
-
-        $requirements = self::checkTypes($requirements, $types);
-
-        $this->requirements = $requirements;
     }
 
     /**

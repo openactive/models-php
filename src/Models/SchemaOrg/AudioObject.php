@@ -36,7 +36,7 @@ class AudioObject extends \OpenActive\Models\SchemaOrg\MediaObject
      * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the <a class="localLink" href="https://schema.org/encodingFormat">encodingFormat</a>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MediaObject|string
+     * @var string|\OpenActive\Models\SchemaOrg\MediaObject
      */
     protected $caption;
 
@@ -65,7 +65,7 @@ class AudioObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MediaObject|string
+     * @return string|\OpenActive\Models\SchemaOrg\MediaObject
      */
     public function getCaption()
     {
@@ -73,15 +73,15 @@ class AudioObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MediaObject|string $caption
+     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $caption
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCaption($caption)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\MediaObject",
             "string",
+            "\OpenActive\Models\SchemaOrg\MediaObject",
         );
 
         $caption = self::checkTypes($caption, $types);

@@ -17,15 +17,23 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
+            "unitCode" => "unitCode",
             "typeOfGood" => "typeOfGood",
             "amountOfThisGood" => "amountOfThisGood",
-            "unitCode" => "unitCode",
-            "unitText" => "unitText",
             "businessFunction" => "businessFunction",
+            "unitText" => "unitText",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
+     *
+     *
+     * @var string
+     */
+    protected $unitCode;
 
     /**
      * The product that this structured value is referring to.
@@ -44,12 +52,12 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $amountOfThisGood;
 
     /**
-     * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
+     * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
      *
      *
-     * @var string
+     * @var \OpenActive\Enums\SchemaOrg\BusinessFunction|null
      */
-    protected $unitCode;
+    protected $businessFunction;
 
     /**
      * A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for
@@ -61,12 +69,28 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $unitText;
 
     /**
-     * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\BusinessFunction|null
+     * @return string
      */
-    protected $businessFunction;
+    public function getUnitCode()
+    {
+        return $this->unitCode;
+    }
+
+    /**
+     * @param string $unitCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUnitCode($unitCode)
+    {
+        $types = array(
+            "string",
+        );
+
+        $unitCode = self::checkTypes($unitCode, $types);
+
+        $this->unitCode = $unitCode;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
@@ -119,27 +143,28 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Enums\SchemaOrg\BusinessFunction|null
      */
-    public function getUnitCode()
+    public function getBusinessFunction()
     {
-        return $this->unitCode;
+        return $this->businessFunction;
     }
 
     /**
-     * @param string $unitCode
+     * @param \OpenActive\Enums\SchemaOrg\BusinessFunction|null $businessFunction
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setUnitCode($unitCode)
+    public function setBusinessFunction($businessFunction)
     {
         $types = array(
-            "string",
+            "\OpenActive\Enums\SchemaOrg\BusinessFunction",
+            "null",
         );
 
-        $unitCode = self::checkTypes($unitCode, $types);
+        $businessFunction = self::checkTypes($businessFunction, $types);
 
-        $this->unitCode = $unitCode;
+        $this->businessFunction = $businessFunction;
     }
 
     /**
@@ -164,31 +189,6 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
         $unitText = self::checkTypes($unitText, $types);
 
         $this->unitText = $unitText;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\BusinessFunction|null
-     */
-    public function getBusinessFunction()
-    {
-        return $this->businessFunction;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\BusinessFunction|null $businessFunction
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBusinessFunction($businessFunction)
-    {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\BusinessFunction",
-            "null",
-        );
-
-        $businessFunction = self::checkTypes($businessFunction, $types);
-
-        $this->businessFunction = $businessFunction;
     }
 
 }

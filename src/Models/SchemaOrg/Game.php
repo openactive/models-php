@@ -47,7 +47,7 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Real or fictional location of the game (or part of game).
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place
      */
     protected $gameLocation;
 
@@ -116,7 +116,7 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place
      */
     public function getGameLocation()
     {
@@ -124,16 +124,16 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress $gameLocation
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place $gameLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGameLocation($gameLocation)
     {
         $types = array(
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
             "string",
             "\OpenActive\Models\SchemaOrg\Place",
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
         );
 
         $gameLocation = self::checkTypes($gameLocation, $types);

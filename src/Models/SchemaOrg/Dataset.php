@@ -82,7 +82,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The variableMeasured property can indicate (repeated as necessary) the  variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\PropertyValue
+     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
     protected $variableMeasured;
 
@@ -247,7 +247,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\PropertyValue
+     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
     public function getVariableMeasured()
     {
@@ -255,15 +255,15 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\PropertyValue $variableMeasured
+     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $variableMeasured
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVariableMeasured($variableMeasured)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "string",
         );
 
         $variableMeasured = self::checkTypes($variableMeasured, $types);

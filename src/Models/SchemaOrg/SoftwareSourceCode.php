@@ -49,7 +49,7 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The computer programming language.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\ComputerLanguage
+     * @var \OpenActive\Models\SchemaOrg\ComputerLanguage|string
      */
     protected $programmingLanguage;
 
@@ -134,7 +134,7 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\ComputerLanguage
+     * @return \OpenActive\Models\SchemaOrg\ComputerLanguage|string
      */
     public function getProgrammingLanguage()
     {
@@ -142,15 +142,15 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\ComputerLanguage $programmingLanguage
+     * @param \OpenActive\Models\SchemaOrg\ComputerLanguage|string $programmingLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProgrammingLanguage($programmingLanguage)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\ComputerLanguage",
+            "string",
         );
 
         $programmingLanguage = self::checkTypes($programmingLanguage, $types);

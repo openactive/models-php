@@ -41,7 +41,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * Indicates if use of the media require a subscription  (either paid or free). Allowed values are <code>true</code> or <code>false</code> (note that an earlier version had 'yes', 'no').
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null
+     * @var \OpenActive\Models\SchemaOrg\MediaSubscription|null|bool
      */
     protected $requiresSubscription;
 
@@ -117,7 +117,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null
+     * @return \OpenActive\Models\SchemaOrg\MediaSubscription|null|bool
      */
     public function getRequiresSubscription()
     {
@@ -125,7 +125,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null $requiresSubscription
+     * @param \OpenActive\Models\SchemaOrg\MediaSubscription|null|bool $requiresSubscription
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -133,8 +133,8 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\MediaSubscription",
-            "bool",
             "null",
+            "bool",
         );
 
         $requiresSubscription = self::checkTypes($requiresSubscription, $types);

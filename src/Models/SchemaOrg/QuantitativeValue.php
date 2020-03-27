@@ -17,17 +17,25 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
+            "unitCode" => "unitCode",
             "minValue" => "minValue",
             "value" => "value",
             "additionalProperty" => "additionalProperty",
             "valueReference" => "valueReference",
             "maxValue" => "maxValue",
-            "unitCode" => "unitCode",
             "unitText" => "unitText",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
+     *
+     *
+     * @var string
+     */
+    protected $unitCode;
 
     /**
      * The lower value of some characteristic or property.
@@ -49,7 +57,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * 
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\StructuredValue|null|float|string|bool
+     * @var float|bool|\OpenActive\Models\SchemaOrg\StructuredValue|null|string
      */
     protected $value;
 
@@ -67,7 +75,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|null
+     * @var \OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Enums\SchemaOrg\QualitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $valueReference;
 
@@ -80,14 +88,6 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $maxValue;
 
     /**
-     * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
-     *
-     *
-     * @var string
-     */
-    protected $unitCode;
-
-    /**
      * A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for
      * <a href='unitCode'>unitCode</a>.
      *
@@ -95,6 +95,30 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * @var string
      */
     protected $unitText;
+
+    /**
+     * @return string
+     */
+    public function getUnitCode()
+    {
+        return $this->unitCode;
+    }
+
+    /**
+     * @param string $unitCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUnitCode($unitCode)
+    {
+        $types = array(
+            "string",
+        );
+
+        $unitCode = self::checkTypes($unitCode, $types);
+
+        $this->unitCode = $unitCode;
+    }
 
     /**
      * @return null|float
@@ -122,7 +146,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\StructuredValue|null|float|string|bool
+     * @return float|bool|\OpenActive\Models\SchemaOrg\StructuredValue|null|string
      */
     public function getValue()
     {
@@ -130,18 +154,18 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\StructuredValue|null|float|string|bool $value
+     * @param float|bool|\OpenActive\Models\SchemaOrg\StructuredValue|null|string $value
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValue($value)
     {
         $types = array(
+            "float",
+            "bool",
             "\OpenActive\Models\SchemaOrg\StructuredValue",
             "null",
-            "float",
             "string",
-            "bool",
         );
 
         $value = self::checkTypes($value, $types);
@@ -174,7 +198,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|null
+     * @return \OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Enums\SchemaOrg\QualitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getValueReference()
     {
@@ -182,18 +206,18 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|null $valueReference
+     * @param \OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Enums\SchemaOrg\QualitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $valueReference
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueReference($valueReference)
     {
         $types = array(
-            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
-            "\OpenActive\Models\SchemaOrg\Enumeration",
             "\OpenActive\Models\SchemaOrg\PropertyValue",
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
             "\OpenActive\Models\SchemaOrg\StructuredValue",
+            "\OpenActive\Models\SchemaOrg\Enumeration",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
         );
 
@@ -225,30 +249,6 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
         $maxValue = self::checkTypes($maxValue, $types);
 
         $this->maxValue = $maxValue;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUnitCode()
-    {
-        return $this->unitCode;
-    }
-
-    /**
-     * @param string $unitCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setUnitCode($unitCode)
-    {
-        $types = array(
-            "string",
-        );
-
-        $unitCode = self::checkTypes($unitCode, $types);
-
-        $this->unitCode = $unitCode;
     }
 
     /**

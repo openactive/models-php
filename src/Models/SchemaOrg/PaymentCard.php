@@ -17,8 +17,8 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
 
     public static function fieldList() {
         $fields = [
-            "cashBack" => "cashBack",
             "contactlessPayment" => "contactlessPayment",
+            "cashBack" => "cashBack",
             "floorLimit" => "floorLimit",
         ];
 
@@ -26,20 +26,20 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * A cardholder benefit that pays the cardholder a small percentage of their net expenditures.
-     *
-     *
-     * @var float|bool|null
-     */
-    protected $cashBack;
-
-    /**
      * A secure method for consumers to purchase products or services via debit, credit or smartcards by using RFID or NFC technology.
      *
      *
-     * @var bool|null
+     * @var null|bool
      */
     protected $contactlessPayment;
+
+    /**
+     * A cardholder benefit that pays the cardholder a small percentage of their net expenditures.
+     *
+     *
+     * @var null|float|bool
+     */
+    protected $cashBack;
 
     /**
      * A floor limit is the amount of money above which credit card transactions must be authorized.
@@ -50,33 +50,7 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
     protected $floorLimit;
 
     /**
-     * @return float|bool|null
-     */
-    public function getCashBack()
-    {
-        return $this->cashBack;
-    }
-
-    /**
-     * @param float|bool|null $cashBack
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCashBack($cashBack)
-    {
-        $types = array(
-            "float",
-            "bool",
-            "null",
-        );
-
-        $cashBack = self::checkTypes($cashBack, $types);
-
-        $this->cashBack = $cashBack;
-    }
-
-    /**
-     * @return bool|null
+     * @return null|bool
      */
     public function getContactlessPayment()
     {
@@ -84,20 +58,46 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @param bool|null $contactlessPayment
+     * @param null|bool $contactlessPayment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContactlessPayment($contactlessPayment)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $contactlessPayment = self::checkTypes($contactlessPayment, $types);
 
         $this->contactlessPayment = $contactlessPayment;
+    }
+
+    /**
+     * @return null|float|bool
+     */
+    public function getCashBack()
+    {
+        return $this->cashBack;
+    }
+
+    /**
+     * @param null|float|bool $cashBack
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCashBack($cashBack)
+    {
+        $types = array(
+            "null",
+            "float",
+            "bool",
+        );
+
+        $cashBack = self::checkTypes($cashBack, $types);
+
+        $this->cashBack = $cashBack;
     }
 
     /**

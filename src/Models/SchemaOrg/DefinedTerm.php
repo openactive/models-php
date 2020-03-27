@@ -28,7 +28,7 @@ class DefinedTerm extends \OpenActive\Models\SchemaOrg\Intangible
      * A <a class="localLink" href="https://schema.org/DefinedTermSet">DefinedTermSet</a> that contains this term.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTermSet
+     * @var \OpenActive\Models\SchemaOrg\DefinedTermSet|string
      */
     protected $inDefinedTermSet;
 
@@ -41,7 +41,7 @@ class DefinedTerm extends \OpenActive\Models\SchemaOrg\Intangible
     protected $termCode;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTermSet
+     * @return \OpenActive\Models\SchemaOrg\DefinedTermSet|string
      */
     public function getInDefinedTermSet()
     {
@@ -49,15 +49,15 @@ class DefinedTerm extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTermSet $inDefinedTermSet
+     * @param \OpenActive\Models\SchemaOrg\DefinedTermSet|string $inDefinedTermSet
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInDefinedTermSet($inDefinedTermSet)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\DefinedTermSet",
+            "string",
         );
 
         $inDefinedTermSet = self::checkTypes($inDefinedTermSet, $types);

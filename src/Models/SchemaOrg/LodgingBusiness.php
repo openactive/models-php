@@ -50,7 +50,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
      * Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value.
      *
      *
-     * @var bool|null|string
+     * @var null|string|bool
      */
     protected $petsAllowed;
 
@@ -58,7 +58,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
      * A language someone may use with or at the item, service or place. Please use one of the language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>. See also <a class="localLink" href="https://schema.org/inLanguage">inLanguage</a>
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Language|string
+     * @var string|\OpenActive\Models\SchemaOrg\Language
      */
     protected $availableLanguage;
 
@@ -146,7 +146,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @return bool|null|string
+     * @return null|string|bool
      */
     public function getPetsAllowed()
     {
@@ -154,16 +154,16 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @param bool|null|string $petsAllowed
+     * @param null|string|bool $petsAllowed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPetsAllowed($petsAllowed)
     {
         $types = array(
-            "bool",
             "null",
             "string",
+            "bool",
         );
 
         $petsAllowed = self::checkTypes($petsAllowed, $types);
@@ -172,7 +172,7 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Language|string
+     * @return string|\OpenActive\Models\SchemaOrg\Language
      */
     public function getAvailableLanguage()
     {
@@ -180,15 +180,15 @@ class LodgingBusiness extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Language|string $availableLanguage
+     * @param string|\OpenActive\Models\SchemaOrg\Language $availableLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableLanguage($availableLanguage)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Language",
             "string",
+            "\OpenActive\Models\SchemaOrg\Language",
         );
 
         $availableLanguage = self::checkTypes($availableLanguage, $types);

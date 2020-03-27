@@ -225,6 +225,8 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * 
+     * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
      *
      *
      * @var string

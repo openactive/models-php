@@ -5,14 +5,14 @@ namespace OpenActive\Models\OA;
 /**
  *
  */
-class PatchNotAllowedOnProperty extends \OpenActive\Models\OA\OpenBookingError
+class MethodNotAllowedError extends \OpenActive\Models\OA\OpenBookingError
 {
     /**
      * @return string[]|null
      */
     public static function getType()
     {
-        return "PatchNotAllowedOnProperty";
+        return "MethodNotAllowedError";
     }
 
     public static function fieldList() {

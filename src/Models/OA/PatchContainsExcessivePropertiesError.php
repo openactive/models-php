@@ -5,14 +5,14 @@ namespace OpenActive\Models\OA;
 /**
  *
  */
-class UnknownOpportunityDetailsError extends \OpenActive\Models\OA\OpenBookingError
+class PatchContainsExcessivePropertiesError extends \OpenActive\Models\OA\OpenBookingError
 {
     /**
      * @return string[]|null
      */
     public static function getType()
     {
-        return "UnknownOpportunityDetailsError";
+        return "PatchContainsExcessivePropertiesError";
     }
 
     public static function fieldList() {

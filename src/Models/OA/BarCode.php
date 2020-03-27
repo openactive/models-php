@@ -51,6 +51,8 @@ class Barcode extends \OpenActive\Models\OA\ImageObject
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * Type of barcode, e.g. 'Code39'
+     * 
+     * If you are using this property, please join the discussion at proposal [#130](https://github.com/openactive/open-booking-api/issues/130).
      *
      *
      * @var string

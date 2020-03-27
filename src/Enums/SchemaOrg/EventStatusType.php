@@ -10,6 +10,7 @@ class EventStatusType
 {
     const EventPostponed = \OpenActive\Enums\SchemaOrg\EventStatusType\EventPostponed::class;
     const EventRescheduled = \OpenActive\Enums\SchemaOrg\EventStatusType\EventRescheduled::class;
+    const EventMovedOnline = \OpenActive\Enums\SchemaOrg\EventStatusType\EventMovedOnline::class;
     const EventScheduled = \OpenActive\Enums\SchemaOrg\EventStatusType\EventScheduled::class;
     const EventCancelled = \OpenActive\Enums\SchemaOrg\EventStatusType\EventCancelled::class;
 }

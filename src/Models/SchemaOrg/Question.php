@@ -39,7 +39,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The answer(s) that has been accepted as best, typically on a Question/Answer site. Sites vary in their selection mechanisms, e.g. drawing on community opinion and/or the view of the Question author.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer
+     * @var \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList
      */
     protected $acceptedAnswer;
 
@@ -93,7 +93,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer
+     * @return \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList
      */
     public function getAcceptedAnswer()
     {
@@ -101,15 +101,15 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer $acceptedAnswer
+     * @param \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList $acceptedAnswer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcceptedAnswer($acceptedAnswer)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\ItemList",
             "\OpenActive\Models\SchemaOrg\Answer",
+            "\OpenActive\Models\SchemaOrg\ItemList",
         );
 
         $acceptedAnswer = self::checkTypes($acceptedAnswer, $types);

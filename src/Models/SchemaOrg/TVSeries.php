@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
+class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
 {
     /**
      * @return string[]|null

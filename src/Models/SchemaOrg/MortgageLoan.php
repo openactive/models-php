@@ -17,12 +17,20 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
 
     public static function fieldList() {
         $fields = [
-            "loanMortgageMandateAmount" => "loanMortgageMandateAmount",
             "domiciledMortgage" => "domiciledMortgage",
+            "loanMortgageMandateAmount" => "loanMortgageMandateAmount",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Whether borrower is a resident of the jurisdiction where the property is located.
+     *
+     *
+     * @var null|bool
+     */
+    protected $domiciledMortgage;
 
     /**
      * Amount of mortgage mandate that can be converted into a proper mortgage at a later stage.
@@ -33,12 +41,29 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
     protected $loanMortgageMandateAmount;
 
     /**
-     * Whether borrower is a resident of the jurisdiction where the property is located.
-     *
-     *
-     * @var bool|null
+     * @return null|bool
      */
-    protected $domiciledMortgage;
+    public function getDomiciledMortgage()
+    {
+        return $this->domiciledMortgage;
+    }
+
+    /**
+     * @param null|bool $domiciledMortgage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDomiciledMortgage($domiciledMortgage)
+    {
+        $types = array(
+            "null",
+            "bool",
+        );
+
+        $domiciledMortgage = self::checkTypes($domiciledMortgage, $types);
+
+        $this->domiciledMortgage = $domiciledMortgage;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MonetaryAmount
@@ -62,31 +87,6 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
         $loanMortgageMandateAmount = self::checkTypes($loanMortgageMandateAmount, $types);
 
         $this->loanMortgageMandateAmount = $loanMortgageMandateAmount;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getDomiciledMortgage()
-    {
-        return $this->domiciledMortgage;
-    }
-
-    /**
-     * @param bool|null $domiciledMortgage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDomiciledMortgage($domiciledMortgage)
-    {
-        $types = array(
-            "bool",
-            "null",
-        );
-
-        $domiciledMortgage = self::checkTypes($domiciledMortgage, $types);
-
-        $this->domiciledMortgage = $domiciledMortgage;
     }
 
 }

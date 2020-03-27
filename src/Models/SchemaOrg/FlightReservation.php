@@ -17,22 +17,14 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
 
     public static function fieldList() {
         $fields = [
-            "boardingGroup" => "boardingGroup",
             "passengerSequenceNumber" => "passengerSequenceNumber",
             "securityScreening" => "securityScreening",
             "passengerPriorityStatus" => "passengerPriorityStatus",
+            "boardingGroup" => "boardingGroup",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The airline-specific indicator of boarding order / preference.
-     *
-     *
-     * @var string
-     */
-    protected $boardingGroup;
 
     /**
      * The passenger's sequence number as assigned by the airline.
@@ -59,28 +51,12 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $passengerPriorityStatus;
 
     /**
-     * @return string
+     * The airline-specific indicator of boarding order / preference.
+     *
+     *
+     * @var string
      */
-    public function getBoardingGroup()
-    {
-        return $this->boardingGroup;
-    }
-
-    /**
-     * @param string $boardingGroup
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBoardingGroup($boardingGroup)
-    {
-        $types = array(
-            "string",
-        );
-
-        $boardingGroup = self::checkTypes($boardingGroup, $types);
-
-        $this->boardingGroup = $boardingGroup;
-    }
+    protected $boardingGroup;
 
     /**
      * @return string
@@ -154,6 +130,30 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
         $passengerPriorityStatus = self::checkTypes($passengerPriorityStatus, $types);
 
         $this->passengerPriorityStatus = $passengerPriorityStatus;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBoardingGroup()
+    {
+        return $this->boardingGroup;
+    }
+
+    /**
+     * @param string $boardingGroup
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBoardingGroup($boardingGroup)
+    {
+        $types = array(
+            "string",
+        );
+
+        $boardingGroup = self::checkTypes($boardingGroup, $types);
+
+        $this->boardingGroup = $boardingGroup;
     }
 
 }

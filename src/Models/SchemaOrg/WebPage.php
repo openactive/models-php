@@ -55,7 +55,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A set of links that can help a user understand and navigate a website hierarchy.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\BreadcrumbList|string
+     * @var string|\OpenActive\Models\SchemaOrg\BreadcrumbList
      */
     protected $breadcrumb;
 
@@ -149,7 +149,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\BreadcrumbList|string
+     * @return string|\OpenActive\Models\SchemaOrg\BreadcrumbList
      */
     public function getBreadcrumb()
     {
@@ -157,15 +157,15 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\BreadcrumbList|string $breadcrumb
+     * @param string|\OpenActive\Models\SchemaOrg\BreadcrumbList $breadcrumb
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBreadcrumb($breadcrumb)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\BreadcrumbList",
             "string",
+            "\OpenActive\Models\SchemaOrg\BreadcrumbList",
         );
 
         $breadcrumb = self::checkTypes($breadcrumb, $types);

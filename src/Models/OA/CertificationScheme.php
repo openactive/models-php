@@ -28,6 +28,8 @@ class CertificationScheme extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * Property containing an array of CertificationLevels
+     * 
+     * If you are using this property, please join the discussion at proposal [#217](https://github.com/openactive/modelling-opportunity-data/issues/217).
      *
      *
      * @var \OpenActive\Models\OA\CertificationLevel
@@ -37,6 +39,8 @@ class CertificationScheme extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * From within a CertificationScheme, points to other CertificationSchemes considered valid and trusted in order to allow the creation of a trust network.
+     * 
+     * If you are using this property, please join the discussion at proposal [#217](https://github.com/openactive/modelling-opportunity-data/issues/217).
      *
      *
      * @var string

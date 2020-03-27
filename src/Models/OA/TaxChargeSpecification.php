@@ -20,6 +20,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
         $fields = [
             "identifier" => "identifier",
             "name" => "name",
+            "prepayment" => "prepayment",
             "price" => "price",
             "priceCurrency" => "priceCurrency",
             "rate" => "rate",
@@ -46,6 +47,18 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
      * @var string
      */
     protected $name;
+
+    /**
+     * Indicates if proceeding with booking requires a Customer to pay in advance, pay when attending, or have the option to do either. Values must be one of  https://openactive.io/Required,  https://openactive.io/Optional or  https://openactive.io/Unavailable.
+     *
+     * ```json
+     * "prepayment": "https://openactive.io/Required"
+     * ```
+     *
+     * @var \OpenActive\Enums\RequiredStatusType|null
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    protected $prepayment;
 
     /**
      * The total amount.
@@ -121,6 +134,33 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
         $name = self::checkTypes($name, $types);
 
         $this->name = $name;
+    }
+
+    /**
+     * @return \OpenActive\Enums\RequiredStatusType|null
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function getPrepayment()
+    {
+        return $this->prepayment;
+    }
+
+    /**
+     * @param \OpenActive\Enums\RequiredStatusType|null $prepayment
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function setPrepayment($prepayment)
+    {
+        $types = array(
+            "\OpenActive\Enums\RequiredStatusType",
+            "null",
+        );
+
+        $prepayment = self::checkTypes($prepayment, $types);
+
+        $this->prepayment = $prepayment;
     }
 
     /**

@@ -21,9 +21,9 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
             "videoFrameSize" => "videoFrameSize",
             "musicBy" => "musicBy",
             "directors" => "directors",
-            "videoQuality" => "videoQuality",
             "director" => "director",
             "transcript" => "transcript",
+            "videoQuality" => "videoQuality",
             "thumbnail" => "thumbnail",
             "caption" => "caption",
             "actors" => "actors",
@@ -65,14 +65,6 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     protected $directors;
 
     /**
-     * The quality of the video.
-     *
-     *
-     * @var string
-     */
-    protected $videoQuality;
-
-    /**
      * A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
      *
      *
@@ -89,6 +81,14 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     protected $transcript;
 
     /**
+     * The quality of the video.
+     *
+     *
+     * @var string
+     */
+    protected $videoQuality;
+
+    /**
      * Thumbnail image for an image or video.
      *
      *
@@ -100,7 +100,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
      * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the <a class="localLink" href="https://schema.org/encodingFormat">encodingFormat</a>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MediaObject|string
+     * @var string|\OpenActive\Models\SchemaOrg\MediaObject
      */
     protected $caption;
 
@@ -210,30 +210,6 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return string
-     */
-    public function getVideoQuality()
-    {
-        return $this->videoQuality;
-    }
-
-    /**
-     * @param string $videoQuality
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVideoQuality($videoQuality)
-    {
-        $types = array(
-            "string",
-        );
-
-        $videoQuality = self::checkTypes($videoQuality, $types);
-
-        $this->videoQuality = $videoQuality;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Person
      */
     public function getDirector()
@@ -282,6 +258,30 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
+     * @return string
+     */
+    public function getVideoQuality()
+    {
+        return $this->videoQuality;
+    }
+
+    /**
+     * @param string $videoQuality
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVideoQuality($videoQuality)
+    {
+        $types = array(
+            "string",
+        );
+
+        $videoQuality = self::checkTypes($videoQuality, $types);
+
+        $this->videoQuality = $videoQuality;
+    }
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\ImageObject
      */
     public function getThumbnail()
@@ -306,7 +306,7 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MediaObject|string
+     * @return string|\OpenActive\Models\SchemaOrg\MediaObject
      */
     public function getCaption()
     {
@@ -314,15 +314,15 @@ class VideoObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MediaObject|string $caption
+     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $caption
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCaption($caption)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\MediaObject",
             "string",
+            "\OpenActive\Models\SchemaOrg\MediaObject",
         );
 
         $caption = self::checkTypes($caption, $types);

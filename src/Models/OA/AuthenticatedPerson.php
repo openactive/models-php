@@ -28,6 +28,8 @@ class AuthenticatedPerson extends \OpenActive\Models\OA\Person
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * Token indicating the Broker's authorisation to book on behalf of a Customer.
+     * 
+     * If you are using this property, please join the discussion at proposal [#120](https://github.com/openactive/open-booking-api/issues/120).
      *
      *
      * @var string

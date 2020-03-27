@@ -22,8 +22,8 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
             "arrivalTime" => "arrivalTime",
             "departureTime" => "departureTime",
             "partOfTrip" => "partOfTrip",
-            "itinerary" => "itinerary",
             "subTrip" => "subTrip",
+            "itinerary" => "itinerary",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -41,7 +41,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
      * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use <a class="localLink" href="https://schema.org/businessFunction">businessFunction</a> to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a <a class="localLink" href="https://schema.org/Demand">Demand</a>. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer
+     * @var \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand
      */
     protected $offers;
 
@@ -70,20 +70,20 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     protected $partOfTrip;
 
     /**
-     * Destination(s) ( <a class="localLink" href="https://schema.org/Place">Place</a> ) that make up a trip. For a trip where destination order is important use <a class="localLink" href="https://schema.org/ItemList">ItemList</a> to specify that order (see examples).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\ItemList
-     */
-    protected $itinerary;
-
-    /**
      * Identifies a <a class="localLink" href="https://schema.org/Trip">Trip</a> that is a subTrip of this Trip.  For example Day 1, Day 2, etc. of a multi-day trip.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Trip
      */
     protected $subTrip;
+
+    /**
+     * Destination(s) ( <a class="localLink" href="https://schema.org/Place">Place</a> ) that make up a trip. For a trip where destination order is important use <a class="localLink" href="https://schema.org/ItemList">ItemList</a> to specify that order (see examples).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Place
+     */
+    protected $itinerary;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
@@ -111,7 +111,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer
+     * @return \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand
      */
     public function getOffers()
     {
@@ -119,15 +119,15 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer $offers
+     * @param \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand $offers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Demand",
             "\OpenActive\Models\SchemaOrg\Offer",
+            "\OpenActive\Models\SchemaOrg\Demand",
         );
 
         $offers = self::checkTypes($offers, $types);
@@ -212,31 +212,6 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\ItemList
-     */
-    public function getItinerary()
-    {
-        return $this->itinerary;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\ItemList $itinerary
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setItinerary($itinerary)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Place",
-            "\OpenActive\Models\SchemaOrg\ItemList",
-        );
-
-        $itinerary = self::checkTypes($itinerary, $types);
-
-        $this->itinerary = $itinerary;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Trip
      */
     public function getSubTrip()
@@ -258,6 +233,31 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
         $subTrip = self::checkTypes($subTrip, $types);
 
         $this->subTrip = $subTrip;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Place
+     */
+    public function getItinerary()
+    {
+        return $this->itinerary;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Place $itinerary
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setItinerary($itinerary)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\ItemList",
+            "\OpenActive\Models\SchemaOrg\Place",
+        );
+
+        $itinerary = self::checkTypes($itinerary, $types);
+
+        $this->itinerary = $itinerary;
     }
 
 }

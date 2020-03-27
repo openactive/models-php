@@ -28,7 +28,7 @@ class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
      * A sub property of participant. The owner of the real estate property.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $landlord;
 
@@ -41,7 +41,7 @@ class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
     protected $realEstateAgent;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getLandlord()
     {
@@ -49,15 +49,15 @@ class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $landlord
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $landlord
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLandlord($landlord)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $landlord = self::checkTypes($landlord, $types);

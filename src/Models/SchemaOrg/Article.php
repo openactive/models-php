@@ -21,9 +21,9 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
             "speakable" => "speakable",
             "pageEnd" => "pageEnd",
             "articleSection" => "articleSection",
+            "pageStart" => "pageStart",
             "wordCount" => "wordCount",
             "articleBody" => "articleBody",
-            "pageStart" => "pageStart",
             "backstory" => "backstory",
         ];
 
@@ -74,6 +74,14 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $articleSection;
 
     /**
+     * The page on which the work starts; for example "135" or "xiii".
+     *
+     *
+     * @var null|int|string
+     */
+    protected $pageStart;
+
+    /**
      * The number of words in the text of the Article.
      *
      *
@@ -88,14 +96,6 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var string
      */
     protected $articleBody;
-
-    /**
-     * The page on which the work starts; for example "135" or "xiii".
-     *
-     *
-     * @var null|int|string
-     */
-    protected $pageStart;
 
     /**
      * For an <a class="localLink" href="https://schema.org/Article">Article</a>, typically a <a class="localLink" href="https://schema.org/NewsArticle">NewsArticle</a>, the backstory property provides a textual summary giving a brief explanation of why and how an article was created. In a journalistic setting this could include information about reporting process, methods, interviews, data sources, etc.
@@ -205,6 +205,32 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
+     * @return null|int|string
+     */
+    public function getPageStart()
+    {
+        return $this->pageStart;
+    }
+
+    /**
+     * @param null|int|string $pageStart
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPageStart($pageStart)
+    {
+        $types = array(
+            "null",
+            "int",
+            "string",
+        );
+
+        $pageStart = self::checkTypes($pageStart, $types);
+
+        $this->pageStart = $pageStart;
+    }
+
+    /**
      * @return null|int
      */
     public function getWordCount()
@@ -251,32 +277,6 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
         $articleBody = self::checkTypes($articleBody, $types);
 
         $this->articleBody = $articleBody;
-    }
-
-    /**
-     * @return null|int|string
-     */
-    public function getPageStart()
-    {
-        return $this->pageStart;
-    }
-
-    /**
-     * @param null|int|string $pageStart
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPageStart($pageStart)
-    {
-        $types = array(
-            "null",
-            "int",
-            "string",
-        );
-
-        $pageStart = self::checkTypes($pageStart, $types);
-
-        $this->pageStart = $pageStart;
     }
 
     /**

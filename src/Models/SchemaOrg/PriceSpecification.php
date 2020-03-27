@@ -111,7 +111,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
      * Specifies whether the applicable value-added tax (VAT) is included in the price specification or not.
      *
      *
-     * @var bool|null
+     * @var null|bool
      */
     protected $valueAddedTaxIncluded;
 
@@ -316,7 +316,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return bool|null
+     * @return null|bool
      */
     public function getValueAddedTaxIncluded()
     {
@@ -324,15 +324,15 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param bool|null $valueAddedTaxIncluded
+     * @param null|bool $valueAddedTaxIncluded
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueAddedTaxIncluded($valueAddedTaxIncluded)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $valueAddedTaxIncluded = self::checkTypes($valueAddedTaxIncluded, $types);

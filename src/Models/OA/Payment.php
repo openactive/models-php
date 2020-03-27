@@ -20,6 +20,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
             "identifier" => "identifier",
             "name" => "name",
             "accountId" => "accountId",
+            "additionalProperty" => "additionalProperty",
             "paymentMethod" => "paymentMethod",
             "paymentProviderId" => "paymentProviderId",
         ];
@@ -34,7 +35,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @var string
      */
     protected $identifier;
 
@@ -55,6 +56,14 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     protected $accountId;
 
     /**
+     * PropertyValue that contains a text value useful for reconciliation.
+     *
+     *
+     * @var \OpenActive\Models\OA\PropertyValue[]
+     */
+    protected $additionalProperty;
+
+    /**
      * paymentMethod must not be used, and is reserved for future versions of this specification.
      *
      *
@@ -71,7 +80,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     protected $paymentProviderId;
 
     /**
-     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @return string
      */
     public function getIdentifier()
     {
@@ -79,18 +88,14 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
+     * @param string $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
         $types = array(
-            "int",
             "string",
-            "\OpenActive\Models\OA\PropertyValue",
-            "\OpenActive\Models\OA\PropertyValue[]",
-            "null",
         );
 
         $identifier = self::checkTypes($identifier, $types);
@@ -144,6 +149,30 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
         $accountId = self::checkTypes($accountId, $types);
 
         $this->accountId = $accountId;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\PropertyValue[]
+     */
+    public function getAdditionalProperty()
+    {
+        return $this->additionalProperty;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\PropertyValue[] $additionalProperty
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAdditionalProperty($additionalProperty)
+    {
+        $types = array(
+            "\OpenActive\Models\OA\PropertyValue[]",
+        );
+
+        $additionalProperty = self::checkTypes($additionalProperty, $types);
+
+        $this->additionalProperty = $additionalProperty;
     }
 
     /**

@@ -111,6 +111,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     protected $ageRange;
 
     /**
+     * The channels through which a booking can be made.
      *
      *
      * @var \OpenActive\Enums\AvailableChannelType[]|null

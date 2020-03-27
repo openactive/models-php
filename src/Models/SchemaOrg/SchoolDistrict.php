@@ -1,18 +1,18 @@
 <?php
 
-namespace OpenActive\Models\OA;
+namespace OpenActive\Models\SchemaOrg;
 
 /**
  *
  */
-class MethodNotAllowed extends \OpenActive\Models\OA\OpenBookingError
+class SchoolDistrict extends \OpenActive\Models\SchemaOrg\AdministrativeArea
 {
     /**
      * @return string[]|null
      */
     public static function getType()
     {
-        return "MethodNotAllowed";
+        return "schema:SchoolDistrict";
     }
 
     public static function fieldList() {

@@ -31,7 +31,6 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
             "individualFacilityUse" => "individualFacilityUse",
             "location" => "location",
             "offers" => "offers",
-            "potentialAction" => "potentialAction",
             "provider" => "provider",
             "url" => "url",
             "formattedDescription" => "beta:formattedDescription",
@@ -267,28 +266,6 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     protected $offers;
 
     /**
-     * The possible actions that a user may make. e.g. Book.
-     *
-     * ```json
-     * "potentialAction": [
-     *   {
-     *     "name": "Book",
-     *     "target": {
-     *       "encodingType": "application/vnd.openactive.v1.0+json",
-     *       "httpMethod": "POST",
-     *       "type": "EntryPoint",
-     *       "url": "https://example.com/orders"
-     *     },
-     *     "type": "Action"
-     *   }
-     * ]
-     * ```
-     *
-     * @var \OpenActive\Models\OA\Action[]
-     */
-    protected $potentialAction;
-
-    /**
      * The organisation responsible for providing the facility
      *
      * ```json
@@ -317,6 +294,8 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * 
+     * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
      *
      *
      * @var string
@@ -326,33 +305,41 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * A property that details whether the event is suitable for wheelchair access. Placed on Event as this field could be used to detail whether the Event is suitable, as well as the Place.
+     * 
+     * If you are using this property, please join the discussion at proposal [#166](https://github.com/openactive/modelling-opportunity-data/issues/166).
      *
      *
-     * @var bool|null
+     * @var null|bool
      */
     protected $isWheelchairAccessible;
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * An related video object.
+     * 
+     * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\VideoObject
+     * @var \OpenActive\Models\VideoObject[]
      */
     protected $video;
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * Internal location of the event, e.g. Court 1
+     * 
+     * If you are using this property, please join the discussion at proposal [#110](https://github.com/openactive/modelling-opportunity-data/issues/110).
      *
      *
-     * @var \OpenActive\Models\SportsActivityLocation
+     * @var \OpenActive\Models\SportsActivityLocation[]
      */
     protected $sportsActivityLocation;
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * Duration before the event for which the associated Offers are valid
+     * 
+     * If you are using this property, please join the discussion at proposal [#204](https://github.com/openactive/modelling-opportunity-data/issues/204).
      *
      *
      * @var null|DateInterval
@@ -362,15 +349,19 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * The type of facility in use.
+     * 
+     * If you are using this property, please join the discussion at proposal [#1](https://github.com/openactive/facility-types/issues/1).
      *
      *
-     * @var \OpenActive\Models\Concept
+     * @var \OpenActive\Models\Concept[]
      */
     protected $facilityType;
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * Whether the event or facility is indoor or outdoor.
+     * 
+     * If you are using this property, please join the discussion at proposal [#1](https://github.com/openactive/facility-types/issues/1).
      *
      *
      * @var \OpenActive\Enums\FacilitySettingType|null
@@ -719,30 +710,6 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\OA\Action[]
-     */
-    public function getPotentialAction()
-    {
-        return $this->potentialAction;
-    }
-
-    /**
-     * @param \OpenActive\Models\OA\Action[] $potentialAction
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPotentialAction($potentialAction)
-    {
-        $types = array(
-            "\OpenActive\Models\OA\Action[]",
-        );
-
-        $potentialAction = self::checkTypes($potentialAction, $types);
-
-        $this->potentialAction = $potentialAction;
-    }
-
-    /**
      * @return \OpenActive\Models\OA\Organization
      */
     public function getProvider()
@@ -815,7 +782,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return bool|null
+     * @return null|bool
      */
     public function getIsWheelchairAccessible()
     {
@@ -823,15 +790,15 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param bool|null $isWheelchairAccessible
+     * @param null|bool $isWheelchairAccessible
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsWheelchairAccessible($isWheelchairAccessible)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $isWheelchairAccessible = self::checkTypes($isWheelchairAccessible, $types);
@@ -840,7 +807,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\VideoObject
+     * @return \OpenActive\Models\VideoObject[]
      */
     public function getVideo()
     {
@@ -848,14 +815,14 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\VideoObject $video
+     * @param \OpenActive\Models\VideoObject[] $video
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVideo($video)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\VideoObject",
+            "\OpenActive\Models\VideoObject[]",
         );
 
         $video = self::checkTypes($video, $types);
@@ -864,7 +831,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\SportsActivityLocation
+     * @return \OpenActive\Models\SportsActivityLocation[]
      */
     public function getSportsActivityLocation()
     {
@@ -872,14 +839,14 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param \OpenActive\Models\SportsActivityLocation $sportsActivityLocation
+     * @param \OpenActive\Models\SportsActivityLocation[] $sportsActivityLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSportsActivityLocation($sportsActivityLocation)
     {
         $types = array(
-            "\OpenActive\Models\SportsActivityLocation",
+            "\OpenActive\Models\SportsActivityLocation[]",
         );
 
         $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);
@@ -913,7 +880,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\Concept
+     * @return \OpenActive\Models\Concept[]
      */
     public function getFacilityType()
     {
@@ -921,14 +888,14 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param \OpenActive\Models\Concept $facilityType
+     * @param \OpenActive\Models\Concept[] $facilityType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFacilityType($facilityType)
     {
         $types = array(
-            "\OpenActive\Models\Concept",
+            "\OpenActive\Models\Concept[]",
         );
 
         $facilityType = self::checkTypes($facilityType, $types);

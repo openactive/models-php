@@ -30,7 +30,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
      * exif data for this object.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\PropertyValue
+     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
     protected $exifData;
 
@@ -38,7 +38,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
      * Indicates whether this image is representative of the content of the page.
      *
      *
-     * @var bool|null
+     * @var null|bool
      */
     protected $representativeOfPage;
 
@@ -54,12 +54,12 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
      * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the <a class="localLink" href="https://schema.org/encodingFormat">encodingFormat</a>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MediaObject|string
+     * @var string|\OpenActive\Models\SchemaOrg\MediaObject
      */
     protected $caption;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\PropertyValue
+     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
     public function getExifData()
     {
@@ -67,15 +67,15 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\PropertyValue $exifData
+     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $exifData
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExifData($exifData)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "string",
         );
 
         $exifData = self::checkTypes($exifData, $types);
@@ -84,7 +84,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return bool|null
+     * @return null|bool
      */
     public function getRepresentativeOfPage()
     {
@@ -92,15 +92,15 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param bool|null $representativeOfPage
+     * @param null|bool $representativeOfPage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRepresentativeOfPage($representativeOfPage)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $representativeOfPage = self::checkTypes($representativeOfPage, $types);
@@ -133,7 +133,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MediaObject|string
+     * @return string|\OpenActive\Models\SchemaOrg\MediaObject
      */
     public function getCaption()
     {
@@ -141,15 +141,15 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MediaObject|string $caption
+     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $caption
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCaption($caption)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\MediaObject",
             "string",
+            "\OpenActive\Models\SchemaOrg\MediaObject",
         );
 
         $caption = self::checkTypes($caption, $types);

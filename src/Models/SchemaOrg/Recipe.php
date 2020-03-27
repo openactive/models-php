@@ -36,7 +36,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
      * The quantity produced by the recipe (for example, number of people served, number of servings, etc).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     * @var string|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $recipeYield;
 
@@ -60,7 +60,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
      * A step in making the recipe, in the form of a single item (document, video, etc.) or an ordered list with HowToStep and/or HowToSection items.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\ItemList|string
      */
     protected $recipeInstructions;
 
@@ -113,7 +113,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     protected $ingredients;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     * @return string|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getRecipeYield()
     {
@@ -121,15 +121,15 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $recipeYield
+     * @param string|\OpenActive\Models\SchemaOrg\QuantitativeValue $recipeYield
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecipeYield($recipeYield)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         );
 
         $recipeYield = self::checkTypes($recipeYield, $types);
@@ -186,7 +186,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\ItemList|string
      */
     public function getRecipeInstructions()
     {
@@ -194,16 +194,16 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork $recipeInstructions
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\ItemList|string $recipeInstructions
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecipeInstructions($recipeInstructions)
     {
         $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\ItemList",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "\OpenActive\Models\SchemaOrg\ItemList",
+            "string",
         );
 
         $recipeInstructions = self::checkTypes($recipeInstructions, $types);

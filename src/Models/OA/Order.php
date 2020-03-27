@@ -132,7 +132,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      * Set to true when business-to-business tax calculation is required by the seller or brokerRole settings, but not supported by the Broker.
      *
      *
-     * @var bool|null
+     * @var null|bool
      */
     protected $taxCalculationExcluded;
 
@@ -424,7 +424,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @return bool|null
+     * @return null|bool
      */
     public function getTaxCalculationExcluded()
     {
@@ -432,15 +432,15 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @param bool|null $taxCalculationExcluded
+     * @param null|bool $taxCalculationExcluded
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTaxCalculationExcluded($taxCalculationExcluded)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $taxCalculationExcluded = self::checkTypes($taxCalculationExcluded, $types);

@@ -36,7 +36,7 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Current location of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|string
+     * @var string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress
      */
     protected $itemLocation;
 
@@ -65,7 +65,7 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|string
+     * @return string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function getItemLocation()
     {
@@ -73,16 +73,16 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|string $itemLocation
+     * @param string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress $itemLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemLocation($itemLocation)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
-            "\OpenActive\Models\SchemaOrg\Place",
             "string",
+            "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
         );
 
         $itemLocation = self::checkTypes($itemLocation, $types);

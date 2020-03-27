@@ -30,7 +30,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
      * The away team in a sports event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam
      */
     protected $awayTeam;
 
@@ -38,7 +38,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
      * The home team in a sports event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam
+     * @var \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person
      */
     protected $homeTeam;
 
@@ -46,7 +46,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
      * A competitor in a sports event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam
      */
     protected $competitor;
 
@@ -59,7 +59,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     protected $sport;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam
      */
     public function getAwayTeam()
     {
@@ -67,15 +67,15 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person $awayTeam
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam $awayTeam
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAwayTeam($awayTeam)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\SportsTeam",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\SportsTeam",
         );
 
         $awayTeam = self::checkTypes($awayTeam, $types);
@@ -84,7 +84,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam
+     * @return \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person
      */
     public function getHomeTeam()
     {
@@ -92,15 +92,15 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam $homeTeam
+     * @param \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person $homeTeam
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHomeTeam($homeTeam)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\SportsTeam",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $homeTeam = self::checkTypes($homeTeam, $types);
@@ -109,7 +109,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam
      */
     public function getCompetitor()
     {
@@ -117,15 +117,15 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person $competitor
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam $competitor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCompetitor($competitor)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\SportsTeam",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\SportsTeam",
         );
 
         $competitor = self::checkTypes($competitor, $types);

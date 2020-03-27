@@ -17,8 +17,8 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
 
     public static function fieldList() {
         $fields = [
-            "billingIncrement" => "billingIncrement",
             "unitCode" => "unitCode",
+            "billingIncrement" => "billingIncrement",
             "referenceQuantity" => "referenceQuantity",
             "unitText" => "unitText",
             "priceType" => "priceType",
@@ -28,20 +28,20 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     }
 
     /**
-     * This property specifies the minimal quantity and rounding increment that will be the basis for the billing. The unit of measurement is specified by the unitCode property.
-     *
-     *
-     * @var null|float
-     */
-    protected $billingIncrement;
-
-    /**
      * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
      *
      *
      * @var string
      */
     protected $unitCode;
+
+    /**
+     * This property specifies the minimal quantity and rounding increment that will be the basis for the billing. The unit of measurement is specified by the unitCode property.
+     *
+     *
+     * @var null|float
+     */
+    protected $billingIncrement;
 
     /**
      * The reference quantity for which a certain price applies, e.g. 1 EUR per 4 kWh of electricity. This property is a replacement for unitOfMeasurement for the advanced cases where the price does not relate to a standard unit.
@@ -69,6 +69,30 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     protected $priceType;
 
     /**
+     * @return string
+     */
+    public function getUnitCode()
+    {
+        return $this->unitCode;
+    }
+
+    /**
+     * @param string $unitCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUnitCode($unitCode)
+    {
+        $types = array(
+            "string",
+        );
+
+        $unitCode = self::checkTypes($unitCode, $types);
+
+        $this->unitCode = $unitCode;
+    }
+
+    /**
      * @return null|float
      */
     public function getBillingIncrement()
@@ -91,30 +115,6 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
         $billingIncrement = self::checkTypes($billingIncrement, $types);
 
         $this->billingIncrement = $billingIncrement;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUnitCode()
-    {
-        return $this->unitCode;
-    }
-
-    /**
-     * @param string $unitCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setUnitCode($unitCode)
-    {
-        $types = array(
-            "string",
-        );
-
-        $unitCode = self::checkTypes($unitCode, $types);
-
-        $this->unitCode = $unitCode;
     }
 
     /**

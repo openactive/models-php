@@ -17,20 +17,12 @@ class ExchangeRateSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
 
     public static function fieldList() {
         $fields = [
-            "currentExchangeRate" => "currentExchangeRate",
             "exchangeRateSpread" => "exchangeRateSpread",
+            "currentExchangeRate" => "currentExchangeRate",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The current price of a currency.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\UnitPriceSpecification
-     */
-    protected $currentExchangeRate;
 
     /**
      * The difference between the price at which a broker or other intermediary buys and sells foreign currency.
@@ -41,28 +33,12 @@ class ExchangeRateSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     protected $exchangeRateSpread;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\UnitPriceSpecification
+     * The current price of a currency.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\UnitPriceSpecification
      */
-    public function getCurrentExchangeRate()
-    {
-        return $this->currentExchangeRate;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\UnitPriceSpecification $currentExchangeRate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCurrentExchangeRate($currentExchangeRate)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\UnitPriceSpecification",
-        );
-
-        $currentExchangeRate = self::checkTypes($currentExchangeRate, $types);
-
-        $this->currentExchangeRate = $currentExchangeRate;
-    }
+    protected $currentExchangeRate;
 
     /**
      * @return float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
@@ -88,6 +64,30 @@ class ExchangeRateSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
         $exchangeRateSpread = self::checkTypes($exchangeRateSpread, $types);
 
         $this->exchangeRateSpread = $exchangeRateSpread;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\UnitPriceSpecification
+     */
+    public function getCurrentExchangeRate()
+    {
+        return $this->currentExchangeRate;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\UnitPriceSpecification $currentExchangeRate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCurrentExchangeRate($currentExchangeRate)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\UnitPriceSpecification",
+        );
+
+        $currentExchangeRate = self::checkTypes($currentExchangeRate, $types);
+
+        $this->currentExchangeRate = $currentExchangeRate;
     }
 
 }

@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
+class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\Series
 {
     /**
      * @return string[]|null

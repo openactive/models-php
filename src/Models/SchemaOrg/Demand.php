@@ -20,10 +20,10 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
             "sku" => "sku",
             "availabilityStarts" => "availabilityStarts",
             "availableDeliveryMethod" => "availableDeliveryMethod",
-            "areaServed" => "areaServed",
             "mpn" => "mpn",
             "serialNumber" => "serialNumber",
             "gtin8" => "gtin8",
+            "availability" => "availability",
             "priceSpecification" => "priceSpecification",
             "inventoryLevel" => "inventoryLevel",
             "eligibleTransactionVolume" => "eligibleTransactionVolume",
@@ -39,17 +39,17 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
             "deliveryLeadTime" => "deliveryLeadTime",
             "availabilityEnds" => "availabilityEnds",
             "includesObject" => "includesObject",
-            "availability" => "availability",
+            "businessFunction" => "businessFunction",
             "eligibleCustomerType" => "eligibleCustomerType",
             "itemCondition" => "itemCondition",
             "itemOffered" => "itemOffered",
             "eligibleDuration" => "eligibleDuration",
             "acceptedPaymentMethod" => "acceptedPaymentMethod",
-            "businessFunction" => "businessFunction",
+            "areaServed" => "areaServed",
             "eligibleRegion" => "eligibleRegion",
             "advanceBookingRequirement" => "advanceBookingRequirement",
-            "gtin" => "gtin",
             "ineligibleRegion" => "ineligibleRegion",
+            "gtin" => "gtin",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -80,14 +80,6 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $availableDeliveryMethod;
 
     /**
-     * The geographic area where a service or offered item is provided.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape
-     */
-    protected $areaServed;
-
-    /**
      * The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.
      *
      *
@@ -110,6 +102,14 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
      * @var string
      */
     protected $gtin8;
+
+    /**
+     * The availability of this item&#x2014;for example In stock, Out of stock, Pre-order, etc.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\ItemAvailability|null
+     */
+    protected $availability;
 
     /**
      * One or more detailed price specifications, indicating the unit price and delivery or payment charges.
@@ -232,12 +232,12 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $includesObject;
 
     /**
-     * The availability of this item&#x2014;for example In stock, Out of stock, Pre-order, etc.
+     * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\ItemAvailability|null
+     * @var \OpenActive\Enums\SchemaOrg\BusinessFunction|null
      */
-    protected $availability;
+    protected $businessFunction;
 
     /**
      * The type(s) of customers for which the given offer is valid.
@@ -259,7 +259,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
      * An item being offered (or demanded). The transactional nature of the offer or demand is documented using <a class="localLink" href="https://schema.org/businessFunction">businessFunction</a>, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\Trip|\OpenActive\Models\SchemaOrg\AggregateOffer|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
+     * @var \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Trip|\OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\AggregateOffer|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service
      */
     protected $itemOffered;
 
@@ -280,12 +280,12 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $acceptedPaymentMethod;
 
     /**
-     * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
+     * The geographic area where a service or offered item is provided.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\BusinessFunction|null
+     * @var \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\AdministrativeArea
      */
-    protected $businessFunction;
+    protected $areaServed;
 
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.<br/><br/>
@@ -306,14 +306,6 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $advanceBookingRequirement;
 
     /**
-     * A Global Trade Item Number (<a href="https://www.gs1.org/standards/id-keys/gtin">GTIN</a>). GTINs identify trade items, including products and services, using numeric identification codes. The <a class="localLink" href="https://schema.org/gtin">gtin</a> property generalizes the earlier <a class="localLink" href="https://schema.org/gtin8">gtin8</a>, <a class="localLink" href="https://schema.org/gtin12">gtin12</a>, <a class="localLink" href="https://schema.org/gtin13">gtin13</a>, and <a class="localLink" href="https://schema.org/gtin14">gtin14</a> properties. The GS1 <a href="https://www.gs1.org/standards/Digital-Link/">digital link specifications</a> express GTINs as URLs. A correct <a class="localLink" href="https://schema.org/gtin">gtin</a> value should be a valid GTIN, which means that it should be an all-numeric string of either 8, 12, 13 or 14 digits, or a "GS1 Digital Link" URL based on such a string. The numeric component should also have a <a href="https://www.gs1.org/services/check-digit-calculator">valid GS1 check digit</a> and meet the other rules for valid GTINs. See also <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1's GTIN Summary</a> and <a href="https://en.wikipedia.org/wiki/Global_Trade_Item_Number">Wikipedia</a> for more details. Left-padding of the gtin values is not required or encouraged.
-     *
-     *
-     * @var string
-     */
-    protected $gtin;
-
-    /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.<br/><br/>
      * 
      * See also <a class="localLink" href="https://schema.org/eligibleRegion">eligibleRegion</a>.
@@ -322,6 +314,14 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
      * @var \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string
      */
     protected $ineligibleRegion;
+
+    /**
+     * A Global Trade Item Number (<a href="https://www.gs1.org/standards/id-keys/gtin">GTIN</a>). GTINs identify trade items, including products and services, using numeric identification codes. The <a class="localLink" href="https://schema.org/gtin">gtin</a> property generalizes the earlier <a class="localLink" href="https://schema.org/gtin8">gtin8</a>, <a class="localLink" href="https://schema.org/gtin12">gtin12</a>, <a class="localLink" href="https://schema.org/gtin13">gtin13</a>, and <a class="localLink" href="https://schema.org/gtin14">gtin14</a> properties. The GS1 <a href="https://www.gs1.org/standards/Digital-Link/">digital link specifications</a> express GTINs as URLs. A correct <a class="localLink" href="https://schema.org/gtin">gtin</a> value should be a valid GTIN, which means that it should be an all-numeric string of either 8, 12, 13 or 14 digits, or a "GS1 Digital Link" URL based on such a string. The numeric component should also have a <a href="https://www.gs1.org/services/check-digit-calculator">valid GS1 check digit</a> and meet the other rules for valid GTINs. See also <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GS1's GTIN Summary</a> and <a href="https://en.wikipedia.org/wiki/Global_Trade_Item_Number">Wikipedia</a> for more details. Left-padding of the gtin values is not required or encouraged.
+     *
+     *
+     * @var string
+     */
+    protected $gtin;
 
     /**
      * @return string
@@ -400,33 +400,6 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape
-     */
-    public function getAreaServed()
-    {
-        return $this->areaServed;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape $areaServed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAreaServed($areaServed)
-    {
-        $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-            "\OpenActive\Models\SchemaOrg\Place",
-            "\OpenActive\Models\SchemaOrg\GeoShape",
-        );
-
-        $areaServed = self::checkTypes($areaServed, $types);
-
-        $this->areaServed = $areaServed;
-    }
-
-    /**
      * @return string
      */
     public function getMpn()
@@ -496,6 +469,31 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
         $gtin8 = self::checkTypes($gtin8, $types);
 
         $this->gtin8 = $gtin8;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\ItemAvailability|null
+     */
+    public function getAvailability()
+    {
+        return $this->availability;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\ItemAvailability|null $availability
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAvailability($availability)
+    {
+        $types = array(
+            "\OpenActive\Enums\SchemaOrg\ItemAvailability",
+            "null",
+        );
+
+        $availability = self::checkTypes($availability, $types);
+
+        $this->availability = $availability;
     }
 
     /**
@@ -867,28 +865,28 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\ItemAvailability|null
+     * @return \OpenActive\Enums\SchemaOrg\BusinessFunction|null
      */
-    public function getAvailability()
+    public function getBusinessFunction()
     {
-        return $this->availability;
+        return $this->businessFunction;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\ItemAvailability|null $availability
+     * @param \OpenActive\Enums\SchemaOrg\BusinessFunction|null $businessFunction
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAvailability($availability)
+    public function setBusinessFunction($businessFunction)
     {
         $types = array(
-            "\OpenActive\Enums\SchemaOrg\ItemAvailability",
+            "\OpenActive\Enums\SchemaOrg\BusinessFunction",
             "null",
         );
 
-        $availability = self::checkTypes($availability, $types);
+        $businessFunction = self::checkTypes($businessFunction, $types);
 
-        $this->availability = $availability;
+        $this->businessFunction = $businessFunction;
     }
 
     /**
@@ -942,7 +940,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\Trip|\OpenActive\Models\SchemaOrg\AggregateOffer|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
+     * @return \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Trip|\OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\AggregateOffer|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service
      */
     public function getItemOffered()
     {
@@ -950,7 +948,7 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\Trip|\OpenActive\Models\SchemaOrg\AggregateOffer|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $itemOffered
+     * @param \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Trip|\OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\AggregateOffer|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service $itemOffered
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -958,12 +956,12 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\Event",
-            "\OpenActive\Models\SchemaOrg\MenuItem",
-            "\OpenActive\Models\SchemaOrg\Trip",
-            "\OpenActive\Models\SchemaOrg\AggregateOffer",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
-            "\OpenActive\Models\SchemaOrg\Service",
+            "\OpenActive\Models\SchemaOrg\Trip",
+            "\OpenActive\Models\SchemaOrg\MenuItem",
+            "\OpenActive\Models\SchemaOrg\AggregateOffer",
             "\OpenActive\Models\SchemaOrg\Product",
+            "\OpenActive\Models\SchemaOrg\Service",
         );
 
         $itemOffered = self::checkTypes($itemOffered, $types);
@@ -1022,28 +1020,30 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\BusinessFunction|null
+     * @return \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\AdministrativeArea
      */
-    public function getBusinessFunction()
+    public function getAreaServed()
     {
-        return $this->businessFunction;
+        return $this->areaServed;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\BusinessFunction|null $businessFunction
+     * @param \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBusinessFunction($businessFunction)
+    public function setAreaServed($areaServed)
     {
         $types = array(
-            "\OpenActive\Enums\SchemaOrg\BusinessFunction",
-            "null",
+            "\OpenActive\Models\SchemaOrg\GeoShape",
+            "\OpenActive\Models\SchemaOrg\Place",
+            "string",
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
         );
 
-        $businessFunction = self::checkTypes($businessFunction, $types);
+        $areaServed = self::checkTypes($areaServed, $types);
 
-        $this->businessFunction = $businessFunction;
+        $this->areaServed = $areaServed;
     }
 
     /**
@@ -1097,30 +1097,6 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
-     */
-    public function getGtin()
-    {
-        return $this->gtin;
-    }
-
-    /**
-     * @param string $gtin
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGtin($gtin)
-    {
-        $types = array(
-            "string",
-        );
-
-        $gtin = self::checkTypes($gtin, $types);
-
-        $this->gtin = $gtin;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string
      */
     public function getIneligibleRegion()
@@ -1144,6 +1120,30 @@ class Demand extends \OpenActive\Models\SchemaOrg\Intangible
         $ineligibleRegion = self::checkTypes($ineligibleRegion, $types);
 
         $this->ineligibleRegion = $ineligibleRegion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGtin()
+    {
+        return $this->gtin;
+    }
+
+    /**
+     * @param string $gtin
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGtin($gtin)
+    {
+        $types = array(
+            "string",
+        );
+
+        $gtin = self::checkTypes($gtin, $types);
+
+        $this->gtin = $gtin;
     }
 
 }

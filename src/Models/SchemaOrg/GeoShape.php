@@ -34,7 +34,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
      * Physical address of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string
+     * @var string|\OpenActive\Models\SchemaOrg\PostalAddress
      */
     protected $address;
 
@@ -95,7 +95,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $line;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PostalAddress|string
+     * @return string|\OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function getAddress()
     {
@@ -103,15 +103,15 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PostalAddress|string $address
+     * @param string|\OpenActive\Models\SchemaOrg\PostalAddress $address
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddress($address)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
             "string",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
         );
 
         $address = self::checkTypes($address, $types);

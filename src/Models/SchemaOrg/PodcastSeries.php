@@ -24,15 +24,15 @@ class PodcastSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * The URL for the feed associated with the podcast series. This is usually RSS or Atom.
+     * The URL for a feed, e.g. associated with a podcast series, blog, or series of date-stamped updates. This is usually RSS or Atom.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\DataFeed|string
      */
     protected $webFeed;
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\DataFeed|string
      */
     public function getWebFeed()
     {
@@ -40,13 +40,14 @@ class PodcastSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param string $webFeed
+     * @param \OpenActive\Models\SchemaOrg\DataFeed|string $webFeed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWebFeed($webFeed)
     {
         $types = array(
+            "\OpenActive\Models\SchemaOrg\DataFeed",
             "string",
         );
 
