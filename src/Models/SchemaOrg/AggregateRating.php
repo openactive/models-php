@@ -17,29 +17,13 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
 
     public static function fieldList() {
         $fields = [
-            "ratingCount" => "ratingCount",
-            "reviewCount" => "reviewCount",
             "itemReviewed" => "itemReviewed",
+            "reviewCount" => "reviewCount",
+            "ratingCount" => "ratingCount",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The count of total number of ratings.
-     *
-     *
-     * @var int|null
-     */
-    protected $ratingCount;
-
-    /**
-     * The count of total number of reviews.
-     *
-     *
-     * @var int|null
-     */
-    protected $reviewCount;
 
     /**
      * The item that is being reviewed/rated.
@@ -50,54 +34,20 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
     protected $itemReviewed;
 
     /**
-     * @return int|null
+     * The count of total number of reviews.
+     *
+     *
+     * @var null|int
      */
-    public function getRatingCount()
-    {
-        return $this->ratingCount;
-    }
+    protected $reviewCount;
 
     /**
-     * @param int|null $ratingCount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The count of total number of ratings.
+     *
+     *
+     * @var null|int
      */
-    public function setRatingCount($ratingCount)
-    {
-        $types = array(
-            "int",
-            "null",
-        );
-
-        $ratingCount = self::checkTypes($ratingCount, $types);
-
-        $this->ratingCount = $ratingCount;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getReviewCount()
-    {
-        return $this->reviewCount;
-    }
-
-    /**
-     * @param int|null $reviewCount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReviewCount($reviewCount)
-    {
-        $types = array(
-            "int",
-            "null",
-        );
-
-        $reviewCount = self::checkTypes($reviewCount, $types);
-
-        $this->reviewCount = $reviewCount;
-    }
+    protected $ratingCount;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing
@@ -121,6 +71,56 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
         $itemReviewed = self::checkTypes($itemReviewed, $types);
 
         $this->itemReviewed = $itemReviewed;
+    }
+
+    /**
+     * @return null|int
+     */
+    public function getReviewCount()
+    {
+        return $this->reviewCount;
+    }
+
+    /**
+     * @param null|int $reviewCount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReviewCount($reviewCount)
+    {
+        $types = array(
+            "null",
+            "int",
+        );
+
+        $reviewCount = self::checkTypes($reviewCount, $types);
+
+        $this->reviewCount = $reviewCount;
+    }
+
+    /**
+     * @return null|int
+     */
+    public function getRatingCount()
+    {
+        return $this->ratingCount;
+    }
+
+    /**
+     * @param null|int $ratingCount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRatingCount($ratingCount)
+    {
+        $types = array(
+            "null",
+            "int",
+        );
+
+        $ratingCount = self::checkTypes($ratingCount, $types);
+
+        $this->ratingCount = $ratingCount;
     }
 
 }

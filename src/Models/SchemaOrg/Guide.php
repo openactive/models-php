@@ -1,18 +1,18 @@
 <?php
 
-namespace OpenActive\Models\OA;
+namespace OpenActive\Models\SchemaOrg;
 
 /**
  *
  */
-class UnavailableOpportunityError extends \OpenActive\Models\OA\OpenBookingError
+class Guide extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
      * @return string[]|null
      */
     public static function getType()
     {
-        return "UnavailableOpportunityError";
+        return "schema:Guide";
     }
 
     public static function fieldList() {

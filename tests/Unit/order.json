@@ -6,7 +6,7 @@
     {
       "@type":"OrderItem",
       "@id":"https://fencing-book/item/12345",
-      "orderItemStatus":"https://openactive.io/OrderConfirmed",
+      "orderItemStatus":"https://openactive.io/OrderItemConfirmed",
       "unitTaxSpecification":[
         {
           "@type":"TaxChargeSpecification",
@@ -51,8 +51,8 @@
         "price":6.00,
         "priceCurrency":"GBP",
         "availableChannel":[
-          "https://openactive.io/ns-beta#OpenBookingPrepayment",
-          "https://openactive.io/ns-beta#OnlinePrepayment"
+          "https://openactive.io/OpenBookingPrepayment",
+          "https://openactive.io/OnlinePrepayment"
         ]
       }
     }

@@ -13,9 +13,9 @@ class DayOfWeek
     const Wednesday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Wednesday::class;
     const Sunday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Sunday::class;
     const PublicHolidays = \OpenActive\Enums\SchemaOrg\DayOfWeek\PublicHolidays::class;
+    const Tuesday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Tuesday::class;
     const Monday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Monday::class;
     const Friday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Friday::class;
-    const Tuesday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Tuesday::class;
     const Saturday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Saturday::class;
     const Thursday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Thursday::class;
 }

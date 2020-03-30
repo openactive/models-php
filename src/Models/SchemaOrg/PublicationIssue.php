@@ -17,38 +17,14 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "pageStart" => "pageStart",
-            "pageEnd" => "pageEnd",
-            "issueNumber" => "issueNumber",
             "pagination" => "pagination",
+            "issueNumber" => "issueNumber",
+            "pageEnd" => "pageEnd",
+            "pageStart" => "pageStart",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The page on which the work starts; for example "135" or "xiii".
-     *
-     *
-     * @var int|string|null
-     */
-    protected $pageStart;
-
-    /**
-     * The page on which the work ends; for example "138" or "xvi".
-     *
-     *
-     * @var string|int|null
-     */
-    protected $pageEnd;
-
-    /**
-     * Identifies the issue of publication; for example, "iii" or "2".
-     *
-     *
-     * @var int|string|null
-     */
-    protected $issueNumber;
 
     /**
      * Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49".
@@ -59,82 +35,28 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $pagination;
 
     /**
-     * @return int|string|null
+     * Identifies the issue of publication; for example, "iii" or "2".
+     *
+     *
+     * @var null|int|string
      */
-    public function getPageStart()
-    {
-        return $this->pageStart;
-    }
+    protected $issueNumber;
 
     /**
-     * @param int|string|null $pageStart
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The page on which the work ends; for example "138" or "xvi".
+     *
+     *
+     * @var null|int|string
      */
-    public function setPageStart($pageStart)
-    {
-        $types = array(
-            "int",
-            "string",
-            "null",
-        );
-
-        $pageStart = self::checkTypes($pageStart, $types);
-
-        $this->pageStart = $pageStart;
-    }
+    protected $pageEnd;
 
     /**
-     * @return string|int|null
+     * The page on which the work starts; for example "135" or "xiii".
+     *
+     *
+     * @var null|int|string
      */
-    public function getPageEnd()
-    {
-        return $this->pageEnd;
-    }
-
-    /**
-     * @param string|int|null $pageEnd
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPageEnd($pageEnd)
-    {
-        $types = array(
-            "string",
-            "int",
-            "null",
-        );
-
-        $pageEnd = self::checkTypes($pageEnd, $types);
-
-        $this->pageEnd = $pageEnd;
-    }
-
-    /**
-     * @return int|string|null
-     */
-    public function getIssueNumber()
-    {
-        return $this->issueNumber;
-    }
-
-    /**
-     * @param int|string|null $issueNumber
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIssueNumber($issueNumber)
-    {
-        $types = array(
-            "int",
-            "string",
-            "null",
-        );
-
-        $issueNumber = self::checkTypes($issueNumber, $types);
-
-        $this->issueNumber = $issueNumber;
-    }
+    protected $pageStart;
 
     /**
      * @return string
@@ -158,6 +80,84 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
         $pagination = self::checkTypes($pagination, $types);
 
         $this->pagination = $pagination;
+    }
+
+    /**
+     * @return null|int|string
+     */
+    public function getIssueNumber()
+    {
+        return $this->issueNumber;
+    }
+
+    /**
+     * @param null|int|string $issueNumber
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIssueNumber($issueNumber)
+    {
+        $types = array(
+            "null",
+            "int",
+            "string",
+        );
+
+        $issueNumber = self::checkTypes($issueNumber, $types);
+
+        $this->issueNumber = $issueNumber;
+    }
+
+    /**
+     * @return null|int|string
+     */
+    public function getPageEnd()
+    {
+        return $this->pageEnd;
+    }
+
+    /**
+     * @param null|int|string $pageEnd
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPageEnd($pageEnd)
+    {
+        $types = array(
+            "null",
+            "int",
+            "string",
+        );
+
+        $pageEnd = self::checkTypes($pageEnd, $types);
+
+        $this->pageEnd = $pageEnd;
+    }
+
+    /**
+     * @return null|int|string
+     */
+    public function getPageStart()
+    {
+        return $this->pageStart;
+    }
+
+    /**
+     * @param null|int|string $pageStart
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPageStart($pageStart)
+    {
+        $types = array(
+            "null",
+            "int",
+            "string",
+        );
+
+        $pageStart = self::checkTypes($pageStart, $types);
+
+        $this->pageStart = $pageStart;
     }
 
 }

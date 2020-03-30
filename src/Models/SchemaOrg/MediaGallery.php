@@ -1,18 +1,18 @@
 <?php
 
-namespace OpenActive\Models\OA;
+namespace OpenActive\Models\SchemaOrg;
 
 /**
  *
  */
-class PatchContainsExcessiveProperties extends \OpenActive\Models\OA\OpenBookingError
+class MediaGallery extends \OpenActive\Models\SchemaOrg\CollectionPage
 {
     /**
      * @return string[]|null
      */
     public static function getType()
     {
-        return "PatchContainsExcessiveProperties";
+        return "schema:MediaGallery";
     }
 
     public static function fieldList() {

@@ -17,13 +17,29 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
 
     public static function fieldList() {
         $fields = [
-            "floorLimit" => "floorLimit",
             "contactlessPayment" => "contactlessPayment",
             "cashBack" => "cashBack",
+            "floorLimit" => "floorLimit",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A secure method for consumers to purchase products or services via debit, credit or smartcards by using RFID or NFC technology.
+     *
+     *
+     * @var null|bool
+     */
+    protected $contactlessPayment;
+
+    /**
+     * A cardholder benefit that pays the cardholder a small percentage of their net expenditures.
+     *
+     *
+     * @var null|float|bool
+     */
+    protected $cashBack;
 
     /**
      * A floor limit is the amount of money above which credit card transactions must be authorized.
@@ -34,20 +50,55 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
     protected $floorLimit;
 
     /**
-     * A secure method for consumers to purchase products or services via debit, credit or smartcards by using RFID or NFC technology.
-     *
-     *
-     * @var bool|null
+     * @return null|bool
      */
-    protected $contactlessPayment;
+    public function getContactlessPayment()
+    {
+        return $this->contactlessPayment;
+    }
 
     /**
-     * A cardholder benefit that pays the cardholder a small percentage of their net expenditures.
-     *
-     *
-     * @var bool|float|null
+     * @param null|bool $contactlessPayment
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $cashBack;
+    public function setContactlessPayment($contactlessPayment)
+    {
+        $types = array(
+            "null",
+            "bool",
+        );
+
+        $contactlessPayment = self::checkTypes($contactlessPayment, $types);
+
+        $this->contactlessPayment = $contactlessPayment;
+    }
+
+    /**
+     * @return null|float|bool
+     */
+    public function getCashBack()
+    {
+        return $this->cashBack;
+    }
+
+    /**
+     * @param null|float|bool $cashBack
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCashBack($cashBack)
+    {
+        $types = array(
+            "null",
+            "float",
+            "bool",
+        );
+
+        $cashBack = self::checkTypes($cashBack, $types);
+
+        $this->cashBack = $cashBack;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MonetaryAmount
@@ -71,57 +122,6 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
         $floorLimit = self::checkTypes($floorLimit, $types);
 
         $this->floorLimit = $floorLimit;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getContactlessPayment()
-    {
-        return $this->contactlessPayment;
-    }
-
-    /**
-     * @param bool|null $contactlessPayment
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setContactlessPayment($contactlessPayment)
-    {
-        $types = array(
-            "bool",
-            "null",
-        );
-
-        $contactlessPayment = self::checkTypes($contactlessPayment, $types);
-
-        $this->contactlessPayment = $contactlessPayment;
-    }
-
-    /**
-     * @return bool|float|null
-     */
-    public function getCashBack()
-    {
-        return $this->cashBack;
-    }
-
-    /**
-     * @param bool|float|null $cashBack
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCashBack($cashBack)
-    {
-        $types = array(
-            "bool",
-            "float",
-            "null",
-        );
-
-        $cashBack = self::checkTypes($cashBack, $types);
-
-        $this->cashBack = $cashBack;
     }
 
 }

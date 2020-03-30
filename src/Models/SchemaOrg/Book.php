@@ -17,47 +17,15 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "numberOfPages" => "numberOfPages",
-            "illustrator" => "illustrator",
-            "bookFormat" => "bookFormat",
-            "bookEdition" => "bookEdition",
             "isbn" => "isbn",
+            "bookEdition" => "bookEdition",
+            "bookFormat" => "bookFormat",
+            "illustrator" => "illustrator",
+            "numberOfPages" => "numberOfPages",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The number of pages in the book.
-     *
-     *
-     * @var int|null
-     */
-    protected $numberOfPages;
-
-    /**
-     * The illustrator of the book.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person
-     */
-    protected $illustrator;
-
-    /**
-     * The format of the book.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\BookFormatType|null
-     */
-    protected $bookFormat;
-
-    /**
-     * The edition of the book.
-     *
-     *
-     * @var string
-     */
-    protected $bookEdition;
 
     /**
      * The ISBN of the book.
@@ -68,52 +36,83 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $isbn;
 
     /**
-     * @return int|null
+     * The edition of the book.
+     *
+     *
+     * @var string
      */
-    public function getNumberOfPages()
+    protected $bookEdition;
+
+    /**
+     * The format of the book.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\BookFormatType|null
+     */
+    protected $bookFormat;
+
+    /**
+     * The illustrator of the book.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person
+     */
+    protected $illustrator;
+
+    /**
+     * The number of pages in the book.
+     *
+     *
+     * @var null|int
+     */
+    protected $numberOfPages;
+
+    /**
+     * @return string
+     */
+    public function getIsbn()
     {
-        return $this->numberOfPages;
+        return $this->isbn;
     }
 
     /**
-     * @param int|null $numberOfPages
+     * @param string $isbn
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfPages($numberOfPages)
+    public function setIsbn($isbn)
     {
         $types = array(
-            "int",
-            "null",
+            "string",
         );
 
-        $numberOfPages = self::checkTypes($numberOfPages, $types);
+        $isbn = self::checkTypes($isbn, $types);
 
-        $this->numberOfPages = $numberOfPages;
+        $this->isbn = $isbn;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return string
      */
-    public function getIllustrator()
+    public function getBookEdition()
     {
-        return $this->illustrator;
+        return $this->bookEdition;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $illustrator
+     * @param string $bookEdition
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIllustrator($illustrator)
+    public function setBookEdition($bookEdition)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         );
 
-        $illustrator = self::checkTypes($illustrator, $types);
+        $bookEdition = self::checkTypes($bookEdition, $types);
 
-        $this->illustrator = $illustrator;
+        $this->bookEdition = $bookEdition;
     }
 
     /**
@@ -142,51 +141,52 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\Person
      */
-    public function getBookEdition()
+    public function getIllustrator()
     {
-        return $this->bookEdition;
+        return $this->illustrator;
     }
 
     /**
-     * @param string $bookEdition
+     * @param \OpenActive\Models\SchemaOrg\Person $illustrator
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBookEdition($bookEdition)
+    public function setIllustrator($illustrator)
     {
         $types = array(
-            "string",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
-        $bookEdition = self::checkTypes($bookEdition, $types);
+        $illustrator = self::checkTypes($illustrator, $types);
 
-        $this->bookEdition = $bookEdition;
+        $this->illustrator = $illustrator;
     }
 
     /**
-     * @return string
+     * @return null|int
      */
-    public function getIsbn()
+    public function getNumberOfPages()
     {
-        return $this->isbn;
+        return $this->numberOfPages;
     }
 
     /**
-     * @param string $isbn
+     * @param null|int $numberOfPages
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIsbn($isbn)
+    public function setNumberOfPages($numberOfPages)
     {
         $types = array(
-            "string",
+            "null",
+            "int",
         );
 
-        $isbn = self::checkTypes($isbn, $types);
+        $numberOfPages = self::checkTypes($numberOfPages, $types);
 
-        $this->isbn = $isbn;
+        $this->numberOfPages = $numberOfPages;
     }
 
 }

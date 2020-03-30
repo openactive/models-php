@@ -17,21 +17,12 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
 
     public static function fieldList() {
         $fields = [
-            "bed" => "bed",
             "occupancy" => "occupancy",
+            "bed" => "bed",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The type of bed or beds included in the accommodation. For the single case of just one bed of a certain type, you use bed directly with a text.
-     *       If you want to indicate the quantity of a certain kind of bed, use an instance of BedDetails. For more detailed information, use the amenityFeature property.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\BedDetails|\OpenActive\Models\SchemaOrg\BedType|string
-     */
-    protected $bed;
 
     /**
      * The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person).
@@ -43,30 +34,13 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
     protected $occupancy;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\BedDetails|\OpenActive\Models\SchemaOrg\BedType|string
+     * The type of bed or beds included in the accommodation. For the single case of just one bed of a certain type, you use bed directly with a text.
+     *       If you want to indicate the quantity of a certain kind of bed, use an instance of BedDetails. For more detailed information, use the amenityFeature property.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\BedDetails|string|\OpenActive\Models\SchemaOrg\BedType
      */
-    public function getBed()
-    {
-        return $this->bed;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\BedDetails|\OpenActive\Models\SchemaOrg\BedType|string $bed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBed($bed)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\BedDetails",
-            "\OpenActive\Models\SchemaOrg\BedType",
-            "string",
-        );
-
-        $bed = self::checkTypes($bed, $types);
-
-        $this->bed = $bed;
-    }
+    protected $bed;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
@@ -90,6 +64,32 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
         $occupancy = self::checkTypes($occupancy, $types);
 
         $this->occupancy = $occupancy;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\BedDetails|string|\OpenActive\Models\SchemaOrg\BedType
+     */
+    public function getBed()
+    {
+        return $this->bed;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\BedDetails|string|\OpenActive\Models\SchemaOrg\BedType $bed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBed($bed)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\BedDetails",
+            "string",
+            "\OpenActive\Models\SchemaOrg\BedType",
+        );
+
+        $bed = self::checkTypes($bed, $types);
+
+        $this->bed = $bed;
     }
 
 }

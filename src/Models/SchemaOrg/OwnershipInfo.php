@@ -17,38 +17,14 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "ownedFrom" => "ownedFrom",
-            "acquiredFrom" => "acquiredFrom",
-            "ownedThrough" => "ownedThrough",
             "typeOfGood" => "typeOfGood",
+            "ownedFrom" => "ownedFrom",
+            "ownedThrough" => "ownedThrough",
+            "acquiredFrom" => "acquiredFrom",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The date and time of obtaining the product.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $ownedFrom;
-
-    /**
-     * The organization or person from which the product was acquired.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    protected $acquiredFrom;
-
-    /**
-     * The date and time of giving up ownership on the product.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $ownedThrough;
 
     /**
      * The product that this structured value is referring to.
@@ -59,7 +35,56 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $typeOfGood;
 
     /**
-     * @return DateTime|null
+     * The date and time of obtaining the product.
+     *
+     *
+     * @var null|DateTime
+     */
+    protected $ownedFrom;
+
+    /**
+     * The date and time of giving up ownership on the product.
+     *
+     *
+     * @var null|DateTime
+     */
+    protected $ownedThrough;
+
+    /**
+     * The organization or person from which the product was acquired.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     */
+    protected $acquiredFrom;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
+     */
+    public function getTypeOfGood()
+    {
+        return $this->typeOfGood;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $typeOfGood
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTypeOfGood($typeOfGood)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Service",
+            "\OpenActive\Models\SchemaOrg\Product",
+        );
+
+        $typeOfGood = self::checkTypes($typeOfGood, $types);
+
+        $this->typeOfGood = $typeOfGood;
+    }
+
+    /**
+     * @return null|DateTime
      */
     public function getOwnedFrom()
     {
@@ -67,20 +92,45 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param DateTime|null $ownedFrom
+     * @param null|DateTime $ownedFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOwnedFrom($ownedFrom)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $ownedFrom = self::checkTypes($ownedFrom, $types);
 
         $this->ownedFrom = $ownedFrom;
+    }
+
+    /**
+     * @return null|DateTime
+     */
+    public function getOwnedThrough()
+    {
+        return $this->ownedThrough;
+    }
+
+    /**
+     * @param null|DateTime $ownedThrough
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOwnedThrough($ownedThrough)
+    {
+        $types = array(
+            "null",
+            "DateTime",
+        );
+
+        $ownedThrough = self::checkTypes($ownedThrough, $types);
+
+        $this->ownedThrough = $ownedThrough;
     }
 
     /**
@@ -106,56 +156,6 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
         $acquiredFrom = self::checkTypes($acquiredFrom, $types);
 
         $this->acquiredFrom = $acquiredFrom;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getOwnedThrough()
-    {
-        return $this->ownedThrough;
-    }
-
-    /**
-     * @param DateTime|null $ownedThrough
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOwnedThrough($ownedThrough)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $ownedThrough = self::checkTypes($ownedThrough, $types);
-
-        $this->ownedThrough = $ownedThrough;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
-     */
-    public function getTypeOfGood()
-    {
-        return $this->typeOfGood;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $typeOfGood
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTypeOfGood($typeOfGood)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Service",
-            "\OpenActive\Models\SchemaOrg\Product",
-        );
-
-        $typeOfGood = self::checkTypes($typeOfGood, $types);
-
-        $this->typeOfGood = $typeOfGood;
     }
 
 }

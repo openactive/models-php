@@ -17,22 +17,30 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
 
     public static function fieldList() {
         $fields = [
-            "caption" => "caption",
-            "thumbnail" => "thumbnail",
-            "representativeOfPage" => "representativeOfPage",
             "exifData" => "exifData",
+            "representativeOfPage" => "representativeOfPage",
+            "thumbnail" => "thumbnail",
+            "caption" => "caption",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the <a class="localLink" href="https://schema.org/encodingFormat">encodingFormat</a>.
+     * exif data for this object.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\MediaObject
+     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
-    protected $caption;
+    protected $exifData;
+
+    /**
+     * Indicates whether this image is representative of the content of the page.
+     *
+     *
+     * @var null|bool
+     */
+    protected $representativeOfPage;
 
     /**
      * Thumbnail image for an image or video.
@@ -43,44 +51,61 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     protected $thumbnail;
 
     /**
-     * Indicates whether this image is representative of the content of the page.
+     * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the <a class="localLink" href="https://schema.org/encodingFormat">encodingFormat</a>.
      *
      *
-     * @var bool|null
+     * @var string|\OpenActive\Models\SchemaOrg\MediaObject
      */
-    protected $representativeOfPage;
+    protected $caption;
 
     /**
-     * exif data for this object.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\PropertyValue
+     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
-    protected $exifData;
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\MediaObject
-     */
-    public function getCaption()
+    public function getExifData()
     {
-        return $this->caption;
+        return $this->exifData;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $caption
+     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $exifData
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCaption($caption)
+    public function setExifData($exifData)
     {
         $types = array(
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
             "string",
-            "\OpenActive\Models\SchemaOrg\MediaObject",
         );
 
-        $caption = self::checkTypes($caption, $types);
+        $exifData = self::checkTypes($exifData, $types);
 
-        $this->caption = $caption;
+        $this->exifData = $exifData;
+    }
+
+    /**
+     * @return null|bool
+     */
+    public function getRepresentativeOfPage()
+    {
+        return $this->representativeOfPage;
+    }
+
+    /**
+     * @param null|bool $representativeOfPage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRepresentativeOfPage($representativeOfPage)
+    {
+        $types = array(
+            "null",
+            "bool",
+        );
+
+        $representativeOfPage = self::checkTypes($representativeOfPage, $types);
+
+        $this->representativeOfPage = $representativeOfPage;
     }
 
     /**
@@ -108,53 +133,28 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return bool|null
+     * @return string|\OpenActive\Models\SchemaOrg\MediaObject
      */
-    public function getRepresentativeOfPage()
+    public function getCaption()
     {
-        return $this->representativeOfPage;
+        return $this->caption;
     }
 
     /**
-     * @param bool|null $representativeOfPage
+     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $caption
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRepresentativeOfPage($representativeOfPage)
-    {
-        $types = array(
-            "bool",
-            "null",
-        );
-
-        $representativeOfPage = self::checkTypes($representativeOfPage, $types);
-
-        $this->representativeOfPage = $representativeOfPage;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\PropertyValue
-     */
-    public function getExifData()
-    {
-        return $this->exifData;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\PropertyValue $exifData
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setExifData($exifData)
+    public function setCaption($caption)
     {
         $types = array(
             "string",
-            "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "\OpenActive\Models\SchemaOrg\MediaObject",
         );
 
-        $exifData = self::checkTypes($exifData, $types);
+        $caption = self::checkTypes($caption, $types);
 
-        $this->exifData = $exifData;
+        $this->caption = $caption;
     }
 
 }

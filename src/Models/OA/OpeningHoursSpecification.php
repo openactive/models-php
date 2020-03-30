@@ -33,7 +33,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHour
      * "closes": "17:00"
      * ```
      *
-     * @var string|null
+     * @var null|string
      */
     protected $closes;
 
@@ -55,12 +55,12 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHour
      * "opens": "09:00"
      * ```
      *
-     * @var string|null
+     * @var null|string
      */
     protected $opens;
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getCloses()
     {
@@ -68,15 +68,15 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHour
     }
 
     /**
-     * @param string|null $closes
+     * @param null|string $closes
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCloses($closes)
     {
         $types = array(
-            "Time",
             "null",
+            "Time",
         );
 
         $closes = self::checkTypes($closes, $types);
@@ -110,7 +110,7 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHour
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getOpens()
     {
@@ -118,15 +118,15 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHour
     }
 
     /**
-     * @param string|null $opens
+     * @param null|string $opens
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOpens($opens)
     {
         $types = array(
-            "Time",
             "null",
+            "Time",
         );
 
         $opens = self::checkTypes($opens, $types);

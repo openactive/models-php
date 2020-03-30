@@ -38,8 +38,8 @@ class IndividualFacilityUse extends \OpenActive\Models\OA\FacilityUse
      * ```json
      * "event": [
      *   {
-     *     "type": "Slot",
-     *     "id": "http://www.example.org/api/individual-facility-uses/432#/event/2018-03-01T10:00:00Z",
+     *     "@type": "Slot",
+     *     "@id": "http://www.example.org/api/individual-facility-uses/432#/event/2018-03-01T10:00:00Z",
      *     "startDate": "2018-03-01T11:00:00Z",
      *     "endDate": "2018-03-01T11:30:00Z",
      *     "duration": "PT30M",

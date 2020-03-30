@@ -56,7 +56,7 @@ class ConceptScheme extends \OpenActive\BaseModel
      * ```json
      * "concept": [
      *   {
-     *     "id": "https://example.com/concept/martial-arts",
+     *     "@id": "https://example.com/concept/martial-arts",
      *     "type": "Concept",
      *     "prefLabel": "Martial Arts",
      *     "inScheme": "https://example.com/scheme/123",

@@ -17,12 +17,20 @@ class DataCatalog extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "measurementTechnique" => "measurementTechnique",
             "dataset" => "dataset",
+            "measurementTechnique" => "measurementTechnique",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A dataset contained in this catalog.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Dataset
+     */
+    protected $dataset;
 
     /**
      * A technique or technology used in a <a class="localLink" href="https://schema.org/Dataset">Dataset</a> (or <a class="localLink" href="https://schema.org/DataDownload">DataDownload</a>, <a class="localLink" href="https://schema.org/DataCatalog">DataCatalog</a>),
@@ -38,38 +46,6 @@ class DataCatalog extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var string
      */
     protected $measurementTechnique;
-
-    /**
-     * A dataset contained in this catalog.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Dataset
-     */
-    protected $dataset;
-
-    /**
-     * @return string
-     */
-    public function getMeasurementTechnique()
-    {
-        return $this->measurementTechnique;
-    }
-
-    /**
-     * @param string $measurementTechnique
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMeasurementTechnique($measurementTechnique)
-    {
-        $types = array(
-            "string",
-        );
-
-        $measurementTechnique = self::checkTypes($measurementTechnique, $types);
-
-        $this->measurementTechnique = $measurementTechnique;
-    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Dataset
@@ -93,6 +69,30 @@ class DataCatalog extends \OpenActive\Models\SchemaOrg\CreativeWork
         $dataset = self::checkTypes($dataset, $types);
 
         $this->dataset = $dataset;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMeasurementTechnique()
+    {
+        return $this->measurementTechnique;
+    }
+
+    /**
+     * @param string $measurementTechnique
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMeasurementTechnique($measurementTechnique)
+    {
+        $types = array(
+            "string",
+        );
+
+        $measurementTechnique = self::checkTypes($measurementTechnique, $types);
+
+        $this->measurementTechnique = $measurementTechnique;
     }
 
 }

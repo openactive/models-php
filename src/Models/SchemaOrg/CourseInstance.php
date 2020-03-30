@@ -17,29 +17,13 @@ class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
 
     public static function fieldList() {
         $fields = [
-            "courseWorkload" => "courseWorkload",
-            "courseMode" => "courseMode",
             "instructor" => "instructor",
+            "courseMode" => "courseMode",
+            "courseWorkload" => "courseWorkload",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The amount of work expected of students taking the course, often provided as a figure per week or per month, and may be broken down by type. For example, "2 hours of lectures, 1 hour of lab work and 3 hours of independent study per week".
-     *
-     *
-     * @var string
-     */
-    protected $courseWorkload;
-
-    /**
-     * The medium or means of delivery of the course instance or the mode of study, either as a text label (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time") or as a URL reference to a term from a controlled vocabulary (e.g. https://ceds.ed.gov/element/001311#Asynchronous ).
-     *
-     *
-     * @var string
-     */
-    protected $courseMode;
 
     /**
      * A person assigned to instruct or provide instructional assistance for the <a class="localLink" href="https://schema.org/CourseInstance">CourseInstance</a>.
@@ -50,27 +34,43 @@ class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
     protected $instructor;
 
     /**
-     * @return string
+     * The medium or means of delivery of the course instance or the mode of study, either as a text label (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time") or as a URL reference to a term from a controlled vocabulary (e.g. https://ceds.ed.gov/element/001311#Asynchronous ).
+     *
+     *
+     * @var string
      */
-    public function getCourseWorkload()
+    protected $courseMode;
+
+    /**
+     * The amount of work expected of students taking the course, often provided as a figure per week or per month, and may be broken down by type. For example, "2 hours of lectures, 1 hour of lab work and 3 hours of independent study per week".
+     *
+     *
+     * @var string
+     */
+    protected $courseWorkload;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person
+     */
+    public function getInstructor()
     {
-        return $this->courseWorkload;
+        return $this->instructor;
     }
 
     /**
-     * @param string $courseWorkload
+     * @param \OpenActive\Models\SchemaOrg\Person $instructor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCourseWorkload($courseWorkload)
+    public function setInstructor($instructor)
     {
         $types = array(
-            "string",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
-        $courseWorkload = self::checkTypes($courseWorkload, $types);
+        $instructor = self::checkTypes($instructor, $types);
 
-        $this->courseWorkload = $courseWorkload;
+        $this->instructor = $instructor;
     }
 
     /**
@@ -98,27 +98,27 @@ class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return string
      */
-    public function getInstructor()
+    public function getCourseWorkload()
     {
-        return $this->instructor;
+        return $this->courseWorkload;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $instructor
+     * @param string $courseWorkload
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setInstructor($instructor)
+    public function setCourseWorkload($courseWorkload)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         );
 
-        $instructor = self::checkTypes($instructor, $types);
+        $courseWorkload = self::checkTypes($courseWorkload, $types);
 
-        $this->instructor = $instructor;
+        $this->courseWorkload = $courseWorkload;
     }
 
 }

@@ -17,21 +17,21 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\Series
 
     public static function fieldList() {
         $fields = [
-            "startDate" => "startDate",
-            "issn" => "issn",
             "endDate" => "endDate",
+            "issn" => "issn",
+            "startDate" => "startDate",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
+     * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime|Date
      */
-    protected $startDate;
+    protected $endDate;
 
     /**
      * The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication.
@@ -42,36 +42,37 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\Series
     protected $issn;
 
     /**
-     * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
+     * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime|Date
      */
-    protected $endDate;
+    protected $startDate;
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime|Date
      */
-    public function getStartDate()
+    public function getEndDate()
     {
-        return $this->startDate;
+        return $this->endDate;
     }
 
     /**
-     * @param DateTime|null $startDate
+     * @param null|DateTime|Date $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setStartDate($startDate)
+    public function setEndDate($endDate)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
-        $startDate = self::checkTypes($startDate, $types);
+        $endDate = self::checkTypes($endDate, $types);
 
-        $this->startDate = $startDate;
+        $this->endDate = $endDate;
     }
 
     /**
@@ -99,28 +100,29 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\Series
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime|Date
      */
-    public function getEndDate()
+    public function getStartDate()
     {
-        return $this->endDate;
+        return $this->startDate;
     }
 
     /**
-     * @param DateTime|null $endDate
+     * @param null|DateTime|Date $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEndDate($endDate)
+    public function setStartDate($startDate)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
-        $endDate = self::checkTypes($endDate, $types);
+        $startDate = self::checkTypes($startDate, $types);
 
-        $this->endDate = $endDate;
+        $this->startDate = $startDate;
     }
 
 }

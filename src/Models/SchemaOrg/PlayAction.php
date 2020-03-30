@@ -17,20 +17,12 @@ class PlayAction extends \OpenActive\Models\SchemaOrg\Action
 
     public static function fieldList() {
         $fields = [
-            "event" => "event",
             "audience" => "audience",
+            "event" => "event",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Upcoming or past event associated with this place, organization, or action.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Event
-     */
-    protected $event;
 
     /**
      * An intended audience, i.e. a group for whom something was created.
@@ -41,28 +33,12 @@ class PlayAction extends \OpenActive\Models\SchemaOrg\Action
     protected $audience;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Event
+     * Upcoming or past event associated with this place, organization, or action.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Event
      */
-    public function getEvent()
-    {
-        return $this->event;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Event $event
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEvent($event)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Event",
-        );
-
-        $event = self::checkTypes($event, $types);
-
-        $this->event = $event;
-    }
+    protected $event;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Audience
@@ -86,6 +62,30 @@ class PlayAction extends \OpenActive\Models\SchemaOrg\Action
         $audience = self::checkTypes($audience, $types);
 
         $this->audience = $audience;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Event $event
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEvent($event)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Event",
+        );
+
+        $event = self::checkTypes($event, $types);
+
+        $this->event = $event;
     }
 
 }

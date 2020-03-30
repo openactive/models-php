@@ -17,12 +17,20 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
 
     public static function fieldList() {
         $fields = [
-            "boardingPolicy" => "boardingPolicy",
             "iataCode" => "iataCode",
+            "boardingPolicy" => "boardingPolicy",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * IATA identifier for an airline or airport.
+     *
+     *
+     * @var string
+     */
+    protected $iataCode;
 
     /**
      * The type of boarding policy used by the airline (e.g. zone-based or group-based).
@@ -33,12 +41,28 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
     protected $boardingPolicy;
 
     /**
-     * IATA identifier for an airline or airport.
-     *
-     *
-     * @var string
+     * @return string
      */
-    protected $iataCode;
+    public function getIataCode()
+    {
+        return $this->iataCode;
+    }
+
+    /**
+     * @param string $iataCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIataCode($iataCode)
+    {
+        $types = array(
+            "string",
+        );
+
+        $iataCode = self::checkTypes($iataCode, $types);
+
+        $this->iataCode = $iataCode;
+    }
 
     /**
      * @return \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null
@@ -63,30 +87,6 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
         $boardingPolicy = self::checkTypes($boardingPolicy, $types);
 
         $this->boardingPolicy = $boardingPolicy;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIataCode()
-    {
-        return $this->iataCode;
-    }
-
-    /**
-     * @param string $iataCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIataCode($iataCode)
-    {
-        $types = array(
-            "string",
-        );
-
-        $iataCode = self::checkTypes($iataCode, $types);
-
-        $this->iataCode = $iataCode;
     }
 
 }

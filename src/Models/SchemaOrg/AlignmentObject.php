@@ -17,47 +17,15 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "educationalFramework" => "educationalFramework",
-            "alignmentType" => "alignmentType",
-            "targetName" => "targetName",
-            "targetUrl" => "targetUrl",
             "targetDescription" => "targetDescription",
+            "alignmentType" => "alignmentType",
+            "targetUrl" => "targetUrl",
+            "targetName" => "targetName",
+            "educationalFramework" => "educationalFramework",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The framework to which the resource being described is aligned.
-     *
-     *
-     * @var string
-     */
-    protected $educationalFramework;
-
-    /**
-     * A category of alignment between the learning resource and the framework node. Recommended values include: 'assesses', 'teaches', 'requires', 'textComplexity', 'readingLevel', 'educationalSubject', and 'educationalLevel'.
-     *
-     *
-     * @var string
-     */
-    protected $alignmentType;
-
-    /**
-     * The name of a node in an established educational framework.
-     *
-     *
-     * @var string
-     */
-    protected $targetName;
-
-    /**
-     * The URL of a node in an established educational framework.
-     *
-     *
-     * @var string
-     */
-    protected $targetUrl;
 
     /**
      * The description of a node in an established educational framework.
@@ -68,27 +36,59 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
     protected $targetDescription;
 
     /**
+     * A category of alignment between the learning resource and the framework node. Recommended values include: 'assesses', 'teaches', 'requires', 'textComplexity', 'readingLevel', 'educationalSubject', and 'educationalLevel'.
+     *
+     *
+     * @var string
+     */
+    protected $alignmentType;
+
+    /**
+     * The URL of a node in an established educational framework.
+     *
+     *
+     * @var string
+     */
+    protected $targetUrl;
+
+    /**
+     * The name of a node in an established educational framework.
+     *
+     *
+     * @var string
+     */
+    protected $targetName;
+
+    /**
+     * The framework to which the resource being described is aligned.
+     *
+     *
+     * @var string
+     */
+    protected $educationalFramework;
+
+    /**
      * @return string
      */
-    public function getEducationalFramework()
+    public function getTargetDescription()
     {
-        return $this->educationalFramework;
+        return $this->targetDescription;
     }
 
     /**
-     * @param string $educationalFramework
+     * @param string $targetDescription
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEducationalFramework($educationalFramework)
+    public function setTargetDescription($targetDescription)
     {
         $types = array(
             "string",
         );
 
-        $educationalFramework = self::checkTypes($educationalFramework, $types);
+        $targetDescription = self::checkTypes($targetDescription, $types);
 
-        $this->educationalFramework = $educationalFramework;
+        $this->targetDescription = $targetDescription;
     }
 
     /**
@@ -118,30 +118,6 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return string
      */
-    public function getTargetName()
-    {
-        return $this->targetName;
-    }
-
-    /**
-     * @param string $targetName
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTargetName($targetName)
-    {
-        $types = array(
-            "string",
-        );
-
-        $targetName = self::checkTypes($targetName, $types);
-
-        $this->targetName = $targetName;
-    }
-
-    /**
-     * @return string
-     */
     public function getTargetUrl()
     {
         return $this->targetUrl;
@@ -166,25 +142,49 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return string
      */
-    public function getTargetDescription()
+    public function getTargetName()
     {
-        return $this->targetDescription;
+        return $this->targetName;
     }
 
     /**
-     * @param string $targetDescription
+     * @param string $targetName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTargetDescription($targetDescription)
+    public function setTargetName($targetName)
     {
         $types = array(
             "string",
         );
 
-        $targetDescription = self::checkTypes($targetDescription, $types);
+        $targetName = self::checkTypes($targetName, $types);
 
-        $this->targetDescription = $targetDescription;
+        $this->targetName = $targetName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEducationalFramework()
+    {
+        return $this->educationalFramework;
+    }
+
+    /**
+     * @param string $educationalFramework
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEducationalFramework($educationalFramework)
+    {
+        $types = array(
+            "string",
+        );
+
+        $educationalFramework = self::checkTypes($educationalFramework, $types);
+
+        $this->educationalFramework = $educationalFramework;
     }
 
 }

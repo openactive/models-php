@@ -17,101 +17,37 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "readonlyValue" => "readonlyValue",
-            "valueRequired" => "valueRequired",
             "defaultValue" => "defaultValue",
-            "multipleValues" => "multipleValues",
-            "valueName" => "valueName",
-            "maxValue" => "maxValue",
-            "valueMinLength" => "valueMinLength",
             "minValue" => "minValue",
-            "valueMaxLength" => "valueMaxLength",
-            "stepValue" => "stepValue",
             "valuePattern" => "valuePattern",
+            "stepValue" => "stepValue",
+            "valueMaxLength" => "valueMaxLength",
+            "readonlyValue" => "readonlyValue",
+            "valueMinLength" => "valueMinLength",
+            "maxValue" => "maxValue",
+            "valueName" => "valueName",
+            "multipleValues" => "multipleValues",
+            "valueRequired" => "valueRequired",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Whether or not a property is mutable.  Default is false. Specifying this for a property that also has a value makes it act similar to a "hidden" input in an HTML form.
-     *
-     *
-     * @var bool|null
-     */
-    protected $readonlyValue;
-
-    /**
-     * Whether the property must be filled in to complete the action.  Default is false.
-     *
-     *
-     * @var bool|null
-     */
-    protected $valueRequired;
-
-    /**
      * The default value of the input.  For properties that expect a literal, the default is a literal value, for properties that expect an object, it's an ID reference to one of the current values.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     * @var string|\OpenActive\Models\SchemaOrg\Thing
      */
     protected $defaultValue;
-
-    /**
-     * Whether multiple values are allowed for the property.  Default is false.
-     *
-     *
-     * @var bool|null
-     */
-    protected $multipleValues;
-
-    /**
-     * Indicates the name of the PropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML's input@name.
-     *
-     *
-     * @var string
-     */
-    protected $valueName;
-
-    /**
-     * The upper value of some characteristic or property.
-     *
-     *
-     * @var float|null
-     */
-    protected $maxValue;
-
-    /**
-     * Specifies the minimum allowed range for number of characters in a literal value.
-     *
-     *
-     * @var float|null
-     */
-    protected $valueMinLength;
 
     /**
      * The lower value of some characteristic or property.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $minValue;
-
-    /**
-     * Specifies the allowed range for number of characters in a literal value.
-     *
-     *
-     * @var float|null
-     */
-    protected $valueMaxLength;
-
-    /**
-     * The stepValue attribute indicates the granularity that is expected (and required) of the value in a PropertyValueSpecification.
-     *
-     *
-     * @var float|null
-     */
-    protected $stepValue;
 
     /**
      * Specifies a regular expression for testing literal values according to the HTML spec.
@@ -122,57 +58,71 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     protected $valuePattern;
 
     /**
-     * @return bool|null
+     * The stepValue attribute indicates the granularity that is expected (and required) of the value in a PropertyValueSpecification.
+     *
+     *
+     * @var null|float
      */
-    public function getReadonlyValue()
-    {
-        return $this->readonlyValue;
-    }
+    protected $stepValue;
 
     /**
-     * @param bool|null $readonlyValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * Specifies the allowed range for number of characters in a literal value.
+     *
+     *
+     * @var null|float
      */
-    public function setReadonlyValue($readonlyValue)
-    {
-        $types = array(
-            "bool",
-            "null",
-        );
-
-        $readonlyValue = self::checkTypes($readonlyValue, $types);
-
-        $this->readonlyValue = $readonlyValue;
-    }
+    protected $valueMaxLength;
 
     /**
-     * @return bool|null
+     * Whether or not a property is mutable.  Default is false. Specifying this for a property that also has a value makes it act similar to a "hidden" input in an HTML form.
+     *
+     *
+     * @var null|bool
      */
-    public function getValueRequired()
-    {
-        return $this->valueRequired;
-    }
+    protected $readonlyValue;
 
     /**
-     * @param bool|null $valueRequired
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * Specifies the minimum allowed range for number of characters in a literal value.
+     *
+     *
+     * @var null|float
      */
-    public function setValueRequired($valueRequired)
-    {
-        $types = array(
-            "bool",
-            "null",
-        );
-
-        $valueRequired = self::checkTypes($valueRequired, $types);
-
-        $this->valueRequired = $valueRequired;
-    }
+    protected $valueMinLength;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     * The upper value of some characteristic or property.
+     *
+     *
+     * @var null|float
+     */
+    protected $maxValue;
+
+    /**
+     * Indicates the name of the PropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML's input@name.
+     *
+     *
+     * @var string
+     */
+    protected $valueName;
+
+    /**
+     * Whether multiple values are allowed for the property.  Default is false.
+     *
+     *
+     * @var null|bool
+     */
+    protected $multipleValues;
+
+    /**
+     * Whether the property must be filled in to complete the action.  Default is false.
+     *
+     *
+     * @var null|bool
+     */
+    protected $valueRequired;
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Thing
      */
     public function getDefaultValue()
     {
@@ -180,15 +130,15 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $defaultValue
+     * @param string|\OpenActive\Models\SchemaOrg\Thing $defaultValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDefaultValue($defaultValue)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
             "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
         );
 
         $defaultValue = self::checkTypes($defaultValue, $types);
@@ -197,28 +147,177 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return bool|null
+     * @return null|float
      */
-    public function getMultipleValues()
+    public function getMinValue()
     {
-        return $this->multipleValues;
+        return $this->minValue;
     }
 
     /**
-     * @param bool|null $multipleValues
+     * @param null|float $minValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMultipleValues($multipleValues)
+    public function setMinValue($minValue)
     {
         $types = array(
-            "bool",
             "null",
+            "float",
         );
 
-        $multipleValues = self::checkTypes($multipleValues, $types);
+        $minValue = self::checkTypes($minValue, $types);
 
-        $this->multipleValues = $multipleValues;
+        $this->minValue = $minValue;
+    }
+
+    /**
+     * @return string
+     */
+    public function getValuePattern()
+    {
+        return $this->valuePattern;
+    }
+
+    /**
+     * @param string $valuePattern
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValuePattern($valuePattern)
+    {
+        $types = array(
+            "string",
+        );
+
+        $valuePattern = self::checkTypes($valuePattern, $types);
+
+        $this->valuePattern = $valuePattern;
+    }
+
+    /**
+     * @return null|float
+     */
+    public function getStepValue()
+    {
+        return $this->stepValue;
+    }
+
+    /**
+     * @param null|float $stepValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setStepValue($stepValue)
+    {
+        $types = array(
+            "null",
+            "float",
+        );
+
+        $stepValue = self::checkTypes($stepValue, $types);
+
+        $this->stepValue = $stepValue;
+    }
+
+    /**
+     * @return null|float
+     */
+    public function getValueMaxLength()
+    {
+        return $this->valueMaxLength;
+    }
+
+    /**
+     * @param null|float $valueMaxLength
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValueMaxLength($valueMaxLength)
+    {
+        $types = array(
+            "null",
+            "float",
+        );
+
+        $valueMaxLength = self::checkTypes($valueMaxLength, $types);
+
+        $this->valueMaxLength = $valueMaxLength;
+    }
+
+    /**
+     * @return null|bool
+     */
+    public function getReadonlyValue()
+    {
+        return $this->readonlyValue;
+    }
+
+    /**
+     * @param null|bool $readonlyValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReadonlyValue($readonlyValue)
+    {
+        $types = array(
+            "null",
+            "bool",
+        );
+
+        $readonlyValue = self::checkTypes($readonlyValue, $types);
+
+        $this->readonlyValue = $readonlyValue;
+    }
+
+    /**
+     * @return null|float
+     */
+    public function getValueMinLength()
+    {
+        return $this->valueMinLength;
+    }
+
+    /**
+     * @param null|float $valueMinLength
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValueMinLength($valueMinLength)
+    {
+        $types = array(
+            "null",
+            "float",
+        );
+
+        $valueMinLength = self::checkTypes($valueMinLength, $types);
+
+        $this->valueMinLength = $valueMinLength;
+    }
+
+    /**
+     * @return null|float
+     */
+    public function getMaxValue()
+    {
+        return $this->maxValue;
+    }
+
+    /**
+     * @param null|float $maxValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMaxValue($maxValue)
+    {
+        $types = array(
+            "null",
+            "float",
+        );
+
+        $maxValue = self::checkTypes($maxValue, $types);
+
+        $this->maxValue = $maxValue;
     }
 
     /**
@@ -246,152 +345,53 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return float|null
+     * @return null|bool
      */
-    public function getMaxValue()
+    public function getMultipleValues()
     {
-        return $this->maxValue;
+        return $this->multipleValues;
     }
 
     /**
-     * @param float|null $maxValue
+     * @param null|bool $multipleValues
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMaxValue($maxValue)
+    public function setMultipleValues($multipleValues)
     {
         $types = array(
-            "float",
             "null",
+            "bool",
         );
 
-        $maxValue = self::checkTypes($maxValue, $types);
+        $multipleValues = self::checkTypes($multipleValues, $types);
 
-        $this->maxValue = $maxValue;
+        $this->multipleValues = $multipleValues;
     }
 
     /**
-     * @return float|null
+     * @return null|bool
      */
-    public function getValueMinLength()
+    public function getValueRequired()
     {
-        return $this->valueMinLength;
+        return $this->valueRequired;
     }
 
     /**
-     * @param float|null $valueMinLength
+     * @param null|bool $valueRequired
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setValueMinLength($valueMinLength)
+    public function setValueRequired($valueRequired)
     {
         $types = array(
-            "float",
             "null",
+            "bool",
         );
 
-        $valueMinLength = self::checkTypes($valueMinLength, $types);
+        $valueRequired = self::checkTypes($valueRequired, $types);
 
-        $this->valueMinLength = $valueMinLength;
-    }
-
-    /**
-     * @return float|null
-     */
-    public function getMinValue()
-    {
-        return $this->minValue;
-    }
-
-    /**
-     * @param float|null $minValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMinValue($minValue)
-    {
-        $types = array(
-            "float",
-            "null",
-        );
-
-        $minValue = self::checkTypes($minValue, $types);
-
-        $this->minValue = $minValue;
-    }
-
-    /**
-     * @return float|null
-     */
-    public function getValueMaxLength()
-    {
-        return $this->valueMaxLength;
-    }
-
-    /**
-     * @param float|null $valueMaxLength
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setValueMaxLength($valueMaxLength)
-    {
-        $types = array(
-            "float",
-            "null",
-        );
-
-        $valueMaxLength = self::checkTypes($valueMaxLength, $types);
-
-        $this->valueMaxLength = $valueMaxLength;
-    }
-
-    /**
-     * @return float|null
-     */
-    public function getStepValue()
-    {
-        return $this->stepValue;
-    }
-
-    /**
-     * @param float|null $stepValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setStepValue($stepValue)
-    {
-        $types = array(
-            "float",
-            "null",
-        );
-
-        $stepValue = self::checkTypes($stepValue, $types);
-
-        $this->stepValue = $stepValue;
-    }
-
-    /**
-     * @return string
-     */
-    public function getValuePattern()
-    {
-        return $this->valuePattern;
-    }
-
-    /**
-     * @param string $valuePattern
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setValuePattern($valuePattern)
-    {
-        $types = array(
-            "string",
-        );
-
-        $valuePattern = self::checkTypes($valuePattern, $types);
-
-        $this->valuePattern = $valuePattern;
+        $this->valueRequired = $valueRequired;
     }
 
 }

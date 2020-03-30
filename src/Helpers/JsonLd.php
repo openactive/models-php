@@ -41,6 +41,12 @@ class JsonLd
             return DateTimeHelper::iso8601($obj);
         }
 
+        // Get ISO 8601 date time representation,
+        // e.g. "2019-01-01T00:00:00-08:00"
+        if($fq_classname === "\\OpenActive\\Helpers\\Date") {
+            return $obj->toISO8601();
+        }
+
         // Enums should return memberVal const
         if(strpos($fq_classname, "\\OpenActive\\Enums\\") === 0) {
             return $obj::memberVal;

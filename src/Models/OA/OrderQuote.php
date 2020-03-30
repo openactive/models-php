@@ -19,9 +19,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     public static function fieldList() {
         $fields = [
             "lease" => "lease",
-            "orderProposalVersion" => "orderProposalVersion",
             "orderRequiresApproval" => "orderRequiresApproval",
-            "payment" => "payment",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -36,30 +34,12 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     protected $lease;
 
     /**
-     * The unique URL representing this version of the  OrderProposal, or the version of the OrderProposal to which this Order is related.
-     *
-     *
-     * @var string
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    protected $orderProposalVersion;
-
-    /**
      * Whether the Booking Flow with Approval must be used to book the set of OrderItems included. must be true if any of the OrderItems require approval.
      *
      *
-     * @var bool|null
+     * @var null|bool
      */
     protected $orderRequiresApproval;
-
-    /**
-     * The payment associated with the Order by the Broker. It is required for cases where a payment has been taken.
-     *
-     *
-     * @var \OpenActive\Models\OA\Payment
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    protected $payment;
 
     /**
      * @return \OpenActive\Models\OA\Lease
@@ -86,33 +66,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     }
 
     /**
-     * @return string
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    public function getOrderProposalVersion()
-    {
-        return $this->orderProposalVersion;
-    }
-
-    /**
-     * @param string $orderProposalVersion
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    public function setOrderProposalVersion($orderProposalVersion)
-    {
-        $types = array(
-            "string",
-        );
-
-        $orderProposalVersion = self::checkTypes($orderProposalVersion, $types);
-
-        $this->orderProposalVersion = $orderProposalVersion;
-    }
-
-    /**
-     * @return bool|null
+     * @return null|bool
      */
     public function getOrderRequiresApproval()
     {
@@ -120,46 +74,20 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     }
 
     /**
-     * @param bool|null $orderRequiresApproval
+     * @param null|bool $orderRequiresApproval
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderRequiresApproval($orderRequiresApproval)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $orderRequiresApproval = self::checkTypes($orderRequiresApproval, $types);
 
         $this->orderRequiresApproval = $orderRequiresApproval;
-    }
-
-    /**
-     * @return \OpenActive\Models\OA\Payment
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    public function getPayment()
-    {
-        return $this->payment;
-    }
-
-    /**
-     * @param \OpenActive\Models\OA\Payment $payment
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    public function setPayment($payment)
-    {
-        $types = array(
-            "\OpenActive\Models\OA\Payment",
-        );
-
-        $payment = self::checkTypes($payment, $types);
-
-        $this->payment = $payment;
     }
 
 }

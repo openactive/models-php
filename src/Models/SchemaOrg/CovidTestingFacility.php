@@ -1,18 +1,18 @@
 <?php
 
-namespace OpenActive\Models\OA;
+namespace OpenActive\Models\SchemaOrg;
 
 /**
  *
  */
-class UnknownOpportunityDetailsError extends \OpenActive\Models\OA\OpenBookingError
+class CovidTestingFacility extends \OpenActive\BaseModel
 {
     /**
      * @return string[]|null
      */
     public static function getType()
     {
-        return "UnknownOpportunityDetailsError";
+        return "schema:CovidTestingFacility";
     }
 
     public static function fieldList() {

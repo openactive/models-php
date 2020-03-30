@@ -17,20 +17,12 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "countryOfOrigin" => "countryOfOrigin",
             "partOfTVSeries" => "partOfTVSeries",
+            "countryOfOrigin" => "countryOfOrigin",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The country of the principal offices of the production company or individual responsible for the movie or program.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Country
-     */
-    protected $countryOfOrigin;
 
     /**
      * The TV series to which this episode or season belongs.
@@ -41,28 +33,12 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $partOfTVSeries;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Country
+     * The country of the principal offices of the production company or individual responsible for the movie or program.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Country
      */
-    public function getCountryOfOrigin()
-    {
-        return $this->countryOfOrigin;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Country $countryOfOrigin
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCountryOfOrigin($countryOfOrigin)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Country",
-        );
-
-        $countryOfOrigin = self::checkTypes($countryOfOrigin, $types);
-
-        $this->countryOfOrigin = $countryOfOrigin;
-    }
+    protected $countryOfOrigin;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\TVSeries
@@ -86,6 +62,30 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
         $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
 
         $this->partOfTVSeries = $partOfTVSeries;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Country
+     */
+    public function getCountryOfOrigin()
+    {
+        return $this->countryOfOrigin;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Country $countryOfOrigin
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCountryOfOrigin($countryOfOrigin)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Country",
+        );
+
+        $countryOfOrigin = self::checkTypes($countryOfOrigin, $types);
+
+        $this->countryOfOrigin = $countryOfOrigin;
     }
 
 }

@@ -32,7 +32,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
      * ```json
      * "eventSchedule": [
      *   {
-     *     "type": "PartialSchedule",
+     *     "@type": "PartialSchedule",
      *     "repeatFrequency": "P1W",
      *     "startTime": "20:15",
      *     "endTime": "20:45",

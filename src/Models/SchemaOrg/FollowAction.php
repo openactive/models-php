@@ -27,12 +27,12 @@ class FollowAction extends \OpenActive\Models\SchemaOrg\InteractAction
      * A sub property of object. The person or organization being followed.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $followee;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getFollowee()
     {
@@ -40,15 +40,15 @@ class FollowAction extends \OpenActive\Models\SchemaOrg\InteractAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $followee
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $followee
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFollowee($followee)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $followee = self::checkTypes($followee, $types);

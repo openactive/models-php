@@ -17,17 +17,57 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
+            "provider" => "provider",
+            "offers" => "offers",
+            "arrivalTime" => "arrivalTime",
+            "departureTime" => "departureTime",
+            "partOfTrip" => "partOfTrip",
             "subTrip" => "subTrip",
             "itinerary" => "itinerary",
-            "partOfTrip" => "partOfTrip",
-            "departureTime" => "departureTime",
-            "arrivalTime" => "arrivalTime",
-            "offers" => "offers",
-            "provider" => "provider",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     */
+    protected $provider;
+
+    /**
+     * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use <a class="localLink" href="https://schema.org/businessFunction">businessFunction</a> to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a <a class="localLink" href="https://schema.org/Demand">Demand</a>. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand
+     */
+    protected $offers;
+
+    /**
+     * The expected arrival time.
+     *
+     *
+     * @var null|string|DateTime
+     */
+    protected $arrivalTime;
+
+    /**
+     * The expected departure time.
+     *
+     *
+     * @var null|string|DateTime
+     */
+    protected $departureTime;
+
+    /**
+     * Identifies that this <a class="localLink" href="https://schema.org/Trip">Trip</a> is a subTrip of another Trip.  For example Day 1, Day 2, etc. of a multi-day trip.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Trip
+     */
+    protected $partOfTrip;
 
     /**
      * Identifies a <a class="localLink" href="https://schema.org/Trip">Trip</a> that is a subTrip of this Trip.  For example Day 1, Day 2, etc. of a multi-day trip.
@@ -41,97 +81,110 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
      * Destination(s) ( <a class="localLink" href="https://schema.org/Place">Place</a> ) that make up a trip. For a trip where destination order is important use <a class="localLink" href="https://schema.org/ItemList">ItemList</a> to specify that order (see examples).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\ItemList
+     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Place
      */
     protected $itinerary;
 
     /**
-     * Identifies that this <a class="localLink" href="https://schema.org/Trip">Trip</a> is a subTrip of another Trip.  For example Day 1, Day 2, etc. of a multi-day trip.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Trip
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
-    protected $partOfTrip;
-
-    /**
-     * The expected departure time.
-     *
-     *
-     * @var DateTime|string|null
-     */
-    protected $departureTime;
-
-    /**
-     * The expected arrival time.
-     *
-     *
-     * @var DateTime|string|null
-     */
-    protected $arrivalTime;
-
-    /**
-     * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Offer
-     */
-    protected $offers;
-
-    /**
-     * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    protected $provider;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Trip
-     */
-    public function getSubTrip()
+    public function getProvider()
     {
-        return $this->subTrip;
+        return $this->provider;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Trip $subTrip
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $provider
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSubTrip($subTrip)
+    public function setProvider($provider)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Trip",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
-        $subTrip = self::checkTypes($subTrip, $types);
+        $provider = self::checkTypes($provider, $types);
 
-        $this->subTrip = $subTrip;
+        $this->provider = $provider;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\ItemList
+     * @return \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand
      */
-    public function getItinerary()
+    public function getOffers()
     {
-        return $this->itinerary;
+        return $this->offers;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\ItemList $itinerary
+     * @param \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand $offers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setItinerary($itinerary)
+    public function setOffers($offers)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Place",
-            "\OpenActive\Models\SchemaOrg\ItemList",
+            "\OpenActive\Models\SchemaOrg\Offer",
+            "\OpenActive\Models\SchemaOrg\Demand",
         );
 
-        $itinerary = self::checkTypes($itinerary, $types);
+        $offers = self::checkTypes($offers, $types);
 
-        $this->itinerary = $itinerary;
+        $this->offers = $offers;
+    }
+
+    /**
+     * @return null|string|DateTime
+     */
+    public function getArrivalTime()
+    {
+        return $this->arrivalTime;
+    }
+
+    /**
+     * @param null|string|DateTime $arrivalTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setArrivalTime($arrivalTime)
+    {
+        $types = array(
+            "null",
+            "Time",
+            "DateTime",
+        );
+
+        $arrivalTime = self::checkTypes($arrivalTime, $types);
+
+        $this->arrivalTime = $arrivalTime;
+    }
+
+    /**
+     * @return null|string|DateTime
+     */
+    public function getDepartureTime()
+    {
+        return $this->departureTime;
+    }
+
+    /**
+     * @param null|string|DateTime $departureTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDepartureTime($departureTime)
+    {
+        $types = array(
+            "null",
+            "Time",
+            "DateTime",
+        );
+
+        $departureTime = self::checkTypes($departureTime, $types);
+
+        $this->departureTime = $departureTime;
     }
 
     /**
@@ -159,104 +212,52 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateTime|string|null
+     * @return \OpenActive\Models\SchemaOrg\Trip
      */
-    public function getDepartureTime()
+    public function getSubTrip()
     {
-        return $this->departureTime;
+        return $this->subTrip;
     }
 
     /**
-     * @param DateTime|string|null $departureTime
+     * @param \OpenActive\Models\SchemaOrg\Trip $subTrip
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDepartureTime($departureTime)
+    public function setSubTrip($subTrip)
     {
         $types = array(
-            "DateTime",
-            "Time",
-            "null",
+            "\OpenActive\Models\SchemaOrg\Trip",
         );
 
-        $departureTime = self::checkTypes($departureTime, $types);
+        $subTrip = self::checkTypes($subTrip, $types);
 
-        $this->departureTime = $departureTime;
+        $this->subTrip = $subTrip;
     }
 
     /**
-     * @return DateTime|string|null
+     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Place
      */
-    public function getArrivalTime()
+    public function getItinerary()
     {
-        return $this->arrivalTime;
+        return $this->itinerary;
     }
 
     /**
-     * @param DateTime|string|null $arrivalTime
+     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Place $itinerary
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setArrivalTime($arrivalTime)
+    public function setItinerary($itinerary)
     {
         $types = array(
-            "DateTime",
-            "Time",
-            "null",
+            "\OpenActive\Models\SchemaOrg\ItemList",
+            "\OpenActive\Models\SchemaOrg\Place",
         );
 
-        $arrivalTime = self::checkTypes($arrivalTime, $types);
+        $itinerary = self::checkTypes($itinerary, $types);
 
-        $this->arrivalTime = $arrivalTime;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Offer
-     */
-    public function getOffers()
-    {
-        return $this->offers;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Offer $offers
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOffers($offers)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Offer",
-        );
-
-        $offers = self::checkTypes($offers, $types);
-
-        $this->offers = $offers;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    public function getProvider()
-    {
-        return $this->provider;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $provider
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProvider($provider)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-        );
-
-        $provider = self::checkTypes($provider, $types);
-
-        $this->provider = $provider;
+        $this->itinerary = $itinerary;
     }
 
 }

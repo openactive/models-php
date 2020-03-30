@@ -20,6 +20,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
         $fields = [
             "identifier" => "identifier",
             "name" => "name",
+            "prepayment" => "prepayment",
             "price" => "price",
             "priceCurrency" => "priceCurrency",
             "rate" => "rate",
@@ -48,10 +49,22 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     protected $name;
 
     /**
+     * Indicates if proceeding with booking requires a Customer to pay in advance, pay when attending, or have the option to do either. Values must be one of  https://openactive.io/Required,  https://openactive.io/Optional or  https://openactive.io/Unavailable.
+     *
+     * ```json
+     * "prepayment": "https://openactive.io/Required"
+     * ```
+     *
+     * @var \OpenActive\Enums\RequiredStatusType|null
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    protected $prepayment;
+
+    /**
      * The total amount.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $price;
 
@@ -67,7 +80,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
      * The rate of VAT.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $rate;
 
@@ -124,7 +137,34 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     }
 
     /**
-     * @return float|null
+     * @return \OpenActive\Enums\RequiredStatusType|null
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function getPrepayment()
+    {
+        return $this->prepayment;
+    }
+
+    /**
+     * @param \OpenActive\Enums\RequiredStatusType|null $prepayment
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function setPrepayment($prepayment)
+    {
+        $types = array(
+            "\OpenActive\Enums\RequiredStatusType",
+            "null",
+        );
+
+        $prepayment = self::checkTypes($prepayment, $types);
+
+        $this->prepayment = $prepayment;
+    }
+
+    /**
+     * @return null|float
      */
     public function getPrice()
     {
@@ -132,15 +172,15 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     }
 
     /**
-     * @param float|null $price
+     * @param null|float $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $price = self::checkTypes($price, $types);
@@ -173,7 +213,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getRate()
     {
@@ -181,15 +221,15 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     }
 
     /**
-     * @param float|null $rate
+     * @param null|float $rate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRate($rate)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $rate = self::checkTypes($rate, $types);

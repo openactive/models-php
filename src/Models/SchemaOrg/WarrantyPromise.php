@@ -17,12 +17,20 @@ class WarrantyPromise extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "warrantyScope" => "warrantyScope",
             "durationOfWarranty" => "durationOfWarranty",
+            "warrantyScope" => "warrantyScope",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The duration of the warranty promise. Common unitCode values are ANN for year, MON for months, or DAY for days.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    protected $durationOfWarranty;
 
     /**
      * The scope of the warranty promise.
@@ -33,12 +41,28 @@ class WarrantyPromise extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $warrantyScope;
 
     /**
-     * The duration of the warranty promise. Common unitCode values are ANN for year, MON for months, or DAY for days.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    protected $durationOfWarranty;
+    public function getDurationOfWarranty()
+    {
+        return $this->durationOfWarranty;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $durationOfWarranty
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDurationOfWarranty($durationOfWarranty)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+        );
+
+        $durationOfWarranty = self::checkTypes($durationOfWarranty, $types);
+
+        $this->durationOfWarranty = $durationOfWarranty;
+    }
 
     /**
      * @return \OpenActive\Enums\SchemaOrg\WarrantyScope|null
@@ -63,30 +87,6 @@ class WarrantyPromise extends \OpenActive\Models\SchemaOrg\StructuredValue
         $warrantyScope = self::checkTypes($warrantyScope, $types);
 
         $this->warrantyScope = $warrantyScope;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    public function getDurationOfWarranty()
-    {
-        return $this->durationOfWarranty;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $durationOfWarranty
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDurationOfWarranty($durationOfWarranty)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
-
-        $durationOfWarranty = self::checkTypes($durationOfWarranty, $types);
-
-        $this->durationOfWarranty = $durationOfWarranty;
     }
 
 }

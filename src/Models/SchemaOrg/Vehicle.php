@@ -17,35 +17,123 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
 
     public static function fieldList() {
         $fields = [
-            "fuelConsumption" => "fuelConsumption",
-            "callSign" => "callSign",
-            "numberOfPreviousOwners" => "numberOfPreviousOwners",
             "numberOfForwardGears" => "numberOfForwardGears",
-            "fuelEfficiency" => "fuelEfficiency",
             "cargoVolume" => "cargoVolume",
-            "numberOfAxles" => "numberOfAxles",
-            "steeringPosition" => "steeringPosition",
-            "vehicleInteriorType" => "vehicleInteriorType",
-            "vehicleEngine" => "vehicleEngine",
-            "knownVehicleDamages" => "knownVehicleDamages",
-            "numberOfDoors" => "numberOfDoors",
-            "numberOfAirbags" => "numberOfAirbags",
-            "fuelType" => "fuelType",
-            "vehicleTransmission" => "vehicleTransmission",
-            "mileageFromOdometer" => "mileageFromOdometer",
-            "vehicleSeatingCapacity" => "vehicleSeatingCapacity",
-            "driveWheelConfiguration" => "driveWheelConfiguration",
-            "productionDate" => "productionDate",
-            "purchaseDate" => "purchaseDate",
-            "dateVehicleFirstRegistered" => "dateVehicleFirstRegistered",
-            "vehicleModelDate" => "vehicleModelDate",
             "vehicleInteriorColor" => "vehicleInteriorColor",
-            "vehicleIdentificationNumber" => "vehicleIdentificationNumber",
+            "steeringPosition" => "steeringPosition",
+            "vehicleEngine" => "vehicleEngine",
+            "vehicleModelDate" => "vehicleModelDate",
+            "numberOfDoors" => "numberOfDoors",
             "vehicleConfiguration" => "vehicleConfiguration",
+            "fuelType" => "fuelType",
+            "vehicleIdentificationNumber" => "vehicleIdentificationNumber",
+            "fuelConsumption" => "fuelConsumption",
+            "numberOfPreviousOwners" => "numberOfPreviousOwners",
+            "mileageFromOdometer" => "mileageFromOdometer",
+            "fuelEfficiency" => "fuelEfficiency",
+            "numberOfAxles" => "numberOfAxles",
+            "vehicleInteriorType" => "vehicleInteriorType",
+            "numberOfAirbags" => "numberOfAirbags",
+            "vehicleSeatingCapacity" => "vehicleSeatingCapacity",
+            "vehicleTransmission" => "vehicleTransmission",
+            "dateVehicleFirstRegistered" => "dateVehicleFirstRegistered",
+            "purchaseDate" => "purchaseDate",
+            "productionDate" => "productionDate",
+            "knownVehicleDamages" => "knownVehicleDamages",
+            "driveWheelConfiguration" => "driveWheelConfiguration",
+            "callSign" => "callSign",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The total number of forward gears available for the transmission system of the vehicle.<br/><br/>
+     * 
+     * Typical unit code(s): C62
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
+     */
+    protected $numberOfForwardGears;
+
+    /**
+     * The available volume for cargo or luggage. For automobiles, this is usually the trunk volume.<br/><br/>
+     * 
+     * Typical unit code(s): LTR for liters, FTQ for cubic foot/feet<br/><br/>
+     * 
+     * Note: You can use <a class="localLink" href="https://schema.org/minValue">minValue</a> and <a class="localLink" href="https://schema.org/maxValue">maxValue</a> to indicate ranges.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    protected $cargoVolume;
+
+    /**
+     * The color or color combination of the interior of the vehicle.
+     *
+     *
+     * @var string
+     */
+    protected $vehicleInteriorColor;
+
+    /**
+     * The position of the steering wheel or similar device (mostly for cars).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\SteeringPositionValue
+     */
+    protected $steeringPosition;
+
+    /**
+     * Information about the engine or engines of the vehicle.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\EngineSpecification
+     */
+    protected $vehicleEngine;
+
+    /**
+     * The release date of a vehicle model (often used to differentiate versions of the same make and model).
+     *
+     *
+     * @var null|Date
+     */
+    protected $vehicleModelDate;
+
+    /**
+     * The number of doors.<br/><br/>
+     * 
+     * Typical unit code(s): C62
+     *
+     *
+     * @var float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     */
+    protected $numberOfDoors;
+
+    /**
+     * A short text indicating the configuration of the vehicle, e.g. '5dr hatchback ST 2.5 MT 225 hp' or 'limited edition'.
+     *
+     *
+     * @var string
+     */
+    protected $vehicleConfiguration;
+
+    /**
+     * The type of fuel suitable for the engine or engines of the vehicle. If the vehicle has only one engine, this property can be attached directly to the vehicle.
+     *
+     *
+     * @var string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
+     */
+    protected $fuelType;
+
+    /**
+     * The Vehicle Identification Number (VIN) is a unique serial number used by the automotive industry to identify individual motor vehicles.
+     *
+     *
+     * @var string
+     */
+    protected $vehicleIdentificationNumber;
 
     /**
      * The amount of fuel consumed for traveling a particular distance or temporal duration with the given vehicle (e.g. liters per 100 km).<br/><br/>
@@ -63,32 +151,24 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     protected $fuelConsumption;
 
     /**
-     * A <a href="https://en.wikipedia.org/wiki/Call_sign">callsign</a>, as used in broadcasting and radio communications to identify people, radio and TV stations, or vehicles.
-     *
-     *
-     * @var string
-     */
-    protected $callSign;
-
-    /**
      * The number of owners of the vehicle, including the current one.<br/><br/>
-     * 
-     * Typical unit code(s): C62
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
-     */
-    protected $numberOfPreviousOwners;
-
-    /**
-     * The total number of forward gears available for the transmission system of the vehicle.<br/><br/>
      * 
      * Typical unit code(s): C62
      *
      *
      * @var float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
-    protected $numberOfForwardGears;
+    protected $numberOfPreviousOwners;
+
+    /**
+     * The total distance travelled by the particular vehicle since its initial production, as read from its odometer.<br/><br/>
+     * 
+     * Typical unit code(s): KMT for kilometers, SMI for statute miles
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    protected $mileageFromOdometer;
 
     /**
      * The distance traveled per unit of fuel used; most commonly miles per gallon (mpg) or kilometers per liter (km/L).<br/><br/>
@@ -106,34 +186,14 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     protected $fuelEfficiency;
 
     /**
-     * The available volume for cargo or luggage. For automobiles, this is usually the trunk volume.<br/><br/>
-     * 
-     * Typical unit code(s): LTR for liters, FTQ for cubic foot/feet<br/><br/>
-     * 
-     * Note: You can use <a class="localLink" href="https://schema.org/minValue">minValue</a> and <a class="localLink" href="https://schema.org/maxValue">maxValue</a> to indicate ranges.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    protected $cargoVolume;
-
-    /**
      * The number of axles.<br/><br/>
      * 
      * Typical unit code(s): C62
      *
      *
-     * @var float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
     protected $numberOfAxles;
-
-    /**
-     * The position of the steering wheel or similar device (mostly for cars).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\SteeringPositionValue
-     */
-    protected $steeringPosition;
 
     /**
      * The type or material of the interior of the vehicle (e.g. synthetic fabric, leather, wood, etc.). While most interior types are characterized by the material used, an interior type can also be based on vehicle usage or target audience.
@@ -144,64 +204,12 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     protected $vehicleInteriorType;
 
     /**
-     * Information about the engine or engines of the vehicle.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\EngineSpecification
-     */
-    protected $vehicleEngine;
-
-    /**
-     * A textual description of known damages, both repaired and unrepaired.
-     *
-     *
-     * @var string
-     */
-    protected $knownVehicleDamages;
-
-    /**
-     * The number of doors.<br/><br/>
-     * 
-     * Typical unit code(s): C62
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
-     */
-    protected $numberOfDoors;
-
-    /**
      * The number or type of airbags in the vehicle.
      *
      *
-     * @var float|string|null
+     * @var null|float|string
      */
     protected $numberOfAirbags;
-
-    /**
-     * The type of fuel suitable for the engine or engines of the vehicle. If the vehicle has only one engine, this property can be attached directly to the vehicle.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
-     */
-    protected $fuelType;
-
-    /**
-     * The type of component used for transmitting the power from a rotating power source to the wheels or other relevant component(s) ("gearbox" for cars).
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
-     */
-    protected $vehicleTransmission;
-
-    /**
-     * The total distance travelled by the particular vehicle since its initial production, as read from its odometer.<br/><br/>
-     * 
-     * Typical unit code(s): KMT for kilometers, SMI for statute miles
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    protected $mileageFromOdometer;
 
     /**
      * The number of passengers that can be seated in the vehicle, both in terms of the physical space available, and in terms of limitations set by law.<br/><br/>
@@ -214,6 +222,46 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     protected $vehicleSeatingCapacity;
 
     /**
+     * The type of component used for transmitting the power from a rotating power source to the wheels or other relevant component(s) ("gearbox" for cars).
+     *
+     *
+     * @var string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
+     */
+    protected $vehicleTransmission;
+
+    /**
+     * The date of the first registration of the vehicle with the respective public authorities.
+     *
+     *
+     * @var null|Date
+     */
+    protected $dateVehicleFirstRegistered;
+
+    /**
+     * The date the item e.g. vehicle was purchased by the current owner.
+     *
+     *
+     * @var null|Date
+     */
+    protected $purchaseDate;
+
+    /**
+     * The date of production of the item, e.g. vehicle.
+     *
+     *
+     * @var null|Date
+     */
+    protected $productionDate;
+
+    /**
+     * A textual description of known damages, both repaired and unrepaired.
+     *
+     *
+     * @var string
+     */
+    protected $knownVehicleDamages;
+
+    /**
      * The drive wheel configuration, i.e. which roadwheels will receive torque from the vehicle's engine via the drivetrain.
      *
      *
@@ -222,137 +270,15 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     protected $driveWheelConfiguration;
 
     /**
-     * The date of production of the item, e.g. vehicle.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $productionDate;
-
-    /**
-     * The date the item e.g. vehicle was purchased by the current owner.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $purchaseDate;
-
-    /**
-     * The date of the first registration of the vehicle with the respective public authorities.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $dateVehicleFirstRegistered;
-
-    /**
-     * The release date of a vehicle model (often used to differentiate versions of the same make and model).
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $vehicleModelDate;
-
-    /**
-     * The color or color combination of the interior of the vehicle.
+     * A <a href="https://en.wikipedia.org/wiki/Call_sign">callsign</a>, as used in broadcasting and radio communications to identify people, radio and TV stations, or vehicles.
      *
      *
      * @var string
      */
-    protected $vehicleInteriorColor;
+    protected $callSign;
 
     /**
-     * The Vehicle Identification Number (VIN) is a unique serial number used by the automotive industry to identify individual motor vehicles.
-     *
-     *
-     * @var string
-     */
-    protected $vehicleIdentificationNumber;
-
-    /**
-     * A short text indicating the configuration of the vehicle, e.g. '5dr hatchback ST 2.5 MT 225 hp' or 'limited edition'.
-     *
-     *
-     * @var string
-     */
-    protected $vehicleConfiguration;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    public function getFuelConsumption()
-    {
-        return $this->fuelConsumption;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $fuelConsumption
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFuelConsumption($fuelConsumption)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
-
-        $fuelConsumption = self::checkTypes($fuelConsumption, $types);
-
-        $this->fuelConsumption = $fuelConsumption;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCallSign()
-    {
-        return $this->callSign;
-    }
-
-    /**
-     * @param string $callSign
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCallSign($callSign)
-    {
-        $types = array(
-            "string",
-        );
-
-        $callSign = self::checkTypes($callSign, $types);
-
-        $this->callSign = $callSign;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
-     */
-    public function getNumberOfPreviousOwners()
-    {
-        return $this->numberOfPreviousOwners;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $numberOfPreviousOwners
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNumberOfPreviousOwners($numberOfPreviousOwners)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "float",
-            "null",
-        );
-
-        $numberOfPreviousOwners = self::checkTypes($numberOfPreviousOwners, $types);
-
-        $this->numberOfPreviousOwners = $numberOfPreviousOwners;
-    }
-
-    /**
-     * @return float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
     public function getNumberOfForwardGears()
     {
@@ -360,45 +286,21 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numberOfForwardGears
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float $numberOfForwardGears
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfForwardGears($numberOfForwardGears)
     {
         $types = array(
-            "float",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
+            "float",
         );
 
         $numberOfForwardGears = self::checkTypes($numberOfForwardGears, $types);
 
         $this->numberOfForwardGears = $numberOfForwardGears;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    public function getFuelEfficiency()
-    {
-        return $this->fuelEfficiency;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $fuelEfficiency
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFuelEfficiency($fuelEfficiency)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
-
-        $fuelEfficiency = self::checkTypes($fuelEfficiency, $types);
-
-        $this->fuelEfficiency = $fuelEfficiency;
     }
 
     /**
@@ -426,29 +328,27 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @return string
      */
-    public function getNumberOfAxles()
+    public function getVehicleInteriorColor()
     {
-        return $this->numberOfAxles;
+        return $this->vehicleInteriorColor;
     }
 
     /**
-     * @param float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numberOfAxles
+     * @param string $vehicleInteriorColor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfAxles($numberOfAxles)
+    public function setVehicleInteriorColor($vehicleInteriorColor)
     {
         $types = array(
-            "float",
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "null",
+            "string",
         );
 
-        $numberOfAxles = self::checkTypes($numberOfAxles, $types);
+        $vehicleInteriorColor = self::checkTypes($vehicleInteriorColor, $types);
 
-        $this->numberOfAxles = $numberOfAxles;
+        $this->vehicleInteriorColor = $vehicleInteriorColor;
     }
 
     /**
@@ -476,30 +376,6 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return string
-     */
-    public function getVehicleInteriorType()
-    {
-        return $this->vehicleInteriorType;
-    }
-
-    /**
-     * @param string $vehicleInteriorType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVehicleInteriorType($vehicleInteriorType)
-    {
-        $types = array(
-            "string",
-        );
-
-        $vehicleInteriorType = self::checkTypes($vehicleInteriorType, $types);
-
-        $this->vehicleInteriorType = $vehicleInteriorType;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\EngineSpecification
      */
     public function getVehicleEngine()
@@ -524,31 +400,32 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return string
+     * @return null|Date
      */
-    public function getKnownVehicleDamages()
+    public function getVehicleModelDate()
     {
-        return $this->knownVehicleDamages;
+        return $this->vehicleModelDate;
     }
 
     /**
-     * @param string $knownVehicleDamages
+     * @param null|Date $vehicleModelDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setKnownVehicleDamages($knownVehicleDamages)
+    public function setVehicleModelDate($vehicleModelDate)
     {
         $types = array(
-            "string",
+            "null",
+            "Date",
         );
 
-        $knownVehicleDamages = self::checkTypes($knownVehicleDamages, $types);
+        $vehicleModelDate = self::checkTypes($vehicleModelDate, $types);
 
-        $this->knownVehicleDamages = $knownVehicleDamages;
+        $this->vehicleModelDate = $vehicleModelDate;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @return float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getNumberOfDoors()
     {
@@ -556,15 +433,15 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $numberOfDoors
+     * @param float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numberOfDoors
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfDoors($numberOfDoors)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "float",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
         );
 
@@ -574,33 +451,31 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return float|string|null
+     * @return string
      */
-    public function getNumberOfAirbags()
+    public function getVehicleConfiguration()
     {
-        return $this->numberOfAirbags;
+        return $this->vehicleConfiguration;
     }
 
     /**
-     * @param float|string|null $numberOfAirbags
+     * @param string $vehicleConfiguration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfAirbags($numberOfAirbags)
+    public function setVehicleConfiguration($vehicleConfiguration)
     {
         $types = array(
-            "float",
             "string",
-            "null",
         );
 
-        $numberOfAirbags = self::checkTypes($numberOfAirbags, $types);
+        $vehicleConfiguration = self::checkTypes($vehicleConfiguration, $types);
 
-        $this->numberOfAirbags = $numberOfAirbags;
+        $this->vehicleConfiguration = $vehicleConfiguration;
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     * @return string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
      */
     public function getFuelType()
     {
@@ -608,15 +483,15 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null $fuelType
+     * @param string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null $fuelType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFuelType($fuelType)
     {
         $types = array(
-            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
             "string",
+            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
             "null",
         );
 
@@ -626,29 +501,77 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     * @return string
      */
-    public function getVehicleTransmission()
+    public function getVehicleIdentificationNumber()
     {
-        return $this->vehicleTransmission;
+        return $this->vehicleIdentificationNumber;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null $vehicleTransmission
+     * @param string $vehicleIdentificationNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setVehicleTransmission($vehicleTransmission)
+    public function setVehicleIdentificationNumber($vehicleIdentificationNumber)
     {
         $types = array(
-            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
             "string",
+        );
+
+        $vehicleIdentificationNumber = self::checkTypes($vehicleIdentificationNumber, $types);
+
+        $this->vehicleIdentificationNumber = $vehicleIdentificationNumber;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    public function getFuelConsumption()
+    {
+        return $this->fuelConsumption;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $fuelConsumption
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFuelConsumption($fuelConsumption)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+        );
+
+        $fuelConsumption = self::checkTypes($fuelConsumption, $types);
+
+        $this->fuelConsumption = $fuelConsumption;
+    }
+
+    /**
+     * @return float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     */
+    public function getNumberOfPreviousOwners()
+    {
+        return $this->numberOfPreviousOwners;
+    }
+
+    /**
+     * @param float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numberOfPreviousOwners
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumberOfPreviousOwners($numberOfPreviousOwners)
+    {
+        $types = array(
+            "float",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
         );
 
-        $vehicleTransmission = self::checkTypes($vehicleTransmission, $types);
+        $numberOfPreviousOwners = self::checkTypes($numberOfPreviousOwners, $types);
 
-        $this->vehicleTransmission = $vehicleTransmission;
+        $this->numberOfPreviousOwners = $numberOfPreviousOwners;
     }
 
     /**
@@ -673,6 +596,106 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
         $mileageFromOdometer = self::checkTypes($mileageFromOdometer, $types);
 
         $this->mileageFromOdometer = $mileageFromOdometer;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    public function getFuelEfficiency()
+    {
+        return $this->fuelEfficiency;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $fuelEfficiency
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFuelEfficiency($fuelEfficiency)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+        );
+
+        $fuelEfficiency = self::checkTypes($fuelEfficiency, $types);
+
+        $this->fuelEfficiency = $fuelEfficiency;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
+     */
+    public function getNumberOfAxles()
+    {
+        return $this->numberOfAxles;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float $numberOfAxles
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumberOfAxles($numberOfAxles)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "null",
+            "float",
+        );
+
+        $numberOfAxles = self::checkTypes($numberOfAxles, $types);
+
+        $this->numberOfAxles = $numberOfAxles;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVehicleInteriorType()
+    {
+        return $this->vehicleInteriorType;
+    }
+
+    /**
+     * @param string $vehicleInteriorType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVehicleInteriorType($vehicleInteriorType)
+    {
+        $types = array(
+            "string",
+        );
+
+        $vehicleInteriorType = self::checkTypes($vehicleInteriorType, $types);
+
+        $this->vehicleInteriorType = $vehicleInteriorType;
+    }
+
+    /**
+     * @return null|float|string
+     */
+    public function getNumberOfAirbags()
+    {
+        return $this->numberOfAirbags;
+    }
+
+    /**
+     * @param null|float|string $numberOfAirbags
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumberOfAirbags($numberOfAirbags)
+    {
+        $types = array(
+            "null",
+            "float",
+            "string",
+        );
+
+        $numberOfAirbags = self::checkTypes($numberOfAirbags, $types);
+
+        $this->numberOfAirbags = $numberOfAirbags;
     }
 
     /**
@@ -702,6 +725,131 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
+     * @return string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
+     */
+    public function getVehicleTransmission()
+    {
+        return $this->vehicleTransmission;
+    }
+
+    /**
+     * @param string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null $vehicleTransmission
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVehicleTransmission($vehicleTransmission)
+    {
+        $types = array(
+            "string",
+            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
+            "null",
+        );
+
+        $vehicleTransmission = self::checkTypes($vehicleTransmission, $types);
+
+        $this->vehicleTransmission = $vehicleTransmission;
+    }
+
+    /**
+     * @return null|Date
+     */
+    public function getDateVehicleFirstRegistered()
+    {
+        return $this->dateVehicleFirstRegistered;
+    }
+
+    /**
+     * @param null|Date $dateVehicleFirstRegistered
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDateVehicleFirstRegistered($dateVehicleFirstRegistered)
+    {
+        $types = array(
+            "null",
+            "Date",
+        );
+
+        $dateVehicleFirstRegistered = self::checkTypes($dateVehicleFirstRegistered, $types);
+
+        $this->dateVehicleFirstRegistered = $dateVehicleFirstRegistered;
+    }
+
+    /**
+     * @return null|Date
+     */
+    public function getPurchaseDate()
+    {
+        return $this->purchaseDate;
+    }
+
+    /**
+     * @param null|Date $purchaseDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPurchaseDate($purchaseDate)
+    {
+        $types = array(
+            "null",
+            "Date",
+        );
+
+        $purchaseDate = self::checkTypes($purchaseDate, $types);
+
+        $this->purchaseDate = $purchaseDate;
+    }
+
+    /**
+     * @return null|Date
+     */
+    public function getProductionDate()
+    {
+        return $this->productionDate;
+    }
+
+    /**
+     * @param null|Date $productionDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProductionDate($productionDate)
+    {
+        $types = array(
+            "null",
+            "Date",
+        );
+
+        $productionDate = self::checkTypes($productionDate, $types);
+
+        $this->productionDate = $productionDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKnownVehicleDamages()
+    {
+        return $this->knownVehicleDamages;
+    }
+
+    /**
+     * @param string $knownVehicleDamages
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setKnownVehicleDamages($knownVehicleDamages)
+    {
+        $types = array(
+            "string",
+        );
+
+        $knownVehicleDamages = self::checkTypes($knownVehicleDamages, $types);
+
+        $this->knownVehicleDamages = $knownVehicleDamages;
+    }
+
+    /**
      * @return string|\OpenActive\Models\SchemaOrg\DriveWheelConfigurationValue
      */
     public function getDriveWheelConfiguration()
@@ -727,175 +875,27 @@ class Vehicle extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return DateTime|null
-     */
-    public function getProductionDate()
-    {
-        return $this->productionDate;
-    }
-
-    /**
-     * @param DateTime|null $productionDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProductionDate($productionDate)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $productionDate = self::checkTypes($productionDate, $types);
-
-        $this->productionDate = $productionDate;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getPurchaseDate()
-    {
-        return $this->purchaseDate;
-    }
-
-    /**
-     * @param DateTime|null $purchaseDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPurchaseDate($purchaseDate)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $purchaseDate = self::checkTypes($purchaseDate, $types);
-
-        $this->purchaseDate = $purchaseDate;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getDateVehicleFirstRegistered()
-    {
-        return $this->dateVehicleFirstRegistered;
-    }
-
-    /**
-     * @param DateTime|null $dateVehicleFirstRegistered
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDateVehicleFirstRegistered($dateVehicleFirstRegistered)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $dateVehicleFirstRegistered = self::checkTypes($dateVehicleFirstRegistered, $types);
-
-        $this->dateVehicleFirstRegistered = $dateVehicleFirstRegistered;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getVehicleModelDate()
-    {
-        return $this->vehicleModelDate;
-    }
-
-    /**
-     * @param DateTime|null $vehicleModelDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVehicleModelDate($vehicleModelDate)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $vehicleModelDate = self::checkTypes($vehicleModelDate, $types);
-
-        $this->vehicleModelDate = $vehicleModelDate;
-    }
-
-    /**
      * @return string
      */
-    public function getVehicleInteriorColor()
+    public function getCallSign()
     {
-        return $this->vehicleInteriorColor;
+        return $this->callSign;
     }
 
     /**
-     * @param string $vehicleInteriorColor
+     * @param string $callSign
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setVehicleInteriorColor($vehicleInteriorColor)
+    public function setCallSign($callSign)
     {
         $types = array(
             "string",
         );
 
-        $vehicleInteriorColor = self::checkTypes($vehicleInteriorColor, $types);
+        $callSign = self::checkTypes($callSign, $types);
 
-        $this->vehicleInteriorColor = $vehicleInteriorColor;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVehicleIdentificationNumber()
-    {
-        return $this->vehicleIdentificationNumber;
-    }
-
-    /**
-     * @param string $vehicleIdentificationNumber
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVehicleIdentificationNumber($vehicleIdentificationNumber)
-    {
-        $types = array(
-            "string",
-        );
-
-        $vehicleIdentificationNumber = self::checkTypes($vehicleIdentificationNumber, $types);
-
-        $this->vehicleIdentificationNumber = $vehicleIdentificationNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVehicleConfiguration()
-    {
-        return $this->vehicleConfiguration;
-    }
-
-    /**
-     * @param string $vehicleConfiguration
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVehicleConfiguration($vehicleConfiguration)
-    {
-        $types = array(
-            "string",
-        );
-
-        $vehicleConfiguration = self::checkTypes($vehicleConfiguration, $types);
-
-        $this->vehicleConfiguration = $vehicleConfiguration;
+        $this->callSign = $callSign;
     }
 
 }

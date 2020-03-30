@@ -20,6 +20,7 @@ class Barcode extends \OpenActive\Models\OA\ImageObject
         $fields = [
             "text" => "text",
             "url" => "url",
+            "codeType" => "beta:codeType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -46,6 +47,17 @@ class Barcode extends \OpenActive\Models\OA\ImageObject
      * @var string
      */
     protected $url;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Type of barcode, e.g. 'Code39'
+     * 
+     * If you are using this property, please join the discussion at proposal [#130](https://github.com/openactive/open-booking-api/issues/130).
+     *
+     *
+     * @var string
+     */
+    protected $codeType;
 
     /**
      * @return string
@@ -93,6 +105,30 @@ class Barcode extends \OpenActive\Models\OA\ImageObject
         $url = self::checkTypes($url, $types);
 
         $this->url = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodeType()
+    {
+        return $this->codeType;
+    }
+
+    /**
+     * @param string $codeType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCodeType($codeType)
+    {
+        $types = array(
+            "string",
+        );
+
+        $codeType = self::checkTypes($codeType, $types);
+
+        $this->codeType = $codeType;
     }
 
 }

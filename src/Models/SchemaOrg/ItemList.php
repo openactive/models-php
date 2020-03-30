@@ -17,29 +17,13 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "numberOfItems" => "numberOfItems",
-            "itemListOrder" => "itemListOrder",
             "itemListElement" => "itemListElement",
+            "itemListOrder" => "itemListOrder",
+            "numberOfItems" => "numberOfItems",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The number of items in an ItemList. Note that some descriptions might not fully describe all items in a list (e.g., multi-page pagination); in such cases, the numberOfItems would be for the entire list.
-     *
-     *
-     * @var int|null
-     */
-    protected $numberOfItems;
-
-    /**
-     * Type of ordering (e.g. Ascending, Descending, Unordered).
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\ItemListOrderType|string|null
-     */
-    protected $itemListOrder;
 
     /**
      * For itemListElement values, you can use simple strings (e.g. "Peter", "Paul", "Mary"), existing entities, or use ListItem.<br/><br/>
@@ -49,37 +33,54 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
      * Note: The order of elements in your mark-up is not sufficient for indicating the order or elements.  Use ListItem with a 'position' property in such cases.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string|\OpenActive\Models\SchemaOrg\ListItem
+     * @var string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\ListItem
      */
     protected $itemListElement;
 
     /**
-     * @return int|null
+     * Type of ordering (e.g. Ascending, Descending, Unordered).
+     *
+     *
+     * @var string|\OpenActive\Enums\SchemaOrg\ItemListOrderType|null
      */
-    public function getNumberOfItems()
+    protected $itemListOrder;
+
+    /**
+     * The number of items in an ItemList. Note that some descriptions might not fully describe all items in a list (e.g., multi-page pagination); in such cases, the numberOfItems would be for the entire list.
+     *
+     *
+     * @var null|int
+     */
+    protected $numberOfItems;
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\ListItem
+     */
+    public function getItemListElement()
     {
-        return $this->numberOfItems;
+        return $this->itemListElement;
     }
 
     /**
-     * @param int|null $numberOfItems
+     * @param string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\ListItem $itemListElement
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfItems($numberOfItems)
+    public function setItemListElement($itemListElement)
     {
         $types = array(
-            "int",
-            "null",
+            "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "\OpenActive\Models\SchemaOrg\ListItem",
         );
 
-        $numberOfItems = self::checkTypes($numberOfItems, $types);
+        $itemListElement = self::checkTypes($itemListElement, $types);
 
-        $this->numberOfItems = $numberOfItems;
+        $this->itemListElement = $itemListElement;
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\ItemListOrderType|string|null
+     * @return string|\OpenActive\Enums\SchemaOrg\ItemListOrderType|null
      */
     public function getItemListOrder()
     {
@@ -87,15 +88,15 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\ItemListOrderType|string|null $itemListOrder
+     * @param string|\OpenActive\Enums\SchemaOrg\ItemListOrderType|null $itemListOrder
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemListOrder($itemListOrder)
     {
         $types = array(
-            "\OpenActive\Enums\SchemaOrg\ItemListOrderType",
             "string",
+            "\OpenActive\Enums\SchemaOrg\ItemListOrderType",
             "null",
         );
 
@@ -105,29 +106,28 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string|\OpenActive\Models\SchemaOrg\ListItem
+     * @return null|int
      */
-    public function getItemListElement()
+    public function getNumberOfItems()
     {
-        return $this->itemListElement;
+        return $this->numberOfItems;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string|\OpenActive\Models\SchemaOrg\ListItem $itemListElement
+     * @param null|int $numberOfItems
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setItemListElement($itemListElement)
+    public function setNumberOfItems($numberOfItems)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
-            "\OpenActive\Models\SchemaOrg\ListItem",
+            "null",
+            "int",
         );
 
-        $itemListElement = self::checkTypes($itemListElement, $types);
+        $numberOfItems = self::checkTypes($numberOfItems, $types);
 
-        $this->itemListElement = $itemListElement;
+        $this->numberOfItems = $numberOfItems;
     }
 
 }

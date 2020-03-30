@@ -17,13 +17,29 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
 
     public static function fieldList() {
         $fields = [
-            "pickupLocation" => "pickupLocation",
-            "partySize" => "partySize",
             "pickupTime" => "pickupTime",
+            "partySize" => "partySize",
+            "pickupLocation" => "pickupLocation",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * When a taxi will pickup a passenger or a rental car can be picked up.
+     *
+     *
+     * @var null|DateTime
+     */
+    protected $pickupTime;
+
+    /**
+     * Number of people the reservation should accommodate.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int
+     */
+    protected $partySize;
 
     /**
      * Where a taxi will pick up a passenger or a rental car can be picked up.
@@ -34,20 +50,55 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $pickupLocation;
 
     /**
-     * Number of people the reservation should accommodate.
-     *
-     *
-     * @var int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @return null|DateTime
      */
-    protected $partySize;
+    public function getPickupTime()
+    {
+        return $this->pickupTime;
+    }
 
     /**
-     * When a taxi will pickup a passenger or a rental car can be picked up.
-     *
-     *
-     * @var DateTime|null
+     * @param null|DateTime $pickupTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $pickupTime;
+    public function setPickupTime($pickupTime)
+    {
+        $types = array(
+            "null",
+            "DateTime",
+        );
+
+        $pickupTime = self::checkTypes($pickupTime, $types);
+
+        $this->pickupTime = $pickupTime;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int
+     */
+    public function getPartySize()
+    {
+        return $this->partySize;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int $partySize
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPartySize($partySize)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "null",
+            "int",
+        );
+
+        $partySize = self::checkTypes($partySize, $types);
+
+        $this->partySize = $partySize;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Place
@@ -71,57 +122,6 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
         $pickupLocation = self::checkTypes($pickupLocation, $types);
 
         $this->pickupLocation = $pickupLocation;
-    }
-
-    /**
-     * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
-     */
-    public function getPartySize()
-    {
-        return $this->partySize;
-    }
-
-    /**
-     * @param int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $partySize
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPartySize($partySize)
-    {
-        $types = array(
-            "int",
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "null",
-        );
-
-        $partySize = self::checkTypes($partySize, $types);
-
-        $this->partySize = $partySize;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getPickupTime()
-    {
-        return $this->pickupTime;
-    }
-
-    /**
-     * @param DateTime|null $pickupTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPickupTime($pickupTime)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $pickupTime = self::checkTypes($pickupTime, $types);
-
-        $this->pickupTime = $pickupTime;
     }
 
 }

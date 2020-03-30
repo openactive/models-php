@@ -20,6 +20,7 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
         $fields = [
             "orderCustomerNote" => "orderCustomerNote",
             "orderProposalStatus" => "orderProposalStatus",
+            "orderRequiresApproval" => "orderRequiresApproval",
             "orderSellerNote" => "orderSellerNote",
         ];
 
@@ -39,6 +40,15 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
      * @var \OpenActive\Enums\OrderProposalStatus|null
      */
     protected $orderProposalStatus;
+
+    /**
+     * Whether the Booking Flow with Approval must be used to book the set of OrderItems included. must be true if any of the OrderItems require approval.
+     *
+     *
+     * @var null|bool
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    protected $orderRequiresApproval;
 
     /**
      *
@@ -94,6 +104,33 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
         $orderProposalStatus = self::checkTypes($orderProposalStatus, $types);
 
         $this->orderProposalStatus = $orderProposalStatus;
+    }
+
+    /**
+     * @return null|bool
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function getOrderRequiresApproval()
+    {
+        return $this->orderRequiresApproval;
+    }
+
+    /**
+     * @param null|bool $orderRequiresApproval
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function setOrderRequiresApproval($orderRequiresApproval)
+    {
+        $types = array(
+            "null",
+            "bool",
+        );
+
+        $orderRequiresApproval = self::checkTypes($orderRequiresApproval, $types);
+
+        $this->orderRequiresApproval = $orderRequiresApproval;
     }
 
     /**

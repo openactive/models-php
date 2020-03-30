@@ -17,13 +17,30 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "populationType" => "populationType",
             "constrainingProperty" => "constrainingProperty",
             "numConstraints" => "numConstraints",
+            "populationType" => "populationType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Indicates a property used as a constraint to define a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a> with respect to the set of entities
+     *   corresponding to an indicated type (via <a class="localLink" href="https://schema.org/populationType">populationType</a>).
+     *
+     *
+     * @var null|int
+     */
+    protected $constrainingProperty;
+
+    /**
+     * Indicates the number of constraints (not counting <a class="localLink" href="https://schema.org/populationType">populationType</a>) defined for a particular <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>. This helps applications understand if they have access to a sufficiently complete description of a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>.
+     *
+     *
+     * @var null|int
+     */
+    protected $numConstraints;
 
     /**
      * Indicates the populationType common to all members of a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>.
@@ -34,21 +51,54 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $populationType;
 
     /**
-     * Indicates a property used as a constraint to define a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a> with respect to the set of entities
-     *   corresponding to an indicated type (via <a class="localLink" href="https://schema.org/populationType">populationType</a>).
-     *
-     *
-     * @var int|null
+     * @return null|int
      */
-    protected $constrainingProperty;
+    public function getConstrainingProperty()
+    {
+        return $this->constrainingProperty;
+    }
 
     /**
-     * Indicates the number of constraints (not counting <a class="localLink" href="https://schema.org/populationType">populationType</a>) defined for a particular <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>. This helps applications understand if they have access to a sufficiently complete description of a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>.
-     *
-     *
-     * @var int|null
+     * @param null|int $constrainingProperty
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $numConstraints;
+    public function setConstrainingProperty($constrainingProperty)
+    {
+        $types = array(
+            "null",
+            "int",
+        );
+
+        $constrainingProperty = self::checkTypes($constrainingProperty, $types);
+
+        $this->constrainingProperty = $constrainingProperty;
+    }
+
+    /**
+     * @return null|int
+     */
+    public function getNumConstraints()
+    {
+        return $this->numConstraints;
+    }
+
+    /**
+     * @param null|int $numConstraints
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumConstraints($numConstraints)
+    {
+        $types = array(
+            "null",
+            "int",
+        );
+
+        $numConstraints = self::checkTypes($numConstraints, $types);
+
+        $this->numConstraints = $numConstraints;
+    }
 
     /**
      * @return 
@@ -71,56 +121,6 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
         $populationType = self::checkTypes($populationType, $types);
 
         $this->populationType = $populationType;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getConstrainingProperty()
-    {
-        return $this->constrainingProperty;
-    }
-
-    /**
-     * @param int|null $constrainingProperty
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setConstrainingProperty($constrainingProperty)
-    {
-        $types = array(
-            "int",
-            "null",
-        );
-
-        $constrainingProperty = self::checkTypes($constrainingProperty, $types);
-
-        $this->constrainingProperty = $constrainingProperty;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getNumConstraints()
-    {
-        return $this->numConstraints;
-    }
-
-    /**
-     * @param int|null $numConstraints
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNumConstraints($numConstraints)
-    {
-        $types = array(
-            "int",
-            "null",
-        );
-
-        $numConstraints = self::checkTypes($numConstraints, $types);
-
-        $this->numConstraints = $numConstraints;
     }
 
 }

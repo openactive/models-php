@@ -17,13 +17,21 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
 
     public static function fieldList() {
         $fields = [
+            "broadcastFrequencyValue" => "broadcastFrequencyValue",
             "broadcastSignalModulation" => "broadcastSignalModulation",
             "broadcastSubChannel" => "broadcastSubChannel",
-            "broadcastFrequencyValue" => "broadcastFrequencyValue",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The frequency in MHz for a particular broadcast.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
+     */
+    protected $broadcastFrequencyValue;
 
     /**
      * The modulation (e.g. FM, AM, etc) used by a particular broadcast service
@@ -42,12 +50,30 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     protected $broadcastSubChannel;
 
     /**
-     * The frequency in MHz for a particular broadcast.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
      */
-    protected $broadcastFrequencyValue;
+    public function getBroadcastFrequencyValue()
+    {
+        return $this->broadcastFrequencyValue;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float $broadcastFrequencyValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBroadcastFrequencyValue($broadcastFrequencyValue)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "null",
+            "float",
+        );
+
+        $broadcastFrequencyValue = self::checkTypes($broadcastFrequencyValue, $types);
+
+        $this->broadcastFrequencyValue = $broadcastFrequencyValue;
+    }
 
     /**
      * @return string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
@@ -97,32 +123,6 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
         $broadcastSubChannel = self::checkTypes($broadcastSubChannel, $types);
 
         $this->broadcastSubChannel = $broadcastSubChannel;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
-     */
-    public function getBroadcastFrequencyValue()
-    {
-        return $this->broadcastFrequencyValue;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $broadcastFrequencyValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBroadcastFrequencyValue($broadcastFrequencyValue)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "float",
-            "null",
-        );
-
-        $broadcastFrequencyValue = self::checkTypes($broadcastFrequencyValue, $types);
-
-        $this->broadcastFrequencyValue = $broadcastFrequencyValue;
     }
 
 }

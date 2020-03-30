@@ -24,6 +24,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
             "acceptedPaymentMethod" => "acceptedPaymentMethod",
             "advanceBooking" => "advanceBooking",
             "ageRange" => "ageRange",
+            "availableChannel" => "availableChannel",
             "latestCancellationBeforeStartDate" => "latestCancellationBeforeStartDate",
             "openBookingFlowRequirement" => "openBookingFlowRequirement",
             "prepayment" => "prepayment",
@@ -31,7 +32,6 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
             "priceCurrency" => "priceCurrency",
             "url" => "url",
             "validFromBeforeStartDate" => "validFromBeforeStartDate",
-            "availableChannel" => "beta:availableChannel",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -111,10 +111,18 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     protected $ageRange;
 
     /**
+     * The channels through which a booking can be made.
+     *
+     *
+     * @var \OpenActive\Enums\AvailableChannelType[]|null
+     */
+    protected $availableChannel;
+
+    /**
      * The duration before the startDate during which this Offer may not be cancelled, given in ISO 8601 format.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $latestCancellationBeforeStartDate;
 
@@ -147,7 +155,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * "price": "33"
      * ```
      *
-     * @var float|null
+     * @var null|float
      */
     protected $price;
 
@@ -177,20 +185,9 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * The duration before the startDate for which this Offer is valid, given in ISO 8601 format. This is a relatively-defined equivalent of schema:validFrom, to allow for Offer inheritance.
      *
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $validFromBeforeStartDate;
-
-    /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * The channels through which a booking can be made.
-     * 
-     * If you are using this property, please join the discussion at proposal [#161](https://github.com/openactive/modelling-opportunity-data/issues/161).
-     *
-     *
-     * @var \OpenActive\Enums\AvailableChannelType[]|null
-     */
-    protected $availableChannel;
 
     /**
      * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
@@ -343,7 +340,32 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return DateInterval|null
+     * @return \OpenActive\Enums\AvailableChannelType[]|null
+     */
+    public function getAvailableChannel()
+    {
+        return $this->availableChannel;
+    }
+
+    /**
+     * @param \OpenActive\Enums\AvailableChannelType[]|null $availableChannel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAvailableChannel($availableChannel)
+    {
+        $types = array(
+            "\OpenActive\Enums\AvailableChannelType[]",
+            "null",
+        );
+
+        $availableChannel = self::checkTypes($availableChannel, $types);
+
+        $this->availableChannel = $availableChannel;
+    }
+
+    /**
+     * @return null|DateInterval
      */
     public function getLatestCancellationBeforeStartDate()
     {
@@ -351,15 +373,15 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param DateInterval|null $latestCancellationBeforeStartDate
+     * @param null|DateInterval $latestCancellationBeforeStartDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLatestCancellationBeforeStartDate($latestCancellationBeforeStartDate)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $latestCancellationBeforeStartDate = self::checkTypes($latestCancellationBeforeStartDate, $types);
@@ -418,7 +440,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
     public function getPrice()
     {
@@ -426,15 +448,15 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param float|null $price
+     * @param null|float $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $price = self::checkTypes($price, $types);
@@ -491,7 +513,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getValidFromBeforeStartDate()
     {
@@ -499,45 +521,20 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param DateInterval|null $validFromBeforeStartDate
+     * @param null|DateInterval $validFromBeforeStartDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFromBeforeStartDate($validFromBeforeStartDate)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $validFromBeforeStartDate = self::checkTypes($validFromBeforeStartDate, $types);
 
         $this->validFromBeforeStartDate = $validFromBeforeStartDate;
-    }
-
-    /**
-     * @return \OpenActive\Enums\AvailableChannelType[]|null
-     */
-    public function getAvailableChannel()
-    {
-        return $this->availableChannel;
-    }
-
-    /**
-     * @param \OpenActive\Enums\AvailableChannelType[]|null $availableChannel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAvailableChannel($availableChannel)
-    {
-        $types = array(
-            "\OpenActive\Enums\AvailableChannelType[]",
-            "null",
-        );
-
-        $availableChannel = self::checkTypes($availableChannel, $types);
-
-        $this->availableChannel = $availableChannel;
     }
 
 }

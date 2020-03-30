@@ -18,6 +18,7 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
     public static function fieldList() {
         $fields = [
             "name" => "name",
+            "dateModified" => "dateModified",
             "requiresExplicitConsent" => "requiresExplicitConsent",
             "url" => "url",
         ];
@@ -34,9 +35,20 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
     protected $name;
 
     /**
+     * The date and time at which the webpage containing the contents of the terms, located at the `url`, was last updated.
+     *
+     * ```json
+     * "dateModified": "2018-01-27T12:00:00Z"
+     * ```
+     *
+     * @var null|DateTime
+     */
+    protected $dateModified;
+
+    /**
      *
      *
-     * @var bool|null
+     * @var null|bool
      */
     protected $requiresExplicitConsent;
 
@@ -73,7 +85,32 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
     }
 
     /**
-     * @return bool|null
+     * @return null|DateTime
+     */
+    public function getDateModified()
+    {
+        return $this->dateModified;
+    }
+
+    /**
+     * @param null|DateTime $dateModified
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDateModified($dateModified)
+    {
+        $types = array(
+            "null",
+            "DateTime",
+        );
+
+        $dateModified = self::checkTypes($dateModified, $types);
+
+        $this->dateModified = $dateModified;
+    }
+
+    /**
+     * @return null|bool
      */
     public function getRequiresExplicitConsent()
     {
@@ -81,15 +118,15 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
     }
 
     /**
-     * @param bool|null $requiresExplicitConsent
+     * @param null|bool $requiresExplicitConsent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiresExplicitConsent($requiresExplicitConsent)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $requiresExplicitConsent = self::checkTypes($requiresExplicitConsent, $types);

@@ -94,7 +94,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\VideoObject[]
+     * @var \OpenActive\Models\VideoObject[]
      */
     protected $video;
 
@@ -223,7 +223,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\VideoObject[]
+     * @return \OpenActive\Models\VideoObject[]
      */
     public function getVideo()
     {
@@ -231,14 +231,14 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\VideoObject[] $video
+     * @param \OpenActive\Models\VideoObject[] $video
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVideo($video)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\VideoObject[]",
+            "\OpenActive\Models\VideoObject[]",
         );
 
         $video = self::checkTypes($video, $types);

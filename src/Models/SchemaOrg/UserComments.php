@@ -17,39 +17,15 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
 
     public static function fieldList() {
         $fields = [
-            "replyToUrl" => "replyToUrl",
-            "creator" => "creator",
-            "commentTime" => "commentTime",
             "discusses" => "discusses",
             "commentText" => "commentText",
+            "commentTime" => "commentTime",
+            "creator" => "creator",
+            "replyToUrl" => "replyToUrl",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The URL at which a reply may be posted to the specified UserComment.
-     *
-     *
-     * @var string
-     */
-    protected $replyToUrl;
-
-    /**
-     * The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    protected $creator;
-
-    /**
-     * The time at which the UserComment was made.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $commentTime;
 
     /**
      * Specifies the CreativeWork associated with the UserComment.
@@ -68,78 +44,28 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     protected $commentText;
 
     /**
-     * @return string
+     * The time at which the UserComment was made.
+     *
+     *
+     * @var null|DateTime|Date
      */
-    public function getReplyToUrl()
-    {
-        return $this->replyToUrl;
-    }
+    protected $commentTime;
 
     /**
-     * @param string $replyToUrl
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
-    public function setReplyToUrl($replyToUrl)
-    {
-        $types = array(
-            "string",
-        );
-
-        $replyToUrl = self::checkTypes($replyToUrl, $types);
-
-        $this->replyToUrl = $replyToUrl;
-    }
+    protected $creator;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * The URL at which a reply may be posted to the specified UserComment.
+     *
+     *
+     * @var string
      */
-    public function getCreator()
-    {
-        return $this->creator;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $creator
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCreator($creator)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-        );
-
-        $creator = self::checkTypes($creator, $types);
-
-        $this->creator = $creator;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getCommentTime()
-    {
-        return $this->commentTime;
-    }
-
-    /**
-     * @param DateTime|null $commentTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCommentTime($commentTime)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $commentTime = self::checkTypes($commentTime, $types);
-
-        $this->commentTime = $commentTime;
-    }
+    protected $replyToUrl;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\CreativeWork
@@ -187,6 +113,81 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
         $commentText = self::checkTypes($commentText, $types);
 
         $this->commentText = $commentText;
+    }
+
+    /**
+     * @return null|DateTime|Date
+     */
+    public function getCommentTime()
+    {
+        return $this->commentTime;
+    }
+
+    /**
+     * @param null|DateTime|Date $commentTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCommentTime($commentTime)
+    {
+        $types = array(
+            "null",
+            "DateTime",
+            "Date",
+        );
+
+        $commentTime = self::checkTypes($commentTime, $types);
+
+        $this->commentTime = $commentTime;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $creator
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCreator($creator)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+        );
+
+        $creator = self::checkTypes($creator, $types);
+
+        $this->creator = $creator;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReplyToUrl()
+    {
+        return $this->replyToUrl;
+    }
+
+    /**
+     * @param string $replyToUrl
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReplyToUrl($replyToUrl)
+    {
+        $types = array(
+            "string",
+        );
+
+        $replyToUrl = self::checkTypes($replyToUrl, $types);
+
+        $this->replyToUrl = $replyToUrl;
     }
 
 }

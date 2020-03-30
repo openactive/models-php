@@ -28,6 +28,7 @@ class Schedule extends \OpenActive\BaseModel
             "repeatCount" => "repeatCount",
             "repeatFrequency" => "repeatFrequency",
             "scheduledEventType" => "scheduledEventType",
+            "scheduleTimezone" => "scheduleTimezone",
             "startDate" => "startDate",
             "endDate" => "endDate",
             "startTime" => "startTime",
@@ -61,7 +62,7 @@ class Schedule extends \OpenActive\BaseModel
      * ]
      * ```
      *
-     * @var int[]|null
+     * @var null|int[]
      */
     protected $byMonth;
 
@@ -74,7 +75,7 @@ class Schedule extends \OpenActive\BaseModel
      * ]
      * ```
      *
-     * @var int[]|null
+     * @var null|int[]
      */
     protected $byMonthDay;
 
@@ -85,7 +86,7 @@ class Schedule extends \OpenActive\BaseModel
      * "duration": "PT1H"
      * ```
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $duration;
 
@@ -96,7 +97,7 @@ class Schedule extends \OpenActive\BaseModel
      * "endTime": "12:00:00"
      * ```
      *
-     * @var string|null
+     * @var null|string
      */
     protected $endTime;
 
@@ -114,7 +115,7 @@ class Schedule extends \OpenActive\BaseModel
      * ]
      * ```
      *
-     * @var DateTime[]|null
+     * @var null|DateTime[]|Date[]
      */
     protected $exceptDate;
 
@@ -136,7 +137,7 @@ class Schedule extends \OpenActive\BaseModel
      * "repeatCount": 3
      * ```
      *
-     * @var int|null
+     * @var null|int
      */
     protected $repeatCount;
 
@@ -147,7 +148,7 @@ class Schedule extends \OpenActive\BaseModel
      * "repeatFrequency": "P1D"
      * ```
      *
-     * @var DateInterval|null
+     * @var null|DateInterval
      */
     protected $repeatFrequency;
 
@@ -163,13 +164,24 @@ class Schedule extends \OpenActive\BaseModel
     protected $scheduledEventType;
 
     /**
+     * Indicates the timezone for which the time(s) indicated in the Schedule are given. The value provided should be among those listed in the IANA Time Zone Database.
+     *
+     * ```json
+     * "scheduleTimezone": "Europe/London"
+     * ```
+     *
+     * @var string
+     */
+    protected $scheduleTimezone;
+
+    /**
      * The start date of the event.
      *
      * ```json
      * "startDate": "2018-01-27"
      * ```
      *
-     * @var DateTime|null
+     * @var null|Date
      */
     protected $startDate;
 
@@ -180,7 +192,7 @@ class Schedule extends \OpenActive\BaseModel
      * "endDate": "2018-01-27"
      * ```
      *
-     * @var DateTime|null
+     * @var null|Date
      */
     protected $endDate;
 
@@ -191,7 +203,7 @@ class Schedule extends \OpenActive\BaseModel
      * "startTime": "12:00:00"
      * ```
      *
-     * @var string|null
+     * @var null|string
      */
     protected $startTime;
 
@@ -208,7 +220,7 @@ class Schedule extends \OpenActive\BaseModel
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * The time zone used to generate occurrences, same as iCal TZID. E.g. 'Europe/London'.
+     * [DEPRECATED: This beta property is now deprecated, please use `schema:scheduleTimezone` instead.] The time zone used to generate occurrences, same as iCal TZID. E.g. 'Europe/London'.
      * 
      * If you are using this property, please join the discussion at proposal [#197](https://github.com/openactive/modelling-opportunity-data/issues/197).
      *
@@ -244,7 +256,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return int[]|null
+     * @return null|int[]
      */
     public function getByMonth()
     {
@@ -252,15 +264,15 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param int[]|null $byMonth
+     * @param null|int[] $byMonth
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setByMonth($byMonth)
     {
         $types = array(
-            "int[]",
             "null",
+            "int[]",
         );
 
         $byMonth = self::checkTypes($byMonth, $types);
@@ -269,7 +281,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return int[]|null
+     * @return null|int[]
      */
     public function getByMonthDay()
     {
@@ -277,15 +289,15 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param int[]|null $byMonthDay
+     * @param null|int[] $byMonthDay
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setByMonthDay($byMonthDay)
     {
         $types = array(
-            "int[]",
             "null",
+            "int[]",
         );
 
         $byMonthDay = self::checkTypes($byMonthDay, $types);
@@ -294,7 +306,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getDuration()
     {
@@ -302,15 +314,15 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param DateInterval|null $duration
+     * @param null|DateInterval $duration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $duration = self::checkTypes($duration, $types);
@@ -319,7 +331,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getEndTime()
     {
@@ -327,15 +339,15 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param string|null $endTime
+     * @param null|string $endTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndTime($endTime)
     {
         $types = array(
-            "Time",
             "null",
+            "Time",
         );
 
         $endTime = self::checkTypes($endTime, $types);
@@ -344,7 +356,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return DateTime[]|null
+     * @return null|DateTime[]|Date[]
      */
     public function getExceptDate()
     {
@@ -352,15 +364,16 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param DateTime[]|null $exceptDate
+     * @param null|DateTime[]|Date[] $exceptDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExceptDate($exceptDate)
     {
         $types = array(
-            "DateTime[]",
             "null",
+            "DateTime[]",
+            "Date[]",
         );
 
         $exceptDate = self::checkTypes($exceptDate, $types);
@@ -393,7 +406,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getRepeatCount()
     {
@@ -401,15 +414,15 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param int|null $repeatCount
+     * @param null|int $repeatCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRepeatCount($repeatCount)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $repeatCount = self::checkTypes($repeatCount, $types);
@@ -418,7 +431,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return DateInterval|null
+     * @return null|DateInterval
      */
     public function getRepeatFrequency()
     {
@@ -426,15 +439,15 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param DateInterval|null $repeatFrequency
+     * @param null|DateInterval $repeatFrequency
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRepeatFrequency($repeatFrequency)
     {
         $types = array(
-            "DateInterval",
             "null",
+            "DateInterval",
         );
 
         $repeatFrequency = self::checkTypes($repeatFrequency, $types);
@@ -467,7 +480,31 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return DateTime|null
+     * @return string
+     */
+    public function getScheduleTimezone()
+    {
+        return $this->scheduleTimezone;
+    }
+
+    /**
+     * @param string $scheduleTimezone
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setScheduleTimezone($scheduleTimezone)
+    {
+        $types = array(
+            "string",
+        );
+
+        $scheduleTimezone = self::checkTypes($scheduleTimezone, $types);
+
+        $this->scheduleTimezone = $scheduleTimezone;
+    }
+
+    /**
+     * @return null|Date
      */
     public function getStartDate()
     {
@@ -475,15 +512,15 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param DateTime|null $startDate
+     * @param null|Date $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
         $types = array(
-            "DateTime",
             "null",
+            "Date",
         );
 
         $startDate = self::checkTypes($startDate, $types);
@@ -492,7 +529,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return DateTime|null
+     * @return null|Date
      */
     public function getEndDate()
     {
@@ -500,15 +537,15 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param DateTime|null $endDate
+     * @param null|Date $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
         $types = array(
-            "DateTime",
             "null",
+            "Date",
         );
 
         $endDate = self::checkTypes($endDate, $types);
@@ -517,7 +554,7 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getStartTime()
     {
@@ -525,15 +562,15 @@ class Schedule extends \OpenActive\BaseModel
     }
 
     /**
-     * @param string|null $startTime
+     * @param null|string $startTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartTime($startTime)
     {
         $types = array(
-            "Time",
             "null",
+            "Time",
         );
 
         $startTime = self::checkTypes($startTime, $types);

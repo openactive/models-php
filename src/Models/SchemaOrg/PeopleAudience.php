@@ -17,40 +17,32 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
 
     public static function fieldList() {
         $fields = [
-            "suggestedMinAge" => "suggestedMinAge",
-            "requiredMaxAge" => "requiredMaxAge",
-            "suggestedGender" => "suggestedGender",
-            "requiredGender" => "requiredGender",
-            "requiredMinAge" => "requiredMinAge",
             "suggestedMaxAge" => "suggestedMaxAge",
+            "requiredMinAge" => "requiredMinAge",
+            "requiredGender" => "requiredGender",
+            "suggestedGender" => "suggestedGender",
+            "requiredMaxAge" => "requiredMaxAge",
+            "suggestedMinAge" => "suggestedMinAge",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Minimal age recommended for viewing content.
+     * Maximal age recommended for viewing content.
      *
      *
-     * @var float|null
+     * @var null|float
      */
-    protected $suggestedMinAge;
+    protected $suggestedMaxAge;
 
     /**
-     * Audiences defined by a person's maximum age.
+     * Audiences defined by a person's minimum age.
      *
      *
-     * @var int|null
+     * @var null|int
      */
-    protected $requiredMaxAge;
-
-    /**
-     * The gender of the person or audience.
-     *
-     *
-     * @var string
-     */
-    protected $suggestedGender;
+    protected $requiredMinAge;
 
     /**
      * Audiences defined by a person's gender.
@@ -61,93 +53,77 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     protected $requiredGender;
 
     /**
-     * Audiences defined by a person's minimum age.
+     * The gender of the person or audience.
      *
      *
-     * @var int|null
+     * @var string
      */
-    protected $requiredMinAge;
+    protected $suggestedGender;
 
     /**
-     * Maximal age recommended for viewing content.
+     * Audiences defined by a person's maximum age.
      *
      *
-     * @var float|null
+     * @var null|int
      */
-    protected $suggestedMaxAge;
+    protected $requiredMaxAge;
 
     /**
-     * @return float|null
+     * Minimal age recommended for viewing content.
+     *
+     *
+     * @var null|float
      */
-    public function getSuggestedMinAge()
+    protected $suggestedMinAge;
+
+    /**
+     * @return null|float
+     */
+    public function getSuggestedMaxAge()
     {
-        return $this->suggestedMinAge;
+        return $this->suggestedMaxAge;
     }
 
     /**
-     * @param float|null $suggestedMinAge
+     * @param null|float $suggestedMaxAge
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSuggestedMinAge($suggestedMinAge)
+    public function setSuggestedMaxAge($suggestedMaxAge)
     {
         $types = array(
+            "null",
             "float",
-            "null",
         );
 
-        $suggestedMinAge = self::checkTypes($suggestedMinAge, $types);
+        $suggestedMaxAge = self::checkTypes($suggestedMaxAge, $types);
 
-        $this->suggestedMinAge = $suggestedMinAge;
+        $this->suggestedMaxAge = $suggestedMaxAge;
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
-    public function getRequiredMaxAge()
+    public function getRequiredMinAge()
     {
-        return $this->requiredMaxAge;
+        return $this->requiredMinAge;
     }
 
     /**
-     * @param int|null $requiredMaxAge
+     * @param null|int $requiredMinAge
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRequiredMaxAge($requiredMaxAge)
+    public function setRequiredMinAge($requiredMinAge)
     {
         $types = array(
+            "null",
             "int",
-            "null",
         );
 
-        $requiredMaxAge = self::checkTypes($requiredMaxAge, $types);
+        $requiredMinAge = self::checkTypes($requiredMinAge, $types);
 
-        $this->requiredMaxAge = $requiredMaxAge;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSuggestedGender()
-    {
-        return $this->suggestedGender;
-    }
-
-    /**
-     * @param string $suggestedGender
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSuggestedGender($suggestedGender)
-    {
-        $types = array(
-            "string",
-        );
-
-        $suggestedGender = self::checkTypes($suggestedGender, $types);
-
-        $this->suggestedGender = $suggestedGender;
+        $this->requiredMinAge = $requiredMinAge;
     }
 
     /**
@@ -175,53 +151,77 @@ class PeopleAudience extends \OpenActive\Models\SchemaOrg\Audience
     }
 
     /**
-     * @return int|null
+     * @return string
      */
-    public function getRequiredMinAge()
+    public function getSuggestedGender()
     {
-        return $this->requiredMinAge;
+        return $this->suggestedGender;
     }
 
     /**
-     * @param int|null $requiredMinAge
+     * @param string $suggestedGender
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRequiredMinAge($requiredMinAge)
+    public function setSuggestedGender($suggestedGender)
     {
         $types = array(
+            "string",
+        );
+
+        $suggestedGender = self::checkTypes($suggestedGender, $types);
+
+        $this->suggestedGender = $suggestedGender;
+    }
+
+    /**
+     * @return null|int
+     */
+    public function getRequiredMaxAge()
+    {
+        return $this->requiredMaxAge;
+    }
+
+    /**
+     * @param null|int $requiredMaxAge
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRequiredMaxAge($requiredMaxAge)
+    {
+        $types = array(
+            "null",
             "int",
-            "null",
         );
 
-        $requiredMinAge = self::checkTypes($requiredMinAge, $types);
+        $requiredMaxAge = self::checkTypes($requiredMaxAge, $types);
 
-        $this->requiredMinAge = $requiredMinAge;
+        $this->requiredMaxAge = $requiredMaxAge;
     }
 
     /**
-     * @return float|null
+     * @return null|float
      */
-    public function getSuggestedMaxAge()
+    public function getSuggestedMinAge()
     {
-        return $this->suggestedMaxAge;
+        return $this->suggestedMinAge;
     }
 
     /**
-     * @param float|null $suggestedMaxAge
+     * @param null|float $suggestedMinAge
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSuggestedMaxAge($suggestedMaxAge)
+    public function setSuggestedMinAge($suggestedMinAge)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
-        $suggestedMaxAge = self::checkTypes($suggestedMaxAge, $types);
+        $suggestedMinAge = self::checkTypes($suggestedMinAge, $types);
 
-        $this->suggestedMaxAge = $suggestedMaxAge;
+        $this->suggestedMinAge = $suggestedMinAge;
     }
 
 }

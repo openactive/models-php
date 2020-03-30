@@ -17,12 +17,20 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
 
     public static function fieldList() {
         $fields = [
-            "healthPlanNetworkId" => "healthPlanNetworkId",
             "isAcceptingNewPatients" => "isAcceptingNewPatients",
+            "healthPlanNetworkId" => "healthPlanNetworkId",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Whether the provider is accepting new patients.
+     *
+     *
+     * @var null|bool
+     */
+    protected $isAcceptingNewPatients;
 
     /**
      * Name or unique ID of network. (Networks are often reused across different insurance plans).
@@ -33,12 +41,29 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
     protected $healthPlanNetworkId;
 
     /**
-     * Whether the provider is accepting new patients.
-     *
-     *
-     * @var bool|null
+     * @return null|bool
      */
-    protected $isAcceptingNewPatients;
+    public function getIsAcceptingNewPatients()
+    {
+        return $this->isAcceptingNewPatients;
+    }
+
+    /**
+     * @param null|bool $isAcceptingNewPatients
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsAcceptingNewPatients($isAcceptingNewPatients)
+    {
+        $types = array(
+            "null",
+            "bool",
+        );
+
+        $isAcceptingNewPatients = self::checkTypes($isAcceptingNewPatients, $types);
+
+        $this->isAcceptingNewPatients = $isAcceptingNewPatients;
+    }
 
     /**
      * @return string
@@ -62,31 +87,6 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
         $healthPlanNetworkId = self::checkTypes($healthPlanNetworkId, $types);
 
         $this->healthPlanNetworkId = $healthPlanNetworkId;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getIsAcceptingNewPatients()
-    {
-        return $this->isAcceptingNewPatients;
-    }
-
-    /**
-     * @param bool|null $isAcceptingNewPatients
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIsAcceptingNewPatients($isAcceptingNewPatients)
-    {
-        $types = array(
-            "bool",
-            "null",
-        );
-
-        $isAcceptingNewPatients = self::checkTypes($isAcceptingNewPatients, $types);
-
-        $this->isAcceptingNewPatients = $isAcceptingNewPatients;
     }
 
 }

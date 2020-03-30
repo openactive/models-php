@@ -28,7 +28,7 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
      * Whether borrower is a resident of the jurisdiction where the property is located.
      *
      *
-     * @var bool|null
+     * @var null|bool
      */
     protected $domiciledMortgage;
 
@@ -41,7 +41,7 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
     protected $loanMortgageMandateAmount;
 
     /**
-     * @return bool|null
+     * @return null|bool
      */
     public function getDomiciledMortgage()
     {
@@ -49,15 +49,15 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
     }
 
     /**
-     * @param bool|null $domiciledMortgage
+     * @param null|bool $domiciledMortgage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDomiciledMortgage($domiciledMortgage)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $domiciledMortgage = self::checkTypes($domiciledMortgage, $types);

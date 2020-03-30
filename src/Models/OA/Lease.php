@@ -39,7 +39,7 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
      * Expiry DateTime of the Lease in ISO 8601 format
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
     protected $leaseExpires;
 
@@ -72,7 +72,7 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return DateTime|null
+     * @return null|DateTime
      */
     public function getLeaseExpires()
     {
@@ -80,15 +80,15 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param DateTime|null $leaseExpires
+     * @param null|DateTime $leaseExpires
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLeaseExpires($leaseExpires)
     {
         $types = array(
-            "DateTime",
             "null",
+            "DateTime",
         );
 
         $leaseExpires = self::checkTypes($leaseExpires, $types);

@@ -17,20 +17,12 @@ class MediaSubscription extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "expectsAcceptanceOf" => "expectsAcceptanceOf",
             "authenticator" => "authenticator",
+            "expectsAcceptanceOf" => "expectsAcceptanceOf",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Offer
-     */
-    protected $expectsAcceptanceOf;
 
     /**
      * The Organization responsible for authenticating the user's subscription. For example, many media apps require a cable/satellite provider to authenticate your subscription before playing media.
@@ -41,28 +33,12 @@ class MediaSubscription extends \OpenActive\Models\SchemaOrg\Intangible
     protected $authenticator;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Offer
+     * An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Offer
      */
-    public function getExpectsAcceptanceOf()
-    {
-        return $this->expectsAcceptanceOf;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Offer $expectsAcceptanceOf
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setExpectsAcceptanceOf($expectsAcceptanceOf)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Offer",
-        );
-
-        $expectsAcceptanceOf = self::checkTypes($expectsAcceptanceOf, $types);
-
-        $this->expectsAcceptanceOf = $expectsAcceptanceOf;
-    }
+    protected $expectsAcceptanceOf;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Organization
@@ -86,6 +62,30 @@ class MediaSubscription extends \OpenActive\Models\SchemaOrg\Intangible
         $authenticator = self::checkTypes($authenticator, $types);
 
         $this->authenticator = $authenticator;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Offer
+     */
+    public function getExpectsAcceptanceOf()
+    {
+        return $this->expectsAcceptanceOf;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Offer $expectsAcceptanceOf
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setExpectsAcceptanceOf($expectsAcceptanceOf)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Offer",
+        );
+
+        $expectsAcceptanceOf = self::checkTypes($expectsAcceptanceOf, $types);
+
+        $this->expectsAcceptanceOf = $expectsAcceptanceOf;
     }
 
 }

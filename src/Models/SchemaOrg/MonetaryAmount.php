@@ -17,40 +17,24 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "maxValue" => "maxValue",
-            "validThrough" => "validThrough",
-            "validFrom" => "validFrom",
+            "minValue" => "minValue",
             "currency" => "currency",
             "value" => "value",
-            "minValue" => "minValue",
+            "validFrom" => "validFrom",
+            "validThrough" => "validThrough",
+            "maxValue" => "maxValue",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The upper value of some characteristic or property.
+     * The lower value of some characteristic or property.
      *
      *
-     * @var float|null
+     * @var null|float
      */
-    protected $maxValue;
-
-    /**
-     * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $validThrough;
-
-    /**
-     * The date when the item becomes valid.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $validFrom;
+    protected $minValue;
 
     /**
      * The currency in which the monetary amount is expressed.<br/><br/>
@@ -74,91 +58,57 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
      * 
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\StructuredValue|string|float|bool|null
+     * @var float|bool|\OpenActive\Models\SchemaOrg\StructuredValue|null|string
      */
     protected $value;
 
     /**
-     * The lower value of some characteristic or property.
+     * The date when the item becomes valid.
      *
      *
-     * @var float|null
+     * @var null|DateTime|Date
      */
-    protected $minValue;
+    protected $validFrom;
 
     /**
-     * @return float|null
+     * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
+     *
+     *
+     * @var null|DateTime|Date
      */
-    public function getMaxValue()
+    protected $validThrough;
+
+    /**
+     * The upper value of some characteristic or property.
+     *
+     *
+     * @var null|float
+     */
+    protected $maxValue;
+
+    /**
+     * @return null|float
+     */
+    public function getMinValue()
     {
-        return $this->maxValue;
+        return $this->minValue;
     }
 
     /**
-     * @param float|null $maxValue
+     * @param null|float $minValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMaxValue($maxValue)
+    public function setMinValue($minValue)
     {
         $types = array(
+            "null",
             "float",
-            "null",
         );
 
-        $maxValue = self::checkTypes($maxValue, $types);
+        $minValue = self::checkTypes($minValue, $types);
 
-        $this->maxValue = $maxValue;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getValidThrough()
-    {
-        return $this->validThrough;
-    }
-
-    /**
-     * @param DateTime|null $validThrough
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setValidThrough($validThrough)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $validThrough = self::checkTypes($validThrough, $types);
-
-        $this->validThrough = $validThrough;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getValidFrom()
-    {
-        return $this->validFrom;
-    }
-
-    /**
-     * @param DateTime|null $validFrom
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setValidFrom($validFrom)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $validFrom = self::checkTypes($validFrom, $types);
-
-        $this->validFrom = $validFrom;
+        $this->minValue = $minValue;
     }
 
     /**
@@ -186,7 +136,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\StructuredValue|string|float|bool|null
+     * @return float|bool|\OpenActive\Models\SchemaOrg\StructuredValue|null|string
      */
     public function getValue()
     {
@@ -194,18 +144,18 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\StructuredValue|string|float|bool|null $value
+     * @param float|bool|\OpenActive\Models\SchemaOrg\StructuredValue|null|string $value
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValue($value)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\StructuredValue",
-            "string",
             "float",
             "bool",
+            "\OpenActive\Models\SchemaOrg\StructuredValue",
             "null",
+            "string",
         );
 
         $value = self::checkTypes($value, $types);
@@ -214,28 +164,80 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return float|null
+     * @return null|DateTime|Date
      */
-    public function getMinValue()
+    public function getValidFrom()
     {
-        return $this->minValue;
+        return $this->validFrom;
     }
 
     /**
-     * @param float|null $minValue
+     * @param null|DateTime|Date $validFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMinValue($minValue)
+    public function setValidFrom($validFrom)
     {
         $types = array(
-            "float",
             "null",
+            "DateTime",
+            "Date",
         );
 
-        $minValue = self::checkTypes($minValue, $types);
+        $validFrom = self::checkTypes($validFrom, $types);
 
-        $this->minValue = $minValue;
+        $this->validFrom = $validFrom;
+    }
+
+    /**
+     * @return null|DateTime|Date
+     */
+    public function getValidThrough()
+    {
+        return $this->validThrough;
+    }
+
+    /**
+     * @param null|DateTime|Date $validThrough
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValidThrough($validThrough)
+    {
+        $types = array(
+            "null",
+            "DateTime",
+            "Date",
+        );
+
+        $validThrough = self::checkTypes($validThrough, $types);
+
+        $this->validThrough = $validThrough;
+    }
+
+    /**
+     * @return null|float
+     */
+    public function getMaxValue()
+    {
+        return $this->maxValue;
+    }
+
+    /**
+     * @param null|float $maxValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMaxValue($maxValue)
+    {
+        $types = array(
+            "null",
+            "float",
+        );
+
+        $maxValue = self::checkTypes($maxValue, $types);
+
+        $this->maxValue = $maxValue;
     }
 
 }

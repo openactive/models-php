@@ -17,43 +17,59 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "sender" => "sender",
-            "toRecipient" => "toRecipient",
-            "dateReceived" => "dateReceived",
-            "messageAttachment" => "messageAttachment",
-            "recipient" => "recipient",
-            "ccRecipient" => "ccRecipient",
-            "dateSent" => "dateSent",
-            "bccRecipient" => "bccRecipient",
             "dateRead" => "dateRead",
+            "bccRecipient" => "bccRecipient",
+            "dateSent" => "dateSent",
+            "ccRecipient" => "ccRecipient",
+            "recipient" => "recipient",
+            "messageAttachment" => "messageAttachment",
+            "dateReceived" => "dateReceived",
+            "toRecipient" => "toRecipient",
+            "sender" => "sender",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A sub property of participant. The participant who is at the sending end of the action.
+     * The date/time at which the message has been read by the recipient if a single recipient exists.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var null|DateTime|Date
      */
-    protected $sender;
+    protected $dateRead;
 
     /**
-     * A sub property of recipient. The recipient who was directly sent the message.
+     * A sub property of recipient. The recipient blind copied on a message.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Audience
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint
      */
-    protected $toRecipient;
+    protected $bccRecipient;
 
     /**
-     * The date/time the message was received if a single recipient exists.
+     * The date/time at which the message was sent.
      *
      *
-     * @var DateTime|null
+     * @var null|DateTime
      */
-    protected $dateReceived;
+    protected $dateSent;
+
+    /**
+     * A sub property of recipient. The recipient copied on a message.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint
+     */
+    protected $ccRecipient;
+
+    /**
+     * A sub property of participant. The participant who is at the receiving end of the action.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person
+     */
+    protected $recipient;
 
     /**
      * A CreativeWork attached to the message.
@@ -64,121 +80,157 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $messageAttachment;
 
     /**
-     * A sub property of participant. The participant who is at the receiving end of the action.
+     * The date/time the message was received if a single recipient exists.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Audience
+     * @var null|DateTime
      */
-    protected $recipient;
+    protected $dateReceived;
 
     /**
-     * A sub property of recipient. The recipient copied on a message.
+     * A sub property of recipient. The recipient who was directly sent the message.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience
      */
-    protected $ccRecipient;
+    protected $toRecipient;
 
     /**
-     * The date/time at which the message was sent.
+     * A sub property of participant. The participant who is at the sending end of the action.
      *
      *
-     * @var DateTime|null
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience
      */
-    protected $dateSent;
+    protected $sender;
 
     /**
-     * A sub property of recipient. The recipient blind copied on a message.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return null|DateTime|Date
      */
-    protected $bccRecipient;
-
-    /**
-     * The date/time at which the message has been read by the recipient if a single recipient exists.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $dateRead;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    public function getSender()
+    public function getDateRead()
     {
-        return $this->sender;
+        return $this->dateRead;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $sender
+     * @param null|DateTime|Date $dateRead
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSender($sender)
+    public function setDateRead($dateRead)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Audience",
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-        );
-
-        $sender = self::checkTypes($sender, $types);
-
-        $this->sender = $sender;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Audience
-     */
-    public function getToRecipient()
-    {
-        return $this->toRecipient;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Audience $toRecipient
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setToRecipient($toRecipient)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Audience",
-        );
-
-        $toRecipient = self::checkTypes($toRecipient, $types);
-
-        $this->toRecipient = $toRecipient;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getDateReceived()
-    {
-        return $this->dateReceived;
-    }
-
-    /**
-     * @param DateTime|null $dateReceived
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDateReceived($dateReceived)
-    {
-        $types = array(
-            "DateTime",
             "null",
+            "DateTime",
+            "Date",
         );
 
-        $dateReceived = self::checkTypes($dateReceived, $types);
+        $dateRead = self::checkTypes($dateRead, $types);
 
-        $this->dateReceived = $dateReceived;
+        $this->dateRead = $dateRead;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint
+     */
+    public function getBccRecipient()
+    {
+        return $this->bccRecipient;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint $bccRecipient
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBccRecipient($bccRecipient)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
+        );
+
+        $bccRecipient = self::checkTypes($bccRecipient, $types);
+
+        $this->bccRecipient = $bccRecipient;
+    }
+
+    /**
+     * @return null|DateTime
+     */
+    public function getDateSent()
+    {
+        return $this->dateSent;
+    }
+
+    /**
+     * @param null|DateTime $dateSent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDateSent($dateSent)
+    {
+        $types = array(
+            "null",
+            "DateTime",
+        );
+
+        $dateSent = self::checkTypes($dateSent, $types);
+
+        $this->dateSent = $dateSent;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint
+     */
+    public function getCcRecipient()
+    {
+        return $this->ccRecipient;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint $ccRecipient
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCcRecipient($ccRecipient)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
+        );
+
+        $ccRecipient = self::checkTypes($ccRecipient, $types);
+
+        $this->ccRecipient = $ccRecipient;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person
+     */
+    public function getRecipient()
+    {
+        return $this->recipient;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person $recipient
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRecipient($recipient)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
+            "\OpenActive\Models\SchemaOrg\Audience",
+            "\OpenActive\Models\SchemaOrg\Person",
+        );
+
+        $recipient = self::checkTypes($recipient, $types);
+
+        $this->recipient = $recipient;
     }
 
     /**
@@ -206,132 +258,81 @@ class Message extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Audience
+     * @return null|DateTime
      */
-    public function getRecipient()
+    public function getDateReceived()
     {
-        return $this->recipient;
+        return $this->dateReceived;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Audience $recipient
+     * @param null|DateTime $dateReceived
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRecipient($recipient)
+    public function setDateReceived($dateReceived)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
+            "null",
+            "DateTime",
+        );
+
+        $dateReceived = self::checkTypes($dateReceived, $types);
+
+        $this->dateReceived = $dateReceived;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience
+     */
+    public function getToRecipient()
+    {
+        return $this->toRecipient;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience $toRecipient
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setToRecipient($toRecipient)
+    {
+        $types = array(
             "\OpenActive\Models\SchemaOrg\ContactPoint",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Audience",
         );
 
-        $recipient = self::checkTypes($recipient, $types);
+        $toRecipient = self::checkTypes($toRecipient, $types);
 
-        $this->recipient = $recipient;
+        $this->toRecipient = $toRecipient;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience
      */
-    public function getCcRecipient()
+    public function getSender()
     {
-        return $this->ccRecipient;
+        return $this->sender;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization $ccRecipient
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience $sender
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCcRecipient($ccRecipient)
+    public function setSender($sender)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
-            "\OpenActive\Models\SchemaOrg\Organization",
-        );
-
-        $ccRecipient = self::checkTypes($ccRecipient, $types);
-
-        $this->ccRecipient = $ccRecipient;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getDateSent()
-    {
-        return $this->dateSent;
-    }
-
-    /**
-     * @param DateTime|null $dateSent
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDateSent($dateSent)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $dateSent = self::checkTypes($dateSent, $types);
-
-        $this->dateSent = $dateSent;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    public function getBccRecipient()
-    {
-        return $this->bccRecipient;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $bccRecipient
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBccRecipient($bccRecipient)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
             "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Audience",
         );
 
-        $bccRecipient = self::checkTypes($bccRecipient, $types);
+        $sender = self::checkTypes($sender, $types);
 
-        $this->bccRecipient = $bccRecipient;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getDateRead()
-    {
-        return $this->dateRead;
-    }
-
-    /**
-     * @param DateTime|null $dateRead
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDateRead($dateRead)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $dateRead = self::checkTypes($dateRead, $types);
-
-        $this->dateRead = $dateRead;
+        $this->sender = $sender;
     }
 
 }

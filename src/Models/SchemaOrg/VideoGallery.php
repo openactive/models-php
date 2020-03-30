@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class VideoGallery extends \OpenActive\Models\SchemaOrg\CollectionPage
+class VideoGallery extends \OpenActive\Models\SchemaOrg\MediaGallery
 {
     /**
      * @return string[]|null

@@ -24,8 +24,8 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
             "activity" => "activity",
             "author" => "author",
             "url" => "url",
-            "video" => "beta:video",
             "logo" => "beta:logo",
+            "video" => "beta:video",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -74,8 +74,8 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      * ```json
      * "activity": [
      *   {
-     *     "id": "https://openactive.io/activity-list#fbdc35a8-3dd0-40ee-a7ca-6ff40b3e5f90",
-     *     "type": "Concept",
+     *     "@id": "https://openactive.io/activity-list#fbdc35a8-3dd0-40ee-a7ca-6ff40b3e5f90",
+     *     "@type": "Concept",
      *     "prefLabel": "Netball",
      *     "inScheme": "https://openactive.io/activity-list"
      *   }
@@ -92,7 +92,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      * ```json
      * "author": {
      *   "name": "Central Speedball Association",
-     *   "type": "Organization",
+     *   "@type": "Organization",
      *   "url": "http://www.speedball-world.com"
      * }
      * ```
@@ -114,17 +114,6 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * An related video object.
-     * 
-     * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\VideoObject[]
-     */
-    protected $video;
-
-    /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * An associated logo for a course.
      * 
      * If you are using this property, please join the discussion at proposal [#164](https://github.com/openactive/modelling-opportunity-data/issues/164).
@@ -133,6 +122,17 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      * @var \OpenActive\Models\ImageObject
      */
     protected $logo;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * An related video object.
+     * 
+     * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
+     *
+     *
+     * @var \OpenActive\Models\VideoObject[]
+     */
+    protected $video;
 
     /**
      * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
@@ -284,30 +284,6 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\VideoObject[]
-     */
-    public function getVideo()
-    {
-        return $this->video;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\VideoObject[] $video
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVideo($video)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\VideoObject[]",
-        );
-
-        $video = self::checkTypes($video, $types);
-
-        $this->video = $video;
-    }
-
-    /**
      * @return \OpenActive\Models\ImageObject
      */
     public function getLogo()
@@ -329,6 +305,30 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
         $logo = self::checkTypes($logo, $types);
 
         $this->logo = $logo;
+    }
+
+    /**
+     * @return \OpenActive\Models\VideoObject[]
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * @param \OpenActive\Models\VideoObject[] $video
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVideo($video)
+    {
+        $types = array(
+            "\OpenActive\Models\VideoObject[]",
+        );
+
+        $video = self::checkTypes($video, $types);
+
+        $this->video = $video;
     }
 
 }

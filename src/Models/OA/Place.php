@@ -96,32 +96,32 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      *   {
      *     "name": "Changing Facilities",
      *     "value": true,
-     *     "type": "ChangingFacilities"
+     *     "@type": "ChangingFacilities"
      *   },
      *   {
      *     "name": "Showers",
      *     "value": false,
-     *     "type": "Showers"
+     *     "@type": "Showers"
      *   },
      *   {
      *     "name": "Lockers",
      *     "value": true,
-     *     "type": "Lockers"
+     *     "@type": "Lockers"
      *   },
      *   {
      *     "name": "Towels",
      *     "value": false,
-     *     "type": "Towels"
+     *     "@type": "Towels"
      *   },
      *   {
      *     "name": "Creche",
      *     "value": false,
-     *     "type": "Creche"
+     *     "@type": "Creche"
      *   },
      *   {
      *     "name": "Parking",
      *     "value": true,
-     *     "type": "Parking"
+     *     "@type": "Parking"
      *   }
      * ]
      * ```
@@ -167,7 +167,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * "geo": {
      *   "latitude": 51.4034423828125,
      *   "longitude": -0.2369088977575302,
-     *   "type": "GeoCoordinates"
+     *   "@type": "GeoCoordinates"
      * }
      * ```
      *
@@ -182,7 +182,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * "image": [
      *   {
      *     "thumbnail": "http://example.com/static/image/speedball_thumbnail.jpg",
-     *     "type": "ImageObject",
+     *     "@type": "ImageObject",
      *     "url": "http://example.com/static/image/speedball_large.jpg"
      *   }
      * ]

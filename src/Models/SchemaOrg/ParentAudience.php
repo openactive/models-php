@@ -17,56 +17,31 @@ class ParentAudience extends \OpenActive\Models\SchemaOrg\PeopleAudience
 
     public static function fieldList() {
         $fields = [
-            "childMinAge" => "childMinAge",
             "childMaxAge" => "childMaxAge",
+            "childMinAge" => "childMinAge",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Minimal age of the child.
-     *
-     *
-     * @var float|null
-     */
-    protected $childMinAge;
-
-    /**
      * Maximal age of the child.
      *
      *
-     * @var float|null
+     * @var null|float
      */
     protected $childMaxAge;
 
     /**
-     * @return float|null
+     * Minimal age of the child.
+     *
+     *
+     * @var null|float
      */
-    public function getChildMinAge()
-    {
-        return $this->childMinAge;
-    }
+    protected $childMinAge;
 
     /**
-     * @param float|null $childMinAge
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setChildMinAge($childMinAge)
-    {
-        $types = array(
-            "float",
-            "null",
-        );
-
-        $childMinAge = self::checkTypes($childMinAge, $types);
-
-        $this->childMinAge = $childMinAge;
-    }
-
-    /**
-     * @return float|null
+     * @return null|float
      */
     public function getChildMaxAge()
     {
@@ -74,20 +49,45 @@ class ParentAudience extends \OpenActive\Models\SchemaOrg\PeopleAudience
     }
 
     /**
-     * @param float|null $childMaxAge
+     * @param null|float $childMaxAge
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setChildMaxAge($childMaxAge)
     {
         $types = array(
-            "float",
             "null",
+            "float",
         );
 
         $childMaxAge = self::checkTypes($childMaxAge, $types);
 
         $this->childMaxAge = $childMaxAge;
+    }
+
+    /**
+     * @return null|float
+     */
+    public function getChildMinAge()
+    {
+        return $this->childMinAge;
+    }
+
+    /**
+     * @param null|float $childMinAge
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setChildMinAge($childMinAge)
+    {
+        $types = array(
+            "null",
+            "float",
+        );
+
+        $childMinAge = self::checkTypes($childMinAge, $types);
+
+        $this->childMinAge = $childMinAge;
     }
 
 }

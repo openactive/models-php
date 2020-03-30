@@ -20,8 +20,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
         $fields = [
             "acceptedOffer" => "acceptedOffer",
             "accessCode" => "accessCode",
-            "accessToken" => "accessToken",
-            "additionalProperty" => "additionalProperty",
+            "accessPass" => "accessPass",
             "allowCustomerCancellationFullRefund" => "allowCustomerCancellationFullRefund",
             "attendee" => "attendee",
             "attendeeDetailsRequired" => "attendeeDetailsRequired",
@@ -32,6 +31,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
             "orderItemIntakeForm" => "orderItemIntakeForm",
             "orderItemIntakeFormResponse" => "orderItemIntakeFormResponse",
             "orderItemStatus" => "orderItemStatus",
+            "position" => "position",
             "unitTaxSpecification" => "unitTaxSpecification",
         ];
 
@@ -60,21 +60,13 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      *
      * @var \OpenActive\Models\OA\ImageObject[]
      */
-    protected $accessToken;
-
-    /**
-     * PropertyValue that contains a text value useful for reconciliation.
-     *
-     *
-     * @var \OpenActive\Models\OA\PropertyValue[]
-     */
-    protected $additionalProperty;
+    protected $accessPass;
 
     /**
      * Whether the event can be cancelled.
      *
      *
-     * @var bool|null
+     * @var null|bool
      */
     protected $allowCustomerCancellationFullRefund;
 
@@ -101,7 +93,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     protected $cancellationMessage;
 
     /**
-     * A message set by the Seller to trigger a notification to the Customer, only applicable for an Order and where the OrderItem has  orderItemStatus set to  https://openactive.io/OrderConfirmed or  https://openactive.io/CustomerAttended
+     * A message set by the Seller to trigger a notification to the Customer, only applicable for an Order and where the OrderItem has  orderItemStatus set to  https://openactive.io/OrderItemConfirmed or  https://openactive.io/CustomerAttended
      *
      *
      * @var string
@@ -146,6 +138,14 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      * @var \OpenActive\Enums\OrderItemStatus|null
      */
     protected $orderItemStatus;
+
+    /**
+     * An integer representing the order of OrderItems within the array.
+     *
+     *
+     * @var null|int
+     */
+    protected $position;
 
     /**
      * Breakdown of tax payable for the OrderItem.
@@ -206,53 +206,29 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     /**
      * @return \OpenActive\Models\OA\ImageObject[]
      */
-    public function getAccessToken()
+    public function getAccessPass()
     {
-        return $this->accessToken;
+        return $this->accessPass;
     }
 
     /**
-     * @param \OpenActive\Models\OA\ImageObject[] $accessToken
+     * @param \OpenActive\Models\OA\ImageObject[] $accessPass
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAccessToken($accessToken)
+    public function setAccessPass($accessPass)
     {
         $types = array(
             "\OpenActive\Models\OA\ImageObject[]",
         );
 
-        $accessToken = self::checkTypes($accessToken, $types);
+        $accessPass = self::checkTypes($accessPass, $types);
 
-        $this->accessToken = $accessToken;
+        $this->accessPass = $accessPass;
     }
 
     /**
-     * @return \OpenActive\Models\OA\PropertyValue[]
-     */
-    public function getAdditionalProperty()
-    {
-        return $this->additionalProperty;
-    }
-
-    /**
-     * @param \OpenActive\Models\OA\PropertyValue[] $additionalProperty
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAdditionalProperty($additionalProperty)
-    {
-        $types = array(
-            "\OpenActive\Models\OA\PropertyValue[]",
-        );
-
-        $additionalProperty = self::checkTypes($additionalProperty, $types);
-
-        $this->additionalProperty = $additionalProperty;
-    }
-
-    /**
-     * @return bool|null
+     * @return null|bool
      */
     public function getAllowCustomerCancellationFullRefund()
     {
@@ -260,15 +236,15 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param bool|null $allowCustomerCancellationFullRefund
+     * @param null|bool $allowCustomerCancellationFullRefund
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAllowCustomerCancellationFullRefund($allowCustomerCancellationFullRefund)
     {
         $types = array(
-            "bool",
             "null",
+            "bool",
         );
 
         $allowCustomerCancellationFullRefund = self::checkTypes($allowCustomerCancellationFullRefund, $types);
@@ -491,6 +467,31 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
         $orderItemStatus = self::checkTypes($orderItemStatus, $types);
 
         $this->orderItemStatus = $orderItemStatus;
+    }
+
+    /**
+     * @return null|int
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param null|int $position
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPosition($position)
+    {
+        $types = array(
+            "null",
+            "int",
+        );
+
+        $position = self::checkTypes($position, $types);
+
+        $this->position = $position;
     }
 
     /**

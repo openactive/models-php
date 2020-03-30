@@ -20,8 +20,6 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
             "name" => "name",
             "description" => "description",
             "instance" => "instance",
-            "invalidParams" => "invalidParams",
-            "method" => "method",
             "requestId" => "requestId",
             "statusCode" => "statusCode",
         ];
@@ -41,7 +39,7 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     protected $name;
 
     /**
-     * A slightly longer, human-readable summary of the problem type. It largely should not change from occurrence to occurrence of the problem, except for purposes of localization or to provide specific information about why the error occurred in that particular case.
+     * A human-readable explanation specific to this occurrence of the problem, providing specific information about why the error occurred in this particular case.
      *
      * ```json
      * "description": "No customer details supplied. These must be supplied for calls to C2, P, and B."
@@ -52,28 +50,12 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     protected $description;
 
     /**
-     * The requested URL.
+     * A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced.
      *
      *
      * @var string
      */
     protected $instance;
-
-    /**
-     * An array of invalid parameters, if appropriate.
-     *
-     *
-     * @var string[]
-     */
-    protected $invalidParams;
-
-    /**
-     * The method of the request (e.g. GET).
-     *
-     *
-     * @var string
-     */
-    protected $method;
 
     /**
      * Used by technical support for diagnostics purposes.
@@ -87,7 +69,7 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
      * An integer representing the HTTP status code.
      *
      *
-     * @var int|null
+     * @var null|int
      */
     protected $statusCode;
 
@@ -164,54 +146,6 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string[]
-     */
-    public function getInvalidParams()
-    {
-        return $this->invalidParams;
-    }
-
-    /**
-     * @param string[] $invalidParams
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setInvalidParams($invalidParams)
-    {
-        $types = array(
-            "string[]",
-        );
-
-        $invalidParams = self::checkTypes($invalidParams, $types);
-
-        $this->invalidParams = $invalidParams;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMethod()
-    {
-        return $this->method;
-    }
-
-    /**
-     * @param string $method
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMethod($method)
-    {
-        $types = array(
-            "string",
-        );
-
-        $method = self::checkTypes($method, $types);
-
-        $this->method = $method;
-    }
-
-    /**
      * @return string
      */
     public function getRequestId()
@@ -236,7 +170,7 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getStatusCode()
     {
@@ -244,15 +178,15 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param int|null $statusCode
+     * @param null|int $statusCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStatusCode($statusCode)
     {
         $types = array(
-            "int",
             "null",
+            "int",
         );
 
         $statusCode = self::checkTypes($statusCode, $types);

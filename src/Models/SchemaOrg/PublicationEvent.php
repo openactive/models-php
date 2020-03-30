@@ -17,29 +17,13 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
 
     public static function fieldList() {
         $fields = [
-            "isAccessibleForFree" => "isAccessibleForFree",
-            "free" => "free",
             "publishedOn" => "publishedOn",
+            "free" => "free",
+            "isAccessibleForFree" => "isAccessibleForFree",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A flag to signal that the item, event, or place is accessible for free.
-     *
-     *
-     * @var bool|null
-     */
-    protected $isAccessibleForFree;
-
-    /**
-     * A flag to signal that the item, event, or place is accessible for free.
-     *
-     *
-     * @var bool|null
-     */
-    protected $free;
 
     /**
      * A broadcast service associated with the publication event.
@@ -50,54 +34,20 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
     protected $publishedOn;
 
     /**
-     * @return bool|null
+     * A flag to signal that the item, event, or place is accessible for free.
+     *
+     *
+     * @var null|bool
      */
-    public function getIsAccessibleForFree()
-    {
-        return $this->isAccessibleForFree;
-    }
+    protected $free;
 
     /**
-     * @param bool|null $isAccessibleForFree
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * A flag to signal that the item, event, or place is accessible for free.
+     *
+     *
+     * @var null|bool
      */
-    public function setIsAccessibleForFree($isAccessibleForFree)
-    {
-        $types = array(
-            "bool",
-            "null",
-        );
-
-        $isAccessibleForFree = self::checkTypes($isAccessibleForFree, $types);
-
-        $this->isAccessibleForFree = $isAccessibleForFree;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getFree()
-    {
-        return $this->free;
-    }
-
-    /**
-     * @param bool|null $free
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFree($free)
-    {
-        $types = array(
-            "bool",
-            "null",
-        );
-
-        $free = self::checkTypes($free, $types);
-
-        $this->free = $free;
-    }
+    protected $isAccessibleForFree;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\BroadcastService
@@ -121,6 +71,56 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
         $publishedOn = self::checkTypes($publishedOn, $types);
 
         $this->publishedOn = $publishedOn;
+    }
+
+    /**
+     * @return null|bool
+     */
+    public function getFree()
+    {
+        return $this->free;
+    }
+
+    /**
+     * @param null|bool $free
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFree($free)
+    {
+        $types = array(
+            "null",
+            "bool",
+        );
+
+        $free = self::checkTypes($free, $types);
+
+        $this->free = $free;
+    }
+
+    /**
+     * @return null|bool
+     */
+    public function getIsAccessibleForFree()
+    {
+        return $this->isAccessibleForFree;
+    }
+
+    /**
+     * @param null|bool $isAccessibleForFree
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsAccessibleForFree($isAccessibleForFree)
+    {
+        $types = array(
+            "null",
+            "bool",
+        );
+
+        $isAccessibleForFree = self::checkTypes($isAccessibleForFree, $types);
+
+        $this->isAccessibleForFree = $isAccessibleForFree;
     }
 
 }
