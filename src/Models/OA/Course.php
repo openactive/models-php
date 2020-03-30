@@ -74,8 +74,8 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      * ```json
      * "activity": [
      *   {
-     *     "id": "https://openactive.io/activity-list#fbdc35a8-3dd0-40ee-a7ca-6ff40b3e5f90",
-     *     "type": "Concept",
+     *     "@id": "https://openactive.io/activity-list#fbdc35a8-3dd0-40ee-a7ca-6ff40b3e5f90",
+     *     "@type": "Concept",
      *     "prefLabel": "Netball",
      *     "inScheme": "https://openactive.io/activity-list"
      *   }
@@ -92,7 +92,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      * ```json
      * "author": {
      *   "name": "Central Speedball Association",
-     *   "type": "Organization",
+     *   "@type": "Organization",
      *   "url": "http://www.speedball-world.com"
      * }
      * ```

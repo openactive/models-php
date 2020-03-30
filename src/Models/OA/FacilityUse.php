@@ -95,8 +95,8 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * ```json
      * "accessibilitySupport": [
      *   {
-     *     "type": "Concept",
-     *     "id": "https://openactive.io/accessibility-support#1393f2dc-3fcc-4be9-a99f-f1e51f5ad277",
+     *     "@type": "Concept",
+     *     "@id": "https://openactive.io/accessibility-support#1393f2dc-3fcc-4be9-a99f-f1e51f5ad277",
      *     "prefLabel": "Visual impairment",
      *     "inScheme": "https://openactive.io/accessibility-support"
      *   }
@@ -113,8 +113,8 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * ```json
      * "activity": [
      *   {
-     *     "type": "Concept",
-     *     "id": "https://openactive.io/activity-list#c0360db0-a817-4bae-9167-40f89b49fc9e",
+     *     "@type": "Concept",
+     *     "@id": "https://openactive.io/activity-list#c0360db0-a817-4bae-9167-40f89b49fc9e",
      *     "prefLabel": "Badminton",
      *     "inScheme": "https://openactive.io/activity-list"
      *   }
@@ -142,10 +142,10 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * ```json
      * "category": [
      *   {
-     *     "id": "https://example.com/reference/categories#Top%20Club%20Level",
+     *     "@type": "Concept",
+     *     "@id": "https://example.com/reference/categories#Top%20Club%20Level",
      *     "inScheme": "https://example.com/reference/categories",
-     *     "prefLabel": "Top Club Level",
-     *     "type": "Concept"
+     *     "prefLabel": "Top Club Level"
      *   }
      * ]
      * ```
@@ -160,8 +160,8 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * ```json
      * "event": [
      *   {
-     *     "type": "Slot",
-     *     "id": "http://www.example.org/api/facility-uses/432#/event/2018-03-01T10:00:00Z",
+     *     "@type": "Slot",
+     *     "@id": "http://www.example.org/api/facility-uses/432#/event/2018-03-01T10:00:00Z",
      *     "startDate": "2018-03-01T11:00:00Z",
      *     "endDate": "2018-03-01T11:30:00Z",
      *     "duration": "PT30M",
@@ -190,7 +190,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * "image": [
      *   {
      *     "thumbnail": "http://example.com/static/image/speedball_thumbnail.jpg",
-     *     "type": "ImageObject",
+     *     "@type": "ImageObject",
      *     "url": "http://example.com/static/image/speedball_large.jpg"
      *   }
      * ]
@@ -206,8 +206,8 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * ```json
      * "individualFacilityUse": [
      *   {
-     *     "type": "IndividualFacilityUse",
-     *     "id": "http://www.example.org/facility-uses/1",
+     *     "@type": "IndividualFacilityUse",
+     *     "@id": "http://www.example.org/facility-uses/1",
      *     "name": "Tennis Court 1"
      *   }
      * ]
@@ -222,24 +222,24 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      *
      * ```json
      * "location": {
+     *   "@type": "Place",
      *   "address": {
      *     "addressLocality": "New Malden",
      *     "addressRegion": "London",
      *     "postalCode": "NW5 3DU",
      *     "streetAddress": "Raynes Park High School, 46A West Barnes Lane",
-     *     "type": "PostalAddress"
+     *     "@type": "PostalAddress"
      *   },
      *   "description": "Raynes Park High School in London",
      *   "geo": {
      *     "latitude": 51.4034423828125,
      *     "longitude": -0.2369088977575302,
-     *     "type": "GeoCoordinates"
+     *     "@type": "GeoCoordinates"
      *   },
-     *   "id": "https://example.com/locations/1234ABCD",
+     *   "@id": "https://example.com/locations/1234ABCD",
      *   "identifier": "1234ABCD",
      *   "name": "Raynes Park High School",
-     *   "telephone": "01253 473934",
-     *   "type": "Place"
+     *   "telephone": "01253 473934"
      * }
      * ```
      *
@@ -271,7 +271,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * ```json
      * "provider": {
      *   "name": "Central Speedball Association",
-     *   "type": "Organization",
+     *   "@type": "Organization",
      *   "url": "http://www.speedball-world.com"
      * }
      * ```

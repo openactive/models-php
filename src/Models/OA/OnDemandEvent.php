@@ -55,7 +55,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      * ```json
      * "eventSchedule": [
      *   {
-     *     "type": "PartialSchedule",
+     *     "@type": "PartialSchedule",
      *     "repeatFrequency": "P1W",
      *     "startTime": "20:15",
      *     "endTime": "20:45",
@@ -91,24 +91,24 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      *
      * ```json
      * "location": {
+     *   "@type": "Place",
+     *   "@id": "https://example.com/locations/1234ABCD",
+     *   "identifier": "1234ABCD",
      *   "address": {
      *     "addressLocality": "New Malden",
      *     "addressRegion": "London",
      *     "postalCode": "NW5 3DU",
      *     "streetAddress": "Raynes Park High School, 46A West Barnes Lane",
-     *     "type": "PostalAddress"
+     *     "@type": "PostalAddress"
      *   },
      *   "description": "Raynes Park High School in London",
      *   "geo": {
      *     "latitude": 51.4034423828125,
      *     "longitude": -0.2369088977575302,
-     *     "type": "GeoCoordinates"
+     *     "@type": "GeoCoordinates"
      *   },
-     *   "id": "https://example.com/locations/1234ABCD",
-     *   "identifier": "1234ABCD",
      *   "name": "Raynes Park High School",
-     *   "telephone": "01253 473934",
-     *   "type": "Place"
+     *   "telephone": "01253 473934"
      * }
      * ```
      *

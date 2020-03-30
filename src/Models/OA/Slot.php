@@ -113,8 +113,8 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```json
      * "accessibilitySupport": [
      *   {
-     *     "type": "Concept",
-     *     "id": "https://openactive.io/accessibility-support#1393f2dc-3fcc-4be9-a99f-f1e51f5ad277",
+     *     "@type": "Concept",
+     *     "@id": "https://openactive.io/accessibility-support#1393f2dc-3fcc-4be9-a99f-f1e51f5ad277",
      *     "prefLabel": "Visual impairment",
      *     "inScheme": "https://openactive.io/accessibility-support"
      *   }
@@ -132,8 +132,8 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```json
      * "activity": [
      *   {
-     *     "type": "Concept",
-     *     "id": "https://openactive.io/activity-list#5e78bcbe-36db-425a-9064-bf96d09cc351",
+     *     "@type": "Concept",
+     *     "@id": "https://openactive.io/activity-list#5e78bcbe-36db-425a-9064-bf96d09cc351",
      *     "prefLabel": "Bodypump™",
      *     "inScheme": "https://openactive.io/activity-list"
      *   }
@@ -196,7 +196,7 @@ class Slot extends \OpenActive\Models\OA\Event
      *     "@type": "Person",
      *     "familyName": "Smith",
      *     "givenName": "Nicole",
-     *     "id": "https://example.com/locations/1234ABCD/leaders/89",
+     *     "@id": "https://example.com/locations/1234ABCD/leaders/89",
      *     "identifier": 89
      *   }
      * ]
@@ -236,7 +236,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * ```json
      * "eventSchedule": [
      *   {
-     *     "type": "PartialSchedule",
+     *     "@type": "PartialSchedule",
      *     "repeatFrequency": "P1W",
      *     "startTime": "20:15",
      *     "endTime": "20:45",
@@ -344,7 +344,7 @@ class Slot extends \OpenActive\Models\OA\Event
      *     "familyName": "Smith",
      *     "givenName": "Nicole",
      *     "gender": "https://schema.org/Male",
-     *     "id": "https://example.com/locations/1234ABCD/leaders/89",
+     *     "@id": "https://example.com/locations/1234ABCD/leaders/89",
      *     "identifier": 89
      *   }
      * ]
@@ -377,24 +377,24 @@ class Slot extends \OpenActive\Models\OA\Event
      *
      * ```json
      * "location": {
+     *   "@type": "Place",
+     *   "@id": "https://example.com/locations/1234ABCD",
+     *   "identifier": "1234ABCD",
      *   "address": {
      *     "addressLocality": "New Malden",
      *     "addressRegion": "London",
      *     "postalCode": "NW5 3DU",
      *     "streetAddress": "Raynes Park High School, 46A West Barnes Lane",
-     *     "type": "PostalAddress"
+     *     "@type": "PostalAddress"
      *   },
      *   "description": "Raynes Park High School in London",
      *   "geo": {
      *     "latitude": 51.4034423828125,
      *     "longitude": -0.2369088977575302,
-     *     "type": "GeoCoordinates"
+     *     "@type": "GeoCoordinates"
      *   },
-     *   "id": "https://example.com/locations/1234ABCD",
-     *   "identifier": "1234ABCD",
      *   "name": "Raynes Park High School",
-     *   "telephone": "01253 473934",
-     *   "type": "Place"
+     *   "telephone": "01253 473934"
      * }
      * ```
      *

@@ -54,7 +54,6 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
             "url" => "url",
             "formattedDescription" => "beta:formattedDescription",
             "distance" => "beta:distance",
-            "availability" => "beta:availability",
             "attendeeCount" => "beta:attendeeCount",
             "registrationCount" => "beta:registrationCount",
             "isWheelchairAccessible" => "beta:isWheelchairAccessible",
@@ -68,6 +67,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
             "affiliatedLocation" => "beta:affiliatedLocation",
             "isInteractivityPreferred" => "beta:isInteractivityPreferred",
             "participantSuppliedEquipment" => "beta:participantSuppliedEquipment",
+            "donationPaymentUrl" => "beta:donationPaymentUrl",
             "isFirstSessionAccessibleForFree" => "beta:isFirstSessionAccessibleForFree",
         ];
 
@@ -124,8 +124,8 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ```json
      * "accessibilitySupport": [
      *   {
-     *     "type": "Concept",
-     *     "id": "https://openactive.io/accessibility-support#1393f2dc-3fcc-4be9-a99f-f1e51f5ad277",
+     *     "@type": "Concept",
+     *     "@id": "https://openactive.io/accessibility-support#1393f2dc-3fcc-4be9-a99f-f1e51f5ad277",
      *     "prefLabel": "Visual impairment",
      *     "inScheme": "https://openactive.io/accessibility-support"
      *   }
@@ -142,8 +142,8 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ```json
      * "activity": [
      *   {
-     *     "type": "Concept",
-     *     "id": "https://openactive.io/activity-list#5e78bcbe-36db-425a-9064-bf96d09cc351",
+     *     "@type": "Concept",
+     *     "@id": "https://openactive.io/activity-list#5e78bcbe-36db-425a-9064-bf96d09cc351",
      *     "prefLabel": "Bodypump™",
      *     "inScheme": "https://openactive.io/activity-list"
      *   }
@@ -202,7 +202,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      *     "@type": "Person",
      *     "familyName": "Smith",
      *     "givenName": "Nicole",
-     *     "id": "https://example.com/locations/1234ABCD/leaders/89",
+     *     "@id": "https://example.com/locations/1234ABCD/leaders/89",
      *     "identifier": 89
      *   }
      * ]
@@ -240,7 +240,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ```json
      * "eventSchedule": [
      *   {
-     *     "type": "PartialSchedule",
+     *     "@type": "PartialSchedule",
      *     "repeatFrequency": "P1W",
      *     "startTime": "20:15",
      *     "endTime": "20:45",
@@ -331,7 +331,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      *     "familyName": "Smith",
      *     "givenName": "Nicole",
      *     "gender": "https://schema.org/Male",
-     *     "id": "https://example.com/locations/1234ABCD/leaders/89",
+     *     "@id": "https://example.com/locations/1234ABCD/leaders/89",
      *     "identifier": 89
      *   }
      * ]
@@ -362,24 +362,24 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      *
      * ```json
      * "location": {
+     *   "@type": "Place",
+     *   "@id": "https://example.com/locations/1234ABCD",
+     *   "identifier": "1234ABCD",
      *   "address": {
      *     "addressLocality": "New Malden",
      *     "addressRegion": "London",
      *     "postalCode": "NW5 3DU",
      *     "streetAddress": "Raynes Park High School, 46A West Barnes Lane",
-     *     "type": "PostalAddress"
+     *     "@type": "PostalAddress"
      *   },
      *   "description": "Raynes Park High School in London",
      *   "geo": {
      *     "latitude": 51.4034423828125,
      *     "longitude": -0.2369088977575302,
-     *     "type": "GeoCoordinates"
+     *     "@type": "GeoCoordinates"
      *   },
-     *   "id": "https://example.com/locations/1234ABCD",
-     *   "identifier": "1234ABCD",
      *   "name": "Raynes Park High School",
-     *   "telephone": "01253 473934",
-     *   "type": "Place"
+     *   "telephone": "01253 473934"
      * }
      * ```
      *
@@ -446,7 +446,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * ```json
      * "organizer": {
      *   "name": "Central Speedball Association",
-     *   "type": "Organization",
+     *   "@type": "Organization",
      *   "url": "http://www.speedball-world.com"
      * }
      * ```
@@ -566,17 +566,6 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * For data publishers not wishing to disclose the granular availability of their sessions openly.
-     * 
-     * If you are using this property, please join the discussion at proposal [#9](https://github.com/openactive/ns-beta/issues/9).
-     *
-     *
-     * @var string
-     */
-    protected $availability;
-
-    /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
      * For events that have an unlimited number of tickets, captures the number of attendees (actual attendance).
      * 
      * If you are using this property, please join the discussion at proposal [#12](https://github.com/openactive/ns-beta/issues/12).
@@ -687,7 +676,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * The original location of the event before it was moved online.
+     * The physical location affiliated with the virtual event, for example the original location of the event before it was moved online.
      * 
      * If you are using this property, please join the discussion at proposal [#227](https://github.com/openactive/modelling-opportunity-data/issues/227).
      *
@@ -698,7 +687,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * A property that indicates whether the virtual event is interactive (e.g. Zoom with participant microphones and cameras on), or is just a one-way broadcast (e.g. Facebook Live, Instagram Live, Zoom with participant microphones and cameras off).
+     * Indicates whether the virtual event is interactive (e.g. Zoom with participant microphones and cameras on), or is just a one-way broadcast (e.g. Facebook Live, Instagram Live, Zoom with participant microphones and cameras off).
      * 
      * If you are using this property, please join the discussion at proposal [#230](https://github.com/openactive/modelling-opportunity-data/issues/230).
      *
@@ -709,7 +698,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * A property that indicates whether the participant must or may supply equipment for use in the Event.
+     * Indicates whether the participant must or may supply equipment for use in the Event.
      * 
      * If you are using this property, please join the discussion at proposal [#229](https://github.com/openactive/modelling-opportunity-data/issues/229).
      *
@@ -717,6 +706,17 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * @var \OpenActive\Enums\RequiredStatusType|null
      */
     protected $participantSuppliedEquipment;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * The URL of the webpage where the activity provider accepts donations.
+     * 
+     * If you are using this property, please join the discussion at proposal [#234](https://github.com/openactive/modelling-opportunity-data/issues/234).
+     *
+     *
+     * @var string
+     */
+    protected $donationPaymentUrl;
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
@@ -1614,30 +1614,6 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return string
-     */
-    public function getAvailability()
-    {
-        return $this->availability;
-    }
-
-    /**
-     * @param string $availability
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAvailability($availability)
-    {
-        $types = array(
-            "string",
-        );
-
-        $availability = self::checkTypes($availability, $types);
-
-        $this->availability = $availability;
-    }
-
-    /**
      * @return null|int
      */
     public function getAttendeeCount()
@@ -1955,6 +1931,30 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
         $participantSuppliedEquipment = self::checkTypes($participantSuppliedEquipment, $types);
 
         $this->participantSuppliedEquipment = $participantSuppliedEquipment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDonationPaymentUrl()
+    {
+        return $this->donationPaymentUrl;
+    }
+
+    /**
+     * @param string $donationPaymentUrl
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDonationPaymentUrl($donationPaymentUrl)
+    {
+        $types = array(
+            "string",
+        );
+
+        $donationPaymentUrl = self::checkTypes($donationPaymentUrl, $types);
+
+        $this->donationPaymentUrl = $donationPaymentUrl;
     }
 
     /**
