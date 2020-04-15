@@ -147,7 +147,7 @@ $feedPage = RpdeBody::createFromNextChangeNumber(
     $feedItems
 );
 
-$feedPage.getNext(); # 'https://www.example.com/rpde-feeds/session-series?afterTimestamp=5&afterId=2'
+$feedPage->getNext(); # 'https://www.example.com/rpde-feeds/session-series?afterTimestamp=5&afterId=2'
 ```
 
 `RpdeBody::createFromModifiedId` will check that all feed items do indeed come after the `$id` and `$modified` arguments provided. It will contruct the next link based on the id and modified value of the newest feed item and the provided `$feedBaseUrl` argument.
