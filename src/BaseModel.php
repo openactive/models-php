@@ -18,7 +18,7 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
      * To be able to externally reference nodes in a graph, it is important that nodes have an identifier. IRIs
      * are a fundamental concept of Linked Data, for nodes to be truly linked, dereferencing the identifier should
      * result in a representation of that node.This may allow an application to retrieve further information about
-     * a node. In JSON-LD, a node is identified using the @id keyword:
+     * a node. In JSON-LD, a node is identified using the "@id" keyword:
      *
      * @var string
      */

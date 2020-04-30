@@ -265,7 +265,7 @@ class Slot extends \OpenActive\Models\OA\Event
     protected $eventStatus;
 
     /**
-     * FacilityUse or IndividualFacilityUse that has this offer, either directly embedded or referenced by its @id
+     * FacilityUse or IndividualFacilityUse that has this offer, either directly embedded or referenced by its "@id"
      *
      * ```json
      * "facilityUse": "https://example.com/facility-use/1"

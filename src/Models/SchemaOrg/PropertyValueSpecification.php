@@ -98,7 +98,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     protected $maxValue;
 
     /**
-     * Indicates the name of the PropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML's input@name.
+     * Indicates the name of the PropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML's "input@name".
      *
      *
      * @var string
