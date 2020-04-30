@@ -150,6 +150,6 @@ class Date {
             throw new InvalidArgumentException('Invalid ISO8601 date');
         }
 
-        new self($matches['year'], $matches['month'], $matches['day']);
+        return new self($matches['year'], $matches['month'], $matches['day']);
     }
 }
