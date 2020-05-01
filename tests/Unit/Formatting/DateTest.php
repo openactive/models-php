@@ -72,8 +72,6 @@ class DateTest extends TestCase
     function testEventDate() {
         $schedule = new Event(["startDate" => "2019-11-29"]);
 
-        print_r($schedule);
-
         $serialized = Event::toArray($schedule);
 
         $expected = [
@@ -90,8 +88,6 @@ class DateTest extends TestCase
 
     function testEventDateTime() {
         $schedule = new Event(["startDate" => "2019-11-29T10:00:00Z"]);
-
-        print_r($schedule);
 
         $serialized = Event::toArray($schedule);
 
