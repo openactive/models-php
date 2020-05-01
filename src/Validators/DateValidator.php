@@ -19,9 +19,6 @@ class DateValidator extends BaseValidator
         if ($value instanceof Date) {
             return $value;
         }
-        if ($value instanceof \DateTime) {
-            return Date::createFromDateTime($value);
-        }
         return Date::createFromISO8601($value);
     }
 
@@ -36,8 +33,8 @@ class DateValidator extends BaseValidator
         if ($value instanceof Date) {
             return true;
         }
-        if ($value instanceof \DateTime) {
-            return true;
+        if (!is_string($value)) {
+            return false;
         }
         if (preg_match(Date::ISO8601_REGEX, $value)) {
             return true;

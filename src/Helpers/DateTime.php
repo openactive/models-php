@@ -18,6 +18,10 @@ class DateTime
      */
     public static function iso8601($date, $isDateOnly = false)
     {
+        if ($date instanceof Date) {
+            return $date->toISO8601();
+        }
+
         if ($date instanceof \DateTime === false) {
             throw new \Exception("Invalid argument type.");
         }
