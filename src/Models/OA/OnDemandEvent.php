@@ -124,7 +124,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      * "maximumAttendeeCapacity": 30
      * ```
      *
-     * @var null|int
+     * @var int|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $maximumAttendeeCapacity;
@@ -136,7 +136,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      * "maximumVirtualAttendeeCapacity": 20
      * ```
      *
-     * @var null|int
+     * @var int|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $maximumVirtualAttendeeCapacity;
@@ -160,7 +160,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      * "remainingAttendeeCapacity": 20
      * ```
      *
-     * @var null|int
+     * @var int|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $remainingAttendeeCapacity;
@@ -184,7 +184,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      * "startDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $startDate;
@@ -197,7 +197,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      * "endDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $endDate;
@@ -347,7 +347,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return null|int
+     * @return int|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getMaximumAttendeeCapacity()
@@ -356,7 +356,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param null|int $maximumAttendeeCapacity
+     * @param int|null $maximumAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -364,8 +364,8 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $maximumAttendeeCapacity = self::checkTypes($maximumAttendeeCapacity, $types);
@@ -374,7 +374,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return null|int
+     * @return int|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getMaximumVirtualAttendeeCapacity()
@@ -383,7 +383,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param null|int $maximumVirtualAttendeeCapacity
+     * @param int|null $maximumVirtualAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -391,8 +391,8 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     public function setMaximumVirtualAttendeeCapacity($maximumVirtualAttendeeCapacity)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $maximumVirtualAttendeeCapacity = self::checkTypes($maximumVirtualAttendeeCapacity, $types);
@@ -427,7 +427,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return null|int
+     * @return int|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getRemainingAttendeeCapacity()
@@ -436,7 +436,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param null|int $remainingAttendeeCapacity
+     * @param int|null $remainingAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -444,8 +444,8 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $remainingAttendeeCapacity = self::checkTypes($remainingAttendeeCapacity, $types);
@@ -480,7 +480,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getStartDate()
@@ -489,7 +489,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param null|DateTime|Date $startDate
+     * @param Date|DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -497,9 +497,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     public function setStartDate($startDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $startDate = self::checkTypes($startDate, $types);
@@ -508,7 +508,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getEndDate()
@@ -517,7 +517,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param null|DateTime|Date $endDate
+     * @param Date|DateTime|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -525,9 +525,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     public function setEndDate($endDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $endDate = self::checkTypes($endDate, $types);

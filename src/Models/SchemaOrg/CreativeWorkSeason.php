@@ -18,10 +18,10 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     public static function fieldList() {
         $fields = [
             "actor" => "actor",
-            "partOfSeries" => "partOfSeries",
             "numberOfEpisodes" => "numberOfEpisodes",
             "trailer" => "trailer",
             "endDate" => "endDate",
+            "partOfSeries" => "partOfSeries",
             "episodes" => "episodes",
             "startDate" => "startDate",
             "director" => "director",
@@ -42,18 +42,10 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $actor;
 
     /**
-     * The series to which this episode or season belongs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeries
-     */
-    protected $partOfSeries;
-
-    /**
      * The number of episodes in this season or series.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $numberOfEpisodes;
 
@@ -69,9 +61,17 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $endDate;
+
+    /**
+     * The series to which this episode or season belongs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeries
+     */
+    protected $partOfSeries;
 
     /**
      * An episode of a TV/radio series or season.
@@ -85,7 +85,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $startDate;
 
@@ -117,7 +117,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Position of the season within an ordered group of seasons.
      *
      *
-     * @var null|int|string
+     * @var string|int|null
      */
     protected $seasonNumber;
 
@@ -146,31 +146,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeries
-     */
-    public function getPartOfSeries()
-    {
-        return $this->partOfSeries;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeries $partOfSeries
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPartOfSeries($partOfSeries)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWorkSeries",
-        );
-
-        $partOfSeries = self::checkTypes($partOfSeries, $types);
-
-        $this->partOfSeries = $partOfSeries;
-    }
-
-    /**
-     * @return null|int
+     * @return int|null
      */
     public function getNumberOfEpisodes()
     {
@@ -178,15 +154,15 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|int $numberOfEpisodes
+     * @param int|null $numberOfEpisodes
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfEpisodes($numberOfEpisodes)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $numberOfEpisodes = self::checkTypes($numberOfEpisodes, $types);
@@ -219,7 +195,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getEndDate()
     {
@@ -227,21 +203,45 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|DateTime|Date $endDate
+     * @param Date|DateTime|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $endDate = self::checkTypes($endDate, $types);
 
         $this->endDate = $endDate;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeries
+     */
+    public function getPartOfSeries()
+    {
+        return $this->partOfSeries;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeries $partOfSeries
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPartOfSeries($partOfSeries)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\CreativeWorkSeries",
+        );
+
+        $partOfSeries = self::checkTypes($partOfSeries, $types);
+
+        $this->partOfSeries = $partOfSeries;
     }
 
     /**
@@ -269,7 +269,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getStartDate()
     {
@@ -277,16 +277,16 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|DateTime|Date $startDate
+     * @param Date|DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $startDate = self::checkTypes($startDate, $types);
@@ -367,7 +367,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|int|string
+     * @return string|int|null
      */
     public function getSeasonNumber()
     {
@@ -375,16 +375,16 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|int|string $seasonNumber
+     * @param string|int|null $seasonNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeasonNumber($seasonNumber)
     {
         $types = array(
-            "null",
-            "int",
             "string",
+            "int",
+            "null",
         );
 
         $seasonNumber = self::checkTypes($seasonNumber, $types);

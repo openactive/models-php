@@ -23,11 +23,9 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
             "funder" => "funder",
             "position" => "position",
             "audio" => "audio",
-            "workExample" => "workExample",
             "provider" => "provider",
             "encoding" => "encoding",
             "interactivityType" => "interactivityType",
-            "accessibilitySummary" => "accessibilitySummary",
             "character" => "character",
             "audience" => "audience",
             "sourceOrganization" => "sourceOrganization",
@@ -40,6 +38,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
             "publisher" => "publisher",
             "typicalAgeRange" => "typicalAgeRange",
             "releasedEvent" => "releasedEvent",
+            "educationalUse" => "educationalUse",
             "contentLocation" => "contentLocation",
             "schemaVersion" => "schemaVersion",
             "accessibilityFeature" => "accessibilityFeature",
@@ -51,6 +50,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
             "accountablePerson" => "accountablePerson",
             "spatialCoverage" => "spatialCoverage",
             "reviews" => "reviews",
+            "accessibilitySummary" => "accessibilitySummary",
             "offers" => "offers",
             "editor" => "editor",
             "discussionUrl" => "discussionUrl",
@@ -79,6 +79,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
             "genre" => "genre",
             "keywords" => "keywords",
             "author" => "author",
+            "encodings" => "encodings",
             "isBasedOnUrl" => "isBasedOnUrl",
             "timeRequired" => "timeRequired",
             "translator" => "translator",
@@ -89,7 +90,6 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
             "review" => "review",
             "license" => "license",
             "accessibilityControl" => "accessibilityControl",
-            "encodings" => "encodings",
             "headline" => "headline",
             "isBasedOn" => "isBasedOn",
             "creator" => "creator",
@@ -97,21 +97,25 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
             "sponsor" => "sponsor",
             "producer" => "producer",
             "mentions" => "mentions",
+            "workExample" => "workExample",
             "dateCreated" => "dateCreated",
-            "educationalUse" => "educationalUse",
             "datePublished" => "datePublished",
             "isAccessibleForFree" => "isAccessibleForFree",
             "citation" => "citation",
             "sdDatePublished" => "sdDatePublished",
+            "educationalLevel" => "educationalLevel",
             "correction" => "correction",
+            "assesses" => "assesses",
             "sdPublisher" => "sdPublisher",
             "contentReferenceTime" => "contentReferenceTime",
+            "teaches" => "teaches",
             "abstract" => "abstract",
             "maintainer" => "maintainer",
+            "editEIDR" => "editEIDR",
             "sdLicense" => "sdLicense",
+            "materialExtent" => "materialExtent",
             "usageInfo" => "usageInfo",
             "creativeWorkStatus" => "creativeWorkStatus",
-            "materialExtent" => "materialExtent",
             "acquireLicensePage" => "acquireLicensePage",
             "conditionsOfAccess" => "conditionsOfAccess",
         ];
@@ -128,7 +132,9 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     protected $about;
 
     /**
-     * An alignment to an established educational framework.
+     * An alignment to an established educational framework.<br/><br/>
+     * 
+     * This property should not be used where the nature of the alignment can be described using a simple property, for example to express that a resource <a class="localLink" href="https://schema.org/teaches">teaches</a> or <a class="localLink" href="https://schema.org/assesses">assesses</a> a competency.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\AlignmentObject
@@ -147,7 +153,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * A person or organization that supports (sponsors) something through some kind of financial contribution.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $funder;
 
@@ -155,7 +161,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The position of an item in a series or sequence of items.
      *
      *
-     * @var null|int|string
+     * @var string|int|null
      */
     protected $position;
 
@@ -163,23 +169,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * An embedded audio object.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Clip|\OpenActive\Models\SchemaOrg\AudioObject|\OpenActive\Models\SchemaOrg\MusicRecording
+     * @var \OpenActive\Models\SchemaOrg\AudioObject|\OpenActive\Models\SchemaOrg\Clip|\OpenActive\Models\SchemaOrg\MusicRecording
      */
     protected $audio;
-
-    /**
-     * Example/instance/realization/derivation of the concept of this creative work. eg. The paperback edition, first edition, or eBook.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    protected $workExample;
 
     /**
      * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $provider;
 
@@ -198,14 +196,6 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * @var string
      */
     protected $interactivityType;
-
-    /**
-     * A human-readable summary of specific accessibility features or deficiencies, consistent with the other accessibility metadata but expressing subtleties such as "short descriptions are present but long descriptions will be needed for non-visual users" or "short descriptions are present and no long descriptions are needed."
-     *
-     *
-     * @var string
-     */
-    protected $accessibilitySummary;
 
     /**
      * Fictional person connected with a creative work.
@@ -235,7 +225,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     protected $isPartOf;
 
@@ -243,7 +233,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * An embedded video object.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\VideoObject|\OpenActive\Models\SchemaOrg\Clip
+     * @var \OpenActive\Models\SchemaOrg\Clip|\OpenActive\Models\SchemaOrg\VideoObject
      */
     protected $video;
 
@@ -267,7 +257,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * Date the content expires and is no longer useful or available. For example a <a class="localLink" href="https://schema.org/VideoObject">VideoObject</a> or <a class="localLink" href="https://schema.org/NewsArticle">NewsArticle</a> whose availability or relevance is time-limited, or a <a class="localLink" href="https://schema.org/ClaimReview">ClaimReview</a> fact check whose publisher wants to indicate that it may no longer be relevant (or helpful to highlight) after some date.
      *
      *
-     * @var null|Date
+     * @var Date|null
      */
     protected $expires;
 
@@ -275,7 +265,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * A secondary contributor to the CreativeWork or Event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $contributor;
 
@@ -302,6 +292,14 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * @var \OpenActive\Models\SchemaOrg\PublicationEvent
      */
     protected $releasedEvent;
+
+    /**
+     * The purpose of a work in the context of education; for example, 'assignment', 'group work'.
+     *
+     *
+     * @var string
+     */
+    protected $educationalUse;
 
     /**
      * The location depicted or described in the content. For example, the location in a photograph or painting.
@@ -367,7 +365,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * Open-ended date ranges can be written with ".." in place of the end date. For example, "2015-11/.." indicates a range beginning in November 2015 and with no specified final date. This is tentative and might be updated in future when ISO 8601 is officially updated.
      *
      *
-     * @var null|string|DateTime
+     * @var DateTime|string|null
      */
     protected $temporalCoverage;
 
@@ -396,6 +394,14 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * @var \OpenActive\Models\SchemaOrg\Review
      */
     protected $reviews;
+
+    /**
+     * A human-readable summary of specific accessibility features or deficiencies, consistent with the other accessibility metadata but expressing subtleties such as "short descriptions are present but long descriptions will be needed for non-visual users" or "short descriptions are present and no long descriptions are needed."
+     *
+     *
+     * @var string
+     */
+    protected $accessibilitySummary;
 
     /**
      * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use <a class="localLink" href="https://schema.org/businessFunction">businessFunction</a> to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a <a class="localLink" href="https://schema.org/Demand">Demand</a>. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer.
@@ -433,7 +439,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The party holding the legal copyright to the CreativeWork.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $copyrightHolder;
 
@@ -449,7 +455,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The year during which the claimed copyright for the CreativeWork was first asserted.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $copyrightYear;
 
@@ -482,7 +488,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The number of comments this CreativeWork (e.g. Article, Question or Answer) has received. This is most applicable to works published in Web sites with commenting system; additional comments may exist elsewhere.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $commentCount;
 
@@ -507,7 +513,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * (e.g. <a class="localLink" href="https://schema.org/temporalCoverage">temporalCoverage</a>, <a class="localLink" href="https://schema.org/dateCreated">dateCreated</a>, <a class="localLink" href="https://schema.org/dateModified">dateModified</a>, <a class="localLink" href="https://schema.org/datePublished">datePublished</a>) are not known to be appropriate.
      *
      *
-     * @var null|string|DateTime
+     * @var DateTime|string|null
      */
     protected $temporal;
 
@@ -555,7 +561,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * A material that something is made from, e.g. leather, wool, cotton, paper.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Product|string
+     * @var string|\OpenActive\Models\SchemaOrg\Product
      */
     protected $material;
 
@@ -563,7 +569,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * Indicates whether this content is family friendly.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $isFamilyFriendly;
 
@@ -579,7 +585,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The version of the CreativeWork embodied by a specified resource.
      *
      *
-     * @var null|float|string
+     * @var string|float|null
      */
     protected $version;
 
@@ -587,7 +593,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $dateModified;
 
@@ -619,15 +625,23 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $author;
+
+    /**
+     * A media object that encodes this CreativeWork.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MediaObject
+     */
+    protected $encodings;
 
     /**
      * A resource that was used in the creation of this resource. This term can be repeated for multiple sources. For example, http://example.com/great-multiplication-intro.html.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string|\OpenActive\Models\SchemaOrg\Product
+     * @var string|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     protected $isBasedOnUrl;
 
@@ -635,7 +649,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * Approximate or typical time it takes to work with or through this learning resource for the typical intended target audience, e.g. 'PT30M', 'PT1H25M'.
      *
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      */
     protected $timeRequired;
 
@@ -708,14 +722,6 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     protected $accessibilityControl;
 
     /**
-     * A media object that encodes this CreativeWork.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MediaObject
-     */
-    protected $encodings;
-
-    /**
      * Headline of the article.
      *
      *
@@ -727,7 +733,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * A resource from which this work is derived or from which it is a modification or adaption.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Product|string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     protected $isBasedOn;
 
@@ -753,7 +759,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $sponsor;
 
@@ -774,26 +780,26 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     protected $mentions;
 
     /**
+     * Example/instance/realization/derivation of the concept of this creative work. eg. The paperback edition, first edition, or eBook.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    protected $workExample;
+
+    /**
      * The date on which the CreativeWork was created or the item was added to a DataFeed.
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $dateCreated;
-
-    /**
-     * The purpose of a work in the context of education; for example, 'assignment', 'group work'.
-     *
-     *
-     * @var string
-     */
-    protected $educationalUse;
 
     /**
      * Date of first broadcast/publication.
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $datePublished;
 
@@ -801,7 +807,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * A flag to signal that the item, event, or place is accessible for free.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $isAccessibleForFree;
 
@@ -817,9 +823,17 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * Indicates the date on which the current structured data was generated / published. Typically used alongside <a class="localLink" href="https://schema.org/sdPublisher">sdPublisher</a>
      *
      *
-     * @var null|Date
+     * @var Date|null
      */
     protected $sdDatePublished;
+
+    /**
+     * The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    protected $educationalLevel;
 
     /**
      * Indicates a correction to a <a class="localLink" href="https://schema.org/CreativeWork">CreativeWork</a>, either via a <a class="localLink" href="https://schema.org/CorrectionComment">CorrectionComment</a>, textually or in another document.
@@ -830,11 +844,19 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     protected $correction;
 
     /**
+     * The item being described is intended to assess the competency or learning outcome defined by the referenced term.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     */
+    protected $assesses;
+
+    /**
      * Indicates the party responsible for generating and publishing the current structured data markup, typically in cases where the structured data is derived automatically from existing published content but published on a different site. For example, student projects and open data initiatives often re-publish existing content with more explicitly structured metadata. The
      * <a class="localLink" href="https://schema.org/sdPublisher">sdPublisher</a> property helps make such practices more explicit.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $sdPublisher;
 
@@ -842,9 +864,17 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The specific time described by a creative work, for works (e.g. articles, video objects etc.) that emphasise a particular moment within an Event.
      *
      *
-     * @var null|DateTime
+     * @var DateTime|null
      */
     protected $contentReferenceTime;
+
+    /**
+     * The item being described is intended to help a person learn the competency or learning outcome defined by the referenced term.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    protected $teaches;
 
     /**
      * An abstract is a short description that summarizes a <a class="localLink" href="https://schema.org/CreativeWork">CreativeWork</a>.
@@ -858,9 +888,21 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * A maintainer of a <a class="localLink" href="https://schema.org/Dataset">Dataset</a>, software package (<a class="localLink" href="https://schema.org/SoftwareApplication">SoftwareApplication</a>), or other <a class="localLink" href="https://schema.org/Project">Project</a>. A maintainer is a <a class="localLink" href="https://schema.org/Person">Person</a> or <a class="localLink" href="https://schema.org/Organization">Organization</a> that manages contributions to, and/or publication of, some (typically complex) artifact. It is common for distributions of software and data to be based on "upstream" sources. When <a class="localLink" href="https://schema.org/maintainer">maintainer</a> is applied to a specific version of something e.g. a particular version or packaging of a <a class="localLink" href="https://schema.org/Dataset">Dataset</a>, it is always  possible that the upstream source has a different maintainer. The <a class="localLink" href="https://schema.org/isBasedOn">isBasedOn</a> property can be used to indicate such relationships between datasets to make the different maintenance roles clear. Similarly in the case of software, a package may have dedicated maintainers working on integration into software distributions such as Ubuntu, as well as upstream maintainers of the underlying work.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $maintainer;
+
+    /**
+     * An <a href="https://eidr.org/">EIDR</a> (Entertainment Identifier Registry) <a class="localLink" href="https://schema.org/identifier">identifier</a> representing a specific edit / edition for a work of film or television.<br/><br/>
+     * 
+     * For example, the motion picture known as "Ghostbusters" whose <a class="localLink" href="https://schema.org/titleEIDR">titleEIDR</a> is "10.5240/7EC7-228A-510A-053E-CBB8-J", has several edits e.g. "10.5240/1F2A-E1C5-680A-14C6-E76B-I" and "10.5240/8A35-3BEE-6497-5D12-9E4F-3".<br/><br/>
+     * 
+     * Since schema.org types like <a class="localLink" href="https://schema.org/Movie">Movie</a> and <a class="localLink" href="https://schema.org/TVEpisode">TVEpisode</a> can be used for both works and their multiple expressions, it is possible to use <a class="localLink" href="https://schema.org/titleEIDR">titleEIDR</a> alone (for a general description), or alongside <a class="localLink" href="https://schema.org/editEIDR">editEIDR</a> for a more edit-specific description.
+     *
+     *
+     * @var string
+     */
+    protected $editEIDR;
 
     /**
      * A license document that applies to this structured data, typically indicated by URL.
@@ -869,6 +911,14 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     protected $sdLicense;
+
+    /**
+     * The quantity of the materials being described or an expression of the physical space they occupy.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    protected $materialExtent;
 
     /**
      * The schema.org <a class="localLink" href="https://schema.org/usageInfo">usageInfo</a> property indicates further information about a <a class="localLink" href="https://schema.org/CreativeWork">CreativeWork</a>. This property is applicable both to works that are freely available and to those that require payment or other transactions. It can reference additional information e.g. community expectations on preferred linking and citation conventions, as well as purchasing details. For something that can be commercially licensed, usageInfo can provide detailed, resource-specific information about licensing options.<br/><br/>
@@ -884,23 +934,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
      * The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
     protected $creativeWorkStatus;
-
-    /**
-     * The quantity of the materials being described or an expression of the physical space they occupy.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    protected $materialExtent;
 
     /**
      * Indicates a page documenting how licenses can be purchased or otherwise acquired, for the current item.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     protected $acquireLicensePage;
 
@@ -987,7 +1029,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getFunder()
     {
@@ -995,15 +1037,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $funder
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $funder
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFunder($funder)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $funder = self::checkTypes($funder, $types);
@@ -1012,7 +1054,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|int|string
+     * @return string|int|null
      */
     public function getPosition()
     {
@@ -1020,16 +1062,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|int|string $position
+     * @param string|int|null $position
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPosition($position)
     {
         $types = array(
-            "null",
-            "int",
             "string",
+            "int",
+            "null",
         );
 
         $position = self::checkTypes($position, $types);
@@ -1038,7 +1080,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Clip|\OpenActive\Models\SchemaOrg\AudioObject|\OpenActive\Models\SchemaOrg\MusicRecording
+     * @return \OpenActive\Models\SchemaOrg\AudioObject|\OpenActive\Models\SchemaOrg\Clip|\OpenActive\Models\SchemaOrg\MusicRecording
      */
     public function getAudio()
     {
@@ -1046,15 +1088,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Clip|\OpenActive\Models\SchemaOrg\AudioObject|\OpenActive\Models\SchemaOrg\MusicRecording $audio
+     * @param \OpenActive\Models\SchemaOrg\AudioObject|\OpenActive\Models\SchemaOrg\Clip|\OpenActive\Models\SchemaOrg\MusicRecording $audio
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAudio($audio)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Clip",
             "\OpenActive\Models\SchemaOrg\AudioObject",
+            "\OpenActive\Models\SchemaOrg\Clip",
             "\OpenActive\Models\SchemaOrg\MusicRecording",
         );
 
@@ -1064,31 +1106,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    public function getWorkExample()
-    {
-        return $this->workExample;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork $workExample
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setWorkExample($workExample)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-        );
-
-        $workExample = self::checkTypes($workExample, $types);
-
-        $this->workExample = $workExample;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getProvider()
     {
@@ -1096,15 +1114,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $provider
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $provider
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvider($provider)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $provider = self::checkTypes($provider, $types);
@@ -1158,30 +1176,6 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
         $interactivityType = self::checkTypes($interactivityType, $types);
 
         $this->interactivityType = $interactivityType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAccessibilitySummary()
-    {
-        return $this->accessibilitySummary;
-    }
-
-    /**
-     * @param string $accessibilitySummary
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAccessibilitySummary($accessibilitySummary)
-    {
-        $types = array(
-            "string",
-        );
-
-        $accessibilitySummary = self::checkTypes($accessibilitySummary, $types);
-
-        $this->accessibilitySummary = $accessibilitySummary;
     }
 
     /**
@@ -1257,7 +1251,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     public function getIsPartOf()
     {
@@ -1265,15 +1259,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $isPartOf
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $isPartOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsPartOf($isPartOf)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
         );
 
         $isPartOf = self::checkTypes($isPartOf, $types);
@@ -1282,7 +1276,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\VideoObject|\OpenActive\Models\SchemaOrg\Clip
+     * @return \OpenActive\Models\SchemaOrg\Clip|\OpenActive\Models\SchemaOrg\VideoObject
      */
     public function getVideo()
     {
@@ -1290,15 +1284,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\VideoObject|\OpenActive\Models\SchemaOrg\Clip $video
+     * @param \OpenActive\Models\SchemaOrg\Clip|\OpenActive\Models\SchemaOrg\VideoObject $video
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVideo($video)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\VideoObject",
             "\OpenActive\Models\SchemaOrg\Clip",
+            "\OpenActive\Models\SchemaOrg\VideoObject",
         );
 
         $video = self::checkTypes($video, $types);
@@ -1355,7 +1349,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|Date
+     * @return Date|null
      */
     public function getExpires()
     {
@@ -1363,15 +1357,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|Date $expires
+     * @param Date|null $expires
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExpires($expires)
     {
         $types = array(
-            "null",
             "Date",
+            "null",
         );
 
         $expires = self::checkTypes($expires, $types);
@@ -1380,7 +1374,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getContributor()
     {
@@ -1388,15 +1382,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $contributor
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $contributor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContributor($contributor)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $contributor = self::checkTypes($contributor, $types);
@@ -1475,6 +1469,30 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
         $releasedEvent = self::checkTypes($releasedEvent, $types);
 
         $this->releasedEvent = $releasedEvent;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEducationalUse()
+    {
+        return $this->educationalUse;
+    }
+
+    /**
+     * @param string $educationalUse
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEducationalUse($educationalUse)
+    {
+        $types = array(
+            "string",
+        );
+
+        $educationalUse = self::checkTypes($educationalUse, $types);
+
+        $this->educationalUse = $educationalUse;
     }
 
     /**
@@ -1646,7 +1664,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|string|DateTime
+     * @return DateTime|string|null
      */
     public function getTemporalCoverage()
     {
@@ -1654,16 +1672,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|string|DateTime $temporalCoverage
+     * @param DateTime|string|null $temporalCoverage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTemporalCoverage($temporalCoverage)
     {
         $types = array(
-            "null",
-            "string",
             "DateTime",
+            "string",
+            "null",
         );
 
         $temporalCoverage = self::checkTypes($temporalCoverage, $types);
@@ -1741,6 +1759,30 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
         $reviews = self::checkTypes($reviews, $types);
 
         $this->reviews = $reviews;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAccessibilitySummary()
+    {
+        return $this->accessibilitySummary;
+    }
+
+    /**
+     * @param string $accessibilitySummary
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAccessibilitySummary($accessibilitySummary)
+    {
+        $types = array(
+            "string",
+        );
+
+        $accessibilitySummary = self::checkTypes($accessibilitySummary, $types);
+
+        $this->accessibilitySummary = $accessibilitySummary;
     }
 
     /**
@@ -1841,7 +1883,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getCopyrightHolder()
     {
@@ -1849,15 +1891,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $copyrightHolder
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $copyrightHolder
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCopyrightHolder($copyrightHolder)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $copyrightHolder = self::checkTypes($copyrightHolder, $types);
@@ -1890,7 +1932,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getCopyrightYear()
     {
@@ -1898,15 +1940,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|float $copyrightYear
+     * @param float|null $copyrightYear
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCopyrightYear($copyrightYear)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $copyrightYear = self::checkTypes($copyrightYear, $types);
@@ -1987,7 +2029,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getCommentCount()
     {
@@ -1995,15 +2037,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|int $commentCount
+     * @param int|null $commentCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCommentCount($commentCount)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $commentCount = self::checkTypes($commentCount, $types);
@@ -2061,7 +2103,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|string|DateTime
+     * @return DateTime|string|null
      */
     public function getTemporal()
     {
@@ -2069,16 +2111,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|string|DateTime $temporal
+     * @param DateTime|string|null $temporal
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTemporal($temporal)
     {
         $types = array(
-            "null",
-            "string",
             "DateTime",
+            "string",
+            "null",
         );
 
         $temporal = self::checkTypes($temporal, $types);
@@ -2208,7 +2250,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Product|string
+     * @return string|\OpenActive\Models\SchemaOrg\Product
      */
     public function getMaterial()
     {
@@ -2216,15 +2258,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Product|string $material
+     * @param string|\OpenActive\Models\SchemaOrg\Product $material
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaterial($material)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Product",
             "string",
+            "\OpenActive\Models\SchemaOrg\Product",
         );
 
         $material = self::checkTypes($material, $types);
@@ -2233,7 +2275,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getIsFamilyFriendly()
     {
@@ -2241,15 +2283,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|bool $isFamilyFriendly
+     * @param bool|null $isFamilyFriendly
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsFamilyFriendly($isFamilyFriendly)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $isFamilyFriendly = self::checkTypes($isFamilyFriendly, $types);
@@ -2282,7 +2324,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|float|string
+     * @return string|float|null
      */
     public function getVersion()
     {
@@ -2290,16 +2332,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|float|string $version
+     * @param string|float|null $version
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVersion($version)
     {
         $types = array(
-            "null",
-            "float",
             "string",
+            "float",
+            "null",
         );
 
         $version = self::checkTypes($version, $types);
@@ -2308,7 +2350,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getDateModified()
     {
@@ -2316,16 +2358,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|DateTime|Date $dateModified
+     * @param Date|DateTime|null $dateModified
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateModified($dateModified)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $dateModified = self::checkTypes($dateModified, $types);
@@ -2406,7 +2448,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getAuthor()
     {
@@ -2414,15 +2456,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $author
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $author
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAuthor($author)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $author = self::checkTypes($author, $types);
@@ -2431,7 +2473,31 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string|\OpenActive\Models\SchemaOrg\Product
+     * @return \OpenActive\Models\SchemaOrg\MediaObject
+     */
+    public function getEncodings()
+    {
+        return $this->encodings;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MediaObject $encodings
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEncodings($encodings)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\MediaObject",
+        );
+
+        $encodings = self::checkTypes($encodings, $types);
+
+        $this->encodings = $encodings;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function getIsBasedOnUrl()
     {
@@ -2439,16 +2505,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string|\OpenActive\Models\SchemaOrg\Product $isBasedOnUrl
+     * @param string|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\CreativeWork $isBasedOnUrl
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsBasedOnUrl($isBasedOnUrl)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
             "string",
             "\OpenActive\Models\SchemaOrg\Product",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
         );
 
         $isBasedOnUrl = self::checkTypes($isBasedOnUrl, $types);
@@ -2457,7 +2523,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      */
     public function getTimeRequired()
     {
@@ -2465,15 +2531,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|DateInterval $timeRequired
+     * @param DateInterval|null $timeRequired
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTimeRequired($timeRequired)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $timeRequired = self::checkTypes($timeRequired, $types);
@@ -2676,30 +2742,6 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MediaObject
-     */
-    public function getEncodings()
-    {
-        return $this->encodings;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MediaObject $encodings
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEncodings($encodings)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\MediaObject",
-        );
-
-        $encodings = self::checkTypes($encodings, $types);
-
-        $this->encodings = $encodings;
-    }
-
-    /**
      * @return string
      */
     public function getHeadline()
@@ -2724,7 +2766,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Product|string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @return \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     public function getIsBasedOn()
     {
@@ -2732,7 +2774,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Product|string|\OpenActive\Models\SchemaOrg\CreativeWork $isBasedOn
+     * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\CreativeWork|string $isBasedOn
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -2740,8 +2782,8 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\Product",
-            "string",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
         );
 
         $isBasedOn = self::checkTypes($isBasedOn, $types);
@@ -2800,7 +2842,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getSponsor()
     {
@@ -2808,15 +2850,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $sponsor
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $sponsor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSponsor($sponsor)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $sponsor = self::checkTypes($sponsor, $types);
@@ -2874,7 +2916,31 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    public function getWorkExample()
+    {
+        return $this->workExample;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork $workExample
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setWorkExample($workExample)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+        );
+
+        $workExample = self::checkTypes($workExample, $types);
+
+        $this->workExample = $workExample;
+    }
+
+    /**
+     * @return Date|DateTime|null
      */
     public function getDateCreated()
     {
@@ -2882,16 +2948,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|DateTime|Date $dateCreated
+     * @param Date|DateTime|null $dateCreated
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateCreated($dateCreated)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $dateCreated = self::checkTypes($dateCreated, $types);
@@ -2900,31 +2966,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string
-     */
-    public function getEducationalUse()
-    {
-        return $this->educationalUse;
-    }
-
-    /**
-     * @param string $educationalUse
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEducationalUse($educationalUse)
-    {
-        $types = array(
-            "string",
-        );
-
-        $educationalUse = self::checkTypes($educationalUse, $types);
-
-        $this->educationalUse = $educationalUse;
-    }
-
-    /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getDatePublished()
     {
@@ -2932,16 +2974,16 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|DateTime|Date $datePublished
+     * @param Date|DateTime|null $datePublished
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDatePublished($datePublished)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $datePublished = self::checkTypes($datePublished, $types);
@@ -2950,7 +2992,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getIsAccessibleForFree()
     {
@@ -2958,15 +3000,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|bool $isAccessibleForFree
+     * @param bool|null $isAccessibleForFree
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsAccessibleForFree($isAccessibleForFree)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $isAccessibleForFree = self::checkTypes($isAccessibleForFree, $types);
@@ -3000,7 +3042,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|Date
+     * @return Date|null
      */
     public function getSdDatePublished()
     {
@@ -3008,20 +3050,45 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|Date $sdDatePublished
+     * @param Date|null $sdDatePublished
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSdDatePublished($sdDatePublished)
     {
         $types = array(
-            "null",
             "Date",
+            "null",
         );
 
         $sdDatePublished = self::checkTypes($sdDatePublished, $types);
 
         $this->sdDatePublished = $sdDatePublished;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    public function getEducationalLevel()
+    {
+        return $this->educationalLevel;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $educationalLevel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEducationalLevel($educationalLevel)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
+        );
+
+        $educationalLevel = self::checkTypes($educationalLevel, $types);
+
+        $this->educationalLevel = $educationalLevel;
     }
 
     /**
@@ -3050,7 +3117,32 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     */
+    public function getAssesses()
+    {
+        return $this->assesses;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $assesses
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAssesses($assesses)
+    {
+        $types = array(
+            "string",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+        );
+
+        $assesses = self::checkTypes($assesses, $types);
+
+        $this->assesses = $assesses;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getSdPublisher()
     {
@@ -3058,15 +3150,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $sdPublisher
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $sdPublisher
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSdPublisher($sdPublisher)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $sdPublisher = self::checkTypes($sdPublisher, $types);
@@ -3075,7 +3167,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getContentReferenceTime()
     {
@@ -3083,20 +3175,45 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|DateTime $contentReferenceTime
+     * @param DateTime|null $contentReferenceTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContentReferenceTime($contentReferenceTime)
     {
         $types = array(
-            "null",
             "DateTime",
+            "null",
         );
 
         $contentReferenceTime = self::checkTypes($contentReferenceTime, $types);
 
         $this->contentReferenceTime = $contentReferenceTime;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    public function getTeaches()
+    {
+        return $this->teaches;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $teaches
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTeaches($teaches)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
+        );
+
+        $teaches = self::checkTypes($teaches, $types);
+
+        $this->teaches = $teaches;
     }
 
     /**
@@ -3124,7 +3241,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getMaintainer()
     {
@@ -3132,20 +3249,44 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $maintainer
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $maintainer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaintainer($maintainer)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $maintainer = self::checkTypes($maintainer, $types);
 
         $this->maintainer = $maintainer;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEditEIDR()
+    {
+        return $this->editEIDR;
+    }
+
+    /**
+     * @param string $editEIDR
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEditEIDR($editEIDR)
+    {
+        $types = array(
+            "string",
+        );
+
+        $editEIDR = self::checkTypes($editEIDR, $types);
+
+        $this->editEIDR = $editEIDR;
     }
 
     /**
@@ -3174,6 +3315,31 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    public function getMaterialExtent()
+    {
+        return $this->materialExtent;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $materialExtent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMaterialExtent($materialExtent)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
+        );
+
+        $materialExtent = self::checkTypes($materialExtent, $types);
+
+        $this->materialExtent = $materialExtent;
+    }
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     public function getUsageInfo()
@@ -3199,7 +3365,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
     public function getCreativeWorkStatus()
     {
@@ -3207,15 +3373,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $creativeWorkStatus
+     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $creativeWorkStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCreativeWorkStatus($creativeWorkStatus)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
             "string",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
         );
 
         $creativeWorkStatus = self::checkTypes($creativeWorkStatus, $types);
@@ -3224,32 +3390,7 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    public function getMaterialExtent()
-    {
-        return $this->materialExtent;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\QuantitativeValue $materialExtent
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMaterialExtent($materialExtent)
-    {
-        $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
-
-        $materialExtent = self::checkTypes($materialExtent, $types);
-
-        $this->materialExtent = $materialExtent;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     public function getAcquireLicensePage()
     {
@@ -3257,15 +3398,15 @@ class CreativeWork extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $acquireLicensePage
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $acquireLicensePage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcquireLicensePage($acquireLicensePage)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
         );
 
         $acquireLicensePage = self::checkTypes($acquireLicensePage, $types);

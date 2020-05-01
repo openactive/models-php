@@ -44,7 +44,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @var string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -132,7 +132,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      * Set to true when business-to-business tax calculation is required by the seller or brokerRole settings, but not supported by the Broker.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $taxCalculationExcluded;
 
@@ -152,7 +152,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     protected $totalPaymentTax;
 
     /**
-     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @return string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -160,15 +160,15 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
+     * @param string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
         $types = array(
-            "int",
             "string",
+            "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
@@ -424,7 +424,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getTaxCalculationExcluded()
     {
@@ -432,15 +432,15 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
     }
 
     /**
-     * @param null|bool $taxCalculationExcluded
+     * @param bool|null $taxCalculationExcluded
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTaxCalculationExcluded($taxCalculationExcluded)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $taxCalculationExcluded = self::checkTypes($taxCalculationExcluded, $types);

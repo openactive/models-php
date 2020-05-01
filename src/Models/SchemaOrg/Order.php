@@ -22,13 +22,13 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
             "orderNumber" => "orderNumber",
             "paymentUrl" => "paymentUrl",
             "orderStatus" => "orderStatus",
+            "billingAddress" => "billingAddress",
             "partOfInvoice" => "partOfInvoice",
             "confirmationNumber" => "confirmationNumber",
             "customer" => "customer",
             "merchant" => "merchant",
             "broker" => "broker",
             "isGift" => "isGift",
-            "billingAddress" => "billingAddress",
             "paymentMethod" => "paymentMethod",
             "seller" => "seller",
             "paymentMethodId" => "paymentMethodId",
@@ -48,7 +48,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
      * Date order was placed.
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $orderDate;
 
@@ -56,7 +56,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
      * The date that payment is due.
      *
      *
-     * @var null|DateTime
+     * @var DateTime|null
      */
     protected $paymentDue;
 
@@ -83,6 +83,14 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
      * @var \OpenActive\Enums\SchemaOrg\OrderStatus|null
      */
     protected $orderStatus;
+
+    /**
+     * The billing address for the order.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress
+     */
+    protected $billingAddress;
 
     /**
      * The order is being paid as part of the referenced Invoice.
@@ -128,17 +136,9 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
      * Was the offer accepted as a gift for someone other than the buyer.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $isGift;
-
-    /**
-     * The billing address for the order.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\PostalAddress
-     */
-    protected $billingAddress;
 
     /**
      * The name of the credit card or other method of payment for the order.
@@ -168,7 +168,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
      * Any discount applied (to an Order).
      *
      *
-     * @var null|float|string
+     * @var string|float|null
      */
     protected $discount;
 
@@ -184,7 +184,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
      * The item ordered.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
+     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product
      */
     protected $orderedItem;
 
@@ -210,7 +210,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
      * The date that payment is due.
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $paymentDueDate;
 
@@ -223,7 +223,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     protected $discountCode;
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getOrderDate()
     {
@@ -231,16 +231,16 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateTime|Date $orderDate
+     * @param Date|DateTime|null $orderDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderDate($orderDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $orderDate = self::checkTypes($orderDate, $types);
@@ -249,7 +249,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getPaymentDue()
     {
@@ -257,15 +257,15 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateTime $paymentDue
+     * @param DateTime|null $paymentDue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentDue($paymentDue)
     {
         $types = array(
-            "null",
             "DateTime",
+            "null",
         );
 
         $paymentDue = self::checkTypes($paymentDue, $types);
@@ -344,6 +344,30 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
         $orderStatus = self::checkTypes($orderStatus, $types);
 
         $this->orderStatus = $orderStatus;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress
+     */
+    public function getBillingAddress()
+    {
+        return $this->billingAddress;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress $billingAddress
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBillingAddress($billingAddress)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
+        );
+
+        $billingAddress = self::checkTypes($billingAddress, $types);
+
+        $this->billingAddress = $billingAddress;
     }
 
     /**
@@ -470,7 +494,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getIsGift()
     {
@@ -478,44 +502,20 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|bool $isGift
+     * @param bool|null $isGift
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsGift($isGift)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $isGift = self::checkTypes($isGift, $types);
 
         $this->isGift = $isGift;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\PostalAddress
-     */
-    public function getBillingAddress()
-    {
-        return $this->billingAddress;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\PostalAddress $billingAddress
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBillingAddress($billingAddress)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
-        );
-
-        $billingAddress = self::checkTypes($billingAddress, $types);
-
-        $this->billingAddress = $billingAddress;
     }
 
     /**
@@ -593,7 +593,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|float|string
+     * @return string|float|null
      */
     public function getDiscount()
     {
@@ -601,16 +601,16 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|float|string $discount
+     * @param string|float|null $discount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDiscount($discount)
     {
         $types = array(
-            "null",
-            "float",
             "string",
+            "float",
+            "null",
         );
 
         $discount = self::checkTypes($discount, $types);
@@ -643,7 +643,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
+     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product
      */
     public function getOrderedItem()
     {
@@ -651,15 +651,15 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $orderedItem
+     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product $orderedItem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderedItem($orderedItem)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\OrderItem",
             "\OpenActive\Models\SchemaOrg\Service",
+            "\OpenActive\Models\SchemaOrg\OrderItem",
             "\OpenActive\Models\SchemaOrg\Product",
         );
 
@@ -717,7 +717,7 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getPaymentDueDate()
     {
@@ -725,16 +725,16 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateTime|Date $paymentDueDate
+     * @param Date|DateTime|null $paymentDueDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentDueDate($paymentDueDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $paymentDueDate = self::checkTypes($paymentDueDate, $types);

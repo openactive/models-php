@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class LegislationObject extends \OpenActive\Models\SchemaOrg\MediaObject
+class LegislationObject extends \OpenActive\Models\SchemaOrg\Legislation
 {
     /**
      * @return string[]|null

@@ -18,9 +18,9 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
     public static function fieldList() {
         $fields = [
             "targetDescription" => "targetDescription",
-            "alignmentType" => "alignmentType",
             "targetUrl" => "targetUrl",
             "targetName" => "targetName",
+            "alignmentType" => "alignmentType",
             "educationalFramework" => "educationalFramework",
         ];
 
@@ -34,14 +34,6 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
      * @var string
      */
     protected $targetDescription;
-
-    /**
-     * A category of alignment between the learning resource and the framework node. Recommended values include: 'assesses', 'teaches', 'requires', 'textComplexity', 'readingLevel', 'educationalSubject', and 'educationalLevel'.
-     *
-     *
-     * @var string
-     */
-    protected $alignmentType;
 
     /**
      * The URL of a node in an established educational framework.
@@ -58,6 +50,14 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
      * @var string
      */
     protected $targetName;
+
+    /**
+     * A category of alignment between the learning resource and the framework node. Recommended values include: 'requires', 'textComplexity', 'readingLevel', and 'educationalSubject'.
+     *
+     *
+     * @var string
+     */
+    protected $alignmentType;
 
     /**
      * The framework to which the resource being described is aligned.
@@ -89,30 +89,6 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
         $targetDescription = self::checkTypes($targetDescription, $types);
 
         $this->targetDescription = $targetDescription;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAlignmentType()
-    {
-        return $this->alignmentType;
-    }
-
-    /**
-     * @param string $alignmentType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAlignmentType($alignmentType)
-    {
-        $types = array(
-            "string",
-        );
-
-        $alignmentType = self::checkTypes($alignmentType, $types);
-
-        $this->alignmentType = $alignmentType;
     }
 
     /**
@@ -161,6 +137,30 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
         $targetName = self::checkTypes($targetName, $types);
 
         $this->targetName = $targetName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlignmentType()
+    {
+        return $this->alignmentType;
+    }
+
+    /**
+     * @param string $alignmentType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAlignmentType($alignmentType)
+    {
+        $types = array(
+            "string",
+        );
+
+        $alignmentType = self::checkTypes($alignmentType, $types);
+
+        $this->alignmentType = $alignmentType;
     }
 
     /**

@@ -18,6 +18,7 @@ class GovernmentService extends \OpenActive\Models\SchemaOrg\Service
     public static function fieldList() {
         $fields = [
             "serviceOperator" => "serviceOperator",
+            "jurisdiction" => "jurisdiction",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -30,6 +31,14 @@ class GovernmentService extends \OpenActive\Models\SchemaOrg\Service
      * @var \OpenActive\Models\SchemaOrg\Organization
      */
     protected $serviceOperator;
+
+    /**
+     * Indicates a legal jurisdiction, e.g. of some legislation, or where some government service is based.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\AdministrativeArea
+     */
+    protected $jurisdiction;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Organization
@@ -53,6 +62,31 @@ class GovernmentService extends \OpenActive\Models\SchemaOrg\Service
         $serviceOperator = self::checkTypes($serviceOperator, $types);
 
         $this->serviceOperator = $serviceOperator;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\AdministrativeArea
+     */
+    public function getJurisdiction()
+    {
+        return $this->jurisdiction;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\AdministrativeArea $jurisdiction
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setJurisdiction($jurisdiction)
+    {
+        $types = array(
+            "string",
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+        );
+
+        $jurisdiction = self::checkTypes($jurisdiction, $types);
+
+        $this->jurisdiction = $jurisdiction;
     }
 
 }

@@ -53,7 +53,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
      * The amount of money.
      *
      *
-     * @var float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null
      */
     protected $amount;
 
@@ -69,7 +69,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
      * The only way you get the money back in the event of default is the security. Recourse is where you still have the opportunity to go back to the borrower for the rest of the money.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $recourseLoan;
 
@@ -77,7 +77,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
      * The period of time after any due date that the borrower has to fulfil its obligations before a default (failure to pay) is deemed to have occurred.
      *
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      */
     protected $gracePeriod;
 
@@ -85,7 +85,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
      * Whether the terms for payment of interest can be renegotiated during the life of the loan.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $renegotiableLoan;
 
@@ -154,7 +154,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @return float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null
      */
     public function getAmount()
     {
@@ -162,15 +162,15 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @param float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $amount
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null $amount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAmount($amount)
     {
         $types = array(
-            "float",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "float",
             "null",
         );
 
@@ -205,7 +205,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getRecourseLoan()
     {
@@ -213,15 +213,15 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @param null|bool $recourseLoan
+     * @param bool|null $recourseLoan
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecourseLoan($recourseLoan)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $recourseLoan = self::checkTypes($recourseLoan, $types);
@@ -230,7 +230,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      */
     public function getGracePeriod()
     {
@@ -238,15 +238,15 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @param null|DateInterval $gracePeriod
+     * @param DateInterval|null $gracePeriod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGracePeriod($gracePeriod)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $gracePeriod = self::checkTypes($gracePeriod, $types);
@@ -255,7 +255,7 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getRenegotiableLoan()
     {
@@ -263,15 +263,15 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @param null|bool $renegotiableLoan
+     * @param bool|null $renegotiableLoan
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRenegotiableLoan($renegotiableLoan)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $renegotiableLoan = self::checkTypes($renegotiableLoan, $types);

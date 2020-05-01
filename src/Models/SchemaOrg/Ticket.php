@@ -18,13 +18,13 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     public static function fieldList() {
         $fields = [
             "underName" => "underName",
+            "dateIssued" => "dateIssued",
             "totalPrice" => "totalPrice",
             "priceCurrency" => "priceCurrency",
             "ticketNumber" => "ticketNumber",
             "issuedBy" => "issuedBy",
             "ticketToken" => "ticketToken",
             "ticketedSeat" => "ticketedSeat",
-            "dateIssued" => "dateIssued",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -34,9 +34,17 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
      * The person or organization the reservation or ticket is for.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $underName;
+
+    /**
+     * The date the ticket was issued.
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $dateIssued;
 
     /**
      * The total price for the reservation or ticket, including applicable taxes, shipping, etc.<br/><br/>
@@ -50,7 +58,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
      * 
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PriceSpecification|null|float|string
+     * @var string|\OpenActive\Models\SchemaOrg\PriceSpecification|float|null
      */
     protected $totalPrice;
 
@@ -97,15 +105,7 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     protected $ticketedSeat;
 
     /**
-     * The date the ticket was issued.
-     *
-     *
-     * @var null|DateTime|Date
-     */
-    protected $dateIssued;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getUnderName()
     {
@@ -113,15 +113,15 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $underName
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $underName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnderName($underName)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $underName = self::checkTypes($underName, $types);
@@ -130,7 +130,33 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PriceSpecification|null|float|string
+     * @return Date|DateTime|null
+     */
+    public function getDateIssued()
+    {
+        return $this->dateIssued;
+    }
+
+    /**
+     * @param Date|DateTime|null $dateIssued
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDateIssued($dateIssued)
+    {
+        $types = array(
+            "Date",
+            "DateTime",
+            "null",
+        );
+
+        $dateIssued = self::checkTypes($dateIssued, $types);
+
+        $this->dateIssued = $dateIssued;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\PriceSpecification|float|null
      */
     public function getTotalPrice()
     {
@@ -138,17 +164,17 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PriceSpecification|null|float|string $totalPrice
+     * @param string|\OpenActive\Models\SchemaOrg\PriceSpecification|float|null $totalPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalPrice($totalPrice)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\PriceSpecification",
-            "null",
-            "float",
             "string",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
+            "float",
+            "null",
         );
 
         $totalPrice = self::checkTypes($totalPrice, $types);
@@ -274,32 +300,6 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
         $ticketedSeat = self::checkTypes($ticketedSeat, $types);
 
         $this->ticketedSeat = $ticketedSeat;
-    }
-
-    /**
-     * @return null|DateTime|Date
-     */
-    public function getDateIssued()
-    {
-        return $this->dateIssued;
-    }
-
-    /**
-     * @param null|DateTime|Date $dateIssued
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDateIssued($dateIssued)
-    {
-        $types = array(
-            "null",
-            "DateTime",
-            "Date",
-        );
-
-        $dateIssued = self::checkTypes($dateIssued, $types);
-
-        $this->dateIssued = $dateIssued;
     }
 
 }

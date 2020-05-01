@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class HowToStep extends \OpenActive\Models\SchemaOrg\CreativeWork
+class HowToStep extends \OpenActive\Models\SchemaOrg\ItemList
 {
     /**
      * @return string[]|null

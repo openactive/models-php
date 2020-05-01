@@ -38,7 +38,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
      * An associated logo.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
+     * @var string|\OpenActive\Models\SchemaOrg\ImageObject
      */
     protected $logo;
 
@@ -83,7 +83,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
+     * @return string|\OpenActive\Models\SchemaOrg\ImageObject
      */
     public function getLogo()
     {
@@ -91,15 +91,15 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $logo
+     * @param string|\OpenActive\Models\SchemaOrg\ImageObject $logo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLogo($logo)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\ImageObject",
             "string",
+            "\OpenActive\Models\SchemaOrg\ImageObject",
         );
 
         $logo = self::checkTypes($logo, $types);

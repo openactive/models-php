@@ -27,12 +27,12 @@ class MovieTheater extends \OpenActive\Models\SchemaOrg\CivicStructure
      * The number of screens in the movie theater.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $screenCount;
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getScreenCount()
     {
@@ -40,15 +40,15 @@ class MovieTheater extends \OpenActive\Models\SchemaOrg\CivicStructure
     }
 
     /**
-     * @param null|float $screenCount
+     * @param float|null $screenCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setScreenCount($screenCount)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $screenCount = self::checkTypes($screenCount, $types);

@@ -19,6 +19,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
         $fields = [
             "manufacturer" => "manufacturer",
             "sku" => "sku",
+            "productionDate" => "productionDate",
             "audience" => "audience",
             "mpn" => "mpn",
             "height" => "height",
@@ -48,7 +49,6 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
             "review" => "review",
             "purchaseDate" => "purchaseDate",
             "itemCondition" => "itemCondition",
-            "productionDate" => "productionDate",
             "slogan" => "slogan",
             "brand" => "brand",
             "releaseDate" => "releaseDate",
@@ -77,6 +77,14 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     protected $sku;
 
     /**
+     * The date of production of the item, e.g. vehicle.
+     *
+     *
+     * @var Date|null
+     */
+    protected $productionDate;
+
+    /**
      * An intended audience, i.e. a group for whom something was created.
      *
      *
@@ -96,7 +104,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * The height of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     protected $height;
 
@@ -152,7 +160,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     * @var string|\OpenActive\Models\SchemaOrg\Thing
      */
     protected $category;
 
@@ -160,7 +168,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * The width of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     protected $width;
 
@@ -194,7 +202,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * An associated logo.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
+     * @var string|\OpenActive\Models\SchemaOrg\ImageObject
      */
     protected $logo;
 
@@ -226,7 +234,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * A material that something is made from, e.g. leather, wool, cotton, paper.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Product|string
+     * @var string|\OpenActive\Models\SchemaOrg\Product
      */
     protected $material;
 
@@ -258,7 +266,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * The model of the product. Use with the URL of a ProductModel or a textual representation of the model identifier. The URL of the ProductModel can be from an external source. It is recommended to additionally provide strong product identifiers via the gtin8/gtin13/gtin14 and mpn properties.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\ProductModel
+     * @var \OpenActive\Models\SchemaOrg\ProductModel|string
      */
     protected $model;
 
@@ -298,7 +306,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * The date the item e.g. vehicle was purchased by the current owner.
      *
      *
-     * @var null|Date
+     * @var Date|null
      */
     protected $purchaseDate;
 
@@ -309,14 +317,6 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * @var \OpenActive\Enums\SchemaOrg\OfferItemCondition|null
      */
     protected $itemCondition;
-
-    /**
-     * The date of production of the item, e.g. vehicle.
-     *
-     *
-     * @var null|Date
-     */
-    protected $productionDate;
 
     /**
      * A slogan or motto associated with the item.
@@ -338,7 +338,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
      * The release date of a product or product model. This can be used to distinguish the exact variant of a product.
      *
      *
-     * @var null|Date
+     * @var Date|null
      */
     protected $releaseDate;
 
@@ -415,6 +415,31 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
+     * @return Date|null
+     */
+    public function getProductionDate()
+    {
+        return $this->productionDate;
+    }
+
+    /**
+     * @param Date|null $productionDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProductionDate($productionDate)
+    {
+        $types = array(
+            "Date",
+            "null",
+        );
+
+        $productionDate = self::checkTypes($productionDate, $types);
+
+        $this->productionDate = $productionDate;
+    }
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\Audience
      */
     public function getAudience()
@@ -463,7 +488,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     public function getHeight()
     {
@@ -471,15 +496,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue $height
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $height
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHeight($height)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Distance",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\Distance",
         );
 
         $height = self::checkTypes($height, $types);
@@ -633,7 +658,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     * @return string|\OpenActive\Models\SchemaOrg\Thing
      */
     public function getCategory()
     {
@@ -641,15 +666,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $category
+     * @param string|\OpenActive\Models\SchemaOrg\Thing $category
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCategory($category)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
             "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
         );
 
         $category = self::checkTypes($category, $types);
@@ -658,7 +683,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
      */
     public function getWidth()
     {
@@ -666,15 +691,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue $width
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $width
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWidth($width)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Distance",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\Distance",
         );
 
         $width = self::checkTypes($width, $types);
@@ -755,7 +780,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
+     * @return string|\OpenActive\Models\SchemaOrg\ImageObject
      */
     public function getLogo()
     {
@@ -763,15 +788,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $logo
+     * @param string|\OpenActive\Models\SchemaOrg\ImageObject $logo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLogo($logo)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\ImageObject",
             "string",
+            "\OpenActive\Models\SchemaOrg\ImageObject",
         );
 
         $logo = self::checkTypes($logo, $types);
@@ -852,7 +877,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Product|string
+     * @return string|\OpenActive\Models\SchemaOrg\Product
      */
     public function getMaterial()
     {
@@ -860,15 +885,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Product|string $material
+     * @param string|\OpenActive\Models\SchemaOrg\Product $material
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaterial($material)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Product",
             "string",
+            "\OpenActive\Models\SchemaOrg\Product",
         );
 
         $material = self::checkTypes($material, $types);
@@ -951,7 +976,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\ProductModel
+     * @return \OpenActive\Models\SchemaOrg\ProductModel|string
      */
     public function getModel()
     {
@@ -959,15 +984,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\ProductModel $model
+     * @param \OpenActive\Models\SchemaOrg\ProductModel|string $model
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setModel($model)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\ProductModel",
+            "string",
         );
 
         $model = self::checkTypes($model, $types);
@@ -1073,7 +1098,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|Date
+     * @return Date|null
      */
     public function getPurchaseDate()
     {
@@ -1081,15 +1106,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|Date $purchaseDate
+     * @param Date|null $purchaseDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPurchaseDate($purchaseDate)
     {
         $types = array(
-            "null",
             "Date",
+            "null",
         );
 
         $purchaseDate = self::checkTypes($purchaseDate, $types);
@@ -1120,31 +1145,6 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
         $itemCondition = self::checkTypes($itemCondition, $types);
 
         $this->itemCondition = $itemCondition;
-    }
-
-    /**
-     * @return null|Date
-     */
-    public function getProductionDate()
-    {
-        return $this->productionDate;
-    }
-
-    /**
-     * @param null|Date $productionDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProductionDate($productionDate)
-    {
-        $types = array(
-            "null",
-            "Date",
-        );
-
-        $productionDate = self::checkTypes($productionDate, $types);
-
-        $this->productionDate = $productionDate;
     }
 
     /**
@@ -1197,7 +1197,7 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|Date
+     * @return Date|null
      */
     public function getReleaseDate()
     {
@@ -1205,15 +1205,15 @@ class Product extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|Date $releaseDate
+     * @param Date|null $releaseDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReleaseDate($releaseDate)
     {
         $types = array(
-            "null",
             "Date",
+            "null",
         );
 
         $releaseDate = self::checkTypes($releaseDate, $types);

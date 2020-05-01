@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
+class VideoGame extends \OpenActive\Models\SchemaOrg\Game
 {
     /**
      * @return string[]|null
@@ -37,7 +37,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
      * The electronic systems used to play <a href="http://en.wikipedia.org/wiki/Category:Video_game_platforms">video games</a>.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
     protected $gamePlatform;
 
@@ -85,7 +85,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
      * The composer of the soundtrack.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
      */
     protected $musicBy;
 
@@ -122,7 +122,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     protected $actors;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Thing
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
     public function getGamePlatform()
     {
@@ -130,15 +130,15 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Thing $gamePlatform
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $gamePlatform
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGamePlatform($gamePlatform)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
         );
 
         $gamePlatform = self::checkTypes($gamePlatform, $types);
@@ -267,7 +267,7 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
      */
     public function getMusicBy()
     {
@@ -275,15 +275,15 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup $musicBy
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person $musicBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicBy($musicBy)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $musicBy = self::checkTypes($musicBy, $types);

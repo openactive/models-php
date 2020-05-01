@@ -37,7 +37,7 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The number of upvotes this question, answer or comment has received from the community.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $upvoteCount;
 
@@ -45,7 +45,7 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The number of downvotes this question, answer or comment has received from the community.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $downvoteCount;
 
@@ -74,7 +74,7 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getUpvoteCount()
     {
@@ -82,15 +82,15 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|int $upvoteCount
+     * @param int|null $upvoteCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUpvoteCount($upvoteCount)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $upvoteCount = self::checkTypes($upvoteCount, $types);
@@ -99,7 +99,7 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getDownvoteCount()
     {
@@ -107,15 +107,15 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|int $downvoteCount
+     * @param int|null $downvoteCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDownvoteCount($downvoteCount)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $downvoteCount = self::checkTypes($downvoteCount, $types);

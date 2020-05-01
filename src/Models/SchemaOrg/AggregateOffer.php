@@ -38,7 +38,7 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
      * The number of offers for the product.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $offerCount;
 
@@ -54,7 +54,7 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
      * 
      *
      *
-     * @var null|float|string
+     * @var string|float|null
      */
     protected $lowPrice;
 
@@ -70,7 +70,7 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
      * 
      *
      *
-     * @var null|float|string
+     * @var string|float|null
      */
     protected $highPrice;
 
@@ -100,7 +100,7 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getOfferCount()
     {
@@ -108,15 +108,15 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param null|int $offerCount
+     * @param int|null $offerCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOfferCount($offerCount)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $offerCount = self::checkTypes($offerCount, $types);
@@ -125,7 +125,7 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return null|float|string
+     * @return string|float|null
      */
     public function getLowPrice()
     {
@@ -133,16 +133,16 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param null|float|string $lowPrice
+     * @param string|float|null $lowPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLowPrice($lowPrice)
     {
         $types = array(
-            "null",
-            "float",
             "string",
+            "float",
+            "null",
         );
 
         $lowPrice = self::checkTypes($lowPrice, $types);
@@ -151,7 +151,7 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return null|float|string
+     * @return string|float|null
      */
     public function getHighPrice()
     {
@@ -159,16 +159,16 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param null|float|string $highPrice
+     * @param string|float|null $highPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHighPrice($highPrice)
     {
         $types = array(
-            "null",
-            "float",
             "string",
+            "float",
+            "null",
         );
 
         $highPrice = self::checkTypes($highPrice, $types);

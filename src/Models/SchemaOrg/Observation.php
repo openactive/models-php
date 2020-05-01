@@ -31,7 +31,7 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
      * A marginOfError for an <a class="localLink" href="https://schema.org/Observation">Observation</a>.
      *
      *
-     * @var null|DateTime
+     * @var DateTime|null
      */
     protected $marginOfError;
 
@@ -55,7 +55,7 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
      * The observationDate of an <a class="localLink" href="https://schema.org/Observation">Observation</a>.
      *
      *
-     * @var null|DateTime
+     * @var DateTime|null
      */
     protected $observationDate;
 
@@ -68,7 +68,7 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $measuredProperty;
 
     /**
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getMarginOfError()
     {
@@ -76,15 +76,15 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateTime $marginOfError
+     * @param DateTime|null $marginOfError
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMarginOfError($marginOfError)
     {
         $types = array(
-            "null",
             "DateTime",
+            "null",
         );
 
         $marginOfError = self::checkTypes($marginOfError, $types);
@@ -141,7 +141,7 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getObservationDate()
     {
@@ -149,15 +149,15 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateTime $observationDate
+     * @param DateTime|null $observationDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setObservationDate($observationDate)
     {
         $types = array(
-            "null",
             "DateTime",
+            "null",
         );
 
         $observationDate = self::checkTypes($observationDate, $types);

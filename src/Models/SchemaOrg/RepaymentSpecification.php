@@ -17,15 +17,31 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
 
     public static function fieldList() {
         $fields = [
-            "earlyPrepaymentPenalty" => "earlyPrepaymentPenalty",
             "numberOfLoanPayments" => "numberOfLoanPayments",
             "loanPaymentFrequency" => "loanPaymentFrequency",
+            "earlyPrepaymentPenalty" => "earlyPrepaymentPenalty",
             "downPayment" => "downPayment",
             "loanPaymentAmount" => "loanPaymentAmount",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The number of payments contractually required at origination to repay the loan. For monthly paying loans this is the number of months from the contractual first payment date to the maturity date.
+     *
+     *
+     * @var float|null
+     */
+    protected $numberOfLoanPayments;
+
+    /**
+     * Frequency of payments due, i.e. number of months between payments. This is defined as a frequency, i.e. the reciprocal of a period of time.
+     *
+     *
+     * @var float|null
+     */
+    protected $loanPaymentFrequency;
 
     /**
      * The amount to be paid as a penalty in the event of early payment of the loan.
@@ -36,26 +52,10 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
     protected $earlyPrepaymentPenalty;
 
     /**
-     * The number of payments contractually required at origination to repay the loan. For monthly paying loans this is the number of months from the contractual first payment date to the maturity date.
-     *
-     *
-     * @var null|float
-     */
-    protected $numberOfLoanPayments;
-
-    /**
-     * Frequency of payments due, i.e. number of months between payments. This is defined as a frequency, i.e. the reciprocal of a period of time.
-     *
-     *
-     * @var null|float
-     */
-    protected $loanPaymentFrequency;
-
-    /**
      * a type of payment made in cash during the onset of the purchase of an expensive good/service. The payment typically represents only a percentage of the full purchase price.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|null|float
+     * @var float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
      */
     protected $downPayment;
 
@@ -66,6 +66,56 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
      * @var \OpenActive\Models\SchemaOrg\MonetaryAmount
      */
     protected $loanPaymentAmount;
+
+    /**
+     * @return float|null
+     */
+    public function getNumberOfLoanPayments()
+    {
+        return $this->numberOfLoanPayments;
+    }
+
+    /**
+     * @param float|null $numberOfLoanPayments
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumberOfLoanPayments($numberOfLoanPayments)
+    {
+        $types = array(
+            "float",
+            "null",
+        );
+
+        $numberOfLoanPayments = self::checkTypes($numberOfLoanPayments, $types);
+
+        $this->numberOfLoanPayments = $numberOfLoanPayments;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getLoanPaymentFrequency()
+    {
+        return $this->loanPaymentFrequency;
+    }
+
+    /**
+     * @param float|null $loanPaymentFrequency
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLoanPaymentFrequency($loanPaymentFrequency)
+    {
+        $types = array(
+            "float",
+            "null",
+        );
+
+        $loanPaymentFrequency = self::checkTypes($loanPaymentFrequency, $types);
+
+        $this->loanPaymentFrequency = $loanPaymentFrequency;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MonetaryAmount
@@ -92,57 +142,7 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
     }
 
     /**
-     * @return null|float
-     */
-    public function getNumberOfLoanPayments()
-    {
-        return $this->numberOfLoanPayments;
-    }
-
-    /**
-     * @param null|float $numberOfLoanPayments
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNumberOfLoanPayments($numberOfLoanPayments)
-    {
-        $types = array(
-            "null",
-            "float",
-        );
-
-        $numberOfLoanPayments = self::checkTypes($numberOfLoanPayments, $types);
-
-        $this->numberOfLoanPayments = $numberOfLoanPayments;
-    }
-
-    /**
-     * @return null|float
-     */
-    public function getLoanPaymentFrequency()
-    {
-        return $this->loanPaymentFrequency;
-    }
-
-    /**
-     * @param null|float $loanPaymentFrequency
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLoanPaymentFrequency($loanPaymentFrequency)
-    {
-        $types = array(
-            "null",
-            "float",
-        );
-
-        $loanPaymentFrequency = self::checkTypes($loanPaymentFrequency, $types);
-
-        $this->loanPaymentFrequency = $loanPaymentFrequency;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|null|float
+     * @return float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
      */
     public function getDownPayment()
     {
@@ -150,16 +150,16 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|null|float $downPayment
+     * @param float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $downPayment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDownPayment($downPayment)
     {
         $types = array(
+            "float",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "null",
-            "float",
         );
 
         $downPayment = self::checkTypes($downPayment, $types);

@@ -52,7 +52,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @var string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -309,13 +309,13 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * If you are using this property, please join the discussion at proposal [#166](https://github.com/openactive/modelling-opportunity-data/issues/166).
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $isWheelchairAccessible;
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * An related video object.
+     * A related video object.
      * 
      * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
      *
@@ -342,7 +342,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * If you are using this property, please join the discussion at proposal [#204](https://github.com/openactive/modelling-opportunity-data/issues/204).
      *
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      */
     protected $offerValidityPeriod;
 
@@ -369,7 +369,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     protected $facilitySetting;
 
     /**
-     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @return string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -377,15 +377,15 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
+     * @param string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
         $types = array(
-            "int",
             "string",
+            "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
@@ -782,7 +782,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getIsWheelchairAccessible()
     {
@@ -790,15 +790,15 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param null|bool $isWheelchairAccessible
+     * @param bool|null $isWheelchairAccessible
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsWheelchairAccessible($isWheelchairAccessible)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $isWheelchairAccessible = self::checkTypes($isWheelchairAccessible, $types);
@@ -855,7 +855,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      */
     public function getOfferValidityPeriod()
     {
@@ -863,15 +863,15 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param null|DateInterval $offerValidityPeriod
+     * @param DateInterval|null $offerValidityPeriod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOfferValidityPeriod($offerValidityPeriod)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $offerValidityPeriod = self::checkTypes($offerValidityPeriod, $types);

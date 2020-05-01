@@ -30,7 +30,7 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
      * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $endDate;
 
@@ -46,7 +46,7 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
      * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $startDate;
 
@@ -59,7 +59,7 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
     protected $roleName;
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getEndDate()
     {
@@ -67,16 +67,16 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateTime|Date $endDate
+     * @param Date|DateTime|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $endDate = self::checkTypes($endDate, $types);
@@ -109,7 +109,7 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getStartDate()
     {
@@ -117,16 +117,16 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateTime|Date $startDate
+     * @param Date|DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $startDate = self::checkTypes($startDate, $types);

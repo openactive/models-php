@@ -31,7 +31,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The number of answers this question has received.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $answerCount;
 
@@ -47,7 +47,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The number of upvotes this question, answer or comment has received from the community.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $upvoteCount;
 
@@ -55,7 +55,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
      * An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList
+     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer
      */
     protected $suggestedAnswer;
 
@@ -63,12 +63,12 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The number of downvotes this question, answer or comment has received from the community.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $downvoteCount;
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getAnswerCount()
     {
@@ -76,15 +76,15 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|int $answerCount
+     * @param int|null $answerCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAnswerCount($answerCount)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $answerCount = self::checkTypes($answerCount, $types);
@@ -118,7 +118,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getUpvoteCount()
     {
@@ -126,15 +126,15 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|int $upvoteCount
+     * @param int|null $upvoteCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUpvoteCount($upvoteCount)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $upvoteCount = self::checkTypes($upvoteCount, $types);
@@ -143,7 +143,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList
+     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer
      */
     public function getSuggestedAnswer()
     {
@@ -151,15 +151,15 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList $suggestedAnswer
+     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer $suggestedAnswer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuggestedAnswer($suggestedAnswer)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Answer",
             "\OpenActive\Models\SchemaOrg\ItemList",
+            "\OpenActive\Models\SchemaOrg\Answer",
         );
 
         $suggestedAnswer = self::checkTypes($suggestedAnswer, $types);
@@ -168,7 +168,7 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getDownvoteCount()
     {
@@ -176,15 +176,15 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|int $downvoteCount
+     * @param int|null $downvoteCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDownvoteCount($downvoteCount)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $downvoteCount = self::checkTypes($downvoteCount, $types);

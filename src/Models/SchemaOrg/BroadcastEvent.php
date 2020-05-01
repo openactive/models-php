@@ -38,7 +38,7 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
      * True is the broadcast is of a live event.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $isLiveBroadcast;
 
@@ -83,7 +83,7 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getIsLiveBroadcast()
     {
@@ -91,15 +91,15 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
     }
 
     /**
-     * @param null|bool $isLiveBroadcast
+     * @param bool|null $isLiveBroadcast
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsLiveBroadcast($isLiveBroadcast)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $isLiveBroadcast = self::checkTypes($isLiveBroadcast, $types);

@@ -58,7 +58,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\MediaObject
      * "height": 300
      * ```
      *
-     * @var null|int
+     * @var int|null
      */
     protected $height;
 
@@ -88,7 +88,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\MediaObject
      * "width": 400
      * ```
      *
-     * @var null|int
+     * @var int|null
      */
     protected $width;
 
@@ -141,7 +141,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getHeight()
     {
@@ -149,15 +149,15 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param null|int $height
+     * @param int|null $height
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHeight($height)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $height = self::checkTypes($height, $types);
@@ -214,7 +214,7 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getWidth()
     {
@@ -222,15 +222,15 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param null|int $width
+     * @param int|null $width
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWidth($width)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $width = self::checkTypes($width, $types);

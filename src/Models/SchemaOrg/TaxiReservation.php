@@ -29,7 +29,7 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * When a taxi will pickup a passenger or a rental car can be picked up.
      *
      *
-     * @var null|DateTime
+     * @var DateTime|null
      */
     protected $pickupTime;
 
@@ -37,7 +37,7 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * Number of people the reservation should accommodate.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int
+     * @var int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $partySize;
 
@@ -50,7 +50,7 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $pickupLocation;
 
     /**
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getPickupTime()
     {
@@ -58,15 +58,15 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param null|DateTime $pickupTime
+     * @param DateTime|null $pickupTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPickupTime($pickupTime)
     {
         $types = array(
-            "null",
             "DateTime",
+            "null",
         );
 
         $pickupTime = self::checkTypes($pickupTime, $types);
@@ -75,7 +75,7 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int
+     * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getPartySize()
     {
@@ -83,16 +83,16 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int $partySize
+     * @param int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $partySize
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPartySize($partySize)
     {
         $types = array(
+            "int",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
-            "int",
         );
 
         $partySize = self::checkTypes($partySize, $types);

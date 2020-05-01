@@ -60,7 +60,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
      * A step in making the recipe, in the form of a single item (document, video, etc.) or an ordered list with HowToStep and/or HowToSection items.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\ItemList|string
+     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\ItemList
      */
     protected $recipeInstructions;
 
@@ -92,7 +92,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
      * The time it takes to actually cook the dish, in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 duration format</a>.
      *
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      */
     protected $cookTime;
 
@@ -186,7 +186,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\ItemList|string
+     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\ItemList
      */
     public function getRecipeInstructions()
     {
@@ -194,16 +194,16 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\ItemList|string $recipeInstructions
+     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\ItemList $recipeInstructions
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRecipeInstructions($recipeInstructions)
     {
         $types = array(
+            "string",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
             "\OpenActive\Models\SchemaOrg\ItemList",
-            "string",
         );
 
         $recipeInstructions = self::checkTypes($recipeInstructions, $types);
@@ -285,7 +285,7 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     }
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      */
     public function getCookTime()
     {
@@ -293,15 +293,15 @@ class Recipe extends \OpenActive\Models\SchemaOrg\HowTo
     }
 
     /**
-     * @param null|DateInterval $cookTime
+     * @param DateInterval|null $cookTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCookTime($cookTime)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $cookTime = self::checkTypes($cookTime, $types);

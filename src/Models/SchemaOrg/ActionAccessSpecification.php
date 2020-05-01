@@ -33,7 +33,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * The beginning of the availability of the product or service included in the offer.
      *
      *
-     * @var null|string|DateTime|Date
+     * @var Date|DateTime|string|null
      */
     protected $availabilityStarts;
 
@@ -41,7 +41,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * Indicates if use of the media require a subscription  (either paid or free). Allowed values are <code>true</code> or <code>false</code> (note that an earlier version had 'yes', 'no').
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MediaSubscription|null|bool
+     * @var \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null
      */
     protected $requiresSubscription;
 
@@ -49,7 +49,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     * @var string|\OpenActive\Models\SchemaOrg\Thing
      */
     protected $category;
 
@@ -57,7 +57,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * The end of the availability of the product or service included in the offer.
      *
      *
-     * @var null|string|DateTime|Date
+     * @var Date|DateTime|string|null
      */
     protected $availabilityEnds;
 
@@ -85,12 +85,12 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * See also <a class="localLink" href="https://schema.org/eligibleRegion">eligibleRegion</a>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string
+     * @var string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place
      */
     protected $ineligibleRegion;
 
     /**
-     * @return null|string|DateTime|Date
+     * @return Date|DateTime|string|null
      */
     public function getAvailabilityStarts()
     {
@@ -98,17 +98,17 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|string|DateTime|Date $availabilityStarts
+     * @param Date|DateTime|string|null $availabilityStarts
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailabilityStarts($availabilityStarts)
     {
         $types = array(
-            "null",
-            "Time",
-            "DateTime",
             "Date",
+            "DateTime",
+            "Time",
+            "null",
         );
 
         $availabilityStarts = self::checkTypes($availabilityStarts, $types);
@@ -117,7 +117,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MediaSubscription|null|bool
+     * @return \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null
      */
     public function getRequiresSubscription()
     {
@@ -125,7 +125,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MediaSubscription|null|bool $requiresSubscription
+     * @param \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null $requiresSubscription
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -133,8 +133,8 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\MediaSubscription",
-            "null",
             "bool",
+            "null",
         );
 
         $requiresSubscription = self::checkTypes($requiresSubscription, $types);
@@ -143,7 +143,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     * @return string|\OpenActive\Models\SchemaOrg\Thing
      */
     public function getCategory()
     {
@@ -151,15 +151,15 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $category
+     * @param string|\OpenActive\Models\SchemaOrg\Thing $category
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCategory($category)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
             "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
         );
 
         $category = self::checkTypes($category, $types);
@@ -168,7 +168,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|string|DateTime|Date
+     * @return Date|DateTime|string|null
      */
     public function getAvailabilityEnds()
     {
@@ -176,17 +176,17 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|string|DateTime|Date $availabilityEnds
+     * @param Date|DateTime|string|null $availabilityEnds
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailabilityEnds($availabilityEnds)
     {
         $types = array(
-            "null",
-            "Time",
-            "DateTime",
             "Date",
+            "DateTime",
+            "Time",
+            "null",
         );
 
         $availabilityEnds = self::checkTypes($availabilityEnds, $types);
@@ -245,7 +245,7 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string
+     * @return string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place
      */
     public function getIneligibleRegion()
     {
@@ -253,16 +253,16 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string $ineligibleRegion
+     * @param string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place $ineligibleRegion
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIneligibleRegion($ineligibleRegion)
     {
         $types = array(
+            "string",
             "\OpenActive\Models\SchemaOrg\GeoShape",
             "\OpenActive\Models\SchemaOrg\Place",
-            "string",
         );
 
         $ineligibleRegion = self::checkTypes($ineligibleRegion, $types);

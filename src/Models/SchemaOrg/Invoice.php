@@ -21,17 +21,17 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
             "paymentDue" => "paymentDue",
             "billingPeriod" => "billingPeriod",
             "confirmationNumber" => "confirmationNumber",
-            "customer" => "customer",
             "scheduledPaymentDate" => "scheduledPaymentDate",
+            "customer" => "customer",
             "category" => "category",
             "paymentStatus" => "paymentStatus",
             "broker" => "broker",
-            "referencesOrder" => "referencesOrder",
             "paymentMethod" => "paymentMethod",
             "paymentMethodId" => "paymentMethodId",
             "minimumPaymentDue" => "minimumPaymentDue",
             "totalPaymentDue" => "totalPaymentDue",
             "accountId" => "accountId",
+            "referencesOrder" => "referencesOrder",
             "paymentDueDate" => "paymentDueDate",
         ];
 
@@ -42,7 +42,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
      * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $provider;
 
@@ -50,7 +50,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
      * The date that payment is due.
      *
      *
-     * @var null|DateTime
+     * @var DateTime|null
      */
     protected $paymentDue;
 
@@ -58,7 +58,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
      * The time interval used to compute the invoice.
      *
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      */
     protected $billingPeriod;
 
@@ -71,6 +71,14 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     protected $confirmationNumber;
 
     /**
+     * The date the invoice is scheduled to be paid.
+     *
+     *
+     * @var Date|null
+     */
+    protected $scheduledPaymentDate;
+
+    /**
      * Party placing the order or paying the invoice.
      *
      *
@@ -79,18 +87,10 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     protected $customer;
 
     /**
-     * The date the invoice is scheduled to be paid.
-     *
-     *
-     * @var null|Date
-     */
-    protected $scheduledPaymentDate;
-
-    /**
      * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     * @var string|\OpenActive\Models\SchemaOrg\Thing
      */
     protected $category;
 
@@ -109,14 +109,6 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
      * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $broker;
-
-    /**
-     * The Order(s) related to this Invoice. One or more Orders may be combined into a single Invoice.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Order
-     */
-    protected $referencesOrder;
 
     /**
      * The name of the credit card or other method of payment for the order.
@@ -138,7 +130,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
      * The minimum payment required at this time.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification
+     * @var \OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount
      */
     protected $minimumPaymentDue;
 
@@ -159,15 +151,23 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     protected $accountId;
 
     /**
+     * The Order(s) related to this Invoice. One or more Orders may be combined into a single Invoice.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Order
+     */
+    protected $referencesOrder;
+
+    /**
      * The date that payment is due.
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $paymentDueDate;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getProvider()
     {
@@ -175,15 +175,15 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $provider
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $provider
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvider($provider)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $provider = self::checkTypes($provider, $types);
@@ -192,7 +192,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getPaymentDue()
     {
@@ -200,15 +200,15 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateTime $paymentDue
+     * @param DateTime|null $paymentDue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentDue($paymentDue)
     {
         $types = array(
-            "null",
             "DateTime",
+            "null",
         );
 
         $paymentDue = self::checkTypes($paymentDue, $types);
@@ -217,7 +217,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      */
     public function getBillingPeriod()
     {
@@ -225,15 +225,15 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateInterval $billingPeriod
+     * @param DateInterval|null $billingPeriod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBillingPeriod($billingPeriod)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $billingPeriod = self::checkTypes($billingPeriod, $types);
@@ -266,6 +266,31 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
+     * @return Date|null
+     */
+    public function getScheduledPaymentDate()
+    {
+        return $this->scheduledPaymentDate;
+    }
+
+    /**
+     * @param Date|null $scheduledPaymentDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setScheduledPaymentDate($scheduledPaymentDate)
+    {
+        $types = array(
+            "Date",
+            "null",
+        );
+
+        $scheduledPaymentDate = self::checkTypes($scheduledPaymentDate, $types);
+
+        $this->scheduledPaymentDate = $scheduledPaymentDate;
+    }
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getCustomer()
@@ -291,32 +316,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|Date
-     */
-    public function getScheduledPaymentDate()
-    {
-        return $this->scheduledPaymentDate;
-    }
-
-    /**
-     * @param null|Date $scheduledPaymentDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setScheduledPaymentDate($scheduledPaymentDate)
-    {
-        $types = array(
-            "null",
-            "Date",
-        );
-
-        $scheduledPaymentDate = self::checkTypes($scheduledPaymentDate, $types);
-
-        $this->scheduledPaymentDate = $scheduledPaymentDate;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     * @return string|\OpenActive\Models\SchemaOrg\Thing
      */
     public function getCategory()
     {
@@ -324,15 +324,15 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $category
+     * @param string|\OpenActive\Models\SchemaOrg\Thing $category
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCategory($category)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
             "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
         );
 
         $category = self::checkTypes($category, $types);
@@ -392,30 +392,6 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Order
-     */
-    public function getReferencesOrder()
-    {
-        return $this->referencesOrder;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Order $referencesOrder
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReferencesOrder($referencesOrder)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Order",
-        );
-
-        $referencesOrder = self::checkTypes($referencesOrder, $types);
-
-        $this->referencesOrder = $referencesOrder;
-    }
-
-    /**
      * @return \OpenActive\Enums\SchemaOrg\PaymentMethod|null
      */
     public function getPaymentMethod()
@@ -465,7 +441,7 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification
+     * @return \OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount
      */
     public function getMinimumPaymentDue()
     {
@@ -473,15 +449,15 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification $minimumPaymentDue
+     * @param \OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount $minimumPaymentDue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMinimumPaymentDue($minimumPaymentDue)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "\OpenActive\Models\SchemaOrg\PriceSpecification",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
         );
 
         $minimumPaymentDue = self::checkTypes($minimumPaymentDue, $types);
@@ -539,7 +515,31 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return \OpenActive\Models\SchemaOrg\Order
+     */
+    public function getReferencesOrder()
+    {
+        return $this->referencesOrder;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Order $referencesOrder
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReferencesOrder($referencesOrder)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Order",
+        );
+
+        $referencesOrder = self::checkTypes($referencesOrder, $types);
+
+        $this->referencesOrder = $referencesOrder;
+    }
+
+    /**
+     * @return Date|DateTime|null
      */
     public function getPaymentDueDate()
     {
@@ -547,16 +547,16 @@ class Invoice extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateTime|Date $paymentDueDate
+     * @param Date|DateTime|null $paymentDueDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentDueDate($paymentDueDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $paymentDueDate = self::checkTypes($paymentDueDate, $types);

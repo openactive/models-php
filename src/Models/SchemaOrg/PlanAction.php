@@ -27,12 +27,12 @@ class PlanAction extends \OpenActive\Models\SchemaOrg\OrganizeAction
      * The time the object is scheduled to.
      *
      *
-     * @var null|DateTime
+     * @var DateTime|null
      */
     protected $scheduledTime;
 
     /**
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getScheduledTime()
     {
@@ -40,15 +40,15 @@ class PlanAction extends \OpenActive\Models\SchemaOrg\OrganizeAction
     }
 
     /**
-     * @param null|DateTime $scheduledTime
+     * @param DateTime|null $scheduledTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setScheduledTime($scheduledTime)
     {
         $types = array(
-            "null",
             "DateTime",
+            "null",
         );
 
         $scheduledTime = self::checkTypes($scheduledTime, $types);

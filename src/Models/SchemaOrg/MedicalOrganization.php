@@ -28,7 +28,7 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
      * Whether the provider is accepting new patients.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $isAcceptingNewPatients;
 
@@ -41,7 +41,7 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
     protected $healthPlanNetworkId;
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getIsAcceptingNewPatients()
     {
@@ -49,15 +49,15 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param null|bool $isAcceptingNewPatients
+     * @param bool|null $isAcceptingNewPatients
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsAcceptingNewPatients($isAcceptingNewPatients)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $isAcceptingNewPatients = self::checkTypes($isAcceptingNewPatients, $types);

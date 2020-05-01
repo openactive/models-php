@@ -38,7 +38,7 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Identifies the issue of publication; for example, "iii" or "2".
      *
      *
-     * @var null|int|string
+     * @var string|int|null
      */
     protected $issueNumber;
 
@@ -46,7 +46,7 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The page on which the work ends; for example "138" or "xvi".
      *
      *
-     * @var null|int|string
+     * @var string|int|null
      */
     protected $pageEnd;
 
@@ -54,7 +54,7 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The page on which the work starts; for example "135" or "xiii".
      *
      *
-     * @var null|int|string
+     * @var string|int|null
      */
     protected $pageStart;
 
@@ -83,7 +83,7 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|int|string
+     * @return string|int|null
      */
     public function getIssueNumber()
     {
@@ -91,16 +91,16 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|int|string $issueNumber
+     * @param string|int|null $issueNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIssueNumber($issueNumber)
     {
         $types = array(
-            "null",
-            "int",
             "string",
+            "int",
+            "null",
         );
 
         $issueNumber = self::checkTypes($issueNumber, $types);
@@ -109,7 +109,7 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|int|string
+     * @return string|int|null
      */
     public function getPageEnd()
     {
@@ -117,16 +117,16 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|int|string $pageEnd
+     * @param string|int|null $pageEnd
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPageEnd($pageEnd)
     {
         $types = array(
-            "null",
-            "int",
             "string",
+            "int",
+            "null",
         );
 
         $pageEnd = self::checkTypes($pageEnd, $types);
@@ -135,7 +135,7 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|int|string
+     * @return string|int|null
      */
     public function getPageStart()
     {
@@ -143,16 +143,16 @@ class PublicationIssue extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|int|string $pageStart
+     * @param string|int|null $pageStart
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPageStart($pageStart)
     {
         $types = array(
-            "null",
-            "int",
             "string",
+            "int",
+            "null",
         );
 
         $pageStart = self::checkTypes($pageStart, $types);

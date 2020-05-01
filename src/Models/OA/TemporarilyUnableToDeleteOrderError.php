@@ -45,7 +45,7 @@ class TemporarilyUnableToDeleteOrderError extends \OpenActive\Models\OA\OpenBook
      * ```
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $statusCode;
 
@@ -74,7 +74,7 @@ class TemporarilyUnableToDeleteOrderError extends \OpenActive\Models\OA\OpenBook
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getStatusCode()
     {
@@ -82,15 +82,15 @@ class TemporarilyUnableToDeleteOrderError extends \OpenActive\Models\OA\OpenBook
     }
 
     /**
-     * @param null|int $statusCode
+     * @param int|null $statusCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStatusCode($statusCode)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $statusCode = self::checkTypes($statusCode, $types);

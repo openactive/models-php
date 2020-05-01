@@ -66,7 +66,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      * Whether the event can be cancelled.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $allowCustomerCancellationFullRefund;
 
@@ -143,7 +143,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      * An integer representing the order of OrderItems within the array.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $position;
 
@@ -228,7 +228,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getAllowCustomerCancellationFullRefund()
     {
@@ -236,15 +236,15 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param null|bool $allowCustomerCancellationFullRefund
+     * @param bool|null $allowCustomerCancellationFullRefund
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAllowCustomerCancellationFullRefund($allowCustomerCancellationFullRefund)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $allowCustomerCancellationFullRefund = self::checkTypes($allowCustomerCancellationFullRefund, $types);
@@ -470,7 +470,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getPosition()
     {
@@ -478,15 +478,15 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param null|int $position
+     * @param int|null $position
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPosition($position)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $position = self::checkTypes($position, $types);

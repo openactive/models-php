@@ -48,7 +48,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
+     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
      */
     protected $educationalCredentialAwarded;
 
@@ -64,7 +64,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The number of credits or units awarded by a Course or required to complete an EducationalOccupationalProgram.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\StructuredValue|null|int
+     * @var \OpenActive\Models\SchemaOrg\StructuredValue|int|null
      */
     protected $numberOfCredits;
 
@@ -72,7 +72,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     * @var \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
      */
     protected $occupationalCredentialAwarded;
 
@@ -127,7 +127,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
+     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
      */
     public function getEducationalCredentialAwarded()
     {
@@ -135,15 +135,15 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string $educationalCredentialAwarded
+     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $educationalCredentialAwarded
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEducationalCredentialAwarded($educationalCredentialAwarded)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
             "string",
+            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
         );
 
         $educationalCredentialAwarded = self::checkTypes($educationalCredentialAwarded, $types);
@@ -176,7 +176,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\StructuredValue|null|int
+     * @return \OpenActive\Models\SchemaOrg\StructuredValue|int|null
      */
     public function getNumberOfCredits()
     {
@@ -184,7 +184,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\StructuredValue|null|int $numberOfCredits
+     * @param \OpenActive\Models\SchemaOrg\StructuredValue|int|null $numberOfCredits
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -192,8 +192,8 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\StructuredValue",
-            "null",
             "int",
+            "null",
         );
 
         $numberOfCredits = self::checkTypes($numberOfCredits, $types);
@@ -202,7 +202,7 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     * @return \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
      */
     public function getOccupationalCredentialAwarded()
     {
@@ -210,15 +210,15 @@ class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $occupationalCredentialAwarded
+     * @param \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string $occupationalCredentialAwarded
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOccupationalCredentialAwarded($occupationalCredentialAwarded)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
+            "string",
         );
 
         $occupationalCredentialAwarded = self::checkTypes($occupationalCredentialAwarded, $types);

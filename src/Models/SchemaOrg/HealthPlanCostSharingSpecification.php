@@ -18,9 +18,9 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
     public static function fieldList() {
         $fields = [
             "healthPlanPharmacyCategory" => "healthPlanPharmacyCategory",
+            "healthPlanCopayOption" => "healthPlanCopayOption",
             "healthPlanCoinsuranceOption" => "healthPlanCoinsuranceOption",
             "healthPlanCoinsuranceRate" => "healthPlanCoinsuranceRate",
-            "healthPlanCopayOption" => "healthPlanCopayOption",
             "healthPlanCopay" => "healthPlanCopay",
         ];
 
@@ -36,6 +36,14 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
     protected $healthPlanPharmacyCategory;
 
     /**
+     * Whether the copay is before or after deductible, etc. TODO: Is this a closed set?
+     *
+     *
+     * @var string
+     */
+    protected $healthPlanCopayOption;
+
+    /**
      * Whether the coinsurance applies before or after deductible, etc. TODO: Is this a closed set?
      *
      *
@@ -47,17 +55,9 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
      * Whether The rate of coinsurance expressed as a number between 0.0 and 1.0.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $healthPlanCoinsuranceRate;
-
-    /**
-     * Whether the copay is before or after deductible, etc. TODO: Is this a closed set?
-     *
-     *
-     * @var string
-     */
-    protected $healthPlanCopayOption;
 
     /**
      * Whether The copay amount.
@@ -94,6 +94,30 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
     /**
      * @return string
      */
+    public function getHealthPlanCopayOption()
+    {
+        return $this->healthPlanCopayOption;
+    }
+
+    /**
+     * @param string $healthPlanCopayOption
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHealthPlanCopayOption($healthPlanCopayOption)
+    {
+        $types = array(
+            "string",
+        );
+
+        $healthPlanCopayOption = self::checkTypes($healthPlanCopayOption, $types);
+
+        $this->healthPlanCopayOption = $healthPlanCopayOption;
+    }
+
+    /**
+     * @return string
+     */
     public function getHealthPlanCoinsuranceOption()
     {
         return $this->healthPlanCoinsuranceOption;
@@ -116,7 +140,7 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getHealthPlanCoinsuranceRate()
     {
@@ -124,44 +148,20 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
     }
 
     /**
-     * @param null|float $healthPlanCoinsuranceRate
+     * @param float|null $healthPlanCoinsuranceRate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHealthPlanCoinsuranceRate($healthPlanCoinsuranceRate)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $healthPlanCoinsuranceRate = self::checkTypes($healthPlanCoinsuranceRate, $types);
 
         $this->healthPlanCoinsuranceRate = $healthPlanCoinsuranceRate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHealthPlanCopayOption()
-    {
-        return $this->healthPlanCopayOption;
-    }
-
-    /**
-     * @param string $healthPlanCopayOption
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHealthPlanCopayOption($healthPlanCopayOption)
-    {
-        $types = array(
-            "string",
-        );
-
-        $healthPlanCopayOption = self::checkTypes($healthPlanCopayOption, $types);
-
-        $this->healthPlanCopayOption = $healthPlanCopayOption;
     }
 
     /**

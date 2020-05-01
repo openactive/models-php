@@ -34,7 +34,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
      * Physical address of the item.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\PostalAddress
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string
      */
     protected $address;
 
@@ -74,7 +74,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The elevation of a location (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>). Values may be of the form 'NUMBER UNIT<em>OF</em>MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters.
      *
      *
-     * @var null|float|string
+     * @var string|float|null
      */
     protected $elevation;
 
@@ -95,7 +95,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $line;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\PostalAddress
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress|string
      */
     public function getAddress()
     {
@@ -103,15 +103,15 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\PostalAddress $address
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress|string $address
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddress($address)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "string",
         );
 
         $address = self::checkTypes($address, $types);
@@ -217,7 +217,7 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return null|float|string
+     * @return string|float|null
      */
     public function getElevation()
     {
@@ -225,16 +225,16 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param null|float|string $elevation
+     * @param string|float|null $elevation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setElevation($elevation)
     {
         $types = array(
-            "null",
-            "float",
             "string",
+            "float",
+            "null",
         );
 
         $elevation = self::checkTypes($elevation, $types);

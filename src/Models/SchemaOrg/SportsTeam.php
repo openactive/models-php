@@ -45,7 +45,7 @@ class SportsTeam extends \OpenActive\Models\SchemaOrg\SportsOrganization
      * Gender of something, typically a <a class="localLink" href="https://schema.org/Person">Person</a>, but possibly also fictional characters, animals, etc. While https://schema.org/Male and https://schema.org/Female may be used, text strings are also acceptable for people who do not identify as a binary gender. The <a class="localLink" href="https://schema.org/gender">gender</a> property can also be used in an extended sense to cover e.g. the gender of sports teams. As with the gender of individuals, we do not try to enumerate all possibilities. A mixed-gender <a class="localLink" href="https://schema.org/SportsTeam">SportsTeam</a> can be indicated with a text value of "Mixed".
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\GenderType|null|string
+     * @var \OpenActive\Enums\SchemaOrg\GenderType|string|null
      */
     protected $gender;
 
@@ -98,7 +98,7 @@ class SportsTeam extends \OpenActive\Models\SchemaOrg\SportsOrganization
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\GenderType|null|string
+     * @return \OpenActive\Enums\SchemaOrg\GenderType|string|null
      */
     public function getGender()
     {
@@ -106,7 +106,7 @@ class SportsTeam extends \OpenActive\Models\SchemaOrg\SportsOrganization
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\GenderType|null|string $gender
+     * @param \OpenActive\Enums\SchemaOrg\GenderType|string|null $gender
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -114,8 +114,8 @@ class SportsTeam extends \OpenActive\Models\SchemaOrg\SportsOrganization
     {
         $types = array(
             "\OpenActive\Enums\SchemaOrg\GenderType",
-            "null",
             "string",
+            "null",
         );
 
         $gender = self::checkTypes($gender, $types);

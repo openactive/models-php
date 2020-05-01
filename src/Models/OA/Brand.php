@@ -23,6 +23,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
             "description" => "description",
             "logo" => "logo",
             "url" => "url",
+            "formattedDescription" => "beta:formattedDescription",
             "video" => "beta:video",
         ];
 
@@ -36,7 +37,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      * "identifier": "BR1234"
      * ```
      *
-     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @var string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -89,7 +90,18 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * An related video object.
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * 
+     * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
+     *
+     *
+     * @var string
+     */
+    protected $formattedDescription;
+
+    /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * A related video object.
      * 
      * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
      *
@@ -99,7 +111,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     protected $video;
 
     /**
-     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @return string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -107,15 +119,15 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     }
 
     /**
-     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
+     * @param string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
         $types = array(
-            "int",
             "string",
+            "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
@@ -220,6 +232,30 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
         $url = self::checkTypes($url, $types);
 
         $this->url = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormattedDescription()
+    {
+        return $this->formattedDescription;
+    }
+
+    /**
+     * @param string $formattedDescription
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFormattedDescription($formattedDescription)
+    {
+        $types = array(
+            "string",
+        );
+
+        $formattedDescription = self::checkTypes($formattedDescription, $types);
+
+        $this->formattedDescription = $formattedDescription;
     }
 
     /**

@@ -47,7 +47,7 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
      * The time at which the UserComment was made.
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $commentTime;
 
@@ -116,7 +116,7 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getCommentTime()
     {
@@ -124,16 +124,16 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     }
 
     /**
-     * @param null|DateTime|Date $commentTime
+     * @param Date|DateTime|null $commentTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCommentTime($commentTime)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $commentTime = self::checkTypes($commentTime, $types);

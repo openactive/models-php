@@ -52,9 +52,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
             "composer" => "composer",
             "isAccessibleForFree" => "isAccessibleForFree",
             "performer" => "performer",
+            "maximumPhysicalAttendeeCapacity" => "maximumPhysicalAttendeeCapacity",
             "maximumVirtualAttendeeCapacity" => "maximumVirtualAttendeeCapacity",
             "eventAttendanceMode" => "eventAttendanceMode",
-            "maximumPhysicalAttendeeCapacity" => "maximumPhysicalAttendeeCapacity",
             "eventSchedule" => "eventSchedule",
         ];
 
@@ -73,7 +73,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * A person or organization that supports (sponsors) something through some kind of financial contribution.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $funder;
 
@@ -106,7 +106,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The number of attendee places for an event that remain unallocated.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $remainingAttendeeCapacity;
 
@@ -130,7 +130,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $endDate;
 
@@ -138,7 +138,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The time admission will commence.
      *
      *
-     * @var null|string|DateTime
+     * @var DateTime|string|null
      */
     protected $doorTime;
 
@@ -146,7 +146,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * A secondary contributor to the CreativeWork or Event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $contributor;
 
@@ -154,7 +154,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The total number of individuals that may attend an event or venue.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $maximumAttendeeCapacity;
 
@@ -218,7 +218,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * A person or organization attending the event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $attendee;
 
@@ -242,7 +242,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $startDate;
 
@@ -266,7 +266,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The duration of the item (movie, audio recording, event, etc.) in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.
      *
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      */
     protected $duration;
 
@@ -282,7 +282,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * Used in conjunction with eventStatus for rescheduled or cancelled events. This property contains the previously scheduled start date. For rescheduled events, the startDate property should be used for the newly scheduled start date. In the (rare) case of an event that has been postponed and rescheduled multiple times, this field may be repeated.
      *
      *
-     * @var null|Date
+     * @var Date|null
      */
     protected $previousStartDate;
 
@@ -298,7 +298,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $sponsor;
 
@@ -306,7 +306,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * The location of for example where the event is happening, an organization is located, or where an action takes place.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\VirtualLocation
+     * @var \OpenActive\Models\SchemaOrg\VirtualLocation|\OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place
      */
     protected $location;
 
@@ -330,7 +330,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * A flag to signal that the item, event, or place is accessible for free.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $isAccessibleForFree;
 
@@ -343,10 +343,18 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     protected $performer;
 
     /**
+     * The maximum physical attendee capacity of an <a class="localLink" href="https://schema.org/Event">Event</a> whose <a class="localLink" href="https://schema.org/eventAttendanceMode">eventAttendanceMode</a> is <a class="localLink" href="https://schema.org/OfflineEventAttendanceMode">OfflineEventAttendanceMode</a> (or the offline aspects, in the case of a <a class="localLink" href="https://schema.org/MixedEventAttendanceMode">MixedEventAttendanceMode</a>).
+     *
+     *
+     * @var int|null
+     */
+    protected $maximumPhysicalAttendeeCapacity;
+
+    /**
      * The maximum physical attendee capacity of an <a class="localLink" href="https://schema.org/Event">Event</a> whose <a class="localLink" href="https://schema.org/eventAttendanceMode">eventAttendanceMode</a> is <a class="localLink" href="https://schema.org/OnlineEventAttendanceMode">OnlineEventAttendanceMode</a> (or the online aspects, in the case of a <a class="localLink" href="https://schema.org/MixedEventAttendanceMode">MixedEventAttendanceMode</a>).
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $maximumVirtualAttendeeCapacity;
 
@@ -357,14 +365,6 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
      * @var \OpenActive\Enums\SchemaOrg\EventAttendanceModeEnumeration|null
      */
     protected $eventAttendanceMode;
-
-    /**
-     * The maximum physical attendee capacity of an <a class="localLink" href="https://schema.org/Event">Event</a> whose <a class="localLink" href="https://schema.org/eventAttendanceMode">eventAttendanceMode</a> is <a class="localLink" href="https://schema.org/OfflineEventAttendanceMode">OfflineEventAttendanceMode</a> (or the offline aspects, in the case of a <a class="localLink" href="https://schema.org/MixedEventAttendanceMode">MixedEventAttendanceMode</a>).
-     *
-     *
-     * @var null|int
-     */
-    protected $maximumPhysicalAttendeeCapacity;
 
     /**
      * Associates an <a class="localLink" href="https://schema.org/Event">Event</a> with a <a class="localLink" href="https://schema.org/Schedule">Schedule</a>. There are circumstances where it is preferable to share a schedule for a series of
@@ -404,7 +404,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getFunder()
     {
@@ -412,15 +412,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $funder
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $funder
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFunder($funder)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $funder = self::checkTypes($funder, $types);
@@ -501,7 +501,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getRemainingAttendeeCapacity()
     {
@@ -509,15 +509,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|int $remainingAttendeeCapacity
+     * @param int|null $remainingAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $remainingAttendeeCapacity = self::checkTypes($remainingAttendeeCapacity, $types);
@@ -575,7 +575,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getEndDate()
     {
@@ -583,16 +583,16 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|DateTime|Date $endDate
+     * @param Date|DateTime|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $endDate = self::checkTypes($endDate, $types);
@@ -601,7 +601,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|string|DateTime
+     * @return DateTime|string|null
      */
     public function getDoorTime()
     {
@@ -609,16 +609,16 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|string|DateTime $doorTime
+     * @param DateTime|string|null $doorTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDoorTime($doorTime)
     {
         $types = array(
-            "null",
-            "Time",
             "DateTime",
+            "Time",
+            "null",
         );
 
         $doorTime = self::checkTypes($doorTime, $types);
@@ -627,7 +627,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getContributor()
     {
@@ -635,15 +635,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $contributor
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $contributor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContributor($contributor)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $contributor = self::checkTypes($contributor, $types);
@@ -652,7 +652,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getMaximumAttendeeCapacity()
     {
@@ -660,15 +660,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|int $maximumAttendeeCapacity
+     * @param int|null $maximumAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $maximumAttendeeCapacity = self::checkTypes($maximumAttendeeCapacity, $types);
@@ -849,7 +849,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getAttendee()
     {
@@ -857,15 +857,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $attendee
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $attendee
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAttendee($attendee)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $attendee = self::checkTypes($attendee, $types);
@@ -923,7 +923,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getStartDate()
     {
@@ -931,16 +931,16 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|DateTime|Date $startDate
+     * @param Date|DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $startDate = self::checkTypes($startDate, $types);
@@ -997,7 +997,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      */
     public function getDuration()
     {
@@ -1005,15 +1005,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|DateInterval $duration
+     * @param DateInterval|null $duration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $duration = self::checkTypes($duration, $types);
@@ -1047,7 +1047,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|Date
+     * @return Date|null
      */
     public function getPreviousStartDate()
     {
@@ -1055,15 +1055,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|Date $previousStartDate
+     * @param Date|null $previousStartDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPreviousStartDate($previousStartDate)
     {
         $types = array(
-            "null",
             "Date",
+            "null",
         );
 
         $previousStartDate = self::checkTypes($previousStartDate, $types);
@@ -1096,7 +1096,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getSponsor()
     {
@@ -1104,15 +1104,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $sponsor
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $sponsor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSponsor($sponsor)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $sponsor = self::checkTypes($sponsor, $types);
@@ -1121,7 +1121,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\VirtualLocation
+     * @return \OpenActive\Models\SchemaOrg\VirtualLocation|\OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place
      */
     public function getLocation()
     {
@@ -1129,17 +1129,17 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\VirtualLocation $location
+     * @param \OpenActive\Models\SchemaOrg\VirtualLocation|\OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place $location
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLocation($location)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Place",
-            "string",
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
             "\OpenActive\Models\SchemaOrg\VirtualLocation",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "string",
+            "\OpenActive\Models\SchemaOrg\Place",
         );
 
         $location = self::checkTypes($location, $types);
@@ -1197,7 +1197,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getIsAccessibleForFree()
     {
@@ -1205,15 +1205,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|bool $isAccessibleForFree
+     * @param bool|null $isAccessibleForFree
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsAccessibleForFree($isAccessibleForFree)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $isAccessibleForFree = self::checkTypes($isAccessibleForFree, $types);
@@ -1247,7 +1247,32 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|int
+     * @return int|null
+     */
+    public function getMaximumPhysicalAttendeeCapacity()
+    {
+        return $this->maximumPhysicalAttendeeCapacity;
+    }
+
+    /**
+     * @param int|null $maximumPhysicalAttendeeCapacity
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMaximumPhysicalAttendeeCapacity($maximumPhysicalAttendeeCapacity)
+    {
+        $types = array(
+            "int",
+            "null",
+        );
+
+        $maximumPhysicalAttendeeCapacity = self::checkTypes($maximumPhysicalAttendeeCapacity, $types);
+
+        $this->maximumPhysicalAttendeeCapacity = $maximumPhysicalAttendeeCapacity;
+    }
+
+    /**
+     * @return int|null
      */
     public function getMaximumVirtualAttendeeCapacity()
     {
@@ -1255,15 +1280,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|int $maximumVirtualAttendeeCapacity
+     * @param int|null $maximumVirtualAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaximumVirtualAttendeeCapacity($maximumVirtualAttendeeCapacity)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $maximumVirtualAttendeeCapacity = self::checkTypes($maximumVirtualAttendeeCapacity, $types);
@@ -1294,31 +1319,6 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
         $eventAttendanceMode = self::checkTypes($eventAttendanceMode, $types);
 
         $this->eventAttendanceMode = $eventAttendanceMode;
-    }
-
-    /**
-     * @return null|int
-     */
-    public function getMaximumPhysicalAttendeeCapacity()
-    {
-        return $this->maximumPhysicalAttendeeCapacity;
-    }
-
-    /**
-     * @param null|int $maximumPhysicalAttendeeCapacity
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMaximumPhysicalAttendeeCapacity($maximumPhysicalAttendeeCapacity)
-    {
-        $types = array(
-            "null",
-            "int",
-        );
-
-        $maximumPhysicalAttendeeCapacity = self::checkTypes($maximumPhysicalAttendeeCapacity, $types);
-
-        $this->maximumPhysicalAttendeeCapacity = $maximumPhysicalAttendeeCapacity;
     }
 
     /**

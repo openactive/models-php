@@ -36,6 +36,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
             "url" => "url",
             "vatID" => "vatID",
             "formattedDescription" => "beta:formattedDescription",
+            "formalCriteriaMet" => "beta:formalCriteriaMet",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -48,7 +49,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @var string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -237,7 +238,18 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     protected $formattedDescription;
 
     /**
-     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * An array of URLs, each of which describe the formal criteria that are met by the organizer.
+     * 
+     * If you are using this property, please join the discussion at proposal [#236](https://github.com/openactive/modelling-opportunity-data/issues/236).
+     *
+     *
+     * @var string[]
+     */
+    protected $formalCriteriaMet;
+
+    /**
+     * @return string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -245,15 +257,15 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     }
 
     /**
-     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
+     * @param string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
         $types = array(
-            "int",
             "string",
+            "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
@@ -672,6 +684,30 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
         $formattedDescription = self::checkTypes($formattedDescription, $types);
 
         $this->formattedDescription = $formattedDescription;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getFormalCriteriaMet()
+    {
+        return $this->formalCriteriaMet;
+    }
+
+    /**
+     * @param string[] $formalCriteriaMet
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFormalCriteriaMet($formalCriteriaMet)
+    {
+        $types = array(
+            "string[]",
+        );
+
+        $formalCriteriaMet = self::checkTypes($formalCriteriaMet, $types);
+
+        $this->formalCriteriaMet = $formalCriteriaMet;
     }
 
 }

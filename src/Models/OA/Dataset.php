@@ -103,7 +103,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      * "dateModified": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var null|DateTime
+     * @var DateTime|null
      */
     protected $dateModified;
 
@@ -114,7 +114,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      * "datePublished": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $datePublished;
 
@@ -361,7 +361,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getDateModified()
     {
@@ -369,15 +369,15 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @param null|DateTime $dateModified
+     * @param DateTime|null $dateModified
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateModified($dateModified)
     {
         $types = array(
-            "null",
             "DateTime",
+            "null",
         );
 
         $dateModified = self::checkTypes($dateModified, $types);
@@ -386,7 +386,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getDatePublished()
     {
@@ -394,16 +394,16 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @param null|DateTime|Date $datePublished
+     * @param Date|DateTime|null $datePublished
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDatePublished($datePublished)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $datePublished = self::checkTypes($datePublished, $types);

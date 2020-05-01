@@ -57,7 +57,7 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
      * 
      *
      *
-     * @var null|float|string
+     * @var string|float|null
      */
     protected $price;
 
@@ -110,7 +110,7 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @return null|float|string
+     * @return string|float|null
      */
     public function getPrice()
     {
@@ -118,16 +118,16 @@ class TradeAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @param null|float|string $price
+     * @param string|float|null $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
         $types = array(
-            "null",
-            "float",
             "string",
+            "float",
+            "null",
         );
 
         $price = self::checkTypes($price, $types);

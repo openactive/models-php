@@ -20,6 +20,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
             "sku" => "sku",
             "availabilityStarts" => "availabilityStarts",
             "availableDeliveryMethod" => "availableDeliveryMethod",
+            "areaServed" => "areaServed",
             "mpn" => "mpn",
             "serialNumber" => "serialNumber",
             "gtin8" => "gtin8",
@@ -47,17 +48,17 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
             "availabilityEnds" => "availabilityEnds",
             "includesObject" => "includesObject",
             "review" => "review",
-            "businessFunction" => "businessFunction",
             "eligibleCustomerType" => "eligibleCustomerType",
             "itemCondition" => "itemCondition",
             "itemOffered" => "itemOffered",
             "offeredBy" => "offeredBy",
             "eligibleDuration" => "eligibleDuration",
             "acceptedPaymentMethod" => "acceptedPaymentMethod",
-            "areaServed" => "areaServed",
+            "businessFunction" => "businessFunction",
             "eligibleRegion" => "eligibleRegion",
             "advanceBookingRequirement" => "advanceBookingRequirement",
             "leaseLength" => "leaseLength",
+            "shippingDetails" => "shippingDetails",
             "ineligibleRegion" => "ineligibleRegion",
             "gtin" => "gtin",
         ];
@@ -77,7 +78,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * The beginning of the availability of the product or service included in the offer.
      *
      *
-     * @var null|string|DateTime|Date
+     * @var Date|DateTime|string|null
      */
     protected $availabilityStarts;
 
@@ -88,6 +89,14 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * @var \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
      */
     protected $availableDeliveryMethod;
+
+    /**
+     * The geographic area where a service or offered item is provided.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\AdministrativeArea
+     */
+    protected $areaServed;
 
     /**
      * The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.
@@ -183,7 +192,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     * @var string|\OpenActive\Models\SchemaOrg\Thing
      */
     protected $category;
 
@@ -191,7 +200,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * The date after which the price is no longer available.
      *
      *
-     * @var null|Date
+     * @var Date|null
      */
     protected $priceValidUntil;
 
@@ -223,7 +232,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * The date when the item becomes valid.
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $validFrom;
 
@@ -231,7 +240,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $validThrough;
 
@@ -249,7 +258,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * 
      *
      *
-     * @var null|float|string
+     * @var string|float|null
      */
     protected $price;
 
@@ -297,7 +306,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * The end of the availability of the product or service included in the offer.
      *
      *
-     * @var null|string|DateTime|Date
+     * @var Date|DateTime|string|null
      */
     protected $availabilityEnds;
 
@@ -316,14 +325,6 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * @var \OpenActive\Models\SchemaOrg\Review
      */
     protected $review;
-
-    /**
-     * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\BusinessFunction|null
-     */
-    protected $businessFunction;
 
     /**
      * The type(s) of customers for which the given offer is valid.
@@ -345,7 +346,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * An item being offered (or demanded). The transactional nature of the offer or demand is documented using <a class="localLink" href="https://schema.org/businessFunction">businessFunction</a>, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Trip|\OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\AggregateOffer|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\Trip|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\AggregateOffer|\OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\Service
      */
     protected $itemOffered;
 
@@ -353,7 +354,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
      * A pointer to the organization or person making the offer.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $offeredBy;
 
@@ -374,12 +375,12 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     protected $acceptedPaymentMethod;
 
     /**
-     * The geographic area where a service or offered item is provided.
+     * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\AdministrativeArea
+     * @var \OpenActive\Enums\SchemaOrg\BusinessFunction|null
      */
-    protected $areaServed;
+    protected $businessFunction;
 
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.<br/><br/>
@@ -408,12 +409,20 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     protected $leaseLength;
 
     /**
+     * Indicates information about the shipping policies and options associated with an <a class="localLink" href="https://schema.org/Offer">Offer</a>.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\OfferShippingDetails
+     */
+    protected $shippingDetails;
+
+    /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.<br/><br/>
      * 
      * See also <a class="localLink" href="https://schema.org/eligibleRegion">eligibleRegion</a>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string
+     * @var string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place
      */
     protected $ineligibleRegion;
 
@@ -450,7 +459,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|string|DateTime|Date
+     * @return Date|DateTime|string|null
      */
     public function getAvailabilityStarts()
     {
@@ -458,17 +467,17 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|string|DateTime|Date $availabilityStarts
+     * @param Date|DateTime|string|null $availabilityStarts
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailabilityStarts($availabilityStarts)
     {
         $types = array(
-            "null",
-            "Time",
-            "DateTime",
             "Date",
+            "DateTime",
+            "Time",
+            "null",
         );
 
         $availabilityStarts = self::checkTypes($availabilityStarts, $types);
@@ -499,6 +508,33 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
         $availableDeliveryMethod = self::checkTypes($availableDeliveryMethod, $types);
 
         $this->availableDeliveryMethod = $availableDeliveryMethod;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\AdministrativeArea
+     */
+    public function getAreaServed()
+    {
+        return $this->areaServed;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAreaServed($areaServed)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\GeoShape",
+            "string",
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+        );
+
+        $areaServed = self::checkTypes($areaServed, $types);
+
+        $this->areaServed = $areaServed;
     }
 
     /**
@@ -767,7 +803,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     * @return string|\OpenActive\Models\SchemaOrg\Thing
      */
     public function getCategory()
     {
@@ -775,15 +811,15 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $category
+     * @param string|\OpenActive\Models\SchemaOrg\Thing $category
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCategory($category)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
             "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
         );
 
         $category = self::checkTypes($category, $types);
@@ -792,7 +828,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|Date
+     * @return Date|null
      */
     public function getPriceValidUntil()
     {
@@ -800,15 +836,15 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|Date $priceValidUntil
+     * @param Date|null $priceValidUntil
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPriceValidUntil($priceValidUntil)
     {
         $types = array(
-            "null",
             "Date",
+            "null",
         );
 
         $priceValidUntil = self::checkTypes($priceValidUntil, $types);
@@ -889,7 +925,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getValidFrom()
     {
@@ -897,16 +933,16 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateTime|Date $validFrom
+     * @param Date|DateTime|null $validFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFrom($validFrom)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $validFrom = self::checkTypes($validFrom, $types);
@@ -915,7 +951,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getValidThrough()
     {
@@ -923,16 +959,16 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateTime|Date $validThrough
+     * @param Date|DateTime|null $validThrough
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidThrough($validThrough)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $validThrough = self::checkTypes($validThrough, $types);
@@ -941,7 +977,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|float|string
+     * @return string|float|null
      */
     public function getPrice()
     {
@@ -949,16 +985,16 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|float|string $price
+     * @param string|float|null $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
         $types = array(
-            "null",
-            "float",
             "string",
+            "float",
+            "null",
         );
 
         $price = self::checkTypes($price, $types);
@@ -1088,7 +1124,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|string|DateTime|Date
+     * @return Date|DateTime|string|null
      */
     public function getAvailabilityEnds()
     {
@@ -1096,17 +1132,17 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|string|DateTime|Date $availabilityEnds
+     * @param Date|DateTime|string|null $availabilityEnds
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailabilityEnds($availabilityEnds)
     {
         $types = array(
-            "null",
-            "Time",
-            "DateTime",
             "Date",
+            "DateTime",
+            "Time",
+            "null",
         );
 
         $availabilityEnds = self::checkTypes($availabilityEnds, $types);
@@ -1163,31 +1199,6 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\BusinessFunction|null
-     */
-    public function getBusinessFunction()
-    {
-        return $this->businessFunction;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\BusinessFunction|null $businessFunction
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBusinessFunction($businessFunction)
-    {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\BusinessFunction",
-            "null",
-        );
-
-        $businessFunction = self::checkTypes($businessFunction, $types);
-
-        $this->businessFunction = $businessFunction;
-    }
-
-    /**
      * @return \OpenActive\Enums\SchemaOrg\BusinessEntityType|null
      */
     public function getEligibleCustomerType()
@@ -1238,7 +1249,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Trip|\OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\AggregateOffer|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\Trip|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\AggregateOffer|\OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\Service
      */
     public function getItemOffered()
     {
@@ -1246,19 +1257,19 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Trip|\OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\AggregateOffer|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service $itemOffered
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\Trip|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\AggregateOffer|\OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\Service $itemOffered
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemOffered($itemOffered)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Event",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
-            "\OpenActive\Models\SchemaOrg\Trip",
             "\OpenActive\Models\SchemaOrg\MenuItem",
-            "\OpenActive\Models\SchemaOrg\AggregateOffer",
+            "\OpenActive\Models\SchemaOrg\Trip",
             "\OpenActive\Models\SchemaOrg\Product",
+            "\OpenActive\Models\SchemaOrg\AggregateOffer",
+            "\OpenActive\Models\SchemaOrg\Event",
             "\OpenActive\Models\SchemaOrg\Service",
         );
 
@@ -1268,7 +1279,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getOfferedBy()
     {
@@ -1276,15 +1287,15 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $offeredBy
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $offeredBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOfferedBy($offeredBy)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $offeredBy = self::checkTypes($offeredBy, $types);
@@ -1343,30 +1354,28 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\AdministrativeArea
+     * @return \OpenActive\Enums\SchemaOrg\BusinessFunction|null
      */
-    public function getAreaServed()
+    public function getBusinessFunction()
     {
-        return $this->areaServed;
+        return $this->businessFunction;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
+     * @param \OpenActive\Enums\SchemaOrg\BusinessFunction|null $businessFunction
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAreaServed($areaServed)
+    public function setBusinessFunction($businessFunction)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\GeoShape",
-            "\OpenActive\Models\SchemaOrg\Place",
-            "string",
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+            "\OpenActive\Enums\SchemaOrg\BusinessFunction",
+            "null",
         );
 
-        $areaServed = self::checkTypes($areaServed, $types);
+        $businessFunction = self::checkTypes($businessFunction, $types);
 
-        $this->areaServed = $areaServed;
+        $this->businessFunction = $businessFunction;
     }
 
     /**
@@ -1446,7 +1455,31 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string
+     * @return \OpenActive\Models\SchemaOrg\OfferShippingDetails
+     */
+    public function getShippingDetails()
+    {
+        return $this->shippingDetails;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\OfferShippingDetails $shippingDetails
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setShippingDetails($shippingDetails)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\OfferShippingDetails",
+        );
+
+        $shippingDetails = self::checkTypes($shippingDetails, $types);
+
+        $this->shippingDetails = $shippingDetails;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place
      */
     public function getIneligibleRegion()
     {
@@ -1454,16 +1487,16 @@ class Offer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string $ineligibleRegion
+     * @param string|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place $ineligibleRegion
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIneligibleRegion($ineligibleRegion)
     {
         $types = array(
+            "string",
             "\OpenActive\Models\SchemaOrg\GeoShape",
             "\OpenActive\Models\SchemaOrg\Place",
-            "string",
         );
 
         $ineligibleRegion = self::checkTypes($ineligibleRegion, $types);
