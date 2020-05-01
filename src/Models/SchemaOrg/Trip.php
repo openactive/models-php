@@ -33,7 +33,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
      * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $provider;
 
@@ -49,7 +49,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
      * The expected arrival time.
      *
      *
-     * @var null|string|DateTime
+     * @var DateTime|string|null
      */
     protected $arrivalTime;
 
@@ -57,7 +57,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
      * The expected departure time.
      *
      *
-     * @var null|string|DateTime
+     * @var DateTime|string|null
      */
     protected $departureTime;
 
@@ -86,7 +86,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     protected $itinerary;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getProvider()
     {
@@ -94,15 +94,15 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $provider
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $provider
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvider($provider)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $provider = self::checkTypes($provider, $types);
@@ -136,7 +136,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|string|DateTime
+     * @return DateTime|string|null
      */
     public function getArrivalTime()
     {
@@ -144,16 +144,16 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|string|DateTime $arrivalTime
+     * @param DateTime|string|null $arrivalTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setArrivalTime($arrivalTime)
     {
         $types = array(
-            "null",
-            "Time",
             "DateTime",
+            "Time",
+            "null",
         );
 
         $arrivalTime = self::checkTypes($arrivalTime, $types);
@@ -162,7 +162,7 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|string|DateTime
+     * @return DateTime|string|null
      */
     public function getDepartureTime()
     {
@@ -170,16 +170,16 @@ class Trip extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|string|DateTime $departureTime
+     * @param DateTime|string|null $departureTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDepartureTime($departureTime)
     {
         $types = array(
-            "null",
-            "Time",
             "DateTime",
+            "Time",
+            "null",
         );
 
         $departureTime = self::checkTypes($departureTime, $types);

@@ -57,7 +57,7 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * The number of episodes in this season or series.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $numberOfEpisodes;
 
@@ -73,7 +73,7 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * A season in a media series.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\CreativeWorkSeason
+     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string
      */
     protected $season;
 
@@ -97,7 +97,7 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * The composer of the soundtrack.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
      */
     protected $musicBy;
 
@@ -121,7 +121,7 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * The number of seasons in this series.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $numberOfSeasons;
 
@@ -206,7 +206,7 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getNumberOfEpisodes()
     {
@@ -214,15 +214,15 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param null|int $numberOfEpisodes
+     * @param int|null $numberOfEpisodes
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfEpisodes($numberOfEpisodes)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $numberOfEpisodes = self::checkTypes($numberOfEpisodes, $types);
@@ -255,7 +255,7 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\CreativeWorkSeason
+     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string
      */
     public function getSeason()
     {
@@ -263,15 +263,15 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CreativeWorkSeason $season
+     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string $season
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeason($season)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\CreativeWorkSeason",
+            "string",
         );
 
         $season = self::checkTypes($season, $types);
@@ -328,7 +328,7 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
      */
     public function getMusicBy()
     {
@@ -336,15 +336,15 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup $musicBy
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person $musicBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicBy($musicBy)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $musicBy = self::checkTypes($musicBy, $types);
@@ -401,7 +401,7 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getNumberOfSeasons()
     {
@@ -409,15 +409,15 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param null|int $numberOfSeasons
+     * @param int|null $numberOfSeasons
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfSeasons($numberOfSeasons)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $numberOfSeasons = self::checkTypes($numberOfSeasons, $types);

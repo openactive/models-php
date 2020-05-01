@@ -31,7 +31,7 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @var string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -39,12 +39,12 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
      * Expiry DateTime of the Lease in ISO 8601 format
      *
      *
-     * @var null|DateTime
+     * @var DateTime|null
      */
     protected $leaseExpires;
 
     /**
-     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @return string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -52,15 +52,15 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
+     * @param string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
         $types = array(
-            "int",
             "string",
+            "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
@@ -72,7 +72,7 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getLeaseExpires()
     {
@@ -80,15 +80,15 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|DateTime $leaseExpires
+     * @param DateTime|null $leaseExpires
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLeaseExpires($leaseExpires)
     {
         $types = array(
-            "null",
             "DateTime",
+            "null",
         );
 
         $leaseExpires = self::checkTypes($leaseExpires, $types);

@@ -31,7 +31,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
      * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      *
      *
-     * @var null|string|DateTime
+     * @var DateTime|string|null
      */
     protected $startTime;
 
@@ -41,7 +41,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
      * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      *
      *
-     * @var null|string|DateTime
+     * @var DateTime|string|null
      */
     protected $endTime;
 
@@ -49,12 +49,12 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
      * Number of people the reservation should accommodate.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int
+     * @var int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $partySize;
 
     /**
-     * @return null|string|DateTime
+     * @return DateTime|string|null
      */
     public function getStartTime()
     {
@@ -62,16 +62,16 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * @param null|string|DateTime $startTime
+     * @param DateTime|string|null $startTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartTime($startTime)
     {
         $types = array(
-            "null",
-            "Time",
             "DateTime",
+            "Time",
+            "null",
         );
 
         $startTime = self::checkTypes($startTime, $types);
@@ -80,7 +80,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * @return null|string|DateTime
+     * @return DateTime|string|null
      */
     public function getEndTime()
     {
@@ -88,16 +88,16 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * @param null|string|DateTime $endTime
+     * @param DateTime|string|null $endTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndTime($endTime)
     {
         $types = array(
-            "null",
-            "Time",
             "DateTime",
+            "Time",
+            "null",
         );
 
         $endTime = self::checkTypes($endTime, $types);
@@ -106,7 +106,7 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int
+     * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getPartySize()
     {
@@ -114,16 +114,16 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|int $partySize
+     * @param int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $partySize
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPartySize($partySize)
     {
         $types = array(
+            "int",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
-            "int",
         );
 
         $partySize = self::checkTypes($partySize, $types);

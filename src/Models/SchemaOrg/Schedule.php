@@ -18,11 +18,11 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     public static function fieldList() {
         $fields = [
             "byDay" => "byDay",
+            "byMonthDay" => "byMonthDay",
             "scheduleTimezone" => "scheduleTimezone",
             "byMonth" => "byMonth",
             "repeatFrequency" => "repeatFrequency",
             "repeatCount" => "repeatCount",
-            "byMonthDay" => "byMonthDay",
             "exceptDate" => "exceptDate",
         ];
 
@@ -33,9 +33,17 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
      * Defines the day(s) of the week on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place. May be specified using either <a class="localLink" href="https://schema.org/DayOfWeek">DayOfWeek</a>, or alternatively <a class="localLink" href="https://schema.org/Text">Text</a> conforming to iCal's syntax for byDay recurrence rules
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\DayOfWeek|null|string
+     * @var \OpenActive\Enums\SchemaOrg\DayOfWeek|string|null
      */
     protected $byDay;
+
+    /**
+     * Defines the day(s) of the month on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place. Specified as an <a class="localLink" href="https://schema.org/Integer">Integer</a> between 1-31.
+     *
+     *
+     * @var int|null
+     */
+    protected $byMonthDay;
 
     /**
      * Indicates the timezone for which the time(s) indicated in the <a class="localLink" href="https://schema.org/Schedule">Schedule</a> are given. The value provided should be among those listed in the IANA Time Zone Database.
@@ -49,7 +57,7 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
      * Defines the month(s) of the year on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place. Specified as an <a class="localLink" href="https://schema.org/Integer">Integer</a> between 1-12. January is 1.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $byMonth;
 
@@ -58,7 +66,7 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
      *       events should be defined as a <a class="localLink" href="https://schema.org/Duration">Duration</a> of time.
      *
      *
-     * @var null|string|DateInterval
+     * @var DateInterval|string|null
      */
     protected $repeatFrequency;
 
@@ -66,17 +74,9 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
      * Defines the number of times a recurring <a class="localLink" href="https://schema.org/Event">Event</a> will take place
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $repeatCount;
-
-    /**
-     * Defines the day(s) of the month on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place. Specified as an <a class="localLink" href="https://schema.org/Integer">Integer</a> between 1-31.
-     *
-     *
-     * @var null|int
-     */
-    protected $byMonthDay;
 
     /**
      * Defines a <a class="localLink" href="https://schema.org/Date">Date</a> or <a class="localLink" href="https://schema.org/DateTime">DateTime</a> during which a scheduled <a class="localLink" href="https://schema.org/Event">Event</a> will not take place. The property allows exceptions to
@@ -85,12 +85,12 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
      *       excluded from the schedule. This allows a whole day to be excluded from the schedule without having to itemise every scheduled event.
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $exceptDate;
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\DayOfWeek|null|string
+     * @return \OpenActive\Enums\SchemaOrg\DayOfWeek|string|null
      */
     public function getByDay()
     {
@@ -98,7 +98,7 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\DayOfWeek|null|string $byDay
+     * @param \OpenActive\Enums\SchemaOrg\DayOfWeek|string|null $byDay
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -106,13 +106,38 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = array(
             "\OpenActive\Enums\SchemaOrg\DayOfWeek",
-            "null",
             "string",
+            "null",
         );
 
         $byDay = self::checkTypes($byDay, $types);
 
         $this->byDay = $byDay;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getByMonthDay()
+    {
+        return $this->byMonthDay;
+    }
+
+    /**
+     * @param int|null $byMonthDay
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setByMonthDay($byMonthDay)
+    {
+        $types = array(
+            "int",
+            "null",
+        );
+
+        $byMonthDay = self::checkTypes($byMonthDay, $types);
+
+        $this->byMonthDay = $byMonthDay;
     }
 
     /**
@@ -140,7 +165,7 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getByMonth()
     {
@@ -148,15 +173,15 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|int $byMonth
+     * @param int|null $byMonth
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setByMonth($byMonth)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $byMonth = self::checkTypes($byMonth, $types);
@@ -165,7 +190,7 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|string|DateInterval
+     * @return DateInterval|string|null
      */
     public function getRepeatFrequency()
     {
@@ -173,16 +198,16 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|string|DateInterval $repeatFrequency
+     * @param DateInterval|string|null $repeatFrequency
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRepeatFrequency($repeatFrequency)
     {
         $types = array(
-            "null",
-            "string",
             "DateInterval",
+            "string",
+            "null",
         );
 
         $repeatFrequency = self::checkTypes($repeatFrequency, $types);
@@ -191,7 +216,7 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getRepeatCount()
     {
@@ -199,15 +224,15 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|int $repeatCount
+     * @param int|null $repeatCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRepeatCount($repeatCount)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $repeatCount = self::checkTypes($repeatCount, $types);
@@ -216,32 +241,7 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|int
-     */
-    public function getByMonthDay()
-    {
-        return $this->byMonthDay;
-    }
-
-    /**
-     * @param null|int $byMonthDay
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setByMonthDay($byMonthDay)
-    {
-        $types = array(
-            "null",
-            "int",
-        );
-
-        $byMonthDay = self::checkTypes($byMonthDay, $types);
-
-        $this->byMonthDay = $byMonthDay;
-    }
-
-    /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getExceptDate()
     {
@@ -249,16 +249,16 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateTime|Date $exceptDate
+     * @param Date|DateTime|null $exceptDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExceptDate($exceptDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $exceptDate = self::checkTypes($exceptDate, $types);

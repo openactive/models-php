@@ -29,7 +29,7 @@ class HealthPlanNetwork extends \OpenActive\Models\SchemaOrg\Intangible
      * Whether The costs to the patient for services under this network or formulary.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $healthPlanCostSharing;
 
@@ -50,7 +50,7 @@ class HealthPlanNetwork extends \OpenActive\Models\SchemaOrg\Intangible
     protected $healthPlanNetworkId;
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getHealthPlanCostSharing()
     {
@@ -58,15 +58,15 @@ class HealthPlanNetwork extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|bool $healthPlanCostSharing
+     * @param bool|null $healthPlanCostSharing
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHealthPlanCostSharing($healthPlanCostSharing)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $healthPlanCostSharing = self::checkTypes($healthPlanCostSharing, $types);

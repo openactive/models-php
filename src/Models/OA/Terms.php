@@ -41,14 +41,14 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
      * "dateModified": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var null|DateTime
+     * @var DateTime|null
      */
     protected $dateModified;
 
     /**
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $requiresExplicitConsent;
 
@@ -85,7 +85,7 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
     }
 
     /**
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getDateModified()
     {
@@ -93,15 +93,15 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
     }
 
     /**
-     * @param null|DateTime $dateModified
+     * @param DateTime|null $dateModified
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDateModified($dateModified)
     {
         $types = array(
-            "null",
             "DateTime",
+            "null",
         );
 
         $dateModified = self::checkTypes($dateModified, $types);
@@ -110,7 +110,7 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getRequiresExplicitConsent()
     {
@@ -118,15 +118,15 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
     }
 
     /**
-     * @param null|bool $requiresExplicitConsent
+     * @param bool|null $requiresExplicitConsent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiresExplicitConsent($requiresExplicitConsent)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $requiresExplicitConsent = self::checkTypes($requiresExplicitConsent, $types);

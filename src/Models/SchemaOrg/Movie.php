@@ -26,6 +26,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
             "productionCompany" => "productionCompany",
             "duration" => "duration",
             "actors" => "actors",
+            "titleEIDR" => "titleEIDR",
             "subtitleLanguage" => "subtitleLanguage",
         ];
 
@@ -60,7 +61,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The composer of the soundtrack.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
      */
     protected $musicBy;
 
@@ -92,7 +93,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The duration of the item (movie, audio recording, event, etc.) in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.
      *
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      */
     protected $duration;
 
@@ -103,6 +104,18 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var \OpenActive\Models\SchemaOrg\Person
      */
     protected $actors;
+
+    /**
+     * An <a href="https://eidr.org/">EIDR</a> (Entertainment Identifier Registry) <a class="localLink" href="https://schema.org/identifier">identifier</a> representing at the most general/abstract level, a work of film or television.<br/><br/>
+     * 
+     * For example, the motion picture known as "Ghostbusters" has a titleEIDR of  "10.5240/7EC7-228A-510A-053E-CBB8-J". This title (or work) may have several variants, which EIDR calls "edits". See <a class="localLink" href="https://schema.org/editEIDR">editEIDR</a>.<br/><br/>
+     * 
+     * Since schema.org types like <a class="localLink" href="https://schema.org/Movie">Movie</a> and <a class="localLink" href="https://schema.org/TVEpisode">TVEpisode</a> can be used for both works and their multiple expressions, it is possible to use <a class="localLink" href="https://schema.org/titleEIDR">titleEIDR</a> alone (for a general description), or alongside <a class="localLink" href="https://schema.org/editEIDR">editEIDR</a> for a more edit-specific description.
+     *
+     *
+     * @var string
+     */
+    protected $titleEIDR;
 
     /**
      * Languages in which subtitles/captions are available, in <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard format</a>.
@@ -185,7 +198,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
      */
     public function getMusicBy()
     {
@@ -193,15 +206,15 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup $musicBy
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person $musicBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicBy($musicBy)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $musicBy = self::checkTypes($musicBy, $types);
@@ -282,7 +295,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      */
     public function getDuration()
     {
@@ -290,15 +303,15 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|DateInterval $duration
+     * @param DateInterval|null $duration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $duration = self::checkTypes($duration, $types);
@@ -328,6 +341,30 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
         $actors = self::checkTypes($actors, $types);
 
         $this->actors = $actors;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitleEIDR()
+    {
+        return $this->titleEIDR;
+    }
+
+    /**
+     * @param string $titleEIDR
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTitleEIDR($titleEIDR)
+    {
+        $types = array(
+            "string",
+        );
+
+        $titleEIDR = self::checkTypes($titleEIDR, $types);
+
+        $this->titleEIDR = $titleEIDR;
     }
 
     /**

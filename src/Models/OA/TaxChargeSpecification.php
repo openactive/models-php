@@ -36,7 +36,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @var string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -64,7 +64,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
      * The total amount.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $price;
 
@@ -80,12 +80,12 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
      * The rate of VAT.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $rate;
 
     /**
-     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @return string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -93,15 +93,15 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     }
 
     /**
-     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
+     * @param string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
         $types = array(
-            "int",
             "string",
+            "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
@@ -164,7 +164,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getPrice()
     {
@@ -172,15 +172,15 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     }
 
     /**
-     * @param null|float $price
+     * @param float|null $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $price = self::checkTypes($price, $types);
@@ -213,7 +213,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getRate()
     {
@@ -221,15 +221,15 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     }
 
     /**
-     * @param null|float $rate
+     * @param float|null $rate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRate($rate)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $rate = self::checkTypes($rate, $types);

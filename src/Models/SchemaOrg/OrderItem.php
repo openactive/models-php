@@ -39,7 +39,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
      * The number of the item ordered. If the property is not set, assume the quantity is one.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $orderQuantity;
 
@@ -55,7 +55,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
      * The item ordered.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
+     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product
      */
     protected $orderedItem;
 
@@ -93,7 +93,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getOrderQuantity()
     {
@@ -101,15 +101,15 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|float $orderQuantity
+     * @param float|null $orderQuantity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderQuantity($orderQuantity)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $orderQuantity = self::checkTypes($orderQuantity, $types);
@@ -142,7 +142,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
+     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product
      */
     public function getOrderedItem()
     {
@@ -150,15 +150,15 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $orderedItem
+     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product $orderedItem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderedItem($orderedItem)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\OrderItem",
             "\OpenActive\Models\SchemaOrg\Service",
+            "\OpenActive\Models\SchemaOrg\OrderItem",
             "\OpenActive\Models\SchemaOrg\Product",
         );
 

@@ -18,9 +18,9 @@ class HealthInsurancePlan extends \OpenActive\Models\SchemaOrg\Intangible
     public static function fieldList() {
         $fields = [
             "healthPlanMarketingUrl" => "healthPlanMarketingUrl",
+            "healthPlanDrugTier" => "healthPlanDrugTier",
             "benefitsSummaryUrl" => "benefitsSummaryUrl",
             "healthPlanDrugOption" => "healthPlanDrugOption",
-            "healthPlanDrugTier" => "healthPlanDrugTier",
             "includesHealthPlanFormulary" => "includesHealthPlanFormulary",
             "healthPlanId" => "healthPlanId",
             "usesHealthPlanIdStandard" => "usesHealthPlanIdStandard",
@@ -39,6 +39,14 @@ class HealthInsurancePlan extends \OpenActive\Models\SchemaOrg\Intangible
     protected $healthPlanMarketingUrl;
 
     /**
+     * The tier(s) of drugs offered by this formulary or insurance plan.
+     *
+     *
+     * @var string
+     */
+    protected $healthPlanDrugTier;
+
+    /**
      * The URL that goes directly to the summary of benefits and coverage for the specific standard plan or plan variation.
      *
      *
@@ -53,14 +61,6 @@ class HealthInsurancePlan extends \OpenActive\Models\SchemaOrg\Intangible
      * @var string
      */
     protected $healthPlanDrugOption;
-
-    /**
-     * The tier(s) of drugs offered by this formulary or insurance plan.
-     *
-     *
-     * @var string
-     */
-    protected $healthPlanDrugTier;
 
     /**
      * Formularies covered by this plan.
@@ -121,6 +121,30 @@ class HealthInsurancePlan extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return string
      */
+    public function getHealthPlanDrugTier()
+    {
+        return $this->healthPlanDrugTier;
+    }
+
+    /**
+     * @param string $healthPlanDrugTier
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHealthPlanDrugTier($healthPlanDrugTier)
+    {
+        $types = array(
+            "string",
+        );
+
+        $healthPlanDrugTier = self::checkTypes($healthPlanDrugTier, $types);
+
+        $this->healthPlanDrugTier = $healthPlanDrugTier;
+    }
+
+    /**
+     * @return string
+     */
     public function getBenefitsSummaryUrl()
     {
         return $this->benefitsSummaryUrl;
@@ -164,30 +188,6 @@ class HealthInsurancePlan extends \OpenActive\Models\SchemaOrg\Intangible
         $healthPlanDrugOption = self::checkTypes($healthPlanDrugOption, $types);
 
         $this->healthPlanDrugOption = $healthPlanDrugOption;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHealthPlanDrugTier()
-    {
-        return $this->healthPlanDrugTier;
-    }
-
-    /**
-     * @param string $healthPlanDrugTier
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHealthPlanDrugTier($healthPlanDrugTier)
-    {
-        $types = array(
-            "string",
-        );
-
-        $healthPlanDrugTier = self::checkTypes($healthPlanDrugTier, $types);
-
-        $this->healthPlanDrugTier = $healthPlanDrugTier;
     }
 
     /**

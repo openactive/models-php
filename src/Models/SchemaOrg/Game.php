@@ -18,9 +18,9 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     public static function fieldList() {
         $fields = [
             "gameItem" => "gameItem",
-            "characterAttribute" => "characterAttribute",
             "gameLocation" => "gameLocation",
             "quest" => "quest",
+            "characterAttribute" => "characterAttribute",
             "numberOfPlayers" => "numberOfPlayers",
         ];
 
@@ -34,14 +34,6 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var \OpenActive\Models\SchemaOrg\Thing
      */
     protected $gameItem;
-
-    /**
-     * A piece of data that represents a particular aspect of a fictional character (skill, power, character points, advantage, disadvantage).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $characterAttribute;
 
     /**
      * Real or fictional location of the game (or part of game).
@@ -58,6 +50,14 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var \OpenActive\Models\SchemaOrg\Thing
      */
     protected $quest;
+
+    /**
+     * A piece of data that represents a particular aspect of a fictional character (skill, power, character points, advantage, disadvantage).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing
+     */
+    protected $characterAttribute;
 
     /**
      * Indicate how many people can play this game (minimum, maximum, or range).
@@ -89,30 +89,6 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
         $gameItem = self::checkTypes($gameItem, $types);
 
         $this->gameItem = $gameItem;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getCharacterAttribute()
-    {
-        return $this->characterAttribute;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $characterAttribute
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCharacterAttribute($characterAttribute)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Thing",
-        );
-
-        $characterAttribute = self::checkTypes($characterAttribute, $types);
-
-        $this->characterAttribute = $characterAttribute;
     }
 
     /**
@@ -163,6 +139,30 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
         $quest = self::checkTypes($quest, $types);
 
         $this->quest = $quest;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing
+     */
+    public function getCharacterAttribute()
+    {
+        return $this->characterAttribute;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing $characterAttribute
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCharacterAttribute($characterAttribute)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Thing",
+        );
+
+        $characterAttribute = self::checkTypes($characterAttribute, $types);
+
+        $this->characterAttribute = $characterAttribute;
     }
 
     /**

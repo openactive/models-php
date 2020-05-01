@@ -33,7 +33,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
      * Note: The order of elements in your mark-up is not sufficient for indicating the order or elements.  Use ListItem with a 'position' property in such cases.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\ListItem
+     * @var \OpenActive\Models\SchemaOrg\Thing|string|\OpenActive\Models\SchemaOrg\ListItem
      */
     protected $itemListElement;
 
@@ -41,7 +41,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
      * Type of ordering (e.g. Ascending, Descending, Unordered).
      *
      *
-     * @var string|\OpenActive\Enums\SchemaOrg\ItemListOrderType|null
+     * @var \OpenActive\Enums\SchemaOrg\ItemListOrderType|string|null
      */
     protected $itemListOrder;
 
@@ -49,12 +49,12 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
      * The number of items in an ItemList. Note that some descriptions might not fully describe all items in a list (e.g., multi-page pagination); in such cases, the numberOfItems would be for the entire list.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $numberOfItems;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\ListItem
+     * @return \OpenActive\Models\SchemaOrg\Thing|string|\OpenActive\Models\SchemaOrg\ListItem
      */
     public function getItemListElement()
     {
@@ -62,15 +62,15 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\ListItem $itemListElement
+     * @param \OpenActive\Models\SchemaOrg\Thing|string|\OpenActive\Models\SchemaOrg\ListItem $itemListElement
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemListElement($itemListElement)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
             "\OpenActive\Models\SchemaOrg\ListItem",
         );
 
@@ -80,7 +80,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Enums\SchemaOrg\ItemListOrderType|null
+     * @return \OpenActive\Enums\SchemaOrg\ItemListOrderType|string|null
      */
     public function getItemListOrder()
     {
@@ -88,15 +88,15 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|\OpenActive\Enums\SchemaOrg\ItemListOrderType|null $itemListOrder
+     * @param \OpenActive\Enums\SchemaOrg\ItemListOrderType|string|null $itemListOrder
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemListOrder($itemListOrder)
     {
         $types = array(
-            "string",
             "\OpenActive\Enums\SchemaOrg\ItemListOrderType",
+            "string",
             "null",
         );
 
@@ -106,7 +106,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getNumberOfItems()
     {
@@ -114,15 +114,15 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|int $numberOfItems
+     * @param int|null $numberOfItems
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfItems($numberOfItems)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $numberOfItems = self::checkTypes($numberOfItems, $types);

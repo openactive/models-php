@@ -43,7 +43,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The expected length of time to complete the program if attending full-time.
      *
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      */
     protected $timeToComplete;
 
@@ -51,7 +51,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The maximum number of students who may be enrolled in the program.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $maximumEnrollment;
 
@@ -59,7 +59,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * A financial aid type or program which students may use to pay for tuition or fees associated with the program.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
     protected $financialAidEligible;
 
@@ -67,7 +67,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The number of credits or units awarded by a Course or required to complete an EducationalOccupationalProgram.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\StructuredValue|null|int
+     * @var \OpenActive\Models\SchemaOrg\StructuredValue|int|null
      */
     protected $numberOfCredits;
 
@@ -109,7 +109,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The type of educational or occupational program. For example, classroom, internship, alternance, etc..
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
     protected $programType;
 
@@ -117,7 +117,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * Prerequisites for enrolling in the program.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Course|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|\OpenActive\Models\SchemaOrg\AlignmentObject
+     * @var string|\OpenActive\Models\SchemaOrg\AlignmentObject|\OpenActive\Models\SchemaOrg\Course|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
      */
     protected $programPrerequisites;
 
@@ -125,7 +125,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The number of times terms of study are offered per year. Semesters and quarters are common units for term. For example, if the student can only take 2 semesters for the program in one year, then termsPerYear should be 2.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $termsPerYear;
 
@@ -133,7 +133,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     * @var \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
      */
     protected $occupationalCredentialAwarded;
 
@@ -141,7 +141,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The number of credits or units a full-time student would be expected to take in 1 term however 'term' is defined by the institution.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\StructuredValue|null|int
+     * @var \OpenActive\Models\SchemaOrg\StructuredValue|int|null
      */
     protected $typicalCreditsPerTerm;
 
@@ -149,7 +149,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The date at which the program stops collecting applications for the next enrollment cycle.
      *
      *
-     * @var null|Date
+     * @var Date|null
      */
     protected $applicationDeadline;
 
@@ -165,7 +165,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The amount of time in a term as defined by the institution. A term is a length of time where students take one or more classes. Semesters and quarters are common units for term.
      *
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      */
     protected $termDuration;
 
@@ -173,12 +173,12 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
      * The date at which the program begins collecting applications for the next enrollment cycle.
      *
      *
-     * @var null|Date
+     * @var Date|null
      */
     protected $applicationStartDate;
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      */
     public function getTimeToComplete()
     {
@@ -186,15 +186,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param null|DateInterval $timeToComplete
+     * @param DateInterval|null $timeToComplete
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTimeToComplete($timeToComplete)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $timeToComplete = self::checkTypes($timeToComplete, $types);
@@ -203,7 +203,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getMaximumEnrollment()
     {
@@ -211,15 +211,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param null|int $maximumEnrollment
+     * @param int|null $maximumEnrollment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaximumEnrollment($maximumEnrollment)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $maximumEnrollment = self::checkTypes($maximumEnrollment, $types);
@@ -228,7 +228,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
     public function getFinancialAidEligible()
     {
@@ -236,15 +236,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $financialAidEligible
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $financialAidEligible
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFinancialAidEligible($financialAidEligible)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
         );
 
         $financialAidEligible = self::checkTypes($financialAidEligible, $types);
@@ -253,7 +253,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\StructuredValue|null|int
+     * @return \OpenActive\Models\SchemaOrg\StructuredValue|int|null
      */
     public function getNumberOfCredits()
     {
@@ -261,7 +261,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\StructuredValue|null|int $numberOfCredits
+     * @param \OpenActive\Models\SchemaOrg\StructuredValue|int|null $numberOfCredits
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -269,8 +269,8 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\StructuredValue",
-            "null",
             "int",
+            "null",
         );
 
         $numberOfCredits = self::checkTypes($numberOfCredits, $types);
@@ -376,7 +376,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
     public function getProgramType()
     {
@@ -384,15 +384,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $programType
+     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $programType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProgramType($programType)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
             "string",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
         );
 
         $programType = self::checkTypes($programType, $types);
@@ -401,7 +401,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Course|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|\OpenActive\Models\SchemaOrg\AlignmentObject
+     * @return string|\OpenActive\Models\SchemaOrg\AlignmentObject|\OpenActive\Models\SchemaOrg\Course|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
      */
     public function getProgramPrerequisites()
     {
@@ -409,7 +409,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Course|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|\OpenActive\Models\SchemaOrg\AlignmentObject $programPrerequisites
+     * @param string|\OpenActive\Models\SchemaOrg\AlignmentObject|\OpenActive\Models\SchemaOrg\Course|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $programPrerequisites
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -417,9 +417,9 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     {
         $types = array(
             "string",
+            "\OpenActive\Models\SchemaOrg\AlignmentObject",
             "\OpenActive\Models\SchemaOrg\Course",
             "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
-            "\OpenActive\Models\SchemaOrg\AlignmentObject",
         );
 
         $programPrerequisites = self::checkTypes($programPrerequisites, $types);
@@ -428,7 +428,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getTermsPerYear()
     {
@@ -436,15 +436,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param null|float $termsPerYear
+     * @param float|null $termsPerYear
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTermsPerYear($termsPerYear)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $termsPerYear = self::checkTypes($termsPerYear, $types);
@@ -453,7 +453,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     * @return \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
      */
     public function getOccupationalCredentialAwarded()
     {
@@ -461,15 +461,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $occupationalCredentialAwarded
+     * @param \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string $occupationalCredentialAwarded
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOccupationalCredentialAwarded($occupationalCredentialAwarded)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
+            "string",
         );
 
         $occupationalCredentialAwarded = self::checkTypes($occupationalCredentialAwarded, $types);
@@ -478,7 +478,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\StructuredValue|null|int
+     * @return \OpenActive\Models\SchemaOrg\StructuredValue|int|null
      */
     public function getTypicalCreditsPerTerm()
     {
@@ -486,7 +486,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\StructuredValue|null|int $typicalCreditsPerTerm
+     * @param \OpenActive\Models\SchemaOrg\StructuredValue|int|null $typicalCreditsPerTerm
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -494,8 +494,8 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\StructuredValue",
-            "null",
             "int",
+            "null",
         );
 
         $typicalCreditsPerTerm = self::checkTypes($typicalCreditsPerTerm, $types);
@@ -504,7 +504,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return null|Date
+     * @return Date|null
      */
     public function getApplicationDeadline()
     {
@@ -512,15 +512,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param null|Date $applicationDeadline
+     * @param Date|null $applicationDeadline
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setApplicationDeadline($applicationDeadline)
     {
         $types = array(
-            "null",
             "Date",
+            "null",
         );
 
         $applicationDeadline = self::checkTypes($applicationDeadline, $types);
@@ -553,7 +553,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      */
     public function getTermDuration()
     {
@@ -561,15 +561,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param null|DateInterval $termDuration
+     * @param DateInterval|null $termDuration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTermDuration($termDuration)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $termDuration = self::checkTypes($termDuration, $types);
@@ -578,7 +578,7 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @return null|Date
+     * @return Date|null
      */
     public function getApplicationStartDate()
     {
@@ -586,15 +586,15 @@ class EducationalOccupationalProgram extends \OpenActive\Models\SchemaOrg\Intang
     }
 
     /**
-     * @param null|Date $applicationStartDate
+     * @param Date|null $applicationStartDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setApplicationStartDate($applicationStartDate)
     {
         $types = array(
-            "null",
             "Date",
+            "null",
         );
 
         $applicationStartDate = self::checkTypes($applicationStartDate, $types);

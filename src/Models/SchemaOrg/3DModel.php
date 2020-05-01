@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class ThreeDModel extends \OpenActive\Models\SchemaOrg\CreativeWork
+class ThreeDModel extends \OpenActive\Models\SchemaOrg\MediaObject
 {
     /**
      * @return string[]|null
@@ -27,12 +27,12 @@ class ThreeDModel extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Whether the 3DModel allows resizing. For example, room layout applications often do not allow 3DModel elements to be resized to reflect reality.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $isResizable;
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getIsResizable()
     {
@@ -40,15 +40,15 @@ class ThreeDModel extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|bool $isResizable
+     * @param bool|null $isResizable
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsResizable($isResizable)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $isResizable = self::checkTypes($isResizable, $types);

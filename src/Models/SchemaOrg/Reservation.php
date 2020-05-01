@@ -17,9 +17,9 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
+            "reservationStatus" => "reservationStatus",
             "provider" => "provider",
             "programMembershipUsed" => "programMembershipUsed",
-            "reservationStatus" => "reservationStatus",
             "underName" => "underName",
             "bookingAgent" => "bookingAgent",
             "totalPrice" => "totalPrice",
@@ -36,10 +36,18 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
+     * The current status of the reservation.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\ReservationStatusType|null
+     */
+    protected $reservationStatus;
+
+    /**
      * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $provider;
 
@@ -52,18 +60,10 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $programMembershipUsed;
 
     /**
-     * The current status of the reservation.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\ReservationStatusType|null
-     */
-    protected $reservationStatus;
-
-    /**
      * The person or organization the reservation or ticket is for.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $underName;
 
@@ -87,7 +87,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * 
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PriceSpecification|null|float|string
+     * @var string|\OpenActive\Models\SchemaOrg\PriceSpecification|float|null
      */
     protected $totalPrice;
 
@@ -121,7 +121,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * The date and time the reservation was modified.
      *
      *
-     * @var null|DateTime
+     * @var DateTime|null
      */
     protected $modifiedTime;
 
@@ -129,7 +129,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
      * The date and time the reservation was booked.
      *
      *
-     * @var null|DateTime
+     * @var DateTime|null
      */
     protected $bookingTime;
 
@@ -150,7 +150,32 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $reservedTicket;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Enums\SchemaOrg\ReservationStatusType|null
+     */
+    public function getReservationStatus()
+    {
+        return $this->reservationStatus;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\ReservationStatusType|null $reservationStatus
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReservationStatus($reservationStatus)
+    {
+        $types = array(
+            "\OpenActive\Enums\SchemaOrg\ReservationStatusType",
+            "null",
+        );
+
+        $reservationStatus = self::checkTypes($reservationStatus, $types);
+
+        $this->reservationStatus = $reservationStatus;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getProvider()
     {
@@ -158,15 +183,15 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $provider
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $provider
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProvider($provider)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $provider = self::checkTypes($provider, $types);
@@ -199,32 +224,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\ReservationStatusType|null
-     */
-    public function getReservationStatus()
-    {
-        return $this->reservationStatus;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\ReservationStatusType|null $reservationStatus
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReservationStatus($reservationStatus)
-    {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\ReservationStatusType",
-            "null",
-        );
-
-        $reservationStatus = self::checkTypes($reservationStatus, $types);
-
-        $this->reservationStatus = $reservationStatus;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getUnderName()
     {
@@ -232,15 +232,15 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $underName
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $underName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setUnderName($underName)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $underName = self::checkTypes($underName, $types);
@@ -274,7 +274,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PriceSpecification|null|float|string
+     * @return string|\OpenActive\Models\SchemaOrg\PriceSpecification|float|null
      */
     public function getTotalPrice()
     {
@@ -282,17 +282,17 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PriceSpecification|null|float|string $totalPrice
+     * @param string|\OpenActive\Models\SchemaOrg\PriceSpecification|float|null $totalPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTotalPrice($totalPrice)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\PriceSpecification",
-            "null",
-            "float",
             "string",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
+            "float",
+            "null",
         );
 
         $totalPrice = self::checkTypes($totalPrice, $types);
@@ -374,7 +374,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getModifiedTime()
     {
@@ -382,15 +382,15 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateTime $modifiedTime
+     * @param DateTime|null $modifiedTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setModifiedTime($modifiedTime)
     {
         $types = array(
-            "null",
             "DateTime",
+            "null",
         );
 
         $modifiedTime = self::checkTypes($modifiedTime, $types);
@@ -399,7 +399,7 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getBookingTime()
     {
@@ -407,15 +407,15 @@ class Reservation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|DateTime $bookingTime
+     * @param DateTime|null $bookingTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBookingTime($bookingTime)
     {
         $types = array(
-            "null",
             "DateTime",
+            "null",
         );
 
         $bookingTime = self::checkTypes($bookingTime, $types);

@@ -19,6 +19,7 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
         $fields = [
             "partOfTVSeries" => "partOfTVSeries",
             "countryOfOrigin" => "countryOfOrigin",
+            "titleEIDR" => "titleEIDR",
             "subtitleLanguage" => "subtitleLanguage",
         ];
 
@@ -40,6 +41,18 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
      * @var \OpenActive\Models\SchemaOrg\Country
      */
     protected $countryOfOrigin;
+
+    /**
+     * An <a href="https://eidr.org/">EIDR</a> (Entertainment Identifier Registry) <a class="localLink" href="https://schema.org/identifier">identifier</a> representing at the most general/abstract level, a work of film or television.<br/><br/>
+     * 
+     * For example, the motion picture known as "Ghostbusters" has a titleEIDR of  "10.5240/7EC7-228A-510A-053E-CBB8-J". This title (or work) may have several variants, which EIDR calls "edits". See <a class="localLink" href="https://schema.org/editEIDR">editEIDR</a>.<br/><br/>
+     * 
+     * Since schema.org types like <a class="localLink" href="https://schema.org/Movie">Movie</a> and <a class="localLink" href="https://schema.org/TVEpisode">TVEpisode</a> can be used for both works and their multiple expressions, it is possible to use <a class="localLink" href="https://schema.org/titleEIDR">titleEIDR</a> alone (for a general description), or alongside <a class="localLink" href="https://schema.org/editEIDR">editEIDR</a> for a more edit-specific description.
+     *
+     *
+     * @var string
+     */
+    protected $titleEIDR;
 
     /**
      * Languages in which subtitles/captions are available, in <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard format</a>.
@@ -95,6 +108,30 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
         $countryOfOrigin = self::checkTypes($countryOfOrigin, $types);
 
         $this->countryOfOrigin = $countryOfOrigin;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitleEIDR()
+    {
+        return $this->titleEIDR;
+    }
+
+    /**
+     * @param string $titleEIDR
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTitleEIDR($titleEIDR)
+    {
+        $types = array(
+            "string",
+        );
+
+        $titleEIDR = self::checkTypes($titleEIDR, $types);
+
+        $this->titleEIDR = $titleEIDR;
     }
 
     /**

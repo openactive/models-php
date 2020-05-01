@@ -33,6 +33,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
             "vatID" => "vatID",
             "formattedDescription" => "beta:formattedDescription",
             "video" => "beta:video",
+            "formalCriteriaMet" => "beta:formalCriteriaMet",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -45,7 +46,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @var string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -188,7 +189,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * An related video object.
+     * A related video object.
      * 
      * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
      *
@@ -198,7 +199,18 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     protected $video;
 
     /**
-     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * An array of URLs, each of which describe the formal criteria that are met by the organizer.
+     * 
+     * If you are using this property, please join the discussion at proposal [#236](https://github.com/openactive/modelling-opportunity-data/issues/236).
+     *
+     *
+     * @var string[]
+     */
+    protected $formalCriteriaMet;
+
+    /**
+     * @return string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -206,15 +218,15 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
+     * @param string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
         $types = array(
-            "int",
             "string",
+            "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
@@ -560,6 +572,30 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
         $video = self::checkTypes($video, $types);
 
         $this->video = $video;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getFormalCriteriaMet()
+    {
+        return $this->formalCriteriaMet;
+    }
+
+    /**
+     * @param string[] $formalCriteriaMet
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFormalCriteriaMet($formalCriteriaMet)
+    {
+        $types = array(
+            "string[]",
+        );
+
+        $formalCriteriaMet = self::checkTypes($formalCriteriaMet, $types);
+
+        $this->formalCriteriaMet = $formalCriteriaMet;
     }
 
 }

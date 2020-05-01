@@ -70,7 +70,7 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
      * The duration before the startDate during which this Offer may not be cancelled, given in ISO 8601 format.
      *
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $latestCancellationBeforeStartDate;
@@ -91,7 +91,7 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
      * The duration before the startDate for which this Offer is valid, given in ISO 8601 format. This is a relatively-defined equivalent of schema:validFrom, to allow for Offer inheritance.
      *
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $validFromBeforeStartDate;
@@ -177,7 +177,7 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
     }
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getLatestCancellationBeforeStartDate()
@@ -186,7 +186,7 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
     }
 
     /**
-     * @param null|DateInterval $latestCancellationBeforeStartDate
+     * @param DateInterval|null $latestCancellationBeforeStartDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -194,8 +194,8 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
     public function setLatestCancellationBeforeStartDate($latestCancellationBeforeStartDate)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $latestCancellationBeforeStartDate = self::checkTypes($latestCancellationBeforeStartDate, $types);
@@ -231,7 +231,7 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
     }
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getValidFromBeforeStartDate()
@@ -240,7 +240,7 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
     }
 
     /**
-     * @param null|DateInterval $validFromBeforeStartDate
+     * @param DateInterval|null $validFromBeforeStartDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -248,8 +248,8 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
     public function setValidFromBeforeStartDate($validFromBeforeStartDate)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $validFromBeforeStartDate = self::checkTypes($validFromBeforeStartDate, $types);

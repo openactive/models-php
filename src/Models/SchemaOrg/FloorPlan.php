@@ -41,7 +41,7 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
      * Number of partial bathrooms - The total number of half and ¼ bathrooms in an <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a>. This corresponds to the <a href="https://ddwiki.reso.org/display/DDW17/BathroomsPartial+Field">BathroomsPartial field in RESO</a>.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $numberOfPartialBathrooms;
 
@@ -65,7 +65,7 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
      * The total integer number of bathrooms in a some <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a>, following real estate conventions as <a href="https://ddwiki.reso.org/display/DDW17/BathroomsTotalInteger+Field">documented in RESO</a>: "The simple sum of the number of bathrooms. For example for a property with two Full Bathrooms and one Half Bathroom, the Bathrooms Total Integer will be 3.". See also <a class="localLink" href="https://schema.org/numberOfRooms">numberOfRooms</a>.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $numberOfBathroomsTotal;
 
@@ -73,7 +73,7 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
      * Number of full bathrooms - The total number of full and ¾ bathrooms in an <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a>. This corresponds to the <a href="https://ddwiki.reso.org/display/DDW17/BathroomsFull+Field">BathroomsFull field in RESO</a>.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $numberOfFullBathrooms;
 
@@ -110,7 +110,7 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getNumberOfPartialBathrooms()
     {
@@ -118,15 +118,15 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|float $numberOfPartialBathrooms
+     * @param float|null $numberOfPartialBathrooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfPartialBathrooms($numberOfPartialBathrooms)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $numberOfPartialBathrooms = self::checkTypes($numberOfPartialBathrooms, $types);
@@ -185,7 +185,7 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getNumberOfBathroomsTotal()
     {
@@ -193,15 +193,15 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|int $numberOfBathroomsTotal
+     * @param int|null $numberOfBathroomsTotal
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfBathroomsTotal($numberOfBathroomsTotal)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $numberOfBathroomsTotal = self::checkTypes($numberOfBathroomsTotal, $types);
@@ -210,7 +210,7 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getNumberOfFullBathrooms()
     {
@@ -218,15 +218,15 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|float $numberOfFullBathrooms
+     * @param float|null $numberOfFullBathrooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfFullBathrooms($numberOfFullBathrooms)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $numberOfFullBathrooms = self::checkTypes($numberOfFullBathrooms, $types);

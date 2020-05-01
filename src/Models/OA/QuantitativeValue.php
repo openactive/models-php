@@ -32,7 +32,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
      * "maxValue": 60
      * ```
      *
-     * @var null|int
+     * @var int|null
      */
     protected $maxValue;
 
@@ -43,12 +43,12 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
      * "minValue": 16
      * ```
      *
-     * @var null|int
+     * @var int|null
      */
     protected $minValue;
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getMaxValue()
     {
@@ -56,15 +56,15 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
     }
 
     /**
-     * @param null|int $maxValue
+     * @param int|null $maxValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaxValue($maxValue)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $maxValue = self::checkTypes($maxValue, $types);
@@ -73,7 +73,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getMinValue()
     {
@@ -81,15 +81,15 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
     }
 
     /**
-     * @param null|int $minValue
+     * @param int|null $minValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMinValue($minValue)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $minValue = self::checkTypes($minValue, $types);

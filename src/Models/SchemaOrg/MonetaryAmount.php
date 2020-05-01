@@ -32,7 +32,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The lower value of some characteristic or property.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $minValue;
 
@@ -58,7 +58,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
      * 
      *
      *
-     * @var float|bool|\OpenActive\Models\SchemaOrg\StructuredValue|null|string
+     * @var bool|string|float|\OpenActive\Models\SchemaOrg\StructuredValue|null
      */
     protected $value;
 
@@ -66,7 +66,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The date when the item becomes valid.
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $validFrom;
 
@@ -74,7 +74,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $validThrough;
 
@@ -82,12 +82,12 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The upper value of some characteristic or property.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $maxValue;
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getMinValue()
     {
@@ -95,15 +95,15 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param null|float $minValue
+     * @param float|null $minValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMinValue($minValue)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $minValue = self::checkTypes($minValue, $types);
@@ -136,7 +136,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return float|bool|\OpenActive\Models\SchemaOrg\StructuredValue|null|string
+     * @return bool|string|float|\OpenActive\Models\SchemaOrg\StructuredValue|null
      */
     public function getValue()
     {
@@ -144,18 +144,18 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param float|bool|\OpenActive\Models\SchemaOrg\StructuredValue|null|string $value
+     * @param bool|string|float|\OpenActive\Models\SchemaOrg\StructuredValue|null $value
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValue($value)
     {
         $types = array(
-            "float",
             "bool",
+            "string",
+            "float",
             "\OpenActive\Models\SchemaOrg\StructuredValue",
             "null",
-            "string",
         );
 
         $value = self::checkTypes($value, $types);
@@ -164,7 +164,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getValidFrom()
     {
@@ -172,16 +172,16 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param null|DateTime|Date $validFrom
+     * @param Date|DateTime|null $validFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFrom($validFrom)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $validFrom = self::checkTypes($validFrom, $types);
@@ -190,7 +190,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getValidThrough()
     {
@@ -198,16 +198,16 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param null|DateTime|Date $validThrough
+     * @param Date|DateTime|null $validThrough
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidThrough($validThrough)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $validThrough = self::checkTypes($validThrough, $types);
@@ -216,7 +216,7 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getMaxValue()
     {
@@ -224,15 +224,15 @@ class MonetaryAmount extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param null|float $maxValue
+     * @param float|null $maxValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaxValue($maxValue)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $maxValue = self::checkTypes($maxValue, $types);

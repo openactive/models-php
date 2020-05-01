@@ -81,7 +81,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @var string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -219,7 +219,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "duration": "PT1H"
      * ```
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      */
     protected $duration;
 
@@ -306,7 +306,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "isAccessibleForFree": "true"
      * ```
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $isAccessibleForFree;
 
@@ -317,7 +317,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "isCoached": "true"
      * ```
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $isCoached;
 
@@ -394,7 +394,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "maximumAttendeeCapacity": 30
      * ```
      *
-     * @var null|int
+     * @var int|null
      */
     protected $maximumAttendeeCapacity;
 
@@ -405,7 +405,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "maximumVirtualAttendeeCapacity": 20
      * ```
      *
-     * @var null|int
+     * @var int|null
      */
     protected $maximumVirtualAttendeeCapacity;
 
@@ -477,7 +477,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "remainingAttendeeCapacity": 20
      * ```
      *
-     * @var null|int
+     * @var int|null
      */
     protected $remainingAttendeeCapacity;
 
@@ -499,7 +499,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "startDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $startDate;
 
@@ -511,7 +511,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * "endDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $endDate;
 
@@ -571,7 +571,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * If you are using this property, please join the discussion at proposal [#12](https://github.com/openactive/ns-beta/issues/12).
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $attendeeCount;
 
@@ -582,7 +582,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * If you are using this property, please join the discussion at proposal [#13](https://github.com/openactive/ns-beta/issues/13).
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $registrationCount;
 
@@ -593,7 +593,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * If you are using this property, please join the discussion at proposal [#166](https://github.com/openactive/modelling-opportunity-data/issues/166).
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $isWheelchairAccessible;
 
@@ -610,7 +610,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * An related video object.
+     * A related video object.
      * 
      * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
      *
@@ -637,7 +637,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * If you are using this property, please join the discussion at proposal [#204](https://github.com/openactive/modelling-opportunity-data/issues/204).
      *
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      */
     protected $offerValidityPeriod;
 
@@ -659,7 +659,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * If you are using this property, please join the discussion at proposal [#71](https://github.com/openactive/modelling-opportunity-data/issues/71).
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $isVirtuallyCoached;
 
@@ -692,7 +692,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * If you are using this property, please join the discussion at proposal [#230](https://github.com/openactive/modelling-opportunity-data/issues/230).
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $isInteractivityPreferred;
 
@@ -725,12 +725,12 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * If you are using this property, please join the discussion at proposal [#232](https://github.com/openactive/modelling-opportunity-data/issues/232).
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $isFirstSessionAccessibleForFree;
 
     /**
-     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @return string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -738,15 +738,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
+     * @param string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
         $types = array(
-            "int",
             "string",
+            "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
@@ -975,7 +975,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      */
     public function getDuration()
     {
@@ -983,15 +983,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|DateInterval $duration
+     * @param DateInterval|null $duration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDuration($duration)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $duration = self::checkTypes($duration, $types);
@@ -1123,7 +1123,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getIsAccessibleForFree()
     {
@@ -1131,15 +1131,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|bool $isAccessibleForFree
+     * @param bool|null $isAccessibleForFree
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsAccessibleForFree($isAccessibleForFree)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $isAccessibleForFree = self::checkTypes($isAccessibleForFree, $types);
@@ -1148,7 +1148,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getIsCoached()
     {
@@ -1156,15 +1156,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|bool $isCoached
+     * @param bool|null $isCoached
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsCoached($isCoached)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $isCoached = self::checkTypes($isCoached, $types);
@@ -1246,7 +1246,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getMaximumAttendeeCapacity()
     {
@@ -1254,15 +1254,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|int $maximumAttendeeCapacity
+     * @param int|null $maximumAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $maximumAttendeeCapacity = self::checkTypes($maximumAttendeeCapacity, $types);
@@ -1271,7 +1271,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getMaximumVirtualAttendeeCapacity()
     {
@@ -1279,15 +1279,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|int $maximumVirtualAttendeeCapacity
+     * @param int|null $maximumVirtualAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaximumVirtualAttendeeCapacity($maximumVirtualAttendeeCapacity)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $maximumVirtualAttendeeCapacity = self::checkTypes($maximumVirtualAttendeeCapacity, $types);
@@ -1393,7 +1393,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getRemainingAttendeeCapacity()
     {
@@ -1401,15 +1401,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|int $remainingAttendeeCapacity
+     * @param int|null $remainingAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $remainingAttendeeCapacity = self::checkTypes($remainingAttendeeCapacity, $types);
@@ -1442,7 +1442,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getStartDate()
     {
@@ -1450,16 +1450,16 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|DateTime|Date $startDate
+     * @param Date|DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $startDate = self::checkTypes($startDate, $types);
@@ -1468,7 +1468,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getEndDate()
     {
@@ -1476,16 +1476,16 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|DateTime|Date $endDate
+     * @param Date|DateTime|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $endDate = self::checkTypes($endDate, $types);
@@ -1614,7 +1614,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getAttendeeCount()
     {
@@ -1622,15 +1622,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|int $attendeeCount
+     * @param int|null $attendeeCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAttendeeCount($attendeeCount)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $attendeeCount = self::checkTypes($attendeeCount, $types);
@@ -1639,7 +1639,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getRegistrationCount()
     {
@@ -1647,15 +1647,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|int $registrationCount
+     * @param int|null $registrationCount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRegistrationCount($registrationCount)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $registrationCount = self::checkTypes($registrationCount, $types);
@@ -1664,7 +1664,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getIsWheelchairAccessible()
     {
@@ -1672,15 +1672,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|bool $isWheelchairAccessible
+     * @param bool|null $isWheelchairAccessible
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsWheelchairAccessible($isWheelchairAccessible)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $isWheelchairAccessible = self::checkTypes($isWheelchairAccessible, $types);
@@ -1761,7 +1761,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      */
     public function getOfferValidityPeriod()
     {
@@ -1769,15 +1769,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|DateInterval $offerValidityPeriod
+     * @param DateInterval|null $offerValidityPeriod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOfferValidityPeriod($offerValidityPeriod)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $offerValidityPeriod = self::checkTypes($offerValidityPeriod, $types);
@@ -1811,7 +1811,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getIsVirtuallyCoached()
     {
@@ -1819,15 +1819,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|bool $isVirtuallyCoached
+     * @param bool|null $isVirtuallyCoached
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsVirtuallyCoached($isVirtuallyCoached)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $isVirtuallyCoached = self::checkTypes($isVirtuallyCoached, $types);
@@ -1884,7 +1884,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getIsInteractivityPreferred()
     {
@@ -1892,15 +1892,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|bool $isInteractivityPreferred
+     * @param bool|null $isInteractivityPreferred
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsInteractivityPreferred($isInteractivityPreferred)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $isInteractivityPreferred = self::checkTypes($isInteractivityPreferred, $types);
@@ -1958,7 +1958,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getIsFirstSessionAccessibleForFree()
     {
@@ -1966,15 +1966,15 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param null|bool $isFirstSessionAccessibleForFree
+     * @param bool|null $isFirstSessionAccessibleForFree
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsFirstSessionAccessibleForFree($isFirstSessionAccessibleForFree)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $isFirstSessionAccessibleForFree = self::checkTypes($isFirstSessionAccessibleForFree, $types);

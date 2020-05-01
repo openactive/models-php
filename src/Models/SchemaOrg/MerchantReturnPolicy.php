@@ -32,7 +32,7 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
      * Are in-store returns offered?
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $inStoreReturnsOffered;
 
@@ -72,12 +72,12 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
      * The merchantReturnDays property indicates the number of days (from purchase) within which relevant merchant return policy is applicable.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $merchantReturnDays;
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getInStoreReturnsOffered()
     {
@@ -85,15 +85,15 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|bool $inStoreReturnsOffered
+     * @param bool|null $inStoreReturnsOffered
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInStoreReturnsOffered($inStoreReturnsOffered)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $inStoreReturnsOffered = self::checkTypes($inStoreReturnsOffered, $types);
@@ -201,7 +201,7 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getMerchantReturnDays()
     {
@@ -209,15 +209,15 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param null|int $merchantReturnDays
+     * @param int|null $merchantReturnDays
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMerchantReturnDays($merchantReturnDays)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $merchantReturnDays = self::checkTypes($merchantReturnDays, $types);

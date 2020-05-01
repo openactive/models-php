@@ -30,7 +30,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
      * exif data for this object.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
+     * @var string|\OpenActive\Models\SchemaOrg\PropertyValue
      */
     protected $exifData;
 
@@ -38,7 +38,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
      * Indicates whether this image is representative of the content of the page.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $representativeOfPage;
 
@@ -59,7 +59,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     protected $caption;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
+     * @return string|\OpenActive\Models\SchemaOrg\PropertyValue
      */
     public function getExifData()
     {
@@ -67,15 +67,15 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $exifData
+     * @param string|\OpenActive\Models\SchemaOrg\PropertyValue $exifData
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExifData($exifData)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\PropertyValue",
             "string",
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
         );
 
         $exifData = self::checkTypes($exifData, $types);
@@ -84,7 +84,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getRepresentativeOfPage()
     {
@@ -92,15 +92,15 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param null|bool $representativeOfPage
+     * @param bool|null $representativeOfPage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRepresentativeOfPage($representativeOfPage)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $representativeOfPage = self::checkTypes($representativeOfPage, $types);

@@ -32,7 +32,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\GeoCoordinates
      * "latitude": "51.522338"
      * ```
      *
-     * @var null|float
+     * @var float|null
      */
     protected $latitude;
 
@@ -43,12 +43,12 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\GeoCoordinates
      * "longitude": "-0.083437"
      * ```
      *
-     * @var null|float
+     * @var float|null
      */
     protected $longitude;
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getLatitude()
     {
@@ -56,15 +56,15 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\GeoCoordinates
     }
 
     /**
-     * @param null|float $latitude
+     * @param float|null $latitude
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLatitude($latitude)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $latitude = self::checkTypes($latitude, $types);
@@ -73,7 +73,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\GeoCoordinates
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getLongitude()
     {
@@ -81,15 +81,15 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\GeoCoordinates
     }
 
     /**
-     * @param null|float $longitude
+     * @param float|null $longitude
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLongitude($longitude)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $longitude = self::checkTypes($longitude, $types);

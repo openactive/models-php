@@ -19,8 +19,8 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
         $fields = [
             "serviceArea" => "serviceArea",
             "memberOf" => "memberOf",
-            "address" => "address",
             "funder" => "funder",
+            "areaServed" => "areaServed",
             "events" => "events",
             "subOrganization" => "subOrganization",
             "hasOfferCatalog" => "hasOfferCatalog",
@@ -35,12 +35,12 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
             "contactPoints" => "contactPoints",
             "awards" => "awards",
             "foundingDate" => "foundingDate",
-            "leiCode" => "leiCode",
             "seeks" => "seeks",
             "member" => "member",
             "founders" => "founders",
             "alumni" => "alumni",
             "dissolutionDate" => "dissolutionDate",
+            "address" => "address",
             "interactionStatistic" => "interactionStatistic",
             "logo" => "logo",
             "employees" => "employees",
@@ -66,11 +66,11 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
             "location" => "location",
             "brand" => "brand",
             "vatID" => "vatID",
+            "leiCode" => "leiCode",
             "faxNumber" => "faxNumber",
-            "areaServed" => "areaServed",
+            "knowsAbout" => "knowsAbout",
             "correctionsPolicy" => "correctionsPolicy",
             "hasMerchantReturnPolicy" => "hasMerchantReturnPolicy",
-            "knowsAbout" => "knowsAbout",
             "actionableFeedbackPolicy" => "actionableFeedbackPolicy",
             "diversityPolicy" => "diversityPolicy",
             "unnamedSourcesPolicy" => "unnamedSourcesPolicy",
@@ -78,6 +78,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
             "ethicsPolicy" => "ethicsPolicy",
             "knowsLanguage" => "knowsLanguage",
             "ownershipFundingInfo" => "ownershipFundingInfo",
+            "nonprofitStatus" => "nonprofitStatus",
             "diversityStaffingReport" => "diversityStaffingReport",
         ];
 
@@ -88,7 +89,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
      * The geographic area where the service is provided.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape
+     * @var \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\Place
      */
     protected $serviceArea;
 
@@ -96,25 +97,25 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
      * An Organization (or ProgramMembership) to which this Person or Organization belongs.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ProgramMembership
+     * @var \OpenActive\Models\SchemaOrg\ProgramMembership|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $memberOf;
-
-    /**
-     * Physical address of the item.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\PostalAddress
-     */
-    protected $address;
 
     /**
      * A person or organization that supports (sponsors) something through some kind of financial contribution.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $funder;
+
+    /**
+     * The geographic area where a service or offered item is provided.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\AdministrativeArea
+     */
+    protected $areaServed;
 
     /**
      * Upcoming or past events associated with this place or organization.
@@ -152,7 +153,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
      * A member of this organization.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $members;
 
@@ -224,17 +225,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
      * The date that this organization was founded.
      *
      *
-     * @var null|Date
+     * @var Date|null
      */
     protected $foundingDate;
-
-    /**
-     * An organization identifier that uniquely identifies a legal entity as defined in ISO 17442.
-     *
-     *
-     * @var string
-     */
-    protected $leiCode;
 
     /**
      * A pointer to products or services sought by the organization or person (demand).
@@ -272,9 +265,17 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
      * The date that this organization was dissolved.
      *
      *
-     * @var null|Date
+     * @var Date|null
      */
     protected $dissolutionDate;
+
+    /**
+     * Physical address of the item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string
+     */
+    protected $address;
 
     /**
      * The number of interactions for the CreativeWork using the WebSite or SoftwareApplication. The most specific child type of InteractionCounter should be used.
@@ -288,7 +289,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
      * An associated logo.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
+     * @var string|\OpenActive\Models\SchemaOrg\ImageObject
      */
     protected $logo;
 
@@ -400,7 +401,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
      * Products owned by the organization or person.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\OwnershipInfo
+     * @var \OpenActive\Models\SchemaOrg\OwnershipInfo|\OpenActive\Models\SchemaOrg\Product
      */
     protected $owns;
 
@@ -434,7 +435,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
      * A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $sponsor;
 
@@ -458,7 +459,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
      * The location of for example where the event is happening, an organization is located, or where an action takes place.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\VirtualLocation
+     * @var \OpenActive\Models\SchemaOrg\VirtualLocation|\OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place
      */
     protected $location;
 
@@ -479,6 +480,14 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     protected $vatID;
 
     /**
+     * An organization identifier that uniquely identifies a legal entity as defined in ISO 17442.
+     *
+     *
+     * @var string
+     */
+    protected $leiCode;
+
+    /**
      * The fax number.
      *
      *
@@ -487,18 +496,18 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     protected $faxNumber;
 
     /**
-     * The geographic area where a service or offered item is provided.
+     * Of a <a class="localLink" href="https://schema.org/Person">Person</a>, and less typically of an <a class="localLink" href="https://schema.org/Organization">Organization</a>, to indicate a topic that is known about - suggesting possible expertise but not implying it. We do not distinguish skill levels here, or relate this to educational content, events, objectives or <a class="localLink" href="https://schema.org/JobPosting">JobPosting</a> descriptions.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\AdministrativeArea
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $areaServed;
+    protected $knowsAbout;
 
     /**
      * For an <a class="localLink" href="https://schema.org/Organization">Organization</a> (e.g. <a class="localLink" href="https://schema.org/NewsMediaOrganization">NewsMediaOrganization</a>), a statement describing (in news media, the newsroom’s) disclosure and correction policy for errors.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     protected $correctionsPolicy;
 
@@ -511,18 +520,10 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     protected $hasMerchantReturnPolicy;
 
     /**
-     * Of a <a class="localLink" href="https://schema.org/Person">Person</a>, and less typically of an <a class="localLink" href="https://schema.org/Organization">Organization</a>, to indicate a topic that is known about - suggesting possible expertise but not implying it. We do not distinguish skill levels here, or relate this to educational content, events, objectives or <a class="localLink" href="https://schema.org/JobPosting">JobPosting</a> descriptions.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $knowsAbout;
-
-    /**
      * For a <a class="localLink" href="https://schema.org/NewsMediaOrganization">NewsMediaOrganization</a> or other news-related <a class="localLink" href="https://schema.org/Organization">Organization</a>, a statement about public engagement activities (for news media, the newsroom’s), including involving the public - digitally or otherwise -- in coverage decisions, reporting and activities after publication.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
+     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     protected $actionableFeedbackPolicy;
 
@@ -562,7 +563,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
      * Of a <a class="localLink" href="https://schema.org/Person">Person</a>, and less typically of an <a class="localLink" href="https://schema.org/Organization">Organization</a>, to indicate a known language. We do not distinguish skill levels or reading/writing/speaking/signing here. Use language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Language|string
+     * @var string|\OpenActive\Models\SchemaOrg\Language
      */
     protected $knowsLanguage;
 
@@ -570,20 +571,28 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
      * For an <a class="localLink" href="https://schema.org/Organization">Organization</a> (often but not necessarily a <a class="localLink" href="https://schema.org/NewsMediaOrganization">NewsMediaOrganization</a>), a description of organizational ownership structure; funding and grants. In a news/media setting, this is with particular reference to editorial independence.   Note that the <a class="localLink" href="https://schema.org/funder">funder</a> is also available and can be used to make basic funder information machine-readable.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string|\OpenActive\Models\SchemaOrg\AboutPage
+     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\AboutPage
      */
     protected $ownershipFundingInfo;
+
+    /**
+     * nonprofit Status indicates the legal status of a non-profit organization in its primary place of business.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\NonprofitType|null
+     */
+    protected $nonprofitStatus;
 
     /**
      * For an <a class="localLink" href="https://schema.org/Organization">Organization</a> (often but not necessarily a <a class="localLink" href="https://schema.org/NewsMediaOrganization">NewsMediaOrganization</a>), a report on staffing diversity issues. In a news context this might be for example ASNE or RTDNA (US) reports, or self-reported.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Article
+     * @var \OpenActive\Models\SchemaOrg\Article|string
      */
     protected $diversityStaffingReport;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape
+     * @return \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\Place
      */
     public function getServiceArea()
     {
@@ -591,16 +600,16 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape $serviceArea
+     * @param \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\Place $serviceArea
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setServiceArea($serviceArea)
     {
         $types = array(
+            "\OpenActive\Models\SchemaOrg\GeoShape",
             "\OpenActive\Models\SchemaOrg\AdministrativeArea",
             "\OpenActive\Models\SchemaOrg\Place",
-            "\OpenActive\Models\SchemaOrg\GeoShape",
         );
 
         $serviceArea = self::checkTypes($serviceArea, $types);
@@ -609,7 +618,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ProgramMembership
+     * @return \OpenActive\Models\SchemaOrg\ProgramMembership|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getMemberOf()
     {
@@ -617,15 +626,15 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ProgramMembership $memberOf
+     * @param \OpenActive\Models\SchemaOrg\ProgramMembership|\OpenActive\Models\SchemaOrg\Organization $memberOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMemberOf($memberOf)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\ProgramMembership",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $memberOf = self::checkTypes($memberOf, $types);
@@ -634,32 +643,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\PostalAddress
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\PostalAddress $address
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAddress($address)
-    {
-        $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
-        );
-
-        $address = self::checkTypes($address, $types);
-
-        $this->address = $address;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getFunder()
     {
@@ -667,20 +651,47 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $funder
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $funder
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFunder($funder)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $funder = self::checkTypes($funder, $types);
 
         $this->funder = $funder;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\AdministrativeArea
+     */
+    public function getAreaServed()
+    {
+        return $this->areaServed;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAreaServed($areaServed)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\GeoShape",
+            "string",
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+        );
+
+        $areaServed = self::checkTypes($areaServed, $types);
+
+        $this->areaServed = $areaServed;
     }
 
     /**
@@ -780,7 +791,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getMembers()
     {
@@ -788,15 +799,15 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $members
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $members
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMembers($members)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $members = self::checkTypes($members, $types);
@@ -997,7 +1008,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|Date
+     * @return Date|null
      */
     public function getFoundingDate()
     {
@@ -1005,44 +1016,20 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|Date $foundingDate
+     * @param Date|null $foundingDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFoundingDate($foundingDate)
     {
         $types = array(
-            "null",
             "Date",
+            "null",
         );
 
         $foundingDate = self::checkTypes($foundingDate, $types);
 
         $this->foundingDate = $foundingDate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLeiCode()
-    {
-        return $this->leiCode;
-    }
-
-    /**
-     * @param string $leiCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLeiCode($leiCode)
-    {
-        $types = array(
-            "string",
-        );
-
-        $leiCode = self::checkTypes($leiCode, $types);
-
-        $this->leiCode = $leiCode;
     }
 
     /**
@@ -1143,7 +1130,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return null|Date
+     * @return Date|null
      */
     public function getDissolutionDate()
     {
@@ -1151,20 +1138,45 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param null|Date $dissolutionDate
+     * @param Date|null $dissolutionDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDissolutionDate($dissolutionDate)
     {
         $types = array(
-            "null",
             "Date",
+            "null",
         );
 
         $dissolutionDate = self::checkTypes($dissolutionDate, $types);
 
         $this->dissolutionDate = $dissolutionDate;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress|string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress|string $address
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAddress($address)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "string",
+        );
+
+        $address = self::checkTypes($address, $types);
+
+        $this->address = $address;
     }
 
     /**
@@ -1192,7 +1204,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
+     * @return string|\OpenActive\Models\SchemaOrg\ImageObject
      */
     public function getLogo()
     {
@@ -1200,15 +1212,15 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $logo
+     * @param string|\OpenActive\Models\SchemaOrg\ImageObject $logo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLogo($logo)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\ImageObject",
             "string",
+            "\OpenActive\Models\SchemaOrg\ImageObject",
         );
 
         $logo = self::checkTypes($logo, $types);
@@ -1529,7 +1541,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\OwnershipInfo
+     * @return \OpenActive\Models\SchemaOrg\OwnershipInfo|\OpenActive\Models\SchemaOrg\Product
      */
     public function getOwns()
     {
@@ -1537,15 +1549,15 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\OwnershipInfo $owns
+     * @param \OpenActive\Models\SchemaOrg\OwnershipInfo|\OpenActive\Models\SchemaOrg\Product $owns
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOwns($owns)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Product",
             "\OpenActive\Models\SchemaOrg\OwnershipInfo",
+            "\OpenActive\Models\SchemaOrg\Product",
         );
 
         $owns = self::checkTypes($owns, $types);
@@ -1627,7 +1639,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getSponsor()
     {
@@ -1635,15 +1647,15 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $sponsor
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $sponsor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSponsor($sponsor)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
         );
 
         $sponsor = self::checkTypes($sponsor, $types);
@@ -1700,7 +1712,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\VirtualLocation
+     * @return \OpenActive\Models\SchemaOrg\VirtualLocation|\OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place
      */
     public function getLocation()
     {
@@ -1708,17 +1720,17 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\VirtualLocation $location
+     * @param \OpenActive\Models\SchemaOrg\VirtualLocation|\OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place $location
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLocation($location)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Place",
-            "string",
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
             "\OpenActive\Models\SchemaOrg\VirtualLocation",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "string",
+            "\OpenActive\Models\SchemaOrg\Place",
         );
 
         $location = self::checkTypes($location, $types);
@@ -1778,6 +1790,30 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @return string
      */
+    public function getLeiCode()
+    {
+        return $this->leiCode;
+    }
+
+    /**
+     * @param string $leiCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLeiCode($leiCode)
+    {
+        $types = array(
+            "string",
+        );
+
+        $leiCode = self::checkTypes($leiCode, $types);
+
+        $this->leiCode = $leiCode;
+    }
+
+    /**
+     * @return string
+     */
     public function getFaxNumber()
     {
         return $this->faxNumber;
@@ -1800,34 +1836,32 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\AdministrativeArea
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
-    public function getAreaServed()
+    public function getKnowsAbout()
     {
-        return $this->areaServed;
+        return $this->knowsAbout;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $knowsAbout
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAreaServed($areaServed)
+    public function setKnowsAbout($knowsAbout)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\GeoShape",
-            "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\Thing",
             "string",
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
         );
 
-        $areaServed = self::checkTypes($areaServed, $types);
+        $knowsAbout = self::checkTypes($knowsAbout, $types);
 
-        $this->areaServed = $areaServed;
+        $this->knowsAbout = $knowsAbout;
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     public function getCorrectionsPolicy()
     {
@@ -1835,15 +1869,15 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $correctionsPolicy
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $correctionsPolicy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCorrectionsPolicy($correctionsPolicy)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
         );
 
         $correctionsPolicy = self::checkTypes($correctionsPolicy, $types);
@@ -1876,32 +1910,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getKnowsAbout()
-    {
-        return $this->knowsAbout;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Thing $knowsAbout
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setKnowsAbout($knowsAbout)
-    {
-        $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\Thing",
-        );
-
-        $knowsAbout = self::checkTypes($knowsAbout, $types);
-
-        $this->knowsAbout = $knowsAbout;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function getActionableFeedbackPolicy()
     {
@@ -1909,15 +1918,15 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $actionableFeedbackPolicy
+     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $actionableFeedbackPolicy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActionableFeedbackPolicy($actionableFeedbackPolicy)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
             "string",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
         );
 
         $actionableFeedbackPolicy = self::checkTypes($actionableFeedbackPolicy, $types);
@@ -2025,7 +2034,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Language|string
+     * @return string|\OpenActive\Models\SchemaOrg\Language
      */
     public function getKnowsLanguage()
     {
@@ -2033,15 +2042,15 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Language|string $knowsLanguage
+     * @param string|\OpenActive\Models\SchemaOrg\Language $knowsLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setKnowsLanguage($knowsLanguage)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Language",
             "string",
+            "\OpenActive\Models\SchemaOrg\Language",
         );
 
         $knowsLanguage = self::checkTypes($knowsLanguage, $types);
@@ -2050,7 +2059,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string|\OpenActive\Models\SchemaOrg\AboutPage
+     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\AboutPage
      */
     public function getOwnershipFundingInfo()
     {
@@ -2058,15 +2067,15 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string|\OpenActive\Models\SchemaOrg\AboutPage $ownershipFundingInfo
+     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\AboutPage $ownershipFundingInfo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOwnershipFundingInfo($ownershipFundingInfo)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
             "string",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
             "\OpenActive\Models\SchemaOrg\AboutPage",
         );
 
@@ -2076,7 +2085,32 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Article
+     * @return \OpenActive\Enums\SchemaOrg\NonprofitType|null
+     */
+    public function getNonprofitStatus()
+    {
+        return $this->nonprofitStatus;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\NonprofitType|null $nonprofitStatus
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNonprofitStatus($nonprofitStatus)
+    {
+        $types = array(
+            "\OpenActive\Enums\SchemaOrg\NonprofitType",
+            "null",
+        );
+
+        $nonprofitStatus = self::checkTypes($nonprofitStatus, $types);
+
+        $this->nonprofitStatus = $nonprofitStatus;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Article|string
      */
     public function getDiversityStaffingReport()
     {
@@ -2084,15 +2118,15 @@ class Organization extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Article $diversityStaffingReport
+     * @param \OpenActive\Models\SchemaOrg\Article|string $diversityStaffingReport
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDiversityStaffingReport($diversityStaffingReport)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\Article",
+            "string",
         );
 
         $diversityStaffingReport = self::checkTypes($diversityStaffingReport, $types);

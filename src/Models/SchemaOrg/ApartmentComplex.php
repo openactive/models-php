@@ -18,8 +18,8 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     public static function fieldList() {
         $fields = [
             "petsAllowed" => "petsAllowed",
-            "tourBookingPage" => "tourBookingPage",
             "numberOfAvailableAccommodationUnits" => "numberOfAvailableAccommodationUnits",
+            "tourBookingPage" => "tourBookingPage",
             "numberOfAccommodationUnits" => "numberOfAccommodationUnits",
             "numberOfBedrooms" => "numberOfBedrooms",
         ];
@@ -31,17 +31,9 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
      * Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value.
      *
      *
-     * @var null|string|bool
+     * @var bool|string|null
      */
     protected $petsAllowed;
-
-    /**
-     * A page providing information on how to book a tour of some <a class="localLink" href="https://schema.org/Place">Place</a>, such as an <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a> or <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a> in a real estate setting, as well as other kinds of tours as appropriate.
-     *
-     *
-     * @var string
-     */
-    protected $tourBookingPage;
 
     /**
      * Indicates the number of available accommodation units in an <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a>, or the number of accommodation units for a specific <a class="localLink" href="https://schema.org/FloorPlan">FloorPlan</a> (within its specific <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a>). See also <a class="localLink" href="https://schema.org/numberOfAccommodationUnits">numberOfAccommodationUnits</a>.
@@ -50,6 +42,14 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
      * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $numberOfAvailableAccommodationUnits;
+
+    /**
+     * A page providing information on how to book a tour of some <a class="localLink" href="https://schema.org/Place">Place</a>, such as an <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a> or <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a> in a real estate setting, as well as other kinds of tours as appropriate.
+     *
+     *
+     * @var string
+     */
+    protected $tourBookingPage;
 
     /**
      * Indicates the total (available plus unavailable) number of accommodation units in an <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a>, or the number of accommodation units for a specific <a class="localLink" href="https://schema.org/FloorPlan">FloorPlan</a> (within its specific <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a>). See also <a class="localLink" href="https://schema.org/numberOfAvailableAccommodationUnits">numberOfAvailableAccommodationUnits</a>.
@@ -68,7 +68,7 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     protected $numberOfBedrooms;
 
     /**
-     * @return null|string|bool
+     * @return bool|string|null
      */
     public function getPetsAllowed()
     {
@@ -76,45 +76,21 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     }
 
     /**
-     * @param null|string|bool $petsAllowed
+     * @param bool|string|null $petsAllowed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPetsAllowed($petsAllowed)
     {
         $types = array(
-            "null",
-            "string",
             "bool",
+            "string",
+            "null",
         );
 
         $petsAllowed = self::checkTypes($petsAllowed, $types);
 
         $this->petsAllowed = $petsAllowed;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTourBookingPage()
-    {
-        return $this->tourBookingPage;
-    }
-
-    /**
-     * @param string $tourBookingPage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTourBookingPage($tourBookingPage)
-    {
-        $types = array(
-            "string",
-        );
-
-        $tourBookingPage = self::checkTypes($tourBookingPage, $types);
-
-        $this->tourBookingPage = $tourBookingPage;
     }
 
     /**
@@ -139,6 +115,30 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
         $numberOfAvailableAccommodationUnits = self::checkTypes($numberOfAvailableAccommodationUnits, $types);
 
         $this->numberOfAvailableAccommodationUnits = $numberOfAvailableAccommodationUnits;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTourBookingPage()
+    {
+        return $this->tourBookingPage;
+    }
+
+    /**
+     * @param string $tourBookingPage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTourBookingPage($tourBookingPage)
+    {
+        $types = array(
+            "string",
+        );
+
+        $tourBookingPage = self::checkTypes($tourBookingPage, $types);
+
+        $this->tourBookingPage = $tourBookingPage;
     }
 
     /**

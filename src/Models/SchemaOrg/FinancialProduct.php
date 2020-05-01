@@ -45,7 +45,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
      * The annual rate that is charged for borrowing (or made by investing), expressed as a single percentage number that represents the actual yearly cost of funds over the term of a loan. This includes any fees or additional costs associated with the transaction.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
      */
     protected $annualPercentageRate;
 
@@ -100,7 +100,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
      */
     public function getAnnualPercentageRate()
     {
@@ -108,7 +108,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float $annualPercentageRate
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $annualPercentageRate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -116,8 +116,8 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "null",
             "float",
+            "null",
         );
 
         $annualPercentageRate = self::checkTypes($annualPercentageRate, $types);

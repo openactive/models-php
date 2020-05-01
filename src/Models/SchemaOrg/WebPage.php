@@ -17,11 +17,11 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
+            "lastReviewed" => "lastReviewed",
             "speakable" => "speakable",
             "breadcrumb" => "breadcrumb",
             "significantLink" => "significantLink",
             "relatedLink" => "relatedLink",
-            "lastReviewed" => "lastReviewed",
             "mainContentOfPage" => "mainContentOfPage",
             "reviewedBy" => "reviewedBy",
             "primaryImageOfPage" => "primaryImageOfPage",
@@ -31,6 +31,14 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Date on which the content on this web page was last reviewed for accuracy and/or completeness.
+     *
+     *
+     * @var Date|null
+     */
+    protected $lastReviewed;
 
     /**
      * Indicates sections of a Web page that are particularly 'speakable' in the sense of being highlighted as being especially appropriate for text-to-speech conversion. Other sections of a page may also be usefully spoken in particular circumstances; the 'speakable' property serves to indicate the parts most likely to be generally useful for speech.<br/><br/>
@@ -76,14 +84,6 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $relatedLink;
 
     /**
-     * Date on which the content on this web page was last reviewed for accuracy and/or completeness.
-     *
-     *
-     * @var null|Date
-     */
-    protected $lastReviewed;
-
-    /**
      * Indicates if this web page element is the main subject of the page.
      *
      *
@@ -95,7 +95,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
      * People or organizations that have reviewed the content on this web page for accuracy and/or completeness.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $reviewedBy;
 
@@ -122,6 +122,31 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var \OpenActive\Enums\SchemaOrg\Specialty|null
      */
     protected $specialty;
+
+    /**
+     * @return Date|null
+     */
+    public function getLastReviewed()
+    {
+        return $this->lastReviewed;
+    }
+
+    /**
+     * @param Date|null $lastReviewed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLastReviewed($lastReviewed)
+    {
+        $types = array(
+            "Date",
+            "null",
+        );
+
+        $lastReviewed = self::checkTypes($lastReviewed, $types);
+
+        $this->lastReviewed = $lastReviewed;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\SpeakableSpecification|string
@@ -222,31 +247,6 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|Date
-     */
-    public function getLastReviewed()
-    {
-        return $this->lastReviewed;
-    }
-
-    /**
-     * @param null|Date $lastReviewed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLastReviewed($lastReviewed)
-    {
-        $types = array(
-            "null",
-            "Date",
-        );
-
-        $lastReviewed = self::checkTypes($lastReviewed, $types);
-
-        $this->lastReviewed = $lastReviewed;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\WebPageElement
      */
     public function getMainContentOfPage()
@@ -271,7 +271,7 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getReviewedBy()
     {
@@ -279,15 +279,15 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $reviewedBy
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $reviewedBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReviewedBy($reviewedBy)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $reviewedBy = self::checkTypes($reviewedBy, $types);

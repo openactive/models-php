@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class ReviewNewsArticle extends \OpenActive\Models\SchemaOrg\CriticReview
+class ReviewNewsArticle extends \OpenActive\Models\SchemaOrg\NewsArticle
 {
     /**
      * @return string[]|null

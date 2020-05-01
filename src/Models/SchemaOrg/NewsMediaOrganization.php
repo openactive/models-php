@@ -37,7 +37,7 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
      * For a <a class="localLink" href="https://schema.org/NewsMediaOrganization">NewsMediaOrganization</a>, a link to the masthead page or a page listing top editorial management.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     protected $masthead;
 
@@ -45,7 +45,7 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
      * For an <a class="localLink" href="https://schema.org/Organization">Organization</a> (e.g. <a class="localLink" href="https://schema.org/NewsMediaOrganization">NewsMediaOrganization</a>), a statement describing (in news media, the newsroom’s) disclosure and correction policy for errors.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     protected $correctionsPolicy;
 
@@ -61,7 +61,7 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
      * For a <a class="localLink" href="https://schema.org/NewsMediaOrganization">NewsMediaOrganization</a> or other news-related <a class="localLink" href="https://schema.org/Organization">Organization</a>, a statement about public engagement activities (for news media, the newsroom’s), including involving the public - digitally or otherwise -- in coverage decisions, reporting and activities after publication.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
+     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     protected $actionableFeedbackPolicy;
 
@@ -101,7 +101,7 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
      * For an <a class="localLink" href="https://schema.org/Organization">Organization</a> (often but not necessarily a <a class="localLink" href="https://schema.org/NewsMediaOrganization">NewsMediaOrganization</a>), a description of organizational ownership structure; funding and grants. In a news/media setting, this is with particular reference to editorial independence.   Note that the <a class="localLink" href="https://schema.org/funder">funder</a> is also available and can be used to make basic funder information machine-readable.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string|\OpenActive\Models\SchemaOrg\AboutPage
+     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\AboutPage
      */
     protected $ownershipFundingInfo;
 
@@ -109,7 +109,7 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
      * For an <a class="localLink" href="https://schema.org/Organization">Organization</a> (often but not necessarily a <a class="localLink" href="https://schema.org/NewsMediaOrganization">NewsMediaOrganization</a>), a report on staffing diversity issues. In a news context this might be for example ASNE or RTDNA (US) reports, or self-reported.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Article
+     * @var \OpenActive\Models\SchemaOrg\Article|string
      */
     protected $diversityStaffingReport;
 
@@ -117,12 +117,12 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
      * For a <a class="localLink" href="https://schema.org/NewsMediaOrganization">NewsMediaOrganization</a>, a statement on coverage priorities, including any public agenda or stance on issues.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
+     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     protected $missionCoveragePrioritiesPolicy;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     public function getMasthead()
     {
@@ -130,15 +130,15 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $masthead
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $masthead
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMasthead($masthead)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
         );
 
         $masthead = self::checkTypes($masthead, $types);
@@ -147,7 +147,7 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     public function getCorrectionsPolicy()
     {
@@ -155,15 +155,15 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $correctionsPolicy
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $correctionsPolicy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCorrectionsPolicy($correctionsPolicy)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
         );
 
         $correctionsPolicy = self::checkTypes($correctionsPolicy, $types);
@@ -197,7 +197,7 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function getActionableFeedbackPolicy()
     {
@@ -205,15 +205,15 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $actionableFeedbackPolicy
+     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $actionableFeedbackPolicy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setActionableFeedbackPolicy($actionableFeedbackPolicy)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
             "string",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
         );
 
         $actionableFeedbackPolicy = self::checkTypes($actionableFeedbackPolicy, $types);
@@ -322,7 +322,7 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string|\OpenActive\Models\SchemaOrg\AboutPage
+     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\AboutPage
      */
     public function getOwnershipFundingInfo()
     {
@@ -330,15 +330,15 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string|\OpenActive\Models\SchemaOrg\AboutPage $ownershipFundingInfo
+     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\AboutPage $ownershipFundingInfo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOwnershipFundingInfo($ownershipFundingInfo)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
             "string",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
             "\OpenActive\Models\SchemaOrg\AboutPage",
         );
 
@@ -348,7 +348,7 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Article
+     * @return \OpenActive\Models\SchemaOrg\Article|string
      */
     public function getDiversityStaffingReport()
     {
@@ -356,15 +356,15 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Article $diversityStaffingReport
+     * @param \OpenActive\Models\SchemaOrg\Article|string $diversityStaffingReport
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDiversityStaffingReport($diversityStaffingReport)
     {
         $types = array(
-            "string",
             "\OpenActive\Models\SchemaOrg\Article",
+            "string",
         );
 
         $diversityStaffingReport = self::checkTypes($diversityStaffingReport, $types);
@@ -373,7 +373,7 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function getMissionCoveragePrioritiesPolicy()
     {
@@ -381,15 +381,15 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $missionCoveragePrioritiesPolicy
+     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $missionCoveragePrioritiesPolicy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMissionCoveragePrioritiesPolicy($missionCoveragePrioritiesPolicy)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
             "string",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
         );
 
         $missionCoveragePrioritiesPolicy = self::checkTypes($missionCoveragePrioritiesPolicy, $types);

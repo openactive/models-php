@@ -44,7 +44,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * "identifier": "SB1234"
      * ```
      *
-     * @var int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @var string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     protected $identifier;
 
@@ -122,7 +122,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * The duration before the startDate during which this Offer may not be cancelled, given in ISO 8601 format.
      *
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      */
     protected $latestCancellationBeforeStartDate;
 
@@ -155,7 +155,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * "price": "33"
      * ```
      *
-     * @var null|float
+     * @var float|null
      */
     protected $price;
 
@@ -185,12 +185,12 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * The duration before the startDate for which this Offer is valid, given in ISO 8601 format. This is a relatively-defined equivalent of schema:validFrom, to allow for Offer inheritance.
      *
      *
-     * @var null|DateInterval
+     * @var DateInterval|null
      */
     protected $validFromBeforeStartDate;
 
     /**
-     * @return int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
+     * @return string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
     {
@@ -198,15 +198,15 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param int|string|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
+     * @param string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
         $types = array(
-            "int",
             "string",
+            "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
@@ -365,7 +365,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      */
     public function getLatestCancellationBeforeStartDate()
     {
@@ -373,15 +373,15 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param null|DateInterval $latestCancellationBeforeStartDate
+     * @param DateInterval|null $latestCancellationBeforeStartDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLatestCancellationBeforeStartDate($latestCancellationBeforeStartDate)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $latestCancellationBeforeStartDate = self::checkTypes($latestCancellationBeforeStartDate, $types);
@@ -440,7 +440,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getPrice()
     {
@@ -448,15 +448,15 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param null|float $price
+     * @param float|null $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $price = self::checkTypes($price, $types);
@@ -513,7 +513,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return null|DateInterval
+     * @return DateInterval|null
      */
     public function getValidFromBeforeStartDate()
     {
@@ -521,15 +521,15 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param null|DateInterval $validFromBeforeStartDate
+     * @param DateInterval|null $validFromBeforeStartDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFromBeforeStartDate($validFromBeforeStartDate)
     {
         $types = array(
-            "null",
             "DateInterval",
+            "null",
         );
 
         $validFromBeforeStartDate = self::checkTypes($validFromBeforeStartDate, $types);

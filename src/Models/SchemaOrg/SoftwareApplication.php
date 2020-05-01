@@ -162,7 +162,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A link to a screenshot image of the app.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
+     * @var string|\OpenActive\Models\SchemaOrg\ImageObject
      */
     protected $screenshot;
 
@@ -575,7 +575,7 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
+     * @return string|\OpenActive\Models\SchemaOrg\ImageObject
      */
     public function getScreenshot()
     {
@@ -583,15 +583,15 @@ class SoftwareApplication extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $screenshot
+     * @param string|\OpenActive\Models\SchemaOrg\ImageObject $screenshot
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setScreenshot($screenshot)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\ImageObject",
             "string",
+            "\OpenActive\Models\SchemaOrg\ImageObject",
         );
 
         $screenshot = self::checkTypes($screenshot, $types);

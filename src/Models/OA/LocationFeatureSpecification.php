@@ -40,7 +40,7 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Location
      * A boolean value indicating whether this ammenity is available.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $value;
 
@@ -69,7 +69,7 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Location
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getValue()
     {
@@ -77,15 +77,15 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Location
     }
 
     /**
-     * @param null|bool $value
+     * @param bool|null $value
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValue($value)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $value = self::checkTypes($value, $types);

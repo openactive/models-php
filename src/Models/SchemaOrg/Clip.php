@@ -18,8 +18,8 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     public static function fieldList() {
         $fields = [
             "actor" => "actor",
-            "partOfSeries" => "partOfSeries",
             "partOfEpisode" => "partOfEpisode",
+            "partOfSeries" => "partOfSeries",
             "partOfSeason" => "partOfSeason",
             "musicBy" => "musicBy",
             "directors" => "directors",
@@ -42,20 +42,20 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $actor;
 
     /**
-     * The series to which this episode or season belongs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeries
-     */
-    protected $partOfSeries;
-
-    /**
      * The episode to which this clip belongs.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Episode
      */
     protected $partOfEpisode;
+
+    /**
+     * The series to which this episode or season belongs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeries
+     */
+    protected $partOfSeries;
 
     /**
      * The season to which this episode belongs.
@@ -69,7 +69,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The composer of the soundtrack.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
      */
     protected $musicBy;
 
@@ -101,7 +101,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Position of the clip within an ordered group of clips.
      *
      *
-     * @var null|int|string
+     * @var string|int|null
      */
     protected $clipNumber;
 
@@ -109,7 +109,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The end time of the clip expressed as the number of seconds from the beginning of the work.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $endOffset;
 
@@ -117,7 +117,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The start time of the clip expressed as the number of seconds from the beginning of the work.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $startOffset;
 
@@ -146,30 +146,6 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeries
-     */
-    public function getPartOfSeries()
-    {
-        return $this->partOfSeries;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeries $partOfSeries
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPartOfSeries($partOfSeries)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWorkSeries",
-        );
-
-        $partOfSeries = self::checkTypes($partOfSeries, $types);
-
-        $this->partOfSeries = $partOfSeries;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Episode
      */
     public function getPartOfEpisode()
@@ -191,6 +167,30 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
         $partOfEpisode = self::checkTypes($partOfEpisode, $types);
 
         $this->partOfEpisode = $partOfEpisode;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeries
+     */
+    public function getPartOfSeries()
+    {
+        return $this->partOfSeries;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeries $partOfSeries
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPartOfSeries($partOfSeries)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\CreativeWorkSeries",
+        );
+
+        $partOfSeries = self::checkTypes($partOfSeries, $types);
+
+        $this->partOfSeries = $partOfSeries;
     }
 
     /**
@@ -218,7 +218,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
      */
     public function getMusicBy()
     {
@@ -226,15 +226,15 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup $musicBy
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person $musicBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicBy($musicBy)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "\OpenActive\Models\SchemaOrg\Person",
         );
 
         $musicBy = self::checkTypes($musicBy, $types);
@@ -315,7 +315,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|int|string
+     * @return string|int|null
      */
     public function getClipNumber()
     {
@@ -323,16 +323,16 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|int|string $clipNumber
+     * @param string|int|null $clipNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setClipNumber($clipNumber)
     {
         $types = array(
-            "null",
-            "int",
             "string",
+            "int",
+            "null",
         );
 
         $clipNumber = self::checkTypes($clipNumber, $types);
@@ -341,7 +341,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getEndOffset()
     {
@@ -349,15 +349,15 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|float $endOffset
+     * @param float|null $endOffset
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndOffset($endOffset)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $endOffset = self::checkTypes($endOffset, $types);
@@ -366,7 +366,7 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getStartOffset()
     {
@@ -374,15 +374,15 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|float $startOffset
+     * @param float|null $startOffset
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartOffset($startOffset)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $startOffset = self::checkTypes($startOffset, $types);

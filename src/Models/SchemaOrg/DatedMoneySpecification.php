@@ -30,7 +30,7 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
      * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $endDate;
 
@@ -48,7 +48,7 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
      * The amount of money.
      *
      *
-     * @var float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null
      */
     protected $amount;
 
@@ -56,12 +56,12 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
      * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
      *
      *
-     * @var null|DateTime|Date
+     * @var Date|DateTime|null
      */
     protected $startDate;
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getEndDate()
     {
@@ -69,16 +69,16 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     }
 
     /**
-     * @param null|DateTime|Date $endDate
+     * @param Date|DateTime|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $endDate = self::checkTypes($endDate, $types);
@@ -111,7 +111,7 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     }
 
     /**
-     * @return float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null
      */
     public function getAmount()
     {
@@ -119,15 +119,15 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     }
 
     /**
-     * @param float|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $amount
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null $amount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAmount($amount)
     {
         $types = array(
-            "float",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "float",
             "null",
         );
 
@@ -137,7 +137,7 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     }
 
     /**
-     * @return null|DateTime|Date
+     * @return Date|DateTime|null
      */
     public function getStartDate()
     {
@@ -145,16 +145,16 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     }
 
     /**
-     * @param null|DateTime|Date $startDate
+     * @param Date|DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
         $types = array(
-            "null",
-            "DateTime",
             "Date",
+            "DateTime",
+            "null",
         );
 
         $startDate = self::checkTypes($startDate, $types);

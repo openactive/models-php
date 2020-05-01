@@ -29,7 +29,7 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
      * A secure method for consumers to purchase products or services via debit, credit or smartcards by using RFID or NFC technology.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $contactlessPayment;
 
@@ -37,7 +37,7 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
      * A cardholder benefit that pays the cardholder a small percentage of their net expenditures.
      *
      *
-     * @var null|float|bool
+     * @var bool|float|null
      */
     protected $cashBack;
 
@@ -50,7 +50,7 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
     protected $floorLimit;
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getContactlessPayment()
     {
@@ -58,15 +58,15 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @param null|bool $contactlessPayment
+     * @param bool|null $contactlessPayment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContactlessPayment($contactlessPayment)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $contactlessPayment = self::checkTypes($contactlessPayment, $types);
@@ -75,7 +75,7 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @return null|float|bool
+     * @return bool|float|null
      */
     public function getCashBack()
     {
@@ -83,16 +83,16 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @param null|float|bool $cashBack
+     * @param bool|float|null $cashBack
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCashBack($cashBack)
     {
         $types = array(
-            "null",
-            "float",
             "bool",
+            "float",
+            "null",
         );
 
         $cashBack = self::checkTypes($cashBack, $types);

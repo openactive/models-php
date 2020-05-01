@@ -18,11 +18,11 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     public static function fieldList() {
         $fields = [
             "pagination" => "pagination",
+            "wordCount" => "wordCount",
             "speakable" => "speakable",
             "pageEnd" => "pageEnd",
             "articleSection" => "articleSection",
             "pageStart" => "pageStart",
-            "wordCount" => "wordCount",
             "articleBody" => "articleBody",
             "backstory" => "backstory",
         ];
@@ -37,6 +37,14 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var string
      */
     protected $pagination;
+
+    /**
+     * The number of words in the text of the Article.
+     *
+     *
+     * @var int|null
+     */
+    protected $wordCount;
 
     /**
      * Indicates sections of a Web page that are particularly 'speakable' in the sense of being highlighted as being especially appropriate for text-to-speech conversion. Other sections of a page may also be usefully spoken in particular circumstances; the 'speakable' property serves to indicate the parts most likely to be generally useful for speech.<br/><br/>
@@ -61,7 +69,7 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The page on which the work ends; for example "138" or "xvi".
      *
      *
-     * @var null|int|string
+     * @var string|int|null
      */
     protected $pageEnd;
 
@@ -77,17 +85,9 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The page on which the work starts; for example "135" or "xiii".
      *
      *
-     * @var null|int|string
+     * @var string|int|null
      */
     protected $pageStart;
-
-    /**
-     * The number of words in the text of the Article.
-     *
-     *
-     * @var null|int
-     */
-    protected $wordCount;
 
     /**
      * The actual body of the article.
@@ -130,6 +130,31 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
+     * @return int|null
+     */
+    public function getWordCount()
+    {
+        return $this->wordCount;
+    }
+
+    /**
+     * @param int|null $wordCount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setWordCount($wordCount)
+    {
+        $types = array(
+            "int",
+            "null",
+        );
+
+        $wordCount = self::checkTypes($wordCount, $types);
+
+        $this->wordCount = $wordCount;
+    }
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\SpeakableSpecification|string
      */
     public function getSpeakable()
@@ -155,7 +180,7 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|int|string
+     * @return string|int|null
      */
     public function getPageEnd()
     {
@@ -163,16 +188,16 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|int|string $pageEnd
+     * @param string|int|null $pageEnd
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPageEnd($pageEnd)
     {
         $types = array(
-            "null",
-            "int",
             "string",
+            "int",
+            "null",
         );
 
         $pageEnd = self::checkTypes($pageEnd, $types);
@@ -205,7 +230,7 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return null|int|string
+     * @return string|int|null
      */
     public function getPageStart()
     {
@@ -213,46 +238,21 @@ class Article extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param null|int|string $pageStart
+     * @param string|int|null $pageStart
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPageStart($pageStart)
     {
         $types = array(
-            "null",
-            "int",
             "string",
+            "int",
+            "null",
         );
 
         $pageStart = self::checkTypes($pageStart, $types);
 
         $this->pageStart = $pageStart;
-    }
-
-    /**
-     * @return null|int
-     */
-    public function getWordCount()
-    {
-        return $this->wordCount;
-    }
-
-    /**
-     * @param null|int $wordCount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setWordCount($wordCount)
-    {
-        $types = array(
-            "null",
-            "int",
-        );
-
-        $wordCount = self::checkTypes($wordCount, $types);
-
-        $this->wordCount = $wordCount;
     }
 
     /**

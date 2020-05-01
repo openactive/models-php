@@ -94,7 +94,7 @@ class Thing extends \OpenActive\BaseModel
      * A CreativeWork or Event about this Thing.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Event
+     * @var \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     protected $subjectOf;
 
@@ -102,7 +102,7 @@ class Thing extends \OpenActive\BaseModel
      * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See <a href="/docs/datamodel.html#mainEntityBackground">background notes</a> for details.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
+     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     protected $mainEntityOfPage;
 
@@ -301,7 +301,7 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Event
+     * @return \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function getSubjectOf()
     {
@@ -309,15 +309,15 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Event $subjectOf
+     * @param \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork $subjectOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSubjectOf($subjectOf)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
             "\OpenActive\Models\SchemaOrg\Event",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
         );
 
         $subjectOf = self::checkTypes($subjectOf, $types);
@@ -326,7 +326,7 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function getMainEntityOfPage()
     {
@@ -334,15 +334,15 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $mainEntityOfPage
+     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $mainEntityOfPage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMainEntityOfPage($mainEntityOfPage)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
             "string",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
         );
 
         $mainEntityOfPage = self::checkTypes($mainEntityOfPage, $types);

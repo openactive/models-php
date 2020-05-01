@@ -23,12 +23,12 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
             "numberOfRooms" => "numberOfRooms",
             "permittedUsage" => "permittedUsage",
             "floorLevel" => "floorLevel",
-            "tourBookingPage" => "tourBookingPage",
             "leaseLength" => "leaseLength",
             "numberOfPartialBathrooms" => "numberOfPartialBathrooms",
             "yearBuilt" => "yearBuilt",
-            "accommodationFloorPlan" => "accommodationFloorPlan",
+            "tourBookingPage" => "tourBookingPage",
             "numberOfBedrooms" => "numberOfBedrooms",
+            "accommodationFloorPlan" => "accommodationFloorPlan",
             "numberOfBathroomsTotal" => "numberOfBathroomsTotal",
             "numberOfFullBathrooms" => "numberOfFullBathrooms",
             "accommodationCategory" => "accommodationCategory",
@@ -41,7 +41,7 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
      * Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value.
      *
      *
-     * @var null|string|bool
+     * @var bool|string|null
      */
     protected $petsAllowed;
 
@@ -67,7 +67,7 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
      * Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue.
      *
      *
-     * @var float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
      */
     protected $numberOfRooms;
 
@@ -89,14 +89,6 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     protected $floorLevel;
 
     /**
-     * A page providing information on how to book a tour of some <a class="localLink" href="https://schema.org/Place">Place</a>, such as an <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a> or <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a> in a real estate setting, as well as other kinds of tours as appropriate.
-     *
-     *
-     * @var string
-     */
-    protected $tourBookingPage;
-
-    /**
      * Length of the lease for some <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a>, either particular to some <a class="localLink" href="https://schema.org/Offer">Offer</a> or in some cases intrinsic to the property.
      *
      *
@@ -108,7 +100,7 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
      * Number of partial bathrooms - The total number of half and ¼ bathrooms in an <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a>. This corresponds to the <a href="https://ddwiki.reso.org/display/DDW17/BathroomsPartial+Field">BathroomsPartial field in RESO</a>.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $numberOfPartialBathrooms;
 
@@ -116,17 +108,17 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
      * The year an <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a> was constructed. This corresponds to the <a href="https://ddwiki.reso.org/display/DDW17/YearBuilt+Field">YearBuilt field in RESO</a>.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $yearBuilt;
 
     /**
-     * A floorplan of some <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a>.
+     * A page providing information on how to book a tour of some <a class="localLink" href="https://schema.org/Place">Place</a>, such as an <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a> or <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a> in a real estate setting, as well as other kinds of tours as appropriate.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\FloorPlan
+     * @var string
      */
-    protected $accommodationFloorPlan;
+    protected $tourBookingPage;
 
     /**
      * The total integer number of bedrooms in a some <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a>, <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a> or <a class="localLink" href="https://schema.org/FloorPlan">FloorPlan</a>.
@@ -137,10 +129,18 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     protected $numberOfBedrooms;
 
     /**
+     * A floorplan of some <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a>.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\FloorPlan
+     */
+    protected $accommodationFloorPlan;
+
+    /**
      * The total integer number of bathrooms in a some <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a>, following real estate conventions as <a href="https://ddwiki.reso.org/display/DDW17/BathroomsTotalInteger+Field">documented in RESO</a>: "The simple sum of the number of bathrooms. For example for a property with two Full Bathrooms and one Half Bathroom, the Bathrooms Total Integer will be 3.". See also <a class="localLink" href="https://schema.org/numberOfRooms">numberOfRooms</a>.
      *
      *
-     * @var null|int
+     * @var int|null
      */
     protected $numberOfBathroomsTotal;
 
@@ -148,7 +148,7 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
      * Number of full bathrooms - The total number of full and ¾ bathrooms in an <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a>. This corresponds to the <a href="https://ddwiki.reso.org/display/DDW17/BathroomsFull+Field">BathroomsFull field in RESO</a>.
      *
      *
-     * @var null|float
+     * @var float|null
      */
     protected $numberOfFullBathrooms;
 
@@ -161,7 +161,7 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     protected $accommodationCategory;
 
     /**
-     * @return null|string|bool
+     * @return bool|string|null
      */
     public function getPetsAllowed()
     {
@@ -169,16 +169,16 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param null|string|bool $petsAllowed
+     * @param bool|string|null $petsAllowed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPetsAllowed($petsAllowed)
     {
         $types = array(
-            "null",
-            "string",
             "bool",
+            "string",
+            "null",
         );
 
         $petsAllowed = self::checkTypes($petsAllowed, $types);
@@ -235,7 +235,7 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
      */
     public function getNumberOfRooms()
     {
@@ -243,15 +243,15 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numberOfRooms
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $numberOfRooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfRooms($numberOfRooms)
     {
         $types = array(
-            "float",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "float",
             "null",
         );
 
@@ -309,30 +309,6 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return string
-     */
-    public function getTourBookingPage()
-    {
-        return $this->tourBookingPage;
-    }
-
-    /**
-     * @param string $tourBookingPage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTourBookingPage($tourBookingPage)
-    {
-        $types = array(
-            "string",
-        );
-
-        $tourBookingPage = self::checkTypes($tourBookingPage, $types);
-
-        $this->tourBookingPage = $tourBookingPage;
-    }
-
-    /**
      * @return DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getLeaseLength()
@@ -359,7 +335,7 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getNumberOfPartialBathrooms()
     {
@@ -367,15 +343,15 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param null|float $numberOfPartialBathrooms
+     * @param float|null $numberOfPartialBathrooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfPartialBathrooms($numberOfPartialBathrooms)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $numberOfPartialBathrooms = self::checkTypes($numberOfPartialBathrooms, $types);
@@ -384,7 +360,7 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getYearBuilt()
     {
@@ -392,15 +368,15 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param null|float $yearBuilt
+     * @param float|null $yearBuilt
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setYearBuilt($yearBuilt)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $yearBuilt = self::checkTypes($yearBuilt, $types);
@@ -409,27 +385,27 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\FloorPlan
+     * @return string
      */
-    public function getAccommodationFloorPlan()
+    public function getTourBookingPage()
     {
-        return $this->accommodationFloorPlan;
+        return $this->tourBookingPage;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\FloorPlan $accommodationFloorPlan
+     * @param string $tourBookingPage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAccommodationFloorPlan($accommodationFloorPlan)
+    public function setTourBookingPage($tourBookingPage)
     {
         $types = array(
-            "\OpenActive\Models\SchemaOrg\FloorPlan",
+            "string",
         );
 
-        $accommodationFloorPlan = self::checkTypes($accommodationFloorPlan, $types);
+        $tourBookingPage = self::checkTypes($tourBookingPage, $types);
 
-        $this->accommodationFloorPlan = $accommodationFloorPlan;
+        $this->tourBookingPage = $tourBookingPage;
     }
 
     /**
@@ -459,7 +435,31 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return null|int
+     * @return \OpenActive\Models\SchemaOrg\FloorPlan
+     */
+    public function getAccommodationFloorPlan()
+    {
+        return $this->accommodationFloorPlan;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\FloorPlan $accommodationFloorPlan
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAccommodationFloorPlan($accommodationFloorPlan)
+    {
+        $types = array(
+            "\OpenActive\Models\SchemaOrg\FloorPlan",
+        );
+
+        $accommodationFloorPlan = self::checkTypes($accommodationFloorPlan, $types);
+
+        $this->accommodationFloorPlan = $accommodationFloorPlan;
+    }
+
+    /**
+     * @return int|null
      */
     public function getNumberOfBathroomsTotal()
     {
@@ -467,15 +467,15 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param null|int $numberOfBathroomsTotal
+     * @param int|null $numberOfBathroomsTotal
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfBathroomsTotal($numberOfBathroomsTotal)
     {
         $types = array(
-            "null",
             "int",
+            "null",
         );
 
         $numberOfBathroomsTotal = self::checkTypes($numberOfBathroomsTotal, $types);
@@ -484,7 +484,7 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getNumberOfFullBathrooms()
     {
@@ -492,15 +492,15 @@ class Accommodation extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param null|float $numberOfFullBathrooms
+     * @param float|null $numberOfFullBathrooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfFullBathrooms($numberOfFullBathrooms)
     {
         $types = array(
-            "null",
             "float",
+            "null",
         );
 
         $numberOfFullBathrooms = self::checkTypes($numberOfFullBathrooms, $types);

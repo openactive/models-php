@@ -37,7 +37,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
      * Whether the Booking Flow with Approval must be used to book the set of OrderItems included. must be true if any of the OrderItems require approval.
      *
      *
-     * @var null|bool
+     * @var bool|null
      */
     protected $orderRequiresApproval;
 
@@ -66,7 +66,7 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     }
 
     /**
-     * @return null|bool
+     * @return bool|null
      */
     public function getOrderRequiresApproval()
     {
@@ -74,15 +74,15 @@ class OrderQuote extends \OpenActive\Models\OA\Order
     }
 
     /**
-     * @param null|bool $orderRequiresApproval
+     * @param bool|null $orderRequiresApproval
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderRequiresApproval($orderRequiresApproval)
     {
         $types = array(
-            "null",
             "bool",
+            "null",
         );
 
         $orderRequiresApproval = self::checkTypes($orderRequiresApproval, $types);

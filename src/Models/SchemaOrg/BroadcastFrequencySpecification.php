@@ -29,7 +29,7 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
      * The frequency in MHz for a particular broadcast.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
      */
     protected $broadcastFrequencyValue;
 
@@ -37,7 +37,7 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
      * The modulation (e.g. FM, AM, etc) used by a particular broadcast service
      *
      *
-     * @var string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
+     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
      */
     protected $broadcastSignalModulation;
 
@@ -50,7 +50,7 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     protected $broadcastSubChannel;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
      */
     public function getBroadcastFrequencyValue()
     {
@@ -58,7 +58,7 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|null|float $broadcastFrequencyValue
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $broadcastFrequencyValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -66,8 +66,8 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     {
         $types = array(
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "null",
             "float",
+            "null",
         );
 
         $broadcastFrequencyValue = self::checkTypes($broadcastFrequencyValue, $types);
@@ -76,7 +76,7 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     }
 
     /**
-     * @return string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
+     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
      */
     public function getBroadcastSignalModulation()
     {
@@ -84,15 +84,15 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     }
 
     /**
-     * @param string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null $broadcastSignalModulation
+     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null $broadcastSignalModulation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastSignalModulation($broadcastSignalModulation)
     {
         $types = array(
-            "string",
             "\OpenActive\Enums\SchemaOrg\QualitativeValue",
+            "string",
             "null",
         );
 
