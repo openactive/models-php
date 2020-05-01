@@ -4,6 +4,7 @@ namespace OpenActive\Models\Tests\Unit\Formatting;
 
 use OpenActive\Helpers\DateTime as DateTimeHelper;
 use OpenActive\Helpers\DateInterval as DateIntervalHelper;
+use OpenActive\Models\OA\Event;
 use OpenActive\Models\OA\PartialSchedule;
 use OpenActive\Models\OA\Schedule;
 use PHPUnit\Framework\TestCase;
@@ -63,6 +64,44 @@ class DateTest extends TestCase
                 "https://openactive.io/ns-beta"
             ],
             "startDate" => "2019-11-29"
+        ];
+
+        $this->assertEquals($expected, $serialized);
+    }
+
+    function testEventDate() {
+        $schedule = new Event(["startDate" => "2019-11-29"]);
+
+        print_r($schedule);
+
+        $serialized = Event::toArray($schedule);
+
+        $expected = [
+            "@type" => "Event",
+            "@context" => [
+                "https://openactive.io/",
+                "https://openactive.io/ns-beta"
+            ],
+            "startDate" => "2019-11-29"
+        ];
+
+        $this->assertEquals($expected, $serialized);
+    }
+
+    function testEventDateTime() {
+        $schedule = new Event(["startDate" => "2019-11-29T10:00:00Z"]);
+
+        print_r($schedule);
+
+        $serialized = Event::toArray($schedule);
+
+        $expected = [
+            "@type" => "Event",
+            "@context" => [
+                "https://openactive.io/",
+                "https://openactive.io/ns-beta"
+            ],
+            "startDate" => "2019-11-29T10:00:00Z"
         ];
 
         $this->assertEquals($expected, $serialized);

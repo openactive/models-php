@@ -32,7 +32,7 @@ class SessionSeriesTest extends TestCase
         // Accessor for SessionSeries.startDate returns correct value
         $this->assertEquals(
             $decodedJsonSessionSeries["startDate"],
-            DateTimeHelper::iso8601($sessionSeries->getStartDate(), true)
+            $sessionSeries->getStartDate()->toISO8601()
         );
 
         // Accessor for SessionSeries.subEvent.name returns correct value
