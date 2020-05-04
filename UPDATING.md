@@ -2,17 +2,18 @@
 
 A convenience script has been provided, `./update-models.sh`.
 
-The process that's been automated here is as follows:
+The process that's been automated here is roughly as follows:
 
 ```bash
 # install and get the generator into place
-git clone https://github.com/openactive/models-lib
-cd models-lib
+git clone https://github.com/openactive/models-lib vendor/models-lib
+cd vendor/models-lib
 npm install
 
 # generate models
-npm run app-dev -- generate PHP --destination ../src/
+npm run app-dev -- generate PHP --destination ../../src/
 
+cd ../..
 # fix syntax / linting
 composer fix src/models
 composer fix src/enums
