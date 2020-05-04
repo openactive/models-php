@@ -386,3 +386,7 @@ You can also run a section of the suite by specifying the class's relative path 
 
 For additional information on the commands available for PHPUnit,
 consult [their documentation](https://phpunit.de/manual/5.7/en/installation.html)
+
+
+### Updating models
+A guide is provided in [UPDATING.md](UPDATING.md)
