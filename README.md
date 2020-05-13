@@ -1,4 +1,4 @@
-# models-php [![Latest Stable Version](https://poser.pugx.org/openactive/models/v/stable)](https://packagist.org/packages/openactive/models) [![Total Downloads](https://poser.pugx.org/openactive/models/downloads)](https://packagist.org/packages/openactive/models) 
+# models-php [![Latest Stable Version](https://poser.pugx.org/openactive/models/v/stable)](https://packagist.org/packages/openactive/models) [![Total Downloads](https://poser.pugx.org/openactive/models/downloads)](https://packagist.org/packages/openactive/models)
 PHP Models for the OpenActive Opportunity and Booking Specifications
 
 OpenActive aims to provide model files for all classes defined in its Opportunity and Booking specifications across the PHP, Ruby, and .NET languages. This repository is intended for the PHP files; see also the [Ruby](https://github.com/openactive/models-ruby/) and [.NET](https://github.com/openactive/OpenActive.NET) implementations.
@@ -147,7 +147,7 @@ $feedPage = RpdeBody::createFromNextChangeNumber(
     $feedItems
 );
 
-$feedPage.getNext(); # 'https://www.example.com/rpde-feeds/session-series?afterTimestamp=5&afterId=2'
+$feedPage->getNext(); # 'https://www.example.com/rpde-feeds/session-series?afterTimestamp=5&afterId=2'
 ```
 
 `RpdeBody::createFromModifiedId` will check that all feed items do indeed come after the `$id` and `$modified` arguments provided. It will contruct the next link based on the id and modified value of the newest feed item and the provided `$feedBaseUrl` argument.
@@ -163,12 +163,12 @@ $feedPage = RpdeBody::createFromModifiedId(
     $feedItems
 );
 
-$feedPage.getNext(); # 'https://www.example.com/rpde-feeds/session-series?afterChangeNumber=5'
+$feedPage->getNext(); # 'https://www.example.com/rpde-feeds/session-series?afterChangeNumber=5'
 ```
 
 To override the default licence:
 ```php
-$feedPage.setLicense('https://www.example.com/my-licence/v2.0');
+$feedPage->setLicense('https://www.example.com/my-licence/v2.0');
 ```
 
 #### Serializing the feed page
