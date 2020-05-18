@@ -38,4 +38,4 @@ for dir in ${GENERATED_DIRS[@]}; do
 done
 "${COMPOSER_BIN}" test;
 
-git add "${GENERATED_DIRS}";
+git add "${GENERATED_DIRS[@]}";
