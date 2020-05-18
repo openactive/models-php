@@ -34,7 +34,7 @@ fi
 COMPOSER_BIN=$(command -v composer || command -v composer.phar || command -v ./composer.phar);
 
 for dir in ${GENERATED_DIRS[@]}; do
-  "${COMPOSER_BIN}" fix "${dir}";
+  "${COMPOSER_BIN}" fix "${dir}" || true;
 done
 "${COMPOSER_BIN}" test;
 
