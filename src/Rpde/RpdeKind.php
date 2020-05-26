@@ -20,4 +20,6 @@ class RpdeKind
     const HEADLINE_EVENT = "HeadlineEvent";
     const EVENT = "Event";
     const EVENT_SERIES = "EventSeries";
+    const ORDER = "Order";
+    const ORDER_PROPOSAL = "OrderProposal";
 }

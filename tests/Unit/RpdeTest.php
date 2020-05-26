@@ -27,6 +27,26 @@ use PHPUnit\Framework\TestCase;
 class RpdeTest extends TestCase
 {
     /**
+     * @dataProvider allTypesDataProvider
+     * @param array $feed
+     * @param string $expectedJson
+     */
+    public function testCreatesSerializedRpdeFeedPageWithAllTypes($feed, $expectedJson)
+    {
+        $body = RpdeBody::createFromModifiedId(
+            'https://www.example.com/feed',
+            1,
+            "1",
+            $feed
+        );
+
+        $this->assertEquals(
+            json_decode($expectedJson),
+            json_decode(RpdeBody::serialize($body))
+        );
+    }
+
+    /**
      * Test the serialized RPDE body created with createFromModifiedId returns the expected JSON-LD.
      *
      * @dataProvider jsonAfterModifiedAfterIdProvider
@@ -684,6 +704,16 @@ class RpdeTest extends TestCase
                 "Kind" => RpdeKind::SESSION_SERIES,
                 "Data" => null
             ])
+        ];
+    }
+
+    public function allTypesDataProvider()
+    {
+        $res = __DIR__ . '/RpdeResources';
+        return [
+            [require $res . '/Orders.php', file_get_contents($res . '/orders.json')],
+            [require $res . '/FacilityUses.php', file_get_contents($res . '/facility_uses.json')],
+            [require $res . '/Slots.php', file_get_contents($res . '/slots.json')],
         ];
     }
 }
