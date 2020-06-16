@@ -1,0 +1,44 @@
+{
+  "next": "https://www.example.com/feed?afterTimestamp=5&afterId=4",
+  "items": [
+    {
+      "state": "updated",
+      "kind": "Order",
+      "id": "1",
+      "modified": 4,
+      "data": {
+        "@type": "Order",
+        "@context": [
+          "https://openactive.io/",
+          "https://openactive.io/ns-beta"
+        ]
+      }
+    },
+    {
+      "state": "updated",
+      "kind": "OrderProposal",
+      "id": "2",
+      "modified": 4,
+      "data": {
+        "@type": "OrderProposal",
+        "@context": [
+          "https://openactive.io/",
+          "https://openactive.io/ns-beta"
+        ]
+      }
+    },
+    {
+      "state": "deleted",
+      "kind": "Order",
+      "id": "3",
+      "modified": 5
+    },
+    {
+      "state": "deleted",
+      "kind": "OrderProposal",
+      "id": "4",
+      "modified": 5
+    }
+  ],
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}

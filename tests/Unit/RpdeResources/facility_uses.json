@@ -1,0 +1,38 @@
+{
+  "next": "https://www.example.com/feed?afterTimestamp=5&afterId=3",
+  "items": [
+    {
+      "state": "updated",
+      "kind": "FacilityUse",
+      "id": "1",
+      "modified": 4,
+      "data": {
+        "@type": "FacilityUse",
+        "@context": [
+          "https://openactive.io/",
+          "https://openactive.io/ns-beta"
+        ]
+      }
+    },
+    {
+      "state": "updated",
+      "kind": "FacilityUse",
+      "id": "2",
+      "modified": 4,
+      "data": {
+        "@type": "FacilityUse",
+        "@context": [
+          "https://openactive.io/",
+          "https://openactive.io/ns-beta"
+        ]
+      }
+    },
+    {
+      "state": "deleted",
+      "kind": "FacilityUse",
+      "id": "3",
+      "modified": 5
+    }
+  ],
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}
