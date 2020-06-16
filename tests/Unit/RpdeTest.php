@@ -70,6 +70,28 @@ class RpdeTest extends TestCase
     }
 
     /**
+     * Test the serialized RPDE body creates an empty items array
+     */
+    public function testCreateFromModifiedIdCreatesEmptyItemsArray()
+    {
+        $feed = RpdeBody::createFromModifiedId(
+            "https://www.example.com/feed",
+            1,
+            "1",
+            []
+        );
+
+        $this->assertEquals(
+            [
+                'next' => 'https://www.example.com/feed?afterTimestamp=1&afterId=1',
+                'items' => [],
+                'license' => 'https://creativecommons.org/licenses/by/4.0/'
+            ],
+            json_decode(RpdeBody::serialize($feed), true)
+        );
+    }
+
+    /**
      * Test the serialized RPDE body created with createFromNextChangeNumber returns the expected JSON-LD.
      *
      * @dataProvider jsonChangeNumberProvider

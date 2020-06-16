@@ -127,15 +127,16 @@ class JsonLd
         // Remove empty elements
         return array_filter(
             $data,
-            static function ($value) {
-                if (is_array($value) === true && count($value) === 0) {
+            static function ($value, $key) {
+                if (is_array($value) === true && count($value) === 0 && $key !== 'items') {
                     // Filter out empty arrays
                     return false;
                 }
 
                 // Filter out null values and empty strings
                 return $value !== null && $value !== "";
-            }
+            },
+            ARRAY_FILTER_USE_BOTH
         );
     }
 }
