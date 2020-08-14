@@ -390,3 +390,6 @@ consult [their documentation](https://phpunit.de/manual/5.7/en/installation.html
 
 ### Updating models
 A guide is provided in [UPDATING.md](UPDATING.md)
+
+### Implementing APIs
+These models can be used in the context of implementing an data API. A guide is provided in [IMPLEMENTING_APIS.md](IMPLEMENTING_APIS.md)
