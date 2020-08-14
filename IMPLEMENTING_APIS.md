@@ -6,7 +6,7 @@ Users will send [web-requests](https://www.codecademy.com/articles/http-requests
 
 # Process
 
-The following process assumes that you have the appropriate [technical architecture][TECHNICAL_ARCHITECTURE.md) to receive and handle web-requests.
+The following process assumes that you have the appropriate [technical architecture](https://github.com/openactive/developer-documentation/blob/info-arch-sketch/docs/using-data/technical-requirements.md) to receive and handle web-requests.
 
 ### 1. Identify any [query parameters](https://www.codecademy.com/learn/introduction-to-javascript/modules/intermediate-javascript-requests) sent with the request
 For example your application may allow users to search for activity opportunities in a geographic area, or for certain dates and times. For example "select all badminton courts in Sheffield in the next 5 days"
