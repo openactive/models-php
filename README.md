@@ -64,11 +64,11 @@ $sessionSeries = new SessionSeries([
             "longitude" => -0.2369088977575302,
         ])
     ]),
-    "activity" => new Concept([
+    "activity" => [new Concept([
         "id" => "https://openactive.io/activity-list#5e78bcbe-36db-425a-9064-bf96d09cc351",
         "prefLabel" => "Bodypump™",
         "inScheme" => "https://openactive.io/activity-list"
-    ]),
+    ])],
     "organizer" => new Organization([
         "name" => "Central Speedball Association",
         "url" => "http://www.speedball-world.com"
