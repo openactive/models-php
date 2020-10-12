@@ -48,12 +48,18 @@ trait TypeChecker
         $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
         $location = [];
         $ns = 'OpenActive\\Models\\OA\\';
+        $rpdeNs = 'OpenActive\\Rpde\\';
         foreach ($trace as $call) {
-            if (0 !== strpos($call['class'], $ns)) {
+            $loc = isset($call['class']) ? $call['class'] : '';
+            if (0 === strpos($loc, $rpdeNs) && !in_array($loc, $location)) {
+                $location[] = str_replace($ns, '', $loc);
+                continue;
+            }
+            if (0 !== strpos($loc, $ns)) {
                 continue;
             }
             $location[] = preg_replace('/set([A-Z])/', '$1', $call['function']);
-            $location[] = str_replace($ns, '', $call['class']);
+            $location[] = str_replace($ns, '', $loc);
         }
 
         return implode('.', array_reverse($location));

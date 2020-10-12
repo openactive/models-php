@@ -50,12 +50,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
     private function __construct($data)
     {
         foreach ($data as $key => $value) {
-            // Make sure setter is cased properly
-            $methodName = "set" . Str::pascal($key);
-
-            if (method_exists($this, $methodName) === true) {
-                $this->$methodName($value);
-            }
+            $this->defineProperty($key, $value);
         }
     }
 
@@ -300,9 +295,9 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
      */
     public function setItems($items)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Rpde\RpdeItem[]",
-        );
+        ];
 
         $items = self::checkTypes($items, $types);
 
@@ -330,5 +325,20 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
         $license = self::checkTypes($license, $types);
 
         $this->license = $license;
+    }
+
+    public function defineProperty($key, $value)
+    {
+        // Ignore properties which start with @
+        if ('@' === $key{0}) {
+            return;
+        }
+
+        // Make sure setter is cased properly
+        $methodName = "set" . Str::pascal($key);
+
+        if (method_exists($this, $methodName) === true) {
+            $this->$methodName($value);
+        }
     }
 }
