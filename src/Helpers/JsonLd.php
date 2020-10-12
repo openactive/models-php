@@ -75,7 +75,7 @@ class JsonLd
             )
         ) {
             $data["@context"] = array_merge(
-                $schema ? ['https://schema.org'] : [],
+                $schema ? ['https://schema.org/'] : [],
                 static::$defaultContext
             );
         }

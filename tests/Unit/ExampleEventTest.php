@@ -106,7 +106,7 @@ class ExampleEventTest extends TestCase
 
         $decoded = json_decode($encode, true);
 
-        $this->assertContains("https://schema.org", $decoded["@context"]);
+        $this->assertContains("https://schema.org/", $decoded["@context"]);
     }
 
     /**
