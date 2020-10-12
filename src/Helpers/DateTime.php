@@ -22,7 +22,7 @@ class DateTime
             return $date->toISO8601();
         }
 
-        if ($date instanceof \DateTime === false) {
+        if (!$date instanceof \DateTime && !$date instanceof \DateTimeImmutable) {
             throw new \Exception("Invalid argument type.");
         }
 
