@@ -31,13 +31,13 @@ class JsonLd
         $fq_classname = "\\".get_class($obj);
 
         // Get interval spec string, e.g. "P1D"
-        if($fq_classname === "\\DateInterval") {
+        if($obj instanceof \DateInterval) {
             return DateIntervalHelper::specString($obj);
         }
 
         // Get ISO 8601 date time representation,
         // e.g. "2019-01-01T00:00:00-08:00"
-        if($fq_classname === "\\DateTime") {
+        if($obj instanceof \DateTime || $obj instanceof \DateTimeImmutable) {
             return DateTimeHelper::iso8601($obj);
         }
 
