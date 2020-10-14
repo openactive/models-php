@@ -176,6 +176,7 @@ class RpdeItem implements TypeCheckerInterface
     {
         $types = array(
             "\OpenActive\BaseModel",
+            "\\OpenActive\\Rpde\\RpdeItemData",
             "null",
         );
 

@@ -90,6 +90,13 @@ class BaseValidator implements ValidatorInterface
             return new RpdeEnumValidator($type);
         }
 
+        if ($type === "\\OpenActive\\Rpde\\RpdeItem") {
+            return new RpdeItemValidator();
+        }
+        if ($type === "\\OpenActive\\Rpde\\RpdeItemData") {
+            return new RpdeItemDataValidator();
+        }
+
         // If type is an OpenActive BaseModel class
         if ($type === "\\OpenActive\\BaseModel") {
             return new BaseModelValidator();

@@ -45,6 +45,25 @@ class RpdeTest extends TestCase
             json_decode(RpdeBody::serialize($body))
         );
     }
+    /**
+     * @dataProvider allTypesDataProvider
+     * @param array $feed
+     * @param string $expectedJson
+     */
+    public function testAbleToUnserializeRpdeFeed($feed, $expectedJson)
+    {
+        $body = RpdeBody::createFromModifiedId(
+            'https://www.example.com/feed',
+            1,
+            "1",
+            $feed
+        );
+
+        $this->assertEquals(
+            $body,
+            RpdeBody::deserialize(RpdeBody::serialize($body))
+        );
+    }
 
     /**
      * Test the serialized RPDE body created with createFromModifiedId returns the expected JSON-LD.
