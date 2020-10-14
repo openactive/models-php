@@ -330,7 +330,7 @@ class RpdeBody implements SerializerInterface, TypeCheckerInterface
     public function defineProperty($key, $value)
     {
         // Ignore properties which start with @
-        if ('@' === $key{0}) {
+        if ('@' === $key[0]) {
             return;
         }
 
