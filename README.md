@@ -10,6 +10,7 @@ OpenActive aims to provide model files for all classes defined in its Opportunit
     - [Models](#models)
         - [OpenActive](#openactive)
         - [Schema.org](#schemaorg)
+        
     - [RPDE](#rpde)
     - [Enums](#enums)
     - [Serialization](#serialization)
@@ -19,7 +20,6 @@ OpenActive aims to provide model files for all classes defined in its Opportunit
 
 ## Requirements
 This project requires PHP >=5.6.
-While most of the functionality should work down to PHP 5.4, some functionality (especially around parsing of offset for DateTimeZone) will not work with that version of PHP (see the [DateTimeZone PHP docs](https://www.php.net/manual/en/datetimezone.construct.php#refsect1-datetimezone.construct-changelog) for more info).
 
 ## Installation
 To install via Composer, from terminal, run:
@@ -367,7 +367,7 @@ composer install
 ```
 
 ### Running Tests
-PHPUnit 5.7 is used to run tests.
+PHPUnit is used to run tests.
 
 To run the whole suite:
 ```bash
@@ -385,7 +385,7 @@ You can also run a section of the suite by specifying the class's relative path 
 ```
 
 For additional information on the commands available for PHPUnit,
-consult [their documentation](https://phpunit.de/manual/5.7/en/installation.html)
+consult [their documentation](https://phpunit.readthedocs.io/en/8.5/textui.html#command-line-options)
 
 
 ### Updating models
