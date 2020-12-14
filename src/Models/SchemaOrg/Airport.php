@@ -55,9 +55,9 @@ class Airport extends \OpenActive\Models\SchemaOrg\CivicStructure
      */
     public function setIataCode($iataCode)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $iataCode = self::checkTypes($iataCode, $types);
 
@@ -79,9 +79,9 @@ class Airport extends \OpenActive\Models\SchemaOrg\CivicStructure
      */
     public function setIcaoCode($icaoCode)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $icaoCode = self::checkTypes($icaoCode, $types);
 

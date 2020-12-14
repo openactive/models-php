@@ -83,9 +83,9 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -107,9 +107,9 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -131,9 +131,9 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
      */
     public function setPropertyID($propertyID)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $propertyID = self::checkTypes($propertyID, $types);
 
@@ -155,11 +155,11 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
      */
     public function setValue($value)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "null",
-        );
+        ];
 
         $value = self::checkTypes($value, $types);
 

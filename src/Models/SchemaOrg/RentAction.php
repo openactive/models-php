@@ -55,10 +55,10 @@ class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
      */
     public function setLandlord($landlord)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
-        );
+        ];
 
         $landlord = self::checkTypes($landlord, $types);
 
@@ -80,9 +80,9 @@ class RentAction extends \OpenActive\Models\SchemaOrg\TradeAction
      */
     public function setRealEstateAgent($realEstateAgent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\RealEstateAgent",
-        );
+        ];
 
         $realEstateAgent = self::checkTypes($realEstateAgent, $types);
 

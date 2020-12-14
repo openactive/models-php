@@ -17,21 +17,21 @@ class ScreeningEvent extends \OpenActive\Models\SchemaOrg\Event
 
     public static function fieldList() {
         $fields = [
-            "videoFormat" => "videoFormat",
-            "workPresented" => "workPresented",
             "subtitleLanguage" => "subtitleLanguage",
+            "workPresented" => "workPresented",
+            "videoFormat" => "videoFormat",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
+     * Languages in which subtitles/captions are available, in [IETF BCP 47 standard format](http://tools.ietf.org/html/bcp47).
      *
      *
-     * @var string
+     * @var string|\OpenActive\Models\SchemaOrg\Language
      */
-    protected $videoFormat;
+    protected $subtitleLanguage;
 
     /**
      * The movie presented during this event.
@@ -42,35 +42,36 @@ class ScreeningEvent extends \OpenActive\Models\SchemaOrg\Event
     protected $workPresented;
 
     /**
-     * Languages in which subtitles/captions are available, in <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard format</a>.
+     * The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Language
+     * @var string
      */
-    protected $subtitleLanguage;
+    protected $videoFormat;
 
     /**
-     * @return string
+     * @return string|\OpenActive\Models\SchemaOrg\Language
      */
-    public function getVideoFormat()
+    public function getSubtitleLanguage()
     {
-        return $this->videoFormat;
+        return $this->subtitleLanguage;
     }
 
     /**
-     * @param string $videoFormat
+     * @param string|\OpenActive\Models\SchemaOrg\Language $subtitleLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setVideoFormat($videoFormat)
+    public function setSubtitleLanguage($subtitleLanguage)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+            "\OpenActive\Models\SchemaOrg\Language",
+        ];
 
-        $videoFormat = self::checkTypes($videoFormat, $types);
+        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
 
-        $this->videoFormat = $videoFormat;
+        $this->subtitleLanguage = $subtitleLanguage;
     }
 
     /**
@@ -88,9 +89,9 @@ class ScreeningEvent extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setWorkPresented($workPresented)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Movie",
-        );
+        ];
 
         $workPresented = self::checkTypes($workPresented, $types);
 
@@ -98,28 +99,27 @@ class ScreeningEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Language
+     * @return string
      */
-    public function getSubtitleLanguage()
+    public function getVideoFormat()
     {
-        return $this->subtitleLanguage;
+        return $this->videoFormat;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Language $subtitleLanguage
+     * @param string $videoFormat
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSubtitleLanguage($subtitleLanguage)
+    public function setVideoFormat($videoFormat)
     {
-        $types = array(
+        $types = [
             "string",
-            "\OpenActive\Models\SchemaOrg\Language",
-        );
+        ];
 
-        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
+        $videoFormat = self::checkTypes($videoFormat, $types);
 
-        $this->subtitleLanguage = $subtitleLanguage;
+        $this->videoFormat = $videoFormat;
     }
 
 }

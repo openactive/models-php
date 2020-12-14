@@ -25,7 +25,7 @@ class Claim extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * Indicates the first known occurence of a <a class="localLink" href="https://schema.org/Claim">Claim</a> in some <a class="localLink" href="https://schema.org/CreativeWork">CreativeWork</a>.
+     * Indicates the first known occurence of a [[Claim]] in some [[CreativeWork]].
      *
      *
      * @var \OpenActive\Models\SchemaOrg\CreativeWork
@@ -33,7 +33,7 @@ class Claim extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $firstAppearance;
 
     /**
-     * Indicates an occurence of a <a class="localLink" href="https://schema.org/Claim">Claim</a> in some <a class="localLink" href="https://schema.org/CreativeWork">CreativeWork</a>.
+     * Indicates an occurence of a [[Claim]] in some [[CreativeWork]].
      *
      *
      * @var \OpenActive\Models\SchemaOrg\CreativeWork
@@ -55,9 +55,9 @@ class Claim extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setFirstAppearance($firstAppearance)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\CreativeWork",
-        );
+        ];
 
         $firstAppearance = self::checkTypes($firstAppearance, $types);
 
@@ -79,9 +79,9 @@ class Claim extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setAppearance($appearance)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\CreativeWork",
-        );
+        ];
 
         $appearance = self::checkTypes($appearance, $types);
 

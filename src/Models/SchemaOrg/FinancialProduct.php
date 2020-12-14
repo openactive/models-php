@@ -37,7 +37,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
      * The interest rate, charged or paid, applicable to the financial product. Note: This is different from the calculated annualPercentageRate.
      *
      *
-     * @var float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $interestRate;
 
@@ -45,7 +45,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
      * The annual rate that is charged for borrowing (or made by investing), expressed as a single percentage number that represents the actual yearly cost of funds over the term of a loan. This includes any fees or additional costs associated with the transaction.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $annualPercentageRate;
 
@@ -64,9 +64,9 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
      */
     public function setFeesAndCommissionsSpecification($feesAndCommissionsSpecification)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $feesAndCommissionsSpecification = self::checkTypes($feesAndCommissionsSpecification, $types);
 
@@ -74,7 +74,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @return float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getInterestRate()
     {
@@ -82,17 +82,17 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @param float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $interestRate
+     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $interestRate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInterestRate($interestRate)
     {
-        $types = array(
-            "float",
+        $types = [
+            "Number",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "null",
-        );
+        ];
 
         $interestRate = self::checkTypes($interestRate, $types);
 
@@ -100,7 +100,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getAnnualPercentageRate()
     {
@@ -108,17 +108,17 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $annualPercentageRate
+     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $annualPercentageRate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAnnualPercentageRate($annualPercentageRate)
     {
-        $types = array(
+        $types = [
+            "Number",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "float",
             "null",
-        );
+        ];
 
         $annualPercentageRate = self::checkTypes($annualPercentageRate, $types);
 

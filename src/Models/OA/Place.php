@@ -224,7 +224,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers. This property must contain HTML.
      * 
      * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
      *
@@ -248,13 +248,13 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -276,9 +276,9 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -300,9 +300,9 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -324,10 +324,10 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      */
     public function setAddress($address)
     {
-        $types = array(
+        $types = [
             "string",
             "\OpenActive\Models\OA\PostalAddress",
-        );
+        ];
 
         $address = self::checkTypes($address, $types);
 
@@ -349,9 +349,9 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      */
     public function setAmenityFeature($amenityFeature)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\LocationFeatureSpecification[]",
-        );
+        ];
 
         $amenityFeature = self::checkTypes($amenityFeature, $types);
 
@@ -373,9 +373,9 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      */
     public function setContainedInPlace($containedInPlace)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Place",
-        );
+        ];
 
         $containedInPlace = self::checkTypes($containedInPlace, $types);
 
@@ -397,9 +397,9 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      */
     public function setContainsPlace($containsPlace)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Place[]",
-        );
+        ];
 
         $containsPlace = self::checkTypes($containsPlace, $types);
 
@@ -421,9 +421,9 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      */
     public function setGeo($geo)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\GeoCoordinates",
-        );
+        ];
 
         $geo = self::checkTypes($geo, $types);
 
@@ -445,9 +445,9 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      */
     public function setImage($image)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject[]",
-        );
+        ];
 
         $image = self::checkTypes($image, $types);
 
@@ -469,9 +469,9 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      */
     public function setOpeningHoursSpecification($openingHoursSpecification)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\OpeningHoursSpecification[]",
-        );
+        ];
 
         $openingHoursSpecification = self::checkTypes($openingHoursSpecification, $types);
 
@@ -493,9 +493,9 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      */
     public function setTelephone($telephone)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $telephone = self::checkTypes($telephone, $types);
 
@@ -517,9 +517,9 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 
@@ -541,9 +541,9 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      */
     public function setFormattedDescription($formattedDescription)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $formattedDescription = self::checkTypes($formattedDescription, $types);
 

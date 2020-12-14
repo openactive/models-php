@@ -63,9 +63,9 @@ class HeadlineEvent extends \OpenActive\Models\OA\Event
      */
     public function setEventSchedule($eventSchedule)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Schedule[]",
-        );
+        ];
 
         $eventSchedule = self::checkTypes($eventSchedule, $types);
 

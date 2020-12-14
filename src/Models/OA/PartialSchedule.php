@@ -50,9 +50,9 @@ class PartialSchedule extends \OpenActive\Models\OA\Schedule
      */
     public function setTimeZone($timeZone)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $timeZone = self::checkTypes($timeZone, $types);
 

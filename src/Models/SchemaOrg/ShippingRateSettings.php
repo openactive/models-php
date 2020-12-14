@@ -17,19 +17,27 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "shippingRate" => "shippingRate",
-            "shippingLabel" => "shippingLabel",
             "freeShippingThreshold" => "freeShippingThreshold",
+            "shippingRate" => "shippingRate",
+            "doesNotShip" => "doesNotShip",
+            "shippingLabel" => "shippingLabel",
             "isUnlabelledFallback" => "isUnlabelledFallback",
             "shippingDestination" => "shippingDestination",
-            "doesNotShip" => "doesNotShip",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the <a class="localLink" href="https://schema.org/MonetaryAmount">MonetaryAmount</a>) are most appropriate.
+     * A monetary value above which (or equal to) the shipping rate becomes free. Intended to be used via an [[OfferShippingDetails]] with [[shippingSettingsLink]] matching this [[ShippingRateSettings]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DeliveryChargeSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount
+     */
+    protected $freeShippingThreshold;
+
+    /**
+     * The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the [[MonetaryAmount]]) are most appropriate.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\MonetaryAmount
@@ -37,7 +45,15 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $shippingRate;
 
     /**
-     * Label to match an <a class="localLink" href="https://schema.org/OfferShippingDetails">OfferShippingDetails</a> with a <a class="localLink" href="https://schema.org/ShippingRateSettings">ShippingRateSettings</a> (within the context of a <a class="localLink" href="https://schema.org/shippingSettingsLink">shippingSettingsLink</a> cross-reference).
+     * Indicates when shipping to a particular [[shippingDestination]] is not available.
+     *
+     *
+     * @var bool|null
+     */
+    protected $doesNotShip;
+
+    /**
+     * Label to match an [[OfferShippingDetails]] with a [[ShippingRateSettings]] (within the context of a [[shippingSettingsLink]] cross-reference).
      *
      *
      * @var string
@@ -45,15 +61,7 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $shippingLabel;
 
     /**
-     * A monetary value above which (or equal to) the shipping rate becomes free. Intended to be used via an <a class="localLink" href="https://schema.org/OfferShippingSpecification">OfferShippingSpecification</a> with <a class="localLink" href="https://schema.org/shippingSettingsLink">shippingSettingsLink</a> matching this <a class="localLink" href="https://schema.org/ShippingSettings">ShippingSettings</a>.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\DeliveryChargeSpecification
-     */
-    protected $freeShippingThreshold;
-
-    /**
-     * This can be marked 'true' to indicate that some published ShippingRateSettings are intended to apply to all <a class="localLink" href="https://schema.org/OfferShippingDetails">OfferShippingDetails</a> published by the same merchant, when referenced by a <a class="localLink" href="https://schema.org/shippingSettingsLink">shippingSettingsLink</a> in those settings. It is not meaningful to use a 'true' value for this property alongside a shippingLabel, since this property is for use with unlabelled ShippingRateSettings.
+     * This can be marked 'true' to indicate that some published [[DeliveryTimeSettings]] or [[ShippingRateSettings]] are intended to apply to all [[OfferShippingDetails]] published by the same merchant, when referenced by a [[shippingSettingsLink]] in those settings. It is not meaningful to use a 'true' value for this property alongside a transitTimeLabel (for [[DeliveryTimeSettings]]) or shippingLabel (for [[ShippingRateSettings]]), since this property is for use with unlabelled settings.
      *
      *
      * @var bool|null
@@ -69,12 +77,29 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $shippingDestination;
 
     /**
-     * Indicates, as part of an <a class="localLink" href="https://schema.org/OfferShippingDetails">OfferShippingDetails</a>, when shipping to a particular <a class="localLink" href="https://schema.org/shippingDestination">shippingDestination</a> is not available.
-     *
-     *
-     * @var bool|null
+     * @return \OpenActive\Models\SchemaOrg\DeliveryChargeSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount
      */
-    protected $doesNotShip;
+    public function getFreeShippingThreshold()
+    {
+        return $this->freeShippingThreshold;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DeliveryChargeSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount $freeShippingThreshold
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFreeShippingThreshold($freeShippingThreshold)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DeliveryChargeSpecification",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+        ];
+
+        $freeShippingThreshold = self::checkTypes($freeShippingThreshold, $types);
+
+        $this->freeShippingThreshold = $freeShippingThreshold;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MonetaryAmount
@@ -91,13 +116,38 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setShippingRate($shippingRate)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-        );
+        ];
 
         $shippingRate = self::checkTypes($shippingRate, $types);
 
         $this->shippingRate = $shippingRate;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getDoesNotShip()
+    {
+        return $this->doesNotShip;
+    }
+
+    /**
+     * @param bool|null $doesNotShip
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDoesNotShip($doesNotShip)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $doesNotShip = self::checkTypes($doesNotShip, $types);
+
+        $this->doesNotShip = $doesNotShip;
     }
 
     /**
@@ -115,38 +165,13 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setShippingLabel($shippingLabel)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $shippingLabel = self::checkTypes($shippingLabel, $types);
 
         $this->shippingLabel = $shippingLabel;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\DeliveryChargeSpecification
-     */
-    public function getFreeShippingThreshold()
-    {
-        return $this->freeShippingThreshold;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\DeliveryChargeSpecification $freeShippingThreshold
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFreeShippingThreshold($freeShippingThreshold)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "\OpenActive\Models\SchemaOrg\DeliveryChargeSpecification",
-        );
-
-        $freeShippingThreshold = self::checkTypes($freeShippingThreshold, $types);
-
-        $this->freeShippingThreshold = $freeShippingThreshold;
     }
 
     /**
@@ -164,10 +189,10 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setIsUnlabelledFallback($isUnlabelledFallback)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $isUnlabelledFallback = self::checkTypes($isUnlabelledFallback, $types);
 
@@ -189,38 +214,13 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setShippingDestination($shippingDestination)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\DefinedRegion",
-        );
+        ];
 
         $shippingDestination = self::checkTypes($shippingDestination, $types);
 
         $this->shippingDestination = $shippingDestination;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getDoesNotShip()
-    {
-        return $this->doesNotShip;
-    }
-
-    /**
-     * @param bool|null $doesNotShip
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDoesNotShip($doesNotShip)
-    {
-        $types = array(
-            "bool",
-            "null",
-        );
-
-        $doesNotShip = self::checkTypes($doesNotShip, $types);
-
-        $this->doesNotShip = $doesNotShip;
     }
 
 }

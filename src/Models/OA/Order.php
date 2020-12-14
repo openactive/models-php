@@ -166,13 +166,13 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -194,9 +194,9 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      */
     public function setBookingService($bookingService)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\BookingService",
-        );
+        ];
 
         $bookingService = self::checkTypes($bookingService, $types);
 
@@ -218,9 +218,9 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      */
     public function setBroker($broker)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Organization",
-        );
+        ];
 
         $broker = self::checkTypes($broker, $types);
 
@@ -242,10 +242,10 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      */
     public function setBrokerRole($brokerRole)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\BrokerType",
             "null",
-        );
+        ];
 
         $brokerRole = self::checkTypes($brokerRole, $types);
 
@@ -267,10 +267,10 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      */
     public function setCustomer($customer)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Organization",
             "\OpenActive\Models\OA\Person",
-        );
+        ];
 
         $customer = self::checkTypes($customer, $types);
 
@@ -292,10 +292,10 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      */
     public function setOrderCreationStatus($orderCreationStatus)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\OrderCreationStatus",
             "null",
-        );
+        ];
 
         $orderCreationStatus = self::checkTypes($orderCreationStatus, $types);
 
@@ -317,9 +317,9 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      */
     public function setOrderedItem($orderedItem)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\OrderItem[]",
-        );
+        ];
 
         $orderedItem = self::checkTypes($orderedItem, $types);
 
@@ -341,9 +341,9 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      */
     public function setOrderNumber($orderNumber)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $orderNumber = self::checkTypes($orderNumber, $types);
 
@@ -365,9 +365,9 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      */
     public function setOrderProposalVersion($orderProposalVersion)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $orderProposalVersion = self::checkTypes($orderProposalVersion, $types);
 
@@ -389,9 +389,9 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      */
     public function setPayment($payment)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Payment",
-        );
+        ];
 
         $payment = self::checkTypes($payment, $types);
 
@@ -413,10 +413,10 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      */
     public function setSeller($seller)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Person",
             "\OpenActive\Models\OA\Organization",
-        );
+        ];
 
         $seller = self::checkTypes($seller, $types);
 
@@ -438,10 +438,10 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      */
     public function setTaxCalculationExcluded($taxCalculationExcluded)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $taxCalculationExcluded = self::checkTypes($taxCalculationExcluded, $types);
 
@@ -463,9 +463,9 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      */
     public function setTotalPaymentDue($totalPaymentDue)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\PriceSpecification",
-        );
+        ];
 
         $totalPaymentDue = self::checkTypes($totalPaymentDue, $types);
 
@@ -487,9 +487,9 @@ class Order extends \OpenActive\Models\SchemaOrg\Order
      */
     public function setTotalPaymentTax($totalPaymentTax)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\TaxChargeSpecification[]",
-        );
+        ];
 
         $totalPaymentTax = self::checkTypes($totalPaymentTax, $types);
 

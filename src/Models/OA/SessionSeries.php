@@ -62,10 +62,10 @@ class SessionSeries extends \OpenActive\Models\OA\Event
      */
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $remainingAttendeeCapacity = self::checkTypes($remainingAttendeeCapacity, $types);
 
@@ -87,9 +87,9 @@ class SessionSeries extends \OpenActive\Models\OA\Event
      */
     public function setSubEvent($subEvent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ScheduledSession[]",
-        );
+        ];
 
         $subEvent = self::checkTypes($subEvent, $types);
 

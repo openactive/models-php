@@ -58,13 +58,13 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -86,10 +86,10 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setLeaseExpires($leaseExpires)
     {
-        $types = array(
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $leaseExpires = self::checkTypes($leaseExpires, $types);
 

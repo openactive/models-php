@@ -82,9 +82,9 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
      */
     public function setEventSchedule($eventSchedule)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Schedule[]",
-        );
+        ];
 
         $eventSchedule = self::checkTypes($eventSchedule, $types);
 
@@ -108,9 +108,9 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
      */
     public function setSubEvent($subEvent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Event[]",
-        );
+        ];
 
         $subEvent = self::checkTypes($subEvent, $types);
 
@@ -132,10 +132,10 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
      */
     public function setSuperEvent($superEvent)
     {
-        $types = array(
+        $types = [
             "string",
             "\OpenActive\Models\OA\Event",
-        );
+        ];
 
         $superEvent = self::checkTypes($superEvent, $types);
 

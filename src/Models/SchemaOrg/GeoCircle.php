@@ -28,7 +28,7 @@ class GeoCircle extends \OpenActive\Models\SchemaOrg\GeoShape
      * Indicates the approximate radius of a GeoCircle (metres unless indicated otherwise via Distance notation).
      *
      *
-     * @var string|float|\OpenActive\Models\SchemaOrg\Distance|null
+     * @var string|Number|\OpenActive\Models\SchemaOrg\Distance|null
      */
     protected $geoRadius;
 
@@ -41,7 +41,7 @@ class GeoCircle extends \OpenActive\Models\SchemaOrg\GeoShape
     protected $geoMidpoint;
 
     /**
-     * @return string|float|\OpenActive\Models\SchemaOrg\Distance|null
+     * @return string|Number|\OpenActive\Models\SchemaOrg\Distance|null
      */
     public function getGeoRadius()
     {
@@ -49,18 +49,18 @@ class GeoCircle extends \OpenActive\Models\SchemaOrg\GeoShape
     }
 
     /**
-     * @param string|float|\OpenActive\Models\SchemaOrg\Distance|null $geoRadius
+     * @param string|Number|\OpenActive\Models\SchemaOrg\Distance|null $geoRadius
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGeoRadius($geoRadius)
     {
-        $types = array(
+        $types = [
             "string",
-            "float",
+            "Number",
             "\OpenActive\Models\SchemaOrg\Distance",
             "null",
-        );
+        ];
 
         $geoRadius = self::checkTypes($geoRadius, $types);
 
@@ -82,9 +82,9 @@ class GeoCircle extends \OpenActive\Models\SchemaOrg\GeoShape
      */
     public function setGeoMidpoint($geoMidpoint)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\GeoCoordinates",
-        );
+        ];
 
         $geoMidpoint = self::checkTypes($geoMidpoint, $types);
 

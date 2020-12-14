@@ -28,7 +28,7 @@ class BedDetails extends \OpenActive\Models\SchemaOrg\Intangible
      * The type of bed to which the BedDetail refers, i.e. the type of bed available in the quantity indicated by quantity.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\BedType|string
+     * @var string|\OpenActive\Models\SchemaOrg\BedType
      */
     protected $typeOfBed;
 
@@ -36,12 +36,12 @@ class BedDetails extends \OpenActive\Models\SchemaOrg\Intangible
      * The quantity of the given bed type available in the HotelRoom, Suite, House, or Apartment.
      *
      *
-     * @var float|null
+     * @var Number|null
      */
     protected $numberOfBeds;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\BedType|string
+     * @return string|\OpenActive\Models\SchemaOrg\BedType
      */
     public function getTypeOfBed()
     {
@@ -49,16 +49,16 @@ class BedDetails extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\BedType|string $typeOfBed
+     * @param string|\OpenActive\Models\SchemaOrg\BedType $typeOfBed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTypeOfBed($typeOfBed)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\BedType",
+        $types = [
             "string",
-        );
+            "\OpenActive\Models\SchemaOrg\BedType",
+        ];
 
         $typeOfBed = self::checkTypes($typeOfBed, $types);
 
@@ -66,7 +66,7 @@ class BedDetails extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return float|null
+     * @return Number|null
      */
     public function getNumberOfBeds()
     {
@@ -74,16 +74,16 @@ class BedDetails extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param float|null $numberOfBeds
+     * @param Number|null $numberOfBeds
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfBeds($numberOfBeds)
     {
-        $types = array(
-            "float",
+        $types = [
+            "Number",
             "null",
-        );
+        ];
 
         $numberOfBeds = self::checkTypes($numberOfBeds, $types);
 

@@ -46,9 +46,9 @@ class DigitalDocument extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setHasDigitalDocumentPermission($hasDigitalDocumentPermission)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\DigitalDocumentPermission",
-        );
+        ];
 
         $hasDigitalDocumentPermission = self::checkTypes($hasDigitalDocumentPermission, $types);
 

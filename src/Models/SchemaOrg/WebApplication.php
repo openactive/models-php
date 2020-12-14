@@ -46,9 +46,9 @@ class WebApplication extends \OpenActive\Models\SchemaOrg\SoftwareApplication
      */
     public function setBrowserRequirements($browserRequirements)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $browserRequirements = self::checkTypes($browserRequirements, $types);
 

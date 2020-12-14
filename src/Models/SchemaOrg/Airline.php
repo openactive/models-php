@@ -55,9 +55,9 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setIataCode($iataCode)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $iataCode = self::checkTypes($iataCode, $types);
 
@@ -79,10 +79,10 @@ class Airline extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setBoardingPolicy($boardingPolicy)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\BoardingPolicyType",
             "null",
-        );
+        ];
 
         $boardingPolicy = self::checkTypes($boardingPolicy, $types);
 

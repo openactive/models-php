@@ -18,10 +18,10 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     public static function fieldList() {
         $fields = [
             "petsAllowed" => "petsAllowed",
+            "numberOfBedrooms" => "numberOfBedrooms",
             "numberOfAvailableAccommodationUnits" => "numberOfAvailableAccommodationUnits",
             "tourBookingPage" => "tourBookingPage",
             "numberOfAccommodationUnits" => "numberOfAccommodationUnits",
-            "numberOfBedrooms" => "numberOfBedrooms",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -36,7 +36,15 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     protected $petsAllowed;
 
     /**
-     * Indicates the number of available accommodation units in an <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a>, or the number of accommodation units for a specific <a class="localLink" href="https://schema.org/FloorPlan">FloorPlan</a> (within its specific <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a>). See also <a class="localLink" href="https://schema.org/numberOfAccommodationUnits">numberOfAccommodationUnits</a>.
+     * The total integer number of bedrooms in a some [[Accommodation]], [[ApartmentComplex]] or [[FloorPlan]].
+     *
+     *
+     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     */
+    protected $numberOfBedrooms;
+
+    /**
+     * Indicates the number of available accommodation units in an [[ApartmentComplex]], or the number of accommodation units for a specific [[FloorPlan]] (within its specific [[ApartmentComplex]]). See also [[numberOfAccommodationUnits]].
      *
      *
      * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
@@ -44,7 +52,7 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     protected $numberOfAvailableAccommodationUnits;
 
     /**
-     * A page providing information on how to book a tour of some <a class="localLink" href="https://schema.org/Place">Place</a>, such as an <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a> or <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a> in a real estate setting, as well as other kinds of tours as appropriate.
+     * A page providing information on how to book a tour of some [[Place]], such as an [[Accommodation]] or [[ApartmentComplex]] in a real estate setting, as well as other kinds of tours as appropriate.
      *
      *
      * @var string
@@ -52,20 +60,12 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     protected $tourBookingPage;
 
     /**
-     * Indicates the total (available plus unavailable) number of accommodation units in an <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a>, or the number of accommodation units for a specific <a class="localLink" href="https://schema.org/FloorPlan">FloorPlan</a> (within its specific <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a>). See also <a class="localLink" href="https://schema.org/numberOfAvailableAccommodationUnits">numberOfAvailableAccommodationUnits</a>.
+     * Indicates the total (available plus unavailable) number of accommodation units in an [[ApartmentComplex]], or the number of accommodation units for a specific [[FloorPlan]] (within its specific [[ApartmentComplex]]). See also [[numberOfAvailableAccommodationUnits]].
      *
      *
      * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $numberOfAccommodationUnits;
-
-    /**
-     * The total integer number of bedrooms in a some <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a>, <a class="localLink" href="https://schema.org/ApartmentComplex">ApartmentComplex</a> or <a class="localLink" href="https://schema.org/FloorPlan">FloorPlan</a>.
-     *
-     *
-     * @var float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
-     */
-    protected $numberOfBedrooms;
 
     /**
      * @return bool|string|null
@@ -82,15 +82,41 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
      */
     public function setPetsAllowed($petsAllowed)
     {
-        $types = array(
+        $types = [
             "bool",
             "string",
             "null",
-        );
+        ];
 
         $petsAllowed = self::checkTypes($petsAllowed, $types);
 
         $this->petsAllowed = $petsAllowed;
+    }
+
+    /**
+     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     */
+    public function getNumberOfBedrooms()
+    {
+        return $this->numberOfBedrooms;
+    }
+
+    /**
+     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numberOfBedrooms
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumberOfBedrooms($numberOfBedrooms)
+    {
+        $types = [
+            "Number",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "null",
+        ];
+
+        $numberOfBedrooms = self::checkTypes($numberOfBedrooms, $types);
+
+        $this->numberOfBedrooms = $numberOfBedrooms;
     }
 
     /**
@@ -108,9 +134,9 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
      */
     public function setNumberOfAvailableAccommodationUnits($numberOfAvailableAccommodationUnits)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
+        ];
 
         $numberOfAvailableAccommodationUnits = self::checkTypes($numberOfAvailableAccommodationUnits, $types);
 
@@ -132,9 +158,9 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
      */
     public function setTourBookingPage($tourBookingPage)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $tourBookingPage = self::checkTypes($tourBookingPage, $types);
 
@@ -156,39 +182,13 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
      */
     public function setNumberOfAccommodationUnits($numberOfAccommodationUnits)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
+        ];
 
         $numberOfAccommodationUnits = self::checkTypes($numberOfAccommodationUnits, $types);
 
         $this->numberOfAccommodationUnits = $numberOfAccommodationUnits;
-    }
-
-    /**
-     * @return float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
-     */
-    public function getNumberOfBedrooms()
-    {
-        return $this->numberOfBedrooms;
-    }
-
-    /**
-     * @param float|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numberOfBedrooms
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNumberOfBedrooms($numberOfBedrooms)
-    {
-        $types = array(
-            "float",
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "null",
-        );
-
-        $numberOfBedrooms = self::checkTypes($numberOfBedrooms, $types);
-
-        $this->numberOfBedrooms = $numberOfBedrooms;
     }
 
 }

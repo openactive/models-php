@@ -228,7 +228,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers. This property must contain HTML.
      * 
      * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
      *
@@ -263,13 +263,13 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -291,9 +291,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -315,9 +315,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -339,9 +339,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setAddress($address)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\PostalAddress",
-        );
+        ];
 
         $address = self::checkTypes($address, $types);
 
@@ -363,9 +363,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setEmail($email)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $email = self::checkTypes($email, $types);
 
@@ -387,9 +387,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setFamilyName($familyName)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $familyName = self::checkTypes($familyName, $types);
 
@@ -411,10 +411,10 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setGender($gender)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\GenderType",
             "null",
-        );
+        ];
 
         $gender = self::checkTypes($gender, $types);
 
@@ -436,9 +436,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setGivenName($givenName)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $givenName = self::checkTypes($givenName, $types);
 
@@ -460,9 +460,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setJobTitle($jobTitle)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $jobTitle = self::checkTypes($jobTitle, $types);
 
@@ -484,9 +484,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setLegalName($legalName)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $legalName = self::checkTypes($legalName, $types);
 
@@ -508,9 +508,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setLogo($logo)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject",
-        );
+        ];
 
         $logo = self::checkTypes($logo, $types);
 
@@ -532,9 +532,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setSameAs($sameAs)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $sameAs = self::checkTypes($sameAs, $types);
 
@@ -556,10 +556,10 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setTaxMode($taxMode)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\TaxMode",
             "null",
-        );
+        ];
 
         $taxMode = self::checkTypes($taxMode, $types);
 
@@ -581,9 +581,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setTelephone($telephone)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $telephone = self::checkTypes($telephone, $types);
 
@@ -605,9 +605,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setTermsOfService($termsOfService)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Terms[]",
-        );
+        ];
 
         $termsOfService = self::checkTypes($termsOfService, $types);
 
@@ -629,9 +629,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 
@@ -653,9 +653,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setVatID($vatID)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $vatID = self::checkTypes($vatID, $types);
 
@@ -677,9 +677,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setFormattedDescription($formattedDescription)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $formattedDescription = self::checkTypes($formattedDescription, $types);
 
@@ -701,9 +701,9 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      */
     public function setFormalCriteriaMet($formalCriteriaMet)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $formalCriteriaMet = self::checkTypes($formalCriteriaMet, $types);
 

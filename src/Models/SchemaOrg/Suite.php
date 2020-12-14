@@ -17,13 +17,22 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
 
     public static function fieldList() {
         $fields = [
-            "occupancy" => "occupancy",
             "bed" => "bed",
+            "occupancy" => "occupancy",
             "numberOfRooms" => "numberOfRooms",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The type of bed or beds included in the accommodation. For the single case of just one bed of a certain type, you use bed directly with a text.
+     *       If you want to indicate the quantity of a certain kind of bed, use an instance of BedDetails. For more detailed information, use the amenityFeature property.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\BedType|\OpenActive\Models\SchemaOrg\BedDetails|string
+     */
+    protected $bed;
 
     /**
      * The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person).
@@ -35,22 +44,39 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
     protected $occupancy;
 
     /**
-     * The type of bed or beds included in the accommodation. For the single case of just one bed of a certain type, you use bed directly with a text.
-     *       If you want to indicate the quantity of a certain kind of bed, use an instance of BedDetails. For more detailed information, use the amenityFeature property.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\BedType|string|\OpenActive\Models\SchemaOrg\BedDetails
-     */
-    protected $bed;
-
-    /**
      * The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business.
      * Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $numberOfRooms;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\BedType|\OpenActive\Models\SchemaOrg\BedDetails|string
+     */
+    public function getBed()
+    {
+        return $this->bed;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\BedType|\OpenActive\Models\SchemaOrg\BedDetails|string $bed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBed($bed)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\BedType",
+            "\OpenActive\Models\SchemaOrg\BedDetails",
+            "string",
+        ];
+
+        $bed = self::checkTypes($bed, $types);
+
+        $this->bed = $bed;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
@@ -67,9 +93,9 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
      */
     public function setOccupancy($occupancy)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
+        ];
 
         $occupancy = self::checkTypes($occupancy, $types);
 
@@ -77,33 +103,7 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\BedType|string|\OpenActive\Models\SchemaOrg\BedDetails
-     */
-    public function getBed()
-    {
-        return $this->bed;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\BedType|string|\OpenActive\Models\SchemaOrg\BedDetails $bed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBed($bed)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\BedType",
-            "string",
-            "\OpenActive\Models\SchemaOrg\BedDetails",
-        );
-
-        $bed = self::checkTypes($bed, $types);
-
-        $this->bed = $bed;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getNumberOfRooms()
     {
@@ -111,17 +111,17 @@ class Suite extends \OpenActive\Models\SchemaOrg\Accommodation
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $numberOfRooms
+     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numberOfRooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfRooms($numberOfRooms)
     {
-        $types = array(
+        $types = [
+            "Number",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "float",
             "null",
-        );
+        ];
 
         $numberOfRooms = self::checkTypes($numberOfRooms, $types);
 

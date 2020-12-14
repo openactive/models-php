@@ -113,10 +113,10 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
      */
     public function setAdvanceBooking($advanceBooking)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\RequiredStatusType",
             "null",
-        );
+        ];
 
         $advanceBooking = self::checkTypes($advanceBooking, $types);
 
@@ -140,9 +140,9 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
      */
     public function setAgeRange($ageRange)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\QuantitativeValue",
-        );
+        ];
 
         $ageRange = self::checkTypes($ageRange, $types);
 
@@ -166,10 +166,10 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
      */
     public function setAvailableChannel($availableChannel)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\AvailableChannelType[]",
             "null",
-        );
+        ];
 
         $availableChannel = self::checkTypes($availableChannel, $types);
 
@@ -193,10 +193,10 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
      */
     public function setLatestCancellationBeforeStartDate($latestCancellationBeforeStartDate)
     {
-        $types = array(
+        $types = [
             "DateInterval",
             "null",
-        );
+        ];
 
         $latestCancellationBeforeStartDate = self::checkTypes($latestCancellationBeforeStartDate, $types);
 
@@ -220,10 +220,10 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
      */
     public function setPrepayment($prepayment)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\RequiredStatusType",
             "null",
-        );
+        ];
 
         $prepayment = self::checkTypes($prepayment, $types);
 
@@ -247,10 +247,10 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
      */
     public function setValidFromBeforeStartDate($validFromBeforeStartDate)
     {
-        $types = array(
+        $types = [
             "DateInterval",
             "null",
-        );
+        ];
 
         $validFromBeforeStartDate = self::checkTypes($validFromBeforeStartDate, $types);
 

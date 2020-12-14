@@ -18,6 +18,7 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     public static function fieldList() {
         $fields = [
             "deliveryTime" => "deliveryTime",
+            "isUnlabelledFallback" => "isUnlabelledFallback",
             "transitTimeLabel" => "transitTimeLabel",
             "shippingDestination" => "shippingDestination",
         ];
@@ -34,7 +35,15 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $deliveryTime;
 
     /**
-     * Label to match an <a class="localLink" href="https://schema.org/OfferShippingDetails">OfferShippingDetails</a> with a <a class="localLink" href="https://schema.org/DeliveryTimeSettings">DeliveryTimeSettings</a> (within the context of a <a class="localLink" href="https://schema.org/shippingSettingsLink">shippingSettingsLink</a> cross-reference).
+     * This can be marked 'true' to indicate that some published [[DeliveryTimeSettings]] or [[ShippingRateSettings]] are intended to apply to all [[OfferShippingDetails]] published by the same merchant, when referenced by a [[shippingSettingsLink]] in those settings. It is not meaningful to use a 'true' value for this property alongside a transitTimeLabel (for [[DeliveryTimeSettings]]) or shippingLabel (for [[ShippingRateSettings]]), since this property is for use with unlabelled settings.
+     *
+     *
+     * @var bool|null
+     */
+    protected $isUnlabelledFallback;
+
+    /**
+     * Label to match an [[OfferShippingDetails]] with a [[DeliveryTimeSettings]] (within the context of a [[shippingSettingsLink]] cross-reference).
      *
      *
      * @var string
@@ -64,13 +73,38 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setDeliveryTime($deliveryTime)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\ShippingDeliveryTime",
-        );
+        ];
 
         $deliveryTime = self::checkTypes($deliveryTime, $types);
 
         $this->deliveryTime = $deliveryTime;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getIsUnlabelledFallback()
+    {
+        return $this->isUnlabelledFallback;
+    }
+
+    /**
+     * @param bool|null $isUnlabelledFallback
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsUnlabelledFallback($isUnlabelledFallback)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $isUnlabelledFallback = self::checkTypes($isUnlabelledFallback, $types);
+
+        $this->isUnlabelledFallback = $isUnlabelledFallback;
     }
 
     /**
@@ -88,9 +122,9 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setTransitTimeLabel($transitTimeLabel)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $transitTimeLabel = self::checkTypes($transitTimeLabel, $types);
 
@@ -112,9 +146,9 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setShippingDestination($shippingDestination)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\DefinedRegion",
-        );
+        ];
 
         $shippingDestination = self::checkTypes($shippingDestination, $types);
 

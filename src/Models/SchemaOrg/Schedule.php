@@ -17,12 +17,18 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "byDay" => "byDay",
-            "byMonthDay" => "byMonthDay",
-            "scheduleTimezone" => "scheduleTimezone",
-            "byMonth" => "byMonth",
             "repeatFrequency" => "repeatFrequency",
+            "byMonthDay" => "byMonthDay",
+            "byDay" => "byDay",
+            "byMonthWeek" => "byMonthWeek",
+            "startDate" => "startDate",
+            "byMonth" => "byMonth",
+            "endTime" => "endTime",
+            "endDate" => "endDate",
+            "startTime" => "startTime",
+            "duration" => "duration",
             "repeatCount" => "repeatCount",
+            "scheduleTimezone" => "scheduleTimezone",
             "exceptDate" => "exceptDate",
         ];
 
@@ -30,40 +36,8 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * Defines the day(s) of the week on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place. May be specified using either <a class="localLink" href="https://schema.org/DayOfWeek">DayOfWeek</a>, or alternatively <a class="localLink" href="https://schema.org/Text">Text</a> conforming to iCal's syntax for byDay recurrence rules
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\DayOfWeek|string|null
-     */
-    protected $byDay;
-
-    /**
-     * Defines the day(s) of the month on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place. Specified as an <a class="localLink" href="https://schema.org/Integer">Integer</a> between 1-31.
-     *
-     *
-     * @var int|null
-     */
-    protected $byMonthDay;
-
-    /**
-     * Indicates the timezone for which the time(s) indicated in the <a class="localLink" href="https://schema.org/Schedule">Schedule</a> are given. The value provided should be among those listed in the IANA Time Zone Database.
-     *
-     *
-     * @var string
-     */
-    protected $scheduleTimezone;
-
-    /**
-     * Defines the month(s) of the year on which a recurring <a class="localLink" href="https://schema.org/Event">Event</a> takes place. Specified as an <a class="localLink" href="https://schema.org/Integer">Integer</a> between 1-12. January is 1.
-     *
-     *
-     * @var int|null
-     */
-    protected $byMonth;
-
-    /**
-     * Defines the frequency at which <a class="localLink" href="https://schema.org/Events">Events</a> will occur according to a schedule <a class="localLink" href="https://schema.org/Schedule">Schedule</a>. The intervals between
-     *       events should be defined as a <a class="localLink" href="https://schema.org/Duration">Duration</a> of time.
+     * Defines the frequency at which [[Events]] will occur according to a schedule [[Schedule]]. The intervals between
+     *       events should be defined as a [[Duration]] of time.
      *
      *
      * @var DateInterval|string|null
@@ -71,7 +45,79 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     protected $repeatFrequency;
 
     /**
-     * Defines the number of times a recurring <a class="localLink" href="https://schema.org/Event">Event</a> will take place
+     * Defines the day(s) of the month on which a recurring [[Event]] takes place. Specified as an [[Integer]] between 1-31.
+     *
+     *
+     * @var int|null
+     */
+    protected $byMonthDay;
+
+    /**
+     * Defines the day(s) of the week on which a recurring [[Event]] takes place. May be specified using either [[DayOfWeek]], or alternatively [[Text]] conforming to iCal's syntax for byDay recurrence rules
+     *
+     *
+     * @var string|\OpenActive\Enums\SchemaOrg\DayOfWeek|null
+     */
+    protected $byDay;
+
+    /**
+     * Defines the week(s) of the month on which a recurring Event takes place. Specified as an Integer between 1-5. For clarity, byMonthWeek is best used in conjunction with byDay to indicate concepts like the first and third Mondays of a month.
+     *
+     *
+     * @var int|null
+     */
+    protected $byMonthWeek;
+
+    /**
+     * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $startDate;
+
+    /**
+     * Defines the month(s) of the year on which a recurring [[Event]] takes place. Specified as an [[Integer]] between 1-12. January is 1.
+     *
+     *
+     * @var int|null
+     */
+    protected $byMonth;
+
+    /**
+     * The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. e.g. John wrote a book from January to *December*. For media, including audio and video, it's the time offset of the end of a clip within a larger file.\n\nNote that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
+     *
+     *
+     * @var DateTime|string|null
+     */
+    protected $endTime;
+
+    /**
+     * The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $endDate;
+
+    /**
+     * The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. e.g. John wrote a book from *January* to December. For media, including audio and video, it's the time offset of the start of a clip within a larger file.\n\nNote that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
+     *
+     *
+     * @var DateTime|string|null
+     */
+    protected $startTime;
+
+    /**
+     * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).
+     *
+     *
+     * @var DateInterval|null
+     */
+    protected $duration;
+
+    /**
+     * Defines the number of times a recurring [[Event]] will take place
      *
      *
      * @var int|null
@@ -79,9 +125,17 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     protected $repeatCount;
 
     /**
-     * Defines a <a class="localLink" href="https://schema.org/Date">Date</a> or <a class="localLink" href="https://schema.org/DateTime">DateTime</a> during which a scheduled <a class="localLink" href="https://schema.org/Event">Event</a> will not take place. The property allows exceptions to
-     *       a <a class="localLink" href="https://schema.org/Schedule">Schedule</a> to be specified. If an exception is specified as a <a class="localLink" href="https://schema.org/DateTime">DateTime</a> then only the event that would have started at that specific date and time
-     *       should be excluded from the schedule. If an exception is specified as a <a class="localLink" href="https://schema.org/Date">Date</a> then any event that is scheduled for that 24 hour period should be
+     * Indicates the timezone for which the time(s) indicated in the [[Schedule]] are given. The value provided should be among those listed in the IANA Time Zone Database.
+     *
+     *
+     * @var string
+     */
+    protected $scheduleTimezone;
+
+    /**
+     * Defines a [[Date]] or [[DateTime]] during which a scheduled [[Event]] will not take place. The property allows exceptions to
+     *       a [[Schedule]] to be specified. If an exception is specified as a [[DateTime]] then only the event that would have started at that specific date and time
+     *       should be excluded from the schedule. If an exception is specified as a [[Date]] then any event that is scheduled for that 24 hour period should be
      *       excluded from the schedule. This allows a whole day to be excluded from the schedule without having to itemise every scheduled event.
      *
      *
@@ -90,29 +144,29 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     protected $exceptDate;
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\DayOfWeek|string|null
+     * @return DateInterval|string|null
      */
-    public function getByDay()
+    public function getRepeatFrequency()
     {
-        return $this->byDay;
+        return $this->repeatFrequency;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\DayOfWeek|string|null $byDay
+     * @param DateInterval|string|null $repeatFrequency
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setByDay($byDay)
+    public function setRepeatFrequency($repeatFrequency)
     {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\DayOfWeek",
+        $types = [
+            "DateInterval",
             "string",
             "null",
-        );
+        ];
 
-        $byDay = self::checkTypes($byDay, $types);
+        $repeatFrequency = self::checkTypes($repeatFrequency, $types);
 
-        $this->byDay = $byDay;
+        $this->repeatFrequency = $repeatFrequency;
     }
 
     /**
@@ -130,10 +184,10 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setByMonthDay($byMonthDay)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $byMonthDay = self::checkTypes($byMonthDay, $types);
 
@@ -141,27 +195,80 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
+     * @return string|\OpenActive\Enums\SchemaOrg\DayOfWeek|null
      */
-    public function getScheduleTimezone()
+    public function getByDay()
     {
-        return $this->scheduleTimezone;
+        return $this->byDay;
     }
 
     /**
-     * @param string $scheduleTimezone
+     * @param string|\OpenActive\Enums\SchemaOrg\DayOfWeek|null $byDay
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setScheduleTimezone($scheduleTimezone)
+    public function setByDay($byDay)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+            "\OpenActive\Enums\SchemaOrg\DayOfWeek",
+            "null",
+        ];
 
-        $scheduleTimezone = self::checkTypes($scheduleTimezone, $types);
+        $byDay = self::checkTypes($byDay, $types);
 
-        $this->scheduleTimezone = $scheduleTimezone;
+        $this->byDay = $byDay;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getByMonthWeek()
+    {
+        return $this->byMonthWeek;
+    }
+
+    /**
+     * @param int|null $byMonthWeek
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setByMonthWeek($byMonthWeek)
+    {
+        $types = [
+            "int",
+            "null",
+        ];
+
+        $byMonthWeek = self::checkTypes($byMonthWeek, $types);
+
+        $this->byMonthWeek = $byMonthWeek;
+    }
+
+    /**
+     * @return Date|DateTime|null
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @param Date|DateTime|null $startDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setStartDate($startDate)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $startDate = self::checkTypes($startDate, $types);
+
+        $this->startDate = $startDate;
     }
 
     /**
@@ -179,10 +286,10 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setByMonth($byMonth)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $byMonth = self::checkTypes($byMonth, $types);
 
@@ -190,29 +297,106 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateInterval|string|null
+     * @return DateTime|string|null
      */
-    public function getRepeatFrequency()
+    public function getEndTime()
     {
-        return $this->repeatFrequency;
+        return $this->endTime;
     }
 
     /**
-     * @param DateInterval|string|null $repeatFrequency
+     * @param DateTime|string|null $endTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRepeatFrequency($repeatFrequency)
+    public function setEndTime($endTime)
     {
-        $types = array(
-            "DateInterval",
-            "string",
+        $types = [
+            "DateTime",
+            "Time",
             "null",
-        );
+        ];
 
-        $repeatFrequency = self::checkTypes($repeatFrequency, $types);
+        $endTime = self::checkTypes($endTime, $types);
 
-        $this->repeatFrequency = $repeatFrequency;
+        $this->endTime = $endTime;
+    }
+
+    /**
+     * @return Date|DateTime|null
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * @param Date|DateTime|null $endDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEndDate($endDate)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $endDate = self::checkTypes($endDate, $types);
+
+        $this->endDate = $endDate;
+    }
+
+    /**
+     * @return DateTime|string|null
+     */
+    public function getStartTime()
+    {
+        return $this->startTime;
+    }
+
+    /**
+     * @param DateTime|string|null $startTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setStartTime($startTime)
+    {
+        $types = [
+            "DateTime",
+            "Time",
+            "null",
+        ];
+
+        $startTime = self::checkTypes($startTime, $types);
+
+        $this->startTime = $startTime;
+    }
+
+    /**
+     * @return DateInterval|null
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * @param DateInterval|null $duration
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDuration($duration)
+    {
+        $types = [
+            "DateInterval",
+            "null",
+        ];
+
+        $duration = self::checkTypes($duration, $types);
+
+        $this->duration = $duration;
     }
 
     /**
@@ -230,14 +414,38 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setRepeatCount($repeatCount)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $repeatCount = self::checkTypes($repeatCount, $types);
 
         $this->repeatCount = $repeatCount;
+    }
+
+    /**
+     * @return string
+     */
+    public function getScheduleTimezone()
+    {
+        return $this->scheduleTimezone;
+    }
+
+    /**
+     * @param string $scheduleTimezone
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setScheduleTimezone($scheduleTimezone)
+    {
+        $types = [
+            "string",
+        ];
+
+        $scheduleTimezone = self::checkTypes($scheduleTimezone, $types);
+
+        $this->scheduleTimezone = $scheduleTimezone;
     }
 
     /**
@@ -255,11 +463,11 @@ class Schedule extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setExceptDate($exceptDate)
     {
-        $types = array(
+        $types = [
             "Date",
             "DateTime",
             "null",
-        );
+        ];
 
         $exceptDate = self::checkTypes($exceptDate, $types);
 

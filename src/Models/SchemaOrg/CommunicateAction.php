@@ -17,14 +17,22 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
 
     public static function fieldList() {
         $fields = [
-            "about" => "about",
-            "inLanguage" => "inLanguage",
-            "recipient" => "recipient",
             "language" => "language",
+            "about" => "about",
+            "recipient" => "recipient",
+            "inLanguage" => "inLanguage",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A sub property of instrument. The language used on this action.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Language
+     */
+    protected $language;
 
     /**
      * The subject matter of the content.
@@ -35,7 +43,15 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
     protected $about;
 
     /**
-     * The language of the content or performance or used in an action. Please use one of the language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>. See also <a class="localLink" href="https://schema.org/availableLanguage">availableLanguage</a>.
+     * A sub property of participant. The participant who is at the receiving end of the action.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint
+     */
+    protected $recipient;
+
+    /**
+     * The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]].
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Language|string
@@ -43,20 +59,28 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
     protected $inLanguage;
 
     /**
-     * A sub property of participant. The participant who is at the receiving end of the action.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience
+     * @return \OpenActive\Models\SchemaOrg\Language
      */
-    protected $recipient;
+    public function getLanguage()
+    {
+        return $this->language;
+    }
 
     /**
-     * A sub property of instrument. The language used on this action.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Language
+     * @param \OpenActive\Models\SchemaOrg\Language $language
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $language;
+    public function setLanguage($language)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Language",
+        ];
+
+        $language = self::checkTypes($language, $types);
+
+        $this->language = $language;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing
@@ -73,13 +97,40 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
      */
     public function setAbout($about)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Thing",
-        );
+        ];
 
         $about = self::checkTypes($about, $types);
 
         $this->about = $about;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint
+     */
+    public function getRecipient()
+    {
+        return $this->recipient;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint $recipient
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRecipient($recipient)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Audience",
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
+        ];
+
+        $recipient = self::checkTypes($recipient, $types);
+
+        $this->recipient = $recipient;
     }
 
     /**
@@ -97,65 +148,14 @@ class CommunicateAction extends \OpenActive\Models\SchemaOrg\InteractAction
      */
     public function setInLanguage($inLanguage)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Language",
             "string",
-        );
+        ];
 
         $inLanguage = self::checkTypes($inLanguage, $types);
 
         $this->inLanguage = $inLanguage;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience
-     */
-    public function getRecipient()
-    {
-        return $this->recipient;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience $recipient
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRecipient($recipient)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
-            "\OpenActive\Models\SchemaOrg\Audience",
-        );
-
-        $recipient = self::checkTypes($recipient, $types);
-
-        $this->recipient = $recipient;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Language
-     */
-    public function getLanguage()
-    {
-        return $this->language;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Language $language
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLanguage($language)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Language",
-        );
-
-        $language = self::checkTypes($language, $types);
-
-        $this->language = $language;
     }
 
 }

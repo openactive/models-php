@@ -90,7 +90,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers. This property must contain HTML.
      * 
      * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
      *
@@ -125,13 +125,13 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -153,9 +153,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -177,9 +177,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -201,9 +201,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      */
     public function setLogo($logo)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject",
-        );
+        ];
 
         $logo = self::checkTypes($logo, $types);
 
@@ -225,9 +225,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 
@@ -249,9 +249,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      */
     public function setFormattedDescription($formattedDescription)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $formattedDescription = self::checkTypes($formattedDescription, $types);
 
@@ -273,9 +273,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      */
     public function setVideo($video)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\VideoObject[]",
-        );
+        ];
 
         $video = self::checkTypes($video, $types);
 

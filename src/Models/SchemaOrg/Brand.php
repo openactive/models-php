@@ -73,9 +73,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setAggregateRating($aggregateRating)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\AggregateRating",
-        );
+        ];
 
         $aggregateRating = self::checkTypes($aggregateRating, $types);
 
@@ -97,10 +97,10 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setLogo($logo)
     {
-        $types = array(
+        $types = [
             "string",
             "\OpenActive\Models\SchemaOrg\ImageObject",
-        );
+        ];
 
         $logo = self::checkTypes($logo, $types);
 
@@ -122,9 +122,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setReview($review)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Review",
-        );
+        ];
 
         $review = self::checkTypes($review, $types);
 
@@ -146,9 +146,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setSlogan($slogan)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $slogan = self::checkTypes($slogan, $types);
 

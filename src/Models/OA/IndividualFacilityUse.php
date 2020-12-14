@@ -68,9 +68,9 @@ class IndividualFacilityUse extends \OpenActive\Models\OA\FacilityUse
      */
     public function setAggregateFacilityUse($aggregateFacilityUse)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\FacilityUse",
-        );
+        ];
 
         $aggregateFacilityUse = self::checkTypes($aggregateFacilityUse, $types);
 
@@ -92,9 +92,9 @@ class IndividualFacilityUse extends \OpenActive\Models\OA\FacilityUse
      */
     public function setEvent($event)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Slot[]",
-        );
+        ];
 
         $event = self::checkTypes($event, $types);
 

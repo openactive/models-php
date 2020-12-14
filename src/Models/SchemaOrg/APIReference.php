@@ -17,23 +17,15 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
 
     public static function fieldList() {
         $fields = [
-            "programmingModel" => "programmingModel",
             "executableLibraryName" => "executableLibraryName",
-            "assemblyVersion" => "assemblyVersion",
-            "assembly" => "assembly",
             "targetPlatform" => "targetPlatform",
+            "assembly" => "assembly",
+            "programmingModel" => "programmingModel",
+            "assemblyVersion" => "assemblyVersion",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Indicates whether API is managed or unmanaged.
-     *
-     *
-     * @var string
-     */
-    protected $programmingModel;
 
     /**
      * Library file name e.g., mscorlib.dll, system.web.dll.
@@ -44,12 +36,12 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     protected $executableLibraryName;
 
     /**
-     * Associated product/technology version. e.g., .NET Framework 4.5.
+     * Type of app development: phone, Metro style, desktop, XBox, etc.
      *
      *
      * @var string
      */
-    protected $assemblyVersion;
+    protected $targetPlatform;
 
     /**
      * Library file name e.g., mscorlib.dll, system.web.dll.
@@ -60,36 +52,20 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     protected $assembly;
 
     /**
-     * Type of app development: phone, Metro style, desktop, XBox, etc.
+     * Indicates whether API is managed or unmanaged.
      *
      *
      * @var string
      */
-    protected $targetPlatform;
+    protected $programmingModel;
 
     /**
-     * @return string
+     * Associated product/technology version. e.g., .NET Framework 4.5.
+     *
+     *
+     * @var string
      */
-    public function getProgrammingModel()
-    {
-        return $this->programmingModel;
-    }
-
-    /**
-     * @param string $programmingModel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProgrammingModel($programmingModel)
-    {
-        $types = array(
-            "string",
-        );
-
-        $programmingModel = self::checkTypes($programmingModel, $types);
-
-        $this->programmingModel = $programmingModel;
-    }
+    protected $assemblyVersion;
 
     /**
      * @return string
@@ -106,61 +82,13 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
      */
     public function setExecutableLibraryName($executableLibraryName)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $executableLibraryName = self::checkTypes($executableLibraryName, $types);
 
         $this->executableLibraryName = $executableLibraryName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAssemblyVersion()
-    {
-        return $this->assemblyVersion;
-    }
-
-    /**
-     * @param string $assemblyVersion
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAssemblyVersion($assemblyVersion)
-    {
-        $types = array(
-            "string",
-        );
-
-        $assemblyVersion = self::checkTypes($assemblyVersion, $types);
-
-        $this->assemblyVersion = $assemblyVersion;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAssembly()
-    {
-        return $this->assembly;
-    }
-
-    /**
-     * @param string $assembly
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAssembly($assembly)
-    {
-        $types = array(
-            "string",
-        );
-
-        $assembly = self::checkTypes($assembly, $types);
-
-        $this->assembly = $assembly;
     }
 
     /**
@@ -178,13 +106,85 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
      */
     public function setTargetPlatform($targetPlatform)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $targetPlatform = self::checkTypes($targetPlatform, $types);
 
         $this->targetPlatform = $targetPlatform;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAssembly()
+    {
+        return $this->assembly;
+    }
+
+    /**
+     * @param string $assembly
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAssembly($assembly)
+    {
+        $types = [
+            "string",
+        ];
+
+        $assembly = self::checkTypes($assembly, $types);
+
+        $this->assembly = $assembly;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProgrammingModel()
+    {
+        return $this->programmingModel;
+    }
+
+    /**
+     * @param string $programmingModel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProgrammingModel($programmingModel)
+    {
+        $types = [
+            "string",
+        ];
+
+        $programmingModel = self::checkTypes($programmingModel, $types);
+
+        $this->programmingModel = $programmingModel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAssemblyVersion()
+    {
+        return $this->assemblyVersion;
+    }
+
+    /**
+     * @param string $assemblyVersion
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAssemblyVersion($assemblyVersion)
+    {
+        $types = [
+            "string",
+        ];
+
+        $assemblyVersion = self::checkTypes($assemblyVersion, $types);
+
+        $this->assemblyVersion = $assemblyVersion;
     }
 
 }

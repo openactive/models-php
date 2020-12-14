@@ -50,9 +50,9 @@ class BooleanFormFieldSpecification extends \OpenActive\Models\OA\PropertyValueS
      */
     public function setValueRequired($valueRequired)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $valueRequired = self::checkTypes($valueRequired, $types);
 

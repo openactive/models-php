@@ -17,12 +17,20 @@ class CategoryCode extends \OpenActive\Models\SchemaOrg\DefinedTerm
 
     public static function fieldList() {
         $fields = [
-            "codeValue" => "codeValue",
             "inCodeSet" => "inCodeSet",
+            "codeValue" => "codeValue",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A [[CategoryCodeSet]] that contains this category code.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CategoryCodeSet|string
+     */
+    protected $inCodeSet;
 
     /**
      * A short textual code that uniquely identifies the value.
@@ -31,38 +39,6 @@ class CategoryCode extends \OpenActive\Models\SchemaOrg\DefinedTerm
      * @var string
      */
     protected $codeValue;
-
-    /**
-     * A <a class="localLink" href="https://schema.org/CategoryCodeSet">CategoryCodeSet</a> that contains this category code.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CategoryCodeSet|string
-     */
-    protected $inCodeSet;
-
-    /**
-     * @return string
-     */
-    public function getCodeValue()
-    {
-        return $this->codeValue;
-    }
-
-    /**
-     * @param string $codeValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCodeValue($codeValue)
-    {
-        $types = array(
-            "string",
-        );
-
-        $codeValue = self::checkTypes($codeValue, $types);
-
-        $this->codeValue = $codeValue;
-    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\CategoryCodeSet|string
@@ -79,14 +55,38 @@ class CategoryCode extends \OpenActive\Models\SchemaOrg\DefinedTerm
      */
     public function setInCodeSet($inCodeSet)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\CategoryCodeSet",
             "string",
-        );
+        ];
 
         $inCodeSet = self::checkTypes($inCodeSet, $types);
 
         $this->inCodeSet = $inCodeSet;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodeValue()
+    {
+        return $this->codeValue;
+    }
+
+    /**
+     * @param string $codeValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCodeValue($codeValue)
+    {
+        $types = [
+            "string",
+        ];
+
+        $codeValue = self::checkTypes($codeValue, $types);
+
+        $this->codeValue = $codeValue;
     }
 
 }

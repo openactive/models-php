@@ -17,127 +17,27 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "startTime" => "startTime",
-            "uploadDate" => "uploadDate",
-            "playerType" => "playerType",
-            "height" => "height",
-            "bitrate" => "bitrate",
-            "requiresSubscription" => "requiresSubscription",
-            "regionsAllowed" => "regionsAllowed",
-            "endTime" => "endTime",
-            "contentSize" => "contentSize",
-            "embedUrl" => "embedUrl",
-            "width" => "width",
-            "contentUrl" => "contentUrl",
             "associatedArticle" => "associatedArticle",
-            "productionCompany" => "productionCompany",
-            "duration" => "duration",
+            "contentUrl" => "contentUrl",
+            "contentSize" => "contentSize",
             "encodesCreativeWork" => "encodesCreativeWork",
+            "bitrate" => "bitrate",
+            "width" => "width",
+            "requiresSubscription" => "requiresSubscription",
+            "playerType" => "playerType",
+            "endTime" => "endTime",
+            "height" => "height",
             "encodingFormat" => "encodingFormat",
+            "productionCompany" => "productionCompany",
+            "embedUrl" => "embedUrl",
+            "uploadDate" => "uploadDate",
+            "startTime" => "startTime",
+            "duration" => "duration",
+            "regionsAllowed" => "regionsAllowed",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. e.g. John wrote a book from <em>January</em> to December. For media, including audio and video, it's the time offset of the start of a clip within a larger file.<br/><br/>
-     * 
-     * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
-     *
-     *
-     * @var DateTime|string|null
-     */
-    protected $startTime;
-
-    /**
-     * Date when this media object was uploaded to this site.
-     *
-     *
-     * @var Date|null
-     */
-    protected $uploadDate;
-
-    /**
-     * Player type required&#x2014;for example, Flash or Silverlight.
-     *
-     *
-     * @var string
-     */
-    protected $playerType;
-
-    /**
-     * The height of the item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
-     */
-    protected $height;
-
-    /**
-     * The bitrate of the media object.
-     *
-     *
-     * @var string
-     */
-    protected $bitrate;
-
-    /**
-     * Indicates if use of the media require a subscription  (either paid or free). Allowed values are <code>true</code> or <code>false</code> (note that an earlier version had 'yes', 'no').
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null
-     */
-    protected $requiresSubscription;
-
-    /**
-     * The regions where the media is allowed. If not specified, then it's assumed to be allowed everywhere. Specify the countries in <a href="http://en.wikipedia.org/wiki/ISO_3166">ISO 3166 format</a>.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Place
-     */
-    protected $regionsAllowed;
-
-    /**
-     * The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. e.g. John wrote a book from January to <em>December</em>. For media, including audio and video, it's the time offset of the end of a clip within a larger file.<br/><br/>
-     * 
-     * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
-     *
-     *
-     * @var DateTime|string|null
-     */
-    protected $endTime;
-
-    /**
-     * File size in (mega/kilo) bytes.
-     *
-     *
-     * @var string
-     */
-    protected $contentSize;
-
-    /**
-     * A URL pointing to a player for a specific video. In general, this is the information in the <code>src</code> element of an <code>embed</code> tag and should not be the same as the content of the <code>loc</code> tag.
-     *
-     *
-     * @var string
-     */
-    protected $embedUrl;
-
-    /**
-     * The width of the item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
-     */
-    protected $width;
-
-    /**
-     * Actual bytes of the media object, for example the image file or video file.
-     *
-     *
-     * @var string
-     */
-    protected $contentUrl;
 
     /**
      * A NewsArticle associated with the Media Object.
@@ -148,20 +48,20 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $associatedArticle;
 
     /**
-     * The production company or studio responsible for the item e.g. series, video game, episode etc.
+     * Actual bytes of the media object, for example the image file or video file.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization
+     * @var string
      */
-    protected $productionCompany;
+    protected $contentUrl;
 
     /**
-     * The duration of the item (movie, audio recording, event, etc.) in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.
+     * File size in (mega/kilo) bytes.
      *
      *
-     * @var DateInterval|null
+     * @var string
      */
-    protected $duration;
+    protected $contentSize;
 
     /**
      * The CreativeWork encoded by this media object.
@@ -172,9 +72,57 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $encodesCreativeWork;
 
     /**
-     * Media type typically expressed using a MIME format (see <a href="http://www.iana.org/assignments/media-types/media-types.xhtml">IANA site</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types">MDN reference</a>) e.g. application/zip for a SoftwareApplication binary, audio/mpeg for .mp3 etc.).<br/><br/>
+     * The bitrate of the media object.
+     *
+     *
+     * @var string
+     */
+    protected $bitrate;
+
+    /**
+     * The width of the item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    protected $width;
+
+    /**
+     * Indicates if use of the media require a subscription  (either paid or free). Allowed values are ```true``` or ```false``` (note that an earlier version had 'yes', 'no').
+     *
+     *
+     * @var bool|\OpenActive\Models\SchemaOrg\MediaSubscription|null
+     */
+    protected $requiresSubscription;
+
+    /**
+     * Player type required&#x2014;for example, Flash or Silverlight.
+     *
+     *
+     * @var string
+     */
+    protected $playerType;
+
+    /**
+     * The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. e.g. John wrote a book from January to *December*. For media, including audio and video, it's the time offset of the end of a clip within a larger file.\n\nNote that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
+     *
+     *
+     * @var DateTime|string|null
+     */
+    protected $endTime;
+
+    /**
+     * The height of the item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    protected $height;
+
+    /**
+     * Media type typically expressed using a MIME format (see [IANA site](http://www.iana.org/assignments/media-types/media-types.xhtml) and [MDN reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)) e.g. application/zip for a SoftwareApplication binary, audio/mpeg for .mp3 etc.).
      * 
-     * In cases where a <a class="localLink" href="https://schema.org/CreativeWork">CreativeWork</a> has several media type representations, <a class="localLink" href="https://schema.org/encoding">encoding</a> can be used to indicate each <a class="localLink" href="https://schema.org/MediaObject">MediaObject</a> alongside particular <a class="localLink" href="https://schema.org/encodingFormat">encodingFormat</a> information.<br/><br/>
+     * In cases where a [[CreativeWork]] has several media type representations, [[encoding]] can be used to indicate each [[MediaObject]] alongside particular [[encodingFormat]] information.
      * 
      * Unregistered or niche encoding and file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia/Wikidata entry.
      *
@@ -184,276 +132,75 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $encodingFormat;
 
     /**
-     * @return DateTime|string|null
+     * The production company or studio responsible for the item e.g. series, video game, episode etc.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
-    public function getStartTime()
+    protected $productionCompany;
+
+    /**
+     * A URL pointing to a player for a specific video. In general, this is the information in the ```src``` element of an ```embed``` tag and should not be the same as the content of the ```loc``` tag.
+     *
+     *
+     * @var string
+     */
+    protected $embedUrl;
+
+    /**
+     * Date when this media object was uploaded to this site.
+     *
+     *
+     * @var Date|null
+     */
+    protected $uploadDate;
+
+    /**
+     * The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. e.g. John wrote a book from *January* to December. For media, including audio and video, it's the time offset of the start of a clip within a larger file.\n\nNote that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
+     *
+     *
+     * @var DateTime|string|null
+     */
+    protected $startTime;
+
+    /**
+     * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).
+     *
+     *
+     * @var DateInterval|null
+     */
+    protected $duration;
+
+    /**
+     * The regions where the media is allowed. If not specified, then it's assumed to be allowed everywhere. Specify the countries in [ISO 3166 format](http://en.wikipedia.org/wiki/ISO_3166).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place
+     */
+    protected $regionsAllowed;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\NewsArticle
+     */
+    public function getAssociatedArticle()
     {
-        return $this->startTime;
+        return $this->associatedArticle;
     }
 
     /**
-     * @param DateTime|string|null $startTime
+     * @param \OpenActive\Models\SchemaOrg\NewsArticle $associatedArticle
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setStartTime($startTime)
+    public function setAssociatedArticle($associatedArticle)
     {
-        $types = array(
-            "DateTime",
-            "Time",
-            "null",
-        );
+        $types = [
+            "\OpenActive\Models\SchemaOrg\NewsArticle",
+        ];
 
-        $startTime = self::checkTypes($startTime, $types);
+        $associatedArticle = self::checkTypes($associatedArticle, $types);
 
-        $this->startTime = $startTime;
-    }
-
-    /**
-     * @return Date|null
-     */
-    public function getUploadDate()
-    {
-        return $this->uploadDate;
-    }
-
-    /**
-     * @param Date|null $uploadDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setUploadDate($uploadDate)
-    {
-        $types = array(
-            "Date",
-            "null",
-        );
-
-        $uploadDate = self::checkTypes($uploadDate, $types);
-
-        $this->uploadDate = $uploadDate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPlayerType()
-    {
-        return $this->playerType;
-    }
-
-    /**
-     * @param string $playerType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPlayerType($playerType)
-    {
-        $types = array(
-            "string",
-        );
-
-        $playerType = self::checkTypes($playerType, $types);
-
-        $this->playerType = $playerType;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
-     */
-    public function getHeight()
-    {
-        return $this->height;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $height
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHeight($height)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "\OpenActive\Models\SchemaOrg\Distance",
-        );
-
-        $height = self::checkTypes($height, $types);
-
-        $this->height = $height;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBitrate()
-    {
-        return $this->bitrate;
-    }
-
-    /**
-     * @param string $bitrate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBitrate($bitrate)
-    {
-        $types = array(
-            "string",
-        );
-
-        $bitrate = self::checkTypes($bitrate, $types);
-
-        $this->bitrate = $bitrate;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null
-     */
-    public function getRequiresSubscription()
-    {
-        return $this->requiresSubscription;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MediaSubscription|bool|null $requiresSubscription
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRequiresSubscription($requiresSubscription)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\MediaSubscription",
-            "bool",
-            "null",
-        );
-
-        $requiresSubscription = self::checkTypes($requiresSubscription, $types);
-
-        $this->requiresSubscription = $requiresSubscription;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Place
-     */
-    public function getRegionsAllowed()
-    {
-        return $this->regionsAllowed;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Place $regionsAllowed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRegionsAllowed($regionsAllowed)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Place",
-        );
-
-        $regionsAllowed = self::checkTypes($regionsAllowed, $types);
-
-        $this->regionsAllowed = $regionsAllowed;
-    }
-
-    /**
-     * @return DateTime|string|null
-     */
-    public function getEndTime()
-    {
-        return $this->endTime;
-    }
-
-    /**
-     * @param DateTime|string|null $endTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEndTime($endTime)
-    {
-        $types = array(
-            "DateTime",
-            "Time",
-            "null",
-        );
-
-        $endTime = self::checkTypes($endTime, $types);
-
-        $this->endTime = $endTime;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContentSize()
-    {
-        return $this->contentSize;
-    }
-
-    /**
-     * @param string $contentSize
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setContentSize($contentSize)
-    {
-        $types = array(
-            "string",
-        );
-
-        $contentSize = self::checkTypes($contentSize, $types);
-
-        $this->contentSize = $contentSize;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmbedUrl()
-    {
-        return $this->embedUrl;
-    }
-
-    /**
-     * @param string $embedUrl
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEmbedUrl($embedUrl)
-    {
-        $types = array(
-            "string",
-        );
-
-        $embedUrl = self::checkTypes($embedUrl, $types);
-
-        $this->embedUrl = $embedUrl;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance
-     */
-    public function getWidth()
-    {
-        return $this->width;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance $width
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setWidth($width)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "\OpenActive\Models\SchemaOrg\Distance",
-        );
-
-        $width = self::checkTypes($width, $types);
-
-        $this->width = $width;
+        $this->associatedArticle = $associatedArticle;
     }
 
     /**
@@ -471,9 +218,9 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setContentUrl($contentUrl)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $contentUrl = self::checkTypes($contentUrl, $types);
 
@@ -481,76 +228,27 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\NewsArticle
+     * @return string
      */
-    public function getAssociatedArticle()
+    public function getContentSize()
     {
-        return $this->associatedArticle;
+        return $this->contentSize;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\NewsArticle $associatedArticle
+     * @param string $contentSize
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAssociatedArticle($associatedArticle)
+    public function setContentSize($contentSize)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\NewsArticle",
-        );
+        $types = [
+            "string",
+        ];
 
-        $associatedArticle = self::checkTypes($associatedArticle, $types);
+        $contentSize = self::checkTypes($contentSize, $types);
 
-        $this->associatedArticle = $associatedArticle;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization
-     */
-    public function getProductionCompany()
-    {
-        return $this->productionCompany;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization $productionCompany
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProductionCompany($productionCompany)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
-        );
-
-        $productionCompany = self::checkTypes($productionCompany, $types);
-
-        $this->productionCompany = $productionCompany;
-    }
-
-    /**
-     * @return DateInterval|null
-     */
-    public function getDuration()
-    {
-        return $this->duration;
-    }
-
-    /**
-     * @param DateInterval|null $duration
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDuration($duration)
-    {
-        $types = array(
-            "DateInterval",
-            "null",
-        );
-
-        $duration = self::checkTypes($duration, $types);
-
-        $this->duration = $duration;
+        $this->contentSize = $contentSize;
     }
 
     /**
@@ -568,13 +266,163 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setEncodesCreativeWork($encodesCreativeWork)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\CreativeWork",
-        );
+        ];
 
         $encodesCreativeWork = self::checkTypes($encodesCreativeWork, $types);
 
         $this->encodesCreativeWork = $encodesCreativeWork;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBitrate()
+    {
+        return $this->bitrate;
+    }
+
+    /**
+     * @param string $bitrate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBitrate($bitrate)
+    {
+        $types = [
+            "string",
+        ];
+
+        $bitrate = self::checkTypes($bitrate, $types);
+
+        $this->bitrate = $bitrate;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue $width
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setWidth($width)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Distance",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+        ];
+
+        $width = self::checkTypes($width, $types);
+
+        $this->width = $width;
+    }
+
+    /**
+     * @return bool|\OpenActive\Models\SchemaOrg\MediaSubscription|null
+     */
+    public function getRequiresSubscription()
+    {
+        return $this->requiresSubscription;
+    }
+
+    /**
+     * @param bool|\OpenActive\Models\SchemaOrg\MediaSubscription|null $requiresSubscription
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRequiresSubscription($requiresSubscription)
+    {
+        $types = [
+            "bool",
+            "\OpenActive\Models\SchemaOrg\MediaSubscription",
+            "null",
+        ];
+
+        $requiresSubscription = self::checkTypes($requiresSubscription, $types);
+
+        $this->requiresSubscription = $requiresSubscription;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlayerType()
+    {
+        return $this->playerType;
+    }
+
+    /**
+     * @param string $playerType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPlayerType($playerType)
+    {
+        $types = [
+            "string",
+        ];
+
+        $playerType = self::checkTypes($playerType, $types);
+
+        $this->playerType = $playerType;
+    }
+
+    /**
+     * @return DateTime|string|null
+     */
+    public function getEndTime()
+    {
+        return $this->endTime;
+    }
+
+    /**
+     * @param DateTime|string|null $endTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEndTime($endTime)
+    {
+        $types = [
+            "DateTime",
+            "Time",
+            "null",
+        ];
+
+        $endTime = self::checkTypes($endTime, $types);
+
+        $this->endTime = $endTime;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue $height
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHeight($height)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Distance",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+        ];
+
+        $height = self::checkTypes($height, $types);
+
+        $this->height = $height;
     }
 
     /**
@@ -592,13 +440,161 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setEncodingFormat($encodingFormat)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $encodingFormat = self::checkTypes($encodingFormat, $types);
 
         $this->encodingFormat = $encodingFormat;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization
+     */
+    public function getProductionCompany()
+    {
+        return $this->productionCompany;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization $productionCompany
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProductionCompany($productionCompany)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+        ];
+
+        $productionCompany = self::checkTypes($productionCompany, $types);
+
+        $this->productionCompany = $productionCompany;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmbedUrl()
+    {
+        return $this->embedUrl;
+    }
+
+    /**
+     * @param string $embedUrl
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEmbedUrl($embedUrl)
+    {
+        $types = [
+            "string",
+        ];
+
+        $embedUrl = self::checkTypes($embedUrl, $types);
+
+        $this->embedUrl = $embedUrl;
+    }
+
+    /**
+     * @return Date|null
+     */
+    public function getUploadDate()
+    {
+        return $this->uploadDate;
+    }
+
+    /**
+     * @param Date|null $uploadDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUploadDate($uploadDate)
+    {
+        $types = [
+            "Date",
+            "null",
+        ];
+
+        $uploadDate = self::checkTypes($uploadDate, $types);
+
+        $this->uploadDate = $uploadDate;
+    }
+
+    /**
+     * @return DateTime|string|null
+     */
+    public function getStartTime()
+    {
+        return $this->startTime;
+    }
+
+    /**
+     * @param DateTime|string|null $startTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setStartTime($startTime)
+    {
+        $types = [
+            "DateTime",
+            "Time",
+            "null",
+        ];
+
+        $startTime = self::checkTypes($startTime, $types);
+
+        $this->startTime = $startTime;
+    }
+
+    /**
+     * @return DateInterval|null
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * @param DateInterval|null $duration
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDuration($duration)
+    {
+        $types = [
+            "DateInterval",
+            "null",
+        ];
+
+        $duration = self::checkTypes($duration, $types);
+
+        $this->duration = $duration;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Place
+     */
+    public function getRegionsAllowed()
+    {
+        return $this->regionsAllowed;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Place $regionsAllowed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRegionsAllowed($regionsAllowed)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Place",
+        ];
+
+        $regionsAllowed = self::checkTypes($regionsAllowed, $types);
+
+        $this->regionsAllowed = $regionsAllowed;
     }
 
 }

@@ -8,6 +8,6 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class MediaManipulationRatingEnumeration
 {
-    const MissingContext = \OpenActive\Enums\SchemaOrg\MediaManipulationRatingEnumeration\MissingContext::class;
     const AuthenticContent = \OpenActive\Enums\SchemaOrg\MediaManipulationRatingEnumeration\AuthenticContent::class;
+    const MissingContext = \OpenActive\Enums\SchemaOrg\MediaManipulationRatingEnumeration\MissingContext::class;
 }

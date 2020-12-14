@@ -88,9 +88,9 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -112,9 +112,9 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -136,9 +136,9 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setInstance($instance)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $instance = self::checkTypes($instance, $types);
 
@@ -160,9 +160,9 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setRequestId($requestId)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $requestId = self::checkTypes($requestId, $types);
 
@@ -184,10 +184,10 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

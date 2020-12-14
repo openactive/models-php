@@ -64,9 +64,9 @@ class BankAccount extends \OpenActive\Models\SchemaOrg\FinancialProduct
      */
     public function setAccountMinimumInflow($accountMinimumInflow)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-        );
+        ];
 
         $accountMinimumInflow = self::checkTypes($accountMinimumInflow, $types);
 
@@ -88,9 +88,9 @@ class BankAccount extends \OpenActive\Models\SchemaOrg\FinancialProduct
      */
     public function setAccountOverdraftLimit($accountOverdraftLimit)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-        );
+        ];
 
         $accountOverdraftLimit = self::checkTypes($accountOverdraftLimit, $types);
 
@@ -112,9 +112,9 @@ class BankAccount extends \OpenActive\Models\SchemaOrg\FinancialProduct
      */
     public function setBankAccountType($bankAccountType)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $bankAccountType = self::checkTypes($bankAccountType, $types);
 

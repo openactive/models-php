@@ -257,10 +257,10 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setEventAttendanceMode($eventAttendanceMode)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\EventAttendanceModeEnumeration",
             "null",
-        );
+        ];
 
         $eventAttendanceMode = self::checkTypes($eventAttendanceMode, $types);
 
@@ -284,9 +284,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setEventSchedule($eventSchedule)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Schedule[]",
-        );
+        ];
 
         $eventSchedule = self::checkTypes($eventSchedule, $types);
 
@@ -310,10 +310,10 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setEventStatus($eventStatus)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\EventStatusType",
             "null",
-        );
+        ];
 
         $eventStatus = self::checkTypes($eventStatus, $types);
 
@@ -337,9 +337,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setLocation($location)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Place",
-        );
+        ];
 
         $location = self::checkTypes($location, $types);
 
@@ -363,10 +363,10 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $maximumAttendeeCapacity = self::checkTypes($maximumAttendeeCapacity, $types);
 
@@ -390,10 +390,10 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setMaximumVirtualAttendeeCapacity($maximumVirtualAttendeeCapacity)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $maximumVirtualAttendeeCapacity = self::checkTypes($maximumVirtualAttendeeCapacity, $types);
 
@@ -417,9 +417,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setMeetingPoint($meetingPoint)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $meetingPoint = self::checkTypes($meetingPoint, $types);
 
@@ -443,10 +443,10 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $remainingAttendeeCapacity = self::checkTypes($remainingAttendeeCapacity, $types);
 
@@ -470,9 +470,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setSchedulingNote($schedulingNote)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $schedulingNote = self::checkTypes($schedulingNote, $types);
 
@@ -496,11 +496,11 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setStartDate($startDate)
     {
-        $types = array(
+        $types = [
             "Date",
             "DateTime",
             "null",
-        );
+        ];
 
         $startDate = self::checkTypes($startDate, $types);
 
@@ -524,11 +524,11 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setEndDate($endDate)
     {
-        $types = array(
+        $types = [
             "Date",
             "DateTime",
             "null",
-        );
+        ];
 
         $endDate = self::checkTypes($endDate, $types);
 
@@ -552,9 +552,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setSubEvent($subEvent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Event[]",
-        );
+        ];
 
         $subEvent = self::checkTypes($subEvent, $types);
 
@@ -576,9 +576,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setSuperEvent($superEvent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Event",
-        );
+        ];
 
         $superEvent = self::checkTypes($superEvent, $types);
 
@@ -600,9 +600,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setWorkFeatured($workFeatured)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\MediaObject",
-        );
+        ];
 
         $workFeatured = self::checkTypes($workFeatured, $types);
 

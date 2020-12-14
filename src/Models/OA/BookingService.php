@@ -73,9 +73,9 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -97,9 +97,9 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
      */
     public function setSoftwareVersion($softwareVersion)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $softwareVersion = self::checkTypes($softwareVersion, $types);
 
@@ -121,9 +121,9 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
      */
     public function setTermsOfService($termsOfService)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Terms[]",
-        );
+        ];
 
         $termsOfService = self::checkTypes($termsOfService, $types);
 
@@ -145,9 +145,9 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 

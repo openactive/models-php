@@ -149,13 +149,13 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -177,9 +177,9 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -201,9 +201,9 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -225,9 +225,9 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setActivity($activity)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $activity = self::checkTypes($activity, $types);
 
@@ -249,10 +249,10 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setAuthor($author)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Person",
             "\OpenActive\Models\OA\Organization",
-        );
+        ];
 
         $author = self::checkTypes($author, $types);
 
@@ -274,9 +274,9 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 
@@ -298,9 +298,9 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setLogo($logo)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\ImageObject",
-        );
+        ];
 
         $logo = self::checkTypes($logo, $types);
 
@@ -322,9 +322,9 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setVideo($video)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\VideoObject[]",
-        );
+        ];
 
         $video = self::checkTypes($video, $types);
 

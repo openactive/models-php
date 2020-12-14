@@ -107,9 +107,9 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\MediaObject
      */
     public function setContentUrl($contentUrl)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $contentUrl = self::checkTypes($contentUrl, $types);
 
@@ -131,9 +131,9 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\MediaObject
      */
     public function setEmbedUrl($embedUrl)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $embedUrl = self::checkTypes($embedUrl, $types);
 
@@ -155,10 +155,10 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\MediaObject
      */
     public function setHeight($height)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $height = self::checkTypes($height, $types);
 
@@ -180,9 +180,9 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\MediaObject
      */
     public function setThumbnail($thumbnail)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject[]",
-        );
+        ];
 
         $thumbnail = self::checkTypes($thumbnail, $types);
 
@@ -204,9 +204,9 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\MediaObject
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 
@@ -228,10 +228,10 @@ class MediaObject extends \OpenActive\Models\SchemaOrg\MediaObject
      */
     public function setWidth($width)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $width = self::checkTypes($width, $types);
 

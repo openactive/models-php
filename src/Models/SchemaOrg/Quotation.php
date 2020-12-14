@@ -46,10 +46,10 @@ class Quotation extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setSpokenByCharacter($spokenByCharacter)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
-        );
+        ];
 
         $spokenByCharacter = self::checkTypes($spokenByCharacter, $types);
 

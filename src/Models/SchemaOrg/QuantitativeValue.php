@@ -17,17 +17,25 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
+            "valueReference" => "valueReference",
             "unitCode" => "unitCode",
-            "minValue" => "minValue",
             "additionalProperty" => "additionalProperty",
             "value" => "value",
-            "valueReference" => "valueReference",
+            "minValue" => "minValue",
             "maxValue" => "maxValue",
             "unitText" => "unitText",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|\OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\PropertyValue|null
+     */
+    protected $valueReference;
 
     /**
      * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
@@ -38,17 +46,8 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $unitCode;
 
     /**
-     * The lower value of some characteristic or property.
-     *
-     *
-     * @var float|null
-     */
-    protected $minValue;
-
-    /**
-     * A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.<br/><br/>
+     * A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.\n\nNote: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
      * 
-     * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\PropertyValue
@@ -56,34 +55,26 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $additionalProperty;
 
     /**
-     * The value of the quantitative value or property value node.<br/><br/>
-     * 
-     * <ul>
-     * <li>For <a class="localLink" href="https://schema.org/QuantitativeValue">QuantitativeValue</a> and <a class="localLink" href="https://schema.org/MonetaryAmount">MonetaryAmount</a>, the recommended type for values is 'Number'.</li>
-     * <li>For <a class="localLink" href="https://schema.org/PropertyValue">PropertyValue</a>, it can be 'Text;', 'Number', 'Boolean', or 'StructuredValue'.</li>
-     * <li>Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.</li>
-     * <li>Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.</li>
-     * </ul>
-     * 
+     * The value of the quantitative value or property value node.\n\n* For [[QuantitativeValue]] and [[MonetaryAmount]], the recommended type for values is 'Number'.\n* For [[PropertyValue]], it can be 'Text;', 'Number', 'Boolean', or 'StructuredValue'.\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
      *
      *
-     * @var bool|string|float|\OpenActive\Models\SchemaOrg\StructuredValue|null
+     * @var bool|\OpenActive\Models\SchemaOrg\StructuredValue|string|Number|null
      */
     protected $value;
 
     /**
-     * A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature.
+     * The lower value of some characteristic or property.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Enums\SchemaOrg\QualitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|null
+     * @var Number|null
      */
-    protected $valueReference;
+    protected $minValue;
 
     /**
      * The upper value of some characteristic or property.
      *
      *
-     * @var float|null
+     * @var Number|null
      */
     protected $maxValue;
 
@@ -95,6 +86,35 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      * @var string
      */
     protected $unitText;
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|\OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\PropertyValue|null
+     */
+    public function getValueReference()
+    {
+        return $this->valueReference;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|\OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\PropertyValue|null $valueReference
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValueReference($valueReference)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\StructuredValue",
+            "\OpenActive\Models\SchemaOrg\Enumeration",
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "null",
+        ];
+
+        $valueReference = self::checkTypes($valueReference, $types);
+
+        $this->valueReference = $valueReference;
+    }
 
     /**
      * @return string
@@ -111,38 +131,13 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setUnitCode($unitCode)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $unitCode = self::checkTypes($unitCode, $types);
 
         $this->unitCode = $unitCode;
-    }
-
-    /**
-     * @return float|null
-     */
-    public function getMinValue()
-    {
-        return $this->minValue;
-    }
-
-    /**
-     * @param float|null $minValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMinValue($minValue)
-    {
-        $types = array(
-            "float",
-            "null",
-        );
-
-        $minValue = self::checkTypes($minValue, $types);
-
-        $this->minValue = $minValue;
     }
 
     /**
@@ -160,9 +155,9 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setAdditionalProperty($additionalProperty)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\PropertyValue",
-        );
+        ];
 
         $additionalProperty = self::checkTypes($additionalProperty, $types);
 
@@ -170,7 +165,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return bool|string|float|\OpenActive\Models\SchemaOrg\StructuredValue|null
+     * @return bool|\OpenActive\Models\SchemaOrg\StructuredValue|string|Number|null
      */
     public function getValue()
     {
@@ -178,19 +173,19 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param bool|string|float|\OpenActive\Models\SchemaOrg\StructuredValue|null $value
+     * @param bool|\OpenActive\Models\SchemaOrg\StructuredValue|string|Number|null $value
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValue($value)
     {
-        $types = array(
+        $types = [
             "bool",
-            "string",
-            "float",
             "\OpenActive\Models\SchemaOrg\StructuredValue",
+            "string",
+            "Number",
             "null",
-        );
+        ];
 
         $value = self::checkTypes($value, $types);
 
@@ -198,36 +193,32 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Enums\SchemaOrg\QualitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|null
+     * @return Number|null
      */
-    public function getValueReference()
+    public function getMinValue()
     {
-        return $this->valueReference;
+        return $this->minValue;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Enums\SchemaOrg\QualitativeValue|\OpenActive\Models\SchemaOrg\StructuredValue|null $valueReference
+     * @param Number|null $minValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setValueReference($valueReference)
+    public function setMinValue($minValue)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\PropertyValue",
-            "\OpenActive\Models\SchemaOrg\Enumeration",
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
-            "\OpenActive\Models\SchemaOrg\StructuredValue",
+        $types = [
+            "Number",
             "null",
-        );
+        ];
 
-        $valueReference = self::checkTypes($valueReference, $types);
+        $minValue = self::checkTypes($minValue, $types);
 
-        $this->valueReference = $valueReference;
+        $this->minValue = $minValue;
     }
 
     /**
-     * @return float|null
+     * @return Number|null
      */
     public function getMaxValue()
     {
@@ -235,16 +226,16 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param float|null $maxValue
+     * @param Number|null $maxValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMaxValue($maxValue)
     {
-        $types = array(
-            "float",
+        $types = [
+            "Number",
             "null",
-        );
+        ];
 
         $maxValue = self::checkTypes($maxValue, $types);
 
@@ -266,9 +257,9 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setUnitText($unitText)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $unitText = self::checkTypes($unitText, $types);
 

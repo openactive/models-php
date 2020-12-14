@@ -74,10 +74,10 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHour
      */
     public function setCloses($closes)
     {
-        $types = array(
+        $types = [
             "Time",
             "null",
-        );
+        ];
 
         $closes = self::checkTypes($closes, $types);
 
@@ -99,10 +99,10 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHour
      */
     public function setDayOfWeek($dayOfWeek)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\DayOfWeek",
             "null",
-        );
+        ];
 
         $dayOfWeek = self::checkTypes($dayOfWeek, $types);
 
@@ -124,10 +124,10 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\OpeningHour
      */
     public function setOpens($opens)
     {
-        $types = array(
+        $types = [
             "Time",
             "null",
-        );
+        ];
 
         $opens = self::checkTypes($opens, $types);
 

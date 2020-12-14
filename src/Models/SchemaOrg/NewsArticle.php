@@ -19,9 +19,9 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
         $fields = [
             "printColumn" => "printColumn",
             "printEdition" => "printEdition",
+            "dateline" => "dateline",
             "printSection" => "printSection",
             "printPage" => "printPage",
-            "dateline" => "dateline",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -44,6 +44,19 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
     protected $printEdition;
 
     /**
+     * A [dateline](https://en.wikipedia.org/wiki/Dateline) is a brief piece of text included in news articles that describes where and when the story was written or filed though the date is often omitted. Sometimes only a placename is provided.
+     * 
+     * Structured representations of dateline-related information can also be expressed more explicitly using [[locationCreated]] (which represents where a work was created e.g. where a news report was written).  For location depicted or described in the content, use [[contentLocation]].
+     * 
+     * Dateline summaries are oriented more towards human readers than towards automated processing, and can vary substantially. Some examples: "BEIRUT, Lebanon, June 2.", "Paris, France", "December 19, 2017 11:43AM Reporting from Washington", "Beijing/Moscow", "QUEZON CITY, Philippines".
+     *       
+     *
+     *
+     * @var string
+     */
+    protected $dateline;
+
+    /**
      * If this NewsArticle appears in print, this field indicates the print section in which the article appeared.
      *
      *
@@ -60,18 +73,6 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
     protected $printPage;
 
     /**
-     * A <a href="https://en.wikipedia.org/wiki/Dateline">dateline</a> is a brief piece of text included in news articles that describes where and when the story was written or filed though the date is often omitted. Sometimes only a placename is provided.<br/><br/>
-     * 
-     * Structured representations of dateline-related information can also be expressed more explicitly using <a class="localLink" href="https://schema.org/locationCreated">locationCreated</a> (which represents where a work was created e.g. where a news report was written).  For location depicted or described in the content, use <a class="localLink" href="https://schema.org/contentLocation">contentLocation</a>.<br/><br/>
-     * 
-     * Dateline summaries are oriented more towards human readers than towards automated processing, and can vary substantially. Some examples: "BEIRUT, Lebanon, June 2.", "Paris, France", "December 19, 2017 11:43AM Reporting from Washington", "Beijing/Moscow", "QUEZON CITY, Philippines".
-     *
-     *
-     * @var string
-     */
-    protected $dateline;
-
-    /**
      * @return string
      */
     public function getPrintColumn()
@@ -86,9 +87,9 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
      */
     public function setPrintColumn($printColumn)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $printColumn = self::checkTypes($printColumn, $types);
 
@@ -110,13 +111,37 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
      */
     public function setPrintEdition($printEdition)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $printEdition = self::checkTypes($printEdition, $types);
 
         $this->printEdition = $printEdition;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateline()
+    {
+        return $this->dateline;
+    }
+
+    /**
+     * @param string $dateline
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDateline($dateline)
+    {
+        $types = [
+            "string",
+        ];
+
+        $dateline = self::checkTypes($dateline, $types);
+
+        $this->dateline = $dateline;
     }
 
     /**
@@ -134,9 +159,9 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
      */
     public function setPrintSection($printSection)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $printSection = self::checkTypes($printSection, $types);
 
@@ -158,37 +183,13 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
      */
     public function setPrintPage($printPage)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $printPage = self::checkTypes($printPage, $types);
 
         $this->printPage = $printPage;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDateline()
-    {
-        return $this->dateline;
-    }
-
-    /**
-     * @param string $dateline
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDateline($dateline)
-    {
-        $types = array(
-            "string",
-        );
-
-        $dateline = self::checkTypes($dateline, $types);
-
-        $this->dateline = $dateline;
     }
 
 }

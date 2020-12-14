@@ -59,9 +59,9 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Location
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -83,10 +83,10 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Location
      */
     public function setValue($value)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $value = self::checkTypes($value, $types);
 

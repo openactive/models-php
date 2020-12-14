@@ -46,10 +46,10 @@ class ThreeDModel extends \OpenActive\Models\SchemaOrg\MediaObject
      */
     public function setIsResizable($isResizable)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $isResizable = self::checkTypes($isResizable, $types);
 

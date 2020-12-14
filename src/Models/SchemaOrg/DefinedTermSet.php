@@ -46,9 +46,9 @@ class DefinedTermSet extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setHasDefinedTerm($hasDefinedTerm)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\DefinedTerm",
-        );
+        ];
 
         $hasDefinedTerm = self::checkTypes($hasDefinedTerm, $types);
 

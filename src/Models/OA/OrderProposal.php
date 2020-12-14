@@ -72,9 +72,9 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
      */
     public function setOrderCustomerNote($orderCustomerNote)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $orderCustomerNote = self::checkTypes($orderCustomerNote, $types);
 
@@ -96,10 +96,10 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
      */
     public function setOrderProposalStatus($orderProposalStatus)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\OrderProposalStatus",
             "null",
-        );
+        ];
 
         $orderProposalStatus = self::checkTypes($orderProposalStatus, $types);
 
@@ -123,10 +123,10 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
      */
     public function setOrderRequiresApproval($orderRequiresApproval)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $orderRequiresApproval = self::checkTypes($orderRequiresApproval, $types);
 
@@ -148,9 +148,9 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
      */
     public function setOrderSellerNote($orderSellerNote)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $orderSellerNote = self::checkTypes($orderSellerNote, $types);
 

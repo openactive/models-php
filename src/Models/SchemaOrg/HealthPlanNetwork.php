@@ -64,10 +64,10 @@ class HealthPlanNetwork extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setHealthPlanCostSharing($healthPlanCostSharing)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $healthPlanCostSharing = self::checkTypes($healthPlanCostSharing, $types);
 
@@ -89,9 +89,9 @@ class HealthPlanNetwork extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setHealthPlanNetworkTier($healthPlanNetworkTier)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $healthPlanNetworkTier = self::checkTypes($healthPlanNetworkTier, $types);
 
@@ -113,9 +113,9 @@ class HealthPlanNetwork extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setHealthPlanNetworkId($healthPlanNetworkId)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $healthPlanNetworkId = self::checkTypes($healthPlanNetworkId, $types);
 

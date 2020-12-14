@@ -62,10 +62,10 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function setMaxValue($maxValue)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $maxValue = self::checkTypes($maxValue, $types);
 
@@ -87,10 +87,10 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function setMinValue($minValue)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $minValue = self::checkTypes($minValue, $types);
 

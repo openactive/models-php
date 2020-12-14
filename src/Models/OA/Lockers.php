@@ -50,9 +50,9 @@ class Lockers extends \OpenActive\Models\OA\LocationFeatureSpecification
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 

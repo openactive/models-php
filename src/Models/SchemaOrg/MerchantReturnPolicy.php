@@ -17,32 +17,16 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "inStoreReturnsOffered" => "inStoreReturnsOffered",
-            "returnFees" => "returnFees",
             "merchantReturnLink" => "merchantReturnLink",
+            "inStoreReturnsOffered" => "inStoreReturnsOffered",
             "refundType" => "refundType",
             "returnPolicyCategory" => "returnPolicyCategory",
+            "returnFees" => "returnFees",
             "merchantReturnDays" => "merchantReturnDays",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Are in-store returns offered?
-     *
-     *
-     * @var bool|null
-     */
-    protected $inStoreReturnsOffered;
-
-    /**
-     * Indicates (via enumerated options) the return fees policy for a MerchantReturnPolicy
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
-     */
-    protected $returnFees;
 
     /**
      * Indicates a Web page or service by URL, for product return.
@@ -51,6 +35,14 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
      * @var string
      */
     protected $merchantReturnLink;
+
+    /**
+     * Are in-store returns offered?
+     *
+     *
+     * @var bool|null
+     */
+    protected $inStoreReturnsOffered;
 
     /**
      * A refundType, from an enumerated list.
@@ -69,62 +61,20 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     protected $returnPolicyCategory;
 
     /**
+     * Indicates (via enumerated options) the return fees policy for a MerchantReturnPolicy
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
+     */
+    protected $returnFees;
+
+    /**
      * The merchantReturnDays property indicates the number of days (from purchase) within which relevant merchant return policy is applicable.
      *
      *
      * @var int|null
      */
     protected $merchantReturnDays;
-
-    /**
-     * @return bool|null
-     */
-    public function getInStoreReturnsOffered()
-    {
-        return $this->inStoreReturnsOffered;
-    }
-
-    /**
-     * @param bool|null $inStoreReturnsOffered
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setInStoreReturnsOffered($inStoreReturnsOffered)
-    {
-        $types = array(
-            "bool",
-            "null",
-        );
-
-        $inStoreReturnsOffered = self::checkTypes($inStoreReturnsOffered, $types);
-
-        $this->inStoreReturnsOffered = $inStoreReturnsOffered;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
-     */
-    public function getReturnFees()
-    {
-        return $this->returnFees;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null $returnFees
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReturnFees($returnFees)
-    {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration",
-            "null",
-        );
-
-        $returnFees = self::checkTypes($returnFees, $types);
-
-        $this->returnFees = $returnFees;
-    }
 
     /**
      * @return string
@@ -141,13 +91,38 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setMerchantReturnLink($merchantReturnLink)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $merchantReturnLink = self::checkTypes($merchantReturnLink, $types);
 
         $this->merchantReturnLink = $merchantReturnLink;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getInStoreReturnsOffered()
+    {
+        return $this->inStoreReturnsOffered;
+    }
+
+    /**
+     * @param bool|null $inStoreReturnsOffered
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInStoreReturnsOffered($inStoreReturnsOffered)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $inStoreReturnsOffered = self::checkTypes($inStoreReturnsOffered, $types);
+
+        $this->inStoreReturnsOffered = $inStoreReturnsOffered;
     }
 
     /**
@@ -165,10 +140,10 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setRefundType($refundType)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\RefundTypeEnumeration",
             "null",
-        );
+        ];
 
         $refundType = self::checkTypes($refundType, $types);
 
@@ -190,14 +165,39 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setReturnPolicyCategory($returnPolicyCategory)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration",
             "null",
-        );
+        ];
 
         $returnPolicyCategory = self::checkTypes($returnPolicyCategory, $types);
 
         $this->returnPolicyCategory = $returnPolicyCategory;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
+     */
+    public function getReturnFees()
+    {
+        return $this->returnFees;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null $returnFees
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReturnFees($returnFees)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration",
+            "null",
+        ];
+
+        $returnFees = self::checkTypes($returnFees, $types);
+
+        $this->returnFees = $returnFees;
     }
 
     /**
@@ -215,10 +215,10 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setMerchantReturnDays($merchantReturnDays)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $merchantReturnDays = self::checkTypes($merchantReturnDays, $types);
 

@@ -46,9 +46,9 @@ class TravelAction extends \OpenActive\Models\SchemaOrg\MoveAction
      */
     public function setDistance($distance)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Distance",
-        );
+        ];
 
         $distance = self::checkTypes($distance, $types);
 

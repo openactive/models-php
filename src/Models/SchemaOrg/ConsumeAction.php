@@ -55,9 +55,9 @@ class ConsumeAction extends \OpenActive\Models\SchemaOrg\Action
      */
     public function setActionAccessibilityRequirement($actionAccessibilityRequirement)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\ActionAccessSpecification",
-        );
+        ];
 
         $actionAccessibilityRequirement = self::checkTypes($actionAccessibilityRequirement, $types);
 
@@ -79,9 +79,9 @@ class ConsumeAction extends \OpenActive\Models\SchemaOrg\Action
      */
     public function setExpectsAcceptanceOf($expectsAcceptanceOf)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Offer",
-        );
+        ];
 
         $expectsAcceptanceOf = self::checkTypes($expectsAcceptanceOf, $types);
 

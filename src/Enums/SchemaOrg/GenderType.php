@@ -8,6 +8,6 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class GenderType
 {
-    const Male = \OpenActive\Enums\SchemaOrg\GenderType\Male::class;
     const Female = \OpenActive\Enums\SchemaOrg\GenderType\Female::class;
+    const Male = \OpenActive\Enums\SchemaOrg\GenderType\Male::class;
 }

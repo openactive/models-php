@@ -50,9 +50,9 @@ class ChangingFacilities extends \OpenActive\Models\OA\LocationFeatureSpecificat
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 

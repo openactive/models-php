@@ -106,9 +106,9 @@ class ConceptScheme extends \OpenActive\BaseModel
      */
     public function setTitle($title)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $title = self::checkTypes($title, $types);
 
@@ -130,9 +130,9 @@ class ConceptScheme extends \OpenActive\BaseModel
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -154,9 +154,9 @@ class ConceptScheme extends \OpenActive\BaseModel
      */
     public function setConcept($concept)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $concept = self::checkTypes($concept, $types);
 
@@ -178,9 +178,9 @@ class ConceptScheme extends \OpenActive\BaseModel
      */
     public function setLicense($license)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $license = self::checkTypes($license, $types);
 
@@ -202,9 +202,9 @@ class ConceptScheme extends \OpenActive\BaseModel
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 

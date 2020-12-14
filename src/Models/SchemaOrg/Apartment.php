@@ -38,7 +38,7 @@ class Apartment extends \OpenActive\Models\SchemaOrg\Accommodation
      * Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     protected $numberOfRooms;
 
@@ -57,9 +57,9 @@ class Apartment extends \OpenActive\Models\SchemaOrg\Accommodation
      */
     public function setOccupancy($occupancy)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
+        ];
 
         $occupancy = self::checkTypes($occupancy, $types);
 
@@ -67,7 +67,7 @@ class Apartment extends \OpenActive\Models\SchemaOrg\Accommodation
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null
+     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
      */
     public function getNumberOfRooms()
     {
@@ -75,17 +75,17 @@ class Apartment extends \OpenActive\Models\SchemaOrg\Accommodation
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|float|null $numberOfRooms
+     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numberOfRooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfRooms($numberOfRooms)
     {
-        $types = array(
+        $types = [
+            "Number",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "float",
             "null",
-        );
+        ];
 
         $numberOfRooms = self::checkTypes($numberOfRooms, $types);
 

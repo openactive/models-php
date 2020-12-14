@@ -75,9 +75,9 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -99,10 +99,10 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
      */
     public function setDateModified($dateModified)
     {
-        $types = array(
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $dateModified = self::checkTypes($dateModified, $types);
 
@@ -124,10 +124,10 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
      */
     public function setRequiresExplicitConsent($requiresExplicitConsent)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $requiresExplicitConsent = self::checkTypes($requiresExplicitConsent, $types);
 
@@ -149,9 +149,9 @@ class Terms extends \OpenActive\Models\SchemaOrg\DigitalDocument
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 

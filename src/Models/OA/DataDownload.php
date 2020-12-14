@@ -93,9 +93,9 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -117,9 +117,9 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
      */
     public function setAdditionalType($additionalType)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $additionalType = self::checkTypes($additionalType, $types);
 
@@ -141,9 +141,9 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
      */
     public function setContentUrl($contentUrl)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $contentUrl = self::checkTypes($contentUrl, $types);
 
@@ -165,9 +165,9 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
      */
     public function setEncodingFormat($encodingFormat)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $encodingFormat = self::checkTypes($encodingFormat, $types);
 

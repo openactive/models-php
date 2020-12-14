@@ -17,15 +17,26 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
 
     public static function fieldList() {
         $fields = [
+            "billingStart" => "billingStart",
             "unitCode" => "unitCode",
+            "priceType" => "priceType",
+            "priceComponentType" => "priceComponentType",
             "billingIncrement" => "billingIncrement",
             "referenceQuantity" => "referenceQuantity",
             "unitText" => "unitText",
-            "priceType" => "priceType",
+            "billingDuration" => "billingDuration",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Specifies after how much time this price (or price component) becomes valid and billing starts. Can be used, for example, to model a price increase after the first year of a subscription. The unit of measurement is specified by the unitCode property
+     *
+     *
+     * @var Number|null
+     */
+    protected $billingStart;
 
     /**
      * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
@@ -36,10 +47,26 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     protected $unitCode;
 
     /**
+     * Defines the type of a price specified for an offered product, for example a list price, a (temporary) sale price or a manufacturer suggested retail price. If multiple prices are specified for an offer the [[priceType]] property can be used to identify the type of each such specified price. The value of priceType can be specified as a value from enumeration PriceTypeEnumeration or as a free form text string for price types that are not already predefined in PriceTypeEnumeration.
+     *
+     *
+     * @var string|\OpenActive\Enums\SchemaOrg\PriceTypeEnumeration|null
+     */
+    protected $priceType;
+
+    /**
+     * Identifies a price component (for example, a line item on an invoice), part of the total price for an offer.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\PriceComponentTypeEnumeration|null
+     */
+    protected $priceComponentType;
+
+    /**
      * This property specifies the minimal quantity and rounding increment that will be the basis for the billing. The unit of measurement is specified by the unitCode property.
      *
      *
-     * @var float|null
+     * @var Number|null
      */
     protected $billingIncrement;
 
@@ -61,12 +88,37 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     protected $unitText;
 
     /**
-     * A short text or acronym indicating multiple price specifications for the same offer, e.g. SRP for the suggested retail price or INVOICE for the invoice price, mostly used in the car industry.
+     * Specifies for how long this price (or price component) will be billed. Can be used, for example, to model the contractual duration of a subscription or payment plan. Type can be either a Duration or a Number (in which case the unit of measurement, for example month, is specified by the unitCode property)
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|DateInterval|Number|null
      */
-    protected $priceType;
+    protected $billingDuration;
+
+    /**
+     * @return Number|null
+     */
+    public function getBillingStart()
+    {
+        return $this->billingStart;
+    }
+
+    /**
+     * @param Number|null $billingStart
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBillingStart($billingStart)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $billingStart = self::checkTypes($billingStart, $types);
+
+        $this->billingStart = $billingStart;
+    }
 
     /**
      * @return string
@@ -83,9 +135,9 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
      */
     public function setUnitCode($unitCode)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $unitCode = self::checkTypes($unitCode, $types);
 
@@ -93,7 +145,58 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     }
 
     /**
-     * @return float|null
+     * @return string|\OpenActive\Enums\SchemaOrg\PriceTypeEnumeration|null
+     */
+    public function getPriceType()
+    {
+        return $this->priceType;
+    }
+
+    /**
+     * @param string|\OpenActive\Enums\SchemaOrg\PriceTypeEnumeration|null $priceType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPriceType($priceType)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Enums\SchemaOrg\PriceTypeEnumeration",
+            "null",
+        ];
+
+        $priceType = self::checkTypes($priceType, $types);
+
+        $this->priceType = $priceType;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\PriceComponentTypeEnumeration|null
+     */
+    public function getPriceComponentType()
+    {
+        return $this->priceComponentType;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\PriceComponentTypeEnumeration|null $priceComponentType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPriceComponentType($priceComponentType)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\PriceComponentTypeEnumeration",
+            "null",
+        ];
+
+        $priceComponentType = self::checkTypes($priceComponentType, $types);
+
+        $this->priceComponentType = $priceComponentType;
+    }
+
+    /**
+     * @return Number|null
      */
     public function getBillingIncrement()
     {
@@ -101,16 +204,16 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     }
 
     /**
-     * @param float|null $billingIncrement
+     * @param Number|null $billingIncrement
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBillingIncrement($billingIncrement)
     {
-        $types = array(
-            "float",
+        $types = [
+            "Number",
             "null",
-        );
+        ];
 
         $billingIncrement = self::checkTypes($billingIncrement, $types);
 
@@ -132,9 +235,9 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
      */
     public function setReferenceQuantity($referenceQuantity)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
+        ];
 
         $referenceQuantity = self::checkTypes($referenceQuantity, $types);
 
@@ -156,9 +259,9 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
      */
     public function setUnitText($unitText)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $unitText = self::checkTypes($unitText, $types);
 
@@ -166,27 +269,30 @@ class UnitPriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecifica
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|DateInterval|Number|null
      */
-    public function getPriceType()
+    public function getBillingDuration()
     {
-        return $this->priceType;
+        return $this->billingDuration;
     }
 
     /**
-     * @param string $priceType
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|DateInterval|Number|null $billingDuration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPriceType($priceType)
+    public function setBillingDuration($billingDuration)
     {
-        $types = array(
-            "string",
-        );
+        $types = [
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "DateInterval",
+            "Number",
+            "null",
+        ];
 
-        $priceType = self::checkTypes($priceType, $types);
+        $billingDuration = self::checkTypes($billingDuration, $types);
 
-        $this->priceType = $priceType;
+        $this->billingDuration = $billingDuration;
     }
 
 }

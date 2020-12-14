@@ -120,7 +120,7 @@ class Schedule extends \OpenActive\BaseModel
     protected $exceptDate;
 
     /**
-     * An RFC6570 compliant URI template that can be used to generate a unique identifier ("@id") for every event described by the schedule (see below for more information). This property is required if the data provider is supporting third-party booking via the Open Booking API.
+     * An RFC6570 compliant URI template that can be used to generate a unique identifier (`@id`) for every event described by the schedule (see below for more information). This property is required if the data provider is supporting third-party booking via the Open Booking API.
      *
      * ```json
      * "idTemplate": "https://example.com/event{/id}"
@@ -244,11 +244,11 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setByDay($byDay)
     {
-        $types = array(
+        $types = [
             "string[]",
             "\OpenActive\Enums\SchemaOrg\DayOfWeek[]",
             "null",
-        );
+        ];
 
         $byDay = self::checkTypes($byDay, $types);
 
@@ -270,10 +270,10 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setByMonth($byMonth)
     {
-        $types = array(
+        $types = [
             "int[]",
             "null",
-        );
+        ];
 
         $byMonth = self::checkTypes($byMonth, $types);
 
@@ -295,10 +295,10 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setByMonthDay($byMonthDay)
     {
-        $types = array(
+        $types = [
             "int[]",
             "null",
-        );
+        ];
 
         $byMonthDay = self::checkTypes($byMonthDay, $types);
 
@@ -320,10 +320,10 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setDuration($duration)
     {
-        $types = array(
+        $types = [
             "DateInterval",
             "null",
-        );
+        ];
 
         $duration = self::checkTypes($duration, $types);
 
@@ -345,10 +345,10 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setEndTime($endTime)
     {
-        $types = array(
+        $types = [
             "Time",
             "null",
-        );
+        ];
 
         $endTime = self::checkTypes($endTime, $types);
 
@@ -370,11 +370,11 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setExceptDate($exceptDate)
     {
-        $types = array(
+        $types = [
             "Date[]",
             "DateTime[]",
             "null",
-        );
+        ];
 
         $exceptDate = self::checkTypes($exceptDate, $types);
 
@@ -396,9 +396,9 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setIdTemplate($idTemplate)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $idTemplate = self::checkTypes($idTemplate, $types);
 
@@ -420,10 +420,10 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setRepeatCount($repeatCount)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $repeatCount = self::checkTypes($repeatCount, $types);
 
@@ -445,10 +445,10 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setRepeatFrequency($repeatFrequency)
     {
-        $types = array(
+        $types = [
             "DateInterval",
             "null",
-        );
+        ];
 
         $repeatFrequency = self::checkTypes($repeatFrequency, $types);
 
@@ -470,9 +470,9 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setScheduledEventType($scheduledEventType)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $scheduledEventType = self::checkTypes($scheduledEventType, $types);
 
@@ -494,9 +494,9 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setScheduleTimezone($scheduleTimezone)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $scheduleTimezone = self::checkTypes($scheduleTimezone, $types);
 
@@ -518,10 +518,10 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setStartDate($startDate)
     {
-        $types = array(
+        $types = [
             "Date",
             "null",
-        );
+        ];
 
         $startDate = self::checkTypes($startDate, $types);
 
@@ -543,10 +543,10 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setEndDate($endDate)
     {
-        $types = array(
+        $types = [
             "Date",
             "null",
-        );
+        ];
 
         $endDate = self::checkTypes($endDate, $types);
 
@@ -568,10 +568,10 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setStartTime($startTime)
     {
-        $types = array(
+        $types = [
             "Time",
             "null",
-        );
+        ];
 
         $startTime = self::checkTypes($startTime, $types);
 
@@ -593,9 +593,9 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setUrlTemplate($urlTemplate)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $urlTemplate = self::checkTypes($urlTemplate, $types);
 
@@ -617,9 +617,9 @@ class Schedule extends \OpenActive\BaseModel
      */
     public function setTimeZone($timeZone)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $timeZone = self::checkTypes($timeZone, $types);
 

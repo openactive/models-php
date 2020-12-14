@@ -18,6 +18,7 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
     public static function fieldList() {
         $fields = [
             "isAcceptingNewPatients" => "isAcceptingNewPatients",
+            "medicalSpecialty" => "medicalSpecialty",
             "healthPlanNetworkId" => "healthPlanNetworkId",
         ];
 
@@ -31,6 +32,14 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
      * @var bool|null
      */
     protected $isAcceptingNewPatients;
+
+    /**
+     * A medical specialty of the provider.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalSpecialty
+     */
+    protected $medicalSpecialty;
 
     /**
      * Name or unique ID of network. (Networks are often reused across different insurance plans).
@@ -55,14 +64,38 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setIsAcceptingNewPatients($isAcceptingNewPatients)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $isAcceptingNewPatients = self::checkTypes($isAcceptingNewPatients, $types);
 
         $this->isAcceptingNewPatients = $isAcceptingNewPatients;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalSpecialty
+     */
+    public function getMedicalSpecialty()
+    {
+        return $this->medicalSpecialty;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalSpecialty $medicalSpecialty
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMedicalSpecialty($medicalSpecialty)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalSpecialty",
+        ];
+
+        $medicalSpecialty = self::checkTypes($medicalSpecialty, $types);
+
+        $this->medicalSpecialty = $medicalSpecialty;
     }
 
     /**
@@ -80,9 +113,9 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setHealthPlanNetworkId($healthPlanNetworkId)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $healthPlanNetworkId = self::checkTypes($healthPlanNetworkId, $types);
 

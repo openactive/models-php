@@ -17,8 +17,8 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
 
     public static function fieldList() {
         $fields = [
-            "hasDeliveryMethod" => "hasDeliveryMethod",
             "availableThrough" => "availableThrough",
+            "hasDeliveryMethod" => "hasDeliveryMethod",
             "availableFrom" => "availableFrom",
             "accessCode" => "accessCode",
         ];
@@ -27,20 +27,20 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * Method used for delivery or shipping.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
-     */
-    protected $hasDeliveryMethod;
-
-    /**
      * After this date, the item will no longer be available for pickup.
      *
      *
      * @var DateTime|null
      */
     protected $availableThrough;
+
+    /**
+     * Method used for delivery or shipping.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
+     */
+    protected $hasDeliveryMethod;
 
     /**
      * When the item is available for pickup from the store, locker, etc.
@@ -59,31 +59,6 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     protected $accessCode;
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
-     */
-    public function getHasDeliveryMethod()
-    {
-        return $this->hasDeliveryMethod;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\DeliveryMethod|null $hasDeliveryMethod
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHasDeliveryMethod($hasDeliveryMethod)
-    {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
-            "null",
-        );
-
-        $hasDeliveryMethod = self::checkTypes($hasDeliveryMethod, $types);
-
-        $this->hasDeliveryMethod = $hasDeliveryMethod;
-    }
-
-    /**
      * @return DateTime|null
      */
     public function getAvailableThrough()
@@ -98,14 +73,39 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setAvailableThrough($availableThrough)
     {
-        $types = array(
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $availableThrough = self::checkTypes($availableThrough, $types);
 
         $this->availableThrough = $availableThrough;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
+     */
+    public function getHasDeliveryMethod()
+    {
+        return $this->hasDeliveryMethod;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\DeliveryMethod|null $hasDeliveryMethod
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasDeliveryMethod($hasDeliveryMethod)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
+            "null",
+        ];
+
+        $hasDeliveryMethod = self::checkTypes($hasDeliveryMethod, $types);
+
+        $this->hasDeliveryMethod = $hasDeliveryMethod;
     }
 
     /**
@@ -123,10 +123,10 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setAvailableFrom($availableFrom)
     {
-        $types = array(
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $availableFrom = self::checkTypes($availableFrom, $types);
 
@@ -148,9 +148,9 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setAccessCode($accessCode)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $accessCode = self::checkTypes($accessCode, $types);
 

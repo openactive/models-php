@@ -25,23 +25,23 @@ class TouristAttraction extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * Attraction suitable for type(s) of tourist. eg. Children, visitors from a particular country, etc.
+     * Attraction suitable for type(s) of tourist. eg. Children, visitors from a particular country, etc. 
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Audience
+     * @var \OpenActive\Models\SchemaOrg\Audience|string
      */
     protected $touristType;
 
     /**
-     * A language someone may use with or at the item, service or place. Please use one of the language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>. See also <a class="localLink" href="https://schema.org/inLanguage">inLanguage</a>
+     * A language someone may use with or at the item, service or place. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[inLanguage]]
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Language
+     * @var \OpenActive\Models\SchemaOrg\Language|string
      */
     protected $availableLanguage;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Audience
+     * @return \OpenActive\Models\SchemaOrg\Audience|string
      */
     public function getTouristType()
     {
@@ -49,16 +49,16 @@ class TouristAttraction extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Audience $touristType
+     * @param \OpenActive\Models\SchemaOrg\Audience|string $touristType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTouristType($touristType)
     {
-        $types = array(
-            "string",
+        $types = [
             "\OpenActive\Models\SchemaOrg\Audience",
-        );
+            "string",
+        ];
 
         $touristType = self::checkTypes($touristType, $types);
 
@@ -66,7 +66,7 @@ class TouristAttraction extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Language
+     * @return \OpenActive\Models\SchemaOrg\Language|string
      */
     public function getAvailableLanguage()
     {
@@ -74,16 +74,16 @@ class TouristAttraction extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Language $availableLanguage
+     * @param \OpenActive\Models\SchemaOrg\Language|string $availableLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableLanguage($availableLanguage)
     {
-        $types = array(
-            "string",
+        $types = [
             "\OpenActive\Models\SchemaOrg\Language",
-        );
+            "string",
+        ];
 
         $availableLanguage = self::checkTypes($availableLanguage, $types);
 

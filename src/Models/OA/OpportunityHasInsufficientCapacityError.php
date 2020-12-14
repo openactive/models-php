@@ -64,9 +64,9 @@ class OpportunityHasInsufficientCapacityError extends \OpenActive\Models\OA\Open
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class OpportunityHasInsufficientCapacityError extends \OpenActive\Models\OA\Open
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

@@ -64,9 +64,9 @@ class OpportunityIsFullError extends \OpenActive\Models\OA\OpenBookingError
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class OpportunityIsFullError extends \OpenActive\Models\OA\OpenBookingError
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

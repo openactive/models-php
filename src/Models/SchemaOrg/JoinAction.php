@@ -46,9 +46,9 @@ class JoinAction extends \OpenActive\Models\SchemaOrg\InteractAction
      */
     public function setEvent($event)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Event",
-        );
+        ];
 
         $event = self::checkTypes($event, $types);
 

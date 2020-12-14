@@ -255,9 +255,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -279,9 +279,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -303,9 +303,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setAccessService($accessService)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\WebAPI",
-        );
+        ];
 
         $accessService = self::checkTypes($accessService, $types);
 
@@ -327,9 +327,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setBackgroundImage($backgroundImage)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject",
-        );
+        ];
 
         $backgroundImage = self::checkTypes($backgroundImage, $types);
 
@@ -351,9 +351,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setBookingService($bookingService)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\BookingService",
-        );
+        ];
 
         $bookingService = self::checkTypes($bookingService, $types);
 
@@ -375,10 +375,10 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setDateModified($dateModified)
     {
-        $types = array(
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $dateModified = self::checkTypes($dateModified, $types);
 
@@ -400,11 +400,11 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setDatePublished($datePublished)
     {
-        $types = array(
+        $types = [
             "Date",
             "DateTime",
             "null",
-        );
+        ];
 
         $datePublished = self::checkTypes($datePublished, $types);
 
@@ -426,9 +426,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setDiscussionUrl($discussionUrl)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $discussionUrl = self::checkTypes($discussionUrl, $types);
 
@@ -450,9 +450,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setDistribution($distribution)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\DataDownload[]",
-        );
+        ];
 
         $distribution = self::checkTypes($distribution, $types);
 
@@ -474,9 +474,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setDocumentation($documentation)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $documentation = self::checkTypes($documentation, $types);
 
@@ -498,9 +498,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setInLanguage($inLanguage)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $inLanguage = self::checkTypes($inLanguage, $types);
 
@@ -522,9 +522,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setKeywords($keywords)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $keywords = self::checkTypes($keywords, $types);
 
@@ -546,9 +546,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setLicense($license)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $license = self::checkTypes($license, $types);
 
@@ -570,9 +570,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setPublisher($publisher)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Organization",
-        );
+        ];
 
         $publisher = self::checkTypes($publisher, $types);
 
@@ -594,9 +594,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setSchemaVersion($schemaVersion)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $schemaVersion = self::checkTypes($schemaVersion, $types);
 
@@ -618,9 +618,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 

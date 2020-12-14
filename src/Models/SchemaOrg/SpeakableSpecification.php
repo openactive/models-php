@@ -25,7 +25,7 @@ class SpeakableSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * A CSS selector, e.g. of a <a class="localLink" href="https://schema.org/SpeakableSpecification">SpeakableSpecification</a> or <a class="localLink" href="https://schema.org/WebPageElement">WebPageElement</a>. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element".
+     * A CSS selector, e.g. of a [[SpeakableSpecification]] or [[WebPageElement]]. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element".
      *
      *
      * @var \OpenActive\Models\SchemaOrg\CssSelectorType
@@ -33,7 +33,7 @@ class SpeakableSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     protected $cssSelector;
 
     /**
-     * An XPath, e.g. of a <a class="localLink" href="https://schema.org/SpeakableSpecification">SpeakableSpecification</a> or <a class="localLink" href="https://schema.org/WebPageElement">WebPageElement</a>. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element".
+     * An XPath, e.g. of a [[SpeakableSpecification]] or [[WebPageElement]]. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element".
      *
      *
      * @var \OpenActive\Models\SchemaOrg\XPathType
@@ -55,9 +55,9 @@ class SpeakableSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setCssSelector($cssSelector)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\CssSelectorType",
-        );
+        ];
 
         $cssSelector = self::checkTypes($cssSelector, $types);
 
@@ -79,9 +79,9 @@ class SpeakableSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setXpath($xpath)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\XPathType",
-        );
+        ];
 
         $xpath = self::checkTypes($xpath, $types);
 

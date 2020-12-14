@@ -55,9 +55,9 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWorkSeason
      */
     public function setPartOfTVSeries($partOfTVSeries)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\TVSeries",
-        );
+        ];
 
         $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
 
@@ -79,9 +79,9 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWorkSeason
      */
     public function setCountryOfOrigin($countryOfOrigin)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Country",
-        );
+        ];
 
         $countryOfOrigin = self::checkTypes($countryOfOrigin, $types);
 

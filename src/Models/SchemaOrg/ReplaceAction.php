@@ -55,9 +55,9 @@ class ReplaceAction extends \OpenActive\Models\SchemaOrg\UpdateAction
      */
     public function setReplacee($replacee)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Thing",
-        );
+        ];
 
         $replacee = self::checkTypes($replacee, $types);
 
@@ -79,9 +79,9 @@ class ReplaceAction extends \OpenActive\Models\SchemaOrg\UpdateAction
      */
     public function setReplacer($replacer)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Thing",
-        );
+        ];
 
         $replacer = self::checkTypes($replacer, $types);
 

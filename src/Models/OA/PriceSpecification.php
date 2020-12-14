@@ -41,7 +41,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
      * The total amount.
      *
      *
-     * @var float|null
+     * @var Number|null
      */
     protected $price;
 
@@ -68,10 +68,10 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
      */
     public function setPrepayment($prepayment)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\RequiredStatusType",
             "null",
-        );
+        ];
 
         $prepayment = self::checkTypes($prepayment, $types);
 
@@ -79,7 +79,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
     }
 
     /**
-     * @return float|null
+     * @return Number|null
      */
     public function getPrice()
     {
@@ -87,16 +87,16 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
     }
 
     /**
-     * @param float|null $price
+     * @param Number|null $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
-        $types = array(
-            "float",
+        $types = [
+            "Number",
             "null",
-        );
+        ];
 
         $price = self::checkTypes($price, $types);
 
@@ -118,9 +118,9 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
      */
     public function setPriceCurrency($priceCurrency)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $priceCurrency = self::checkTypes($priceCurrency, $types);
 

@@ -51,9 +51,9 @@ class AuthenticatedPerson extends \OpenActive\Models\OA\Person
      */
     public function setAccessToken($accessToken)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $accessToken = self::checkTypes($accessToken, $types);
 

@@ -64,9 +64,9 @@ class TemporarilyUnableToProduceOrderQuoteError extends \OpenActive\Models\OA\Op
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class TemporarilyUnableToProduceOrderQuoteError extends \OpenActive\Models\OA\Op
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

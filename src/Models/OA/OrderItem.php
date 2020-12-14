@@ -170,9 +170,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setAcceptedOffer($acceptedOffer)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Offer",
-        );
+        ];
 
         $acceptedOffer = self::checkTypes($acceptedOffer, $types);
 
@@ -194,9 +194,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setAccessCode($accessCode)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\PropertyValue[]",
-        );
+        ];
 
         $accessCode = self::checkTypes($accessCode, $types);
 
@@ -218,9 +218,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setAccessPass($accessPass)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject[]",
-        );
+        ];
 
         $accessPass = self::checkTypes($accessPass, $types);
 
@@ -242,10 +242,10 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setAllowCustomerCancellationFullRefund($allowCustomerCancellationFullRefund)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $allowCustomerCancellationFullRefund = self::checkTypes($allowCustomerCancellationFullRefund, $types);
 
@@ -267,9 +267,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setAttendee($attendee)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Person",
-        );
+        ];
 
         $attendee = self::checkTypes($attendee, $types);
 
@@ -291,9 +291,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setAttendeeDetailsRequired($attendeeDetailsRequired)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $attendeeDetailsRequired = self::checkTypes($attendeeDetailsRequired, $types);
 
@@ -315,9 +315,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setCancellationMessage($cancellationMessage)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $cancellationMessage = self::checkTypes($cancellationMessage, $types);
 
@@ -339,9 +339,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setCustomerNotice($customerNotice)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $customerNotice = self::checkTypes($customerNotice, $types);
 
@@ -363,9 +363,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setError($error)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\OpenBookingError[]",
-        );
+        ];
 
         $error = self::checkTypes($error, $types);
 
@@ -387,9 +387,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setOrderedItem($orderedItem)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Event",
-        );
+        ];
 
         $orderedItem = self::checkTypes($orderedItem, $types);
 
@@ -411,9 +411,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setOrderItemIntakeForm($orderItemIntakeForm)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\PropertyValueSpecification[]",
-        );
+        ];
 
         $orderItemIntakeForm = self::checkTypes($orderItemIntakeForm, $types);
 
@@ -435,9 +435,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setOrderItemIntakeFormResponse($orderItemIntakeFormResponse)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\PropertyValue[]",
-        );
+        ];
 
         $orderItemIntakeFormResponse = self::checkTypes($orderItemIntakeFormResponse, $types);
 
@@ -459,10 +459,10 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setOrderItemStatus($orderItemStatus)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\OrderItemStatus",
             "null",
-        );
+        ];
 
         $orderItemStatus = self::checkTypes($orderItemStatus, $types);
 
@@ -484,10 +484,10 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setPosition($position)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $position = self::checkTypes($position, $types);
 
@@ -509,9 +509,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setUnitTaxSpecification($unitTaxSpecification)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\TaxChargeSpecification[]",
-        );
+        ];
 
         $unitTaxSpecification = self::checkTypes($unitTaxSpecification, $types);
 

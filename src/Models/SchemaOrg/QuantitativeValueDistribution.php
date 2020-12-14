@@ -17,51 +17,35 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
 
     public static function fieldList() {
         $fields = [
-            "percentile25" => "percentile25",
-            "median" => "median",
-            "percentile10" => "percentile10",
-            "percentile75" => "percentile75",
-            "duration" => "duration",
             "percentile90" => "percentile90",
+            "percentile10" => "percentile10",
+            "duration" => "duration",
+            "median" => "median",
+            "percentile25" => "percentile25",
+            "percentile75" => "percentile75",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The 25th percentile value.
+     * The 90th percentile value.
      *
      *
-     * @var float|null
+     * @var Number|null
      */
-    protected $percentile25;
-
-    /**
-     * The median value.
-     *
-     *
-     * @var float|null
-     */
-    protected $median;
+    protected $percentile90;
 
     /**
      * The 10th percentile value.
      *
      *
-     * @var float|null
+     * @var Number|null
      */
     protected $percentile10;
 
     /**
-     * The 75th percentile value.
-     *
-     *
-     * @var float|null
-     */
-    protected $percentile75;
-
-    /**
-     * The duration of the item (movie, audio recording, event, etc.) in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.
+     * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).
      *
      *
      * @var DateInterval|null
@@ -69,65 +53,56 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     protected $duration;
 
     /**
-     * The 90th percentile value.
+     * The median value.
      *
      *
-     * @var float|null
+     * @var Number|null
      */
-    protected $percentile90;
+    protected $median;
 
     /**
-     * @return float|null
+     * The 25th percentile value.
+     *
+     *
+     * @var Number|null
      */
-    public function getPercentile25()
+    protected $percentile25;
+
+    /**
+     * The 75th percentile value.
+     *
+     *
+     * @var Number|null
+     */
+    protected $percentile75;
+
+    /**
+     * @return Number|null
+     */
+    public function getPercentile90()
     {
-        return $this->percentile25;
+        return $this->percentile90;
     }
 
     /**
-     * @param float|null $percentile25
+     * @param Number|null $percentile90
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPercentile25($percentile25)
+    public function setPercentile90($percentile90)
     {
-        $types = array(
-            "float",
+        $types = [
+            "Number",
             "null",
-        );
+        ];
 
-        $percentile25 = self::checkTypes($percentile25, $types);
+        $percentile90 = self::checkTypes($percentile90, $types);
 
-        $this->percentile25 = $percentile25;
+        $this->percentile90 = $percentile90;
     }
 
     /**
-     * @return float|null
-     */
-    public function getMedian()
-    {
-        return $this->median;
-    }
-
-    /**
-     * @param float|null $median
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMedian($median)
-    {
-        $types = array(
-            "float",
-            "null",
-        );
-
-        $median = self::checkTypes($median, $types);
-
-        $this->median = $median;
-    }
-
-    /**
-     * @return float|null
+     * @return Number|null
      */
     public function getPercentile10()
     {
@@ -135,45 +110,20 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @param float|null $percentile10
+     * @param Number|null $percentile10
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPercentile10($percentile10)
     {
-        $types = array(
-            "float",
+        $types = [
+            "Number",
             "null",
-        );
+        ];
 
         $percentile10 = self::checkTypes($percentile10, $types);
 
         $this->percentile10 = $percentile10;
-    }
-
-    /**
-     * @return float|null
-     */
-    public function getPercentile75()
-    {
-        return $this->percentile75;
-    }
-
-    /**
-     * @param float|null $percentile75
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPercentile75($percentile75)
-    {
-        $types = array(
-            "float",
-            "null",
-        );
-
-        $percentile75 = self::checkTypes($percentile75, $types);
-
-        $this->percentile75 = $percentile75;
     }
 
     /**
@@ -191,10 +141,10 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
      */
     public function setDuration($duration)
     {
-        $types = array(
+        $types = [
             "DateInterval",
             "null",
-        );
+        ];
 
         $duration = self::checkTypes($duration, $types);
 
@@ -202,28 +152,78 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @return float|null
+     * @return Number|null
      */
-    public function getPercentile90()
+    public function getMedian()
     {
-        return $this->percentile90;
+        return $this->median;
     }
 
     /**
-     * @param float|null $percentile90
+     * @param Number|null $median
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPercentile90($percentile90)
+    public function setMedian($median)
     {
-        $types = array(
-            "float",
+        $types = [
+            "Number",
             "null",
-        );
+        ];
 
-        $percentile90 = self::checkTypes($percentile90, $types);
+        $median = self::checkTypes($median, $types);
 
-        $this->percentile90 = $percentile90;
+        $this->median = $median;
+    }
+
+    /**
+     * @return Number|null
+     */
+    public function getPercentile25()
+    {
+        return $this->percentile25;
+    }
+
+    /**
+     * @param Number|null $percentile25
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPercentile25($percentile25)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $percentile25 = self::checkTypes($percentile25, $types);
+
+        $this->percentile25 = $percentile25;
+    }
+
+    /**
+     * @return Number|null
+     */
+    public function getPercentile75()
+    {
+        return $this->percentile75;
+    }
+
+    /**
+     * @param Number|null $percentile75
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPercentile75($percentile75)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $percentile75 = self::checkTypes($percentile75, $types);
+
+        $this->percentile75 = $percentile75;
     }
 
 }

@@ -293,7 +293,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers. This property must contain HTML.
      * 
      * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
      *
@@ -383,13 +383,13 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -411,9 +411,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -435,9 +435,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -459,9 +459,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setAccessibilityInformation($accessibilityInformation)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $accessibilityInformation = self::checkTypes($accessibilityInformation, $types);
 
@@ -483,9 +483,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setAccessibilitySupport($accessibilitySupport)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $accessibilitySupport = self::checkTypes($accessibilitySupport, $types);
 
@@ -507,9 +507,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setActivity($activity)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $activity = self::checkTypes($activity, $types);
 
@@ -531,9 +531,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setAttendeeInstructions($attendeeInstructions)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $attendeeInstructions = self::checkTypes($attendeeInstructions, $types);
 
@@ -555,10 +555,10 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setCategory($category)
     {
-        $types = array(
+        $types = [
             "string[]",
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $category = self::checkTypes($category, $types);
 
@@ -580,9 +580,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setEvent($event)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Slot[]",
-        );
+        ];
 
         $event = self::checkTypes($event, $types);
 
@@ -604,9 +604,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setHoursAvailable($hoursAvailable)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\OpeningHoursSpecification[]",
-        );
+        ];
 
         $hoursAvailable = self::checkTypes($hoursAvailable, $types);
 
@@ -628,9 +628,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setImage($image)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject[]",
-        );
+        ];
 
         $image = self::checkTypes($image, $types);
 
@@ -652,9 +652,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setIndividualFacilityUse($individualFacilityUse)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\IndividualFacilityUse[]",
-        );
+        ];
 
         $individualFacilityUse = self::checkTypes($individualFacilityUse, $types);
 
@@ -676,9 +676,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setLocation($location)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Place",
-        );
+        ];
 
         $location = self::checkTypes($location, $types);
 
@@ -700,9 +700,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setOffers($offers)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Offer[]",
-        );
+        ];
 
         $offers = self::checkTypes($offers, $types);
 
@@ -724,9 +724,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setProvider($provider)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Organization",
-        );
+        ];
 
         $provider = self::checkTypes($provider, $types);
 
@@ -748,9 +748,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 
@@ -772,9 +772,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setFormattedDescription($formattedDescription)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $formattedDescription = self::checkTypes($formattedDescription, $types);
 
@@ -796,10 +796,10 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setIsWheelchairAccessible($isWheelchairAccessible)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $isWheelchairAccessible = self::checkTypes($isWheelchairAccessible, $types);
 
@@ -821,9 +821,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setVideo($video)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\VideoObject[]",
-        );
+        ];
 
         $video = self::checkTypes($video, $types);
 
@@ -845,9 +845,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setSportsActivityLocation($sportsActivityLocation)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SportsActivityLocation[]",
-        );
+        ];
 
         $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);
 
@@ -869,10 +869,10 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setOfferValidityPeriod($offerValidityPeriod)
     {
-        $types = array(
+        $types = [
             "DateInterval",
             "null",
-        );
+        ];
 
         $offerValidityPeriod = self::checkTypes($offerValidityPeriod, $types);
 
@@ -894,9 +894,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setFacilityType($facilityType)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\Concept[]",
-        );
+        ];
 
         $facilityType = self::checkTypes($facilityType, $types);
 
@@ -918,10 +918,10 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setFacilitySetting($facilitySetting)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\FacilitySettingType",
             "null",
-        );
+        ];
 
         $facilitySetting = self::checkTypes($facilitySetting, $types);
 

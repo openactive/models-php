@@ -62,9 +62,9 @@ class SportsActivityLocation extends \OpenActive\Models\SchemaOrg\SportsActivity
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -86,10 +86,10 @@ class SportsActivityLocation extends \OpenActive\Models\SchemaOrg\SportsActivity
      */
     public function setContainedInPlace($containedInPlace)
     {
-        $types = array(
+        $types = [
             "string",
             "\OpenActive\Models\OA\Place",
-        );
+        ];
 
         $containedInPlace = self::checkTypes($containedInPlace, $types);
 

@@ -50,9 +50,9 @@ class CourseInstance extends \OpenActive\Models\OA\Event
      */
     public function setCourse($course)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\Course",
-        );
+        ];
 
         $course = self::checkTypes($course, $types);
 

@@ -56,9 +56,9 @@ class OrderQuote extends \OpenActive\Models\OA\Order
      */
     public function setLease($lease)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Lease",
-        );
+        ];
 
         $lease = self::checkTypes($lease, $types);
 
@@ -80,10 +80,10 @@ class OrderQuote extends \OpenActive\Models\OA\Order
      */
     public function setOrderRequiresApproval($orderRequiresApproval)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $orderRequiresApproval = self::checkTypes($orderRequiresApproval, $types);
 

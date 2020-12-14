@@ -29,7 +29,7 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The parent of a question, answer or item in general.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Question
+     * @var \OpenActive\Models\SchemaOrg\Comment
      */
     protected $parentItem;
 
@@ -50,7 +50,7 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $downvoteCount;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Question
+     * @return \OpenActive\Models\SchemaOrg\Comment
      */
     public function getParentItem()
     {
@@ -58,15 +58,15 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Question $parentItem
+     * @param \OpenActive\Models\SchemaOrg\Comment $parentItem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setParentItem($parentItem)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Question",
-        );
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Comment",
+        ];
 
         $parentItem = self::checkTypes($parentItem, $types);
 
@@ -88,10 +88,10 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setUpvoteCount($upvoteCount)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $upvoteCount = self::checkTypes($upvoteCount, $types);
 
@@ -113,10 +113,10 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setDownvoteCount($downvoteCount)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $downvoteCount = self::checkTypes($downvoteCount, $types);
 

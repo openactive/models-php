@@ -17,23 +17,31 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
 
     public static function fieldList() {
         $fields = [
-            "discusses" => "discusses",
-            "commentText" => "commentText",
-            "commentTime" => "commentTime",
             "creator" => "creator",
             "replyToUrl" => "replyToUrl",
+            "commentText" => "commentText",
+            "commentTime" => "commentTime",
+            "discusses" => "discusses",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Specifies the CreativeWork associated with the UserComment.
+     * The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
-    protected $discusses;
+    protected $creator;
+
+    /**
+     * The URL at which a reply may be posted to the specified UserComment.
+     *
+     *
+     * @var string
+     */
+    protected $replyToUrl;
 
     /**
      * The text of the UserComment.
@@ -52,97 +60,15 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     protected $commentTime;
 
     /**
-     * The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.
+     * Specifies the CreativeWork associated with the UserComment.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork
      */
-    protected $creator;
+    protected $discusses;
 
     /**
-     * The URL at which a reply may be posted to the specified UserComment.
-     *
-     *
-     * @var string
-     */
-    protected $replyToUrl;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    public function getDiscusses()
-    {
-        return $this->discusses;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork $discusses
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDiscusses($discusses)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-        );
-
-        $discusses = self::checkTypes($discusses, $types);
-
-        $this->discusses = $discusses;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCommentText()
-    {
-        return $this->commentText;
-    }
-
-    /**
-     * @param string $commentText
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCommentText($commentText)
-    {
-        $types = array(
-            "string",
-        );
-
-        $commentText = self::checkTypes($commentText, $types);
-
-        $this->commentText = $commentText;
-    }
-
-    /**
-     * @return Date|DateTime|null
-     */
-    public function getCommentTime()
-    {
-        return $this->commentTime;
-    }
-
-    /**
-     * @param Date|DateTime|null $commentTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCommentTime($commentTime)
-    {
-        $types = array(
-            "Date",
-            "DateTime",
-            "null",
-        );
-
-        $commentTime = self::checkTypes($commentTime, $types);
-
-        $this->commentTime = $commentTime;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getCreator()
     {
@@ -150,16 +76,16 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $creator
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $creator
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCreator($creator)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
+        $types = [
             "\OpenActive\Models\SchemaOrg\Organization",
-        );
+            "\OpenActive\Models\SchemaOrg\Person",
+        ];
 
         $creator = self::checkTypes($creator, $types);
 
@@ -181,13 +107,87 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
      */
     public function setReplyToUrl($replyToUrl)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $replyToUrl = self::checkTypes($replyToUrl, $types);
 
         $this->replyToUrl = $replyToUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCommentText()
+    {
+        return $this->commentText;
+    }
+
+    /**
+     * @param string $commentText
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCommentText($commentText)
+    {
+        $types = [
+            "string",
+        ];
+
+        $commentText = self::checkTypes($commentText, $types);
+
+        $this->commentText = $commentText;
+    }
+
+    /**
+     * @return Date|DateTime|null
+     */
+    public function getCommentTime()
+    {
+        return $this->commentTime;
+    }
+
+    /**
+     * @param Date|DateTime|null $commentTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCommentTime($commentTime)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $commentTime = self::checkTypes($commentTime, $types);
+
+        $this->commentTime = $commentTime;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    public function getDiscusses()
+    {
+        return $this->discusses;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork $discusses
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDiscusses($discusses)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+        ];
+
+        $discusses = self::checkTypes($discusses, $types);
+
+        $this->discusses = $discusses;
     }
 
 }

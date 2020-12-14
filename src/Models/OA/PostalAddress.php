@@ -98,9 +98,9 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function setAddressCountry($addressCountry)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $addressCountry = self::checkTypes($addressCountry, $types);
 
@@ -122,9 +122,9 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function setAddressLocality($addressLocality)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $addressLocality = self::checkTypes($addressLocality, $types);
 
@@ -146,9 +146,9 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function setAddressRegion($addressRegion)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $addressRegion = self::checkTypes($addressRegion, $types);
 
@@ -170,9 +170,9 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function setPostalCode($postalCode)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $postalCode = self::checkTypes($postalCode, $types);
 
@@ -194,9 +194,9 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function setStreetAddress($streetAddress)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $streetAddress = self::checkTypes($streetAddress, $types);
 

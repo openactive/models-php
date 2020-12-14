@@ -46,9 +46,9 @@ class CommentAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
      */
     public function setResultComment($resultComment)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Comment",
-        );
+        ];
 
         $resultComment = self::checkTypes($resultComment, $types);
 

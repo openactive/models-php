@@ -17,16 +17,24 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
+            "byArtist" => "byArtist",
             "recordingOf" => "recordingOf",
             "isrcCode" => "isrcCode",
-            "inAlbum" => "inAlbum",
             "inPlaylist" => "inPlaylist",
-            "byArtist" => "byArtist",
+            "inAlbum" => "inAlbum",
             "duration" => "duration",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The artist that performed this album or recording.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
+     */
+    protected $byArtist;
 
     /**
      * The composition this track is a recording of.
@@ -45,14 +53,6 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $isrcCode;
 
     /**
-     * The album to which this recording belongs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MusicAlbum
-     */
-    protected $inAlbum;
-
-    /**
      * The playlist to which this recording belongs.
      *
      *
@@ -61,20 +61,45 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $inPlaylist;
 
     /**
-     * The artist that performed this album or recording.
+     * The album to which this recording belongs.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\MusicAlbum
      */
-    protected $byArtist;
+    protected $inAlbum;
 
     /**
-     * The duration of the item (movie, audio recording, event, etc.) in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.
+     * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).
      *
      *
      * @var DateInterval|null
      */
     protected $duration;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
+     */
+    public function getByArtist()
+    {
+        return $this->byArtist;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person $byArtist
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setByArtist($byArtist)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "\OpenActive\Models\SchemaOrg\Person",
+        ];
+
+        $byArtist = self::checkTypes($byArtist, $types);
+
+        $this->byArtist = $byArtist;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MusicComposition
@@ -91,9 +116,9 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setRecordingOf($recordingOf)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\MusicComposition",
-        );
+        ];
 
         $recordingOf = self::checkTypes($recordingOf, $types);
 
@@ -115,37 +140,13 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setIsrcCode($isrcCode)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $isrcCode = self::checkTypes($isrcCode, $types);
 
         $this->isrcCode = $isrcCode;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MusicAlbum
-     */
-    public function getInAlbum()
-    {
-        return $this->inAlbum;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MusicAlbum $inAlbum
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setInAlbum($inAlbum)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\MusicAlbum",
-        );
-
-        $inAlbum = self::checkTypes($inAlbum, $types);
-
-        $this->inAlbum = $inAlbum;
     }
 
     /**
@@ -163,9 +164,9 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setInPlaylist($inPlaylist)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\MusicPlaylist",
-        );
+        ];
 
         $inPlaylist = self::checkTypes($inPlaylist, $types);
 
@@ -173,28 +174,27 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\MusicAlbum
      */
-    public function getByArtist()
+    public function getInAlbum()
     {
-        return $this->byArtist;
+        return $this->inAlbum;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person $byArtist
+     * @param \OpenActive\Models\SchemaOrg\MusicAlbum $inAlbum
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setByArtist($byArtist)
+    public function setInAlbum($inAlbum)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\MusicGroup",
-            "\OpenActive\Models\SchemaOrg\Person",
-        );
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MusicAlbum",
+        ];
 
-        $byArtist = self::checkTypes($byArtist, $types);
+        $inAlbum = self::checkTypes($inAlbum, $types);
 
-        $this->byArtist = $byArtist;
+        $this->inAlbum = $inAlbum;
     }
 
     /**
@@ -212,10 +212,10 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setDuration($duration)
     {
-        $types = array(
+        $types = [
             "DateInterval",
             "null",
-        );
+        ];
 
         $duration = self::checkTypes($duration, $types);
 

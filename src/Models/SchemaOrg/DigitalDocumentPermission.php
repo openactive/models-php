@@ -17,20 +17,12 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "grantee" => "grantee",
             "permissionType" => "permissionType",
+            "grantee" => "grantee",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The person, organization, contact point, or audience that has been granted this permission.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person
-     */
-    protected $grantee;
 
     /**
      * The type of permission granted the person, organization, or audience.
@@ -41,31 +33,12 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
     protected $permissionType;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person
+     * The person, organization, contact point, or audience that has been granted this permission.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Audience
      */
-    public function getGrantee()
-    {
-        return $this->grantee;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person $grantee
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGrantee($grantee)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
-            "\OpenActive\Models\SchemaOrg\Audience",
-            "\OpenActive\Models\SchemaOrg\Person",
-        );
-
-        $grantee = self::checkTypes($grantee, $types);
-
-        $this->grantee = $grantee;
-    }
+    protected $grantee;
 
     /**
      * @return \OpenActive\Enums\SchemaOrg\DigitalDocumentPermissionType|null
@@ -82,14 +55,41 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setPermissionType($permissionType)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\DigitalDocumentPermissionType",
             "null",
-        );
+        ];
 
         $permissionType = self::checkTypes($permissionType, $types);
 
         $this->permissionType = $permissionType;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Audience
+     */
+    public function getGrantee()
+    {
+        return $this->grantee;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Audience $grantee
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGrantee($grantee)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Audience",
+        ];
+
+        $grantee = self::checkTypes($grantee, $types);
+
+        $this->grantee = $grantee;
     }
 
 }

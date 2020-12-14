@@ -65,9 +65,9 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyVa
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -89,9 +89,9 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyVa
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -113,9 +113,9 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyVa
      */
     public function setValueRequired($valueRequired)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $valueRequired = self::checkTypes($valueRequired, $types);
 

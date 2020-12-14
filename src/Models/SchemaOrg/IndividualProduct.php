@@ -46,9 +46,9 @@ class IndividualProduct extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setSerialNumber($serialNumber)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $serialNumber = self::checkTypes($serialNumber, $types);
 

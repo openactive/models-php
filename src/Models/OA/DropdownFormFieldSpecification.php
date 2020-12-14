@@ -47,9 +47,9 @@ class DropdownFormFieldSpecification extends \OpenActive\Models\OA\PropertyValue
      */
     public function setValueOption($valueOption)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $valueOption = self::checkTypes($valueOption, $types);
 

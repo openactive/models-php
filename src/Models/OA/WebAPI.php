@@ -141,9 +141,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -165,9 +165,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -189,9 +189,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setConformsTo($conformsTo)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $conformsTo = self::checkTypes($conformsTo, $types);
 
@@ -213,9 +213,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setDocumentation($documentation)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $documentation = self::checkTypes($documentation, $types);
 
@@ -237,9 +237,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setEndpointDescription($endpointDescription)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $endpointDescription = self::checkTypes($endpointDescription, $types);
 
@@ -261,9 +261,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setEndpointURL($endpointURL)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $endpointURL = self::checkTypes($endpointURL, $types);
 
@@ -285,9 +285,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setLandingPage($landingPage)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $landingPage = self::checkTypes($landingPage, $types);
 
@@ -309,9 +309,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setTermsOfService($termsOfService)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $termsOfService = self::checkTypes($termsOfService, $types);
 

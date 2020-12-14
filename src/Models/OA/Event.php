@@ -69,6 +69,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
             "participantSuppliedEquipment" => "beta:participantSuppliedEquipment",
             "donationPaymentUrl" => "beta:donationPaymentUrl",
             "isFirstSessionAccessibleForFree" => "beta:isFirstSessionAccessibleForFree",
+            "contactPoint" => "beta:contactPoint",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -544,7 +545,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers. This property must contain HTML.
      * 
      * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
      *
@@ -730,6 +731,17 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     protected $isFirstSessionAccessibleForFree;
 
     /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Contact details for an Event, where they are not specifically related to the `organizer` or `leader`.
+     * 
+     * If you are using this property, please join the discussion at proposal [#113](https://github.com/openactive/modelling-opportunity-data/issues/113).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ContactPoint
+     */
+    protected $contactPoint;
+
+    /**
      * @return string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
@@ -744,13 +756,13 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -772,9 +784,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -796,9 +808,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -820,9 +832,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setAccessibilityInformation($accessibilityInformation)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $accessibilityInformation = self::checkTypes($accessibilityInformation, $types);
 
@@ -844,9 +856,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setAccessibilitySupport($accessibilitySupport)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $accessibilitySupport = self::checkTypes($accessibilitySupport, $types);
 
@@ -868,9 +880,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setActivity($activity)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $activity = self::checkTypes($activity, $types);
 
@@ -892,9 +904,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setAgeRange($ageRange)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\QuantitativeValue",
-        );
+        ];
 
         $ageRange = self::checkTypes($ageRange, $types);
 
@@ -916,9 +928,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setAttendeeInstructions($attendeeInstructions)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $attendeeInstructions = self::checkTypes($attendeeInstructions, $types);
 
@@ -940,10 +952,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setCategory($category)
     {
-        $types = array(
+        $types = [
             "string[]",
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $category = self::checkTypes($category, $types);
 
@@ -965,9 +977,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setContributor($contributor)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Person[]",
-        );
+        ];
 
         $contributor = self::checkTypes($contributor, $types);
 
@@ -989,10 +1001,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setDuration($duration)
     {
-        $types = array(
+        $types = [
             "DateInterval",
             "null",
-        );
+        ];
 
         $duration = self::checkTypes($duration, $types);
 
@@ -1014,10 +1026,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setEventAttendanceMode($eventAttendanceMode)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\EventAttendanceModeEnumeration",
             "null",
-        );
+        ];
 
         $eventAttendanceMode = self::checkTypes($eventAttendanceMode, $types);
 
@@ -1039,9 +1051,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setEventSchedule($eventSchedule)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Schedule[]",
-        );
+        ];
 
         $eventSchedule = self::checkTypes($eventSchedule, $types);
 
@@ -1063,10 +1075,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setEventStatus($eventStatus)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\EventStatusType",
             "null",
-        );
+        ];
 
         $eventStatus = self::checkTypes($eventStatus, $types);
 
@@ -1088,10 +1100,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setGenderRestriction($genderRestriction)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\GenderRestrictionType",
             "null",
-        );
+        ];
 
         $genderRestriction = self::checkTypes($genderRestriction, $types);
 
@@ -1113,9 +1125,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setImage($image)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject[]",
-        );
+        ];
 
         $image = self::checkTypes($image, $types);
 
@@ -1137,10 +1149,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setIsAccessibleForFree($isAccessibleForFree)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $isAccessibleForFree = self::checkTypes($isAccessibleForFree, $types);
 
@@ -1162,10 +1174,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setIsCoached($isCoached)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $isCoached = self::checkTypes($isCoached, $types);
 
@@ -1187,9 +1199,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setLeader($leader)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Person[]",
-        );
+        ];
 
         $leader = self::checkTypes($leader, $types);
 
@@ -1211,10 +1223,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setLevel($level)
     {
-        $types = array(
+        $types = [
             "string[]",
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $level = self::checkTypes($level, $types);
 
@@ -1236,9 +1248,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setLocation($location)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Place",
-        );
+        ];
 
         $location = self::checkTypes($location, $types);
 
@@ -1260,10 +1272,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $maximumAttendeeCapacity = self::checkTypes($maximumAttendeeCapacity, $types);
 
@@ -1285,10 +1297,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setMaximumVirtualAttendeeCapacity($maximumVirtualAttendeeCapacity)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $maximumVirtualAttendeeCapacity = self::checkTypes($maximumVirtualAttendeeCapacity, $types);
 
@@ -1310,9 +1322,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setMeetingPoint($meetingPoint)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $meetingPoint = self::checkTypes($meetingPoint, $types);
 
@@ -1334,9 +1346,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setOffers($offers)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Offer[]",
-        );
+        ];
 
         $offers = self::checkTypes($offers, $types);
 
@@ -1358,10 +1370,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setOrganizer($organizer)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Person",
             "\OpenActive\Models\OA\Organization",
-        );
+        ];
 
         $organizer = self::checkTypes($organizer, $types);
 
@@ -1383,9 +1395,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setProgramme($programme)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Brand",
-        );
+        ];
 
         $programme = self::checkTypes($programme, $types);
 
@@ -1407,10 +1419,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $remainingAttendeeCapacity = self::checkTypes($remainingAttendeeCapacity, $types);
 
@@ -1432,9 +1444,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setSchedulingNote($schedulingNote)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $schedulingNote = self::checkTypes($schedulingNote, $types);
 
@@ -1456,11 +1468,11 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setStartDate($startDate)
     {
-        $types = array(
+        $types = [
             "Date",
             "DateTime",
             "null",
-        );
+        ];
 
         $startDate = self::checkTypes($startDate, $types);
 
@@ -1482,11 +1494,11 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setEndDate($endDate)
     {
-        $types = array(
+        $types = [
             "Date",
             "DateTime",
             "null",
-        );
+        ];
 
         $endDate = self::checkTypes($endDate, $types);
 
@@ -1508,9 +1520,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setSubEvent($subEvent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Event[]",
-        );
+        ];
 
         $subEvent = self::checkTypes($subEvent, $types);
 
@@ -1532,9 +1544,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setSuperEvent($superEvent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Event",
-        );
+        ];
 
         $superEvent = self::checkTypes($superEvent, $types);
 
@@ -1556,9 +1568,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 
@@ -1580,9 +1592,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setFormattedDescription($formattedDescription)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $formattedDescription = self::checkTypes($formattedDescription, $types);
 
@@ -1604,9 +1616,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setDistance($distance)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\QuantitativeValue",
-        );
+        ];
 
         $distance = self::checkTypes($distance, $types);
 
@@ -1628,10 +1640,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setAttendeeCount($attendeeCount)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $attendeeCount = self::checkTypes($attendeeCount, $types);
 
@@ -1653,10 +1665,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setRegistrationCount($registrationCount)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $registrationCount = self::checkTypes($registrationCount, $types);
 
@@ -1678,10 +1690,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setIsWheelchairAccessible($isWheelchairAccessible)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $isWheelchairAccessible = self::checkTypes($isWheelchairAccessible, $types);
 
@@ -1703,9 +1715,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setEstimatedDuration($estimatedDuration)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\QuantitativeValue",
-        );
+        ];
 
         $estimatedDuration = self::checkTypes($estimatedDuration, $types);
 
@@ -1727,9 +1739,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setVideo($video)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\VideoObject[]",
-        );
+        ];
 
         $video = self::checkTypes($video, $types);
 
@@ -1751,9 +1763,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setSportsActivityLocation($sportsActivityLocation)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SportsActivityLocation[]",
-        );
+        ];
 
         $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);
 
@@ -1775,10 +1787,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setOfferValidityPeriod($offerValidityPeriod)
     {
-        $types = array(
+        $types = [
             "DateInterval",
             "null",
-        );
+        ];
 
         $offerValidityPeriod = self::checkTypes($offerValidityPeriod, $types);
 
@@ -1800,10 +1812,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setFacilitySetting($facilitySetting)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\FacilitySettingType",
             "null",
-        );
+        ];
 
         $facilitySetting = self::checkTypes($facilitySetting, $types);
 
@@ -1825,10 +1837,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setIsVirtuallyCoached($isVirtuallyCoached)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $isVirtuallyCoached = self::checkTypes($isVirtuallyCoached, $types);
 
@@ -1850,9 +1862,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setVirtualLocation($virtualLocation)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\VirtualLocation",
-        );
+        ];
 
         $virtualLocation = self::checkTypes($virtualLocation, $types);
 
@@ -1874,9 +1886,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setAffiliatedLocation($affiliatedLocation)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\Place",
-        );
+        ];
 
         $affiliatedLocation = self::checkTypes($affiliatedLocation, $types);
 
@@ -1898,10 +1910,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setIsInteractivityPreferred($isInteractivityPreferred)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $isInteractivityPreferred = self::checkTypes($isInteractivityPreferred, $types);
 
@@ -1923,10 +1935,10 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setParticipantSuppliedEquipment($participantSuppliedEquipment)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\RequiredStatusType",
             "null",
-        );
+        ];
 
         $participantSuppliedEquipment = self::checkTypes($participantSuppliedEquipment, $types);
 
@@ -1948,9 +1960,9 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setDonationPaymentUrl($donationPaymentUrl)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $donationPaymentUrl = self::checkTypes($donationPaymentUrl, $types);
 
@@ -1972,14 +1984,38 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setIsFirstSessionAccessibleForFree($isFirstSessionAccessibleForFree)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $isFirstSessionAccessibleForFree = self::checkTypes($isFirstSessionAccessibleForFree, $types);
 
         $this->isFirstSessionAccessibleForFree = $isFirstSessionAccessibleForFree;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ContactPoint
+     */
+    public function getContactPoint()
+    {
+        return $this->contactPoint;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ContactPoint $contactPoint
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setContactPoint($contactPoint)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
+        ];
+
+        $contactPoint = self::checkTypes($contactPoint, $types);
+
+        $this->contactPoint = $contactPoint;
     }
 
 }

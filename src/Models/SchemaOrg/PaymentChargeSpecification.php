@@ -17,20 +17,12 @@ class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
 
     public static function fieldList() {
         $fields = [
-            "appliesToPaymentMethod" => "appliesToPaymentMethod",
             "appliesToDeliveryMethod" => "appliesToDeliveryMethod",
+            "appliesToPaymentMethod" => "appliesToPaymentMethod",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The payment method(s) to which the payment charge specification applies.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\PaymentMethod|null
-     */
-    protected $appliesToPaymentMethod;
 
     /**
      * The delivery method(s) to which the delivery charge or payment charge specification applies.
@@ -41,29 +33,12 @@ class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
     protected $appliesToDeliveryMethod;
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\PaymentMethod|null
+     * The payment method(s) to which the payment charge specification applies.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\PaymentMethod|null
      */
-    public function getAppliesToPaymentMethod()
-    {
-        return $this->appliesToPaymentMethod;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\PaymentMethod|null $appliesToPaymentMethod
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAppliesToPaymentMethod($appliesToPaymentMethod)
-    {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\PaymentMethod",
-            "null",
-        );
-
-        $appliesToPaymentMethod = self::checkTypes($appliesToPaymentMethod, $types);
-
-        $this->appliesToPaymentMethod = $appliesToPaymentMethod;
-    }
+    protected $appliesToPaymentMethod;
 
     /**
      * @return \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
@@ -80,14 +55,39 @@ class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
      */
     public function setAppliesToDeliveryMethod($appliesToDeliveryMethod)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
             "null",
-        );
+        ];
 
         $appliesToDeliveryMethod = self::checkTypes($appliesToDeliveryMethod, $types);
 
         $this->appliesToDeliveryMethod = $appliesToDeliveryMethod;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\PaymentMethod|null
+     */
+    public function getAppliesToPaymentMethod()
+    {
+        return $this->appliesToPaymentMethod;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\PaymentMethod|null $appliesToPaymentMethod
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAppliesToPaymentMethod($appliesToPaymentMethod)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\PaymentMethod",
+            "null",
+        ];
+
+        $appliesToPaymentMethod = self::checkTypes($appliesToPaymentMethod, $types);
+
+        $this->appliesToPaymentMethod = $appliesToPaymentMethod;
     }
 
 }

@@ -17,54 +17,22 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "saturatedFatContent" => "saturatedFatContent",
-            "fatContent" => "fatContent",
-            "unsaturatedFatContent" => "unsaturatedFatContent",
-            "sugarContent" => "sugarContent",
             "cholesterolContent" => "cholesterolContent",
             "carbohydrateContent" => "carbohydrateContent",
-            "proteinContent" => "proteinContent",
             "sodiumContent" => "sodiumContent",
+            "proteinContent" => "proteinContent",
+            "sugarContent" => "sugarContent",
+            "fatContent" => "fatContent",
             "transFatContent" => "transFatContent",
-            "fiberContent" => "fiberContent",
             "calories" => "calories",
             "servingSize" => "servingSize",
+            "unsaturatedFatContent" => "unsaturatedFatContent",
+            "saturatedFatContent" => "saturatedFatContent",
+            "fiberContent" => "fiberContent",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The number of grams of saturated fat.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Mass
-     */
-    protected $saturatedFatContent;
-
-    /**
-     * The number of grams of fat.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Mass
-     */
-    protected $fatContent;
-
-    /**
-     * The number of grams of unsaturated fat.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Mass
-     */
-    protected $unsaturatedFatContent;
-
-    /**
-     * The number of grams of sugar.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Mass
-     */
-    protected $sugarContent;
 
     /**
      * The number of milligrams of cholesterol.
@@ -83,14 +51,6 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $carbohydrateContent;
 
     /**
-     * The number of grams of protein.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Mass
-     */
-    protected $proteinContent;
-
-    /**
      * The number of milligrams of sodium.
      *
      *
@@ -99,20 +59,36 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $sodiumContent;
 
     /**
+     * The number of grams of protein.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Mass
+     */
+    protected $proteinContent;
+
+    /**
+     * The number of grams of sugar.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Mass
+     */
+    protected $sugarContent;
+
+    /**
+     * The number of grams of fat.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Mass
+     */
+    protected $fatContent;
+
+    /**
      * The number of grams of trans fat.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Mass
      */
     protected $transFatContent;
-
-    /**
-     * The number of grams of fiber.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Mass
-     */
-    protected $fiberContent;
 
     /**
      * The number of calories.
@@ -131,100 +107,28 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $servingSize;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Mass
+     * The number of grams of unsaturated fat.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Mass
      */
-    public function getSaturatedFatContent()
-    {
-        return $this->saturatedFatContent;
-    }
+    protected $unsaturatedFatContent;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Mass $saturatedFatContent
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The number of grams of saturated fat.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Mass
      */
-    public function setSaturatedFatContent($saturatedFatContent)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Mass",
-        );
-
-        $saturatedFatContent = self::checkTypes($saturatedFatContent, $types);
-
-        $this->saturatedFatContent = $saturatedFatContent;
-    }
+    protected $saturatedFatContent;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Mass
+     * The number of grams of fiber.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Mass
      */
-    public function getFatContent()
-    {
-        return $this->fatContent;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Mass $fatContent
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFatContent($fatContent)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Mass",
-        );
-
-        $fatContent = self::checkTypes($fatContent, $types);
-
-        $this->fatContent = $fatContent;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Mass
-     */
-    public function getUnsaturatedFatContent()
-    {
-        return $this->unsaturatedFatContent;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Mass $unsaturatedFatContent
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setUnsaturatedFatContent($unsaturatedFatContent)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Mass",
-        );
-
-        $unsaturatedFatContent = self::checkTypes($unsaturatedFatContent, $types);
-
-        $this->unsaturatedFatContent = $unsaturatedFatContent;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Mass
-     */
-    public function getSugarContent()
-    {
-        return $this->sugarContent;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Mass $sugarContent
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSugarContent($sugarContent)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Mass",
-        );
-
-        $sugarContent = self::checkTypes($sugarContent, $types);
-
-        $this->sugarContent = $sugarContent;
-    }
+    protected $fiberContent;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Mass
@@ -241,9 +145,9 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setCholesterolContent($cholesterolContent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Mass",
-        );
+        ];
 
         $cholesterolContent = self::checkTypes($cholesterolContent, $types);
 
@@ -265,37 +169,13 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setCarbohydrateContent($carbohydrateContent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Mass",
-        );
+        ];
 
         $carbohydrateContent = self::checkTypes($carbohydrateContent, $types);
 
         $this->carbohydrateContent = $carbohydrateContent;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Mass
-     */
-    public function getProteinContent()
-    {
-        return $this->proteinContent;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Mass $proteinContent
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProteinContent($proteinContent)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Mass",
-        );
-
-        $proteinContent = self::checkTypes($proteinContent, $types);
-
-        $this->proteinContent = $proteinContent;
     }
 
     /**
@@ -313,13 +193,85 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setSodiumContent($sodiumContent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Mass",
-        );
+        ];
 
         $sodiumContent = self::checkTypes($sodiumContent, $types);
 
         $this->sodiumContent = $sodiumContent;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Mass
+     */
+    public function getProteinContent()
+    {
+        return $this->proteinContent;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Mass $proteinContent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProteinContent($proteinContent)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Mass",
+        ];
+
+        $proteinContent = self::checkTypes($proteinContent, $types);
+
+        $this->proteinContent = $proteinContent;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Mass
+     */
+    public function getSugarContent()
+    {
+        return $this->sugarContent;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Mass $sugarContent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSugarContent($sugarContent)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Mass",
+        ];
+
+        $sugarContent = self::checkTypes($sugarContent, $types);
+
+        $this->sugarContent = $sugarContent;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Mass
+     */
+    public function getFatContent()
+    {
+        return $this->fatContent;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Mass $fatContent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFatContent($fatContent)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Mass",
+        ];
+
+        $fatContent = self::checkTypes($fatContent, $types);
+
+        $this->fatContent = $fatContent;
     }
 
     /**
@@ -337,37 +289,13 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setTransFatContent($transFatContent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Mass",
-        );
+        ];
 
         $transFatContent = self::checkTypes($transFatContent, $types);
 
         $this->transFatContent = $transFatContent;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Mass
-     */
-    public function getFiberContent()
-    {
-        return $this->fiberContent;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Mass $fiberContent
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFiberContent($fiberContent)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Mass",
-        );
-
-        $fiberContent = self::checkTypes($fiberContent, $types);
-
-        $this->fiberContent = $fiberContent;
     }
 
     /**
@@ -385,9 +313,9 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setCalories($calories)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Energy",
-        );
+        ];
 
         $calories = self::checkTypes($calories, $types);
 
@@ -409,13 +337,85 @@ class NutritionInformation extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setServingSize($servingSize)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $servingSize = self::checkTypes($servingSize, $types);
 
         $this->servingSize = $servingSize;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Mass
+     */
+    public function getUnsaturatedFatContent()
+    {
+        return $this->unsaturatedFatContent;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Mass $unsaturatedFatContent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUnsaturatedFatContent($unsaturatedFatContent)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Mass",
+        ];
+
+        $unsaturatedFatContent = self::checkTypes($unsaturatedFatContent, $types);
+
+        $this->unsaturatedFatContent = $unsaturatedFatContent;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Mass
+     */
+    public function getSaturatedFatContent()
+    {
+        return $this->saturatedFatContent;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Mass $saturatedFatContent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSaturatedFatContent($saturatedFatContent)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Mass",
+        ];
+
+        $saturatedFatContent = self::checkTypes($saturatedFatContent, $types);
+
+        $this->saturatedFatContent = $saturatedFatContent;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Mass
+     */
+    public function getFiberContent()
+    {
+        return $this->fiberContent;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Mass $fiberContent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFiberContent($fiberContent)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Mass",
+        ];
+
+        $fiberContent = self::checkTypes($fiberContent, $types);
+
+        $this->fiberContent = $fiberContent;
     }
 
 }

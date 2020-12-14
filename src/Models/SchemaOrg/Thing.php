@@ -20,25 +20,26 @@ class Thing extends \OpenActive\BaseModel
             "identifier" => "identifier",
             "name" => "name",
             "description" => "description",
-            "sameAs" => "sameAs",
-            "alternateName" => "alternateName",
             "image" => "image",
             "additionalType" => "additionalType",
-            "subjectOf" => "subjectOf",
+            "alternateName" => "alternateName",
             "mainEntityOfPage" => "mainEntityOfPage",
-            "url" => "url",
-            "potentialAction" => "potentialAction",
+            "sameAs" => "sameAs",
             "disambiguatingDescription" => "disambiguatingDescription",
+            "url" => "url",
+            "subjectOf" => "subjectOf",
+            "potentialAction" => "potentialAction",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The identifier property represents any kind of identifier for any kind of <a class="localLink" href="https://schema.org/Thing">Thing</a>, such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See <a href="/docs/datamodel.html#identifierBg">background notes</a> for more details.
+     * The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.
+     *         
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\PropertyValue
+     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
     protected $identifier;
 
@@ -59,26 +60,10 @@ class Thing extends \OpenActive\BaseModel
     protected $description;
 
     /**
-     * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.
+     * An image of the item. This can be a [[URL]] or a fully described [[ImageObject]].
      *
      *
-     * @var string
-     */
-    protected $sameAs;
-
-    /**
-     * An alias for the item.
-     *
-     *
-     * @var string
-     */
-    protected $alternateName;
-
-    /**
-     * An image of the item. This can be a <a class="localLink" href="https://schema.org/URL">URL</a> or a fully described <a class="localLink" href="https://schema.org/ImageObject">ImageObject</a>.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
+     * @var string|\OpenActive\Models\SchemaOrg\ImageObject
      */
     protected $image;
 
@@ -91,15 +76,15 @@ class Thing extends \OpenActive\BaseModel
     protected $additionalType;
 
     /**
-     * A CreativeWork or Event about this Thing.
+     * An alias for the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @var string
      */
-    protected $subjectOf;
+    protected $alternateName;
 
     /**
-     * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See <a href="/docs/datamodel.html#mainEntityBackground">background notes</a> for details.
+     * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See [background notes](/docs/datamodel.html#mainEntityBackground) for details.
      *
      *
      * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
@@ -107,20 +92,12 @@ class Thing extends \OpenActive\BaseModel
     protected $mainEntityOfPage;
 
     /**
-     * URL of the item.
+     * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.
      *
      *
      * @var string
      */
-    protected $url;
-
-    /**
-     * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Action
-     */
-    protected $potentialAction;
+    protected $sameAs;
 
     /**
      * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
@@ -131,7 +108,31 @@ class Thing extends \OpenActive\BaseModel
     protected $disambiguatingDescription;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\PropertyValue
+     * URL of the item.
+     *
+     *
+     * @var string
+     */
+    protected $url;
+
+    /**
+     * A CreativeWork or Event about this Thing.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    protected $subjectOf;
+
+    /**
+     * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Action
+     */
+    protected $potentialAction;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
     public function getIdentifier()
     {
@@ -139,16 +140,16 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\PropertyValue $identifier
+     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $identifier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
-            "string",
+        $types = [
             "\OpenActive\Models\SchemaOrg\PropertyValue",
-        );
+            "string",
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -170,9 +171,9 @@ class Thing extends \OpenActive\BaseModel
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -194,9 +195,9 @@ class Thing extends \OpenActive\BaseModel
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -204,55 +205,7 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @return string
-     */
-    public function getSameAs()
-    {
-        return $this->sameAs;
-    }
-
-    /**
-     * @param string $sameAs
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSameAs($sameAs)
-    {
-        $types = array(
-            "string",
-        );
-
-        $sameAs = self::checkTypes($sameAs, $types);
-
-        $this->sameAs = $sameAs;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAlternateName()
-    {
-        return $this->alternateName;
-    }
-
-    /**
-     * @param string $alternateName
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAlternateName($alternateName)
-    {
-        $types = array(
-            "string",
-        );
-
-        $alternateName = self::checkTypes($alternateName, $types);
-
-        $this->alternateName = $alternateName;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
+     * @return string|\OpenActive\Models\SchemaOrg\ImageObject
      */
     public function getImage()
     {
@@ -260,16 +213,16 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $image
+     * @param string|\OpenActive\Models\SchemaOrg\ImageObject $image
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setImage($image)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\ImageObject",
+        $types = [
             "string",
-        );
+            "\OpenActive\Models\SchemaOrg\ImageObject",
+        ];
 
         $image = self::checkTypes($image, $types);
 
@@ -291,9 +244,9 @@ class Thing extends \OpenActive\BaseModel
      */
     public function setAdditionalType($additionalType)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $additionalType = self::checkTypes($additionalType, $types);
 
@@ -301,28 +254,27 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @return string
      */
-    public function getSubjectOf()
+    public function getAlternateName()
     {
-        return $this->subjectOf;
+        return $this->alternateName;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork $subjectOf
+     * @param string $alternateName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSubjectOf($subjectOf)
+    public function setAlternateName($alternateName)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Event",
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-        );
+        $types = [
+            "string",
+        ];
 
-        $subjectOf = self::checkTypes($subjectOf, $types);
+        $alternateName = self::checkTypes($alternateName, $types);
 
-        $this->subjectOf = $subjectOf;
+        $this->alternateName = $alternateName;
     }
 
     /**
@@ -340,10 +292,10 @@ class Thing extends \OpenActive\BaseModel
      */
     public function setMainEntityOfPage($mainEntityOfPage)
     {
-        $types = array(
+        $types = [
             "string",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
-        );
+        ];
 
         $mainEntityOfPage = self::checkTypes($mainEntityOfPage, $types);
 
@@ -353,49 +305,25 @@ class Thing extends \OpenActive\BaseModel
     /**
      * @return string
      */
-    public function getUrl()
+    public function getSameAs()
     {
-        return $this->url;
+        return $this->sameAs;
     }
 
     /**
-     * @param string $url
+     * @param string $sameAs
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setUrl($url)
+    public function setSameAs($sameAs)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
-        $url = self::checkTypes($url, $types);
+        $sameAs = self::checkTypes($sameAs, $types);
 
-        $this->url = $url;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Action
-     */
-    public function getPotentialAction()
-    {
-        return $this->potentialAction;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Action $potentialAction
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPotentialAction($potentialAction)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Action",
-        );
-
-        $potentialAction = self::checkTypes($potentialAction, $types);
-
-        $this->potentialAction = $potentialAction;
+        $this->sameAs = $sameAs;
     }
 
     /**
@@ -413,13 +341,86 @@ class Thing extends \OpenActive\BaseModel
      */
     public function setDisambiguatingDescription($disambiguatingDescription)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $disambiguatingDescription = self::checkTypes($disambiguatingDescription, $types);
 
         $this->disambiguatingDescription = $disambiguatingDescription;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUrl($url)
+    {
+        $types = [
+            "string",
+        ];
+
+        $url = self::checkTypes($url, $types);
+
+        $this->url = $url;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    public function getSubjectOf()
+    {
+        return $this->subjectOf;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork $subjectOf
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSubjectOf($subjectOf)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Event",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+        ];
+
+        $subjectOf = self::checkTypes($subjectOf, $types);
+
+        $this->subjectOf = $subjectOf;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Action
+     */
+    public function getPotentialAction()
+    {
+        return $this->potentialAction;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Action $potentialAction
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPotentialAction($potentialAction)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Action",
+        ];
+
+        $potentialAction = self::checkTypes($potentialAction, $types);
+
+        $this->potentialAction = $potentialAction;
     }
 
 }

@@ -64,9 +64,9 @@ class TemporarilyUnableToCreateOrderError extends \OpenActive\Models\OA\OpenBook
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class TemporarilyUnableToCreateOrderError extends \OpenActive\Models\OA\OpenBook
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

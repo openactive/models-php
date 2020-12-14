@@ -46,9 +46,9 @@ class SocialMediaPosting extends \OpenActive\Models\SchemaOrg\Article
      */
     public function setSharedContent($sharedContent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\CreativeWork",
-        );
+        ];
 
         $sharedContent = self::checkTypes($sharedContent, $types);
 

@@ -110,9 +110,9 @@ class Concept extends \OpenActive\BaseModel
      */
     public function setAltLabel($altLabel)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $altLabel = self::checkTypes($altLabel, $types);
 
@@ -134,9 +134,9 @@ class Concept extends \OpenActive\BaseModel
      */
     public function setBroader($broader)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $broader = self::checkTypes($broader, $types);
 
@@ -158,9 +158,9 @@ class Concept extends \OpenActive\BaseModel
      */
     public function setInScheme($inScheme)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $inScheme = self::checkTypes($inScheme, $types);
 
@@ -182,9 +182,9 @@ class Concept extends \OpenActive\BaseModel
      */
     public function setNarrower($narrower)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $narrower = self::checkTypes($narrower, $types);
 
@@ -206,9 +206,9 @@ class Concept extends \OpenActive\BaseModel
      */
     public function setNotation($notation)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $notation = self::checkTypes($notation, $types);
 
@@ -230,9 +230,9 @@ class Concept extends \OpenActive\BaseModel
      */
     public function setPrefLabel($prefLabel)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $prefLabel = self::checkTypes($prefLabel, $types);
 

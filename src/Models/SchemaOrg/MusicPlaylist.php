@@ -17,21 +17,13 @@ class MusicPlaylist extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "numTracks" => "numTracks",
             "track" => "track",
+            "numTracks" => "numTracks",
             "tracks" => "tracks",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The number of tracks in this album or playlist.
-     *
-     *
-     * @var int|null
-     */
-    protected $numTracks;
 
     /**
      * A music recording (track)&#x2014;usually a single song. If an ItemList is given, the list should contain items of type MusicRecording.
@@ -42,37 +34,20 @@ class MusicPlaylist extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $track;
 
     /**
+     * The number of tracks in this album or playlist.
+     *
+     *
+     * @var int|null
+     */
+    protected $numTracks;
+
+    /**
      * A music recording (track)&#x2014;usually a single song.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\MusicRecording
      */
     protected $tracks;
-
-    /**
-     * @return int|null
-     */
-    public function getNumTracks()
-    {
-        return $this->numTracks;
-    }
-
-    /**
-     * @param int|null $numTracks
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNumTracks($numTracks)
-    {
-        $types = array(
-            "int",
-            "null",
-        );
-
-        $numTracks = self::checkTypes($numTracks, $types);
-
-        $this->numTracks = $numTracks;
-    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\MusicRecording
@@ -89,14 +64,39 @@ class MusicPlaylist extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setTrack($track)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\ItemList",
             "\OpenActive\Models\SchemaOrg\MusicRecording",
-        );
+        ];
 
         $track = self::checkTypes($track, $types);
 
         $this->track = $track;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNumTracks()
+    {
+        return $this->numTracks;
+    }
+
+    /**
+     * @param int|null $numTracks
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumTracks($numTracks)
+    {
+        $types = [
+            "int",
+            "null",
+        ];
+
+        $numTracks = self::checkTypes($numTracks, $types);
+
+        $this->numTracks = $numTracks;
     }
 
     /**
@@ -114,9 +114,9 @@ class MusicPlaylist extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setTracks($tracks)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\MusicRecording",
-        );
+        ];
 
         $tracks = self::checkTypes($tracks, $types);
 

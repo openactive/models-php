@@ -46,9 +46,9 @@ class ClaimReview extends \OpenActive\Models\SchemaOrg\Review
      */
     public function setClaimReviewed($claimReviewed)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $claimReviewed = self::checkTypes($claimReviewed, $types);
 

@@ -36,7 +36,7 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
      * A sub property of participant. The participant who is at the sending end of the action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Organization
      */
     protected $sender;
 
@@ -55,10 +55,10 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
      */
     public function setDeliveryMethod($deliveryMethod)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
             "null",
-        );
+        ];
 
         $deliveryMethod = self::checkTypes($deliveryMethod, $types);
 
@@ -66,7 +66,7 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Organization
      */
     public function getSender()
     {
@@ -74,17 +74,17 @@ class ReceiveAction extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $sender
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Organization $sender
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSender($sender)
     {
-        $types = array(
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Audience",
             "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-        );
+        ];
 
         $sender = self::checkTypes($sender, $types);
 

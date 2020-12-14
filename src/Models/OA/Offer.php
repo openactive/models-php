@@ -32,6 +32,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
             "priceCurrency" => "priceCurrency",
             "url" => "url",
             "validFromBeforeStartDate" => "validFromBeforeStartDate",
+            "partySize" => "beta:partySize",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -155,7 +156,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * "price": "33"
      * ```
      *
-     * @var float|null
+     * @var Number|null
      */
     protected $price;
 
@@ -190,6 +191,17 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     protected $validFromBeforeStartDate;
 
     /**
+     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * Number of people the reservation should accommodate.
+     * 
+     * If you are using this property, please join the discussion at proposal [#250](https://github.com/openactive/modelling-opportunity-data/issues/250).
+     *
+     *
+     * @var \OpenActive\Models\QuantitativeValue
+     */
+    protected $partySize;
+
+    /**
      * @return string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
@@ -204,13 +216,13 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -232,9 +244,9 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -256,9 +268,9 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -280,10 +292,10 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      */
     public function setAcceptedPaymentMethod($acceptedPaymentMethod)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\PaymentMethod[]",
             "null",
-        );
+        ];
 
         $acceptedPaymentMethod = self::checkTypes($acceptedPaymentMethod, $types);
 
@@ -305,10 +317,10 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      */
     public function setAdvanceBooking($advanceBooking)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\RequiredStatusType",
             "null",
-        );
+        ];
 
         $advanceBooking = self::checkTypes($advanceBooking, $types);
 
@@ -330,9 +342,9 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      */
     public function setAgeRange($ageRange)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\QuantitativeValue",
-        );
+        ];
 
         $ageRange = self::checkTypes($ageRange, $types);
 
@@ -354,10 +366,10 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      */
     public function setAvailableChannel($availableChannel)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\AvailableChannelType[]",
             "null",
-        );
+        ];
 
         $availableChannel = self::checkTypes($availableChannel, $types);
 
@@ -379,10 +391,10 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      */
     public function setLatestCancellationBeforeStartDate($latestCancellationBeforeStartDate)
     {
-        $types = array(
+        $types = [
             "DateInterval",
             "null",
-        );
+        ];
 
         $latestCancellationBeforeStartDate = self::checkTypes($latestCancellationBeforeStartDate, $types);
 
@@ -404,10 +416,10 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      */
     public function setOpenBookingFlowRequirement($openBookingFlowRequirement)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\OpenBookingFlowRequirement[]",
             "null",
-        );
+        ];
 
         $openBookingFlowRequirement = self::checkTypes($openBookingFlowRequirement, $types);
 
@@ -429,10 +441,10 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      */
     public function setPrepayment($prepayment)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\RequiredStatusType",
             "null",
-        );
+        ];
 
         $prepayment = self::checkTypes($prepayment, $types);
 
@@ -440,7 +452,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return float|null
+     * @return Number|null
      */
     public function getPrice()
     {
@@ -448,16 +460,16 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param float|null $price
+     * @param Number|null $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
-        $types = array(
-            "float",
+        $types = [
+            "Number",
             "null",
-        );
+        ];
 
         $price = self::checkTypes($price, $types);
 
@@ -479,9 +491,9 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      */
     public function setPriceCurrency($priceCurrency)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $priceCurrency = self::checkTypes($priceCurrency, $types);
 
@@ -503,9 +515,9 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 
@@ -527,14 +539,38 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      */
     public function setValidFromBeforeStartDate($validFromBeforeStartDate)
     {
-        $types = array(
+        $types = [
             "DateInterval",
             "null",
-        );
+        ];
 
         $validFromBeforeStartDate = self::checkTypes($validFromBeforeStartDate, $types);
 
         $this->validFromBeforeStartDate = $validFromBeforeStartDate;
+    }
+
+    /**
+     * @return \OpenActive\Models\QuantitativeValue
+     */
+    public function getPartySize()
+    {
+        return $this->partySize;
+    }
+
+    /**
+     * @param \OpenActive\Models\QuantitativeValue $partySize
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPartySize($partySize)
+    {
+        $types = [
+            "\OpenActive\Models\QuantitativeValue",
+        ];
+
+        $partySize = self::checkTypes($partySize, $types);
+
+        $this->partySize = $partySize;
     }
 
 }

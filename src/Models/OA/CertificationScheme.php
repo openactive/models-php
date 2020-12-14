@@ -62,9 +62,9 @@ class CertificationScheme extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setCertificationLevel($certificationLevel)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\CertificationLevel",
-        );
+        ];
 
         $certificationLevel = self::checkTypes($certificationLevel, $types);
 
@@ -86,9 +86,9 @@ class CertificationScheme extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setTrustedCertificationSchemes($trustedCertificationSchemes)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $trustedCertificationSchemes = self::checkTypes($trustedCertificationSchemes, $types);
 

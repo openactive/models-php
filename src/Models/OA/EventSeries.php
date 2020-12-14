@@ -53,10 +53,10 @@ class EventSeries extends \OpenActive\Models\OA\Event
      */
     public function setEventAttendanceMode($eventAttendanceMode)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\EventAttendanceModeEnumeration",
             "null",
-        );
+        ];
 
         $eventAttendanceMode = self::checkTypes($eventAttendanceMode, $types);
 

@@ -25,7 +25,7 @@ class PostalCodeRangeSpecification extends \OpenActive\Models\SchemaOrg\Structur
     }
 
     /**
-     * Last postal code in the range (included). Needs to be after <a class="localLink" href="https://schema.org/postalCodeBegin">postalCodeBegin</a>.
+     * Last postal code in the range (included). Needs to be after [[postalCodeBegin]].
      *
      *
      * @var string
@@ -55,9 +55,9 @@ class PostalCodeRangeSpecification extends \OpenActive\Models\SchemaOrg\Structur
      */
     public function setPostalCodeEnd($postalCodeEnd)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $postalCodeEnd = self::checkTypes($postalCodeEnd, $types);
 
@@ -79,9 +79,9 @@ class PostalCodeRangeSpecification extends \OpenActive\Models\SchemaOrg\Structur
      */
     public function setPostalCodeBegin($postalCodeBegin)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $postalCodeBegin = self::checkTypes($postalCodeBegin, $types);
 

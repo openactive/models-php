@@ -178,7 +178,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
 
     /**
      * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers. This property must contain HTML.
      * 
      * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
      *
@@ -224,13 +224,13 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -252,9 +252,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -276,9 +276,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -300,9 +300,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setAddress($address)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\PostalAddress",
-        );
+        ];
 
         $address = self::checkTypes($address, $types);
 
@@ -324,9 +324,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setEmail($email)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $email = self::checkTypes($email, $types);
 
@@ -348,9 +348,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setLegalName($legalName)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $legalName = self::checkTypes($legalName, $types);
 
@@ -372,9 +372,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setLogo($logo)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject",
-        );
+        ];
 
         $logo = self::checkTypes($logo, $types);
 
@@ -396,9 +396,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setSameAs($sameAs)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $sameAs = self::checkTypes($sameAs, $types);
 
@@ -420,10 +420,10 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setTaxMode($taxMode)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\TaxMode",
             "null",
-        );
+        ];
 
         $taxMode = self::checkTypes($taxMode, $types);
 
@@ -445,9 +445,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setTelephone($telephone)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $telephone = self::checkTypes($telephone, $types);
 
@@ -469,9 +469,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setTermsOfService($termsOfService)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Terms[]",
-        );
+        ];
 
         $termsOfService = self::checkTypes($termsOfService, $types);
 
@@ -493,9 +493,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 
@@ -517,9 +517,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setVatID($vatID)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $vatID = self::checkTypes($vatID, $types);
 
@@ -541,9 +541,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setFormattedDescription($formattedDescription)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $formattedDescription = self::checkTypes($formattedDescription, $types);
 
@@ -565,9 +565,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setVideo($video)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\VideoObject[]",
-        );
+        ];
 
         $video = self::checkTypes($video, $types);
 
@@ -589,9 +589,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setFormalCriteriaMet($formalCriteriaMet)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $formalCriteriaMet = self::checkTypes($formalCriteriaMet, $types);
 

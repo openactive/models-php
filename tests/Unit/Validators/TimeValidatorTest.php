@@ -17,5 +17,3 @@ class TimeValidatorTest extends TestCase
         $this->assertFalse((new TimeValidator())->run("not a time"), "TimeValidator should disallow invalid ISO 8601 times");
     }
 }
-
-?>

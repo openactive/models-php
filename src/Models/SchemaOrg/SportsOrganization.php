@@ -46,9 +46,9 @@ class SportsOrganization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setSport($sport)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $sport = self::checkTypes($sport, $types);
 

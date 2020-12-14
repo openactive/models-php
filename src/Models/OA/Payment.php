@@ -94,9 +94,9 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -118,9 +118,9 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -142,9 +142,9 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setAccountId($accountId)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $accountId = self::checkTypes($accountId, $types);
 
@@ -166,9 +166,9 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setAdditionalProperty($additionalProperty)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\PropertyValue[]",
-        );
+        ];
 
         $additionalProperty = self::checkTypes($additionalProperty, $types);
 
@@ -190,10 +190,10 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setPaymentMethod($paymentMethod)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\PaymentMethod",
             "null",
-        );
+        ];
 
         $paymentMethod = self::checkTypes($paymentMethod, $types);
 
@@ -215,9 +215,9 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setPaymentProviderId($paymentProviderId)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $paymentProviderId = self::checkTypes($paymentProviderId, $types);
 
