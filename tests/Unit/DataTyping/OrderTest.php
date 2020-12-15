@@ -49,7 +49,7 @@ class OrderTest extends TestCase
     public function testOrderSimpleDatatypesAreCorrect($order, $classname)
     {
         $this->assertTrue(
-            is_float(
+            is_string(
                 $order->getOrderedItem()[0]
                     ->getUnitTaxSpecification()[0]
                     ->getPrice()

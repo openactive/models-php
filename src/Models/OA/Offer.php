@@ -147,7 +147,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
 
     /**
      * The offer price of the activity.
-     * This price should be specified without currency symbols and as a floating point number with two decimal places.
+     * This price should be specified without currency symbols and as a floating point number/string with two decimal places.
      * The currency of the price should be expressed in the priceCurrency field.
      * Includes or excludes tax depending on the taxMode of the seller.
      *
@@ -155,7 +155,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * "price": "33"
      * ```
      *
-     * @var float|null
+     * @var string|null
      */
     protected $price;
 
@@ -455,7 +455,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     public function setPrice($price)
     {
         $types = array(
-            "float",
+            "Currency",
             "null",
         );
 
