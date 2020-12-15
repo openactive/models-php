@@ -64,7 +64,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
      * The total amount.
      *
      *
-     * @var float|null
+     * @var string|null
      */
     protected $price;
 
@@ -179,7 +179,7 @@ class TaxChargeSpecification extends \OpenActive\Models\OA\PriceSpecification
     public function setPrice($price)
     {
         $types = array(
-            "float",
+            "Currency",
             "null",
         );
 

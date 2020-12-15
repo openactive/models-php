@@ -41,7 +41,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
      * The total amount.
      *
      *
-     * @var float|null
+     * @var string|null
      */
     protected $price;
 
@@ -94,7 +94,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
     public function setPrice($price)
     {
         $types = array(
-            "float",
+            "Currency",
             "null",
         );
 

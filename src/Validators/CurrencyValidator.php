@@ -2,7 +2,11 @@
 
 namespace OpenActive\Validators;
 
-class FloatValidator extends BaseValidator
+/**
+ * Store and print all Currency values as string, this is to avoid floating point errors when serializing/deserializing
+ * JSON.
+ */
+class CurrencyValidator extends BaseValidator
 {
     /**
      * Coerce given value to the type the validator is validating against.
