@@ -29,21 +29,21 @@ jobs:
         
       - name: Install models-lib
         run: npm install
-        working-directory: models-lib
+        working-directory: ./models-lib/
         
       - name: Update models-lib with latest data-models
         run: npm update @openactive/data-models
-        working-directory: models-lib
+        working-directory: ./models-lib/
 
       - name: Run PHP models generator
         run: npm start -- generate PHP --destination ../models-php/src/
-        working-directory: models-lib
+        working-directory: ./models-lib/
         
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
-          path: models-php
+          path: ./models-php/
           token: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
           commit-message: Update data models
           committer: openactive-bot <openactive-bot@users.noreply.github.com>
