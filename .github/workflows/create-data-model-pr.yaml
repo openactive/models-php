@@ -1,0 +1,67 @@
+name: Update Data Model
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [data-models-update]
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout models-php
+        uses: actions/checkout@v2
+        with:
+          ref: master
+          path: models-php
+
+      - name: Checkout models-lib
+        uses: actions/checkout@v2
+        with:
+          repository: openactive/models-lib
+          path: models-lib
+
+      - name: Setup Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        
+      - name: Install models-lib
+        run: npm install
+        working-directory: models-lib
+        
+      - name: Update models-lib with latest data-models
+        run: npm update @openactive/data-models
+        working-directory: models-lib
+
+      - name: Run PHP models generator
+        run: npm run app-dev -- generate PHP --destination ../models-php/src/
+        working-directory: models-lib
+        
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          path: models-php
+          token: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
+          commit-message: Update data models
+          committer: openactive-bot <openactive-bot@users.noreply.github.com>
+          author: openactive-bot <openactive-bot@users.noreply.github.com>
+          signoff: false
+          branch: ci/update-data-models
+          delete-branch: true
+          title: 'Update data models'
+          body: |
+            Update PHP data models to the latest version based on the [OpenActive Vocabulary](https://openactive.io/ns/) (codified by the [Data Models](https://github.com/openactive/data-models)), [Test Interface](https://openactive.io/test-interface/) and [Beta Namespace](https://openactive.io/ns-beta/).
+          labels: |
+            automated pr
+          team-reviewers: |
+            owners
+            maintainers
+          draft: false
+
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
