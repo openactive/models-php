@@ -22,10 +22,10 @@ jobs:
           repository: openactive/models-lib
           path: models-lib
 
-      - name: Setup Node.js 12.x
+      - name: Setup Node.js 14.x
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 14.x
         
       - name: Install models-lib
         run: npm install
@@ -36,7 +36,7 @@ jobs:
         working-directory: models-lib
 
       - name: Run PHP models generator
-        run: npm run app-dev -- generate PHP --destination ../models-php/src/
+        run: npm start -- generate PHP --destination ../models-php/src/
         working-directory: models-lib
         
       - name: Create Pull Request
