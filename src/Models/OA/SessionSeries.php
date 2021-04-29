@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [Event](https://schema.org/Event), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/Event, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class SessionSeries extends \OpenActive\Models\OA\Event
@@ -18,12 +18,35 @@ class SessionSeries extends \OpenActive\Models\OA\Event
 
     public static function fieldList() {
         $fields = [
+            "eventSchedule" => "eventSchedule",
             "remainingAttendeeCapacity" => "remainingAttendeeCapacity",
             "subEvent" => "subEvent",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A an array of oa:Schedule or oa:PartialSchedule, which represents a recurrence pattern.
+     *
+     * ```json
+     * "eventSchedule": [
+     *   {
+     *     "@type": "PartialSchedule",
+     *     "repeatFrequency": "P1W",
+     *     "startTime": "20:15",
+     *     "endTime": "20:45",
+     *     "byDay": [
+     *       "http://schema.org/Tuesday"
+     *     ],
+     *     "scheduleTimezone": "Europe/London"
+     *   }
+     * ]
+     * ```
+     *
+     * @var \OpenActive\Models\OA\Schedule[]
+     */
+    protected $eventSchedule;
 
     /**
      * The number of places that are still available for the Event.
@@ -46,6 +69,30 @@ class SessionSeries extends \OpenActive\Models\OA\Event
     protected $subEvent;
 
     /**
+     * @return \OpenActive\Models\OA\Schedule[]
+     */
+    public function getEventSchedule()
+    {
+        return $this->eventSchedule;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\Schedule[] $eventSchedule
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEventSchedule($eventSchedule)
+    {
+        $types = [
+            "\OpenActive\Models\OA\Schedule[]",
+        ];
+
+        $eventSchedule = self::checkTypes($eventSchedule, $types);
+
+        $this->eventSchedule = $eventSchedule;
+    }
+
+    /**
      * @return int|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
@@ -62,10 +109,10 @@ class SessionSeries extends \OpenActive\Models\OA\Event
      */
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $remainingAttendeeCapacity = self::checkTypes($remainingAttendeeCapacity, $types);
 
@@ -87,9 +134,9 @@ class SessionSeries extends \OpenActive\Models\OA\Event
      */
     public function setSubEvent($subEvent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ScheduledSession[]",
-        );
+        ];
 
         $subEvent = self::checkTypes($subEvent, $types);
 

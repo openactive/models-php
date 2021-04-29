@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [LocationFeatureSpecification](https://schema.org/LocationFeatureSpecification), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/LocationFeatureSpecification, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\LocationFeatureSpecification
@@ -59,9 +59,9 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Location
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -83,10 +83,10 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Location
      */
     public function setValue($value)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $value = self::checkTypes($value, $types);
 

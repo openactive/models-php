@@ -46,9 +46,9 @@ class SearchAction extends \OpenActive\Models\SchemaOrg\Action
      */
     public function setQuery($query)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $query = self::checkTypes($query, $types);
 

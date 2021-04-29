@@ -24,7 +24,7 @@ class Residence extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * A floorplan of some <a class="localLink" href="https://schema.org/Accommodation">Accommodation</a>.
+     * A floorplan of some [[Accommodation]].
      *
      *
      * @var \OpenActive\Models\SchemaOrg\FloorPlan
@@ -46,9 +46,9 @@ class Residence extends \OpenActive\Models\SchemaOrg\Place
      */
     public function setAccommodationFloorPlan($accommodationFloorPlan)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\FloorPlan",
-        );
+        ];
 
         $accommodationFloorPlan = self::checkTypes($accommodationFloorPlan, $types);
 

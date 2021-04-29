@@ -17,13 +17,21 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
 
     public static function fieldList() {
         $fields = [
-            "pickupTime" => "pickupTime",
             "partySize" => "partySize",
+            "pickupTime" => "pickupTime",
             "pickupLocation" => "pickupLocation",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Number of people the reservation should accommodate.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|int|null
+     */
+    protected $partySize;
 
     /**
      * When a taxi will pickup a passenger or a rental car can be picked up.
@@ -34,20 +42,38 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $pickupTime;
 
     /**
-     * Number of people the reservation should accommodate.
-     *
-     *
-     * @var int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
-     */
-    protected $partySize;
-
-    /**
      * Where a taxi will pick up a passenger or a rental car can be picked up.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Place
      */
     protected $pickupLocation;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|int|null
+     */
+    public function getPartySize()
+    {
+        return $this->partySize;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|int|null $partySize
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPartySize($partySize)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "int",
+            "null",
+        ];
+
+        $partySize = self::checkTypes($partySize, $types);
+
+        $this->partySize = $partySize;
+    }
 
     /**
      * @return DateTime|null
@@ -64,40 +90,14 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
      */
     public function setPickupTime($pickupTime)
     {
-        $types = array(
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $pickupTime = self::checkTypes($pickupTime, $types);
 
         $this->pickupTime = $pickupTime;
-    }
-
-    /**
-     * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
-     */
-    public function getPartySize()
-    {
-        return $this->partySize;
-    }
-
-    /**
-     * @param int|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $partySize
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPartySize($partySize)
-    {
-        $types = array(
-            "int",
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "null",
-        );
-
-        $partySize = self::checkTypes($partySize, $types);
-
-        $this->partySize = $partySize;
     }
 
     /**
@@ -115,9 +115,9 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
      */
     public function setPickupLocation($pickupLocation)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Place",
-        );
+        ];
 
         $pickupLocation = self::checkTypes($pickupLocation, $types);
 

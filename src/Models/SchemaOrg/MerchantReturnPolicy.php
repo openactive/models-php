@@ -17,24 +17,32 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "inStoreReturnsOffered" => "inStoreReturnsOffered",
+            "returnPolicyCategory" => "returnPolicyCategory",
+            "refundType" => "refundType",
             "returnFees" => "returnFees",
             "merchantReturnLink" => "merchantReturnLink",
-            "refundType" => "refundType",
-            "returnPolicyCategory" => "returnPolicyCategory",
             "merchantReturnDays" => "merchantReturnDays",
+            "inStoreReturnsOffered" => "inStoreReturnsOffered",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Are in-store returns offered?
+     * A returnPolicyCategory expresses at most one of several enumerated kinds of return.
      *
      *
-     * @var bool|null
+     * @var \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
      */
-    protected $inStoreReturnsOffered;
+    protected $returnPolicyCategory;
+
+    /**
+     * A refundType, from an enumerated list.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null
+     */
+    protected $refundType;
 
     /**
      * Indicates (via enumerated options) the return fees policy for a MerchantReturnPolicy
@@ -53,22 +61,6 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     protected $merchantReturnLink;
 
     /**
-     * A refundType, from an enumerated list.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null
-     */
-    protected $refundType;
-
-    /**
-     * A returnPolicyCategory expresses at most one of several enumerated kinds of return.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
-     */
-    protected $returnPolicyCategory;
-
-    /**
      * The merchantReturnDays property indicates the number of days (from purchase) within which relevant merchant return policy is applicable.
      *
      *
@@ -77,28 +69,61 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     protected $merchantReturnDays;
 
     /**
-     * @return bool|null
+     * Are in-store returns offered?
+     *
+     *
+     * @var bool|null
      */
-    public function getInStoreReturnsOffered()
+    protected $inStoreReturnsOffered;
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
+     */
+    public function getReturnPolicyCategory()
     {
-        return $this->inStoreReturnsOffered;
+        return $this->returnPolicyCategory;
     }
 
     /**
-     * @param bool|null $inStoreReturnsOffered
+     * @param \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null $returnPolicyCategory
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setInStoreReturnsOffered($inStoreReturnsOffered)
+    public function setReturnPolicyCategory($returnPolicyCategory)
     {
-        $types = array(
-            "bool",
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration",
             "null",
-        );
+        ];
 
-        $inStoreReturnsOffered = self::checkTypes($inStoreReturnsOffered, $types);
+        $returnPolicyCategory = self::checkTypes($returnPolicyCategory, $types);
 
-        $this->inStoreReturnsOffered = $inStoreReturnsOffered;
+        $this->returnPolicyCategory = $returnPolicyCategory;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null
+     */
+    public function getRefundType()
+    {
+        return $this->refundType;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null $refundType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRefundType($refundType)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\RefundTypeEnumeration",
+            "null",
+        ];
+
+        $refundType = self::checkTypes($refundType, $types);
+
+        $this->refundType = $refundType;
     }
 
     /**
@@ -116,10 +141,10 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setReturnFees($returnFees)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration",
             "null",
-        );
+        ];
 
         $returnFees = self::checkTypes($returnFees, $types);
 
@@ -141,63 +166,13 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setMerchantReturnLink($merchantReturnLink)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $merchantReturnLink = self::checkTypes($merchantReturnLink, $types);
 
         $this->merchantReturnLink = $merchantReturnLink;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null
-     */
-    public function getRefundType()
-    {
-        return $this->refundType;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null $refundType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRefundType($refundType)
-    {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\RefundTypeEnumeration",
-            "null",
-        );
-
-        $refundType = self::checkTypes($refundType, $types);
-
-        $this->refundType = $refundType;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
-     */
-    public function getReturnPolicyCategory()
-    {
-        return $this->returnPolicyCategory;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null $returnPolicyCategory
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReturnPolicyCategory($returnPolicyCategory)
-    {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration",
-            "null",
-        );
-
-        $returnPolicyCategory = self::checkTypes($returnPolicyCategory, $types);
-
-        $this->returnPolicyCategory = $returnPolicyCategory;
     }
 
     /**
@@ -215,14 +190,39 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setMerchantReturnDays($merchantReturnDays)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $merchantReturnDays = self::checkTypes($merchantReturnDays, $types);
 
         $this->merchantReturnDays = $merchantReturnDays;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getInStoreReturnsOffered()
+    {
+        return $this->inStoreReturnsOffered;
+    }
+
+    /**
+     * @param bool|null $inStoreReturnsOffered
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInStoreReturnsOffered($inStoreReturnsOffered)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $inStoreReturnsOffered = self::checkTypes($inStoreReturnsOffered, $types);
+
+        $this->inStoreReturnsOffered = $inStoreReturnsOffered;
     }
 
 }

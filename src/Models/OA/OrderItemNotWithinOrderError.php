@@ -4,9 +4,9 @@ namespace OpenActive\Models\OA;
 
 /**
  * 
- * ## **Error Use Case**
- * The Order UUID for at least one provided `OrderItem` does not match the Order UUID of the `Order` being PATCHed.
+ * Error Use Case: The Order UUID for at least one provided `OrderItem` does not match the Order UUID of the `Order` being PATCHed.
  * 
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class OrderItemNotWithinOrderError extends \OpenActive\Models\OA\OpenBookingError
@@ -64,9 +64,9 @@ class OrderItemNotWithinOrderError extends \OpenActive\Models\OA\OpenBookingErro
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class OrderItemNotWithinOrderError extends \OpenActive\Models\OA\OpenBookingErro
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

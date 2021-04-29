@@ -3,6 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
+ * This type is derived from https://schema.org/Service, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class BookingService extends \OpenActive\Models\SchemaOrg\Service
@@ -35,7 +36,7 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
     protected $name;
 
     /**
-     * The version of the application, useful for on-premise installations. Note this property is in EARLY RELEASE AND IS SUBJECT TO CHANGE, as the [Dataset API Discovery specification](https://www.openactive.io/dataset-api-discovery/EditorsDraft/) evolves.
+     * The version of the application, useful for on-premise installations. Note this property is in EARLY RELEASE AND IS SUBJECT TO CHANGE, as the [Dataset API Discovery specification](https://openactive.io/dataset-api-discovery/EditorsDraft/) evolves.
      *
      *
      * @var string
@@ -73,9 +74,9 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -97,9 +98,9 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
      */
     public function setSoftwareVersion($softwareVersion)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $softwareVersion = self::checkTypes($softwareVersion, $types);
 
@@ -121,9 +122,9 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
      */
     public function setTermsOfService($termsOfService)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Terms[]",
-        );
+        ];
 
         $termsOfService = self::checkTypes($termsOfService, $types);
 
@@ -145,9 +146,9 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 

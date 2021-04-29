@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [PostalAddress](https://schema.org/PostalAddress), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/PostalAddress, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
@@ -98,9 +98,9 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function setAddressCountry($addressCountry)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $addressCountry = self::checkTypes($addressCountry, $types);
 
@@ -122,9 +122,9 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function setAddressLocality($addressLocality)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $addressLocality = self::checkTypes($addressLocality, $types);
 
@@ -146,9 +146,9 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function setAddressRegion($addressRegion)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $addressRegion = self::checkTypes($addressRegion, $types);
 
@@ -170,9 +170,9 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function setPostalCode($postalCode)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $postalCode = self::checkTypes($postalCode, $types);
 
@@ -194,9 +194,9 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function setStreetAddress($streetAddress)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $streetAddress = self::checkTypes($streetAddress, $types);
 

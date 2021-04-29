@@ -17,48 +17,16 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "ratingValue" => "ratingValue",
-            "bestRating" => "bestRating",
-            "author" => "author",
             "reviewAspect" => "reviewAspect",
+            "ratingValue" => "ratingValue",
             "worstRating" => "worstRating",
+            "author" => "author",
             "ratingExplanation" => "ratingExplanation",
+            "bestRating" => "bestRating",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The rating for the content.<br/><br/>
-     * 
-     * Usage guidelines:<br/><br/>
-     * 
-     * <ul>
-     * <li>Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.</li>
-     * <li>Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.</li>
-     * </ul>
-     * 
-     *
-     *
-     * @var string|float|null
-     */
-    protected $ratingValue;
-
-    /**
-     * The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed.
-     *
-     *
-     * @var string|float|null
-     */
-    protected $bestRating;
-
-    /**
-     * The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    protected $author;
 
     /**
      * This Review or Rating is relevant to this part or facet of the itemReviewed.
@@ -69,15 +37,31 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     protected $reviewAspect;
 
     /**
+     * The rating for the content.\n\nUsage guidelines:\n\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
+     *
+     *
+     * @var string|Number|null
+     */
+    protected $ratingValue;
+
+    /**
      * The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed.
      *
      *
-     * @var string|float|null
+     * @var string|Number|null
      */
     protected $worstRating;
 
     /**
-     * A short explanation (e.g. one to two sentences) providing background context and other information that led to the conclusion expressed in the rating. This is particularly applicable to ratings associated with "fact check" markup using <a class="localLink" href="https://schema.org/ClaimReview">ClaimReview</a>.
+     * The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     */
+    protected $author;
+
+    /**
+     * A short explanation (e.g. one to two sentences) providing background context and other information that led to the conclusion expressed in the rating. This is particularly applicable to ratings associated with "fact check" markup using [[ClaimReview]].
      *
      *
      * @var string
@@ -85,7 +69,39 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     protected $ratingExplanation;
 
     /**
-     * @return string|float|null
+     * The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed.
+     *
+     *
+     * @var string|Number|null
+     */
+    protected $bestRating;
+
+    /**
+     * @return string
+     */
+    public function getReviewAspect()
+    {
+        return $this->reviewAspect;
+    }
+
+    /**
+     * @param string $reviewAspect
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReviewAspect($reviewAspect)
+    {
+        $types = [
+            "string",
+        ];
+
+        $reviewAspect = self::checkTypes($reviewAspect, $types);
+
+        $this->reviewAspect = $reviewAspect;
+    }
+
+    /**
+     * @return string|Number|null
      */
     public function getRatingValue()
     {
@@ -93,17 +109,17 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|float|null $ratingValue
+     * @param string|Number|null $ratingValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRatingValue($ratingValue)
     {
-        $types = array(
+        $types = [
             "string",
-            "float",
+            "Number",
             "null",
-        );
+        ];
 
         $ratingValue = self::checkTypes($ratingValue, $types);
 
@@ -111,29 +127,29 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|float|null
+     * @return string|Number|null
      */
-    public function getBestRating()
+    public function getWorstRating()
     {
-        return $this->bestRating;
+        return $this->worstRating;
     }
 
     /**
-     * @param string|float|null $bestRating
+     * @param string|Number|null $worstRating
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBestRating($bestRating)
+    public function setWorstRating($worstRating)
     {
-        $types = array(
+        $types = [
             "string",
-            "float",
+            "Number",
             "null",
-        );
+        ];
 
-        $bestRating = self::checkTypes($bestRating, $types);
+        $worstRating = self::checkTypes($worstRating, $types);
 
-        $this->bestRating = $bestRating;
+        $this->worstRating = $worstRating;
     }
 
     /**
@@ -151,64 +167,14 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setAuthor($author)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Organization",
-        );
+        ];
 
         $author = self::checkTypes($author, $types);
 
         $this->author = $author;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReviewAspect()
-    {
-        return $this->reviewAspect;
-    }
-
-    /**
-     * @param string $reviewAspect
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReviewAspect($reviewAspect)
-    {
-        $types = array(
-            "string",
-        );
-
-        $reviewAspect = self::checkTypes($reviewAspect, $types);
-
-        $this->reviewAspect = $reviewAspect;
-    }
-
-    /**
-     * @return string|float|null
-     */
-    public function getWorstRating()
-    {
-        return $this->worstRating;
-    }
-
-    /**
-     * @param string|float|null $worstRating
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setWorstRating($worstRating)
-    {
-        $types = array(
-            "string",
-            "float",
-            "null",
-        );
-
-        $worstRating = self::checkTypes($worstRating, $types);
-
-        $this->worstRating = $worstRating;
     }
 
     /**
@@ -226,13 +192,39 @@ class Rating extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setRatingExplanation($ratingExplanation)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $ratingExplanation = self::checkTypes($ratingExplanation, $types);
 
         $this->ratingExplanation = $ratingExplanation;
+    }
+
+    /**
+     * @return string|Number|null
+     */
+    public function getBestRating()
+    {
+        return $this->bestRating;
+    }
+
+    /**
+     * @param string|Number|null $bestRating
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBestRating($bestRating)
+    {
+        $types = [
+            "string",
+            "Number",
+            "null",
+        ];
+
+        $bestRating = self::checkTypes($bestRating, $types);
+
+        $this->bestRating = $bestRating;
     }
 
 }

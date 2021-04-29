@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [OnDemandEvent](https://schema.org/OnDemandEvent), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/OnDemandEvent, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class OnDemandEvent extends \OpenActive\Models\OA\Event
@@ -19,7 +19,6 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     public static function fieldList() {
         $fields = [
             "eventAttendanceMode" => "eventAttendanceMode",
-            "eventSchedule" => "eventSchedule",
             "eventStatus" => "eventStatus",
             "location" => "location",
             "maximumAttendeeCapacity" => "maximumAttendeeCapacity",
@@ -50,28 +49,6 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     protected $eventAttendanceMode;
 
     /**
-     * A an array of oa:Schedule or oa:PartialSchedule, which represents a recurrence pattern.
-     *
-     * ```json
-     * "eventSchedule": [
-     *   {
-     *     "@type": "PartialSchedule",
-     *     "repeatFrequency": "P1W",
-     *     "startTime": "20:15",
-     *     "endTime": "20:45",
-     *     "byDay": [
-     *       "http://schema.org/Tuesday"
-     *     ]
-     *   }
-     * ]
-     * ```
-     *
-     * @var \OpenActive\Models\OA\Schedule[]
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    protected $eventSchedule;
-
-    /**
      * The status of an event. Can be used to indicate rescheduled or cancelled events
      *
      * ```json
@@ -85,9 +62,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
 
     /**
      * The location at which the event will take place. Or, in the case of events that may span multiple locations, the initial meeting or starting point.
-     * It is recommended that locations should be specified as a [Place](/models/place) complete with a fully described geographic location and/or address.
-     * If only an address is available then this should be described as a [PostalAddress](/models/postaladdress).
-     * Applications may use [schema:Text](https://schema.org/Text) to provide a more general description of a location ("In Victoria Park, near the lake"), but this is not recommended: consuming applications will be unable to help users discover opportunities based on their location.
+     * Locations must be specified as a [Place](/models/place) complete with a fully described geographic location and/or address.
      *
      * ```json
      * "location": {
@@ -220,7 +195,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     protected $superEvent;
 
     /**
-     * An video, audio or other media that represents the actual recording of the `OnDemandEvent`.
+     * A video, audio or other media that represents the actual recording of the `OnDemandEvent`.
      *
      * ```json
      * "workFeatured": {
@@ -257,40 +232,14 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setEventAttendanceMode($eventAttendanceMode)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\EventAttendanceModeEnumeration",
             "null",
-        );
+        ];
 
         $eventAttendanceMode = self::checkTypes($eventAttendanceMode, $types);
 
         $this->eventAttendanceMode = $eventAttendanceMode;
-    }
-
-    /**
-     * @return \OpenActive\Models\OA\Schedule[]
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    public function getEventSchedule()
-    {
-        return $this->eventSchedule;
-    }
-
-    /**
-     * @param \OpenActive\Models\OA\Schedule[] $eventSchedule
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    public function setEventSchedule($eventSchedule)
-    {
-        $types = array(
-            "\OpenActive\Models\OA\Schedule[]",
-        );
-
-        $eventSchedule = self::checkTypes($eventSchedule, $types);
-
-        $this->eventSchedule = $eventSchedule;
     }
 
     /**
@@ -310,10 +259,10 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setEventStatus($eventStatus)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\EventStatusType",
             "null",
-        );
+        ];
 
         $eventStatus = self::checkTypes($eventStatus, $types);
 
@@ -337,9 +286,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setLocation($location)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Place",
-        );
+        ];
 
         $location = self::checkTypes($location, $types);
 
@@ -363,10 +312,10 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $maximumAttendeeCapacity = self::checkTypes($maximumAttendeeCapacity, $types);
 
@@ -390,10 +339,10 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setMaximumVirtualAttendeeCapacity($maximumVirtualAttendeeCapacity)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $maximumVirtualAttendeeCapacity = self::checkTypes($maximumVirtualAttendeeCapacity, $types);
 
@@ -417,9 +366,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setMeetingPoint($meetingPoint)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $meetingPoint = self::checkTypes($meetingPoint, $types);
 
@@ -443,10 +392,10 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $remainingAttendeeCapacity = self::checkTypes($remainingAttendeeCapacity, $types);
 
@@ -470,9 +419,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setSchedulingNote($schedulingNote)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $schedulingNote = self::checkTypes($schedulingNote, $types);
 
@@ -496,11 +445,11 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setStartDate($startDate)
     {
-        $types = array(
+        $types = [
             "Date",
             "DateTime",
             "null",
-        );
+        ];
 
         $startDate = self::checkTypes($startDate, $types);
 
@@ -524,11 +473,11 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setEndDate($endDate)
     {
-        $types = array(
+        $types = [
             "Date",
             "DateTime",
             "null",
-        );
+        ];
 
         $endDate = self::checkTypes($endDate, $types);
 
@@ -552,9 +501,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setSubEvent($subEvent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Event[]",
-        );
+        ];
 
         $subEvent = self::checkTypes($subEvent, $types);
 
@@ -576,9 +525,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setSuperEvent($superEvent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Event",
-        );
+        ];
 
         $superEvent = self::checkTypes($superEvent, $types);
 
@@ -600,9 +549,9 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      */
     public function setWorkFeatured($workFeatured)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\MediaObject",
-        );
+        ];
 
         $workFeatured = self::checkTypes($workFeatured, $types);
 

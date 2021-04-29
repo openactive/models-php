@@ -55,10 +55,10 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
      */
     public function setDomiciledMortgage($domiciledMortgage)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $domiciledMortgage = self::checkTypes($domiciledMortgage, $types);
 
@@ -80,9 +80,9 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
      */
     public function setLoanMortgageMandateAmount($loanMortgageMandateAmount)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-        );
+        ];
 
         $loanMortgageMandateAmount = self::checkTypes($loanMortgageMandateAmount, $types);
 

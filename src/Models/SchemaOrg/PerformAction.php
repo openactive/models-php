@@ -46,9 +46,9 @@ class PerformAction extends \OpenActive\Models\SchemaOrg\PlayAction
      */
     public function setEntertainmentBusiness($entertainmentBusiness)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\EntertainmentBusiness",
-        );
+        ];
 
         $entertainmentBusiness = self::checkTypes($entertainmentBusiness, $types);
 

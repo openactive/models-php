@@ -3,7 +3,8 @@
 namespace OpenActive\Models\OA;
 
 /**
- * [NOTICE: This is a beta class, and is highly likely to change in future versions of this library.].
+ * [NOTICE: This is a beta class, and is highly likely to change in future versions of this library.] 
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class TrustCertification extends \OpenActive\Models\SchemaOrg\Thing
@@ -25,7 +26,7 @@ class TrustCertification extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * Property containing an array of CertificationLevels
      * 
      * If you are using this property, please join the discussion at proposal [#217](https://github.com/openactive/modelling-opportunity-data/issues/217).
@@ -50,9 +51,9 @@ class TrustCertification extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setCertificationLevel($certificationLevel)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\CertificationLevel",
-        );
+        ];
 
         $certificationLevel = self::checkTypes($certificationLevel, $types);
 

@@ -4,11 +4,9 @@ namespace OpenActive\Models\OA;
 
 /**
  * 
- * ## **EARLY RELEASE NOTICE**
- * In order to expedite the OpenActive tooling work, this class has been added to the model for the purposes of testing.
- * IT IS SUBJECT TO CHANGE, as the [Dataset API Discovery specification](https://www.openactive.io/dataset-api-discovery/EditorsDraft/) evolves.
+ * EARLY RELEASE NOTICE: This class represents a draft that is designed to inform the OpenActive specification work with implementation feedback. It is mostly stable, as it based almost entirely on schema.org. HOWEVER, IT IS STILL SUBJECT TO CHANGE, as the [Dataset API Discovery specification](https://openactive.io/dataset-api-discovery/EditorsDraft/) evolves.
  * 
- * This type is derived from [Dataset](https://schema.org/Dataset), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/Dataset, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
@@ -45,7 +43,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * The name of the Dataset
+     * The name of the `Dataset`
      *
      * ```json
      * "name": "Acme Leisure Sessions and Facilities"
@@ -56,7 +54,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     protected $name;
 
     /**
-     * The description of the Dataset
+     * A plain text description of the `Dataset`, which must not include HTML or other markup.
      *
      * ```json
      * "description": "Near real-time availability and rich descriptions relating to the sessions and facilities available from {OrganisationName}, published using the OpenActive Modelling Specification 2.0."
@@ -75,7 +73,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     protected $accessService;
 
     /**
-     * A background image for the Dataset.
+     * A background image for the `Dataset`.
      *
      * ```json
      * "backgroundImage": {
@@ -97,7 +95,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     protected $bookingService;
 
     /**
-     * The date this Dataset was last updated. For RPDE feeds this may simply be the date and time that the Dataset Site was rendered, which may be cached.
+     * The date this `Dataset` was last updated. For RPDE feeds this may simply be the date and time that the Dataset Site was rendered, which may be cached.
      *
      * ```json
      * "dateModified": "2018-01-27T12:00:00Z"
@@ -108,7 +106,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     protected $dateModified;
 
     /**
-     * The date this Dataset was first published. Can be specified as a schema:Date or schema:DateTime.
+     * The date this `Dataset` was first published. Can be specified as a schema:Date or schema:DateTime.
      *
      * ```json
      * "datePublished": "2018-01-27T12:00:00Z"
@@ -119,7 +117,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     protected $datePublished;
 
     /**
-     * A URL that can be used to raise issues related to the Dataset via a public forum.
+     * A URL that can be used to raise issues related to the `Dataset` via a public forum.
      *
      * ```json
      * "discussionUrl": "https://github.com/gladstonemrm/FusionLifestyle/issues"
@@ -149,7 +147,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     protected $distribution;
 
     /**
-     * A link to documentation related to the Dataset, or a link to the OpenActive developer documentation if no Dataset-specific documentation is available.
+     * A link to documentation related to the `Dataset`, or a link to the OpenActive developer documentation if no Dataset-specific documentation is available.
      *
      * ```json
      * "documentation": "https://developer.openactive.io"
@@ -160,7 +158,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     protected $documentation;
 
     /**
-     * An array of languages included in the Dataset content. Please use one of the language codes from the IETF BCP 47 standard.
+     * An array of languages included in the Dataset's content. Please use one of the language codes from the IETF BCP 47 standard.
      *
      * ```json
      * "inLanguage": [
@@ -204,12 +202,12 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     protected $license;
 
     /**
-     * The organization ultimately responsible for this Dataset.
+     * The organization ultimately responsible for this `Dataset`.
      *
      * ```json
      * "publisher": {
+     *   "@type": "Organization",
      *   "name": "Central Speedball Association",
-     *   "type": "Organization",
      *   "url": "http://www.speedball-world.com"
      * }
      * ```
@@ -219,10 +217,10 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     protected $publisher;
 
     /**
-     * Indicates the version of OpenActive Modelling Opportunity Data Specification with which this Dataset conforms, by specifying its URL.
+     * Indicates the version of OpenActive Modelling Opportunity Data Specification with which this `Dataset` conforms, by specifying its URL.
      *
      * ```json
-     * "schemaVersion": "https://www.openactive.io/modelling-opportunity-data/2.0/"
+     * "schemaVersion": "https://openactive.io/modelling-opportunity-data/2.0/"
      * ```
      *
      * @var string
@@ -255,9 +253,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -279,9 +277,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -303,9 +301,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setAccessService($accessService)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\WebAPI",
-        );
+        ];
 
         $accessService = self::checkTypes($accessService, $types);
 
@@ -327,9 +325,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setBackgroundImage($backgroundImage)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject",
-        );
+        ];
 
         $backgroundImage = self::checkTypes($backgroundImage, $types);
 
@@ -351,9 +349,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setBookingService($bookingService)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\BookingService",
-        );
+        ];
 
         $bookingService = self::checkTypes($bookingService, $types);
 
@@ -375,10 +373,10 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setDateModified($dateModified)
     {
-        $types = array(
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $dateModified = self::checkTypes($dateModified, $types);
 
@@ -400,11 +398,11 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setDatePublished($datePublished)
     {
-        $types = array(
+        $types = [
             "Date",
             "DateTime",
             "null",
-        );
+        ];
 
         $datePublished = self::checkTypes($datePublished, $types);
 
@@ -426,9 +424,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setDiscussionUrl($discussionUrl)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $discussionUrl = self::checkTypes($discussionUrl, $types);
 
@@ -450,9 +448,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setDistribution($distribution)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\DataDownload[]",
-        );
+        ];
 
         $distribution = self::checkTypes($distribution, $types);
 
@@ -474,9 +472,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setDocumentation($documentation)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $documentation = self::checkTypes($documentation, $types);
 
@@ -498,9 +496,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setInLanguage($inLanguage)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $inLanguage = self::checkTypes($inLanguage, $types);
 
@@ -522,9 +520,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setKeywords($keywords)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $keywords = self::checkTypes($keywords, $types);
 
@@ -546,9 +544,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setLicense($license)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $license = self::checkTypes($license, $types);
 
@@ -570,9 +568,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setPublisher($publisher)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Organization",
-        );
+        ];
 
         $publisher = self::checkTypes($publisher, $types);
 
@@ -594,9 +592,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setSchemaVersion($schemaVersion)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $schemaVersion = self::checkTypes($schemaVersion, $types);
 
@@ -618,9 +616,9 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 

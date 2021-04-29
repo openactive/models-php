@@ -33,7 +33,7 @@ class AudioObject extends \OpenActive\Models\SchemaOrg\MediaObject
     protected $transcript;
 
     /**
-     * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the <a class="localLink" href="https://schema.org/encodingFormat">encodingFormat</a>.
+     * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the [[encodingFormat]].
      *
      *
      * @var string|\OpenActive\Models\SchemaOrg\MediaObject
@@ -55,9 +55,9 @@ class AudioObject extends \OpenActive\Models\SchemaOrg\MediaObject
      */
     public function setTranscript($transcript)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $transcript = self::checkTypes($transcript, $types);
 
@@ -79,10 +79,10 @@ class AudioObject extends \OpenActive\Models\SchemaOrg\MediaObject
      */
     public function setCaption($caption)
     {
-        $types = array(
+        $types = [
             "string",
             "\OpenActive\Models\SchemaOrg\MediaObject",
-        );
+        ];
 
         $caption = self::checkTypes($caption, $types);
 

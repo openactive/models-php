@@ -46,9 +46,9 @@ class MobileApplication extends \OpenActive\Models\SchemaOrg\SoftwareApplication
      */
     public function setCarrierRequirements($carrierRequirements)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $carrierRequirements = self::checkTypes($carrierRequirements, $types);
 

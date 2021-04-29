@@ -46,9 +46,9 @@ class TVClip extends \OpenActive\Models\SchemaOrg\Clip
      */
     public function setPartOfTVSeries($partOfTVSeries)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\TVSeries",
-        );
+        ];
 
         $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
 

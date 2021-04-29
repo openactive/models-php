@@ -3,6 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class Lease extends \OpenActive\Models\SchemaOrg\Thing
@@ -58,13 +59,13 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -86,10 +87,10 @@ class Lease extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setLeaseExpires($leaseExpires)
     {
-        $types = array(
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $leaseExpires = self::checkTypes($leaseExpires, $types);
 

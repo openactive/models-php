@@ -46,10 +46,10 @@ class TrackAction extends \OpenActive\Models\SchemaOrg\FindAction
      */
     public function setDeliveryMethod($deliveryMethod)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
             "null",
-        );
+        ];
 
         $deliveryMethod = self::checkTypes($deliveryMethod, $types);
 

@@ -4,9 +4,9 @@ namespace OpenActive\Models\OA;
 
 /**
  * 
- * ## **Error Use Case**
- * The `orderedItem` and `acceptedOffer` combination specified are not bookable, as defined in the Open Booking API specification.
+ * Error Use Case: The `orderedItem` and `acceptedOffer` combination specified are not bookable, as defined in the Open Booking API specification.
  * 
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class OpportunityOfferPairNotBookableError extends \OpenActive\Models\OA\OpenBookingError
@@ -32,7 +32,7 @@ class OpportunityOfferPairNotBookableError extends \OpenActive\Models\OA\OpenBoo
      * A short, human-readable summary of the problem type. It should not change from occurrence to occurrence of the problem, except for purposes of localization.
      *
      * ```json
-     * "name": "The 'orderedItem' and 'acceptedOffer' combination specified are not bookable, as defined in the Open Booking API specification."
+     * "name": "The 'orderedItem' and 'acceptedOffer' combination specified are not "bookable", as defined in the Open Booking API specification."
      * ```
      *
      * @var string
@@ -64,9 +64,9 @@ class OpportunityOfferPairNotBookableError extends \OpenActive\Models\OA\OpenBoo
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class OpportunityOfferPairNotBookableError extends \OpenActive\Models\OA\OpenBoo
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

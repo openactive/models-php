@@ -46,9 +46,9 @@ class WebSite extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setIssn($issn)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $issn = self::checkTypes($issn, $types);
 

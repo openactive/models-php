@@ -46,9 +46,9 @@ class SomeProducts extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setInventoryLevel($inventoryLevel)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
+        ];
 
         $inventoryLevel = self::checkTypes($inventoryLevel, $types);
 

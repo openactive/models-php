@@ -17,21 +17,13 @@ class HealthPlanNetwork extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "healthPlanCostSharing" => "healthPlanCostSharing",
             "healthPlanNetworkTier" => "healthPlanNetworkTier",
             "healthPlanNetworkId" => "healthPlanNetworkId",
+            "healthPlanCostSharing" => "healthPlanCostSharing",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Whether The costs to the patient for services under this network or formulary.
-     *
-     *
-     * @var bool|null
-     */
-    protected $healthPlanCostSharing;
 
     /**
      * The tier(s) for this network.
@@ -50,29 +42,12 @@ class HealthPlanNetwork extends \OpenActive\Models\SchemaOrg\Intangible
     protected $healthPlanNetworkId;
 
     /**
-     * @return bool|null
+     * Whether The costs to the patient for services under this network or formulary.
+     *
+     *
+     * @var bool|null
      */
-    public function getHealthPlanCostSharing()
-    {
-        return $this->healthPlanCostSharing;
-    }
-
-    /**
-     * @param bool|null $healthPlanCostSharing
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHealthPlanCostSharing($healthPlanCostSharing)
-    {
-        $types = array(
-            "bool",
-            "null",
-        );
-
-        $healthPlanCostSharing = self::checkTypes($healthPlanCostSharing, $types);
-
-        $this->healthPlanCostSharing = $healthPlanCostSharing;
-    }
+    protected $healthPlanCostSharing;
 
     /**
      * @return string
@@ -89,9 +64,9 @@ class HealthPlanNetwork extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setHealthPlanNetworkTier($healthPlanNetworkTier)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $healthPlanNetworkTier = self::checkTypes($healthPlanNetworkTier, $types);
 
@@ -113,13 +88,38 @@ class HealthPlanNetwork extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setHealthPlanNetworkId($healthPlanNetworkId)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $healthPlanNetworkId = self::checkTypes($healthPlanNetworkId, $types);
 
         $this->healthPlanNetworkId = $healthPlanNetworkId;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getHealthPlanCostSharing()
+    {
+        return $this->healthPlanCostSharing;
+    }
+
+    /**
+     * @param bool|null $healthPlanCostSharing
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHealthPlanCostSharing($healthPlanCostSharing)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $healthPlanCostSharing = self::checkTypes($healthPlanCostSharing, $types);
+
+        $this->healthPlanCostSharing = $healthPlanCostSharing;
     }
 
 }

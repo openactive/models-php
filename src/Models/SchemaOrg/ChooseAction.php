@@ -17,20 +17,12 @@ class ChooseAction extends \OpenActive\Models\SchemaOrg\AssessAction
 
     public static function fieldList() {
         $fields = [
-            "actionOption" => "actionOption",
             "option" => "option",
+            "actionOption" => "actionOption",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A sub property of object. The options subject to this action.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $actionOption;
 
     /**
      * A sub property of object. The options subject to this action.
@@ -41,29 +33,12 @@ class ChooseAction extends \OpenActive\Models\SchemaOrg\AssessAction
     protected $option;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Thing
+     * A sub property of object. The options subject to this action.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Thing
      */
-    public function getActionOption()
-    {
-        return $this->actionOption;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Thing $actionOption
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActionOption($actionOption)
-    {
-        $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\Thing",
-        );
-
-        $actionOption = self::checkTypes($actionOption, $types);
-
-        $this->actionOption = $actionOption;
-    }
+    protected $actionOption;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing|string
@@ -80,14 +55,39 @@ class ChooseAction extends \OpenActive\Models\SchemaOrg\AssessAction
      */
     public function setOption($option)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Thing",
             "string",
-        );
+        ];
 
         $option = self::checkTypes($option, $types);
 
         $this->option = $option;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Thing
+     */
+    public function getActionOption()
+    {
+        return $this->actionOption;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Thing $actionOption
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActionOption($actionOption)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
+        ];
+
+        $actionOption = self::checkTypes($actionOption, $types);
+
+        $this->actionOption = $actionOption;
     }
 
 }

@@ -17,13 +17,21 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
+            "serverStatus" => "serverStatus",
             "game" => "game",
             "playersOnline" => "playersOnline",
-            "serverStatus" => "serverStatus",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Status of a game server.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\GameServerStatus
+     */
+    protected $serverStatus;
 
     /**
      * Video game which is played on this server.
@@ -42,12 +50,28 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
     protected $playersOnline;
 
     /**
-     * Status of a game server.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\GameServerStatus|null
+     * @return \OpenActive\Models\SchemaOrg\GameServerStatus
      */
-    protected $serverStatus;
+    public function getServerStatus()
+    {
+        return $this->serverStatus;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\GameServerStatus $serverStatus
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setServerStatus($serverStatus)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\GameServerStatus",
+        ];
+
+        $serverStatus = self::checkTypes($serverStatus, $types);
+
+        $this->serverStatus = $serverStatus;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\VideoGame
@@ -64,9 +88,9 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setGame($game)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\VideoGame",
-        );
+        ];
 
         $game = self::checkTypes($game, $types);
 
@@ -88,39 +112,14 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setPlayersOnline($playersOnline)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $playersOnline = self::checkTypes($playersOnline, $types);
 
         $this->playersOnline = $playersOnline;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\GameServerStatus|null
-     */
-    public function getServerStatus()
-    {
-        return $this->serverStatus;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\GameServerStatus|null $serverStatus
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setServerStatus($serverStatus)
-    {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\GameServerStatus",
-            "null",
-        );
-
-        $serverStatus = self::checkTypes($serverStatus, $types);
-
-        $this->serverStatus = $serverStatus;
     }
 
 }

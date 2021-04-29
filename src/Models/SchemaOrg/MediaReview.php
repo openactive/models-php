@@ -46,10 +46,10 @@ class MediaReview extends \OpenActive\Models\SchemaOrg\Review
      */
     public function setMediaAuthenticityCategory($mediaAuthenticityCategory)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\MediaManipulationRatingEnumeration",
             "null",
-        );
+        ];
 
         $mediaAuthenticityCategory = self::checkTypes($mediaAuthenticityCategory, $types);
 

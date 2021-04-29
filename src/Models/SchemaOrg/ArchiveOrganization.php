@@ -24,7 +24,7 @@ class ArchiveOrganization extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * Collection, <a href="https://en.wikipedia.org/wiki/Fonds">fonds</a>, or item held, kept or maintained by an <a class="localLink" href="https://schema.org/ArchiveOrganization">ArchiveOrganization</a>.
+     * [object Object]
      *
      *
      * @var \OpenActive\Models\SchemaOrg\ArchiveComponent
@@ -46,9 +46,9 @@ class ArchiveOrganization extends \OpenActive\Models\SchemaOrg\LocalBusiness
      */
     public function setArchiveHeld($archiveHeld)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\ArchiveComponent",
-        );
+        ];
 
         $archiveHeld = self::checkTypes($archiveHeld, $types);
 

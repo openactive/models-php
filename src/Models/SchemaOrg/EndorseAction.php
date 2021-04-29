@@ -46,10 +46,10 @@ class EndorseAction extends \OpenActive\Models\SchemaOrg\ReactAction
      */
     public function setEndorsee($endorsee)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
-        );
+        ];
 
         $endorsee = self::checkTypes($endorsee, $types);
 

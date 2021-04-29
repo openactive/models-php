@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [PropertyValueSpecification](https://schema.org/PropertyValueSpecification), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/PropertyValueSpecification, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyValueSpecification
@@ -35,7 +35,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyVa
     protected $name;
 
     /**
-     * Descriptive help text for the field.
+     * Descriptive help plain text for the field, which must not include HTML or other markup.
      *
      *
      * @var string
@@ -46,7 +46,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyVa
      * Specifies that a value for the field is required to proceed with the booking.
      *
      *
-     * @var string
+     * @var bool|null
      */
     protected $valueRequired;
 
@@ -65,9 +65,9 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyVa
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -89,9 +89,9 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyVa
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -99,7 +99,7 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyVa
     }
 
     /**
-     * @return string
+     * @return bool|null
      */
     public function getValueRequired()
     {
@@ -107,15 +107,16 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\PropertyVa
     }
 
     /**
-     * @param string $valueRequired
+     * @param bool|null $valueRequired
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValueRequired($valueRequired)
     {
-        $types = array(
-            "string",
-        );
+        $types = [
+            "bool",
+            "null",
+        ];
 
         $valueRequired = self::checkTypes($valueRequired, $types);
 

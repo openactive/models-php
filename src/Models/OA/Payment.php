@@ -3,6 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class Payment extends \OpenActive\Models\SchemaOrg\Thing
@@ -67,7 +68,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      * paymentMethod must not be used, and is reserved for future versions of this specification.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\PaymentMethod|null
+     * @var \OpenActive\Enums\PaymentMethod|null
      */
     protected $paymentMethod;
 
@@ -94,9 +95,9 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -118,9 +119,9 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -142,9 +143,9 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setAccountId($accountId)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $accountId = self::checkTypes($accountId, $types);
 
@@ -166,9 +167,9 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setAdditionalProperty($additionalProperty)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\PropertyValue[]",
-        );
+        ];
 
         $additionalProperty = self::checkTypes($additionalProperty, $types);
 
@@ -176,7 +177,7 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\PaymentMethod|null
+     * @return \OpenActive\Enums\PaymentMethod|null
      */
     public function getPaymentMethod()
     {
@@ -184,16 +185,16 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\PaymentMethod|null $paymentMethod
+     * @param \OpenActive\Enums\PaymentMethod|null $paymentMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPaymentMethod($paymentMethod)
     {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\PaymentMethod",
+        $types = [
+            "\OpenActive\Enums\PaymentMethod",
             "null",
-        );
+        ];
 
         $paymentMethod = self::checkTypes($paymentMethod, $types);
 
@@ -215,9 +216,9 @@ class Payment extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setPaymentProviderId($paymentProviderId)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $paymentProviderId = self::checkTypes($paymentProviderId, $types);
 

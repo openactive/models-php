@@ -46,10 +46,10 @@ class OrderAction extends \OpenActive\Models\SchemaOrg\TradeAction
      */
     public function setDeliveryMethod($deliveryMethod)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
             "null",
-        );
+        ];
 
         $deliveryMethod = self::checkTypes($deliveryMethod, $types);
 

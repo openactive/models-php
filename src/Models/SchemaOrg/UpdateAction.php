@@ -55,9 +55,9 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
      */
     public function setCollection($collection)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Thing",
-        );
+        ];
 
         $collection = self::checkTypes($collection, $types);
 
@@ -79,9 +79,9 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
      */
     public function setTargetCollection($targetCollection)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Thing",
-        );
+        ];
 
         $targetCollection = self::checkTypes($targetCollection, $types);
 

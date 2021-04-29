@@ -17,21 +17,13 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "interactionService" => "interactionService",
             "userInteractionCount" => "userInteractionCount",
+            "interactionService" => "interactionService",
             "interactionType" => "interactionType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The WebSite or SoftwareApplication where the interactions took place.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\WebSite|\OpenActive\Models\SchemaOrg\SoftwareApplication
-     */
-    protected $interactionService;
 
     /**
      * The number of interactions for the CreativeWork using the WebSite or SoftwareApplication.
@@ -42,37 +34,20 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $userInteractionCount;
 
     /**
-     * The Action representing the type of interaction. For up votes, +1s, etc. use <a class="localLink" href="https://schema.org/LikeAction">LikeAction</a>. For down votes use <a class="localLink" href="https://schema.org/DislikeAction">DislikeAction</a>. Otherwise, use the most specific Action.
+     * The WebSite or SoftwareApplication where the interactions took place.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\SoftwareApplication|\OpenActive\Models\SchemaOrg\WebSite
+     */
+    protected $interactionService;
+
+    /**
+     * The Action representing the type of interaction. For up votes, +1s, etc. use [[LikeAction]]. For down votes use [[DislikeAction]]. Otherwise, use the most specific Action.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Action
      */
     protected $interactionType;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\WebSite|\OpenActive\Models\SchemaOrg\SoftwareApplication
-     */
-    public function getInteractionService()
-    {
-        return $this->interactionService;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\WebSite|\OpenActive\Models\SchemaOrg\SoftwareApplication $interactionService
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setInteractionService($interactionService)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\WebSite",
-            "\OpenActive\Models\SchemaOrg\SoftwareApplication",
-        );
-
-        $interactionService = self::checkTypes($interactionService, $types);
-
-        $this->interactionService = $interactionService;
-    }
 
     /**
      * @return int|null
@@ -89,14 +64,39 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setUserInteractionCount($userInteractionCount)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $userInteractionCount = self::checkTypes($userInteractionCount, $types);
 
         $this->userInteractionCount = $userInteractionCount;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\SoftwareApplication|\OpenActive\Models\SchemaOrg\WebSite
+     */
+    public function getInteractionService()
+    {
+        return $this->interactionService;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\SoftwareApplication|\OpenActive\Models\SchemaOrg\WebSite $interactionService
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInteractionService($interactionService)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\SoftwareApplication",
+            "\OpenActive\Models\SchemaOrg\WebSite",
+        ];
+
+        $interactionService = self::checkTypes($interactionService, $types);
+
+        $this->interactionService = $interactionService;
     }
 
     /**
@@ -114,9 +114,9 @@ class InteractionCounter extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setInteractionType($interactionType)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Action",
-        );
+        ];
 
         $interactionType = self::checkTypes($interactionType, $types);
 

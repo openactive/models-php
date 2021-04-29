@@ -55,9 +55,9 @@ class TechArticle extends \OpenActive\Models\SchemaOrg\Article
      */
     public function setProficiencyLevel($proficiencyLevel)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $proficiencyLevel = self::checkTypes($proficiencyLevel, $types);
 
@@ -79,9 +79,9 @@ class TechArticle extends \OpenActive\Models\SchemaOrg\Article
      */
     public function setDependencies($dependencies)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $dependencies = self::checkTypes($dependencies, $types);
 

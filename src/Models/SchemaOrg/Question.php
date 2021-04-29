@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
+class Question extends \OpenActive\Models\SchemaOrg\Comment
 {
     /**
      * @return string[]|null
@@ -17,15 +17,22 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
+            "suggestedAnswer" => "suggestedAnswer",
             "answerCount" => "answerCount",
             "acceptedAnswer" => "acceptedAnswer",
-            "upvoteCount" => "upvoteCount",
-            "suggestedAnswer" => "suggestedAnswer",
-            "downvoteCount" => "downvoteCount",
+            "eduQuestionType" => "eduQuestionType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList
+     */
+    protected $suggestedAnswer;
 
     /**
      * The number of answers this question has received.
@@ -44,28 +51,37 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $acceptedAnswer;
 
     /**
-     * The number of upvotes this question, answer or comment has received from the community.
+     * For questions that are part of learning resources (e.g. Quiz), eduQuestionType indicates the format of question being given. Example: "Multiple choice", "Open ended", "Flashcard".
      *
      *
-     * @var int|null
+     * @var string
      */
-    protected $upvoteCount;
+    protected $eduQuestionType;
 
     /**
-     * An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer
+     * @return \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList
      */
-    protected $suggestedAnswer;
+    public function getSuggestedAnswer()
+    {
+        return $this->suggestedAnswer;
+    }
 
     /**
-     * The number of downvotes this question, answer or comment has received from the community.
-     *
-     *
-     * @var int|null
+     * @param \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList $suggestedAnswer
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $downvoteCount;
+    public function setSuggestedAnswer($suggestedAnswer)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Answer",
+            "\OpenActive\Models\SchemaOrg\ItemList",
+        ];
+
+        $suggestedAnswer = self::checkTypes($suggestedAnswer, $types);
+
+        $this->suggestedAnswer = $suggestedAnswer;
+    }
 
     /**
      * @return int|null
@@ -82,10 +98,10 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setAnswerCount($answerCount)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $answerCount = self::checkTypes($answerCount, $types);
 
@@ -107,10 +123,10 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setAcceptedAnswer($acceptedAnswer)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Answer",
             "\OpenActive\Models\SchemaOrg\ItemList",
-        );
+        ];
 
         $acceptedAnswer = self::checkTypes($acceptedAnswer, $types);
 
@@ -118,78 +134,27 @@ class Question extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|null
+     * @return string
      */
-    public function getUpvoteCount()
+    public function getEduQuestionType()
     {
-        return $this->upvoteCount;
+        return $this->eduQuestionType;
     }
 
     /**
-     * @param int|null $upvoteCount
+     * @param string $eduQuestionType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setUpvoteCount($upvoteCount)
+    public function setEduQuestionType($eduQuestionType)
     {
-        $types = array(
-            "int",
-            "null",
-        );
+        $types = [
+            "string",
+        ];
 
-        $upvoteCount = self::checkTypes($upvoteCount, $types);
+        $eduQuestionType = self::checkTypes($eduQuestionType, $types);
 
-        $this->upvoteCount = $upvoteCount;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer
-     */
-    public function getSuggestedAnswer()
-    {
-        return $this->suggestedAnswer;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer $suggestedAnswer
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSuggestedAnswer($suggestedAnswer)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\ItemList",
-            "\OpenActive\Models\SchemaOrg\Answer",
-        );
-
-        $suggestedAnswer = self::checkTypes($suggestedAnswer, $types);
-
-        $this->suggestedAnswer = $suggestedAnswer;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getDownvoteCount()
-    {
-        return $this->downvoteCount;
-    }
-
-    /**
-     * @param int|null $downvoteCount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDownvoteCount($downvoteCount)
-    {
-        $types = array(
-            "int",
-            "null",
-        );
-
-        $downvoteCount = self::checkTypes($downvoteCount, $types);
-
-        $this->downvoteCount = $downvoteCount;
+        $this->eduQuestionType = $eduQuestionType;
     }
 
 }

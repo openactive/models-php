@@ -46,9 +46,9 @@ class WinAction extends \OpenActive\Models\SchemaOrg\AchieveAction
      */
     public function setLoser($loser)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Person",
-        );
+        ];
 
         $loser = self::checkTypes($loser, $types);
 

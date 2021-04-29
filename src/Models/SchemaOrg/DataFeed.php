@@ -27,12 +27,12 @@ class DataFeed extends \OpenActive\Models\SchemaOrg\Dataset
      * An item within in a data feed. Data feeds may have many elements.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DataFeedItem|\OpenActive\Models\SchemaOrg\Thing|string
+     * @var \OpenActive\Models\SchemaOrg\Thing|string|\OpenActive\Models\SchemaOrg\DataFeedItem
      */
     protected $dataFeedElement;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DataFeedItem|\OpenActive\Models\SchemaOrg\Thing|string
+     * @return \OpenActive\Models\SchemaOrg\Thing|string|\OpenActive\Models\SchemaOrg\DataFeedItem
      */
     public function getDataFeedElement()
     {
@@ -40,17 +40,17 @@ class DataFeed extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DataFeedItem|\OpenActive\Models\SchemaOrg\Thing|string $dataFeedElement
+     * @param \OpenActive\Models\SchemaOrg\Thing|string|\OpenActive\Models\SchemaOrg\DataFeedItem $dataFeedElement
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDataFeedElement($dataFeedElement)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\DataFeedItem",
+        $types = [
             "\OpenActive\Models\SchemaOrg\Thing",
             "string",
-        );
+            "\OpenActive\Models\SchemaOrg\DataFeedItem",
+        ];
 
         $dataFeedElement = self::checkTypes($dataFeedElement, $types);
 

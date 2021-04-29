@@ -3,6 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
@@ -39,7 +40,7 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
     protected $name;
 
     /**
-     * A human-readable explanation specific to this occurrence of the problem, providing specific information about why the error occurred in this particular case.
+     * A plain-text human-readable explanation specific to this occurrence of the problem, providing specific information about why the error occurred in this particular case. This description must not include HTML or other markup.
      *
      * ```json
      * "description": "No customer details supplied. These must be supplied for calls to C2, P, and B."
@@ -88,9 +89,9 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -112,9 +113,9 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -136,9 +137,9 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setInstance($instance)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $instance = self::checkTypes($instance, $types);
 
@@ -160,9 +161,9 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setRequestId($requestId)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $requestId = self::checkTypes($requestId, $types);
 
@@ -184,10 +185,10 @@ class OpenBookingError extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

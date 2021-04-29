@@ -4,11 +4,9 @@ namespace OpenActive\Models\OA;
 
 /**
  * 
- * ## **EARLY RELEASE NOTICE**
- * In order to expedite the OpenActive tooling work, this class has been added to the model for the purposes of testing.
- * IT IS SUBJECT TO CHANGE, as the [Dataset API Discovery specification](https://www.openactive.io/dataset-api-discovery/EditorsDraft/) evolves.
+ * EARLY RELEASE NOTICE: This class represents a draft that is designed to inform the OpenActive specification work with implementation feedback. IT IS SUBJECT TO CHANGE, as the [Dataset API Discovery specification](https://openactive.io/dataset-api-discovery/EditorsDraft/) evolves.
  * 
- * This type is derived from [DataDownload](https://schema.org/DataDownload), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/DataDownload, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
@@ -23,6 +21,7 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
 
     public static function fieldList() {
         $fields = [
+            "identifier" => "identifier",
             "name" => "name",
             "additionalType" => "additionalType",
             "contentUrl" => "contentUrl",
@@ -31,6 +30,17 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A local non-URI identifier for the resource
+     *
+     * ```json
+     * "identifier": "ScheduledSession"
+     * ```
+     *
+     * @var string
+     */
+    protected $identifier;
 
     /**
      * The name of the type of feed
@@ -81,6 +91,30 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
     /**
      * @return string
      */
+    public function getIdentifier()
+    {
+        return $this->identifier;
+    }
+
+    /**
+     * @param string $identifier
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIdentifier($identifier)
+    {
+        $types = [
+            "string",
+        ];
+
+        $identifier = self::checkTypes($identifier, $types);
+
+        $this->identifier = $identifier;
+    }
+
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -93,9 +127,9 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -117,9 +151,9 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
      */
     public function setAdditionalType($additionalType)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $additionalType = self::checkTypes($additionalType, $types);
 
@@ -141,9 +175,9 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
      */
     public function setContentUrl($contentUrl)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $contentUrl = self::checkTypes($contentUrl, $types);
 
@@ -165,9 +199,9 @@ class DataDownload extends \OpenActive\Models\SchemaOrg\DataDownload
      */
     public function setEncodingFormat($encodingFormat)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $encodingFormat = self::checkTypes($encodingFormat, $types);
 

@@ -18,8 +18,8 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     public static function fieldList() {
         $fields = [
             "parentItem" => "parentItem",
-            "upvoteCount" => "upvoteCount",
             "downvoteCount" => "downvoteCount",
+            "upvoteCount" => "upvoteCount",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -29,17 +29,9 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The parent of a question, answer or item in general.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Question
+     * @var \OpenActive\Models\SchemaOrg\Comment
      */
     protected $parentItem;
-
-    /**
-     * The number of upvotes this question, answer or comment has received from the community.
-     *
-     *
-     * @var int|null
-     */
-    protected $upvoteCount;
 
     /**
      * The number of downvotes this question, answer or comment has received from the community.
@@ -50,7 +42,15 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $downvoteCount;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Question
+     * The number of upvotes this question, answer or comment has received from the community.
+     *
+     *
+     * @var int|null
+     */
+    protected $upvoteCount;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Comment
      */
     public function getParentItem()
     {
@@ -58,44 +58,19 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Question $parentItem
+     * @param \OpenActive\Models\SchemaOrg\Comment $parentItem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setParentItem($parentItem)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Question",
-        );
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Comment",
+        ];
 
         $parentItem = self::checkTypes($parentItem, $types);
 
         $this->parentItem = $parentItem;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getUpvoteCount()
-    {
-        return $this->upvoteCount;
-    }
-
-    /**
-     * @param int|null $upvoteCount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setUpvoteCount($upvoteCount)
-    {
-        $types = array(
-            "int",
-            "null",
-        );
-
-        $upvoteCount = self::checkTypes($upvoteCount, $types);
-
-        $this->upvoteCount = $upvoteCount;
     }
 
     /**
@@ -113,14 +88,39 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setDownvoteCount($downvoteCount)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $downvoteCount = self::checkTypes($downvoteCount, $types);
 
         $this->downvoteCount = $downvoteCount;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getUpvoteCount()
+    {
+        return $this->upvoteCount;
+    }
+
+    /**
+     * @param int|null $upvoteCount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUpvoteCount($upvoteCount)
+    {
+        $types = [
+            "int",
+            "null",
+        ];
+
+        $upvoteCount = self::checkTypes($upvoteCount, $types);
+
+        $this->upvoteCount = $upvoteCount;
     }
 
 }

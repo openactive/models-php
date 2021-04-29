@@ -17,21 +17,29 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
+            "seasonNumber" => "seasonNumber",
             "actor" => "actor",
-            "numberOfEpisodes" => "numberOfEpisodes",
-            "trailer" => "trailer",
-            "endDate" => "endDate",
-            "partOfSeries" => "partOfSeries",
-            "episodes" => "episodes",
             "startDate" => "startDate",
             "director" => "director",
-            "productionCompany" => "productionCompany",
+            "numberOfEpisodes" => "numberOfEpisodes",
+            "episodes" => "episodes",
+            "endDate" => "endDate",
             "episode" => "episode",
-            "seasonNumber" => "seasonNumber",
+            "productionCompany" => "productionCompany",
+            "trailer" => "trailer",
+            "partOfSeries" => "partOfSeries",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Position of the season within an ordered group of seasons.
+     *
+     *
+     * @var string|int|null
+     */
+    protected $seasonNumber;
 
     /**
      * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
@@ -42,47 +50,7 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $actor;
 
     /**
-     * The number of episodes in this season or series.
-     *
-     *
-     * @var int|null
-     */
-    protected $numberOfEpisodes;
-
-    /**
-     * The trailer of a movie or tv/radio series, season, episode, etc.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\VideoObject
-     */
-    protected $trailer;
-
-    /**
-     * The end date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
-     *
-     *
-     * @var Date|DateTime|null
-     */
-    protected $endDate;
-
-    /**
-     * The series to which this episode or season belongs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeries
-     */
-    protected $partOfSeries;
-
-    /**
-     * An episode of a TV/radio series or season.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Episode
-     */
-    protected $episodes;
-
-    /**
-     * The start date and time of the item (in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>).
+     * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
      *
      *
      * @var Date|DateTime|null
@@ -98,12 +66,28 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $director;
 
     /**
-     * The production company or studio responsible for the item e.g. series, video game, episode etc.
+     * The number of episodes in this season or series.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization
+     * @var int|null
      */
-    protected $productionCompany;
+    protected $numberOfEpisodes;
+
+    /**
+     * An episode of a TV/radio series or season.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Episode
+     */
+    protected $episodes;
+
+    /**
+     * The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $endDate;
 
     /**
      * An episode of a tv, radio or game media within a series or season.
@@ -114,12 +98,54 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $episode;
 
     /**
-     * Position of the season within an ordered group of seasons.
+     * The production company or studio responsible for the item e.g. series, video game, episode etc.
      *
      *
-     * @var string|int|null
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
-    protected $seasonNumber;
+    protected $productionCompany;
+
+    /**
+     * The trailer of a movie or tv/radio series, season, episode, etc.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\VideoObject
+     */
+    protected $trailer;
+
+    /**
+     * The series to which this episode or season belongs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeries
+     */
+    protected $partOfSeries;
+
+    /**
+     * @return string|int|null
+     */
+    public function getSeasonNumber()
+    {
+        return $this->seasonNumber;
+    }
+
+    /**
+     * @param string|int|null $seasonNumber
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSeasonNumber($seasonNumber)
+    {
+        $types = [
+            "string",
+            "int",
+            "null",
+        ];
+
+        $seasonNumber = self::checkTypes($seasonNumber, $types);
+
+        $this->seasonNumber = $seasonNumber;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Person
@@ -136,136 +162,13 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setActor($actor)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Person",
-        );
+        ];
 
         $actor = self::checkTypes($actor, $types);
 
         $this->actor = $actor;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getNumberOfEpisodes()
-    {
-        return $this->numberOfEpisodes;
-    }
-
-    /**
-     * @param int|null $numberOfEpisodes
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNumberOfEpisodes($numberOfEpisodes)
-    {
-        $types = array(
-            "int",
-            "null",
-        );
-
-        $numberOfEpisodes = self::checkTypes($numberOfEpisodes, $types);
-
-        $this->numberOfEpisodes = $numberOfEpisodes;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\VideoObject
-     */
-    public function getTrailer()
-    {
-        return $this->trailer;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\VideoObject $trailer
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTrailer($trailer)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\VideoObject",
-        );
-
-        $trailer = self::checkTypes($trailer, $types);
-
-        $this->trailer = $trailer;
-    }
-
-    /**
-     * @return Date|DateTime|null
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
-    /**
-     * @param Date|DateTime|null $endDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEndDate($endDate)
-    {
-        $types = array(
-            "Date",
-            "DateTime",
-            "null",
-        );
-
-        $endDate = self::checkTypes($endDate, $types);
-
-        $this->endDate = $endDate;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeries
-     */
-    public function getPartOfSeries()
-    {
-        return $this->partOfSeries;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeries $partOfSeries
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPartOfSeries($partOfSeries)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\CreativeWorkSeries",
-        );
-
-        $partOfSeries = self::checkTypes($partOfSeries, $types);
-
-        $this->partOfSeries = $partOfSeries;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Episode
-     */
-    public function getEpisodes()
-    {
-        return $this->episodes;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Episode $episodes
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEpisodes($episodes)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Episode",
-        );
-
-        $episodes = self::checkTypes($episodes, $types);
-
-        $this->episodes = $episodes;
     }
 
     /**
@@ -283,11 +186,11 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setStartDate($startDate)
     {
-        $types = array(
+        $types = [
             "Date",
             "DateTime",
             "null",
-        );
+        ];
 
         $startDate = self::checkTypes($startDate, $types);
 
@@ -309,9 +212,9 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setDirector($director)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Person",
-        );
+        ];
 
         $director = self::checkTypes($director, $types);
 
@@ -319,27 +222,78 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization
+     * @return int|null
      */
-    public function getProductionCompany()
+    public function getNumberOfEpisodes()
     {
-        return $this->productionCompany;
+        return $this->numberOfEpisodes;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization $productionCompany
+     * @param int|null $numberOfEpisodes
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setProductionCompany($productionCompany)
+    public function setNumberOfEpisodes($numberOfEpisodes)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
-        );
+        $types = [
+            "int",
+            "null",
+        ];
 
-        $productionCompany = self::checkTypes($productionCompany, $types);
+        $numberOfEpisodes = self::checkTypes($numberOfEpisodes, $types);
 
-        $this->productionCompany = $productionCompany;
+        $this->numberOfEpisodes = $numberOfEpisodes;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Episode
+     */
+    public function getEpisodes()
+    {
+        return $this->episodes;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Episode $episodes
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEpisodes($episodes)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Episode",
+        ];
+
+        $episodes = self::checkTypes($episodes, $types);
+
+        $this->episodes = $episodes;
+    }
+
+    /**
+     * @return Date|DateTime|null
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * @param Date|DateTime|null $endDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEndDate($endDate)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $endDate = self::checkTypes($endDate, $types);
+
+        $this->endDate = $endDate;
     }
 
     /**
@@ -357,9 +311,9 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setEpisode($episode)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Episode",
-        );
+        ];
 
         $episode = self::checkTypes($episode, $types);
 
@@ -367,29 +321,75 @@ class CreativeWorkSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string|int|null
+     * @return \OpenActive\Models\SchemaOrg\Organization
      */
-    public function getSeasonNumber()
+    public function getProductionCompany()
     {
-        return $this->seasonNumber;
+        return $this->productionCompany;
     }
 
     /**
-     * @param string|int|null $seasonNumber
+     * @param \OpenActive\Models\SchemaOrg\Organization $productionCompany
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSeasonNumber($seasonNumber)
+    public function setProductionCompany($productionCompany)
     {
-        $types = array(
-            "string",
-            "int",
-            "null",
-        );
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+        ];
 
-        $seasonNumber = self::checkTypes($seasonNumber, $types);
+        $productionCompany = self::checkTypes($productionCompany, $types);
 
-        $this->seasonNumber = $seasonNumber;
+        $this->productionCompany = $productionCompany;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\VideoObject
+     */
+    public function getTrailer()
+    {
+        return $this->trailer;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\VideoObject $trailer
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTrailer($trailer)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\VideoObject",
+        ];
+
+        $trailer = self::checkTypes($trailer, $types);
+
+        $this->trailer = $trailer;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeries
+     */
+    public function getPartOfSeries()
+    {
+        return $this->partOfSeries;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeries $partOfSeries
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPartOfSeries($partOfSeries)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CreativeWorkSeries",
+        ];
+
+        $partOfSeries = self::checkTypes($partOfSeries, $types);
+
+        $this->partOfSeries = $partOfSeries;
     }
 
 }

@@ -17,61 +17,19 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
 
     public static function fieldList() {
         $fields = [
-            "loanTerm" => "loanTerm",
-            "currency" => "currency",
-            "amount" => "amount",
-            "requiredCollateral" => "requiredCollateral",
-            "recourseLoan" => "recourseLoan",
             "gracePeriod" => "gracePeriod",
-            "renegotiableLoan" => "renegotiableLoan",
-            "loanRepaymentForm" => "loanRepaymentForm",
+            "amount" => "amount",
             "loanType" => "loanType",
+            "renegotiableLoan" => "renegotiableLoan",
+            "recourseLoan" => "recourseLoan",
+            "requiredCollateral" => "requiredCollateral",
+            "loanRepaymentForm" => "loanRepaymentForm",
+            "currency" => "currency",
+            "loanTerm" => "loanTerm",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The duration of the loan or credit agreement.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    protected $loanTerm;
-
-    /**
-     * The currency in which the monetary amount is expressed.<br/><br/>
-     * 
-     * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
-     *
-     *
-     * @var string
-     */
-    protected $currency;
-
-    /**
-     * The amount of money.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null
-     */
-    protected $amount;
-
-    /**
-     * Assets required to secure loan or credit repayments. It may take form of third party pledge, goods, financial instruments (cash, securities, etc.)
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $requiredCollateral;
-
-    /**
-     * The only way you get the money back in the event of default is the security. Recourse is where you still have the opportunity to go back to the borrower for the rest of the money.
-     *
-     *
-     * @var bool|null
-     */
-    protected $recourseLoan;
 
     /**
      * The period of time after any due date that the borrower has to fulfil its obligations before a default (failure to pay) is deemed to have occurred.
@@ -82,20 +40,12 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     protected $gracePeriod;
 
     /**
-     * Whether the terms for payment of interest can be renegotiated during the life of the loan.
+     * The amount of money.
      *
      *
-     * @var bool|null
+     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
      */
-    protected $renegotiableLoan;
-
-    /**
-     * A form of paying back money previously borrowed from a lender. Repayment usually takes the form of periodic payments that normally include part principal plus interest in each payment.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\RepaymentSpecification
-     */
-    protected $loanRepaymentForm;
+    protected $amount;
 
     /**
      * The type of a loan or credit.
@@ -106,128 +56,52 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     protected $loanType;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
+     * Whether the terms for payment of interest can be renegotiated during the life of the loan.
+     *
+     *
+     * @var bool|null
      */
-    public function getLoanTerm()
-    {
-        return $this->loanTerm;
-    }
+    protected $renegotiableLoan;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $loanTerm
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The only way you get the money back in the event of default is the security. Recourse is where you still have the opportunity to go back to the borrower for the rest of the money.
+     *
+     *
+     * @var bool|null
      */
-    public function setLoanTerm($loanTerm)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
-
-        $loanTerm = self::checkTypes($loanTerm, $types);
-
-        $this->loanTerm = $loanTerm;
-    }
+    protected $recourseLoan;
 
     /**
-     * @return string
+     * Assets required to secure loan or credit repayments. It may take form of third party pledge, goods, financial instruments (cash, securities, etc.)
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Thing
      */
-    public function getCurrency()
-    {
-        return $this->currency;
-    }
+    protected $requiredCollateral;
 
     /**
-     * @param string $currency
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * A form of paying back money previously borrowed from a lender. Repayment usually takes the form of periodic payments that normally include part principal plus interest in each payment.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\RepaymentSpecification
      */
-    public function setCurrency($currency)
-    {
-        $types = array(
-            "string",
-        );
-
-        $currency = self::checkTypes($currency, $types);
-
-        $this->currency = $currency;
-    }
+    protected $loanRepaymentForm;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null
+     * The currency in which the monetary amount is expressed.\n\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217) e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies e.g. "BTC"; well known names for [Local Exchange Tradings Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types e.g. "Ithaca HOUR".
+     *
+     *
+     * @var string
      */
-    public function getAmount()
-    {
-        return $this->amount;
-    }
+    protected $currency;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|float|null $amount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The duration of the loan or credit agreement.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    public function setAmount($amount)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "float",
-            "null",
-        );
-
-        $amount = self::checkTypes($amount, $types);
-
-        $this->amount = $amount;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getRequiredCollateral()
-    {
-        return $this->requiredCollateral;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Thing $requiredCollateral
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRequiredCollateral($requiredCollateral)
-    {
-        $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\Thing",
-        );
-
-        $requiredCollateral = self::checkTypes($requiredCollateral, $types);
-
-        $this->requiredCollateral = $requiredCollateral;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getRecourseLoan()
-    {
-        return $this->recourseLoan;
-    }
-
-    /**
-     * @param bool|null $recourseLoan
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRecourseLoan($recourseLoan)
-    {
-        $types = array(
-            "bool",
-            "null",
-        );
-
-        $recourseLoan = self::checkTypes($recourseLoan, $types);
-
-        $this->recourseLoan = $recourseLoan;
-    }
+    protected $loanTerm;
 
     /**
      * @return DateInterval|null
@@ -244,10 +118,10 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
      */
     public function setGracePeriod($gracePeriod)
     {
-        $types = array(
+        $types = [
             "DateInterval",
             "null",
-        );
+        ];
 
         $gracePeriod = self::checkTypes($gracePeriod, $types);
 
@@ -255,52 +129,29 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @return bool|null
+     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
      */
-    public function getRenegotiableLoan()
+    public function getAmount()
     {
-        return $this->renegotiableLoan;
+        return $this->amount;
     }
 
     /**
-     * @param bool|null $renegotiableLoan
+     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $amount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRenegotiableLoan($renegotiableLoan)
+    public function setAmount($amount)
     {
-        $types = array(
-            "bool",
+        $types = [
+            "Number",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "null",
-        );
+        ];
 
-        $renegotiableLoan = self::checkTypes($renegotiableLoan, $types);
+        $amount = self::checkTypes($amount, $types);
 
-        $this->renegotiableLoan = $renegotiableLoan;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\RepaymentSpecification
-     */
-    public function getLoanRepaymentForm()
-    {
-        return $this->loanRepaymentForm;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\RepaymentSpecification $loanRepaymentForm
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLoanRepaymentForm($loanRepaymentForm)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\RepaymentSpecification",
-        );
-
-        $loanRepaymentForm = self::checkTypes($loanRepaymentForm, $types);
-
-        $this->loanRepaymentForm = $loanRepaymentForm;
+        $this->amount = $amount;
     }
 
     /**
@@ -318,13 +169,160 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
      */
     public function setLoanType($loanType)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $loanType = self::checkTypes($loanType, $types);
 
         $this->loanType = $loanType;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getRenegotiableLoan()
+    {
+        return $this->renegotiableLoan;
+    }
+
+    /**
+     * @param bool|null $renegotiableLoan
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRenegotiableLoan($renegotiableLoan)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $renegotiableLoan = self::checkTypes($renegotiableLoan, $types);
+
+        $this->renegotiableLoan = $renegotiableLoan;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getRecourseLoan()
+    {
+        return $this->recourseLoan;
+    }
+
+    /**
+     * @param bool|null $recourseLoan
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRecourseLoan($recourseLoan)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $recourseLoan = self::checkTypes($recourseLoan, $types);
+
+        $this->recourseLoan = $recourseLoan;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Thing
+     */
+    public function getRequiredCollateral()
+    {
+        return $this->requiredCollateral;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Thing $requiredCollateral
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRequiredCollateral($requiredCollateral)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
+        ];
+
+        $requiredCollateral = self::checkTypes($requiredCollateral, $types);
+
+        $this->requiredCollateral = $requiredCollateral;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\RepaymentSpecification
+     */
+    public function getLoanRepaymentForm()
+    {
+        return $this->loanRepaymentForm;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\RepaymentSpecification $loanRepaymentForm
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLoanRepaymentForm($loanRepaymentForm)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\RepaymentSpecification",
+        ];
+
+        $loanRepaymentForm = self::checkTypes($loanRepaymentForm, $types);
+
+        $this->loanRepaymentForm = $loanRepaymentForm;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param string $currency
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCurrency($currency)
+    {
+        $types = [
+            "string",
+        ];
+
+        $currency = self::checkTypes($currency, $types);
+
+        $this->currency = $currency;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    public function getLoanTerm()
+    {
+        return $this->loanTerm;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $loanTerm
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLoanTerm($loanTerm)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+        ];
+
+        $loanTerm = self::checkTypes($loanTerm, $types);
+
+        $this->loanTerm = $loanTerm;
     }
 
 }

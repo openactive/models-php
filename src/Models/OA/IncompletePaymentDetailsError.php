@@ -4,9 +4,9 @@ namespace OpenActive\Models\OA;
 
 /**
  * 
- * ## **Error Use Case**
- * The `payment` property of the `Order` does not include `identifier`.
+ * Error Use Case: The `payment` property of the `Order` does not include `identifier`.
  * 
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class IncompletePaymentDetailsError extends \OpenActive\Models\OA\OpenBookingError
@@ -64,9 +64,9 @@ class IncompletePaymentDetailsError extends \OpenActive\Models\OA\OpenBookingErr
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class IncompletePaymentDetailsError extends \OpenActive\Models\OA\OpenBookingErr
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

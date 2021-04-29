@@ -46,9 +46,9 @@ class ReservationPackage extends \OpenActive\Models\SchemaOrg\Reservation
      */
     public function setSubReservation($subReservation)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Reservation",
-        );
+        ];
 
         $subReservation = self::checkTypes($subReservation, $types);
 

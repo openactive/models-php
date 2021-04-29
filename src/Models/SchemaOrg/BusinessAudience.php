@@ -17,29 +17,13 @@ class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
 
     public static function fieldList() {
         $fields = [
-            "yearsInOperation" => "yearsInOperation",
-            "yearlyRevenue" => "yearlyRevenue",
             "numberOfEmployees" => "numberOfEmployees",
+            "yearlyRevenue" => "yearlyRevenue",
+            "yearsInOperation" => "yearsInOperation",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The age of the business.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    protected $yearsInOperation;
-
-    /**
-     * The size of the business in annual revenue.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    protected $yearlyRevenue;
 
     /**
      * The number of employees in an organization e.g. business.
@@ -50,27 +34,43 @@ class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
     protected $numberOfEmployees;
 
     /**
+     * The size of the business in annual revenue.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    protected $yearlyRevenue;
+
+    /**
+     * The age of the business.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    protected $yearsInOperation;
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    public function getYearsInOperation()
+    public function getNumberOfEmployees()
     {
-        return $this->yearsInOperation;
+        return $this->numberOfEmployees;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $yearsInOperation
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $numberOfEmployees
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setYearsInOperation($yearsInOperation)
+    public function setNumberOfEmployees($numberOfEmployees)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
+        ];
 
-        $yearsInOperation = self::checkTypes($yearsInOperation, $types);
+        $numberOfEmployees = self::checkTypes($numberOfEmployees, $types);
 
-        $this->yearsInOperation = $yearsInOperation;
+        $this->numberOfEmployees = $numberOfEmployees;
     }
 
     /**
@@ -88,9 +88,9 @@ class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
      */
     public function setYearlyRevenue($yearlyRevenue)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
+        ];
 
         $yearlyRevenue = self::checkTypes($yearlyRevenue, $types);
 
@@ -100,25 +100,25 @@ class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
     /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    public function getNumberOfEmployees()
+    public function getYearsInOperation()
     {
-        return $this->numberOfEmployees;
+        return $this->yearsInOperation;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $numberOfEmployees
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $yearsInOperation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfEmployees($numberOfEmployees)
+    public function setYearsInOperation($yearsInOperation)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
+        ];
 
-        $numberOfEmployees = self::checkTypes($numberOfEmployees, $types);
+        $yearsInOperation = self::checkTypes($yearsInOperation, $types);
 
-        $this->numberOfEmployees = $numberOfEmployees;
+        $this->yearsInOperation = $yearsInOperation;
     }
 
 }

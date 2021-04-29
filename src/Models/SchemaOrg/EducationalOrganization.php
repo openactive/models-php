@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class EducationalOrganization extends \OpenActive\Models\SchemaOrg\CivicStructure
+class EducationalOrganization extends \OpenActive\Models\SchemaOrg\Organization
 {
     /**
      * @return string[]|null
@@ -46,9 +46,9 @@ class EducationalOrganization extends \OpenActive\Models\SchemaOrg\CivicStructur
      */
     public function setAlumni($alumni)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Person",
-        );
+        ];
 
         $alumni = self::checkTypes($alumni, $types);
 

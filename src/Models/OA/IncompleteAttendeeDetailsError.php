@@ -4,9 +4,9 @@ namespace OpenActive\Models\OA;
 
 /**
  * 
- * ## **Error Use Case**
- * The `attendeeDetailsRequired` properties of the `attendee` are not supplied within a `Person` object.
+ * Error Use Case: The `attendeeDetailsRequired` properties of the `attendee` are not supplied within a `Person` object.
  * 
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class IncompleteAttendeeDetailsError extends \OpenActive\Models\OA\OpenBookingError
@@ -64,9 +64,9 @@ class IncompleteAttendeeDetailsError extends \OpenActive\Models\OA\OpenBookingEr
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class IncompleteAttendeeDetailsError extends \OpenActive\Models\OA\OpenBookingEr
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

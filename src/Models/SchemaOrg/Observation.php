@@ -19,24 +19,24 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
         $fields = [
             "marginOfError" => "marginOfError",
             "observedNode" => "observedNode",
-            "measuredValue" => "measuredValue",
-            "observationDate" => "observationDate",
             "measuredProperty" => "measuredProperty",
+            "observationDate" => "observationDate",
+            "measuredValue" => "measuredValue",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A marginOfError for an <a class="localLink" href="https://schema.org/Observation">Observation</a>.
+     * A marginOfError for an [[Observation]].
      *
      *
-     * @var DateTime|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     protected $marginOfError;
 
     /**
-     * The observedNode of an <a class="localLink" href="https://schema.org/Observation">Observation</a>, often a <a class="localLink" href="https://schema.org/StatisticalPopulation">StatisticalPopulation</a>.
+     * The observedNode of an [[Observation]], often a [[StatisticalPopulation]].
      *
      *
      * @var \OpenActive\Models\SchemaOrg\StatisticalPopulation
@@ -44,15 +44,15 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $observedNode;
 
     /**
-     * The measuredValue of an <a class="localLink" href="https://schema.org/Observation">Observation</a>.
+     * The measuredProperty of an [[Observation]], either a schema.org property, a property from other RDF-compatible systems e.g. W3C RDF Data Cube, or schema.org extensions such as [GS1's](https://www.gs1.org/voc/?show=properties).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DataType
+     * @var \OpenActive\Enums\PropertyEnumeration|null
      */
-    protected $measuredValue;
+    protected $measuredProperty;
 
     /**
-     * The observationDate of an <a class="localLink" href="https://schema.org/Observation">Observation</a>.
+     * The observationDate of an [[Observation]].
      *
      *
      * @var DateTime|null
@@ -60,15 +60,15 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $observationDate;
 
     /**
-     * The measuredProperty of an <a class="localLink" href="https://schema.org/Observation">Observation</a>, either a schema.org property, a property from other RDF-compatible systems e.g. W3C RDF Data Cube, or schema.org extensions such as <a href="https://www.gs1.org/voc/?show=properties">GS1's</a>.
+     * The measuredValue of an [[Observation]].
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\DataType
      */
-    protected $measuredProperty;
+    protected $measuredValue;
 
     /**
-     * @return DateTime|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function getMarginOfError()
     {
@@ -76,16 +76,15 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateTime|null $marginOfError
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $marginOfError
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMarginOfError($marginOfError)
     {
-        $types = array(
-            "DateTime",
-            "null",
-        );
+        $types = [
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+        ];
 
         $marginOfError = self::checkTypes($marginOfError, $types);
 
@@ -107,9 +106,9 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setObservedNode($observedNode)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\StatisticalPopulation",
-        );
+        ];
 
         $observedNode = self::checkTypes($observedNode, $types);
 
@@ -117,27 +116,28 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DataType
+     * @return \OpenActive\Enums\PropertyEnumeration|null
      */
-    public function getMeasuredValue()
+    public function getMeasuredProperty()
     {
-        return $this->measuredValue;
+        return $this->measuredProperty;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DataType $measuredValue
+     * @param \OpenActive\Enums\PropertyEnumeration|null $measuredProperty
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMeasuredValue($measuredValue)
+    public function setMeasuredProperty($measuredProperty)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\DataType",
-        );
+        $types = [
+            "\OpenActive\Enums\PropertyEnumeration",
+            "null",
+        ];
 
-        $measuredValue = self::checkTypes($measuredValue, $types);
+        $measuredProperty = self::checkTypes($measuredProperty, $types);
 
-        $this->measuredValue = $measuredValue;
+        $this->measuredProperty = $measuredProperty;
     }
 
     /**
@@ -155,10 +155,10 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setObservationDate($observationDate)
     {
-        $types = array(
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $observationDate = self::checkTypes($observationDate, $types);
 
@@ -166,27 +166,27 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\DataType
      */
-    public function getMeasuredProperty()
+    public function getMeasuredValue()
     {
-        return $this->measuredProperty;
+        return $this->measuredValue;
     }
 
     /**
-     * @param string $measuredProperty
+     * @param \OpenActive\Models\SchemaOrg\DataType $measuredValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMeasuredProperty($measuredProperty)
+    public function setMeasuredValue($measuredValue)
     {
-        $types = array(
-            "string",
-        );
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DataType",
+        ];
 
-        $measuredProperty = self::checkTypes($measuredProperty, $types);
+        $measuredValue = self::checkTypes($measuredValue, $types);
 
-        $this->measuredProperty = $measuredProperty;
+        $this->measuredValue = $measuredValue;
     }
 
 }

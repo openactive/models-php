@@ -46,9 +46,9 @@ class ReviewAction extends \OpenActive\Models\SchemaOrg\AssessAction
      */
     public function setResultReview($resultReview)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Review",
-        );
+        ];
 
         $resultReview = self::checkTypes($resultReview, $types);
 

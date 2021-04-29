@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [Concept](http://www.w3.org/2004/02/skos/core#Concept), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from http://www.w3.org/2004/02/skos/core#Concept.
  *
  */
 class Concept extends \OpenActive\BaseModel
@@ -20,10 +20,14 @@ class Concept extends \OpenActive\BaseModel
         $fields = [
             "altLabel" => "altLabel",
             "broader" => "broader",
+            "definition" => "definition",
+            "hiddenLabel" => "hiddenLabel",
             "inScheme" => "inScheme",
             "narrower" => "narrower",
             "notation" => "notation",
             "prefLabel" => "prefLabel",
+            "related" => "related",
+            "topConceptOf" => "topConceptOf",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -33,7 +37,9 @@ class Concept extends \OpenActive\BaseModel
      * An alternative human readable string for use in user interfaces.
      *
      * ```json
-     * "altLabel": "Speedball"
+     * "altLabel": [
+     *   "Five a side"
+     * ]
      * ```
      *
      * @var string[]
@@ -44,7 +50,9 @@ class Concept extends \OpenActive\BaseModel
      * A broader Concept URI
      *
      * ```json
-     * "broader": "https://example.com/football"
+     * "broader": [
+     *   "https://openactive.io/activity-list#6ca15167-51da-4d91-a1ae-8a45dc47b0ea"
+     * ]
      * ```
      *
      * @var string[]
@@ -52,10 +60,34 @@ class Concept extends \OpenActive\BaseModel
     protected $broader;
 
     /**
-     * A stable URL reference for the taxonomy.
+     * A human readable string that unambiguously defines the Concept, for use in user interfaces.
      *
      * ```json
-     * "inScheme": "https://example.com/reference/activities"
+     * "definition": "Latin American style of dance with Cuban origins."
+     * ```
+     *
+     * @var string
+     */
+    protected $definition;
+
+    /**
+     * An alternative human readable string used to drive autocomplete search matches, that is hidden from the user.
+     *
+     * ```json
+     * "hiddenLabel": [
+     *   "5-a-side"
+     * ]
+     * ```
+     *
+     * @var string[]
+     */
+    protected $hiddenLabel;
+
+    /**
+     * A stable URL reference for the taxonomy, which must be `https://openactive.io/activity-list` to reference the OpenActive Activity List.
+     *
+     * ```json
+     * "inScheme": "https://openactive.io/activity-list"
      * ```
      *
      * @var string
@@ -66,7 +98,9 @@ class Concept extends \OpenActive\BaseModel
      * A more specific concept URI
      *
      * ```json
-     * "narrower": "https://example.com/walking-football"
+     * "narrower": [
+     *   "https://openactive.io/activity-list#b3829f3e-a63e-455f-a51c-1f50ecf85ad5"
+     * ]
      * ```
      *
      * @var string[]
@@ -74,10 +108,10 @@ class Concept extends \OpenActive\BaseModel
     protected $narrower;
 
     /**
-     * A concept label that is not normally recognisable as natural language.
+     * A human-readable identifier for the concept.
      *
      * ```json
-     * "notation": "Speedball"
+     * "notation": "salsa"
      * ```
      *
      * @var string
@@ -85,15 +119,39 @@ class Concept extends \OpenActive\BaseModel
     protected $notation;
 
     /**
-     * A human readable string for use in user interfaces.
+     * A human readable string that minimally describes the Concept, for use in user interfaces.
      *
      * ```json
-     * "prefLabel": "Speedball"
+     * "prefLabel": "Salsa"
      * ```
      *
      * @var string
      */
     protected $prefLabel;
+
+    /**
+     * A related Concept URI
+     *
+     * ```json
+     * "related": [
+     *   "https://openactive.io/activity-list#5cdf5ead-e19d-4619-9585-cfe509c3fe52"
+     * ]
+     * ```
+     *
+     * @var string[]
+     */
+    protected $related;
+
+    /**
+     * A reference to the Scheme URI, the existence of which indicates that this Concept is at the top level of the hierarchy.
+     *
+     * ```json
+     * "topConceptOf": "https://openactive.io/activity-list"
+     * ```
+     *
+     * @var string
+     */
+    protected $topConceptOf;
 
     /**
      * @return string[]
@@ -110,9 +168,9 @@ class Concept extends \OpenActive\BaseModel
      */
     public function setAltLabel($altLabel)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $altLabel = self::checkTypes($altLabel, $types);
 
@@ -134,13 +192,61 @@ class Concept extends \OpenActive\BaseModel
      */
     public function setBroader($broader)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $broader = self::checkTypes($broader, $types);
 
         $this->broader = $broader;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefinition()
+    {
+        return $this->definition;
+    }
+
+    /**
+     * @param string $definition
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDefinition($definition)
+    {
+        $types = [
+            "string",
+        ];
+
+        $definition = self::checkTypes($definition, $types);
+
+        $this->definition = $definition;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getHiddenLabel()
+    {
+        return $this->hiddenLabel;
+    }
+
+    /**
+     * @param string[] $hiddenLabel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHiddenLabel($hiddenLabel)
+    {
+        $types = [
+            "string[]",
+        ];
+
+        $hiddenLabel = self::checkTypes($hiddenLabel, $types);
+
+        $this->hiddenLabel = $hiddenLabel;
     }
 
     /**
@@ -158,9 +264,9 @@ class Concept extends \OpenActive\BaseModel
      */
     public function setInScheme($inScheme)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $inScheme = self::checkTypes($inScheme, $types);
 
@@ -182,9 +288,9 @@ class Concept extends \OpenActive\BaseModel
      */
     public function setNarrower($narrower)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $narrower = self::checkTypes($narrower, $types);
 
@@ -206,9 +312,9 @@ class Concept extends \OpenActive\BaseModel
      */
     public function setNotation($notation)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $notation = self::checkTypes($notation, $types);
 
@@ -230,13 +336,61 @@ class Concept extends \OpenActive\BaseModel
      */
     public function setPrefLabel($prefLabel)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $prefLabel = self::checkTypes($prefLabel, $types);
 
         $this->prefLabel = $prefLabel;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getRelated()
+    {
+        return $this->related;
+    }
+
+    /**
+     * @param string[] $related
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRelated($related)
+    {
+        $types = [
+            "string[]",
+        ];
+
+        $related = self::checkTypes($related, $types);
+
+        $this->related = $related;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTopConceptOf()
+    {
+        return $this->topConceptOf;
+    }
+
+    /**
+     * @param string $topConceptOf
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTopConceptOf($topConceptOf)
+    {
+        $types = [
+            "string",
+        ];
+
+        $topConceptOf = self::checkTypes($topConceptOf, $types);
+
+        $this->topConceptOf = $topConceptOf;
     }
 
 }

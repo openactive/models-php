@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [Brand](https://schema.org/Brand), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/Brand, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class Brand extends \OpenActive\Models\SchemaOrg\Brand
@@ -53,7 +53,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     protected $name;
 
     /**
-     * A text description for the brand.
+     * A plain text description for the brand, which must not include HTML or other markup.
      *
      * ```json
      * "description": "Play Ball! is a series of games for people of all abilities."
@@ -89,10 +89,10 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     protected $url;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers. This property must contain HTML.
      * 
-     * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
+     * If you are using this property, please join the discussion at proposal [#276](https://github.com/openactive/modelling-opportunity-data/issues/276).
      *
      *
      * @var string
@@ -100,7 +100,7 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
     protected $formattedDescription;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * A related video object.
      * 
      * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
@@ -125,13 +125,13 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -153,9 +153,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -177,9 +177,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -201,9 +201,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      */
     public function setLogo($logo)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject",
-        );
+        ];
 
         $logo = self::checkTypes($logo, $types);
 
@@ -225,9 +225,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 
@@ -249,9 +249,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      */
     public function setFormattedDescription($formattedDescription)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $formattedDescription = self::checkTypes($formattedDescription, $types);
 
@@ -273,9 +273,9 @@ class Brand extends \OpenActive\Models\SchemaOrg\Brand
      */
     public function setVideo($video)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\VideoObject[]",
-        );
+        ];
 
         $video = self::checkTypes($video, $types);
 

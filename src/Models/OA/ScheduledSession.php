@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [Event](https://schema.org/Event), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/Event, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class ScheduledSession extends \OpenActive\Models\OA\Event
@@ -18,7 +18,8 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
 
     public static function fieldList() {
         $fields = [
-            "eventSchedule" => "eventSchedule",
+            "startDate" => "startDate",
+            "endDate" => "endDate",
             "subEvent" => "subEvent",
             "superEvent" => "superEvent",
         ];
@@ -27,26 +28,27 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * A an array of oa:Schedule or oa:PartialSchedule, which represents a recurrence pattern.
+     * The start date and time of the event.
      *
      * ```json
-     * "eventSchedule": [
-     *   {
-     *     "@type": "PartialSchedule",
-     *     "repeatFrequency": "P1W",
-     *     "startTime": "20:15",
-     *     "endTime": "20:45",
-     *     "byDay": [
-     *       "http://schema.org/Tuesday"
-     *     ]
-     *   }
-     * ]
+     * "startDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var \OpenActive\Models\OA\Schedule[]
-     * @deprecated This property is disinherited in this type, and must not be used.
+     * @var DateTime|null
      */
-    protected $eventSchedule;
+    protected $startDate;
+
+    /**
+     * The end date and time of the event.
+     * It is recommended that publishers provide either an schema:endDate or a schema:duration for an event.
+     *
+     * ```json
+     * "endDate": "2018-01-27T12:00:00Z"
+     * ```
+     *
+     * @var DateTime|null
+     */
+    protected $endDate;
 
     /**
      * Relates a parent event to a child event. Properties describing the parent event can be assumed to apply to the child, unless otherwise specified. A child event might be a specific instance of an Event within a schedule
@@ -61,34 +63,58 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
      * Relates a child event to a parent event. Properties describing the parent event can be assumed to apply to the child, unless otherwise specified. A parent event might specify a recurring schedule, of which the child event is one specific instance
      *
      *
-     * @var string|\OpenActive\Models\OA\Event
+     * @var \OpenActive\Models\OA\Event|string
      */
     protected $superEvent;
 
     /**
-     * @return \OpenActive\Models\OA\Schedule[]
-     * @deprecated This property is disinherited in this type, and must not be used.
+     * @return DateTime|null
      */
-    public function getEventSchedule()
+    public function getStartDate()
     {
-        return $this->eventSchedule;
+        return $this->startDate;
     }
 
     /**
-     * @param \OpenActive\Models\OA\Schedule[] $eventSchedule
+     * @param DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     * @deprecated This property is disinherited in this type, and must not be used.
      */
-    public function setEventSchedule($eventSchedule)
+    public function setStartDate($startDate)
     {
-        $types = array(
-            "\OpenActive\Models\OA\Schedule[]",
-        );
+        $types = [
+            "DateTime",
+            "null",
+        ];
 
-        $eventSchedule = self::checkTypes($eventSchedule, $types);
+        $startDate = self::checkTypes($startDate, $types);
 
-        $this->eventSchedule = $eventSchedule;
+        $this->startDate = $startDate;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * @param DateTime|null $endDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEndDate($endDate)
+    {
+        $types = [
+            "DateTime",
+            "null",
+        ];
+
+        $endDate = self::checkTypes($endDate, $types);
+
+        $this->endDate = $endDate;
     }
 
     /**
@@ -108,9 +134,9 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
      */
     public function setSubEvent($subEvent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Event[]",
-        );
+        ];
 
         $subEvent = self::checkTypes($subEvent, $types);
 
@@ -118,7 +144,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return string|\OpenActive\Models\OA\Event
+     * @return \OpenActive\Models\OA\Event|string
      */
     public function getSuperEvent()
     {
@@ -126,16 +152,16 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param string|\OpenActive\Models\OA\Event $superEvent
+     * @param \OpenActive\Models\OA\Event|string $superEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSuperEvent($superEvent)
     {
-        $types = array(
-            "string",
+        $types = [
             "\OpenActive\Models\OA\Event",
-        );
+            "string",
+        ];
 
         $superEvent = self::checkTypes($superEvent, $types);
 

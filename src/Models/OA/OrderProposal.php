@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [Order](https://schema.org/Order), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/Order, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class OrderProposal extends \OpenActive\Models\OA\OrderQuote
@@ -72,9 +72,9 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
      */
     public function setOrderCustomerNote($orderCustomerNote)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $orderCustomerNote = self::checkTypes($orderCustomerNote, $types);
 
@@ -96,10 +96,10 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
      */
     public function setOrderProposalStatus($orderProposalStatus)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\OrderProposalStatus",
             "null",
-        );
+        ];
 
         $orderProposalStatus = self::checkTypes($orderProposalStatus, $types);
 
@@ -123,10 +123,10 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
      */
     public function setOrderRequiresApproval($orderRequiresApproval)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $orderRequiresApproval = self::checkTypes($orderRequiresApproval, $types);
 
@@ -148,9 +148,9 @@ class OrderProposal extends \OpenActive\Models\OA\OrderQuote
      */
     public function setOrderSellerNote($orderSellerNote)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $orderSellerNote = self::checkTypes($orderSellerNote, $types);
 

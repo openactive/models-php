@@ -46,10 +46,10 @@ class HowToSupply extends \OpenActive\Models\SchemaOrg\HowToItem
      */
     public function setEstimatedCost($estimatedCost)
     {
-        $types = array(
+        $types = [
             "string",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-        );
+        ];
 
         $estimatedCost = self::checkTypes($estimatedCost, $types);
 

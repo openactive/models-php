@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [Course](https://schema.org/Course), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/Course, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class Course extends \OpenActive\Models\SchemaOrg\Course
@@ -54,7 +54,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     protected $name;
 
     /**
-     * The description of the Course
+     * A plain text description of the Course, which must not include HTML or other markup.
      *
      * ```json
      * "description": "Netball Youth Camps give junior netballers the chance to get together with their friends and take to the court in the holidays!
@@ -91,8 +91,8 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      *
      * ```json
      * "author": {
-     *   "name": "Central Speedball Association",
      *   "@type": "Organization",
+     *   "name": "Central Speedball Association",
      *   "url": "http://www.speedball-world.com"
      * }
      * ```
@@ -113,7 +113,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     protected $url;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * An associated logo for a course.
      * 
      * If you are using this property, please join the discussion at proposal [#164](https://github.com/openactive/modelling-opportunity-data/issues/164).
@@ -124,7 +124,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     protected $logo;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * A related video object.
      * 
      * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
@@ -149,13 +149,13 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -177,9 +177,9 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -201,9 +201,9 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -225,9 +225,9 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setActivity($activity)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $activity = self::checkTypes($activity, $types);
 
@@ -249,10 +249,10 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setAuthor($author)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Person",
             "\OpenActive\Models\OA\Organization",
-        );
+        ];
 
         $author = self::checkTypes($author, $types);
 
@@ -274,9 +274,9 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 
@@ -298,9 +298,9 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setLogo($logo)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\ImageObject",
-        );
+        ];
 
         $logo = self::checkTypes($logo, $types);
 
@@ -322,9 +322,9 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      */
     public function setVideo($video)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\VideoObject[]",
-        );
+        ];
 
         $video = self::checkTypes($video, $types);
 

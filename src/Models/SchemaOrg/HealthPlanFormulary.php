@@ -64,9 +64,9 @@ class HealthPlanFormulary extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setHealthPlanDrugTier($healthPlanDrugTier)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $healthPlanDrugTier = self::checkTypes($healthPlanDrugTier, $types);
 
@@ -88,10 +88,10 @@ class HealthPlanFormulary extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setHealthPlanCostSharing($healthPlanCostSharing)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $healthPlanCostSharing = self::checkTypes($healthPlanCostSharing, $types);
 
@@ -113,10 +113,10 @@ class HealthPlanFormulary extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setOffersPrescriptionByMail($offersPrescriptionByMail)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $offersPrescriptionByMail = self::checkTypes($offersPrescriptionByMail, $types);
 

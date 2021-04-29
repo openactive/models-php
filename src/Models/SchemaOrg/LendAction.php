@@ -46,9 +46,9 @@ class LendAction extends \OpenActive\Models\SchemaOrg\TransferAction
      */
     public function setBorrower($borrower)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Person",
-        );
+        ];
 
         $borrower = self::checkTypes($borrower, $types);
 

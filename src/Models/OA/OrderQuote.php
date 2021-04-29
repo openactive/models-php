@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [Order](https://schema.org/Order), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/Order, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class OrderQuote extends \OpenActive\Models\OA\Order
@@ -56,9 +56,9 @@ class OrderQuote extends \OpenActive\Models\OA\Order
      */
     public function setLease($lease)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Lease",
-        );
+        ];
 
         $lease = self::checkTypes($lease, $types);
 
@@ -80,10 +80,10 @@ class OrderQuote extends \OpenActive\Models\OA\Order
      */
     public function setOrderRequiresApproval($orderRequiresApproval)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $orderRequiresApproval = self::checkTypes($orderRequiresApproval, $types);
 

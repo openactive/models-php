@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [ConceptScheme](http://www.w3.org/2004/02/skos/core#ConceptScheme), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from http://www.w3.org/2004/02/skos/core#ConceptScheme.
  *
  */
 class ConceptScheme extends \OpenActive\BaseModel
@@ -40,7 +40,7 @@ class ConceptScheme extends \OpenActive\BaseModel
     protected $title;
 
     /**
-     * A free text description of the taxonomy
+     * A plain text description of the taxonomy, which must not include HTML or other markup.
      *
      * ```json
      * "description": "An example activity list."
@@ -106,9 +106,9 @@ class ConceptScheme extends \OpenActive\BaseModel
      */
     public function setTitle($title)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $title = self::checkTypes($title, $types);
 
@@ -130,9 +130,9 @@ class ConceptScheme extends \OpenActive\BaseModel
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -154,9 +154,9 @@ class ConceptScheme extends \OpenActive\BaseModel
      */
     public function setConcept($concept)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $concept = self::checkTypes($concept, $types);
 
@@ -178,9 +178,9 @@ class ConceptScheme extends \OpenActive\BaseModel
      */
     public function setLicense($license)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $license = self::checkTypes($license, $types);
 
@@ -202,9 +202,9 @@ class ConceptScheme extends \OpenActive\BaseModel
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 

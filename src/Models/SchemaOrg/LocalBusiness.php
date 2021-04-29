@@ -17,31 +17,31 @@ class LocalBusiness extends \OpenActive\Models\SchemaOrg\Organization
 
     public static function fieldList() {
         $fields = [
+            "currenciesAccepted" => "currenciesAccepted",
+            "openingHours" => "openingHours",
+            "paymentAccepted" => "paymentAccepted",
             "priceRange" => "priceRange",
             "branchOf" => "branchOf",
-            "paymentAccepted" => "paymentAccepted",
-            "openingHours" => "openingHours",
-            "currenciesAccepted" => "currenciesAccepted",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The price range of the business, for example <code>$$$</code>.
+     * The currency accepted.\n\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217) e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies e.g. "BTC"; well known names for [Local Exchange Tradings Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types e.g. "Ithaca HOUR".
      *
      *
      * @var string
      */
-    protected $priceRange;
+    protected $currenciesAccepted;
 
     /**
-     * The larger organization that this local business is a branch of, if any. Not to be confused with (anatomical)<a class="localLink" href="https://schema.org/branch">branch</a>.
+     * The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. Multiple days can be listed with commas ',' separating each day. Day or time ranges are specified using a hyphen '-'.\n\n* Days are specified using the following two-letter combinations: ```Mo```, ```Tu```, ```We```, ```Th```, ```Fr```, ```Sa```, ```Su```.\n* Times are specified using 24:00 format. For example, 3pm is specified as ```15:00```, 10am as ```10:00```. \n* Here is an example: <code>&lt;time itemprop="openingHours" datetime=&quot;Tu,Th 16:00-20:00&quot;&gt;Tuesdays and Thursdays 4-8pm&lt;/time&gt;</code>.\n* If a business is open 7 days a week, then it can be specified as <code>&lt;time itemprop=&quot;openingHours&quot; datetime=&quot;Mo-Su&quot;&gt;Monday through Sunday, all day&lt;/time&gt;</code>.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization
+     * @var string
      */
-    protected $branchOf;
+    protected $openingHours;
 
     /**
      * Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc.
@@ -52,30 +52,92 @@ class LocalBusiness extends \OpenActive\Models\SchemaOrg\Organization
     protected $paymentAccepted;
 
     /**
-     * The general opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. Multiple days can be listed with commas ',' separating each day. Day or time ranges are specified using a hyphen '-'.<br/><br/>
-     * 
-     * <ul>
-     * <li>Days are specified using the following two-letter combinations: <code>Mo</code>, <code>Tu</code>, <code>We</code>, <code>Th</code>, <code>Fr</code>, <code>Sa</code>, <code>Su</code>.</li>
-     * <li>Times are specified using 24:00 time. For example, 3pm is specified as <code>15:00</code>. </li>
-     * <li>Here is an example: <code>&lt;time itemprop="openingHours" datetime=&quot;Tu,Th 16:00-20:00&quot;&gt;Tuesdays and Thursdays 4-8pm&lt;/time&gt;</code>.</li>
-     * <li>If a business is open 7 days a week, then it can be specified as <code>&lt;time itemprop=&quot;openingHours&quot; datetime=&quot;Mo-Su&quot;&gt;Monday through Sunday, all day&lt;/time&gt;</code>.</li>
-     * </ul>
-     * 
+     * The price range of the business, for example ```$$$```.
      *
      *
      * @var string
      */
-    protected $openingHours;
+    protected $priceRange;
 
     /**
-     * The currency accepted.<br/><br/>
-     * 
-     * Use standard formats: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 currency format</a> e.g. "USD"; <a href="https://en.wikipedia.org/wiki/List_of_cryptocurrencies">Ticker symbol</a> for cryptocurrencies e.g. "BTC"; well known names for <a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">Local Exchange Tradings Systems</a> (LETS) and other currency types e.g. "Ithaca HOUR".
+     * The larger organization that this local business is a branch of, if any. Not to be confused with (anatomical)[[branch]].
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\Organization
      */
-    protected $currenciesAccepted;
+    protected $branchOf;
+
+    /**
+     * @return string
+     */
+    public function getCurrenciesAccepted()
+    {
+        return $this->currenciesAccepted;
+    }
+
+    /**
+     * @param string $currenciesAccepted
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCurrenciesAccepted($currenciesAccepted)
+    {
+        $types = [
+            "string",
+        ];
+
+        $currenciesAccepted = self::checkTypes($currenciesAccepted, $types);
+
+        $this->currenciesAccepted = $currenciesAccepted;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOpeningHours()
+    {
+        return $this->openingHours;
+    }
+
+    /**
+     * @param string $openingHours
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOpeningHours($openingHours)
+    {
+        $types = [
+            "string",
+        ];
+
+        $openingHours = self::checkTypes($openingHours, $types);
+
+        $this->openingHours = $openingHours;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentAccepted()
+    {
+        return $this->paymentAccepted;
+    }
+
+    /**
+     * @param string $paymentAccepted
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPaymentAccepted($paymentAccepted)
+    {
+        $types = [
+            "string",
+        ];
+
+        $paymentAccepted = self::checkTypes($paymentAccepted, $types);
+
+        $this->paymentAccepted = $paymentAccepted;
+    }
 
     /**
      * @return string
@@ -92,9 +154,9 @@ class LocalBusiness extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setPriceRange($priceRange)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $priceRange = self::checkTypes($priceRange, $types);
 
@@ -116,85 +178,13 @@ class LocalBusiness extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setBranchOf($branchOf)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Organization",
-        );
+        ];
 
         $branchOf = self::checkTypes($branchOf, $types);
 
         $this->branchOf = $branchOf;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPaymentAccepted()
-    {
-        return $this->paymentAccepted;
-    }
-
-    /**
-     * @param string $paymentAccepted
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPaymentAccepted($paymentAccepted)
-    {
-        $types = array(
-            "string",
-        );
-
-        $paymentAccepted = self::checkTypes($paymentAccepted, $types);
-
-        $this->paymentAccepted = $paymentAccepted;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOpeningHours()
-    {
-        return $this->openingHours;
-    }
-
-    /**
-     * @param string $openingHours
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOpeningHours($openingHours)
-    {
-        $types = array(
-            "string",
-        );
-
-        $openingHours = self::checkTypes($openingHours, $types);
-
-        $this->openingHours = $openingHours;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCurrenciesAccepted()
-    {
-        return $this->currenciesAccepted;
-    }
-
-    /**
-     * @param string $currenciesAccepted
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCurrenciesAccepted($currenciesAccepted)
-    {
-        $types = array(
-            "string",
-        );
-
-        $currenciesAccepted = self::checkTypes($currenciesAccepted, $types);
-
-        $this->currenciesAccepted = $currenciesAccepted;
     }
 
 }

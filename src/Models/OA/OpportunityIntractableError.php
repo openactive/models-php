@@ -4,9 +4,9 @@ namespace OpenActive\Models\OA;
 
 /**
  * 
- * ## **Error Use Case**
- * The `orderedItem` and `acceptedOffer` combination specified currently cannot be booked due to an inconsistent state within the Booking System.
+ * Error Use Case: The `orderedItem` and `acceptedOffer` combination specified currently cannot be booked due to an inconsistent state within the Booking System.
  * 
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class OpportunityIntractableError extends \OpenActive\Models\OA\OpenBookingError
@@ -64,9 +64,9 @@ class OpportunityIntractableError extends \OpenActive\Models\OA\OpenBookingError
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class OpportunityIntractableError extends \OpenActive\Models\OA\OpenBookingError
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

@@ -3,6 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
+ * This type is derived from https://schema.org/Product, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
@@ -23,6 +24,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
             "accessibilityInformation" => "accessibilityInformation",
             "accessibilitySupport" => "accessibilitySupport",
             "activity" => "activity",
+            "additionalAdmissionRestriction" => "additionalAdmissionRestriction",
             "attendeeInstructions" => "attendeeInstructions",
             "category" => "category",
             "event" => "event",
@@ -40,6 +42,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
             "offerValidityPeriod" => "beta:offerValidityPeriod",
             "facilityType" => "beta:facilityType",
             "facilitySetting" => "beta:facilitySetting",
+            "bookingChannel" => "beta:bookingChannel",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -68,7 +71,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     protected $name;
 
     /**
-     * A free text description of the facility use
+     * A plain text description of the facility use, which must not include HTML or other markup.
      *
      * ```json
      * "description": "An fast paced game that incorporates netball, handball and football."
@@ -126,7 +129,21 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     protected $activity;
 
     /**
-     * Provides additional notes and instructions for users of a facility. E.g. more information on how to find it, what to bring, etc.
+     * Free text restrictions that must be displayed prominently to the user before booking. This property must only contain restrictions not described by `oa:ageRestriction` or `oa:genderRestriction`.
+     *
+     * ```json
+     * "additionalAdmissionRestriction": [
+     *   "Participants younger than 12 must be accompanied by an adult",
+     *   "Participants must be comfortable standing for long periods of time"
+     * ]
+     * ```
+     *
+     * @var string[]
+     */
+    protected $additionalAdmissionRestriction;
+
+    /**
+     * Provides additional notes and instructions for users of a facility, for example more information on how to find it, what to bring, etc. The value of this property must not include HTML or other markup.
      *
      * ```json
      * "attendeeInstructions": "The tennis court is locked with a keycode, so please ensure you book online in advance to gain access."
@@ -270,8 +287,8 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      *
      * ```json
      * "provider": {
-     *   "name": "Central Speedball Association",
      *   "@type": "Organization",
+     *   "name": "Central Speedball Association",
      *   "url": "http://www.speedball-world.com"
      * }
      * ```
@@ -292,10 +309,10 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     protected $url;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers. This property must contain HTML.
      * 
-     * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
+     * If you are using this property, please join the discussion at proposal [#276](https://github.com/openactive/modelling-opportunity-data/issues/276).
      *
      *
      * @var string
@@ -303,7 +320,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     protected $formattedDescription;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * A property that details whether the event is suitable for wheelchair access. Placed on Event as this field could be used to detail whether the Event is suitable, as well as the Place.
      * 
      * If you are using this property, please join the discussion at proposal [#166](https://github.com/openactive/modelling-opportunity-data/issues/166).
@@ -314,7 +331,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     protected $isWheelchairAccessible;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * A related video object.
      * 
      * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
@@ -325,18 +342,18 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     protected $video;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * Internal location of the event, e.g. Court 1
      * 
      * If you are using this property, please join the discussion at proposal [#110](https://github.com/openactive/modelling-opportunity-data/issues/110).
      *
      *
-     * @var \OpenActive\Models\SportsActivityLocation[]
+     * @var \OpenActive\Models\SchemaOrg\SportsActivityLocation[]
      */
     protected $sportsActivityLocation;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * Duration before the event for which the associated Offers are valid
      * 
      * If you are using this property, please join the discussion at proposal [#204](https://github.com/openactive/modelling-opportunity-data/issues/204).
@@ -347,8 +364,8 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     protected $offerValidityPeriod;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * The type of facility in use.
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
+     * The type of facility in use. See https://openactive.io/facility-types/.
      * 
      * If you are using this property, please join the discussion at proposal [#1](https://github.com/openactive/facility-types/issues/1).
      *
@@ -358,7 +375,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     protected $facilityType;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * Whether the event or facility is indoor or outdoor.
      * 
      * If you are using this property, please join the discussion at proposal [#1](https://github.com/openactive/facility-types/issues/1).
@@ -367,6 +384,17 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * @var \OpenActive\Enums\FacilitySettingType|null
      */
     protected $facilitySetting;
+
+    /**
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
+     * The channels through which a booking can be made.
+     * 
+     * If you are using this property, please join the discussion at proposal [#161](https://github.com/openactive/modelling-opportunity-data/issues/161).
+     *
+     *
+     * @var \OpenActive\Enums\BookingChannelType[]|null
+     */
+    protected $bookingChannel;
 
     /**
      * @return string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
@@ -383,13 +411,13 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -411,9 +439,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -435,9 +463,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -459,9 +487,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setAccessibilityInformation($accessibilityInformation)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $accessibilityInformation = self::checkTypes($accessibilityInformation, $types);
 
@@ -483,9 +511,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setAccessibilitySupport($accessibilitySupport)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $accessibilitySupport = self::checkTypes($accessibilitySupport, $types);
 
@@ -507,13 +535,37 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setActivity($activity)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $activity = self::checkTypes($activity, $types);
 
         $this->activity = $activity;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getAdditionalAdmissionRestriction()
+    {
+        return $this->additionalAdmissionRestriction;
+    }
+
+    /**
+     * @param string[] $additionalAdmissionRestriction
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAdditionalAdmissionRestriction($additionalAdmissionRestriction)
+    {
+        $types = [
+            "string[]",
+        ];
+
+        $additionalAdmissionRestriction = self::checkTypes($additionalAdmissionRestriction, $types);
+
+        $this->additionalAdmissionRestriction = $additionalAdmissionRestriction;
     }
 
     /**
@@ -531,9 +583,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setAttendeeInstructions($attendeeInstructions)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $attendeeInstructions = self::checkTypes($attendeeInstructions, $types);
 
@@ -555,10 +607,10 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setCategory($category)
     {
-        $types = array(
+        $types = [
             "string[]",
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $category = self::checkTypes($category, $types);
 
@@ -580,9 +632,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setEvent($event)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Slot[]",
-        );
+        ];
 
         $event = self::checkTypes($event, $types);
 
@@ -604,9 +656,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setHoursAvailable($hoursAvailable)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\OpeningHoursSpecification[]",
-        );
+        ];
 
         $hoursAvailable = self::checkTypes($hoursAvailable, $types);
 
@@ -628,9 +680,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setImage($image)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject[]",
-        );
+        ];
 
         $image = self::checkTypes($image, $types);
 
@@ -652,9 +704,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setIndividualFacilityUse($individualFacilityUse)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\IndividualFacilityUse[]",
-        );
+        ];
 
         $individualFacilityUse = self::checkTypes($individualFacilityUse, $types);
 
@@ -676,9 +728,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setLocation($location)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Place",
-        );
+        ];
 
         $location = self::checkTypes($location, $types);
 
@@ -700,9 +752,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setOffers($offers)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Offer[]",
-        );
+        ];
 
         $offers = self::checkTypes($offers, $types);
 
@@ -724,9 +776,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setProvider($provider)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Organization",
-        );
+        ];
 
         $provider = self::checkTypes($provider, $types);
 
@@ -748,9 +800,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 
@@ -772,9 +824,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setFormattedDescription($formattedDescription)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $formattedDescription = self::checkTypes($formattedDescription, $types);
 
@@ -796,10 +848,10 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setIsWheelchairAccessible($isWheelchairAccessible)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $isWheelchairAccessible = self::checkTypes($isWheelchairAccessible, $types);
 
@@ -821,9 +873,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setVideo($video)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\VideoObject[]",
-        );
+        ];
 
         $video = self::checkTypes($video, $types);
 
@@ -831,7 +883,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\SportsActivityLocation[]
+     * @return \OpenActive\Models\SchemaOrg\SportsActivityLocation[]
      */
     public function getSportsActivityLocation()
     {
@@ -839,15 +891,15 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param \OpenActive\Models\SportsActivityLocation[] $sportsActivityLocation
+     * @param \OpenActive\Models\SchemaOrg\SportsActivityLocation[] $sportsActivityLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSportsActivityLocation($sportsActivityLocation)
     {
-        $types = array(
-            "\OpenActive\Models\SportsActivityLocation[]",
-        );
+        $types = [
+            "\OpenActive\Models\SchemaOrg\SportsActivityLocation[]",
+        ];
 
         $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);
 
@@ -869,10 +921,10 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setOfferValidityPeriod($offerValidityPeriod)
     {
-        $types = array(
+        $types = [
             "DateInterval",
             "null",
-        );
+        ];
 
         $offerValidityPeriod = self::checkTypes($offerValidityPeriod, $types);
 
@@ -894,9 +946,9 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setFacilityType($facilityType)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\Concept[]",
-        );
+        ];
 
         $facilityType = self::checkTypes($facilityType, $types);
 
@@ -918,14 +970,39 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      */
     public function setFacilitySetting($facilitySetting)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\FacilitySettingType",
             "null",
-        );
+        ];
 
         $facilitySetting = self::checkTypes($facilitySetting, $types);
 
         $this->facilitySetting = $facilitySetting;
+    }
+
+    /**
+     * @return \OpenActive\Enums\BookingChannelType[]|null
+     */
+    public function getBookingChannel()
+    {
+        return $this->bookingChannel;
+    }
+
+    /**
+     * @param \OpenActive\Enums\BookingChannelType[]|null $bookingChannel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBookingChannel($bookingChannel)
+    {
+        $types = [
+            "\OpenActive\Enums\BookingChannelType[]",
+            "null",
+        ];
+
+        $bookingChannel = self::checkTypes($bookingChannel, $types);
+
+        $this->bookingChannel = $bookingChannel;
     }
 
 }
