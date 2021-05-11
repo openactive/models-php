@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [PriceSpecification](https://schema.org/PriceSpecification), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/PriceSpecification, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
@@ -18,7 +18,7 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
 
     public static function fieldList() {
         $fields = [
-            "prepayment" => "prepayment",
+            "openBookingPrepayment" => "openBookingPrepayment",
             "price" => "price",
             "priceCurrency" => "priceCurrency",
         ];
@@ -30,18 +30,18 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
      * Indicates if proceeding with booking requires a Customer to pay in advance, pay when attending, or have the option to do either. Values must be one of  https://openactive.io/Required,  https://openactive.io/Optional or  https://openactive.io/Unavailable.
      *
      * ```json
-     * "prepayment": "https://openactive.io/Required"
+     * "openBookingPrepayment": "https://openactive.io/Required"
      * ```
      *
      * @var \OpenActive\Enums\RequiredStatusType|null
      */
-    protected $prepayment;
+    protected $openBookingPrepayment;
 
     /**
      * The total amount.
      *
      *
-     * @var float|null
+     * @var Number|null
      */
     protected $price;
 
@@ -56,30 +56,30 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
     /**
      * @return \OpenActive\Enums\RequiredStatusType|null
      */
-    public function getPrepayment()
+    public function getOpenBookingPrepayment()
     {
-        return $this->prepayment;
+        return $this->openBookingPrepayment;
     }
 
     /**
-     * @param \OpenActive\Enums\RequiredStatusType|null $prepayment
+     * @param \OpenActive\Enums\RequiredStatusType|null $openBookingPrepayment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPrepayment($prepayment)
+    public function setOpenBookingPrepayment($openBookingPrepayment)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\RequiredStatusType",
             "null",
-        );
+        ];
 
-        $prepayment = self::checkTypes($prepayment, $types);
+        $openBookingPrepayment = self::checkTypes($openBookingPrepayment, $types);
 
-        $this->prepayment = $prepayment;
+        $this->openBookingPrepayment = $openBookingPrepayment;
     }
 
     /**
-     * @return float|null
+     * @return Number|null
      */
     public function getPrice()
     {
@@ -87,16 +87,16 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
     }
 
     /**
-     * @param float|null $price
+     * @param Number|null $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPrice($price)
     {
-        $types = array(
-            "float",
+        $types = [
+            "Number",
             "null",
-        );
+        ];
 
         $price = self::checkTypes($price, $types);
 
@@ -118,9 +118,9 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\PriceSpecification
      */
     public function setPriceCurrency($priceCurrency)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $priceCurrency = self::checkTypes($priceCurrency, $types);
 

@@ -17,22 +17,14 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "typeOfGood" => "typeOfGood",
             "ownedFrom" => "ownedFrom",
             "ownedThrough" => "ownedThrough",
+            "typeOfGood" => "typeOfGood",
             "acquiredFrom" => "acquiredFrom",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The product that this structured value is referring to.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service
-     */
-    protected $typeOfGood;
 
     /**
      * The date and time of obtaining the product.
@@ -51,37 +43,20 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $ownedThrough;
 
     /**
+     * The product that this structured value is referring to.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
+     */
+    protected $typeOfGood;
+
+    /**
      * The organization or person from which the product was acquired.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $acquiredFrom;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service
-     */
-    public function getTypeOfGood()
-    {
-        return $this->typeOfGood;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service $typeOfGood
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTypeOfGood($typeOfGood)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Product",
-            "\OpenActive\Models\SchemaOrg\Service",
-        );
-
-        $typeOfGood = self::checkTypes($typeOfGood, $types);
-
-        $this->typeOfGood = $typeOfGood;
-    }
 
     /**
      * @return DateTime|null
@@ -98,10 +73,10 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setOwnedFrom($ownedFrom)
     {
-        $types = array(
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $ownedFrom = self::checkTypes($ownedFrom, $types);
 
@@ -123,14 +98,39 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setOwnedThrough($ownedThrough)
     {
-        $types = array(
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $ownedThrough = self::checkTypes($ownedThrough, $types);
 
         $this->ownedThrough = $ownedThrough;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product
+     */
+    public function getTypeOfGood()
+    {
+        return $this->typeOfGood;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product $typeOfGood
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTypeOfGood($typeOfGood)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Service",
+            "\OpenActive\Models\SchemaOrg\Product",
+        ];
+
+        $typeOfGood = self::checkTypes($typeOfGood, $types);
+
+        $this->typeOfGood = $typeOfGood;
     }
 
     /**
@@ -148,10 +148,10 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setAcquiredFrom($acquiredFrom)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
-        );
+        ];
 
         $acquiredFrom = self::checkTypes($acquiredFrom, $types);
 

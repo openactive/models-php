@@ -46,9 +46,9 @@ class InviteAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
      */
     public function setEvent($event)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Event",
-        );
+        ];
 
         $event = self::checkTypes($event, $types);
 

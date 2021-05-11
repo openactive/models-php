@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [PropertyValue](https://schema.org/PropertyValue), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/PropertyValue, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
@@ -50,7 +50,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
      * A commonly used identifier for the characteristic represented by the property
      *
      * ```json
-     * "propertyID": "ActivePlaces"
+     * "propertyID": "https://example.com/photoconsent"
      * ```
      *
      * @var string
@@ -64,7 +64,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
      * "value": "SB1234"
      * ```
      *
-     * @var string|int|null
+     * @var bool|string|null
      */
     protected $value;
 
@@ -83,9 +83,9 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -107,9 +107,9 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -131,9 +131,9 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
      */
     public function setPropertyID($propertyID)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $propertyID = self::checkTypes($propertyID, $types);
 
@@ -141,7 +141,7 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
     }
 
     /**
-     * @return string|int|null
+     * @return bool|string|null
      */
     public function getValue()
     {
@@ -149,17 +149,17 @@ class PropertyValue extends \OpenActive\Models\SchemaOrg\PropertyValue
     }
 
     /**
-     * @param string|int|null $value
+     * @param bool|string|null $value
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValue($value)
     {
-        $types = array(
+        $types = [
+            "bool",
             "string",
-            "int",
             "null",
-        );
+        ];
 
         $value = self::checkTypes($value, $types);
 

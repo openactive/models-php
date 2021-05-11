@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [LocationFeatureSpecification](https://schema.org/LocationFeatureSpecification), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/LocationFeatureSpecification, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class Parking extends \OpenActive\Models\OA\LocationFeatureSpecification
@@ -50,9 +50,9 @@ class Parking extends \OpenActive\Models\OA\LocationFeatureSpecification
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 

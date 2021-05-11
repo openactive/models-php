@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Campground extends \OpenActive\Models\SchemaOrg\CivicStructure
+class Campground extends \OpenActive\Models\SchemaOrg\LodgingBusiness
 {
     /**
      * @return string[]|null

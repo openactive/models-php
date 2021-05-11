@@ -17,55 +17,41 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "lastReviewed" => "lastReviewed",
             "speakable" => "speakable",
-            "breadcrumb" => "breadcrumb",
             "significantLink" => "significantLink",
-            "relatedLink" => "relatedLink",
-            "mainContentOfPage" => "mainContentOfPage",
-            "reviewedBy" => "reviewedBy",
-            "primaryImageOfPage" => "primaryImageOfPage",
-            "significantLinks" => "significantLinks",
+            "lastReviewed" => "lastReviewed",
             "specialty" => "specialty",
+            "primaryImageOfPage" => "primaryImageOfPage",
+            "reviewedBy" => "reviewedBy",
+            "breadcrumb" => "breadcrumb",
+            "mainContentOfPage" => "mainContentOfPage",
+            "relatedLink" => "relatedLink",
+            "significantLinks" => "significantLinks",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Date on which the content on this web page was last reviewed for accuracy and/or completeness.
-     *
-     *
-     * @var Date|null
-     */
-    protected $lastReviewed;
-
-    /**
-     * Indicates sections of a Web page that are particularly 'speakable' in the sense of being highlighted as being especially appropriate for text-to-speech conversion. Other sections of a page may also be usefully spoken in particular circumstances; the 'speakable' property serves to indicate the parts most likely to be generally useful for speech.<br/><br/>
+     * Indicates sections of a Web page that are particularly 'speakable' in the sense of being highlighted as being especially appropriate for text-to-speech conversion. Other sections of a page may also be usefully spoken in particular circumstances; the 'speakable' property serves to indicate the parts most likely to be generally useful for speech.
      * 
-     * The <em>speakable</em> property can be repeated an arbitrary number of times, with three kinds of possible 'content-locator' values:<br/><br/>
+     * The *speakable* property can be repeated an arbitrary number of times, with three kinds of possible 'content-locator' values:
      * 
-     * 1.) <em>id-value</em> URL references - uses <em>id-value</em> of an element in the page being annotated. The simplest use of <em>speakable</em> has (potentially relative) URL values, referencing identified sections of the document concerned.<br/><br/>
+     * 1.) *id-value* URL references - uses *id-value* of an element in the page being annotated. The simplest use of *speakable* has (potentially relative) URL values, referencing identified sections of the document concerned.
      * 
-     * 2.) CSS Selectors - addresses content in the annotated page, eg. via class attribute. Use the <a class="localLink" href="https://schema.org/cssSelector">cssSelector</a> property.<br/><br/>
+     * 2.) CSS Selectors - addresses content in the annotated page, eg. via class attribute. Use the [[cssSelector]] property.
      * 
-     * 3.)  XPaths - addresses content via XPaths (assuming an XML view of the content). Use the <a class="localLink" href="https://schema.org/xpath">xpath</a> property.<br/><br/>
+     * 3.)  XPaths - addresses content via XPaths (assuming an XML view of the content). Use the [[xpath]] property.
+     * 
      * 
      * For more sophisticated markup of speakable sections beyond simple ID references, either CSS selectors or XPath expressions to pick out document section(s) as speakable. For this
-     * we define a supporting type, <a class="localLink" href="https://schema.org/SpeakableSpecification">SpeakableSpecification</a>  which is defined to be a possible value of the <em>speakable</em> property.
+     * we define a supporting type, [[SpeakableSpecification]]  which is defined to be a possible value of the *speakable* property.
+     *          
      *
      *
      * @var \OpenActive\Models\SchemaOrg\SpeakableSpecification|string
      */
     protected $speakable;
-
-    /**
-     * A set of links that can help a user understand and navigate a website hierarchy.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\BreadcrumbList
-     */
-    protected $breadcrumb;
 
     /**
      * One of the more significant URLs on the page. Typically, these are the non-navigation links that are clicked on the most.
@@ -76,44 +62,12 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $significantLink;
 
     /**
-     * A link related to this web page, for example to other related web pages.
+     * Date on which the content on this web page was last reviewed for accuracy and/or completeness.
      *
      *
-     * @var string
+     * @var Date|null
      */
-    protected $relatedLink;
-
-    /**
-     * Indicates if this web page element is the main subject of the page.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\WebPageElement
-     */
-    protected $mainContentOfPage;
-
-    /**
-     * People or organizations that have reviewed the content on this web page for accuracy and/or completeness.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    protected $reviewedBy;
-
-    /**
-     * Indicates the main image on the page.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ImageObject
-     */
-    protected $primaryImageOfPage;
-
-    /**
-     * The most significant URLs on the page. Typically, these are the non-navigation links that are clicked on the most.
-     *
-     *
-     * @var string
-     */
-    protected $significantLinks;
+    protected $lastReviewed;
 
     /**
      * One of the domain specialities to which this web page's content applies.
@@ -124,29 +78,52 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $specialty;
 
     /**
-     * @return Date|null
+     * Indicates the main image on the page.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ImageObject
      */
-    public function getLastReviewed()
-    {
-        return $this->lastReviewed;
-    }
+    protected $primaryImageOfPage;
 
     /**
-     * @param Date|null $lastReviewed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * People or organizations that have reviewed the content on this web page for accuracy and/or completeness.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
-    public function setLastReviewed($lastReviewed)
-    {
-        $types = array(
-            "Date",
-            "null",
-        );
+    protected $reviewedBy;
 
-        $lastReviewed = self::checkTypes($lastReviewed, $types);
+    /**
+     * A set of links that can help a user understand and navigate a website hierarchy.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\BreadcrumbList
+     */
+    protected $breadcrumb;
 
-        $this->lastReviewed = $lastReviewed;
-    }
+    /**
+     * Indicates if this web page element is the main subject of the page.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\WebPageElement
+     */
+    protected $mainContentOfPage;
+
+    /**
+     * A link related to this web page, for example to other related web pages.
+     *
+     *
+     * @var string
+     */
+    protected $relatedLink;
+
+    /**
+     * The most significant URLs on the page. Typically, these are the non-navigation links that are clicked on the most.
+     *
+     *
+     * @var string
+     */
+    protected $significantLinks;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\SpeakableSpecification|string
@@ -163,39 +140,14 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setSpeakable($speakable)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\SpeakableSpecification",
             "string",
-        );
+        ];
 
         $speakable = self::checkTypes($speakable, $types);
 
         $this->speakable = $speakable;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\BreadcrumbList
-     */
-    public function getBreadcrumb()
-    {
-        return $this->breadcrumb;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\BreadcrumbList $breadcrumb
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBreadcrumb($breadcrumb)
-    {
-        $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\BreadcrumbList",
-        );
-
-        $breadcrumb = self::checkTypes($breadcrumb, $types);
-
-        $this->breadcrumb = $breadcrumb;
     }
 
     /**
@@ -213,9 +165,9 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setSignificantLink($significantLink)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $significantLink = self::checkTypes($significantLink, $types);
 
@@ -223,124 +175,28 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string
+     * @return Date|null
      */
-    public function getRelatedLink()
+    public function getLastReviewed()
     {
-        return $this->relatedLink;
+        return $this->lastReviewed;
     }
 
     /**
-     * @param string $relatedLink
+     * @param Date|null $lastReviewed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRelatedLink($relatedLink)
+    public function setLastReviewed($lastReviewed)
     {
-        $types = array(
-            "string",
-        );
+        $types = [
+            "Date",
+            "null",
+        ];
 
-        $relatedLink = self::checkTypes($relatedLink, $types);
+        $lastReviewed = self::checkTypes($lastReviewed, $types);
 
-        $this->relatedLink = $relatedLink;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\WebPageElement
-     */
-    public function getMainContentOfPage()
-    {
-        return $this->mainContentOfPage;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\WebPageElement $mainContentOfPage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMainContentOfPage($mainContentOfPage)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\WebPageElement",
-        );
-
-        $mainContentOfPage = self::checkTypes($mainContentOfPage, $types);
-
-        $this->mainContentOfPage = $mainContentOfPage;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    public function getReviewedBy()
-    {
-        return $this->reviewedBy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $reviewedBy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReviewedBy($reviewedBy)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-        );
-
-        $reviewedBy = self::checkTypes($reviewedBy, $types);
-
-        $this->reviewedBy = $reviewedBy;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ImageObject
-     */
-    public function getPrimaryImageOfPage()
-    {
-        return $this->primaryImageOfPage;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ImageObject $primaryImageOfPage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPrimaryImageOfPage($primaryImageOfPage)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\ImageObject",
-        );
-
-        $primaryImageOfPage = self::checkTypes($primaryImageOfPage, $types);
-
-        $this->primaryImageOfPage = $primaryImageOfPage;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSignificantLinks()
-    {
-        return $this->significantLinks;
-    }
-
-    /**
-     * @param string $significantLinks
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSignificantLinks($significantLinks)
-    {
-        $types = array(
-            "string",
-        );
-
-        $significantLinks = self::checkTypes($significantLinks, $types);
-
-        $this->significantLinks = $significantLinks;
+        $this->lastReviewed = $lastReviewed;
     }
 
     /**
@@ -358,14 +214,160 @@ class WebPage extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setSpecialty($specialty)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\Specialty",
             "null",
-        );
+        ];
 
         $specialty = self::checkTypes($specialty, $types);
 
         $this->specialty = $specialty;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ImageObject
+     */
+    public function getPrimaryImageOfPage()
+    {
+        return $this->primaryImageOfPage;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ImageObject $primaryImageOfPage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPrimaryImageOfPage($primaryImageOfPage)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ImageObject",
+        ];
+
+        $primaryImageOfPage = self::checkTypes($primaryImageOfPage, $types);
+
+        $this->primaryImageOfPage = $primaryImageOfPage;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     */
+    public function getReviewedBy()
+    {
+        return $this->reviewedBy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $reviewedBy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReviewedBy($reviewedBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+        ];
+
+        $reviewedBy = self::checkTypes($reviewedBy, $types);
+
+        $this->reviewedBy = $reviewedBy;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\BreadcrumbList
+     */
+    public function getBreadcrumb()
+    {
+        return $this->breadcrumb;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\BreadcrumbList $breadcrumb
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBreadcrumb($breadcrumb)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\BreadcrumbList",
+        ];
+
+        $breadcrumb = self::checkTypes($breadcrumb, $types);
+
+        $this->breadcrumb = $breadcrumb;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\WebPageElement
+     */
+    public function getMainContentOfPage()
+    {
+        return $this->mainContentOfPage;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\WebPageElement $mainContentOfPage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMainContentOfPage($mainContentOfPage)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\WebPageElement",
+        ];
+
+        $mainContentOfPage = self::checkTypes($mainContentOfPage, $types);
+
+        $this->mainContentOfPage = $mainContentOfPage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRelatedLink()
+    {
+        return $this->relatedLink;
+    }
+
+    /**
+     * @param string $relatedLink
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRelatedLink($relatedLink)
+    {
+        $types = [
+            "string",
+        ];
+
+        $relatedLink = self::checkTypes($relatedLink, $types);
+
+        $this->relatedLink = $relatedLink;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSignificantLinks()
+    {
+        return $this->significantLinks;
+    }
+
+    /**
+     * @param string $significantLinks
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSignificantLinks($significantLinks)
+    {
+        $types = [
+            "string",
+        ];
+
+        $significantLinks = self::checkTypes($significantLinks, $types);
+
+        $this->significantLinks = $significantLinks;
     }
 
 }

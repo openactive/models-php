@@ -4,9 +4,9 @@ namespace OpenActive\Models\OA;
 
 /**
  * 
- * ## **Error Use Case**
- * The `@id` of at least one of the provided `OrderItem`s is invalid.
+ * Error Use Case: The `@id` of at least one of the provided `OrderItem`s is invalid.
  * 
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class OrderItemIdInvalidError extends \OpenActive\Models\OA\OpenBookingError
@@ -64,9 +64,9 @@ class OrderItemIdInvalidError extends \OpenActive\Models\OA\OpenBookingError
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class OrderItemIdInvalidError extends \OpenActive\Models\OA\OpenBookingError
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

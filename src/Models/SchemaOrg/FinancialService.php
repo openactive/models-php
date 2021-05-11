@@ -46,9 +46,9 @@ class FinancialService extends \OpenActive\Models\SchemaOrg\LocalBusiness
      */
     public function setFeesAndCommissionsSpecification($feesAndCommissionsSpecification)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $feesAndCommissionsSpecification = self::checkTypes($feesAndCommissionsSpecification, $types);
 

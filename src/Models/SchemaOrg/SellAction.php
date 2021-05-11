@@ -55,9 +55,9 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
      */
     public function setBuyer($buyer)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Person",
-        );
+        ];
 
         $buyer = self::checkTypes($buyer, $types);
 
@@ -79,9 +79,9 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
      */
     public function setWarrantyPromise($warrantyPromise)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\WarrantyPromise",
-        );
+        ];
 
         $warrantyPromise = self::checkTypes($warrantyPromise, $types);
 

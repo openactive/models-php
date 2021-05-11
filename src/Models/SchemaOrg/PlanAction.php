@@ -46,10 +46,10 @@ class PlanAction extends \OpenActive\Models\SchemaOrg\OrganizeAction
      */
     public function setScheduledTime($scheduledTime)
     {
-        $types = array(
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $scheduledTime = self::checkTypes($scheduledTime, $types);
 

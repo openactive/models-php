@@ -17,65 +17,25 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
 
     public static function fieldList() {
         $fields = [
-            "arrivalAirport" => "arrivalAirport",
-            "arrivalGate" => "arrivalGate",
-            "carrier" => "carrier",
-            "boardingPolicy" => "boardingPolicy",
-            "aircraft" => "aircraft",
             "webCheckinTime" => "webCheckinTime",
+            "departureGate" => "departureGate",
             "seller" => "seller",
             "mealService" => "mealService",
-            "departureGate" => "departureGate",
-            "departureTerminal" => "departureTerminal",
-            "estimatedFlightDuration" => "estimatedFlightDuration",
-            "flightDistance" => "flightDistance",
+            "aircraft" => "aircraft",
             "arrivalTerminal" => "arrivalTerminal",
             "departureAirport" => "departureAirport",
+            "arrivalGate" => "arrivalGate",
+            "departureTerminal" => "departureTerminal",
+            "arrivalAirport" => "arrivalAirport",
+            "boardingPolicy" => "boardingPolicy",
+            "carrier" => "carrier",
             "flightNumber" => "flightNumber",
+            "flightDistance" => "flightDistance",
+            "estimatedFlightDuration" => "estimatedFlightDuration",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The airport where the flight terminates.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Airport
-     */
-    protected $arrivalAirport;
-
-    /**
-     * Identifier of the flight's arrival gate.
-     *
-     *
-     * @var string
-     */
-    protected $arrivalGate;
-
-    /**
-     * 'carrier' is an out-dated term indicating the 'provider' for parcel delivery and flights.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization
-     */
-    protected $carrier;
-
-    /**
-     * The type of boarding policy used by the airline (e.g. zone-based or group-based).
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null
-     */
-    protected $boardingPolicy;
-
-    /**
-     * The kind of aircraft (e.g., "Boeing 747").
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Vehicle
-     */
-    protected $aircraft;
 
     /**
      * The time when a passenger can check into the flight online.
@@ -86,10 +46,18 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     protected $webCheckinTime;
 
     /**
+     * Identifier of the flight's departure gate.
+     *
+     *
+     * @var string
+     */
+    protected $departureGate;
+
+    /**
      * An entity which offers (sells / leases / lends / loans) the services / goods.  A seller may also be a provider.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $seller;
 
@@ -102,36 +70,12 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     protected $mealService;
 
     /**
-     * Identifier of the flight's departure gate.
+     * The kind of aircraft (e.g., "Boeing 747").
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\Vehicle|string
      */
-    protected $departureGate;
-
-    /**
-     * Identifier of the flight's departure terminal.
-     *
-     *
-     * @var string
-     */
-    protected $departureTerminal;
-
-    /**
-     * The estimated time the flight will take.
-     *
-     *
-     * @var DateInterval|string|null
-     */
-    protected $estimatedFlightDuration;
-
-    /**
-     * The distance of the flight.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Distance
-     */
-    protected $flightDistance;
+    protected $aircraft;
 
     /**
      * Identifier of the flight's arrival terminal.
@@ -150,6 +94,46 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     protected $departureAirport;
 
     /**
+     * Identifier of the flight's arrival gate.
+     *
+     *
+     * @var string
+     */
+    protected $arrivalGate;
+
+    /**
+     * Identifier of the flight's departure terminal.
+     *
+     *
+     * @var string
+     */
+    protected $departureTerminal;
+
+    /**
+     * The airport where the flight terminates.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Airport
+     */
+    protected $arrivalAirport;
+
+    /**
+     * The type of boarding policy used by the airline (e.g. zone-based or group-based).
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null
+     */
+    protected $boardingPolicy;
+
+    /**
+     * 'carrier' is an out-dated term indicating the 'provider' for parcel delivery and flights.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization
+     */
+    protected $carrier;
+
+    /**
      * The unique identifier for a flight including the airline IATA code. For example, if describing United flight 110, where the IATA code for United is 'UA', the flightNumber is 'UA110'.
      *
      *
@@ -158,126 +142,20 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     protected $flightNumber;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Airport
+     * The distance of the flight.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Distance|string
      */
-    public function getArrivalAirport()
-    {
-        return $this->arrivalAirport;
-    }
+    protected $flightDistance;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Airport $arrivalAirport
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The estimated time the flight will take.
+     *
+     *
+     * @var DateInterval|string|null
      */
-    public function setArrivalAirport($arrivalAirport)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Airport",
-        );
-
-        $arrivalAirport = self::checkTypes($arrivalAirport, $types);
-
-        $this->arrivalAirport = $arrivalAirport;
-    }
-
-    /**
-     * @return string
-     */
-    public function getArrivalGate()
-    {
-        return $this->arrivalGate;
-    }
-
-    /**
-     * @param string $arrivalGate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setArrivalGate($arrivalGate)
-    {
-        $types = array(
-            "string",
-        );
-
-        $arrivalGate = self::checkTypes($arrivalGate, $types);
-
-        $this->arrivalGate = $arrivalGate;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization
-     */
-    public function getCarrier()
-    {
-        return $this->carrier;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization $carrier
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCarrier($carrier)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Organization",
-        );
-
-        $carrier = self::checkTypes($carrier, $types);
-
-        $this->carrier = $carrier;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null
-     */
-    public function getBoardingPolicy()
-    {
-        return $this->boardingPolicy;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null $boardingPolicy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBoardingPolicy($boardingPolicy)
-    {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\BoardingPolicyType",
-            "null",
-        );
-
-        $boardingPolicy = self::checkTypes($boardingPolicy, $types);
-
-        $this->boardingPolicy = $boardingPolicy;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Vehicle
-     */
-    public function getAircraft()
-    {
-        return $this->aircraft;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Vehicle $aircraft
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAircraft($aircraft)
-    {
-        $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\Vehicle",
-        );
-
-        $aircraft = self::checkTypes($aircraft, $types);
-
-        $this->aircraft = $aircraft;
-    }
+    protected $estimatedFlightDuration;
 
     /**
      * @return DateTime|null
@@ -294,10 +172,10 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
      */
     public function setWebCheckinTime($webCheckinTime)
     {
-        $types = array(
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $webCheckinTime = self::checkTypes($webCheckinTime, $types);
 
@@ -305,7 +183,31 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @return string
+     */
+    public function getDepartureGate()
+    {
+        return $this->departureGate;
+    }
+
+    /**
+     * @param string $departureGate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDepartureGate($departureGate)
+    {
+        $types = [
+            "string",
+        ];
+
+        $departureGate = self::checkTypes($departureGate, $types);
+
+        $this->departureGate = $departureGate;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getSeller()
     {
@@ -313,16 +215,16 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $seller
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $seller
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeller($seller)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
+        $types = [
             "\OpenActive\Models\SchemaOrg\Organization",
-        );
+            "\OpenActive\Models\SchemaOrg\Person",
+        ];
 
         $seller = self::checkTypes($seller, $types);
 
@@ -344,9 +246,9 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
      */
     public function setMealService($mealService)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $mealService = self::checkTypes($mealService, $types);
 
@@ -354,102 +256,28 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\Vehicle|string
      */
-    public function getDepartureGate()
+    public function getAircraft()
     {
-        return $this->departureGate;
+        return $this->aircraft;
     }
 
     /**
-     * @param string $departureGate
+     * @param \OpenActive\Models\SchemaOrg\Vehicle|string $aircraft
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDepartureGate($departureGate)
+    public function setAircraft($aircraft)
     {
-        $types = array(
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Vehicle",
             "string",
-        );
+        ];
 
-        $departureGate = self::checkTypes($departureGate, $types);
+        $aircraft = self::checkTypes($aircraft, $types);
 
-        $this->departureGate = $departureGate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDepartureTerminal()
-    {
-        return $this->departureTerminal;
-    }
-
-    /**
-     * @param string $departureTerminal
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDepartureTerminal($departureTerminal)
-    {
-        $types = array(
-            "string",
-        );
-
-        $departureTerminal = self::checkTypes($departureTerminal, $types);
-
-        $this->departureTerminal = $departureTerminal;
-    }
-
-    /**
-     * @return DateInterval|string|null
-     */
-    public function getEstimatedFlightDuration()
-    {
-        return $this->estimatedFlightDuration;
-    }
-
-    /**
-     * @param DateInterval|string|null $estimatedFlightDuration
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEstimatedFlightDuration($estimatedFlightDuration)
-    {
-        $types = array(
-            "DateInterval",
-            "string",
-            "null",
-        );
-
-        $estimatedFlightDuration = self::checkTypes($estimatedFlightDuration, $types);
-
-        $this->estimatedFlightDuration = $estimatedFlightDuration;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Distance
-     */
-    public function getFlightDistance()
-    {
-        return $this->flightDistance;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Distance $flightDistance
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFlightDistance($flightDistance)
-    {
-        $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\Distance",
-        );
-
-        $flightDistance = self::checkTypes($flightDistance, $types);
-
-        $this->flightDistance = $flightDistance;
+        $this->aircraft = $aircraft;
     }
 
     /**
@@ -467,9 +295,9 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
      */
     public function setArrivalTerminal($arrivalTerminal)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $arrivalTerminal = self::checkTypes($arrivalTerminal, $types);
 
@@ -491,13 +319,134 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
      */
     public function setDepartureAirport($departureAirport)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Airport",
-        );
+        ];
 
         $departureAirport = self::checkTypes($departureAirport, $types);
 
         $this->departureAirport = $departureAirport;
+    }
+
+    /**
+     * @return string
+     */
+    public function getArrivalGate()
+    {
+        return $this->arrivalGate;
+    }
+
+    /**
+     * @param string $arrivalGate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setArrivalGate($arrivalGate)
+    {
+        $types = [
+            "string",
+        ];
+
+        $arrivalGate = self::checkTypes($arrivalGate, $types);
+
+        $this->arrivalGate = $arrivalGate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDepartureTerminal()
+    {
+        return $this->departureTerminal;
+    }
+
+    /**
+     * @param string $departureTerminal
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDepartureTerminal($departureTerminal)
+    {
+        $types = [
+            "string",
+        ];
+
+        $departureTerminal = self::checkTypes($departureTerminal, $types);
+
+        $this->departureTerminal = $departureTerminal;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Airport
+     */
+    public function getArrivalAirport()
+    {
+        return $this->arrivalAirport;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Airport $arrivalAirport
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setArrivalAirport($arrivalAirport)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Airport",
+        ];
+
+        $arrivalAirport = self::checkTypes($arrivalAirport, $types);
+
+        $this->arrivalAirport = $arrivalAirport;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null
+     */
+    public function getBoardingPolicy()
+    {
+        return $this->boardingPolicy;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\BoardingPolicyType|null $boardingPolicy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBoardingPolicy($boardingPolicy)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\BoardingPolicyType",
+            "null",
+        ];
+
+        $boardingPolicy = self::checkTypes($boardingPolicy, $types);
+
+        $this->boardingPolicy = $boardingPolicy;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization
+     */
+    public function getCarrier()
+    {
+        return $this->carrier;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization $carrier
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCarrier($carrier)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+        ];
+
+        $carrier = self::checkTypes($carrier, $types);
+
+        $this->carrier = $carrier;
     }
 
     /**
@@ -515,13 +464,64 @@ class Flight extends \OpenActive\Models\SchemaOrg\Trip
      */
     public function setFlightNumber($flightNumber)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $flightNumber = self::checkTypes($flightNumber, $types);
 
         $this->flightNumber = $flightNumber;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Distance|string
+     */
+    public function getFlightDistance()
+    {
+        return $this->flightDistance;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Distance|string $flightDistance
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFlightDistance($flightDistance)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Distance",
+            "string",
+        ];
+
+        $flightDistance = self::checkTypes($flightDistance, $types);
+
+        $this->flightDistance = $flightDistance;
+    }
+
+    /**
+     * @return DateInterval|string|null
+     */
+    public function getEstimatedFlightDuration()
+    {
+        return $this->estimatedFlightDuration;
+    }
+
+    /**
+     * @param DateInterval|string|null $estimatedFlightDuration
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEstimatedFlightDuration($estimatedFlightDuration)
+    {
+        $types = [
+            "DateInterval",
+            "string",
+            "null",
+        ];
+
+        $estimatedFlightDuration = self::checkTypes($estimatedFlightDuration, $types);
+
+        $this->estimatedFlightDuration = $estimatedFlightDuration;
     }
 
 }

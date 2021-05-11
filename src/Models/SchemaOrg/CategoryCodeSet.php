@@ -46,9 +46,9 @@ class CategoryCodeSet extends \OpenActive\Models\SchemaOrg\DefinedTermSet
      */
     public function setHasCategoryCode($hasCategoryCode)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\CategoryCode",
-        );
+        ];
 
         $hasCategoryCode = self::checkTypes($hasCategoryCode, $types);
 

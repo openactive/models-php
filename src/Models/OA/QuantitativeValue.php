@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [QuantitativeValue](https://schema.org/QuantitativeValue), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/QuantitativeValue, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
@@ -62,10 +62,10 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function setMaxValue($maxValue)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $maxValue = self::checkTypes($maxValue, $types);
 
@@ -87,10 +87,10 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
     public function setMinValue($minValue)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $minValue = self::checkTypes($minValue, $types);
 

@@ -46,9 +46,9 @@ class PerformanceRole extends \OpenActive\Models\SchemaOrg\Role
      */
     public function setCharacterName($characterName)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $characterName = self::checkTypes($characterName, $types);
 

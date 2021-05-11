@@ -46,9 +46,9 @@ class Report extends \OpenActive\Models\SchemaOrg\Article
      */
     public function setReportNumber($reportNumber)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $reportNumber = self::checkTypes($reportNumber, $types);
 

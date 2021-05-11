@@ -46,9 +46,9 @@ class InsertAction extends \OpenActive\Models\SchemaOrg\AddAction
      */
     public function setToLocation($toLocation)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Place",
-        );
+        ];
 
         $toLocation = self::checkTypes($toLocation, $types);
 

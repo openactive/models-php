@@ -46,10 +46,10 @@ class LegislationObject extends \OpenActive\Models\SchemaOrg\Legislation
      */
     public function setLegislationLegalValue($legislationLegalValue)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\LegalValueLevel",
             "null",
-        );
+        ];
 
         $legislationLegalValue = self::checkTypes($legislationLegalValue, $types);
 

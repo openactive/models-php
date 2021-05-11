@@ -17,57 +17,25 @@ class OfferShippingDetails extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "deliveryTime" => "deliveryTime",
             "shippingRate" => "shippingRate",
+            "shippingDestination" => "shippingDestination",
+            "doesNotShip" => "doesNotShip",
             "shippingLabel" => "shippingLabel",
             "shippingSettingsLink" => "shippingSettingsLink",
             "transitTimeLabel" => "transitTimeLabel",
-            "shippingDestination" => "shippingDestination",
-            "doesNotShip" => "doesNotShip",
+            "deliveryTime" => "deliveryTime",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The total delay between the receipt of the order and the goods reaching the final customer.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ShippingDeliveryTime
-     */
-    protected $deliveryTime;
-
-    /**
-     * The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the <a class="localLink" href="https://schema.org/MonetaryAmount">MonetaryAmount</a>) are most appropriate.
+     * The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the [[MonetaryAmount]]) are most appropriate.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\MonetaryAmount
      */
     protected $shippingRate;
-
-    /**
-     * Label to match an <a class="localLink" href="https://schema.org/OfferShippingDetails">OfferShippingDetails</a> with a <a class="localLink" href="https://schema.org/ShippingRateSettings">ShippingRateSettings</a> (within the context of a <a class="localLink" href="https://schema.org/shippingSettingsLink">shippingSettingsLink</a> cross-reference).
-     *
-     *
-     * @var string
-     */
-    protected $shippingLabel;
-
-    /**
-     * Link to a page containing <a class="localLink" href="https://schema.org/ShippingRateSettings">ShippingRateSettings</a> and <a class="localLink" href="https://schema.org/DeliveryTimeSettings">DeliveryTimeSettings</a> details.
-     *
-     *
-     * @var string
-     */
-    protected $shippingSettingsLink;
-
-    /**
-     * Label to match an <a class="localLink" href="https://schema.org/OfferShippingDetails">OfferShippingDetails</a> with a <a class="localLink" href="https://schema.org/DeliveryTimeSettings">DeliveryTimeSettings</a> (within the context of a <a class="localLink" href="https://schema.org/shippingSettingsLink">shippingSettingsLink</a> cross-reference).
-     *
-     *
-     * @var string
-     */
-    protected $transitTimeLabel;
 
     /**
      * indicates (possibly multiple) shipping destinations. These can be defined in several ways e.g. postalCode ranges.
@@ -78,7 +46,7 @@ class OfferShippingDetails extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $shippingDestination;
 
     /**
-     * Indicates, as part of an <a class="localLink" href="https://schema.org/OfferShippingDetails">OfferShippingDetails</a>, when shipping to a particular <a class="localLink" href="https://schema.org/shippingDestination">shippingDestination</a> is not available.
+     * Indicates when shipping to a particular [[shippingDestination]] is not available.
      *
      *
      * @var bool|null
@@ -86,28 +54,36 @@ class OfferShippingDetails extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $doesNotShip;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ShippingDeliveryTime
+     * Label to match an [[OfferShippingDetails]] with a [[ShippingRateSettings]] (within the context of a [[shippingSettingsLink]] cross-reference).
+     *
+     *
+     * @var string
      */
-    public function getDeliveryTime()
-    {
-        return $this->deliveryTime;
-    }
+    protected $shippingLabel;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ShippingDeliveryTime $deliveryTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * Link to a page containing [[ShippingRateSettings]] and [[DeliveryTimeSettings]] details.
+     *
+     *
+     * @var string
      */
-    public function setDeliveryTime($deliveryTime)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\ShippingDeliveryTime",
-        );
+    protected $shippingSettingsLink;
 
-        $deliveryTime = self::checkTypes($deliveryTime, $types);
+    /**
+     * Label to match an [[OfferShippingDetails]] with a [[DeliveryTimeSettings]] (within the context of a [[shippingSettingsLink]] cross-reference).
+     *
+     *
+     * @var string
+     */
+    protected $transitTimeLabel;
 
-        $this->deliveryTime = $deliveryTime;
-    }
+    /**
+     * The total delay between the receipt of the order and the goods reaching the final customer.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ShippingDeliveryTime
+     */
+    protected $deliveryTime;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MonetaryAmount
@@ -124,85 +100,13 @@ class OfferShippingDetails extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setShippingRate($shippingRate)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-        );
+        ];
 
         $shippingRate = self::checkTypes($shippingRate, $types);
 
         $this->shippingRate = $shippingRate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getShippingLabel()
-    {
-        return $this->shippingLabel;
-    }
-
-    /**
-     * @param string $shippingLabel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setShippingLabel($shippingLabel)
-    {
-        $types = array(
-            "string",
-        );
-
-        $shippingLabel = self::checkTypes($shippingLabel, $types);
-
-        $this->shippingLabel = $shippingLabel;
-    }
-
-    /**
-     * @return string
-     */
-    public function getShippingSettingsLink()
-    {
-        return $this->shippingSettingsLink;
-    }
-
-    /**
-     * @param string $shippingSettingsLink
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setShippingSettingsLink($shippingSettingsLink)
-    {
-        $types = array(
-            "string",
-        );
-
-        $shippingSettingsLink = self::checkTypes($shippingSettingsLink, $types);
-
-        $this->shippingSettingsLink = $shippingSettingsLink;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTransitTimeLabel()
-    {
-        return $this->transitTimeLabel;
-    }
-
-    /**
-     * @param string $transitTimeLabel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTransitTimeLabel($transitTimeLabel)
-    {
-        $types = array(
-            "string",
-        );
-
-        $transitTimeLabel = self::checkTypes($transitTimeLabel, $types);
-
-        $this->transitTimeLabel = $transitTimeLabel;
     }
 
     /**
@@ -220,9 +124,9 @@ class OfferShippingDetails extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setShippingDestination($shippingDestination)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\DefinedRegion",
-        );
+        ];
 
         $shippingDestination = self::checkTypes($shippingDestination, $types);
 
@@ -244,14 +148,110 @@ class OfferShippingDetails extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setDoesNotShip($doesNotShip)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $doesNotShip = self::checkTypes($doesNotShip, $types);
 
         $this->doesNotShip = $doesNotShip;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShippingLabel()
+    {
+        return $this->shippingLabel;
+    }
+
+    /**
+     * @param string $shippingLabel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setShippingLabel($shippingLabel)
+    {
+        $types = [
+            "string",
+        ];
+
+        $shippingLabel = self::checkTypes($shippingLabel, $types);
+
+        $this->shippingLabel = $shippingLabel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShippingSettingsLink()
+    {
+        return $this->shippingSettingsLink;
+    }
+
+    /**
+     * @param string $shippingSettingsLink
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setShippingSettingsLink($shippingSettingsLink)
+    {
+        $types = [
+            "string",
+        ];
+
+        $shippingSettingsLink = self::checkTypes($shippingSettingsLink, $types);
+
+        $this->shippingSettingsLink = $shippingSettingsLink;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTransitTimeLabel()
+    {
+        return $this->transitTimeLabel;
+    }
+
+    /**
+     * @param string $transitTimeLabel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTransitTimeLabel($transitTimeLabel)
+    {
+        $types = [
+            "string",
+        ];
+
+        $transitTimeLabel = self::checkTypes($transitTimeLabel, $types);
+
+        $this->transitTimeLabel = $transitTimeLabel;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ShippingDeliveryTime
+     */
+    public function getDeliveryTime()
+    {
+        return $this->deliveryTime;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ShippingDeliveryTime $deliveryTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDeliveryTime($deliveryTime)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ShippingDeliveryTime",
+        ];
+
+        $deliveryTime = self::checkTypes($deliveryTime, $types);
+
+        $this->deliveryTime = $deliveryTime;
     }
 
 }

@@ -3,6 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
+ * This type is derived from https://schema.org/Product, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class IndividualFacilityUse extends \OpenActive\Models\OA\FacilityUse
@@ -68,9 +69,9 @@ class IndividualFacilityUse extends \OpenActive\Models\OA\FacilityUse
      */
     public function setAggregateFacilityUse($aggregateFacilityUse)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\FacilityUse",
-        );
+        ];
 
         $aggregateFacilityUse = self::checkTypes($aggregateFacilityUse, $types);
 
@@ -92,9 +93,9 @@ class IndividualFacilityUse extends \OpenActive\Models\OA\FacilityUse
      */
     public function setEvent($event)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Slot[]",
-        );
+        ];
 
         $event = self::checkTypes($event, $types);
 

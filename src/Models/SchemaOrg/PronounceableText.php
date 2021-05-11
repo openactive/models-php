@@ -19,6 +19,7 @@ class PronounceableText extends \OpenActive\BaseModel
         $fields = [
             "textValue" => "textValue",
             "phoneticText" => "phoneticText",
+            "inLanguage" => "inLanguage",
             "speechToTextMarkup" => "speechToTextMarkup",
         ];
 
@@ -34,7 +35,7 @@ class PronounceableText extends \OpenActive\BaseModel
     protected $textValue;
 
     /**
-     * Representation of a text <a class="localLink" href="https://schema.org/textValue">textValue</a> using the specified <a class="localLink" href="https://schema.org/speechToTextMarkup">speechToTextMarkup</a>. For example the city name of Houston in IPA: /ˈhjuːstən/.
+     * Representation of a text [[textValue]] using the specified [[speechToTextMarkup]]. For example the city name of Houston in IPA: /ˈhjuːstən/.
      *
      *
      * @var string
@@ -42,7 +43,15 @@ class PronounceableText extends \OpenActive\BaseModel
     protected $phoneticText;
 
     /**
-     * Form of markup used. eg. <a href="https://www.w3.org/TR/speech-synthesis11">SSML</a> or <a href="https://www.wikidata.org/wiki/Property:P898">IPA</a>.
+     * The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]].
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Language
+     */
+    protected $inLanguage;
+
+    /**
+     * Form of markup used. eg. [SSML](https://www.w3.org/TR/speech-synthesis11) or [IPA](https://www.wikidata.org/wiki/Property:P898).
      *
      *
      * @var string
@@ -64,9 +73,9 @@ class PronounceableText extends \OpenActive\BaseModel
      */
     public function setTextValue($textValue)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $textValue = self::checkTypes($textValue, $types);
 
@@ -88,13 +97,38 @@ class PronounceableText extends \OpenActive\BaseModel
      */
     public function setPhoneticText($phoneticText)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $phoneticText = self::checkTypes($phoneticText, $types);
 
         $this->phoneticText = $phoneticText;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Language
+     */
+    public function getInLanguage()
+    {
+        return $this->inLanguage;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Language $inLanguage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInLanguage($inLanguage)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\Language",
+        ];
+
+        $inLanguage = self::checkTypes($inLanguage, $types);
+
+        $this->inLanguage = $inLanguage;
     }
 
     /**
@@ -112,9 +146,9 @@ class PronounceableText extends \OpenActive\BaseModel
      */
     public function setSpeechToTextMarkup($speechToTextMarkup)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $speechToTextMarkup = self::checkTypes($speechToTextMarkup, $types);
 

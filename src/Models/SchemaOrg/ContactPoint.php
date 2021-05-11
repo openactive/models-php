@@ -17,68 +17,44 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "serviceArea" => "serviceArea",
-            "areaServed" => "areaServed",
-            "hoursAvailable" => "hoursAvailable",
-            "contactOption" => "contactOption",
             "availableLanguage" => "availableLanguage",
-            "telephone" => "telephone",
-            "email" => "email",
-            "contactType" => "contactType",
+            "areaServed" => "areaServed",
             "productSupported" => "productSupported",
+            "email" => "email",
+            "telephone" => "telephone",
+            "contactType" => "contactType",
+            "hoursAvailable" => "hoursAvailable",
+            "serviceArea" => "serviceArea",
             "faxNumber" => "faxNumber",
+            "contactOption" => "contactOption",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The geographic area where the service is provided.
+     * A language someone may use with or at the item, service or place. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[inLanguage]]
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\Place
+     * @var \OpenActive\Models\SchemaOrg\Language|string
      */
-    protected $serviceArea;
+    protected $availableLanguage;
 
     /**
      * The geographic area where a service or offered item is provided.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\AdministrativeArea
+     * @var string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape
      */
     protected $areaServed;
 
     /**
-     * The hours during which this service or contact is available.
+     * The product or service this support contact point is related to (such as product support for a particular product line). This can be a specific product or product line (e.g. "iPhone") or a general category of products or services (e.g. "smartphones").
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\OpeningHoursSpecification
+     * @var \OpenActive\Models\SchemaOrg\Product|string
      */
-    protected $hoursAvailable;
-
-    /**
-     * An option available on this contact point (e.g. a toll-free number or support for hearing-impaired callers).
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\ContactPointOption|null
-     */
-    protected $contactOption;
-
-    /**
-     * A language someone may use with or at the item, service or place. Please use one of the language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>. See also <a class="localLink" href="https://schema.org/inLanguage">inLanguage</a>
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Language
-     */
-    protected $availableLanguage;
-
-    /**
-     * The telephone number.
-     *
-     *
-     * @var string
-     */
-    protected $telephone;
+    protected $productSupported;
 
     /**
      * Email address.
@@ -89,6 +65,14 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $email;
 
     /**
+     * The telephone number.
+     *
+     *
+     * @var string
+     */
+    protected $telephone;
+
+    /**
      * A person or organization can have different contact points, for different purposes. For example, a sales contact point, a PR contact point and so on. This property is used to specify the kind of contact point.
      *
      *
@@ -97,12 +81,20 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $contactType;
 
     /**
-     * The product or service this support contact point is related to (such as product support for a particular product line). This can be a specific product or product line (e.g. "iPhone") or a general category of products or services (e.g. "smartphones").
+     * The hours during which this service or contact is available.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Product
+     * @var \OpenActive\Models\SchemaOrg\OpeningHoursSpecification
      */
-    protected $productSupported;
+    protected $hoursAvailable;
+
+    /**
+     * The geographic area where the service is provided.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape
+     */
+    protected $serviceArea;
 
     /**
      * The fax number.
@@ -113,109 +105,15 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $faxNumber;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\Place
+     * An option available on this contact point (e.g. a toll-free number or support for hearing-impaired callers).
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\ContactPointOption|null
      */
-    public function getServiceArea()
-    {
-        return $this->serviceArea;
-    }
+    protected $contactOption;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\Place $serviceArea
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setServiceArea($serviceArea)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\GeoShape",
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-            "\OpenActive\Models\SchemaOrg\Place",
-        );
-
-        $serviceArea = self::checkTypes($serviceArea, $types);
-
-        $this->serviceArea = $serviceArea;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\AdministrativeArea
-     */
-    public function getAreaServed()
-    {
-        return $this->areaServed;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAreaServed($areaServed)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Place",
-            "\OpenActive\Models\SchemaOrg\GeoShape",
-            "string",
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-        );
-
-        $areaServed = self::checkTypes($areaServed, $types);
-
-        $this->areaServed = $areaServed;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\OpeningHoursSpecification
-     */
-    public function getHoursAvailable()
-    {
-        return $this->hoursAvailable;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\OpeningHoursSpecification $hoursAvailable
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHoursAvailable($hoursAvailable)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\OpeningHoursSpecification",
-        );
-
-        $hoursAvailable = self::checkTypes($hoursAvailable, $types);
-
-        $this->hoursAvailable = $hoursAvailable;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\ContactPointOption|null
-     */
-    public function getContactOption()
-    {
-        return $this->contactOption;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\ContactPointOption|null $contactOption
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setContactOption($contactOption)
-    {
-        $types = array(
-            "\OpenActive\Enums\SchemaOrg\ContactPointOption",
-            "null",
-        );
-
-        $contactOption = self::checkTypes($contactOption, $types);
-
-        $this->contactOption = $contactOption;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Language
+     * @return \OpenActive\Models\SchemaOrg\Language|string
      */
     public function getAvailableLanguage()
     {
@@ -223,16 +121,16 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Language $availableLanguage
+     * @param \OpenActive\Models\SchemaOrg\Language|string $availableLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableLanguage($availableLanguage)
     {
-        $types = array(
-            "string",
+        $types = [
             "\OpenActive\Models\SchemaOrg\Language",
-        );
+            "string",
+        ];
 
         $availableLanguage = self::checkTypes($availableLanguage, $types);
 
@@ -240,27 +138,55 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string
+     * @return string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape
      */
-    public function getTelephone()
+    public function getAreaServed()
     {
-        return $this->telephone;
+        return $this->areaServed;
     }
 
     /**
-     * @param string $telephone
+     * @param string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape $areaServed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTelephone($telephone)
+    public function setAreaServed($areaServed)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+            "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+            "\OpenActive\Models\SchemaOrg\GeoShape",
+        ];
 
-        $telephone = self::checkTypes($telephone, $types);
+        $areaServed = self::checkTypes($areaServed, $types);
 
-        $this->telephone = $telephone;
+        $this->areaServed = $areaServed;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Product|string
+     */
+    public function getProductSupported()
+    {
+        return $this->productSupported;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Product|string $productSupported
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProductSupported($productSupported)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Product",
+            "string",
+        ];
+
+        $productSupported = self::checkTypes($productSupported, $types);
+
+        $this->productSupported = $productSupported;
     }
 
     /**
@@ -278,13 +204,37 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setEmail($email)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $email = self::checkTypes($email, $types);
 
         $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param string $telephone
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTelephone($telephone)
+    {
+        $types = [
+            "string",
+        ];
+
+        $telephone = self::checkTypes($telephone, $types);
+
+        $this->telephone = $telephone;
     }
 
     /**
@@ -302,9 +252,9 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setContactType($contactType)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $contactType = self::checkTypes($contactType, $types);
 
@@ -312,28 +262,53 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Product
+     * @return \OpenActive\Models\SchemaOrg\OpeningHoursSpecification
      */
-    public function getProductSupported()
+    public function getHoursAvailable()
     {
-        return $this->productSupported;
+        return $this->hoursAvailable;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Product $productSupported
+     * @param \OpenActive\Models\SchemaOrg\OpeningHoursSpecification $hoursAvailable
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setProductSupported($productSupported)
+    public function setHoursAvailable($hoursAvailable)
     {
-        $types = array(
-            "string",
-            "\OpenActive\Models\SchemaOrg\Product",
-        );
+        $types = [
+            "\OpenActive\Models\SchemaOrg\OpeningHoursSpecification",
+        ];
 
-        $productSupported = self::checkTypes($productSupported, $types);
+        $hoursAvailable = self::checkTypes($hoursAvailable, $types);
 
-        $this->productSupported = $productSupported;
+        $this->hoursAvailable = $hoursAvailable;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape
+     */
+    public function getServiceArea()
+    {
+        return $this->serviceArea;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape $serviceArea
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setServiceArea($serviceArea)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+            "\OpenActive\Models\SchemaOrg\GeoShape",
+        ];
+
+        $serviceArea = self::checkTypes($serviceArea, $types);
+
+        $this->serviceArea = $serviceArea;
     }
 
     /**
@@ -351,13 +326,38 @@ class ContactPoint extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setFaxNumber($faxNumber)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $faxNumber = self::checkTypes($faxNumber, $types);
 
         $this->faxNumber = $faxNumber;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\ContactPointOption|null
+     */
+    public function getContactOption()
+    {
+        return $this->contactOption;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\ContactPointOption|null $contactOption
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setContactOption($contactOption)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\ContactPointOption",
+            "null",
+        ];
+
+        $contactOption = self::checkTypes($contactOption, $types);
+
+        $this->contactOption = $contactOption;
     }
 
 }

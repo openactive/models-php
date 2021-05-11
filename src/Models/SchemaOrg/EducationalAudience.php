@@ -46,9 +46,9 @@ class EducationalAudience extends \OpenActive\Models\SchemaOrg\Audience
      */
     public function setEducationalRole($educationalRole)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $educationalRole = self::checkTypes($educationalRole, $types);
 

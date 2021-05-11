@@ -55,9 +55,9 @@ class Menu extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setHasMenuItem($hasMenuItem)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\MenuItem",
-        );
+        ];
 
         $hasMenuItem = self::checkTypes($hasMenuItem, $types);
 
@@ -79,9 +79,9 @@ class Menu extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setHasMenuSection($hasMenuSection)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\MenuSection",
-        );
+        ];
 
         $hasMenuSection = self::checkTypes($hasMenuSection, $types);
 

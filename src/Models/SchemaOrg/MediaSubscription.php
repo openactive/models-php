@@ -55,9 +55,9 @@ class MediaSubscription extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setAuthenticator($authenticator)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Organization",
-        );
+        ];
 
         $authenticator = self::checkTypes($authenticator, $types);
 
@@ -79,9 +79,9 @@ class MediaSubscription extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setExpectsAcceptanceOf($expectsAcceptanceOf)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Offer",
-        );
+        ];
 
         $expectsAcceptanceOf = self::checkTypes($expectsAcceptanceOf, $types);
 

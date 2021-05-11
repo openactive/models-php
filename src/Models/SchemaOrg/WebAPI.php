@@ -27,12 +27,12 @@ class WebAPI extends \OpenActive\Models\SchemaOrg\Service
      * Further documentation describing the Web API in more detail.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     protected $documentation;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     public function getDocumentation()
     {
@@ -40,16 +40,16 @@ class WebAPI extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $documentation
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $documentation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDocumentation($documentation)
     {
-        $types = array(
-            "string",
+        $types = [
             "\OpenActive\Models\SchemaOrg\CreativeWork",
-        );
+            "string",
+        ];
 
         $documentation = self::checkTypes($documentation, $types);
 

@@ -3,6 +3,10 @@
 namespace OpenActive\Models\OA;
 
 /**
+ * 
+ * Error Use Case: The Booking System recognises a PATCH request but the request object contains properties that the Broker is not permitted to update. Custom namespace properties are always excluded from consideration.
+ * 
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class PatchContainsExcessivePropertiesError extends \OpenActive\Models\OA\OpenBookingError
@@ -17,9 +21,81 @@ class PatchContainsExcessivePropertiesError extends \OpenActive\Models\OA\OpenBo
 
     public static function fieldList() {
         $fields = [
+            "name" => "name",
+            "statusCode" => "statusCode",
         ];
 
         return array_merge(parent::fieldList(), $fields);
+    }
+
+    /**
+     * A short, human-readable summary of the problem type. It should not change from occurrence to occurrence of the problem, except for purposes of localization.
+     *
+     * ```json
+     * "name": "The Booking System recognises a PATCH request but the request object contains properties that the Broker is not permitted to update. Custom namespace properties are always excluded from consideration."
+     * ```
+     *
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * Must always be present and set to ```json
+     * "statusCode": 400
+     * ```
+     *
+     *
+     * @var int|null
+     */
+    protected $statusCode;
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setName($name)
+    {
+        $types = [
+            "string",
+        ];
+
+        $name = self::checkTypes($name, $types);
+
+        $this->name = $name;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getStatusCode()
+    {
+        return $this->statusCode;
+    }
+
+    /**
+     * @param int|null $statusCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setStatusCode($statusCode)
+    {
+        $types = [
+            "int",
+            "null",
+        ];
+
+        $statusCode = self::checkTypes($statusCode, $types);
+
+        $this->statusCode = $statusCode;
     }
 
 }

@@ -4,11 +4,9 @@ namespace OpenActive\Models\OA;
 
 /**
  * 
- * ## **EARLY RELEASE NOTICE**
- * In order to expedite the OpenActive tooling work, this class has been added to the model for the purposes of testing.
- * IT IS SUBJECT TO CHANGE, as the [Dataset API Discovery specification](https://www.openactive.io/dataset-api-discovery/EditorsDraft/) evolves.
+ * EARLY RELEASE NOTICE: This class represents a draft that is designed to inform the OpenActive specification work with implementation feedback. IT IS SUBJECT TO CHANGE, as the [Dataset API Discovery specification](https://openactive.io/dataset-api-discovery/EditorsDraft/) evolves.
  * 
- * This type is derived from [WebAPI](https://pending.schema.org/WebAPI), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://pending.schema.org/WebAPI.
  *
  */
 class WebAPI extends \OpenActive\BaseModel
@@ -25,6 +23,7 @@ class WebAPI extends \OpenActive\BaseModel
         $fields = [
             "name" => "name",
             "description" => "description",
+            "authenticationAuthority" => "authenticationAuthority",
             "conformsTo" => "conformsTo",
             "documentation" => "documentation",
             "endpointDescription" => "endpointDescription",
@@ -48,7 +47,7 @@ class WebAPI extends \OpenActive\BaseModel
     protected $name;
 
     /**
-     * The description of the Dataset
+     * A plain text description of the Dataset, which must not include HTML or other markup.
      *
      * ```json
      * "description": "Near real-time availability and rich descriptions relating to the sessions and facilities available from {OrganisationName}, published using the OpenActive Modelling Specification 2.0."
@@ -59,11 +58,22 @@ class WebAPI extends \OpenActive\BaseModel
     protected $description;
 
     /**
+     * The location of the OpenID Provider or other relevant authentication authority that must be used to access the API.
+     *
+     * ```json
+     * "authenticationAuthority": "https://auth.bookingsystem.com"
+     * ```
+     *
+     * @var string
+     */
+    protected $authenticationAuthority;
+
+    /**
      * Indicates the version and profiles of OpenActive Open Booking Specification with which this WebAPI conforms, by specifying these as URLs.
      *
      * ```json
      * "conformsTo": [
-     *   "https://www.openactive.io/open-booking-api/1.0/#core"
+     *   "https://openactive.io/open-booking-api/1.0/#core"
      * ]
      * ```
      *
@@ -86,7 +96,7 @@ class WebAPI extends \OpenActive\BaseModel
      * The Open API document associated with this version of the Open Booking API
      *
      * ```json
-     * "endpointDescription": "https://www.openactive.io/open-booking-api/1.0/swagger.json"
+     * "endpointDescription": "https://openactive.io/open-booking-api/1.0/swagger.json"
      * ```
      *
      * @var string
@@ -141,9 +151,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -165,13 +175,37 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
         $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthenticationAuthority()
+    {
+        return $this->authenticationAuthority;
+    }
+
+    /**
+     * @param string $authenticationAuthority
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAuthenticationAuthority($authenticationAuthority)
+    {
+        $types = [
+            "string",
+        ];
+
+        $authenticationAuthority = self::checkTypes($authenticationAuthority, $types);
+
+        $this->authenticationAuthority = $authenticationAuthority;
     }
 
     /**
@@ -189,9 +223,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setConformsTo($conformsTo)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $conformsTo = self::checkTypes($conformsTo, $types);
 
@@ -213,9 +247,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setDocumentation($documentation)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $documentation = self::checkTypes($documentation, $types);
 
@@ -237,9 +271,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setEndpointDescription($endpointDescription)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $endpointDescription = self::checkTypes($endpointDescription, $types);
 
@@ -261,9 +295,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setEndpointURL($endpointURL)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $endpointURL = self::checkTypes($endpointURL, $types);
 
@@ -285,9 +319,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setLandingPage($landingPage)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $landingPage = self::checkTypes($landingPage, $types);
 
@@ -309,9 +343,9 @@ class WebAPI extends \OpenActive\BaseModel
      */
     public function setTermsOfService($termsOfService)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $termsOfService = self::checkTypes($termsOfService, $types);
 

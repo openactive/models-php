@@ -17,21 +17,36 @@ class ShippingDeliveryTime extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
+            "handlingTime" => "handlingTime",
+            "businessDays" => "businessDays",
             "cutoffTime" => "cutoffTime",
             "transitTime" => "transitTime",
-            "businessDays" => "businessDays",
-            "handlingTime" => "handlingTime",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Order cutoff time allows merchants to describe the time after which they will no longer process orders received on that day. For orders processed after cutoff time, one day gets added to the delivery time estimate. This property is expected to be most typically used via the <a class="localLink" href="https://schema.org/ShippingRateSettings">ShippingRateSettings</a> publication pattern. The time is indicated using the time notation from the ISO-8601 DateTime format, e.g.
-     *       14:45:15Z would represent a daily cutoff at 14:45h UTC.
+     * The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup. Typical properties: minValue, maxValue, unitCode (d for DAY).  This is by common convention assumed to mean business days (if a unitCode is used, coded as "d"), i.e. only counting days when the business normally operates.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    protected $handlingTime;
+
+    /**
+     * Days of the week when the merchant typically operates, indicated via opening hours markup.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\OpeningHoursSpecification
+     */
+    protected $businessDays;
+
+    /**
+     * Order cutoff time allows merchants to describe the time after which they will no longer process orders received on that day. For orders processed after cutoff time, one day gets added to the delivery time estimate. This property is expected to be most typically used via the [[ShippingRateSettings]] publication pattern. The time is indicated using the ISO-8601 Time format, e.g. "23:30:00-05:00" would represent 6:30 pm Eastern Standard Time (EST) which is 5 hours behind Coordinated Universal Time (UTC).
+     *
+     *
+     * @var string|null
      */
     protected $cutoffTime;
 
@@ -44,23 +59,55 @@ class ShippingDeliveryTime extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $transitTime;
 
     /**
-     * Days of the week when the merchant typically operates, indicated via opening hours markup.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\OpeningHoursSpecification
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    protected $businessDays;
+    public function getHandlingTime()
+    {
+        return $this->handlingTime;
+    }
 
     /**
-     * The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup. Typical properties: minValue, maxValue, unitCode (d for DAY).  This is by common convention assumed to mean business days (if a unitCode is used, coded as "d"), i.e. only counting days when the business normally operates.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $handlingTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $handlingTime;
+    public function setHandlingTime($handlingTime)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+        ];
+
+        $handlingTime = self::checkTypes($handlingTime, $types);
+
+        $this->handlingTime = $handlingTime;
+    }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\OpeningHoursSpecification
+     */
+    public function getBusinessDays()
+    {
+        return $this->businessDays;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\OpeningHoursSpecification $businessDays
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBusinessDays($businessDays)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\OpeningHoursSpecification",
+        ];
+
+        $businessDays = self::checkTypes($businessDays, $types);
+
+        $this->businessDays = $businessDays;
+    }
+
+    /**
+     * @return string|null
      */
     public function getCutoffTime()
     {
@@ -68,15 +115,16 @@ class ShippingDeliveryTime extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param string $cutoffTime
+     * @param string|null $cutoffTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCutoffTime($cutoffTime)
     {
-        $types = array(
-            "string",
-        );
+        $types = [
+            "Time",
+            "null",
+        ];
 
         $cutoffTime = self::checkTypes($cutoffTime, $types);
 
@@ -98,61 +146,13 @@ class ShippingDeliveryTime extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setTransitTime($transitTime)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
+        ];
 
         $transitTime = self::checkTypes($transitTime, $types);
 
         $this->transitTime = $transitTime;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\OpeningHoursSpecification
-     */
-    public function getBusinessDays()
-    {
-        return $this->businessDays;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\OpeningHoursSpecification $businessDays
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBusinessDays($businessDays)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\OpeningHoursSpecification",
-        );
-
-        $businessDays = self::checkTypes($businessDays, $types);
-
-        $this->businessDays = $businessDays;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    public function getHandlingTime()
-    {
-        return $this->handlingTime;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $handlingTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHandlingTime($handlingTime)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
-
-        $handlingTime = self::checkTypes($handlingTime, $types);
-
-        $this->handlingTime = $handlingTime;
     }
 
 }

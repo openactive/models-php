@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [ImageObject](https://schema.org/ImageObject), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/ImageObject, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class ImageObject extends \OpenActive\Models\OA\MediaObject
@@ -87,9 +87,9 @@ class ImageObject extends \OpenActive\Models\OA\MediaObject
      */
     public function setContentUrl($contentUrl)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $contentUrl = self::checkTypes($contentUrl, $types);
 
@@ -113,9 +113,9 @@ class ImageObject extends \OpenActive\Models\OA\MediaObject
      */
     public function setEmbedUrl($embedUrl)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $embedUrl = self::checkTypes($embedUrl, $types);
 
@@ -137,9 +137,9 @@ class ImageObject extends \OpenActive\Models\OA\MediaObject
      */
     public function setThumbnail($thumbnail)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject[]",
-        );
+        ];
 
         $thumbnail = self::checkTypes($thumbnail, $types);
 
@@ -161,9 +161,9 @@ class ImageObject extends \OpenActive\Models\OA\MediaObject
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 

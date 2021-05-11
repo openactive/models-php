@@ -4,9 +4,9 @@ namespace OpenActive\Models\OA;
 
 /**
  * 
- * ## **Error Use Case**
- * The Order UUID used for an `OrderQuote` already represents a completed `Order` with a different set of `OrderItem`s to those specified (note call to B is idempotent for the case where `OrderItem`s match). This happens in the rare event of a Order UUID clash.
+ * Error Use Case: The Order UUID used for an `OrderQuote` already represents a completed `Order` with a different set of `OrderItem`s to those specified (note call to B is idempotent for the case where `OrderItem`s match). This happens in the rare event of a Order UUID clash.
  * 
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class OrderAlreadyExistsError extends \OpenActive\Models\OA\OpenBookingError
@@ -64,9 +64,9 @@ class OrderAlreadyExistsError extends \OpenActive\Models\OA\OpenBookingError
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class OrderAlreadyExistsError extends \OpenActive\Models\OA\OpenBookingError
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

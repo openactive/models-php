@@ -18,8 +18,8 @@ class BuyAction extends \OpenActive\Models\SchemaOrg\TradeAction
     public static function fieldList() {
         $fields = [
             "seller" => "seller",
-            "warrantyPromise" => "warrantyPromise",
             "vendor" => "vendor",
+            "warrantyPromise" => "warrantyPromise",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -29,9 +29,17 @@ class BuyAction extends \OpenActive\Models\SchemaOrg\TradeAction
      * An entity which offers (sells / leases / lends / loans) the services / goods.  A seller may also be a provider.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     protected $seller;
+
+    /**
+     * 'vendor' is an earlier term for 'seller'.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     */
+    protected $vendor;
 
     /**
      * The warranty promise(s) included in the offer.
@@ -42,15 +50,7 @@ class BuyAction extends \OpenActive\Models\SchemaOrg\TradeAction
     protected $warrantyPromise;
 
     /**
-     * 'vendor' is an earlier term for 'seller'.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    protected $vendor;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
      */
     public function getSeller()
     {
@@ -58,20 +58,45 @@ class BuyAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $seller
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $seller
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeller($seller)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
+        $types = [
             "\OpenActive\Models\SchemaOrg\Organization",
-        );
+            "\OpenActive\Models\SchemaOrg\Person",
+        ];
 
         $seller = self::checkTypes($seller, $types);
 
         $this->seller = $seller;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     */
+    public function getVendor()
+    {
+        return $this->vendor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $vendor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVendor($vendor)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+        ];
+
+        $vendor = self::checkTypes($vendor, $types);
+
+        $this->vendor = $vendor;
     }
 
     /**
@@ -89,38 +114,13 @@ class BuyAction extends \OpenActive\Models\SchemaOrg\TradeAction
      */
     public function setWarrantyPromise($warrantyPromise)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\WarrantyPromise",
-        );
+        ];
 
         $warrantyPromise = self::checkTypes($warrantyPromise, $types);
 
         $this->warrantyPromise = $warrantyPromise;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    public function getVendor()
-    {
-        return $this->vendor;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $vendor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVendor($vendor)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-        );
-
-        $vendor = self::checkTypes($vendor, $types);
-
-        $this->vendor = $vendor;
     }
 
 }

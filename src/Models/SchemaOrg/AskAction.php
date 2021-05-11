@@ -46,9 +46,9 @@ class AskAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
      */
     public function setQuestion($question)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Question",
-        );
+        ];
 
         $question = self::checkTypes($question, $types);
 

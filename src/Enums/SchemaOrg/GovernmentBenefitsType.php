@@ -8,12 +8,12 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class GovernmentBenefitsType
 {
+    const ParentalSupport = \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType\ParentalSupport::class;
+    const UnemploymentSupport = \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType\UnemploymentSupport::class;
+    const OneTimePayments = \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType\OneTimePayments::class;
     const DisabilitySupport = \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType\DisabilitySupport::class;
     const BasicIncome = \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType\BasicIncome::class;
-    const HealthCare = \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType\HealthCare::class;
-    const ParentalSupport = \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType\ParentalSupport::class;
-    const BusinessSupport = \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType\BusinessSupport::class;
-    const OneTimePayments = \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType\OneTimePayments::class;
-    const UnemploymentSupport = \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType\UnemploymentSupport::class;
     const PaidLeave = \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType\PaidLeave::class;
+    const HealthCare = \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType\HealthCare::class;
+    const BusinessSupport = \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType\BusinessSupport::class;
 }

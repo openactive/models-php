@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [Event](https://schema.org/Event), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/Event, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class Slot extends \OpenActive\Models\OA\Event
@@ -24,13 +24,14 @@ class Slot extends \OpenActive\Models\OA\Event
             "accessibilityInformation" => "accessibilityInformation",
             "accessibilitySupport" => "accessibilitySupport",
             "activity" => "activity",
+            "additionalAdmissionRestriction" => "additionalAdmissionRestriction",
             "ageRange" => "ageRange",
+            "ageRestriction" => "ageRestriction",
             "attendeeInstructions" => "attendeeInstructions",
             "category" => "category",
             "contributor" => "contributor",
             "duration" => "duration",
             "eventAttendanceMode" => "eventAttendanceMode",
-            "eventSchedule" => "eventSchedule",
             "eventStatus" => "eventStatus",
             "facilityUse" => "facilityUse",
             "genderRestriction" => "genderRestriction",
@@ -84,10 +85,10 @@ class Slot extends \OpenActive\Models\OA\Event
     protected $name;
 
     /**
-     * A free text description of the event
+     * A plain text description of the event, which must not include HTML or other markup.
      *
      * ```json
-     * "description": "An fast paced game that incorporates netball, handball and football."
+     * "description": "A fast paced game that incorporates netball, handball and football."
      * ```
      *
      * @var string
@@ -146,12 +147,27 @@ class Slot extends \OpenActive\Models\OA\Event
     protected $activity;
 
     /**
-     * Indicates that an event is suitable for a specific age range. If only a single age is specified then this is assumed to be a minimum age. Age ranges can be specified as follows: 18-30
+     * Free text restrictions that must be displayed prominently to the user before booking. This property must only contain restrictions not described by `oa:ageRestriction` or `oa:genderRestriction`.
+     *
+     * ```json
+     * "additionalAdmissionRestriction": [
+     *   "Participants younger than 12 must be accompanied by an adult",
+     *   "Participants must be comfortable standing for long periods of time"
+     * ]
+     * ```
+     *
+     * @var string[]
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    protected $additionalAdmissionRestriction;
+
+    /**
+     * Indicates that an event is recommended as being suitable for or is targetted at a specific age range.
      *
      * ```json
      * "ageRange": {
      *   "@type": "QuantitativeValue",
-     *   "minValue": 15,
+     *   "minValue": 50,
      *   "maxValue": 60
      * }
      * ```
@@ -162,7 +178,23 @@ class Slot extends \OpenActive\Models\OA\Event
     protected $ageRange;
 
     /**
-     * Provides additional notes and instructions for event attendees. E.g. more information on how to find the event, what to bring, etc.
+     * The enforced attendee age range requirement of the Event or Offer, that must be displayed prominently to the user before booking.
+     *
+     * ```json
+     * "ageRestriction": {
+     *   "@type": "QuantitativeValue",
+     *   "minValue": 15,
+     *   "maxValue": 60
+     * }
+     * ```
+     *
+     * @var \OpenActive\Models\OA\QuantitativeValue
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    protected $ageRestriction;
+
+    /**
+     * Provides additional notes and instructions for event attendees, for example more information on how to find the event, what to bring, etc. The value of this property must not include HTML or other markup.
      *
      * ```json
      * "attendeeInstructions": "Ensure you bring trainers and a bottle of water."
@@ -231,28 +263,6 @@ class Slot extends \OpenActive\Models\OA\Event
     protected $eventAttendanceMode;
 
     /**
-     * A an array of oa:Schedule or oa:PartialSchedule, which represents a recurrence pattern.
-     *
-     * ```json
-     * "eventSchedule": [
-     *   {
-     *     "@type": "PartialSchedule",
-     *     "repeatFrequency": "P1W",
-     *     "startTime": "20:15",
-     *     "endTime": "20:45",
-     *     "byDay": [
-     *       "http://schema.org/Tuesday"
-     *     ]
-     *   }
-     * ]
-     * ```
-     *
-     * @var \OpenActive\Models\OA\Schedule[]
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    protected $eventSchedule;
-
-    /**
      * The status of an event. Can be used to indicate rescheduled or cancelled events
      *
      * ```json
@@ -265,18 +275,18 @@ class Slot extends \OpenActive\Models\OA\Event
     protected $eventStatus;
 
     /**
-     * FacilityUse or IndividualFacilityUse that has this offer, either directly embedded or referenced by its "@id"
+     * `FacilityUse` or `IndividualFacilityUse` that has this `Slot`, either directly embedded or referenced by its `@id`
      *
      * ```json
      * "facilityUse": "https://example.com/facility-use/1"
      * ```
      *
-     * @var string|\OpenActive\Models\OA\IndividualFacilityUse|\OpenActive\Models\OA\FacilityUse
+     * @var \OpenActive\Models\OA\FacilityUse|string
      */
     protected $facilityUse;
 
     /**
-     * Indicates that an event is restricted to male, female or a mixed audience. If a gender restriction isn't specified then applications should assume that an event is suitable for a mixed audience
+     * Indicates that an event is restricted to male, female or a mixed audience. This information must be displayed prominently to the user before booking. If a gender restriction isn't specified then applications should assume that an event is suitable for a mixed audience.
      *
      * ```json
      * "genderRestriction": "https://openactive.io/FemaleOnly"
@@ -356,11 +366,11 @@ class Slot extends \OpenActive\Models\OA\Event
     protected $leader;
 
     /**
-     * A general purpose property for specifying the suitability of an event for different participant “levels”. E.g. beginner/intermediate/advanced. Or in the case of martial arts, specific belt requirements.
+     * A general purpose property for specifying the suitability of an event for different participant “levels”. E.g. `Beginner`, `Intermediate`, `Advanced`. Or in the case of martial arts, specific belt requirements.
      *
      * ```json
      * "level": [
-     *   "beginner"
+     *   "Beginner"
      * ]
      * ```
      *
@@ -371,9 +381,7 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * The location at which the event will take place. Or, in the case of events that may span multiple locations, the initial meeting or starting point.
-     * It is recommended that locations should be specified as a [Place](/models/place) complete with a fully described geographic location and/or address.
-     * If only an address is available then this should be described as a [PostalAddress](/models/postaladdress).
-     * Applications may use [schema:Text](https://schema.org/Text) to provide a more general description of a location ("In Victoria Park, near the lake"), but this is not recommended: consuming applications will be unable to help users discover opportunities based on their location.
+     * Locations must be specified as a [Place](/models/place) complete with a fully described geographic location and/or address.
      *
      * ```json
      * "location": {
@@ -520,25 +528,25 @@ class Slot extends \OpenActive\Models\OA\Event
     protected $schedulingNote;
 
     /**
-     * The start date and time of the slot. Can be specified as a schema:Date or schema:DateTime
+     * The start date and time of the slot.
      *
      * ```json
      * "startDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var Date|DateTime|null
+     * @var DateTime|null
      */
     protected $startDate;
 
     /**
-     * The end date and time of the slot. Can be specified as a schema:Date or schema:DateTime
+     * The end date and time of the slot.
      * It is recommended that publishers provide either an schema:endDate or a schema:duration for an slot.
      *
      * ```json
      * "endDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var Date|DateTime|null
+     * @var DateTime|null
      */
     protected $endDate;
 
@@ -573,13 +581,13 @@ class Slot extends \OpenActive\Models\OA\Event
     protected $url;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * Internal location of the event, e.g. Court 1
      * 
      * If you are using this property, please join the discussion at proposal [#110](https://github.com/openactive/modelling-opportunity-data/issues/110).
      *
      *
-     * @var \OpenActive\Models\SportsActivityLocation[]
+     * @var \OpenActive\Models\SchemaOrg\SportsActivityLocation[]
      */
     protected $sportsActivityLocation;
 
@@ -598,13 +606,13 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -628,9 +636,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -654,9 +662,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -680,9 +688,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setAccessibilityInformation($accessibilityInformation)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $accessibilityInformation = self::checkTypes($accessibilityInformation, $types);
 
@@ -706,9 +714,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setAccessibilitySupport($accessibilitySupport)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $accessibilitySupport = self::checkTypes($accessibilitySupport, $types);
 
@@ -732,13 +740,39 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setActivity($activity)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $activity = self::checkTypes($activity, $types);
 
         $this->activity = $activity;
+    }
+
+    /**
+     * @return string[]
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function getAdditionalAdmissionRestriction()
+    {
+        return $this->additionalAdmissionRestriction;
+    }
+
+    /**
+     * @param string[] $additionalAdmissionRestriction
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function setAdditionalAdmissionRestriction($additionalAdmissionRestriction)
+    {
+        $types = [
+            "string[]",
+        ];
+
+        $additionalAdmissionRestriction = self::checkTypes($additionalAdmissionRestriction, $types);
+
+        $this->additionalAdmissionRestriction = $additionalAdmissionRestriction;
     }
 
     /**
@@ -758,13 +792,39 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setAgeRange($ageRange)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\QuantitativeValue",
-        );
+        ];
 
         $ageRange = self::checkTypes($ageRange, $types);
 
         $this->ageRange = $ageRange;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\QuantitativeValue
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function getAgeRestriction()
+    {
+        return $this->ageRestriction;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\QuantitativeValue $ageRestriction
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function setAgeRestriction($ageRestriction)
+    {
+        $types = [
+            "\OpenActive\Models\OA\QuantitativeValue",
+        ];
+
+        $ageRestriction = self::checkTypes($ageRestriction, $types);
+
+        $this->ageRestriction = $ageRestriction;
     }
 
     /**
@@ -784,9 +844,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setAttendeeInstructions($attendeeInstructions)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $attendeeInstructions = self::checkTypes($attendeeInstructions, $types);
 
@@ -810,10 +870,10 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setCategory($category)
     {
-        $types = array(
+        $types = [
             "string[]",
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $category = self::checkTypes($category, $types);
 
@@ -837,9 +897,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setContributor($contributor)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Person[]",
-        );
+        ];
 
         $contributor = self::checkTypes($contributor, $types);
 
@@ -861,10 +921,10 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setDuration($duration)
     {
-        $types = array(
+        $types = [
             "DateInterval",
             "null",
-        );
+        ];
 
         $duration = self::checkTypes($duration, $types);
 
@@ -888,40 +948,14 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setEventAttendanceMode($eventAttendanceMode)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\EventAttendanceModeEnumeration",
             "null",
-        );
+        ];
 
         $eventAttendanceMode = self::checkTypes($eventAttendanceMode, $types);
 
         $this->eventAttendanceMode = $eventAttendanceMode;
-    }
-
-    /**
-     * @return \OpenActive\Models\OA\Schedule[]
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    public function getEventSchedule()
-    {
-        return $this->eventSchedule;
-    }
-
-    /**
-     * @param \OpenActive\Models\OA\Schedule[] $eventSchedule
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    public function setEventSchedule($eventSchedule)
-    {
-        $types = array(
-            "\OpenActive\Models\OA\Schedule[]",
-        );
-
-        $eventSchedule = self::checkTypes($eventSchedule, $types);
-
-        $this->eventSchedule = $eventSchedule;
     }
 
     /**
@@ -941,10 +975,10 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setEventStatus($eventStatus)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\EventStatusType",
             "null",
-        );
+        ];
 
         $eventStatus = self::checkTypes($eventStatus, $types);
 
@@ -952,7 +986,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return string|\OpenActive\Models\OA\IndividualFacilityUse|\OpenActive\Models\OA\FacilityUse
+     * @return \OpenActive\Models\OA\FacilityUse|string
      */
     public function getFacilityUse()
     {
@@ -960,17 +994,16 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param string|\OpenActive\Models\OA\IndividualFacilityUse|\OpenActive\Models\OA\FacilityUse $facilityUse
+     * @param \OpenActive\Models\OA\FacilityUse|string $facilityUse
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFacilityUse($facilityUse)
     {
-        $types = array(
-            "string",
-            "\OpenActive\Models\OA\IndividualFacilityUse",
+        $types = [
             "\OpenActive\Models\OA\FacilityUse",
-        );
+            "string",
+        ];
 
         $facilityUse = self::checkTypes($facilityUse, $types);
 
@@ -994,10 +1027,10 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setGenderRestriction($genderRestriction)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\GenderRestrictionType",
             "null",
-        );
+        ];
 
         $genderRestriction = self::checkTypes($genderRestriction, $types);
 
@@ -1021,9 +1054,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setImage($image)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject[]",
-        );
+        ];
 
         $image = self::checkTypes($image, $types);
 
@@ -1047,10 +1080,10 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setIsAccessibleForFree($isAccessibleForFree)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $isAccessibleForFree = self::checkTypes($isAccessibleForFree, $types);
 
@@ -1074,10 +1107,10 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setIsCoached($isCoached)
     {
-        $types = array(
+        $types = [
             "bool",
             "null",
-        );
+        ];
 
         $isCoached = self::checkTypes($isCoached, $types);
 
@@ -1101,9 +1134,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setLeader($leader)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Person[]",
-        );
+        ];
 
         $leader = self::checkTypes($leader, $types);
 
@@ -1127,10 +1160,10 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setLevel($level)
     {
-        $types = array(
+        $types = [
             "string[]",
             "\OpenActive\Models\OA\Concept[]",
-        );
+        ];
 
         $level = self::checkTypes($level, $types);
 
@@ -1154,9 +1187,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setLocation($location)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Place",
-        );
+        ];
 
         $location = self::checkTypes($location, $types);
 
@@ -1180,10 +1213,10 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $maximumAttendeeCapacity = self::checkTypes($maximumAttendeeCapacity, $types);
 
@@ -1205,10 +1238,10 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setMaximumUses($maximumUses)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $maximumUses = self::checkTypes($maximumUses, $types);
 
@@ -1232,10 +1265,10 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setMaximumVirtualAttendeeCapacity($maximumVirtualAttendeeCapacity)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $maximumVirtualAttendeeCapacity = self::checkTypes($maximumVirtualAttendeeCapacity, $types);
 
@@ -1259,9 +1292,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setMeetingPoint($meetingPoint)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $meetingPoint = self::checkTypes($meetingPoint, $types);
 
@@ -1283,9 +1316,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setOffers($offers)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Offer[]",
-        );
+        ];
 
         $offers = self::checkTypes($offers, $types);
 
@@ -1309,9 +1342,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setProgramme($programme)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Brand",
-        );
+        ];
 
         $programme = self::checkTypes($programme, $types);
 
@@ -1335,10 +1368,10 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $remainingAttendeeCapacity = self::checkTypes($remainingAttendeeCapacity, $types);
 
@@ -1360,10 +1393,10 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setRemainingUses($remainingUses)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $remainingUses = self::checkTypes($remainingUses, $types);
 
@@ -1387,9 +1420,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setSchedulingNote($schedulingNote)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $schedulingNote = self::checkTypes($schedulingNote, $types);
 
@@ -1397,7 +1430,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return DateTime|null
      */
     public function getStartDate()
     {
@@ -1405,17 +1438,16 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param Date|DateTime|null $startDate
+     * @param DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
-        $types = array(
-            "Date",
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $startDate = self::checkTypes($startDate, $types);
 
@@ -1423,7 +1455,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return DateTime|null
      */
     public function getEndDate()
     {
@@ -1431,17 +1463,16 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param Date|DateTime|null $endDate
+     * @param DateTime|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
-        $types = array(
-            "Date",
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $endDate = self::checkTypes($endDate, $types);
 
@@ -1465,9 +1496,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setSubEvent($subEvent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Event[]",
-        );
+        ];
 
         $subEvent = self::checkTypes($subEvent, $types);
 
@@ -1491,9 +1522,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setSuperEvent($superEvent)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Event",
-        );
+        ];
 
         $superEvent = self::checkTypes($superEvent, $types);
 
@@ -1517,9 +1548,9 @@ class Slot extends \OpenActive\Models\OA\Event
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 
@@ -1527,7 +1558,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return \OpenActive\Models\SportsActivityLocation[]
+     * @return \OpenActive\Models\SchemaOrg\SportsActivityLocation[]
      */
     public function getSportsActivityLocation()
     {
@@ -1535,15 +1566,15 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param \OpenActive\Models\SportsActivityLocation[] $sportsActivityLocation
+     * @param \OpenActive\Models\SchemaOrg\SportsActivityLocation[] $sportsActivityLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSportsActivityLocation($sportsActivityLocation)
     {
-        $types = array(
-            "\OpenActive\Models\SportsActivityLocation[]",
-        );
+        $types = [
+            "\OpenActive\Models\SchemaOrg\SportsActivityLocation[]",
+        ];
 
         $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);
 

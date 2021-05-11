@@ -25,7 +25,7 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * <a class="localLink" href="https://schema.org/ArchiveOrganization">ArchiveOrganization</a> that holds, keeps or maintains the <a class="localLink" href="https://schema.org/ArchiveComponent">ArchiveComponent</a>.
+     * [object Object]
      *
      *
      * @var \OpenActive\Models\SchemaOrg\ArchiveOrganization
@@ -33,10 +33,10 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $holdingArchive;
 
     /**
-     * Current location of the item.
+     * [object Object]
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress|string
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|string
      */
     protected $itemLocation;
 
@@ -55,9 +55,9 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setHoldingArchive($holdingArchive)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\ArchiveOrganization",
-        );
+        ];
 
         $holdingArchive = self::checkTypes($holdingArchive, $types);
 
@@ -65,7 +65,7 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress|string
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|string
      */
     public function getItemLocation()
     {
@@ -73,17 +73,17 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress|string $itemLocation
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|string $itemLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemLocation($itemLocation)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Place",
+        $types = [
             "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "\OpenActive\Models\SchemaOrg\Place",
             "string",
-        );
+        ];
 
         $itemLocation = self::checkTypes($itemLocation, $types);
 

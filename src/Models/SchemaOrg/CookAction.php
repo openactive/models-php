@@ -17,29 +17,13 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
 
     public static function fieldList() {
         $fields = [
-            "foodEstablishment" => "foodEstablishment",
-            "recipe" => "recipe",
             "foodEvent" => "foodEvent",
+            "recipe" => "recipe",
+            "foodEstablishment" => "foodEstablishment",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A sub property of location. The specific food establishment where the action occurred.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment
-     */
-    protected $foodEstablishment;
-
-    /**
-     * A sub property of instrument. The recipe/instructions used to perform the action.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Recipe
-     */
-    protected $recipe;
 
     /**
      * A sub property of location. The specific food event where the action occurred.
@@ -50,28 +34,43 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     protected $foodEvent;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment
+     * A sub property of instrument. The recipe/instructions used to perform the action.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Recipe
      */
-    public function getFoodEstablishment()
+    protected $recipe;
+
+    /**
+     * A sub property of location. The specific food establishment where the action occurred.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment
+     */
+    protected $foodEstablishment;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\FoodEvent
+     */
+    public function getFoodEvent()
     {
-        return $this->foodEstablishment;
+        return $this->foodEvent;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment $foodEstablishment
+     * @param \OpenActive\Models\SchemaOrg\FoodEvent $foodEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setFoodEstablishment($foodEstablishment)
+    public function setFoodEvent($foodEvent)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\Place",
-            "\OpenActive\Models\SchemaOrg\FoodEstablishment",
-        );
+        $types = [
+            "\OpenActive\Models\SchemaOrg\FoodEvent",
+        ];
 
-        $foodEstablishment = self::checkTypes($foodEstablishment, $types);
+        $foodEvent = self::checkTypes($foodEvent, $types);
 
-        $this->foodEstablishment = $foodEstablishment;
+        $this->foodEvent = $foodEvent;
     }
 
     /**
@@ -89,9 +88,9 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
      */
     public function setRecipe($recipe)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Recipe",
-        );
+        ];
 
         $recipe = self::checkTypes($recipe, $types);
 
@@ -99,27 +98,28 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\FoodEvent
+     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment
      */
-    public function getFoodEvent()
+    public function getFoodEstablishment()
     {
-        return $this->foodEvent;
+        return $this->foodEstablishment;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\FoodEvent $foodEvent
+     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment $foodEstablishment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setFoodEvent($foodEvent)
+    public function setFoodEstablishment($foodEstablishment)
     {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\FoodEvent",
-        );
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\FoodEstablishment",
+        ];
 
-        $foodEvent = self::checkTypes($foodEvent, $types);
+        $foodEstablishment = self::checkTypes($foodEstablishment, $types);
 
-        $this->foodEvent = $foodEvent;
+        $this->foodEstablishment = $foodEstablishment;
     }
 
 }

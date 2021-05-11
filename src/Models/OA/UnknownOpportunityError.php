@@ -4,9 +4,9 @@ namespace OpenActive\Models\OA;
 
 /**
  * 
- * ## **Error Use Case**
- * The `@id` provided for the `orderedItem` is not a URL which corresponds to an Opportunity within the Booking System.
+ * Error Use Case: The `@id` provided for the `orderedItem` is not a URL which corresponds to an Opportunity within the Booking System.
  * 
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class UnknownOpportunityError extends \OpenActive\Models\OA\OpenBookingError
@@ -64,9 +64,9 @@ class UnknownOpportunityError extends \OpenActive\Models\OA\OpenBookingError
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class UnknownOpportunityError extends \OpenActive\Models\OA\OpenBookingError
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

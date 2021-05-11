@@ -4,9 +4,9 @@ namespace OpenActive\Models\OA;
 
 /**
  * 
- * ## **Error Use Case**
- * `OrderItem` errors would have been generated at C2 given the same set of `OrderItem`s. The Broker is expected to retry C2 to retrieve such errors.
+ * Error Use Case: `OrderItem` errors would have been generated at C2 given the same set of `OrderItem`s. The Broker is expected to retry C2 to retrieve such errors.  This error MUST only be used as a response from P or B.
  * 
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class UnableToProcessOrderItemError extends \OpenActive\Models\OA\OpenBookingError
@@ -64,9 +64,9 @@ class UnableToProcessOrderItemError extends \OpenActive\Models\OA\OpenBookingErr
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class UnableToProcessOrderItemError extends \OpenActive\Models\OA\OpenBookingErr
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

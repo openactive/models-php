@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [Organization](https://schema.org/Organization), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/Organization, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class Organization extends \OpenActive\Models\SchemaOrg\Organization
@@ -23,6 +23,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
             "description" => "description",
             "address" => "address",
             "email" => "email",
+            "isOpenBookingAllowed" => "isOpenBookingAllowed",
             "legalName" => "legalName",
             "logo" => "logo",
             "sameAs" => "sameAs",
@@ -62,7 +63,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     protected $name;
 
     /**
-     * The description of the Organization
+     * A plain text description of the Organization, which must not include HTML or other markup.
      *
      * ```json
      * "description": "The national governing body of cycling"
@@ -90,6 +91,17 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      * @var string
      */
     protected $email;
+
+    /**
+     * Indicates whether the Seller allows open booking or not
+     *
+     * ```json
+     * "isOpenBookingAllowed": "true"
+     * ```
+     *
+     * @var bool|null
+     */
+    protected $isOpenBookingAllowed;
 
     /**
      * The official name of the organization, e.g. the registered company name.
@@ -177,10 +189,10 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     protected $vatID;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
-     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers.
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers. This property must contain HTML.
      * 
-     * If you are using this property, please join the discussion at proposal [#2](https://github.com/openactive/ns-beta/issues/2).
+     * If you are using this property, please join the discussion at proposal [#276](https://github.com/openactive/modelling-opportunity-data/issues/276).
      *
      *
      * @var string
@@ -188,7 +200,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     protected $formattedDescription;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * A related video object.
      * 
      * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
@@ -199,7 +211,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     protected $video;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * An array of URLs, each of which describe the formal criteria that are met by the organizer.
      * 
      * If you are using this property, please join the discussion at proposal [#236](https://github.com/openactive/modelling-opportunity-data/issues/236).
@@ -224,13 +236,13 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setIdentifier($identifier)
     {
-        $types = array(
+        $types = [
             "string",
             "int",
             "\OpenActive\Models\OA\PropertyValue",
             "\OpenActive\Models\OA\PropertyValue[]",
             "null",
-        );
+        ];
 
         $identifier = self::checkTypes($identifier, $types);
 
@@ -252,9 +264,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -276,9 +288,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
@@ -300,9 +312,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setAddress($address)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\PostalAddress",
-        );
+        ];
 
         $address = self::checkTypes($address, $types);
 
@@ -324,13 +336,38 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setEmail($email)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $email = self::checkTypes($email, $types);
 
         $this->email = $email;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getIsOpenBookingAllowed()
+    {
+        return $this->isOpenBookingAllowed;
+    }
+
+    /**
+     * @param bool|null $isOpenBookingAllowed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsOpenBookingAllowed($isOpenBookingAllowed)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $isOpenBookingAllowed = self::checkTypes($isOpenBookingAllowed, $types);
+
+        $this->isOpenBookingAllowed = $isOpenBookingAllowed;
     }
 
     /**
@@ -348,9 +385,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setLegalName($legalName)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $legalName = self::checkTypes($legalName, $types);
 
@@ -372,9 +409,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setLogo($logo)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject",
-        );
+        ];
 
         $logo = self::checkTypes($logo, $types);
 
@@ -396,9 +433,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setSameAs($sameAs)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $sameAs = self::checkTypes($sameAs, $types);
 
@@ -420,10 +457,10 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setTaxMode($taxMode)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\TaxMode",
             "null",
-        );
+        ];
 
         $taxMode = self::checkTypes($taxMode, $types);
 
@@ -445,9 +482,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setTelephone($telephone)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $telephone = self::checkTypes($telephone, $types);
 
@@ -469,9 +506,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setTermsOfService($termsOfService)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Terms[]",
-        );
+        ];
 
         $termsOfService = self::checkTypes($termsOfService, $types);
 
@@ -493,9 +530,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 
@@ -517,9 +554,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setVatID($vatID)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $vatID = self::checkTypes($vatID, $types);
 
@@ -541,9 +578,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setFormattedDescription($formattedDescription)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $formattedDescription = self::checkTypes($formattedDescription, $types);
 
@@ -565,9 +602,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setVideo($video)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\VideoObject[]",
-        );
+        ];
 
         $video = self::checkTypes($video, $types);
 
@@ -589,9 +626,9 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setFormalCriteriaMet($formalCriteriaMet)
     {
-        $types = array(
+        $types = [
             "string[]",
-        );
+        ];
 
         $formalCriteriaMet = self::checkTypes($formalCriteriaMet, $types);
 

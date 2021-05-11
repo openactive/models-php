@@ -4,9 +4,9 @@ namespace OpenActive\Models\OA;
 
 /**
  * 
- * ## **Error Use Case**
- * B failed due to a newer version of the `OrderProposal` existing than that specified by the Broker in `orderProposalVersion`.
+ * Error Use Case: B failed due to a newer version of the `OrderProposal` existing than that specified by the Broker in `orderProposalVersion`.
  * 
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class OrderProposalVersionOutdatedError extends \OpenActive\Models\OA\OpenBookingError
@@ -64,9 +64,9 @@ class OrderProposalVersionOutdatedError extends \OpenActive\Models\OA\OpenBookin
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class OrderProposalVersionOutdatedError extends \OpenActive\Models\OA\OpenBookin
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

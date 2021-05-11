@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWorkSeason
+class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
      * @return string[]|null
@@ -17,20 +17,12 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWorkSeason
 
     public static function fieldList() {
         $fields = [
-            "partOfTVSeries" => "partOfTVSeries",
             "countryOfOrigin" => "countryOfOrigin",
+            "partOfTVSeries" => "partOfTVSeries",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The TV series to which this episode or season belongs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\TVSeries
-     */
-    protected $partOfTVSeries;
 
     /**
      * The country of the principal offices of the production company or individual responsible for the movie or program.
@@ -41,28 +33,12 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWorkSeason
     protected $countryOfOrigin;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\TVSeries
+     * The TV series to which this episode or season belongs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\TVSeries
      */
-    public function getPartOfTVSeries()
-    {
-        return $this->partOfTVSeries;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\TVSeries $partOfTVSeries
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPartOfTVSeries($partOfTVSeries)
-    {
-        $types = array(
-            "\OpenActive\Models\SchemaOrg\TVSeries",
-        );
-
-        $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
-
-        $this->partOfTVSeries = $partOfTVSeries;
-    }
+    protected $partOfTVSeries;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Country
@@ -79,13 +55,37 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWorkSeason
      */
     public function setCountryOfOrigin($countryOfOrigin)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Country",
-        );
+        ];
 
         $countryOfOrigin = self::checkTypes($countryOfOrigin, $types);
 
         $this->countryOfOrigin = $countryOfOrigin;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\TVSeries
+     */
+    public function getPartOfTVSeries()
+    {
+        return $this->partOfTVSeries;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\TVSeries $partOfTVSeries
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPartOfTVSeries($partOfTVSeries)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\TVSeries",
+        ];
+
+        $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
+
+        $this->partOfTVSeries = $partOfTVSeries;
     }
 
 }

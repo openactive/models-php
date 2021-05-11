@@ -3,7 +3,8 @@
 namespace OpenActive\Models\OA;
 
 /**
- * [NOTICE: This is a beta class, and is highly likely to change in future versions of this library.].
+ * [NOTICE: This is a beta class, and is highly likely to change in future versions of this library.] 
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class CertificationScheme extends \OpenActive\Models\SchemaOrg\Thing
@@ -26,7 +27,7 @@ class CertificationScheme extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * Property containing an array of CertificationLevels
      * 
      * If you are using this property, please join the discussion at proposal [#217](https://github.com/openactive/modelling-opportunity-data/issues/217).
@@ -37,7 +38,7 @@ class CertificationScheme extends \OpenActive\Models\SchemaOrg\Thing
     protected $certificationLevel;
 
     /**
-     * [NOTICE: This is a beta field, and is highly likely to change in future versions of this library.]
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * From within a CertificationScheme, points to other CertificationSchemes considered valid and trusted in order to allow the creation of a trust network.
      * 
      * If you are using this property, please join the discussion at proposal [#217](https://github.com/openactive/modelling-opportunity-data/issues/217).
@@ -62,9 +63,9 @@ class CertificationScheme extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setCertificationLevel($certificationLevel)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\CertificationLevel",
-        );
+        ];
 
         $certificationLevel = self::checkTypes($certificationLevel, $types);
 
@@ -86,9 +87,9 @@ class CertificationScheme extends \OpenActive\Models\SchemaOrg\Thing
      */
     public function setTrustedCertificationSchemes($trustedCertificationSchemes)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $trustedCertificationSchemes = self::checkTypes($trustedCertificationSchemes, $types);
 

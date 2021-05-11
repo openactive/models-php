@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [VideoObject](https://schema.org/VideoObject), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/VideoObject, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class VideoObject extends \OpenActive\Models\OA\MediaObject
@@ -59,9 +59,9 @@ class VideoObject extends \OpenActive\Models\OA\MediaObject
      */
     public function setThumbnail($thumbnail)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject[]",
-        );
+        ];
 
         $thumbnail = self::checkTypes($thumbnail, $types);
 
@@ -83,9 +83,9 @@ class VideoObject extends \OpenActive\Models\OA\MediaObject
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 

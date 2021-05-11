@@ -55,9 +55,9 @@ class WarrantyPromise extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setDurationOfWarranty($durationOfWarranty)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        );
+        ];
 
         $durationOfWarranty = self::checkTypes($durationOfWarranty, $types);
 
@@ -79,10 +79,10 @@ class WarrantyPromise extends \OpenActive\Models\SchemaOrg\StructuredValue
      */
     public function setWarrantyScope($warrantyScope)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\WarrantyScope",
             "null",
-        );
+        ];
 
         $warrantyScope = self::checkTypes($warrantyScope, $types);
 

@@ -24,7 +24,7 @@ class HealthTopicContent extends \OpenActive\Models\SchemaOrg\WebContent
     }
 
     /**
-     * Indicates the aspect or aspects specifically addressed in some <a class="localLink" href="https://schema.org/HealthTopicContent">HealthTopicContent</a>. For example, that the content is an overview, or that it talks about treatment, self-care, treatments or their side-effects.
+     * Indicates the aspect or aspects specifically addressed in some [[HealthTopicContent]]. For example, that the content is an overview, or that it talks about treatment, self-care, treatments or their side-effects.
      *
      *
      * @var \OpenActive\Enums\SchemaOrg\HealthAspectEnumeration|null
@@ -46,10 +46,10 @@ class HealthTopicContent extends \OpenActive\Models\SchemaOrg\WebContent
      */
     public function setHasHealthAspect($hasHealthAspect)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\HealthAspectEnumeration",
             "null",
-        );
+        ];
 
         $hasHealthAspect = self::checkTypes($hasHealthAspect, $types);
 

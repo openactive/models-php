@@ -12,4 +12,5 @@ class BookFormatType
     const AudiobookFormat = \OpenActive\Enums\SchemaOrg\BookFormatType\AudiobookFormat::class;
     const Hardcover = \OpenActive\Enums\SchemaOrg\BookFormatType\Hardcover::class;
     const Paperback = \OpenActive\Enums\SchemaOrg\BookFormatType\Paperback::class;
+    const GraphicNovel = \OpenActive\Enums\SchemaOrg\BookFormatType\GraphicNovel::class;
 }

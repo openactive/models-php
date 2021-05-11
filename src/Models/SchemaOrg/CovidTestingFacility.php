@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class CovidTestingFacility extends \OpenActive\BaseModel
+class CovidTestingFacility extends \OpenActive\Models\SchemaOrg\MedicalClinic
 {
     /**
      * @return string[]|null

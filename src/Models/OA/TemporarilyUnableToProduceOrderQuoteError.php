@@ -4,9 +4,9 @@ namespace OpenActive\Models\OA;
 
 /**
  * 
- * ## **Error Use Case**
- * The Booking System is unable for technical reasons to produce an `OrderQuote` where the data provided to it is sufficient to allow it to do so.
+ * Error Use Case: The Booking System is unable for technical reasons to produce an `OrderQuote` where the data provided to it is sufficient to allow it to do so.
  * 
+ * This type is derived from https://schema.org/Thing, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class TemporarilyUnableToProduceOrderQuoteError extends \OpenActive\Models\OA\OpenBookingError
@@ -64,9 +64,9 @@ class TemporarilyUnableToProduceOrderQuoteError extends \OpenActive\Models\OA\Op
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -88,10 +88,10 @@ class TemporarilyUnableToProduceOrderQuoteError extends \OpenActive\Models\OA\Op
      */
     public function setStatusCode($statusCode)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $statusCode = self::checkTypes($statusCode, $types);
 

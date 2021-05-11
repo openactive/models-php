@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [VirtualLocation](https://pending.schema.org/VirtualLocation), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://pending.schema.org/VirtualLocation.
  *
  */
 class VirtualLocation extends \OpenActive\BaseModel
@@ -20,6 +20,8 @@ class VirtualLocation extends \OpenActive\BaseModel
         $fields = [
             "name" => "name",
             "description" => "description",
+            "accessCode" => "accessCode",
+            "accessId" => "accessId",
             "url" => "url",
         ];
 
@@ -27,10 +29,10 @@ class VirtualLocation extends \OpenActive\BaseModel
     }
 
     /**
-     * The name of the livestream.
+     * The name of the service that is providing remote access to the Opportunity.
      *
      * ```json
-     * "name": "Zoom Room"
+     * "name": "Zoom"
      * ```
      *
      * @var string
@@ -38,7 +40,7 @@ class VirtualLocation extends \OpenActive\BaseModel
     protected $name;
 
     /**
-     * A free text description of the livestream, including any instructions to join.
+     * A plain text description of the live stream, including any instructions to join. This description must not include HTML or other markup.
      *
      * ```json
      * "description": "Please log into Zoom a few minutes before the event, and mute your mic while you wait for the session to start."
@@ -49,7 +51,29 @@ class VirtualLocation extends \OpenActive\BaseModel
     protected $description;
 
     /**
-     * The URL for the livestream.
+     * The password or pin required to access the `VirtualLocation` from any device, without requiring the URL, e.g. the meeting password.
+     *
+     * ```json
+     * "accessCode": "211277"
+     * ```
+     *
+     * @var string
+     */
+    protected $accessCode;
+
+    /**
+     * The identifier required to access the `VirtualLocation` from any device, without requiring the URL, e.g. the meeting ID.
+     *
+     * ```json
+     * "accessId": "123456789"
+     * ```
+     *
+     * @var string
+     */
+    protected $accessId;
+
+    /**
+     * The URL that enables remote access to the Opportunity, which should include encoded access credentials where possible.
      *
      * ```json
      * "url": "https://zoom.us/room/3fbCs0GVjgQ"
@@ -74,9 +98,9 @@ class VirtualLocation extends \OpenActive\BaseModel
      */
     public function setName($name)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $name = self::checkTypes($name, $types);
 
@@ -98,13 +122,61 @@ class VirtualLocation extends \OpenActive\BaseModel
      */
     public function setDescription($description)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $description = self::checkTypes($description, $types);
 
         $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAccessCode()
+    {
+        return $this->accessCode;
+    }
+
+    /**
+     * @param string $accessCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAccessCode($accessCode)
+    {
+        $types = [
+            "string",
+        ];
+
+        $accessCode = self::checkTypes($accessCode, $types);
+
+        $this->accessCode = $accessCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAccessId()
+    {
+        return $this->accessId;
+    }
+
+    /**
+     * @param string $accessId
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAccessId($accessId)
+    {
+        $types = [
+            "string",
+        ];
+
+        $accessId = self::checkTypes($accessId, $types);
+
+        $this->accessId = $accessId;
     }
 
     /**
@@ -122,9 +194,9 @@ class VirtualLocation extends \OpenActive\BaseModel
      */
     public function setUrl($url)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $url = self::checkTypes($url, $types);
 

@@ -33,12 +33,11 @@ class WorkBasedProgram extends \OpenActive\Models\SchemaOrg\EducationalOccupatio
     protected $trainingSalary;
 
     /**
-     * A category describing the job, preferably using a term from a taxonomy such as <a href="http://www.onetcenter.org/taxonomy.html">BLS O*NET-SOC</a>, <a href="https://www.ilo.org/public/english/bureau/stat/isco/isco08/">ISCO-08</a> or similar, with the property repeated for each applicable value. Ideally the taxonomy should be identified, and both the textual label and formal code for the category should be provided.<br/><br/>
-     * 
+     * A category describing the job, preferably using a term from a taxonomy such as [BLS O*NET-SOC](http://www.onetcenter.org/taxonomy.html), [ISCO-08](https://www.ilo.org/public/english/bureau/stat/isco/isco08/) or similar, with the property repeated for each applicable value. Ideally the taxonomy should be identified, and both the textual label and formal code for the category should be provided.\n
      * Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\CategoryCode
+     * @var \OpenActive\Models\SchemaOrg\CategoryCode|string
      */
     protected $occupationalCategory;
 
@@ -57,9 +56,9 @@ class WorkBasedProgram extends \OpenActive\Models\SchemaOrg\EducationalOccupatio
      */
     public function setTrainingSalary($trainingSalary)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution",
-        );
+        ];
 
         $trainingSalary = self::checkTypes($trainingSalary, $types);
 
@@ -67,7 +66,7 @@ class WorkBasedProgram extends \OpenActive\Models\SchemaOrg\EducationalOccupatio
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\CategoryCode
+     * @return \OpenActive\Models\SchemaOrg\CategoryCode|string
      */
     public function getOccupationalCategory()
     {
@@ -75,16 +74,16 @@ class WorkBasedProgram extends \OpenActive\Models\SchemaOrg\EducationalOccupatio
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CategoryCode $occupationalCategory
+     * @param \OpenActive\Models\SchemaOrg\CategoryCode|string $occupationalCategory
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOccupationalCategory($occupationalCategory)
     {
-        $types = array(
-            "string",
+        $types = [
             "\OpenActive\Models\SchemaOrg\CategoryCode",
-        );
+            "string",
+        ];
 
         $occupationalCategory = self::checkTypes($occupationalCategory, $types);
 

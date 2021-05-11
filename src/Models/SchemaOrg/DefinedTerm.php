@@ -25,15 +25,15 @@ class DefinedTerm extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * A <a class="localLink" href="https://schema.org/DefinedTermSet">DefinedTermSet</a> that contains this term.
+     * A [[DefinedTermSet]] that contains this term.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTermSet
+     * @var \OpenActive\Models\SchemaOrg\DefinedTermSet|string
      */
     protected $inDefinedTermSet;
 
     /**
-     * A code that identifies this <a class="localLink" href="https://schema.org/DefinedTerm">DefinedTerm</a> within a <a class="localLink" href="https://schema.org/DefinedTermSet">DefinedTermSet</a>
+     * A code that identifies this [[DefinedTerm]] within a [[DefinedTermSet]]
      *
      *
      * @var string
@@ -41,7 +41,7 @@ class DefinedTerm extends \OpenActive\Models\SchemaOrg\Intangible
     protected $termCode;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTermSet
+     * @return \OpenActive\Models\SchemaOrg\DefinedTermSet|string
      */
     public function getInDefinedTermSet()
     {
@@ -49,16 +49,16 @@ class DefinedTerm extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTermSet $inDefinedTermSet
+     * @param \OpenActive\Models\SchemaOrg\DefinedTermSet|string $inDefinedTermSet
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInDefinedTermSet($inDefinedTermSet)
     {
-        $types = array(
-            "string",
+        $types = [
             "\OpenActive\Models\SchemaOrg\DefinedTermSet",
-        );
+            "string",
+        ];
 
         $inDefinedTermSet = self::checkTypes($inDefinedTermSet, $types);
 
@@ -80,9 +80,9 @@ class DefinedTerm extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setTermCode($termCode)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $termCode = self::checkTypes($termCode, $types);
 

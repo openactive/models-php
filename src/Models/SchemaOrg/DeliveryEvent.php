@@ -17,14 +17,22 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
 
     public static function fieldList() {
         $fields = [
-            "hasDeliveryMethod" => "hasDeliveryMethod",
-            "availableThrough" => "availableThrough",
-            "availableFrom" => "availableFrom",
             "accessCode" => "accessCode",
+            "hasDeliveryMethod" => "hasDeliveryMethod",
+            "availableFrom" => "availableFrom",
+            "availableThrough" => "availableThrough",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Password, PIN, or access code needed for delivery (e.g. from a locker).
+     *
+     *
+     * @var string
+     */
+    protected $accessCode;
 
     /**
      * Method used for delivery or shipping.
@@ -35,14 +43,6 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     protected $hasDeliveryMethod;
 
     /**
-     * After this date, the item will no longer be available for pickup.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $availableThrough;
-
-    /**
      * When the item is available for pickup from the store, locker, etc.
      *
      *
@@ -51,12 +51,36 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     protected $availableFrom;
 
     /**
-     * Password, PIN, or access code needed for delivery (e.g. from a locker).
+     * After this date, the item will no longer be available for pickup.
      *
      *
-     * @var string
+     * @var DateTime|null
      */
-    protected $accessCode;
+    protected $availableThrough;
+
+    /**
+     * @return string
+     */
+    public function getAccessCode()
+    {
+        return $this->accessCode;
+    }
+
+    /**
+     * @param string $accessCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAccessCode($accessCode)
+    {
+        $types = [
+            "string",
+        ];
+
+        $accessCode = self::checkTypes($accessCode, $types);
+
+        $this->accessCode = $accessCode;
+    }
 
     /**
      * @return \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
@@ -73,39 +97,14 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setHasDeliveryMethod($hasDeliveryMethod)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
             "null",
-        );
+        ];
 
         $hasDeliveryMethod = self::checkTypes($hasDeliveryMethod, $types);
 
         $this->hasDeliveryMethod = $hasDeliveryMethod;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getAvailableThrough()
-    {
-        return $this->availableThrough;
-    }
-
-    /**
-     * @param DateTime|null $availableThrough
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAvailableThrough($availableThrough)
-    {
-        $types = array(
-            "DateTime",
-            "null",
-        );
-
-        $availableThrough = self::checkTypes($availableThrough, $types);
-
-        $this->availableThrough = $availableThrough;
     }
 
     /**
@@ -123,10 +122,10 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
      */
     public function setAvailableFrom($availableFrom)
     {
-        $types = array(
+        $types = [
             "DateTime",
             "null",
-        );
+        ];
 
         $availableFrom = self::checkTypes($availableFrom, $types);
 
@@ -134,27 +133,28 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return string
+     * @return DateTime|null
      */
-    public function getAccessCode()
+    public function getAvailableThrough()
     {
-        return $this->accessCode;
+        return $this->availableThrough;
     }
 
     /**
-     * @param string $accessCode
+     * @param DateTime|null $availableThrough
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAccessCode($accessCode)
+    public function setAvailableThrough($availableThrough)
     {
-        $types = array(
-            "string",
-        );
+        $types = [
+            "DateTime",
+            "null",
+        ];
 
-        $accessCode = self::checkTypes($accessCode, $types);
+        $availableThrough = self::checkTypes($availableThrough, $types);
 
-        $this->accessCode = $accessCode;
+        $this->availableThrough = $availableThrough;
     }
 
 }

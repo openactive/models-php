@@ -46,9 +46,9 @@ class VoteAction extends \OpenActive\Models\SchemaOrg\ChooseAction
      */
     public function setCandidate($candidate)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Person",
-        );
+        ];
 
         $candidate = self::checkTypes($candidate, $types);
 

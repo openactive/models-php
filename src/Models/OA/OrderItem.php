@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from [OrderItem](https://schema.org/OrderItem), which means that any of this type's properties within schema.org may also be used. Note however the properties on this page must be used in preference if a relevant property is available.
+ * This type is derived from https://schema.org/OrderItem, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
@@ -19,9 +19,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     public static function fieldList() {
         $fields = [
             "acceptedOffer" => "acceptedOffer",
+            "accessChannel" => "accessChannel",
             "accessCode" => "accessCode",
             "accessPass" => "accessPass",
-            "allowCustomerCancellationFullRefund" => "allowCustomerCancellationFullRefund",
             "attendee" => "attendee",
             "attendeeDetailsRequired" => "attendeeDetailsRequired",
             "cancellationMessage" => "cancellationMessage",
@@ -42,9 +42,17 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      * The offer from the associated orderedItem that has been selected by the Customer. The price of this includes or excludes tax depending on the taxMode of the Order.
      *
      *
-     * @var \OpenActive\Models\OA\Offer
+     * @var \OpenActive\Models\OA\Offer|string
      */
     protected $acceptedOffer;
+
+    /**
+     * Channel through which the user can participate in the Opportunity. Not applicable for an OrderQuote.
+     *
+     *
+     * @var \OpenActive\Models\OA\VirtualLocation
+     */
+    protected $accessChannel;
 
     /**
      * PropertyValue that contains a text value usable for entrance. Not applicable for an  OrderQuote.
@@ -63,14 +71,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     protected $accessPass;
 
     /**
-     * Whether the event can be cancelled.
-     *
-     *
-     * @var bool|null
-     */
-    protected $allowCustomerCancellationFullRefund;
-
-    /**
+     * The person attending the Opportunity related to the OrderItem.
      *
      *
      * @var \OpenActive\Models\OA\Person
@@ -78,14 +79,15 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     protected $attendee;
 
     /**
+     * The properties of `schema:Person` that are required to describe an `attendee` for this `OrderItem`.
      *
      *
-     * @var string[]
+     * @var \OpenActive\Enums\PropertyEnumeration[]|null
      */
     protected $attendeeDetailsRequired;
 
     /**
-     * A message set by the Seller in the event of Opportunity cancellation, only applicable for an  Order and where the OrderItem has  orderItemStatus set to  https://openactive.io/SellerCancelled
+     * A message set by the Seller in the event of Opportunity cancellation, only applicable for an  `Order` and where the `OrderItem` has `orderItemStatus` set to `https://openactive.io/SellerCancelled`
      *
      *
      * @var string
@@ -93,7 +95,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     protected $cancellationMessage;
 
     /**
-     * A message set by the Seller to trigger a notification to the Customer, only applicable for an Order and where the OrderItem has  orderItemStatus set to  https://openactive.io/OrderItemConfirmed or  https://openactive.io/CustomerAttended
+     * A message set by the Seller to trigger a notification to the Customer, only applicable for an `Order` and where the `OrderItem` has `orderItemStatus` set to  `https://openactive.io/OrderItemConfirmed` or `https://openactive.io/CustomerAttended`
      *
      *
      * @var string
@@ -112,7 +114,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      * The specific bookable Thing that has been selected by the Customer. See the [Modelling-Opportunity-Data] for more information on these types. Note that the Broker Request and Orders feed only require id within these objects to be included; in these contexts, all other properties are ignored.
      *
      *
-     * @var \OpenActive\Models\OA\Event
+     * @var \OpenActive\Models\OA\Event|string
      */
     protected $orderedItem;
 
@@ -156,7 +158,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     protected $unitTaxSpecification;
 
     /**
-     * @return \OpenActive\Models\OA\Offer
+     * @return \OpenActive\Models\OA\Offer|string
      */
     public function getAcceptedOffer()
     {
@@ -164,19 +166,44 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param \OpenActive\Models\OA\Offer $acceptedOffer
+     * @param \OpenActive\Models\OA\Offer|string $acceptedOffer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcceptedOffer($acceptedOffer)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Offer",
-        );
+            "string",
+        ];
 
         $acceptedOffer = self::checkTypes($acceptedOffer, $types);
 
         $this->acceptedOffer = $acceptedOffer;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\VirtualLocation
+     */
+    public function getAccessChannel()
+    {
+        return $this->accessChannel;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\VirtualLocation $accessChannel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAccessChannel($accessChannel)
+    {
+        $types = [
+            "\OpenActive\Models\OA\VirtualLocation",
+        ];
+
+        $accessChannel = self::checkTypes($accessChannel, $types);
+
+        $this->accessChannel = $accessChannel;
     }
 
     /**
@@ -194,9 +221,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setAccessCode($accessCode)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\PropertyValue[]",
-        );
+        ];
 
         $accessCode = self::checkTypes($accessCode, $types);
 
@@ -218,38 +245,13 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setAccessPass($accessPass)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\ImageObject[]",
-        );
+        ];
 
         $accessPass = self::checkTypes($accessPass, $types);
 
         $this->accessPass = $accessPass;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getAllowCustomerCancellationFullRefund()
-    {
-        return $this->allowCustomerCancellationFullRefund;
-    }
-
-    /**
-     * @param bool|null $allowCustomerCancellationFullRefund
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAllowCustomerCancellationFullRefund($allowCustomerCancellationFullRefund)
-    {
-        $types = array(
-            "bool",
-            "null",
-        );
-
-        $allowCustomerCancellationFullRefund = self::checkTypes($allowCustomerCancellationFullRefund, $types);
-
-        $this->allowCustomerCancellationFullRefund = $allowCustomerCancellationFullRefund;
     }
 
     /**
@@ -267,9 +269,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setAttendee($attendee)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Person",
-        );
+        ];
 
         $attendee = self::checkTypes($attendee, $types);
 
@@ -277,7 +279,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return string[]
+     * @return \OpenActive\Enums\PropertyEnumeration[]|null
      */
     public function getAttendeeDetailsRequired()
     {
@@ -285,15 +287,16 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param string[] $attendeeDetailsRequired
+     * @param \OpenActive\Enums\PropertyEnumeration[]|null $attendeeDetailsRequired
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAttendeeDetailsRequired($attendeeDetailsRequired)
     {
-        $types = array(
-            "string[]",
-        );
+        $types = [
+            "\OpenActive\Enums\PropertyEnumeration[]",
+            "null",
+        ];
 
         $attendeeDetailsRequired = self::checkTypes($attendeeDetailsRequired, $types);
 
@@ -315,9 +318,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setCancellationMessage($cancellationMessage)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $cancellationMessage = self::checkTypes($cancellationMessage, $types);
 
@@ -339,9 +342,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setCustomerNotice($customerNotice)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $customerNotice = self::checkTypes($customerNotice, $types);
 
@@ -363,9 +366,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setError($error)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\OpenBookingError[]",
-        );
+        ];
 
         $error = self::checkTypes($error, $types);
 
@@ -373,7 +376,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @return \OpenActive\Models\OA\Event
+     * @return \OpenActive\Models\OA\Event|string
      */
     public function getOrderedItem()
     {
@@ -381,15 +384,16 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
     }
 
     /**
-     * @param \OpenActive\Models\OA\Event $orderedItem
+     * @param \OpenActive\Models\OA\Event|string $orderedItem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOrderedItem($orderedItem)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\Event",
-        );
+            "string",
+        ];
 
         $orderedItem = self::checkTypes($orderedItem, $types);
 
@@ -411,9 +415,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setOrderItemIntakeForm($orderItemIntakeForm)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\PropertyValueSpecification[]",
-        );
+        ];
 
         $orderItemIntakeForm = self::checkTypes($orderItemIntakeForm, $types);
 
@@ -435,9 +439,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setOrderItemIntakeFormResponse($orderItemIntakeFormResponse)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\PropertyValue[]",
-        );
+        ];
 
         $orderItemIntakeFormResponse = self::checkTypes($orderItemIntakeFormResponse, $types);
 
@@ -459,10 +463,10 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setOrderItemStatus($orderItemStatus)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\OrderItemStatus",
             "null",
-        );
+        ];
 
         $orderItemStatus = self::checkTypes($orderItemStatus, $types);
 
@@ -484,10 +488,10 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setPosition($position)
     {
-        $types = array(
+        $types = [
             "int",
             "null",
-        );
+        ];
 
         $position = self::checkTypes($position, $types);
 
@@ -509,9 +513,9 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\OrderItem
      */
     public function setUnitTaxSpecification($unitTaxSpecification)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\OA\TaxChargeSpecification[]",
-        );
+        ];
 
         $unitTaxSpecification = self::checkTypes($unitTaxSpecification, $types);
 

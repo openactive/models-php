@@ -46,9 +46,9 @@ class Corporation extends \OpenActive\Models\SchemaOrg\Organization
      */
     public function setTickerSymbol($tickerSymbol)
     {
-        $types = array(
+        $types = [
             "string",
-        );
+        ];
 
         $tickerSymbol = self::checkTypes($tickerSymbol, $types);
 

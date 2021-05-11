@@ -28,7 +28,7 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
      * The person, organization, contact point, or audience that has been granted this permission.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint
      */
     protected $grantee;
 
@@ -41,7 +41,7 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
     protected $permissionType;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint
      */
     public function getGrantee()
     {
@@ -49,18 +49,18 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Person $grantee
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint $grantee
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGrantee($grantee)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
-            "\OpenActive\Models\SchemaOrg\Audience",
             "\OpenActive\Models\SchemaOrg\Person",
-        );
+            "\OpenActive\Models\SchemaOrg\Audience",
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
+        ];
 
         $grantee = self::checkTypes($grantee, $types);
 
@@ -82,10 +82,10 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
      */
     public function setPermissionType($permissionType)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\DigitalDocumentPermissionType",
             "null",
-        );
+        ];
 
         $permissionType = self::checkTypes($permissionType, $types);
 

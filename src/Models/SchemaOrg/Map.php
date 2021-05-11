@@ -46,10 +46,10 @@ class Map extends \OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function setMapType($mapType)
     {
-        $types = array(
+        $types = [
             "\OpenActive\Enums\SchemaOrg\MapCategoryType",
             "null",
-        );
+        ];
 
         $mapType = self::checkTypes($mapType, $types);
 
