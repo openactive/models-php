@@ -50,11 +50,7 @@
           "@type":"Offer",
           "@id":"https://pimlico-fencing-club.example.com/junior-regular/12345",
           "price":6,
-          "priceCurrency":"GBP",
-          "availableChannel":[
-            "https://openactive.io/OpenBookingPrepayment",
-            "https://openactive.io/OnlinePrepayment"
-          ]
+          "priceCurrency":"GBP"
         }
       ]
     }
