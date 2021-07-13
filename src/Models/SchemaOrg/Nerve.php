@@ -17,97 +17,49 @@ class Nerve extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
 
     public static function fieldList() {
         $fields = [
-            "sourcedFrom" => "sourcedFrom",
-            "nerveMotor" => "nerveMotor",
             "branch" => "branch",
+            "nerveMotor" => "nerveMotor",
             "sensoryUnit" => "sensoryUnit",
+            "sourcedFrom" => "sourcedFrom",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The neurological pathway that originates the neurons.
+     * The branches that delineate from the nerve bundle. Not to be confused with [[branchOf]].
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\BrainStructure
+     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
      */
-    protected $sourcedFrom;
+    protected $branch;
 
     /**
      * The neurological pathway extension that involves muscle control.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Muscle
+     * @var \OpenActive\Models\SchemaOrg\Muscle|string
      */
     protected $nerveMotor;
-
-    /**
-     * The branches that delineate from the nerve bundle. Not to be confused with [[branchOf]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure
-     */
-    protected $branch;
 
     /**
      * The neurological pathway extension that inputs and sends information to the brain or spinal cord.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SuperficialAnatomy|\OpenActive\Models\SchemaOrg\AnatomicalStructure
+     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\SuperficialAnatomy|string
      */
     protected $sensoryUnit;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\BrainStructure
+     * The neurological pathway that originates the neurons.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\BrainStructure|string
      */
-    public function getSourcedFrom()
-    {
-        return $this->sourcedFrom;
-    }
+    protected $sourcedFrom;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\BrainStructure $sourcedFrom
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSourcedFrom($sourcedFrom)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\BrainStructure",
-        ];
-
-        $sourcedFrom = self::checkTypes($sourcedFrom, $types);
-
-        $this->sourcedFrom = $sourcedFrom;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Muscle
-     */
-    public function getNerveMotor()
-    {
-        return $this->nerveMotor;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Muscle $nerveMotor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNerveMotor($nerveMotor)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Muscle",
-        ];
-
-        $nerveMotor = self::checkTypes($nerveMotor, $types);
-
-        $this->nerveMotor = $nerveMotor;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure
+     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
      */
     public function getBranch()
     {
@@ -115,7 +67,7 @@ class Nerve extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure $branch
+     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|string $branch
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -123,6 +75,7 @@ class Nerve extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
+            "string",
         ];
 
         $branch = self::checkTypes($branch, $types);
@@ -131,7 +84,32 @@ class Nerve extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SuperficialAnatomy|\OpenActive\Models\SchemaOrg\AnatomicalStructure
+     * @return \OpenActive\Models\SchemaOrg\Muscle|string
+     */
+    public function getNerveMotor()
+    {
+        return $this->nerveMotor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Muscle|string $nerveMotor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNerveMotor($nerveMotor)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Muscle",
+            "string",
+        ];
+
+        $nerveMotor = self::checkTypes($nerveMotor, $types);
+
+        $this->nerveMotor = $nerveMotor;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\SuperficialAnatomy|string
      */
     public function getSensoryUnit()
     {
@@ -139,20 +117,46 @@ class Nerve extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SuperficialAnatomy|\OpenActive\Models\SchemaOrg\AnatomicalStructure $sensoryUnit
+     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\SuperficialAnatomy|string $sensoryUnit
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSensoryUnit($sensoryUnit)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\SuperficialAnatomy",
             "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
+            "\OpenActive\Models\SchemaOrg\SuperficialAnatomy",
+            "string",
         ];
 
         $sensoryUnit = self::checkTypes($sensoryUnit, $types);
 
         $this->sensoryUnit = $sensoryUnit;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\BrainStructure|string
+     */
+    public function getSourcedFrom()
+    {
+        return $this->sourcedFrom;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\BrainStructure|string $sourcedFrom
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSourcedFrom($sourcedFrom)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\BrainStructure",
+            "string",
+        ];
+
+        $sourcedFrom = self::checkTypes($sourcedFrom, $types);
+
+        $this->sourcedFrom = $sourcedFrom;
     }
 
 }

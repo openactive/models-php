@@ -17,55 +17,31 @@ class BoatTrip extends \OpenActive\Models\SchemaOrg\Trip
 
     public static function fieldList() {
         $fields = [
-            "departureBoatTerminal" => "departureBoatTerminal",
             "arrivalBoatTerminal" => "arrivalBoatTerminal",
+            "departureBoatTerminal" => "departureBoatTerminal",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The terminal or port from which the boat departs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\BoatTerminal
-     */
-    protected $departureBoatTerminal;
-
-    /**
      * The terminal or port from which the boat arrives.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\BoatTerminal
+     * @var \OpenActive\Models\SchemaOrg\BoatTerminal|string
      */
     protected $arrivalBoatTerminal;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\BoatTerminal
+     * The terminal or port from which the boat departs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\BoatTerminal|string
      */
-    public function getDepartureBoatTerminal()
-    {
-        return $this->departureBoatTerminal;
-    }
+    protected $departureBoatTerminal;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\BoatTerminal $departureBoatTerminal
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDepartureBoatTerminal($departureBoatTerminal)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\BoatTerminal",
-        ];
-
-        $departureBoatTerminal = self::checkTypes($departureBoatTerminal, $types);
-
-        $this->departureBoatTerminal = $departureBoatTerminal;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\BoatTerminal
+     * @return \OpenActive\Models\SchemaOrg\BoatTerminal|string
      */
     public function getArrivalBoatTerminal()
     {
@@ -73,7 +49,7 @@ class BoatTrip extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\BoatTerminal $arrivalBoatTerminal
+     * @param \OpenActive\Models\SchemaOrg\BoatTerminal|string $arrivalBoatTerminal
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -81,11 +57,37 @@ class BoatTrip extends \OpenActive\Models\SchemaOrg\Trip
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\BoatTerminal",
+            "string",
         ];
 
         $arrivalBoatTerminal = self::checkTypes($arrivalBoatTerminal, $types);
 
         $this->arrivalBoatTerminal = $arrivalBoatTerminal;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\BoatTerminal|string
+     */
+    public function getDepartureBoatTerminal()
+    {
+        return $this->departureBoatTerminal;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\BoatTerminal|string $departureBoatTerminal
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDepartureBoatTerminal($departureBoatTerminal)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\BoatTerminal",
+            "string",
+        ];
+
+        $departureBoatTerminal = self::checkTypes($departureBoatTerminal, $types);
+
+        $this->departureBoatTerminal = $departureBoatTerminal;
     }
 
 }

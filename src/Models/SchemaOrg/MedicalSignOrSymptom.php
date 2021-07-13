@@ -27,12 +27,12 @@ class MedicalSignOrSymptom extends \OpenActive\Models\SchemaOrg\MedicalCondition
      * A possible treatment to address this condition, sign or symptom.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy
+     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
     protected $possibleTreatment;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTherapy
+     * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
     public function getPossibleTreatment()
     {
@@ -40,7 +40,7 @@ class MedicalSignOrSymptom extends \OpenActive\Models\SchemaOrg\MedicalCondition
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy $possibleTreatment
+     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy|string $possibleTreatment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class MedicalSignOrSymptom extends \OpenActive\Models\SchemaOrg\MedicalCondition
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalTherapy",
+            "string",
         ];
 
         $possibleTreatment = self::checkTypes($possibleTreatment, $types);

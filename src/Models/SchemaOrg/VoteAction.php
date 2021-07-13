@@ -27,12 +27,12 @@ class VoteAction extends \OpenActive\Models\SchemaOrg\ChooseAction
      * A sub property of object. The candidate subject of this action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
     protected $candidate;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
     public function getCandidate()
     {
@@ -40,7 +40,7 @@ class VoteAction extends \OpenActive\Models\SchemaOrg\ChooseAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $candidate
+     * @param \OpenActive\Models\SchemaOrg\Person|string $candidate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class VoteAction extends \OpenActive\Models\SchemaOrg\ChooseAction
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
         $candidate = self::checkTypes($candidate, $types);

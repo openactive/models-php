@@ -17,22 +17,22 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "startDate" => "startDate",
+            "roleName" => "roleName",
             "endDate" => "endDate",
             "namedPosition" => "namedPosition",
-            "roleName" => "roleName",
+            "startDate" => "startDate",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
+     * A role played, performed or filled by a person or organization. For example, the team of creators for a comic book might fill the roles named 'inker', 'penciller', and 'letterer'; or an athlete in a SportsTeam might play in the position named 'Quarterback'.
      *
      *
-     * @var Date|DateTime|null
+     * @var string
      */
-    protected $startDate;
+    protected $roleName;
 
     /**
      * The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
@@ -51,37 +51,35 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
     protected $namedPosition;
 
     /**
-     * A role played, performed or filled by a person or organization. For example, the team of creators for a comic book might fill the roles named 'inker', 'penciller', and 'letterer'; or an athlete in a SportsTeam might play in the position named 'Quarterback'.
+     * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
      *
      *
-     * @var string
+     * @var Date|DateTime|null
      */
-    protected $roleName;
+    protected $startDate;
 
     /**
-     * @return Date|DateTime|null
+     * @return string
      */
-    public function getStartDate()
+    public function getRoleName()
     {
-        return $this->startDate;
+        return $this->roleName;
     }
 
     /**
-     * @param Date|DateTime|null $startDate
+     * @param string $roleName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setStartDate($startDate)
+    public function setRoleName($roleName)
     {
         $types = [
-            "Date",
-            "DateTime",
-            "null",
+            "string",
         ];
 
-        $startDate = self::checkTypes($startDate, $types);
+        $roleName = self::checkTypes($roleName, $types);
 
-        $this->startDate = $startDate;
+        $this->roleName = $roleName;
     }
 
     /**
@@ -135,27 +133,29 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
+     * @return Date|DateTime|null
      */
-    public function getRoleName()
+    public function getStartDate()
     {
-        return $this->roleName;
+        return $this->startDate;
     }
 
     /**
-     * @param string $roleName
+     * @param Date|DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRoleName($roleName)
+    public function setStartDate($startDate)
     {
         $types = [
-            "string",
+            "Date",
+            "DateTime",
+            "null",
         ];
 
-        $roleName = self::checkTypes($roleName, $types);
+        $startDate = self::checkTypes($startDate, $types);
 
-        $this->roleName = $roleName;
+        $this->startDate = $startDate;
     }
 
 }

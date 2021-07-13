@@ -17,21 +17,21 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
 
     public static function fieldList() {
         $fields = [
-            "healthPlanNetworkId" => "healthPlanNetworkId",
-            "isAcceptingNewPatients" => "isAcceptingNewPatients",
             "medicalSpecialty" => "medicalSpecialty",
+            "isAcceptingNewPatients" => "isAcceptingNewPatients",
+            "healthPlanNetworkId" => "healthPlanNetworkId",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Name or unique ID of network. (Networks are often reused across different insurance plans).
+     * A medical specialty of the provider.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\MedicalSpecialty|string
      */
-    protected $healthPlanNetworkId;
+    protected $medicalSpecialty;
 
     /**
      * Whether the provider is accepting new patients.
@@ -42,35 +42,36 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
     protected $isAcceptingNewPatients;
 
     /**
-     * A medical specialty of the provider.
+     * Name or unique ID of network. (Networks are often reused across different insurance plans).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalSpecialty
+     * @var string
      */
-    protected $medicalSpecialty;
+    protected $healthPlanNetworkId;
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\MedicalSpecialty|string
      */
-    public function getHealthPlanNetworkId()
+    public function getMedicalSpecialty()
     {
-        return $this->healthPlanNetworkId;
+        return $this->medicalSpecialty;
     }
 
     /**
-     * @param string $healthPlanNetworkId
+     * @param \OpenActive\Models\SchemaOrg\MedicalSpecialty|string $medicalSpecialty
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHealthPlanNetworkId($healthPlanNetworkId)
+    public function setMedicalSpecialty($medicalSpecialty)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalSpecialty",
             "string",
         ];
 
-        $healthPlanNetworkId = self::checkTypes($healthPlanNetworkId, $types);
+        $medicalSpecialty = self::checkTypes($medicalSpecialty, $types);
 
-        $this->healthPlanNetworkId = $healthPlanNetworkId;
+        $this->medicalSpecialty = $medicalSpecialty;
     }
 
     /**
@@ -99,27 +100,27 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalSpecialty
+     * @return string
      */
-    public function getMedicalSpecialty()
+    public function getHealthPlanNetworkId()
     {
-        return $this->medicalSpecialty;
+        return $this->healthPlanNetworkId;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalSpecialty $medicalSpecialty
+     * @param string $healthPlanNetworkId
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMedicalSpecialty($medicalSpecialty)
+    public function setHealthPlanNetworkId($healthPlanNetworkId)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalSpecialty",
+            "string",
         ];
 
-        $medicalSpecialty = self::checkTypes($medicalSpecialty, $types);
+        $healthPlanNetworkId = self::checkTypes($healthPlanNetworkId, $types);
 
-        $this->medicalSpecialty = $medicalSpecialty;
+        $this->healthPlanNetworkId = $healthPlanNetworkId;
     }
 
 }

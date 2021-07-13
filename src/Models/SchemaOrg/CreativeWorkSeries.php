@@ -17,13 +17,21 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\Series
 
     public static function fieldList() {
         $fields = [
+            "endDate" => "endDate",
             "startDate" => "startDate",
             "issn" => "issn",
-            "endDate" => "endDate",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $endDate;
 
     /**
      * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
@@ -42,12 +50,30 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\Series
     protected $issn;
 
     /**
-     * The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
-     *
-     *
-     * @var Date|DateTime|null
+     * @return Date|DateTime|null
      */
-    protected $endDate;
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * @param Date|DateTime|null $endDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEndDate($endDate)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $endDate = self::checkTypes($endDate, $types);
+
+        $this->endDate = $endDate;
+    }
 
     /**
      * @return Date|DateTime|null
@@ -97,32 +123,6 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\Series
         $issn = self::checkTypes($issn, $types);
 
         $this->issn = $issn;
-    }
-
-    /**
-     * @return Date|DateTime|null
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
-    /**
-     * @param Date|DateTime|null $endDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEndDate($endDate)
-    {
-        $types = [
-            "Date",
-            "DateTime",
-            "null",
-        ];
-
-        $endDate = self::checkTypes($endDate, $types);
-
-        $this->endDate = $endDate;
     }
 
 }

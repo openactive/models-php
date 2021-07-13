@@ -27,12 +27,12 @@ class WinAction extends \OpenActive\Models\SchemaOrg\AchieveAction
      * A sub property of participant. The loser of the action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
     protected $loser;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
     public function getLoser()
     {
@@ -40,7 +40,7 @@ class WinAction extends \OpenActive\Models\SchemaOrg\AchieveAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $loser
+     * @param \OpenActive\Models\SchemaOrg\Person|string $loser
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class WinAction extends \OpenActive\Models\SchemaOrg\AchieveAction
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
         $loser = self::checkTypes($loser, $types);

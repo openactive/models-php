@@ -27,12 +27,12 @@ class Residence extends \OpenActive\Models\SchemaOrg\Place
      * A floorplan of some [[Accommodation]].
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\FloorPlan
+     * @var \OpenActive\Models\SchemaOrg\FloorPlan|string
      */
     protected $accommodationFloorPlan;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\FloorPlan
+     * @return \OpenActive\Models\SchemaOrg\FloorPlan|string
      */
     public function getAccommodationFloorPlan()
     {
@@ -40,7 +40,7 @@ class Residence extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\FloorPlan $accommodationFloorPlan
+     * @param \OpenActive\Models\SchemaOrg\FloorPlan|string $accommodationFloorPlan
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class Residence extends \OpenActive\Models\SchemaOrg\Place
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\FloorPlan",
+            "string",
         ];
 
         $accommodationFloorPlan = self::checkTypes($accommodationFloorPlan, $types);

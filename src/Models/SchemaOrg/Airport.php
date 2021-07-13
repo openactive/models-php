@@ -17,20 +17,12 @@ class Airport extends \OpenActive\Models\SchemaOrg\CivicStructure
 
     public static function fieldList() {
         $fields = [
-            "icaoCode" => "icaoCode",
             "iataCode" => "iataCode",
+            "icaoCode" => "icaoCode",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * ICAO identifier for an airport.
-     *
-     *
-     * @var string
-     */
-    protected $icaoCode;
 
     /**
      * IATA identifier for an airline or airport.
@@ -41,28 +33,12 @@ class Airport extends \OpenActive\Models\SchemaOrg\CivicStructure
     protected $iataCode;
 
     /**
-     * @return string
+     * ICAO identifier for an airport.
+     *
+     *
+     * @var string
      */
-    public function getIcaoCode()
-    {
-        return $this->icaoCode;
-    }
-
-    /**
-     * @param string $icaoCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIcaoCode($icaoCode)
-    {
-        $types = [
-            "string",
-        ];
-
-        $icaoCode = self::checkTypes($icaoCode, $types);
-
-        $this->icaoCode = $icaoCode;
-    }
+    protected $icaoCode;
 
     /**
      * @return string
@@ -86,6 +62,30 @@ class Airport extends \OpenActive\Models\SchemaOrg\CivicStructure
         $iataCode = self::checkTypes($iataCode, $types);
 
         $this->iataCode = $iataCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIcaoCode()
+    {
+        return $this->icaoCode;
+    }
+
+    /**
+     * @param string $icaoCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIcaoCode($icaoCode)
+    {
+        $types = [
+            "string",
+        ];
+
+        $icaoCode = self::checkTypes($icaoCode, $types);
+
+        $this->icaoCode = $icaoCode;
     }
 
 }

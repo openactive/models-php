@@ -24,7 +24,6 @@ class Slot extends \OpenActive\Models\OA\Event
             "accessibilityInformation" => "accessibilityInformation",
             "accessibilitySupport" => "accessibilitySupport",
             "activity" => "activity",
-            "additionalAdmissionRestriction" => "additionalAdmissionRestriction",
             "ageRange" => "ageRange",
             "ageRestriction" => "ageRestriction",
             "attendeeInstructions" => "attendeeInstructions",
@@ -145,21 +144,6 @@ class Slot extends \OpenActive\Models\OA\Event
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $activity;
-
-    /**
-     * Free text restrictions that must be displayed prominently to the user before booking. This property must only contain restrictions not described by `oa:ageRestriction` or `oa:genderRestriction`.
-     *
-     * ```json
-     * "additionalAdmissionRestriction": [
-     *   "Participants younger than 12 must be accompanied by an adult",
-     *   "Participants must be comfortable standing for long periods of time"
-     * ]
-     * ```
-     *
-     * @var string[]
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    protected $additionalAdmissionRestriction;
 
     /**
      * Indicates that an event is recommended as being suitable for or is targetted at a specific age range.
@@ -747,32 +731,6 @@ class Slot extends \OpenActive\Models\OA\Event
         $activity = self::checkTypes($activity, $types);
 
         $this->activity = $activity;
-    }
-
-    /**
-     * @return string[]
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    public function getAdditionalAdmissionRestriction()
-    {
-        return $this->additionalAdmissionRestriction;
-    }
-
-    /**
-     * @param string[] $additionalAdmissionRestriction
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     * @deprecated This property is disinherited in this type, and must not be used.
-     */
-    public function setAdditionalAdmissionRestriction($additionalAdmissionRestriction)
-    {
-        $types = [
-            "string[]",
-        ];
-
-        $additionalAdmissionRestriction = self::checkTypes($additionalAdmissionRestriction, $types);
-
-        $this->additionalAdmissionRestriction = $additionalAdmissionRestriction;
     }
 
     /**

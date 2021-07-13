@@ -17,21 +17,13 @@ class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
 
     public static function fieldList() {
         $fields = [
-            "courseMode" => "courseMode",
             "courseWorkload" => "courseWorkload",
             "instructor" => "instructor",
+            "courseMode" => "courseMode",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The medium or means of delivery of the course instance or the mode of study, either as a text label (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time") or as a URL reference to a term from a controlled vocabulary (e.g. https://ceds.ed.gov/element/001311#Asynchronous ).
-     *
-     *
-     * @var string
-     */
-    protected $courseMode;
 
     /**
      * The amount of work expected of students taking the course, often provided as a figure per week or per month, and may be broken down by type. For example, "2 hours of lectures, 1 hour of lab work and 3 hours of independent study per week".
@@ -45,33 +37,17 @@ class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
      * A person assigned to instruct or provide instructional assistance for the [[CourseInstance]].
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
     protected $instructor;
 
     /**
-     * @return string
+     * The medium or means of delivery of the course instance or the mode of study, either as a text label (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time") or as a URL reference to a term from a controlled vocabulary (e.g. https://ceds.ed.gov/element/001311#Asynchronous ).
+     *
+     *
+     * @var string
      */
-    public function getCourseMode()
-    {
-        return $this->courseMode;
-    }
-
-    /**
-     * @param string $courseMode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCourseMode($courseMode)
-    {
-        $types = [
-            "string",
-        ];
-
-        $courseMode = self::checkTypes($courseMode, $types);
-
-        $this->courseMode = $courseMode;
-    }
+    protected $courseMode;
 
     /**
      * @return string
@@ -98,7 +74,7 @@ class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
     public function getInstructor()
     {
@@ -106,7 +82,7 @@ class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $instructor
+     * @param \OpenActive\Models\SchemaOrg\Person|string $instructor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -114,11 +90,36 @@ class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
         $instructor = self::checkTypes($instructor, $types);
 
         $this->instructor = $instructor;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCourseMode()
+    {
+        return $this->courseMode;
+    }
+
+    /**
+     * @param string $courseMode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCourseMode($courseMode)
+    {
+        $types = [
+            "string",
+        ];
+
+        $courseMode = self::checkTypes($courseMode, $types);
+
+        $this->courseMode = $courseMode;
     }
 
 }

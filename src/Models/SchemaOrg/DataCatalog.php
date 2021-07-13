@@ -17,20 +17,12 @@ class DataCatalog extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "dataset" => "dataset",
             "measurementTechnique" => "measurementTechnique",
+            "dataset" => "dataset",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A dataset contained in this catalog.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Dataset
-     */
-    protected $dataset;
 
     /**
      * A technique or technology used in a [[Dataset]] (or [[DataDownload]], [[DataCatalog]]),
@@ -49,28 +41,12 @@ class DataCatalog extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $measurementTechnique;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Dataset
+     * A dataset contained in this catalog.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Dataset|string
      */
-    public function getDataset()
-    {
-        return $this->dataset;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Dataset $dataset
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDataset($dataset)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Dataset",
-        ];
-
-        $dataset = self::checkTypes($dataset, $types);
-
-        $this->dataset = $dataset;
-    }
+    protected $dataset;
 
     /**
      * @return string
@@ -94,6 +70,31 @@ class DataCatalog extends \OpenActive\Models\SchemaOrg\CreativeWork
         $measurementTechnique = self::checkTypes($measurementTechnique, $types);
 
         $this->measurementTechnique = $measurementTechnique;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Dataset|string
+     */
+    public function getDataset()
+    {
+        return $this->dataset;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Dataset|string $dataset
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDataset($dataset)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Dataset",
+            "string",
+        ];
+
+        $dataset = self::checkTypes($dataset, $types);
+
+        $this->dataset = $dataset;
     }
 
 }

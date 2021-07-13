@@ -17,24 +17,24 @@ class ComicIssue extends \OpenActive\Models\SchemaOrg\PublicationIssue
 
     public static function fieldList() {
         $fields = [
-            "penciler" => "penciler",
-            "artist" => "artist",
-            "inker" => "inker",
-            "variantCover" => "variantCover",
-            "letterer" => "letterer",
             "colorist" => "colorist",
+            "artist" => "artist",
+            "letterer" => "letterer",
+            "variantCover" => "variantCover",
+            "penciler" => "penciler",
+            "inker" => "inker",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The individual who draws the primary narrative artwork.
+     * The individual who adds color to inked drawings.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $penciler;
+    protected $colorist;
 
     /**
      * The primary artist for a work
@@ -42,17 +42,17 @@ class ComicIssue extends \OpenActive\Models\SchemaOrg\PublicationIssue
      *     	primary artwork is done in watercolors or digital paints.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
     protected $artist;
 
     /**
-     * The individual who traces over the pencil drawings in ink after pencils are complete.
+     * The individual who adds lettering, including speech balloons and sound effects, to artwork.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $inker;
+    protected $letterer;
 
     /**
      * A description of the variant cover
@@ -65,47 +65,48 @@ class ComicIssue extends \OpenActive\Models\SchemaOrg\PublicationIssue
     protected $variantCover;
 
     /**
-     * The individual who adds lettering, including speech balloons and sound effects, to artwork.
+     * The individual who draws the primary narrative artwork.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $letterer;
+    protected $penciler;
 
     /**
-     * The individual who adds color to inked drawings.
+     * The individual who traces over the pencil drawings in ink after pencils are complete.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $colorist;
+    protected $inker;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getPenciler()
+    public function getColorist()
     {
-        return $this->penciler;
+        return $this->colorist;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $penciler
+     * @param \OpenActive\Models\SchemaOrg\Person|string $colorist
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPenciler($penciler)
+    public function setColorist($colorist)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
-        $penciler = self::checkTypes($penciler, $types);
+        $colorist = self::checkTypes($colorist, $types);
 
-        $this->penciler = $penciler;
+        $this->colorist = $colorist;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
     public function getArtist()
     {
@@ -113,7 +114,7 @@ class ComicIssue extends \OpenActive\Models\SchemaOrg\PublicationIssue
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $artist
+     * @param \OpenActive\Models\SchemaOrg\Person|string $artist
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -121,6 +122,7 @@ class ComicIssue extends \OpenActive\Models\SchemaOrg\PublicationIssue
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
         $artist = self::checkTypes($artist, $types);
@@ -129,27 +131,28 @@ class ComicIssue extends \OpenActive\Models\SchemaOrg\PublicationIssue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getInker()
+    public function getLetterer()
     {
-        return $this->inker;
+        return $this->letterer;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $inker
+     * @param \OpenActive\Models\SchemaOrg\Person|string $letterer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setInker($inker)
+    public function setLetterer($letterer)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
-        $inker = self::checkTypes($inker, $types);
+        $letterer = self::checkTypes($letterer, $types);
 
-        $this->inker = $inker;
+        $this->letterer = $letterer;
     }
 
     /**
@@ -177,51 +180,53 @@ class ComicIssue extends \OpenActive\Models\SchemaOrg\PublicationIssue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getLetterer()
+    public function getPenciler()
     {
-        return $this->letterer;
+        return $this->penciler;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $letterer
+     * @param \OpenActive\Models\SchemaOrg\Person|string $penciler
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLetterer($letterer)
+    public function setPenciler($penciler)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
-        $letterer = self::checkTypes($letterer, $types);
+        $penciler = self::checkTypes($penciler, $types);
 
-        $this->letterer = $letterer;
+        $this->penciler = $penciler;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getColorist()
+    public function getInker()
     {
-        return $this->colorist;
+        return $this->inker;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $colorist
+     * @param \OpenActive\Models\SchemaOrg\Person|string $inker
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setColorist($colorist)
+    public function setInker($inker)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
-        $colorist = self::checkTypes($colorist, $types);
+        $inker = self::checkTypes($inker, $types);
 
-        $this->colorist = $colorist;
+        $this->inker = $inker;
     }
 
 }

@@ -17,20 +17,12 @@ class PostalCodeRangeSpecification extends \OpenActive\Models\SchemaOrg\Structur
 
     public static function fieldList() {
         $fields = [
-            "postalCodeBegin" => "postalCodeBegin",
             "postalCodeEnd" => "postalCodeEnd",
+            "postalCodeBegin" => "postalCodeBegin",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * First postal code in a range (included).
-     *
-     *
-     * @var string
-     */
-    protected $postalCodeBegin;
 
     /**
      * Last postal code in the range (included). Needs to be after [[postalCodeBegin]].
@@ -41,28 +33,12 @@ class PostalCodeRangeSpecification extends \OpenActive\Models\SchemaOrg\Structur
     protected $postalCodeEnd;
 
     /**
-     * @return string
+     * First postal code in a range (included).
+     *
+     *
+     * @var string
      */
-    public function getPostalCodeBegin()
-    {
-        return $this->postalCodeBegin;
-    }
-
-    /**
-     * @param string $postalCodeBegin
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPostalCodeBegin($postalCodeBegin)
-    {
-        $types = [
-            "string",
-        ];
-
-        $postalCodeBegin = self::checkTypes($postalCodeBegin, $types);
-
-        $this->postalCodeBegin = $postalCodeBegin;
-    }
+    protected $postalCodeBegin;
 
     /**
      * @return string
@@ -86,6 +62,30 @@ class PostalCodeRangeSpecification extends \OpenActive\Models\SchemaOrg\Structur
         $postalCodeEnd = self::checkTypes($postalCodeEnd, $types);
 
         $this->postalCodeEnd = $postalCodeEnd;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPostalCodeBegin()
+    {
+        return $this->postalCodeBegin;
+    }
+
+    /**
+     * @param string $postalCodeBegin
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPostalCodeBegin($postalCodeBegin)
+    {
+        $types = [
+            "string",
+        ];
+
+        $postalCodeBegin = self::checkTypes($postalCodeBegin, $types);
+
+        $this->postalCodeBegin = $postalCodeBegin;
     }
 
 }

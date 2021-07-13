@@ -17,12 +17,20 @@ class MedicalWebPage extends \OpenActive\Models\SchemaOrg\WebPage
 
     public static function fieldList() {
         $fields = [
-            "aspect" => "aspect",
             "medicalAudience" => "medicalAudience",
+            "aspect" => "aspect",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Medical audience for page.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalAudienceType|\OpenActive\Models\SchemaOrg\MedicalAudience|string
+     */
+    protected $medicalAudience;
 
     /**
      * An aspect of medical practice that is considered on the page, such as 'diagnosis', 'treatment', 'causes', 'prognosis', 'etiology', 'epidemiology', etc.
@@ -33,12 +41,30 @@ class MedicalWebPage extends \OpenActive\Models\SchemaOrg\WebPage
     protected $aspect;
 
     /**
-     * Medical audience for page.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalAudienceType|\OpenActive\Models\SchemaOrg\MedicalAudience
+     * @return \OpenActive\Models\SchemaOrg\MedicalAudienceType|\OpenActive\Models\SchemaOrg\MedicalAudience|string
      */
-    protected $medicalAudience;
+    public function getMedicalAudience()
+    {
+        return $this->medicalAudience;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalAudienceType|\OpenActive\Models\SchemaOrg\MedicalAudience|string $medicalAudience
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMedicalAudience($medicalAudience)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalAudienceType",
+            "\OpenActive\Models\SchemaOrg\MedicalAudience",
+            "string",
+        ];
+
+        $medicalAudience = self::checkTypes($medicalAudience, $types);
+
+        $this->medicalAudience = $medicalAudience;
+    }
 
     /**
      * @return string
@@ -62,31 +88,6 @@ class MedicalWebPage extends \OpenActive\Models\SchemaOrg\WebPage
         $aspect = self::checkTypes($aspect, $types);
 
         $this->aspect = $aspect;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalAudienceType|\OpenActive\Models\SchemaOrg\MedicalAudience
-     */
-    public function getMedicalAudience()
-    {
-        return $this->medicalAudience;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalAudienceType|\OpenActive\Models\SchemaOrg\MedicalAudience $medicalAudience
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMedicalAudience($medicalAudience)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalAudienceType",
-            "\OpenActive\Models\SchemaOrg\MedicalAudience",
-        ];
-
-        $medicalAudience = self::checkTypes($medicalAudience, $types);
-
-        $this->medicalAudience = $medicalAudience;
     }
 
 }

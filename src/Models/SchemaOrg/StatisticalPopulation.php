@@ -46,7 +46,7 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
      * Indicates the populationType common to all members of a [[StatisticalPopulation]].
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Class
+     * @var \OpenActive\Models\SchemaOrg\Class|string
      */
     protected $populationType;
 
@@ -101,7 +101,7 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Class
+     * @return \OpenActive\Models\SchemaOrg\Class|string
      */
     public function getPopulationType()
     {
@@ -109,7 +109,7 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Class $populationType
+     * @param \OpenActive\Models\SchemaOrg\Class|string $populationType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -117,6 +117,7 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Class",
+            "string",
         ];
 
         $populationType = self::checkTypes($populationType, $types);

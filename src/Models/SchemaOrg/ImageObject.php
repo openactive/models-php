@@ -17,14 +17,31 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
 
     public static function fieldList() {
         $fields = [
-            "representativeOfPage" => "representativeOfPage",
             "thumbnail" => "thumbnail",
+            "embeddedTextCaption" => "embeddedTextCaption",
+            "representativeOfPage" => "representativeOfPage",
             "exifData" => "exifData",
             "caption" => "caption",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Thumbnail image for an image or video.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
+     */
+    protected $thumbnail;
+
+    /**
+     * Represents textual captioning from a [[MediaObject]], e.g. text of a 'meme'.
+     *
+     *
+     * @var string
+     */
+    protected $embeddedTextCaption;
 
     /**
      * Indicates whether this image is representative of the content of the page.
@@ -35,18 +52,10 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     protected $representativeOfPage;
 
     /**
-     * Thumbnail image for an image or video.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ImageObject
-     */
-    protected $thumbnail;
-
-    /**
      * exif data for this object.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\PropertyValue
+     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
     protected $exifData;
 
@@ -54,9 +63,58 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
      * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the [[encodingFormat]].
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\MediaObject
+     * @var \OpenActive\Models\SchemaOrg\MediaObject|string
      */
     protected $caption;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $thumbnail
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ImageObject",
+            "string",
+        ];
+
+        $thumbnail = self::checkTypes($thumbnail, $types);
+
+        $this->thumbnail = $thumbnail;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmbeddedTextCaption()
+    {
+        return $this->embeddedTextCaption;
+    }
+
+    /**
+     * @param string $embeddedTextCaption
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEmbeddedTextCaption($embeddedTextCaption)
+    {
+        $types = [
+            "string",
+        ];
+
+        $embeddedTextCaption = self::checkTypes($embeddedTextCaption, $types);
+
+        $this->embeddedTextCaption = $embeddedTextCaption;
+    }
 
     /**
      * @return bool|null
@@ -84,31 +142,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ImageObject
-     */
-    public function getThumbnail()
-    {
-        return $this->thumbnail;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ImageObject $thumbnail
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setThumbnail($thumbnail)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ImageObject",
-        ];
-
-        $thumbnail = self::checkTypes($thumbnail, $types);
-
-        $this->thumbnail = $thumbnail;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\PropertyValue
+     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
     public function getExifData()
     {
@@ -116,15 +150,15 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\PropertyValue $exifData
+     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $exifData
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setExifData($exifData)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "string",
         ];
 
         $exifData = self::checkTypes($exifData, $types);
@@ -133,7 +167,7 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\MediaObject
+     * @return \OpenActive\Models\SchemaOrg\MediaObject|string
      */
     public function getCaption()
     {
@@ -141,15 +175,15 @@ class ImageObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $caption
+     * @param \OpenActive\Models\SchemaOrg\MediaObject|string $caption
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCaption($caption)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\MediaObject",
+            "string",
         ];
 
         $caption = self::checkTypes($caption, $types);

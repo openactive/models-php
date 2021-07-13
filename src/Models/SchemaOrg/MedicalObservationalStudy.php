@@ -27,12 +27,12 @@ class MedicalObservationalStudy extends \OpenActive\Models\SchemaOrg\MedicalStud
      * Specifics about the observational study design (enumerated).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalObservationalStudyDesign
+     * @var \OpenActive\Models\SchemaOrg\MedicalObservationalStudyDesign|string
      */
     protected $studyDesign;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalObservationalStudyDesign
+     * @return \OpenActive\Models\SchemaOrg\MedicalObservationalStudyDesign|string
      */
     public function getStudyDesign()
     {
@@ -40,7 +40,7 @@ class MedicalObservationalStudy extends \OpenActive\Models\SchemaOrg\MedicalStud
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalObservationalStudyDesign $studyDesign
+     * @param \OpenActive\Models\SchemaOrg\MedicalObservationalStudyDesign|string $studyDesign
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class MedicalObservationalStudy extends \OpenActive\Models\SchemaOrg\MedicalStud
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalObservationalStudyDesign",
+            "string",
         ];
 
         $studyDesign = self::checkTypes($studyDesign, $types);

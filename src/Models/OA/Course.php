@@ -21,10 +21,16 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
             "identifier" => "identifier",
             "name" => "name",
             "description" => "description",
+            "accessibilityInformation" => "accessibilityInformation",
+            "accessibilitySupport" => "accessibilitySupport",
             "activity" => "activity",
+            "ageRange" => "ageRange",
             "author" => "author",
+            "category" => "category",
+            "genderRestriction" => "genderRestriction",
+            "image" => "image",
+            "level" => "level",
             "url" => "url",
-            "logo" => "beta:logo",
             "video" => "beta:video",
         ];
 
@@ -69,6 +75,35 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     protected $description;
 
     /**
+     * Provide additional, specific documentation for participants about how disabilities are, or can be supported at the Event.
+     *
+     * ```json
+     * "accessibilityInformation": "This route has been British Cycling assessed as an accessible route, meaning it is suitable for the majority of adaptive bikes. The route will have no or low levels of traffic, there will be plenty of space and will have a good surface throughout. If you have any questions about using this route on an adaptive bike on this ride, please use visit https://www.letsride.co.uk/accessibility or call 0123 456 7000 and ask for the Recreation team."
+     * ```
+     *
+     * @var string
+     */
+    protected $accessibilityInformation;
+
+    /**
+     * Used to specify the types of disabilities or impairments that are supported at an event.
+     *
+     * ```json
+     * "accessibilitySupport": [
+     *   {
+     *     "@type": "Concept",
+     *     "@id": "https://openactive.io/accessibility-support#1393f2dc-3fcc-4be9-a99f-f1e51f5ad277",
+     *     "prefLabel": "Visual impairment",
+     *     "inScheme": "https://openactive.io/accessibility-support"
+     *   }
+     * ]
+     * ```
+     *
+     * @var \OpenActive\Models\OA\Concept[]
+     */
+    protected $accessibilitySupport;
+
+    /**
      * Specifies the physical activity or activities that will take place during a Course.
      *
      * ```json
@@ -87,19 +122,95 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     protected $activity;
 
     /**
-     * The person or organization who have created the Course. An author might be an schema:Organization or a schema:Person.
+     * Indicates that an event is recommended as being suitable for or is targetted at a specific age range.
+     *
+     * ```json
+     * "ageRange": {
+     *   "@type": "QuantitativeValue",
+     *   "minValue": 50,
+     *   "maxValue": 60
+     * }
+     * ```
+     *
+     * @var \OpenActive\Models\OA\QuantitativeValue
+     */
+    protected $ageRange;
+
+    /**
+     * The person or organization who designed the Course. An author might be an schema:Organization or a schema:Person.
+     * This property may reference the `@id` of the `organizer` of the `CourseInstance` within which this `Course` is embedded, to reduce data duplication.
      *
      * ```json
      * "author": {
      *   "@type": "Organization",
+     *   "@id": "https://id.bookingsystem.example.com/organizers/1",
      *   "name": "Central Speedball Association",
      *   "url": "http://www.speedball-world.com"
      * }
      * ```
      *
-     * @var \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization
+     * @var \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization|string
      */
     protected $author;
+
+    /**
+     * Provides a set of tags that help categorise and describe an event, e.g. its intensity, purpose, etc.
+     *
+     * ```json
+     * "category": [
+     *   "High Intensity"
+     * ]
+     * ```
+     *
+     * @var string[]|\OpenActive\Models\OA\Concept[]
+     */
+    protected $category;
+
+    /**
+     * Indicates that an event is restricted to male, female or a mixed audience. This information must be displayed prominently to the user before booking. If a gender restriction isn't specified then applications should assume that an event is suitable for a mixed audience.
+     *
+     * ```json
+     * "genderRestriction": "https://openactive.io/FemaleOnly"
+     * ```
+     *
+     * @var \OpenActive\Enums\GenderRestrictionType|null
+     */
+    protected $genderRestriction;
+
+    /**
+     * An image or photo that depicts the event, e.g. a photo taken at a previous event.
+     *
+     * ```json
+     * "image": [
+     *   {
+     *     "@type": "ImageObject",
+     *     "url": "http://example.com/static/image/speedball_large.jpg",
+     *     "thumbnail": [
+     *       {
+     *         "@type": "ImageObject",
+     *         "url": "http://example.com/static/image/speedball_thumbnail.jpg"
+     *       }
+     *     ]
+     *   }
+     * ]
+     * ```
+     *
+     * @var \OpenActive\Models\OA\ImageObject[]
+     */
+    protected $image;
+
+    /**
+     * A general purpose property for specifying the suitability of an event for different participant “levels”. E.g. `Beginner`, `Intermediate`, `Advanced`. Or in the case of martial arts, specific belt requirements.
+     *
+     * ```json
+     * "level": [
+     *   "Beginner"
+     * ]
+     * ```
+     *
+     * @var string[]|\OpenActive\Models\OA\Concept[]
+     */
+    protected $level;
 
     /**
      * A definitive canonical URL for the Course.
@@ -111,17 +222,6 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      * @var string
      */
     protected $url;
-
-    /**
-     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
-     * An associated logo for a course.
-     * 
-     * If you are using this property, please join the discussion at proposal [#164](https://github.com/openactive/modelling-opportunity-data/issues/164).
-     *
-     *
-     * @var \OpenActive\Models\ImageObject
-     */
-    protected $logo;
 
     /**
      * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
@@ -211,6 +311,54 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     }
 
     /**
+     * @return string
+     */
+    public function getAccessibilityInformation()
+    {
+        return $this->accessibilityInformation;
+    }
+
+    /**
+     * @param string $accessibilityInformation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAccessibilityInformation($accessibilityInformation)
+    {
+        $types = [
+            "string",
+        ];
+
+        $accessibilityInformation = self::checkTypes($accessibilityInformation, $types);
+
+        $this->accessibilityInformation = $accessibilityInformation;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\Concept[]
+     */
+    public function getAccessibilitySupport()
+    {
+        return $this->accessibilitySupport;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\Concept[] $accessibilitySupport
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAccessibilitySupport($accessibilitySupport)
+    {
+        $types = [
+            "\OpenActive\Models\OA\Concept[]",
+        ];
+
+        $accessibilitySupport = self::checkTypes($accessibilitySupport, $types);
+
+        $this->accessibilitySupport = $accessibilitySupport;
+    }
+
+    /**
      * @return \OpenActive\Models\OA\Concept[]
      */
     public function getActivity()
@@ -235,7 +383,31 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     }
 
     /**
-     * @return \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization
+     * @return \OpenActive\Models\OA\QuantitativeValue
+     */
+    public function getAgeRange()
+    {
+        return $this->ageRange;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\QuantitativeValue $ageRange
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAgeRange($ageRange)
+    {
+        $types = [
+            "\OpenActive\Models\OA\QuantitativeValue",
+        ];
+
+        $ageRange = self::checkTypes($ageRange, $types);
+
+        $this->ageRange = $ageRange;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization|string
      */
     public function getAuthor()
     {
@@ -243,7 +415,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     }
 
     /**
-     * @param \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization $author
+     * @param \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization|string $author
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -252,11 +424,111 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
         $types = [
             "\OpenActive\Models\OA\Person",
             "\OpenActive\Models\OA\Organization",
+            "string",
         ];
 
         $author = self::checkTypes($author, $types);
 
         $this->author = $author;
+    }
+
+    /**
+     * @return string[]|\OpenActive\Models\OA\Concept[]
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param string[]|\OpenActive\Models\OA\Concept[] $category
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCategory($category)
+    {
+        $types = [
+            "string[]",
+            "\OpenActive\Models\OA\Concept[]",
+        ];
+
+        $category = self::checkTypes($category, $types);
+
+        $this->category = $category;
+    }
+
+    /**
+     * @return \OpenActive\Enums\GenderRestrictionType|null
+     */
+    public function getGenderRestriction()
+    {
+        return $this->genderRestriction;
+    }
+
+    /**
+     * @param \OpenActive\Enums\GenderRestrictionType|null $genderRestriction
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGenderRestriction($genderRestriction)
+    {
+        $types = [
+            "\OpenActive\Enums\GenderRestrictionType",
+            "null",
+        ];
+
+        $genderRestriction = self::checkTypes($genderRestriction, $types);
+
+        $this->genderRestriction = $genderRestriction;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\ImageObject[]
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\ImageObject[] $image
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setImage($image)
+    {
+        $types = [
+            "\OpenActive\Models\OA\ImageObject[]",
+        ];
+
+        $image = self::checkTypes($image, $types);
+
+        $this->image = $image;
+    }
+
+    /**
+     * @return string[]|\OpenActive\Models\OA\Concept[]
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * @param string[]|\OpenActive\Models\OA\Concept[] $level
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLevel($level)
+    {
+        $types = [
+            "string[]",
+            "\OpenActive\Models\OA\Concept[]",
+        ];
+
+        $level = self::checkTypes($level, $types);
+
+        $this->level = $level;
     }
 
     /**
@@ -281,30 +553,6 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
         $url = self::checkTypes($url, $types);
 
         $this->url = $url;
-    }
-
-    /**
-     * @return \OpenActive\Models\ImageObject
-     */
-    public function getLogo()
-    {
-        return $this->logo;
-    }
-
-    /**
-     * @param \OpenActive\Models\ImageObject $logo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLogo($logo)
-    {
-        $types = [
-            "\OpenActive\Models\ImageObject",
-        ];
-
-        $logo = self::checkTypes($logo, $types);
-
-        $this->logo = $logo;
     }
 
     /**

@@ -27,12 +27,12 @@ class DigitalDocument extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A permission related to the access to this document (e.g. permission to read or write an electronic document). For a public document, specify a grantee with an Audience with audienceType equal to "public".
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DigitalDocumentPermission
+     * @var \OpenActive\Models\SchemaOrg\DigitalDocumentPermission|string
      */
     protected $hasDigitalDocumentPermission;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DigitalDocumentPermission
+     * @return \OpenActive\Models\SchemaOrg\DigitalDocumentPermission|string
      */
     public function getHasDigitalDocumentPermission()
     {
@@ -40,7 +40,7 @@ class DigitalDocument extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DigitalDocumentPermission $hasDigitalDocumentPermission
+     * @param \OpenActive\Models\SchemaOrg\DigitalDocumentPermission|string $hasDigitalDocumentPermission
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class DigitalDocument extends \OpenActive\Models\SchemaOrg\CreativeWork
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\DigitalDocumentPermission",
+            "string",
         ];
 
         $hasDigitalDocumentPermission = self::checkTypes($hasDigitalDocumentPermission, $types);

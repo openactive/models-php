@@ -17,41 +17,17 @@ class OfferShippingDetails extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "shippingRate" => "shippingRate",
-            "shippingDestination" => "shippingDestination",
-            "doesNotShip" => "doesNotShip",
             "shippingLabel" => "shippingLabel",
+            "doesNotShip" => "doesNotShip",
+            "shippingDestination" => "shippingDestination",
+            "shippingRate" => "shippingRate",
             "shippingSettingsLink" => "shippingSettingsLink",
-            "transitTimeLabel" => "transitTimeLabel",
             "deliveryTime" => "deliveryTime",
+            "transitTimeLabel" => "transitTimeLabel",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the [[MonetaryAmount]]) are most appropriate.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount
-     */
-    protected $shippingRate;
-
-    /**
-     * indicates (possibly multiple) shipping destinations. These can be defined in several ways e.g. postalCode ranges.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DefinedRegion
-     */
-    protected $shippingDestination;
-
-    /**
-     * Indicates when shipping to a particular [[shippingDestination]] is not available.
-     *
-     *
-     * @var bool|null
-     */
-    protected $doesNotShip;
 
     /**
      * Label to match an [[OfferShippingDetails]] with a [[ShippingRateSettings]] (within the context of a [[shippingSettingsLink]] cross-reference).
@@ -62,12 +38,44 @@ class OfferShippingDetails extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $shippingLabel;
 
     /**
+     * Indicates when shipping to a particular [[shippingDestination]] is not available.
+     *
+     *
+     * @var bool|null
+     */
+    protected $doesNotShip;
+
+    /**
+     * indicates (possibly multiple) shipping destinations. These can be defined in several ways e.g. postalCode ranges.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedRegion|string
+     */
+    protected $shippingDestination;
+
+    /**
+     * The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the [[MonetaryAmount]]) are most appropriate.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string
+     */
+    protected $shippingRate;
+
+    /**
      * Link to a page containing [[ShippingRateSettings]] and [[DeliveryTimeSettings]] details.
      *
      *
      * @var string
      */
     protected $shippingSettingsLink;
+
+    /**
+     * The total delay between the receipt of the order and the goods reaching the final customer.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ShippingDeliveryTime|string
+     */
+    protected $deliveryTime;
 
     /**
      * Label to match an [[OfferShippingDetails]] with a [[DeliveryTimeSettings]] (within the context of a [[shippingSettingsLink]] cross-reference).
@@ -78,59 +86,27 @@ class OfferShippingDetails extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $transitTimeLabel;
 
     /**
-     * The total delay between the receipt of the order and the goods reaching the final customer.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ShippingDeliveryTime
+     * @return string
      */
-    protected $deliveryTime;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount
-     */
-    public function getShippingRate()
+    public function getShippingLabel()
     {
-        return $this->shippingRate;
+        return $this->shippingLabel;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount $shippingRate
+     * @param string $shippingLabel
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setShippingRate($shippingRate)
+    public function setShippingLabel($shippingLabel)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
         ];
 
-        $shippingRate = self::checkTypes($shippingRate, $types);
+        $shippingLabel = self::checkTypes($shippingLabel, $types);
 
-        $this->shippingRate = $shippingRate;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedRegion
-     */
-    public function getShippingDestination()
-    {
-        return $this->shippingDestination;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedRegion $shippingDestination
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setShippingDestination($shippingDestination)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DefinedRegion",
-        ];
-
-        $shippingDestination = self::checkTypes($shippingDestination, $types);
-
-        $this->shippingDestination = $shippingDestination;
+        $this->shippingLabel = $shippingLabel;
     }
 
     /**
@@ -159,27 +135,53 @@ class OfferShippingDetails extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\DefinedRegion|string
      */
-    public function getShippingLabel()
+    public function getShippingDestination()
     {
-        return $this->shippingLabel;
+        return $this->shippingDestination;
     }
 
     /**
-     * @param string $shippingLabel
+     * @param \OpenActive\Models\SchemaOrg\DefinedRegion|string $shippingDestination
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setShippingLabel($shippingLabel)
+    public function setShippingDestination($shippingDestination)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedRegion",
             "string",
         ];
 
-        $shippingLabel = self::checkTypes($shippingLabel, $types);
+        $shippingDestination = self::checkTypes($shippingDestination, $types);
 
-        $this->shippingLabel = $shippingLabel;
+        $this->shippingDestination = $shippingDestination;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string
+     */
+    public function getShippingRate()
+    {
+        return $this->shippingRate;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string $shippingRate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setShippingRate($shippingRate)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
+        ];
+
+        $shippingRate = self::checkTypes($shippingRate, $types);
+
+        $this->shippingRate = $shippingRate;
     }
 
     /**
@@ -207,6 +209,31 @@ class OfferShippingDetails extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\ShippingDeliveryTime|string
+     */
+    public function getDeliveryTime()
+    {
+        return $this->deliveryTime;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ShippingDeliveryTime|string $deliveryTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDeliveryTime($deliveryTime)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ShippingDeliveryTime",
+            "string",
+        ];
+
+        $deliveryTime = self::checkTypes($deliveryTime, $types);
+
+        $this->deliveryTime = $deliveryTime;
+    }
+
+    /**
      * @return string
      */
     public function getTransitTimeLabel()
@@ -228,30 +255,6 @@ class OfferShippingDetails extends \OpenActive\Models\SchemaOrg\StructuredValue
         $transitTimeLabel = self::checkTypes($transitTimeLabel, $types);
 
         $this->transitTimeLabel = $transitTimeLabel;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ShippingDeliveryTime
-     */
-    public function getDeliveryTime()
-    {
-        return $this->deliveryTime;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ShippingDeliveryTime $deliveryTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDeliveryTime($deliveryTime)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ShippingDeliveryTime",
-        ];
-
-        $deliveryTime = self::checkTypes($deliveryTime, $types);
-
-        $this->deliveryTime = $deliveryTime;
     }
 
 }

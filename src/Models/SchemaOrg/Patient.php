@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Patient extends \OpenActive\Models\SchemaOrg\MedicalAudience
+class Patient extends \OpenActive\Models\SchemaOrg\Person
 {
     /**
      * @return string[]|null
@@ -17,19 +17,27 @@ class Patient extends \OpenActive\Models\SchemaOrg\MedicalAudience
 
     public static function fieldList() {
         $fields = [
+            "diagnosis" => "diagnosis",
             "healthCondition" => "healthCondition",
             "drug" => "drug",
-            "diagnosis" => "diagnosis",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
+     * One or more alternative conditions considered in the differential diagnosis process as output of a diagnosis process.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalCondition|string
+     */
+    protected $diagnosis;
+
+    /**
      * Specifying the health condition(s) of a patient, medical study, or other target audience.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalCondition
+     * @var \OpenActive\Models\SchemaOrg\MedicalCondition|string
      */
     protected $healthCondition;
 
@@ -37,20 +45,37 @@ class Patient extends \OpenActive\Models\SchemaOrg\MedicalAudience
      * Specifying a drug or medicine used in a medication procedure.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Drug
+     * @var \OpenActive\Models\SchemaOrg\Drug|string
      */
     protected $drug;
 
     /**
-     * One or more alternative conditions considered in the differential diagnosis process as output of a diagnosis process.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalCondition
+     * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
      */
-    protected $diagnosis;
+    public function getDiagnosis()
+    {
+        return $this->diagnosis;
+    }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalCondition
+     * @param \OpenActive\Models\SchemaOrg\MedicalCondition|string $diagnosis
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDiagnosis($diagnosis)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalCondition",
+            "string",
+        ];
+
+        $diagnosis = self::checkTypes($diagnosis, $types);
+
+        $this->diagnosis = $diagnosis;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
      */
     public function getHealthCondition()
     {
@@ -58,7 +83,7 @@ class Patient extends \OpenActive\Models\SchemaOrg\MedicalAudience
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalCondition $healthCondition
+     * @param \OpenActive\Models\SchemaOrg\MedicalCondition|string $healthCondition
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -66,6 +91,7 @@ class Patient extends \OpenActive\Models\SchemaOrg\MedicalAudience
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalCondition",
+            "string",
         ];
 
         $healthCondition = self::checkTypes($healthCondition, $types);
@@ -74,7 +100,7 @@ class Patient extends \OpenActive\Models\SchemaOrg\MedicalAudience
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Drug
+     * @return \OpenActive\Models\SchemaOrg\Drug|string
      */
     public function getDrug()
     {
@@ -82,7 +108,7 @@ class Patient extends \OpenActive\Models\SchemaOrg\MedicalAudience
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Drug $drug
+     * @param \OpenActive\Models\SchemaOrg\Drug|string $drug
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -90,35 +116,12 @@ class Patient extends \OpenActive\Models\SchemaOrg\MedicalAudience
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Drug",
+            "string",
         ];
 
         $drug = self::checkTypes($drug, $types);
 
         $this->drug = $drug;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalCondition
-     */
-    public function getDiagnosis()
-    {
-        return $this->diagnosis;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalCondition $diagnosis
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDiagnosis($diagnosis)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalCondition",
-        ];
-
-        $diagnosis = self::checkTypes($diagnosis, $types);
-
-        $this->diagnosis = $diagnosis;
     }
 
 }

@@ -18,9 +18,9 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     public static function fieldList() {
         $fields = [
             "offers" => "offers",
+            "lowPrice" => "lowPrice",
             "highPrice" => "highPrice",
             "offerCount" => "offerCount",
-            "lowPrice" => "lowPrice",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -31,9 +31,17 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
      *       
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand
+     * @var \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer|string
      */
     protected $offers;
+
+    /**
+     * The lowest price of all offers available.\n\nUsage guidelines:\n\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
+     *
+     *
+     * @var string|Number|null
+     */
+    protected $lowPrice;
 
     /**
      * The highest price of all offers available.\n\nUsage guidelines:\n\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
@@ -52,15 +60,7 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     protected $offerCount;
 
     /**
-     * The lowest price of all offers available.\n\nUsage guidelines:\n\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
-     *
-     *
-     * @var string|Number|null
-     */
-    protected $lowPrice;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand
+     * @return \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer|string
      */
     public function getOffers()
     {
@@ -68,20 +68,47 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand $offers
+     * @param \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer|string $offers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Offer",
             "\OpenActive\Models\SchemaOrg\Demand",
+            "\OpenActive\Models\SchemaOrg\Offer",
+            "string",
         ];
 
         $offers = self::checkTypes($offers, $types);
 
         $this->offers = $offers;
+    }
+
+    /**
+     * @return string|Number|null
+     */
+    public function getLowPrice()
+    {
+        return $this->lowPrice;
+    }
+
+    /**
+     * @param string|Number|null $lowPrice
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLowPrice($lowPrice)
+    {
+        $types = [
+            "string",
+            "Number",
+            "null",
+        ];
+
+        $lowPrice = self::checkTypes($lowPrice, $types);
+
+        $this->lowPrice = $lowPrice;
     }
 
     /**
@@ -133,32 +160,6 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
         $offerCount = self::checkTypes($offerCount, $types);
 
         $this->offerCount = $offerCount;
-    }
-
-    /**
-     * @return string|Number|null
-     */
-    public function getLowPrice()
-    {
-        return $this->lowPrice;
-    }
-
-    /**
-     * @param string|Number|null $lowPrice
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLowPrice($lowPrice)
-    {
-        $types = [
-            "string",
-            "Number",
-            "null",
-        ];
-
-        $lowPrice = self::checkTypes($lowPrice, $types);
-
-        $this->lowPrice = $lowPrice;
     }
 
 }

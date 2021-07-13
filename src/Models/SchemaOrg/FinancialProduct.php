@@ -17,13 +17,21 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
 
     public static function fieldList() {
         $fields = [
+            "annualPercentageRate" => "annualPercentageRate",
             "feesAndCommissionsSpecification" => "feesAndCommissionsSpecification",
             "interestRate" => "interestRate",
-            "annualPercentageRate" => "annualPercentageRate",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The annual rate that is charged for borrowing (or made by investing), expressed as a single percentage number that represents the actual yearly cost of funds over the term of a loan. This includes any fees or additional costs associated with the transaction.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null
+     */
+    protected $annualPercentageRate;
 
     /**
      * Description of fees, commissions, and other terms applied either to a class of financial product, or by a financial service organization.
@@ -37,17 +45,36 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
      * The interest rate, charged or paid, applicable to the financial product. Note: This is different from the calculated annualPercentageRate.
      *
      *
-     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
     protected $interestRate;
 
     /**
-     * The annual rate that is charged for borrowing (or made by investing), expressed as a single percentage number that represents the actual yearly cost of funds over the term of a loan. This includes any fees or additional costs associated with the transaction.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|Number|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null
      */
-    protected $annualPercentageRate;
+    public function getAnnualPercentageRate()
+    {
+        return $this->annualPercentageRate;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null $annualPercentageRate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAnnualPercentageRate($annualPercentageRate)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
+            "Number",
+            "null",
+        ];
+
+        $annualPercentageRate = self::checkTypes($annualPercentageRate, $types);
+
+        $this->annualPercentageRate = $annualPercentageRate;
+    }
 
     /**
      * @return string
@@ -74,7 +101,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
     public function getInterestRate()
     {
@@ -82,7 +109,7 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $interestRate
+     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $interestRate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -91,38 +118,13 @@ class FinancialProduct extends \OpenActive\Models\SchemaOrg\Service
         $types = [
             "Number",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
             "null",
         ];
 
         $interestRate = self::checkTypes($interestRate, $types);
 
         $this->interestRate = $interestRate;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|Number|null
-     */
-    public function getAnnualPercentageRate()
-    {
-        return $this->annualPercentageRate;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|Number|null $annualPercentageRate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAnnualPercentageRate($annualPercentageRate)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "Number",
-            "null",
-        ];
-
-        $annualPercentageRate = self::checkTypes($annualPercentageRate, $types);
-
-        $this->annualPercentageRate = $annualPercentageRate;
     }
 
 }
