@@ -17,55 +17,31 @@ class PlayAction extends \OpenActive\Models\SchemaOrg\Action
 
     public static function fieldList() {
         $fields = [
-            "event" => "event",
             "audience" => "audience",
+            "event" => "event",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Upcoming or past event associated with this place, organization, or action.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Event
-     */
-    protected $event;
-
-    /**
      * An intended audience, i.e. a group for whom something was created.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Audience
+     * @var \OpenActive\Models\SchemaOrg\Audience|string
      */
     protected $audience;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Event
+     * Upcoming or past event associated with this place, organization, or action.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Event|string
      */
-    public function getEvent()
-    {
-        return $this->event;
-    }
+    protected $event;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Event $event
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEvent($event)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Event",
-        ];
-
-        $event = self::checkTypes($event, $types);
-
-        $this->event = $event;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Audience
+     * @return \OpenActive\Models\SchemaOrg\Audience|string
      */
     public function getAudience()
     {
@@ -73,7 +49,7 @@ class PlayAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Audience $audience
+     * @param \OpenActive\Models\SchemaOrg\Audience|string $audience
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -81,11 +57,37 @@ class PlayAction extends \OpenActive\Models\SchemaOrg\Action
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Audience",
+            "string",
         ];
 
         $audience = self::checkTypes($audience, $types);
 
         $this->audience = $audience;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Event|string
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Event|string $event
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEvent($event)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Event",
+            "string",
+        ];
+
+        $event = self::checkTypes($event, $types);
+
+        $this->event = $event;
     }
 
 }

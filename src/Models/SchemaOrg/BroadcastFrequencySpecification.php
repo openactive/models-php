@@ -17,21 +17,13 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
 
     public static function fieldList() {
         $fields = [
-            "broadcastSubChannel" => "broadcastSubChannel",
             "broadcastSignalModulation" => "broadcastSignalModulation",
             "broadcastFrequencyValue" => "broadcastFrequencyValue",
+            "broadcastSubChannel" => "broadcastSubChannel",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The subchannel used for the broadcast.
-     *
-     *
-     * @var string
-     */
-    protected $broadcastSubChannel;
 
     /**
      * The modulation (e.g. FM, AM, etc) used by a particular broadcast service.
@@ -45,33 +37,17 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
      * The frequency in MHz for a particular broadcast.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|Number|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null
      */
     protected $broadcastFrequencyValue;
 
     /**
-     * @return string
+     * The subchannel used for the broadcast.
+     *
+     *
+     * @var string
      */
-    public function getBroadcastSubChannel()
-    {
-        return $this->broadcastSubChannel;
-    }
-
-    /**
-     * @param string $broadcastSubChannel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBroadcastSubChannel($broadcastSubChannel)
-    {
-        $types = [
-            "string",
-        ];
-
-        $broadcastSubChannel = self::checkTypes($broadcastSubChannel, $types);
-
-        $this->broadcastSubChannel = $broadcastSubChannel;
-    }
+    protected $broadcastSubChannel;
 
     /**
      * @return string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
@@ -100,7 +76,7 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|Number|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null
      */
     public function getBroadcastFrequencyValue()
     {
@@ -108,7 +84,7 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|Number|null $broadcastFrequencyValue
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null $broadcastFrequencyValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -116,6 +92,7 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
             "Number",
             "null",
         ];
@@ -123,6 +100,30 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
         $broadcastFrequencyValue = self::checkTypes($broadcastFrequencyValue, $types);
 
         $this->broadcastFrequencyValue = $broadcastFrequencyValue;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBroadcastSubChannel()
+    {
+        return $this->broadcastSubChannel;
+    }
+
+    /**
+     * @param string $broadcastSubChannel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBroadcastSubChannel($broadcastSubChannel)
+    {
+        $types = [
+            "string",
+        ];
+
+        $broadcastSubChannel = self::checkTypes($broadcastSubChannel, $types);
+
+        $this->broadcastSubChannel = $broadcastSubChannel;
     }
 
 }

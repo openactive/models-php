@@ -27,12 +27,12 @@ class MedicalTrial extends \OpenActive\Models\SchemaOrg\MedicalStudy
      * Specifics about the trial design (enumerated).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTrialDesign
+     * @var \OpenActive\Models\SchemaOrg\MedicalTrialDesign|string
      */
     protected $trialDesign;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTrialDesign
+     * @return \OpenActive\Models\SchemaOrg\MedicalTrialDesign|string
      */
     public function getTrialDesign()
     {
@@ -40,7 +40,7 @@ class MedicalTrial extends \OpenActive\Models\SchemaOrg\MedicalStudy
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTrialDesign $trialDesign
+     * @param \OpenActive\Models\SchemaOrg\MedicalTrialDesign|string $trialDesign
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class MedicalTrial extends \OpenActive\Models\SchemaOrg\MedicalStudy
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalTrialDesign",
+            "string",
         ];
 
         $trialDesign = self::checkTypes($trialDesign, $types);

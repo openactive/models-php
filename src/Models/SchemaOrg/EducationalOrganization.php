@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class EducationalOrganization extends \OpenActive\Models\SchemaOrg\Organization
+class EducationalOrganization extends \OpenActive\Models\SchemaOrg\CivicStructure
 {
     /**
      * @return string[]|null
@@ -27,12 +27,12 @@ class EducationalOrganization extends \OpenActive\Models\SchemaOrg\Organization
      * Alumni of an organization.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
     protected $alumni;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
     public function getAlumni()
     {
@@ -40,7 +40,7 @@ class EducationalOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $alumni
+     * @param \OpenActive\Models\SchemaOrg\Person|string $alumni
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class EducationalOrganization extends \OpenActive\Models\SchemaOrg\Organization
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
         $alumni = self::checkTypes($alumni, $types);

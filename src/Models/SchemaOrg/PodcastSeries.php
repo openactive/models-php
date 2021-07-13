@@ -18,6 +18,7 @@ class PodcastSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     public static function fieldList() {
         $fields = [
             "webFeed" => "webFeed",
+            "actor" => "actor",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -27,12 +28,20 @@ class PodcastSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * The URL for a feed, e.g. associated with a podcast series, blog, or series of date-stamped updates. This is usually RSS or Atom.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\DataFeed
+     * @var \OpenActive\Models\SchemaOrg\DataFeed|string
      */
     protected $webFeed;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\DataFeed
+     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $actor;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DataFeed|string
      */
     public function getWebFeed()
     {
@@ -40,20 +49,45 @@ class PodcastSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\DataFeed $webFeed
+     * @param \OpenActive\Models\SchemaOrg\DataFeed|string $webFeed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWebFeed($webFeed)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\DataFeed",
+            "string",
         ];
 
         $webFeed = self::checkTypes($webFeed, $types);
 
         $this->webFeed = $webFeed;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getActor()
+    {
+        return $this->actor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $actor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActor($actor)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $actor = self::checkTypes($actor, $types);
+
+        $this->actor = $actor;
     }
 
 }

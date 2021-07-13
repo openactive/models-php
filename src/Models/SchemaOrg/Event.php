@@ -17,144 +17,146 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
 
     public static function fieldList() {
         $fields = [
-            "workFeatured" => "workFeatured",
-            "aggregateRating" => "aggregateRating",
-            "workPerformed" => "workPerformed",
-            "eventSchedule" => "eventSchedule",
-            "attendees" => "attendees",
-            "contributor" => "contributor",
-            "actor" => "actor",
-            "performer" => "performer",
+            "subEvent" => "subEvent",
+            "about" => "about",
             "offers" => "offers",
-            "startDate" => "startDate",
-            "director" => "director",
-            "previousStartDate" => "previousStartDate",
-            "review" => "review",
-            "translator" => "translator",
-            "organizer" => "organizer",
-            "subEvents" => "subEvents",
-            "sponsor" => "sponsor",
-            "isAccessibleForFree" => "isAccessibleForFree",
+            "doorTime" => "doorTime",
+            "typicalAgeRange" => "typicalAgeRange",
+            "funder" => "funder",
             "maximumAttendeeCapacity" => "maximumAttendeeCapacity",
+            "aggregateRating" => "aggregateRating",
+            "attendees" => "attendees",
+            "composer" => "composer",
+            "duration" => "duration",
+            "translator" => "translator",
+            "previousStartDate" => "previousStartDate",
+            "director" => "director",
+            "location" => "location",
             "eventStatus" => "eventStatus",
             "maximumPhysicalAttendeeCapacity" => "maximumPhysicalAttendeeCapacity",
-            "subEvent" => "subEvent",
-            "endDate" => "endDate",
-            "attendee" => "attendee",
-            "recordedIn" => "recordedIn",
-            "about" => "about",
-            "inLanguage" => "inLanguage",
-            "superEvent" => "superEvent",
-            "eventAttendanceMode" => "eventAttendanceMode",
-            "composer" => "composer",
-            "performers" => "performers",
-            "duration" => "duration",
-            "doorTime" => "doorTime",
-            "funder" => "funder",
             "remainingAttendeeCapacity" => "remainingAttendeeCapacity",
-            "location" => "location",
+            "attendee" => "attendee",
+            "endDate" => "endDate",
             "audience" => "audience",
+            "sponsor" => "sponsor",
+            "organizer" => "organizer",
+            "actor" => "actor",
+            "workFeatured" => "workFeatured",
+            "eventAttendanceMode" => "eventAttendanceMode",
+            "superEvent" => "superEvent",
+            "workPerformed" => "workPerformed",
+            "recordedIn" => "recordedIn",
+            "performers" => "performers",
             "maximumVirtualAttendeeCapacity" => "maximumVirtualAttendeeCapacity",
-            "typicalAgeRange" => "typicalAgeRange",
+            "startDate" => "startDate",
+            "inLanguage" => "inLanguage",
+            "performer" => "performer",
+            "review" => "review",
+            "subEvents" => "subEvents",
+            "eventSchedule" => "eventSchedule",
+            "contributor" => "contributor",
+            "isAccessibleForFree" => "isAccessibleForFree",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A work featured in some event, e.g. exhibited in an ExhibitionEvent.
-     *        Specific subproperties are available for workPerformed (e.g. a play), or a workPresented (a Movie at a ScreeningEvent).
+     * An Event that is part of this event. For example, a conference event includes many presentations, each of which is a subEvent of the conference.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\Event|string
      */
-    protected $workFeatured;
+    protected $subEvent;
 
     /**
-     * The overall rating, based on a collection of reviews or ratings, of the item.
+     * The subject matter of the content.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\AggregateRating
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $aggregateRating;
-
-    /**
-     * A work performed in some event, for example a play performed in a TheaterEvent.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    protected $workPerformed;
-
-    /**
-     * Associates an [[Event]] with a [[Schedule]]. There are circumstances where it is preferable to share a schedule for a series of
-     *       repeating events rather than data on the individual events themselves. For example, a website or application might prefer to publish a schedule for a weekly
-     *       gym class rather than provide data on every event. A schedule could be processed by applications to add forthcoming events to a calendar. An [[Event]] that
-     *       is associated with a [[Schedule]] using this property should not have [[startDate]] or [[endDate]] properties. These are instead defined within the associated
-     *       [[Schedule]], this avoids any ambiguity for clients using the data. The property might have repeated values to specify different schedules, e.g. for different months
-     *       or seasons.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Schedule
-     */
-    protected $eventSchedule;
-
-    /**
-     * A person attending the event.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    protected $attendees;
-
-    /**
-     * A secondary contributor to the CreativeWork or Event.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    protected $contributor;
-
-    /**
-     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person
-     */
-    protected $actor;
-
-    /**
-     * A performer at the event&#x2014;for example, a presenter, musician, musical group or actor.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    protected $performer;
+    protected $about;
 
     /**
      * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use [[businessFunction]] to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a [[Demand]]. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer.
      *       
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand
+     * @var \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer|string
      */
     protected $offers;
 
     /**
-     * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
+     * The time admission will commence.
      *
      *
-     * @var Date|DateTime|null
+     * @var DateTime|string|null
      */
-    protected $startDate;
+    protected $doorTime;
 
     /**
-     * A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
+     * The typical expected age range, e.g. '7-9', '11-'.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person
+     * @var string
      */
-    protected $director;
+    protected $typicalAgeRange;
+
+    /**
+     * A person or organization that supports (sponsors) something through some kind of financial contribution.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $funder;
+
+    /**
+     * The total number of individuals that may attend an event or venue.
+     *
+     *
+     * @var int|null
+     */
+    protected $maximumAttendeeCapacity;
+
+    /**
+     * The overall rating, based on a collection of reviews or ratings, of the item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\AggregateRating|string
+     */
+    protected $aggregateRating;
+
+    /**
+     * A person attending the event.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $attendees;
+
+    /**
+     * The person or organization who wrote a composition, or who is the composer of a work performed at some event.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $composer;
+
+    /**
+     * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).
+     *
+     *
+     * @var DateInterval|string|null
+     */
+    protected $duration;
+
+    /**
+     * Organization or person who adapts a creative work to different languages, regional differences and technical requirements of a target market, or that translates during some event.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $translator;
 
     /**
      * Used in conjunction with eventStatus for rescheduled or cancelled events. This property contains the previously scheduled start date. For rescheduled events, the startDate property should be used for the newly scheduled start date. In the (rare) case of an event that has been postponed and rescheduled multiple times, this field may be repeated.
@@ -165,60 +167,20 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     protected $previousStartDate;
 
     /**
-     * A review of the item.
+     * A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Review
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $review;
+    protected $director;
 
     /**
-     * Organization or person who adapts a creative work to different languages, regional differences and technical requirements of a target market, or that translates during some event.
+     * The location of, for example, where an event is happening, where an organization is located, or where an action takes place.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\VirtualLocation
      */
-    protected $translator;
-
-    /**
-     * An organizer of an Event.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    protected $organizer;
-
-    /**
-     * Events that are a part of this event. For example, a conference event includes many presentations, each subEvents of the conference.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Event
-     */
-    protected $subEvents;
-
-    /**
-     * A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    protected $sponsor;
-
-    /**
-     * A flag to signal that the item, event, or place is accessible for free.
-     *
-     *
-     * @var bool|null
-     */
-    protected $isAccessibleForFree;
-
-    /**
-     * The total number of individuals that may attend an event or venue.
-     *
-     *
-     * @var int|null
-     */
-    protected $maximumAttendeeCapacity;
+    protected $location;
 
     /**
      * An eventStatus of an event represents its status; particularly useful when an event is cancelled or rescheduled.
@@ -237,12 +199,20 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     protected $maximumPhysicalAttendeeCapacity;
 
     /**
-     * An Event that is part of this event. For example, a conference event includes many presentations, each of which is a subEvent of the conference.
+     * The number of attendee places for an event that remain unallocated.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Event
+     * @var int|null
      */
-    protected $subEvent;
+    protected $remainingAttendeeCapacity;
+
+    /**
+     * A person or organization attending the event.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $attendee;
 
     /**
      * The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
@@ -253,44 +223,45 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     protected $endDate;
 
     /**
-     * A person or organization attending the event.
+     * An intended audience, i.e. a group for whom something was created.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @var \OpenActive\Models\SchemaOrg\Audience|string
      */
-    protected $attendee;
+    protected $audience;
 
     /**
-     * The CreativeWork that captured all or part of this Event.
+     * A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $recordedIn;
+    protected $sponsor;
 
     /**
-     * The subject matter of the content.
+     * An organizer of an Event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
-    protected $about;
+    protected $organizer;
 
     /**
-     * The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]].
+     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Language
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $inLanguage;
+    protected $actor;
 
     /**
-     * An event that this event is a part of. For example, a collection of individual music performances might each have a music festival as their superEvent.
+     * A work featured in some event, e.g. exhibited in an ExhibitionEvent.
+     *        Specific subproperties are available for workPerformed (e.g. a play), or a workPresented (a Movie at a ScreeningEvent).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Event
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
-    protected $superEvent;
+    protected $workFeatured;
 
     /**
      * The eventAttendanceMode of an event indicates whether it occurs online, offline, or a mix.
@@ -301,68 +272,36 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     protected $eventAttendanceMode;
 
     /**
-     * The person or organization who wrote a composition, or who is the composer of a work performed at some event.
+     * An event that this event is a part of. For example, a collection of individual music performances might each have a music festival as their superEvent.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Event|string
      */
-    protected $composer;
+    protected $superEvent;
+
+    /**
+     * A work performed in some event, for example a play performed in a TheaterEvent.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    protected $workPerformed;
+
+    /**
+     * The CreativeWork that captured all or part of this Event.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    protected $recordedIn;
 
     /**
      * The main performer or performers of the event&#x2014;for example, a presenter, musician, or actor.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
     protected $performers;
-
-    /**
-     * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).
-     *
-     *
-     * @var DateInterval|null
-     */
-    protected $duration;
-
-    /**
-     * The time admission will commence.
-     *
-     *
-     * @var DateTime|string|null
-     */
-    protected $doorTime;
-
-    /**
-     * A person or organization that supports (sponsors) something through some kind of financial contribution.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    protected $funder;
-
-    /**
-     * The number of attendee places for an event that remain unallocated.
-     *
-     *
-     * @var int|null
-     */
-    protected $remainingAttendeeCapacity;
-
-    /**
-     * The location of, for example, where an event is happening, where an organization is located, or where an action takes place.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\VirtualLocation|\OpenActive\Models\SchemaOrg\PostalAddress
-     */
-    protected $location;
-
-    /**
-     * An intended audience, i.e. a group for whom something was created.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Audience
-     */
-    protected $audience;
 
     /**
      * The maximum physical attendee capacity of an [[Event]] whose [[eventAttendanceMode]] is [[OnlineEventAttendanceMode]] (or the online aspects, in the case of a [[MixedEventAttendanceMode]]). 
@@ -373,210 +312,126 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     protected $maximumVirtualAttendeeCapacity;
 
     /**
-     * The typical expected age range, e.g. '7-9', '11-'.
+     * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
      *
      *
-     * @var string
+     * @var Date|DateTime|null
      */
-    protected $typicalAgeRange;
+    protected $startDate;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork
+     * The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]].
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Language
      */
-    public function getWorkFeatured()
+    protected $inLanguage;
+
+    /**
+     * A performer at the event&#x2014;for example, a presenter, musician, musical group or actor.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
+     */
+    protected $performer;
+
+    /**
+     * A review of the item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Review|string
+     */
+    protected $review;
+
+    /**
+     * Events that are a part of this event. For example, a conference event includes many presentations, each subEvents of the conference.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Event|string
+     */
+    protected $subEvents;
+
+    /**
+     * Associates an [[Event]] with a [[Schedule]]. There are circumstances where it is preferable to share a schedule for a series of
+     *       repeating events rather than data on the individual events themselves. For example, a website or application might prefer to publish a schedule for a weekly
+     *       gym class rather than provide data on every event. A schedule could be processed by applications to add forthcoming events to a calendar. An [[Event]] that
+     *       is associated with a [[Schedule]] using this property should not have [[startDate]] or [[endDate]] properties. These are instead defined within the associated
+     *       [[Schedule]], this avoids any ambiguity for clients using the data. The property might have repeated values to specify different schedules, e.g. for different months
+     *       or seasons.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Schedule|string
+     */
+    protected $eventSchedule;
+
+    /**
+     * A secondary contributor to the CreativeWork or Event.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $contributor;
+
+    /**
+     * A flag to signal that the item, event, or place is accessible for free.
+     *
+     *
+     * @var bool|null
+     */
+    protected $isAccessibleForFree;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Event|string
+     */
+    public function getSubEvent()
     {
-        return $this->workFeatured;
+        return $this->subEvent;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork $workFeatured
+     * @param \OpenActive\Models\SchemaOrg\Event|string $subEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setWorkFeatured($workFeatured)
+    public function setSubEvent($subEvent)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "\OpenActive\Models\SchemaOrg\Event",
+            "string",
         ];
 
-        $workFeatured = self::checkTypes($workFeatured, $types);
+        $subEvent = self::checkTypes($subEvent, $types);
 
-        $this->workFeatured = $workFeatured;
+        $this->subEvent = $subEvent;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AggregateRating
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
-    public function getAggregateRating()
+    public function getAbout()
     {
-        return $this->aggregateRating;
+        return $this->about;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AggregateRating $aggregateRating
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $about
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAggregateRating($aggregateRating)
+    public function setAbout($about)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\AggregateRating",
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
         ];
 
-        $aggregateRating = self::checkTypes($aggregateRating, $types);
+        $about = self::checkTypes($about, $types);
 
-        $this->aggregateRating = $aggregateRating;
+        $this->about = $about;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    public function getWorkPerformed()
-    {
-        return $this->workPerformed;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork $workPerformed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setWorkPerformed($workPerformed)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-        ];
-
-        $workPerformed = self::checkTypes($workPerformed, $types);
-
-        $this->workPerformed = $workPerformed;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Schedule
-     */
-    public function getEventSchedule()
-    {
-        return $this->eventSchedule;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Schedule $eventSchedule
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEventSchedule($eventSchedule)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Schedule",
-        ];
-
-        $eventSchedule = self::checkTypes($eventSchedule, $types);
-
-        $this->eventSchedule = $eventSchedule;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    public function getAttendees()
-    {
-        return $this->attendees;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $attendees
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAttendees($attendees)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-        ];
-
-        $attendees = self::checkTypes($attendees, $types);
-
-        $this->attendees = $attendees;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    public function getContributor()
-    {
-        return $this->contributor;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $contributor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setContributor($contributor)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-        ];
-
-        $contributor = self::checkTypes($contributor, $types);
-
-        $this->contributor = $contributor;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person
-     */
-    public function getActor()
-    {
-        return $this->actor;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person $actor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActor($actor)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-        ];
-
-        $actor = self::checkTypes($actor, $types);
-
-        $this->actor = $actor;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    public function getPerformer()
-    {
-        return $this->performer;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $performer
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPerformer($performer)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-        ];
-
-        $performer = self::checkTypes($performer, $types);
-
-        $this->performer = $performer;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand
+     * @return \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer|string
      */
     public function getOffers()
     {
@@ -584,15 +439,16 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand $offers
+     * @param \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer|string $offers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Offer",
             "\OpenActive\Models\SchemaOrg\Demand",
+            "\OpenActive\Models\SchemaOrg\Offer",
+            "string",
         ];
 
         $offers = self::checkTypes($offers, $types);
@@ -601,53 +457,233 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return DateTime|string|null
      */
-    public function getStartDate()
+    public function getDoorTime()
     {
-        return $this->startDate;
+        return $this->doorTime;
     }
 
     /**
-     * @param Date|DateTime|null $startDate
+     * @param DateTime|string|null $doorTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setStartDate($startDate)
+    public function setDoorTime($doorTime)
     {
         $types = [
-            "Date",
             "DateTime",
+            "Time",
             "null",
         ];
 
-        $startDate = self::checkTypes($startDate, $types);
+        $doorTime = self::checkTypes($doorTime, $types);
 
-        $this->startDate = $startDate;
+        $this->doorTime = $doorTime;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return string
      */
-    public function getDirector()
+    public function getTypicalAgeRange()
     {
-        return $this->director;
+        return $this->typicalAgeRange;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $director
+     * @param string $typicalAgeRange
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDirector($director)
+    public function setTypicalAgeRange($typicalAgeRange)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
-        $director = self::checkTypes($director, $types);
+        $typicalAgeRange = self::checkTypes($typicalAgeRange, $types);
 
-        $this->director = $director;
+        $this->typicalAgeRange = $typicalAgeRange;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getFunder()
+    {
+        return $this->funder;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $funder
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFunder($funder)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $funder = self::checkTypes($funder, $types);
+
+        $this->funder = $funder;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getMaximumAttendeeCapacity()
+    {
+        return $this->maximumAttendeeCapacity;
+    }
+
+    /**
+     * @param int|null $maximumAttendeeCapacity
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
+    {
+        $types = [
+            "int",
+            "null",
+        ];
+
+        $maximumAttendeeCapacity = self::checkTypes($maximumAttendeeCapacity, $types);
+
+        $this->maximumAttendeeCapacity = $maximumAttendeeCapacity;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AggregateRating|string
+     */
+    public function getAggregateRating()
+    {
+        return $this->aggregateRating;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\AggregateRating|string $aggregateRating
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAggregateRating($aggregateRating)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\AggregateRating",
+            "string",
+        ];
+
+        $aggregateRating = self::checkTypes($aggregateRating, $types);
+
+        $this->aggregateRating = $aggregateRating;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getAttendees()
+    {
+        return $this->attendees;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $attendees
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAttendees($attendees)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $attendees = self::checkTypes($attendees, $types);
+
+        $this->attendees = $attendees;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getComposer()
+    {
+        return $this->composer;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $composer
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setComposer($composer)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $composer = self::checkTypes($composer, $types);
+
+        $this->composer = $composer;
+    }
+
+    /**
+     * @return DateInterval|string|null
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * @param DateInterval|string|null $duration
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDuration($duration)
+    {
+        $types = [
+            "DateInterval",
+            "string",
+            "null",
+        ];
+
+        $duration = self::checkTypes($duration, $types);
+
+        $this->duration = $duration;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getTranslator()
+    {
+        return $this->translator;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $translator
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTranslator($translator)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $translator = self::checkTypes($translator, $types);
+
+        $this->translator = $translator;
     }
 
     /**
@@ -676,176 +712,55 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Review
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getReview()
+    public function getDirector()
     {
-        return $this->review;
+        return $this->director;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Review $review
+     * @param \OpenActive\Models\SchemaOrg\Person|string $director
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setReview($review)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Review",
-        ];
-
-        $review = self::checkTypes($review, $types);
-
-        $this->review = $review;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    public function getTranslator()
-    {
-        return $this->translator;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $translator
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTranslator($translator)
+    public function setDirector($director)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
         ];
 
-        $translator = self::checkTypes($translator, $types);
+        $director = self::checkTypes($director, $types);
 
-        $this->translator = $translator;
+        $this->director = $director;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\VirtualLocation
      */
-    public function getOrganizer()
+    public function getLocation()
     {
-        return $this->organizer;
+        return $this->location;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $organizer
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\VirtualLocation $location
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOrganizer($organizer)
+    public function setLocation($location)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "string",
+            "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\VirtualLocation",
         ];
 
-        $organizer = self::checkTypes($organizer, $types);
+        $location = self::checkTypes($location, $types);
 
-        $this->organizer = $organizer;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Event
-     */
-    public function getSubEvents()
-    {
-        return $this->subEvents;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Event $subEvents
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSubEvents($subEvents)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Event",
-        ];
-
-        $subEvents = self::checkTypes($subEvents, $types);
-
-        $this->subEvents = $subEvents;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
-     */
-    public function getSponsor()
-    {
-        return $this->sponsor;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $sponsor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSponsor($sponsor)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-        ];
-
-        $sponsor = self::checkTypes($sponsor, $types);
-
-        $this->sponsor = $sponsor;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getIsAccessibleForFree()
-    {
-        return $this->isAccessibleForFree;
-    }
-
-    /**
-     * @param bool|null $isAccessibleForFree
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIsAccessibleForFree($isAccessibleForFree)
-    {
-        $types = [
-            "bool",
-            "null",
-        ];
-
-        $isAccessibleForFree = self::checkTypes($isAccessibleForFree, $types);
-
-        $this->isAccessibleForFree = $isAccessibleForFree;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getMaximumAttendeeCapacity()
-    {
-        return $this->maximumAttendeeCapacity;
-    }
-
-    /**
-     * @param int|null $maximumAttendeeCapacity
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMaximumAttendeeCapacity($maximumAttendeeCapacity)
-    {
-        $types = [
-            "int",
-            "null",
-        ];
-
-        $maximumAttendeeCapacity = self::checkTypes($maximumAttendeeCapacity, $types);
-
-        $this->maximumAttendeeCapacity = $maximumAttendeeCapacity;
+        $this->location = $location;
     }
 
     /**
@@ -899,27 +814,54 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Event
+     * @return int|null
      */
-    public function getSubEvent()
+    public function getRemainingAttendeeCapacity()
     {
-        return $this->subEvent;
+        return $this->remainingAttendeeCapacity;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Event $subEvent
+     * @param int|null $remainingAttendeeCapacity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSubEvent($subEvent)
+    public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Event",
+            "int",
+            "null",
         ];
 
-        $subEvent = self::checkTypes($subEvent, $types);
+        $remainingAttendeeCapacity = self::checkTypes($remainingAttendeeCapacity, $types);
 
-        $this->subEvent = $subEvent;
+        $this->remainingAttendeeCapacity = $remainingAttendeeCapacity;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getAttendee()
+    {
+        return $this->attendee;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $attendee
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAttendee($attendee)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $attendee = self::checkTypes($attendee, $types);
+
+        $this->attendee = $attendee;
     }
 
     /**
@@ -949,125 +891,130 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization
+     * @return \OpenActive\Models\SchemaOrg\Audience|string
      */
-    public function getAttendee()
+    public function getAudience()
     {
-        return $this->attendee;
+        return $this->audience;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization $attendee
+     * @param \OpenActive\Models\SchemaOrg\Audience|string $audience
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAttendee($attendee)
+    public function setAudience($audience)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Audience",
+            "string",
+        ];
+
+        $audience = self::checkTypes($audience, $types);
+
+        $this->audience = $audience;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getSponsor()
+    {
+        return $this->sponsor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $sponsor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSponsor($sponsor)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $sponsor = self::checkTypes($sponsor, $types);
+
+        $this->sponsor = $sponsor;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getOrganizer()
+    {
+        return $this->organizer;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $organizer
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOrganizer($organizer)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
         ];
 
-        $attendee = self::checkTypes($attendee, $types);
+        $organizer = self::checkTypes($organizer, $types);
 
-        $this->attendee = $attendee;
+        $this->organizer = $organizer;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getRecordedIn()
+    public function getActor()
     {
-        return $this->recordedIn;
+        return $this->actor;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork $recordedIn
+     * @param \OpenActive\Models\SchemaOrg\Person|string $actor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRecordedIn($recordedIn)
+    public function setActor($actor)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $actor = self::checkTypes($actor, $types);
+
+        $this->actor = $actor;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    public function getWorkFeatured()
+    {
+        return $this->workFeatured;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $workFeatured
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setWorkFeatured($workFeatured)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\CreativeWork",
-        ];
-
-        $recordedIn = self::checkTypes($recordedIn, $types);
-
-        $this->recordedIn = $recordedIn;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getAbout()
-    {
-        return $this->about;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $about
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAbout($about)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
-        ];
-
-        $about = self::checkTypes($about, $types);
-
-        $this->about = $about;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Language
-     */
-    public function getInLanguage()
-    {
-        return $this->inLanguage;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Language $inLanguage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setInLanguage($inLanguage)
-    {
-        $types = [
             "string",
-            "\OpenActive\Models\SchemaOrg\Language",
         ];
 
-        $inLanguage = self::checkTypes($inLanguage, $types);
+        $workFeatured = self::checkTypes($workFeatured, $types);
 
-        $this->inLanguage = $inLanguage;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Event
-     */
-    public function getSuperEvent()
-    {
-        return $this->superEvent;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Event $superEvent
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSuperEvent($superEvent)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Event",
-        ];
-
-        $superEvent = self::checkTypes($superEvent, $types);
-
-        $this->superEvent = $superEvent;
+        $this->workFeatured = $workFeatured;
     }
 
     /**
@@ -1096,32 +1043,82 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Event|string
      */
-    public function getComposer()
+    public function getSuperEvent()
     {
-        return $this->composer;
+        return $this->superEvent;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $composer
+     * @param \OpenActive\Models\SchemaOrg\Event|string $superEvent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setComposer($composer)
+    public function setSuperEvent($superEvent)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Event",
+            "string",
         ];
 
-        $composer = self::checkTypes($composer, $types);
+        $superEvent = self::checkTypes($superEvent, $types);
 
-        $this->composer = $composer;
+        $this->superEvent = $superEvent;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    public function getWorkPerformed()
+    {
+        return $this->workPerformed;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $workPerformed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setWorkPerformed($workPerformed)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
+        ];
+
+        $workPerformed = self::checkTypes($workPerformed, $types);
+
+        $this->workPerformed = $workPerformed;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    public function getRecordedIn()
+    {
+        return $this->recordedIn;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $recordedIn
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRecordedIn($recordedIn)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
+        ];
+
+        $recordedIn = self::checkTypes($recordedIn, $types);
+
+        $this->recordedIn = $recordedIn;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
     public function getPerformers()
     {
@@ -1129,7 +1126,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $performers
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $performers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -1138,163 +1135,12 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
         $types = [
             "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
         $performers = self::checkTypes($performers, $types);
 
         $this->performers = $performers;
-    }
-
-    /**
-     * @return DateInterval|null
-     */
-    public function getDuration()
-    {
-        return $this->duration;
-    }
-
-    /**
-     * @param DateInterval|null $duration
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDuration($duration)
-    {
-        $types = [
-            "DateInterval",
-            "null",
-        ];
-
-        $duration = self::checkTypes($duration, $types);
-
-        $this->duration = $duration;
-    }
-
-    /**
-     * @return DateTime|string|null
-     */
-    public function getDoorTime()
-    {
-        return $this->doorTime;
-    }
-
-    /**
-     * @param DateTime|string|null $doorTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDoorTime($doorTime)
-    {
-        $types = [
-            "DateTime",
-            "Time",
-            "null",
-        ];
-
-        $doorTime = self::checkTypes($doorTime, $types);
-
-        $this->doorTime = $doorTime;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    public function getFunder()
-    {
-        return $this->funder;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $funder
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFunder($funder)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-        ];
-
-        $funder = self::checkTypes($funder, $types);
-
-        $this->funder = $funder;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getRemainingAttendeeCapacity()
-    {
-        return $this->remainingAttendeeCapacity;
-    }
-
-    /**
-     * @param int|null $remainingAttendeeCapacity
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRemainingAttendeeCapacity($remainingAttendeeCapacity)
-    {
-        $types = [
-            "int",
-            "null",
-        ];
-
-        $remainingAttendeeCapacity = self::checkTypes($remainingAttendeeCapacity, $types);
-
-        $this->remainingAttendeeCapacity = $remainingAttendeeCapacity;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\VirtualLocation|\OpenActive\Models\SchemaOrg\PostalAddress
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\VirtualLocation|\OpenActive\Models\SchemaOrg\PostalAddress $location
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLocation($location)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Place",
-            "string",
-            "\OpenActive\Models\SchemaOrg\VirtualLocation",
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
-        ];
-
-        $location = self::checkTypes($location, $types);
-
-        $this->location = $location;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Audience
-     */
-    public function getAudience()
-    {
-        return $this->audience;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Audience $audience
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAudience($audience)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Audience",
-        ];
-
-        $audience = self::checkTypes($audience, $types);
-
-        $this->audience = $audience;
     }
 
     /**
@@ -1323,27 +1169,206 @@ class Event extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return string
+     * @return Date|DateTime|null
      */
-    public function getTypicalAgeRange()
+    public function getStartDate()
     {
-        return $this->typicalAgeRange;
+        return $this->startDate;
     }
 
     /**
-     * @param string $typicalAgeRange
+     * @param Date|DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTypicalAgeRange($typicalAgeRange)
+    public function setStartDate($startDate)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $startDate = self::checkTypes($startDate, $types);
+
+        $this->startDate = $startDate;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Language
+     */
+    public function getInLanguage()
+    {
+        return $this->inLanguage;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Language $inLanguage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInLanguage($inLanguage)
     {
         $types = [
             "string",
+            "\OpenActive\Models\SchemaOrg\Language",
         ];
 
-        $typicalAgeRange = self::checkTypes($typicalAgeRange, $types);
+        $inLanguage = self::checkTypes($inLanguage, $types);
 
-        $this->typicalAgeRange = $typicalAgeRange;
+        $this->inLanguage = $inLanguage;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getPerformer()
+    {
+        return $this->performer;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $performer
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPerformer($performer)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $performer = self::checkTypes($performer, $types);
+
+        $this->performer = $performer;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Review|string
+     */
+    public function getReview()
+    {
+        return $this->review;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Review|string $review
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReview($review)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Review",
+            "string",
+        ];
+
+        $review = self::checkTypes($review, $types);
+
+        $this->review = $review;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Event|string
+     */
+    public function getSubEvents()
+    {
+        return $this->subEvents;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Event|string $subEvents
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSubEvents($subEvents)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Event",
+            "string",
+        ];
+
+        $subEvents = self::checkTypes($subEvents, $types);
+
+        $this->subEvents = $subEvents;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Schedule|string
+     */
+    public function getEventSchedule()
+    {
+        return $this->eventSchedule;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Schedule|string $eventSchedule
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEventSchedule($eventSchedule)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Schedule",
+            "string",
+        ];
+
+        $eventSchedule = self::checkTypes($eventSchedule, $types);
+
+        $this->eventSchedule = $eventSchedule;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getContributor()
+    {
+        return $this->contributor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $contributor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setContributor($contributor)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $contributor = self::checkTypes($contributor, $types);
+
+        $this->contributor = $contributor;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getIsAccessibleForFree()
+    {
+        return $this->isAccessibleForFree;
+    }
+
+    /**
+     * @param bool|null $isAccessibleForFree
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsAccessibleForFree($isAccessibleForFree)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $isAccessibleForFree = self::checkTypes($isAccessibleForFree, $types);
+
+        $this->isAccessibleForFree = $isAccessibleForFree;
     }
 
 }

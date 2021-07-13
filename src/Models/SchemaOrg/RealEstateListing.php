@@ -28,7 +28,7 @@ class RealEstateListing extends \OpenActive\Models\SchemaOrg\WebPage
      * Length of the lease for some [[Accommodation]], either particular to some [[Offer]] or in some cases intrinsic to the property.
      *
      *
-     * @var DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|DateInterval|string|null
      */
     protected $leaseLength;
 
@@ -41,7 +41,7 @@ class RealEstateListing extends \OpenActive\Models\SchemaOrg\WebPage
     protected $datePosted;
 
     /**
-     * @return DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|DateInterval|string|null
      */
     public function getLeaseLength()
     {
@@ -49,15 +49,16 @@ class RealEstateListing extends \OpenActive\Models\SchemaOrg\WebPage
     }
 
     /**
-     * @param DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $leaseLength
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|DateInterval|string|null $leaseLength
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setLeaseLength($leaseLength)
     {
         $types = [
-            "DateInterval",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "DateInterval",
+            "string",
             "null",
         ];
 

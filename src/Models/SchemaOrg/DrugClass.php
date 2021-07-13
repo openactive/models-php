@@ -27,12 +27,12 @@ class DrugClass extends \OpenActive\Models\SchemaOrg\MedicalEntity
      * Specifying a drug or medicine used in a medication procedure.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Drug
+     * @var \OpenActive\Models\SchemaOrg\Drug|string
      */
     protected $drug;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Drug
+     * @return \OpenActive\Models\SchemaOrg\Drug|string
      */
     public function getDrug()
     {
@@ -40,7 +40,7 @@ class DrugClass extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Drug $drug
+     * @param \OpenActive\Models\SchemaOrg\Drug|string $drug
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class DrugClass extends \OpenActive\Models\SchemaOrg\MedicalEntity
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Drug",
+            "string",
         ];
 
         $drug = self::checkTypes($drug, $types);

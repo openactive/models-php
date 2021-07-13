@@ -27,12 +27,12 @@ class DiagnosticLab extends \OpenActive\Models\SchemaOrg\MedicalOrganization
      * A diagnostic test or procedure offered by this lab.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTest
+     * @var \OpenActive\Models\SchemaOrg\MedicalTest|string
      */
     protected $availableTest;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTest
+     * @return \OpenActive\Models\SchemaOrg\MedicalTest|string
      */
     public function getAvailableTest()
     {
@@ -40,7 +40,7 @@ class DiagnosticLab extends \OpenActive\Models\SchemaOrg\MedicalOrganization
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTest $availableTest
+     * @param \OpenActive\Models\SchemaOrg\MedicalTest|string $availableTest
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class DiagnosticLab extends \OpenActive\Models\SchemaOrg\MedicalOrganization
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalTest",
+            "string",
         ];
 
         $availableTest = self::checkTypes($availableTest, $types);

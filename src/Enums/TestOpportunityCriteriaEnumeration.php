@@ -10,8 +10,9 @@ namespace OpenActive\Enums;
 class TestOpportunityCriteriaEnumeration
 {
     const TestOpportunityBookable = \OpenActive\Enums\TestOpportunityCriteriaEnumeration\TestOpportunityBookable::class;
-    const TestOpportunityOpenBookingNotAllowed = \OpenActive\Enums\TestOpportunityCriteriaEnumeration\TestOpportunityOpenBookingNotAllowed::class;
+    const TestOpportunityBookableInPast = \OpenActive\Enums\TestOpportunityCriteriaEnumeration\TestOpportunityBookableInPast::class;
     const TestOpportunityBookableNoSpaces = \OpenActive\Enums\TestOpportunityCriteriaEnumeration\TestOpportunityBookableNoSpaces::class;
+    const TestOpportunityBookableOneSpace = \OpenActive\Enums\TestOpportunityCriteriaEnumeration\TestOpportunityBookableOneSpace::class;
     const TestOpportunityBookableFiveSpaces = \OpenActive\Enums\TestOpportunityCriteriaEnumeration\TestOpportunityBookableFiveSpaces::class;
     const TestOpportunityBookableFree = \OpenActive\Enums\TestOpportunityCriteriaEnumeration\TestOpportunityBookableFree::class;
     const TestOpportunityBookableNonFree = \OpenActive\Enums\TestOpportunityCriteriaEnumeration\TestOpportunityBookableNonFree::class;

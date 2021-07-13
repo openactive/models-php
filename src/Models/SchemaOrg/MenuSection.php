@@ -17,55 +17,31 @@ class MenuSection extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "hasMenuItem" => "hasMenuItem",
             "hasMenuSection" => "hasMenuSection",
+            "hasMenuItem" => "hasMenuItem",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A food or drink item contained in a menu or menu section.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MenuItem
-     */
-    protected $hasMenuItem;
-
-    /**
      * A subgrouping of the menu (by dishes, course, serving time period, etc.).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MenuSection
+     * @var \OpenActive\Models\SchemaOrg\MenuSection|string
      */
     protected $hasMenuSection;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MenuItem
+     * A food or drink item contained in a menu or menu section.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MenuItem|string
      */
-    public function getHasMenuItem()
-    {
-        return $this->hasMenuItem;
-    }
+    protected $hasMenuItem;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MenuItem $hasMenuItem
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHasMenuItem($hasMenuItem)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MenuItem",
-        ];
-
-        $hasMenuItem = self::checkTypes($hasMenuItem, $types);
-
-        $this->hasMenuItem = $hasMenuItem;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MenuSection
+     * @return \OpenActive\Models\SchemaOrg\MenuSection|string
      */
     public function getHasMenuSection()
     {
@@ -73,7 +49,7 @@ class MenuSection extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MenuSection $hasMenuSection
+     * @param \OpenActive\Models\SchemaOrg\MenuSection|string $hasMenuSection
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -81,11 +57,37 @@ class MenuSection extends \OpenActive\Models\SchemaOrg\CreativeWork
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MenuSection",
+            "string",
         ];
 
         $hasMenuSection = self::checkTypes($hasMenuSection, $types);
 
         $this->hasMenuSection = $hasMenuSection;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MenuItem|string
+     */
+    public function getHasMenuItem()
+    {
+        return $this->hasMenuItem;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MenuItem|string $hasMenuItem
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasMenuItem($hasMenuItem)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MenuItem",
+            "string",
+        ];
+
+        $hasMenuItem = self::checkTypes($hasMenuItem, $types);
+
+        $this->hasMenuItem = $hasMenuItem;
     }
 
 }

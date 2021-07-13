@@ -8,10 +8,10 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class PriceComponentTypeEnumeration
 {
-    const Downpayment = \OpenActive\Enums\SchemaOrg\PriceComponentTypeEnumeration\Downpayment::class;
-    const CleaningFee = \OpenActive\Enums\SchemaOrg\PriceComponentTypeEnumeration\CleaningFee::class;
     const DistanceFee = \OpenActive\Enums\SchemaOrg\PriceComponentTypeEnumeration\DistanceFee::class;
     const ActivationFee = \OpenActive\Enums\SchemaOrg\PriceComponentTypeEnumeration\ActivationFee::class;
+    const CleaningFee = \OpenActive\Enums\SchemaOrg\PriceComponentTypeEnumeration\CleaningFee::class;
     const Installment = \OpenActive\Enums\SchemaOrg\PriceComponentTypeEnumeration\Installment::class;
     const Subscription = \OpenActive\Enums\SchemaOrg\PriceComponentTypeEnumeration\Subscription::class;
+    const Downpayment = \OpenActive\Enums\SchemaOrg\PriceComponentTypeEnumeration\Downpayment::class;
 }

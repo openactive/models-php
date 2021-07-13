@@ -28,7 +28,7 @@ class WriteAction extends \OpenActive\Models\SchemaOrg\CreateAction
      * A sub property of instrument. The language used on this action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Language
+     * @var \OpenActive\Models\SchemaOrg\Language|string
      */
     protected $language;
 
@@ -41,7 +41,7 @@ class WriteAction extends \OpenActive\Models\SchemaOrg\CreateAction
     protected $inLanguage;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Language
+     * @return \OpenActive\Models\SchemaOrg\Language|string
      */
     public function getLanguage()
     {
@@ -49,7 +49,7 @@ class WriteAction extends \OpenActive\Models\SchemaOrg\CreateAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Language $language
+     * @param \OpenActive\Models\SchemaOrg\Language|string $language
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -57,6 +57,7 @@ class WriteAction extends \OpenActive\Models\SchemaOrg\CreateAction
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Language",
+            "string",
         ];
 
         $language = self::checkTypes($language, $types);

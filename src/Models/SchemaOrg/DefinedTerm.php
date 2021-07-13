@@ -17,20 +17,12 @@ class DefinedTerm extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "inDefinedTermSet" => "inDefinedTermSet",
             "termCode" => "termCode",
+            "inDefinedTermSet" => "inDefinedTermSet",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A [[DefinedTermSet]] that contains this term.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DefinedTermSet|string
-     */
-    protected $inDefinedTermSet;
 
     /**
      * A code that identifies this [[DefinedTerm]] within a [[DefinedTermSet]]
@@ -41,29 +33,12 @@ class DefinedTerm extends \OpenActive\Models\SchemaOrg\Intangible
     protected $termCode;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedTermSet|string
+     * A [[DefinedTermSet]] that contains this term.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\DefinedTermSet
      */
-    public function getInDefinedTermSet()
-    {
-        return $this->inDefinedTermSet;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTermSet|string $inDefinedTermSet
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setInDefinedTermSet($inDefinedTermSet)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DefinedTermSet",
-            "string",
-        ];
-
-        $inDefinedTermSet = self::checkTypes($inDefinedTermSet, $types);
-
-        $this->inDefinedTermSet = $inDefinedTermSet;
-    }
+    protected $inDefinedTermSet;
 
     /**
      * @return string
@@ -87,6 +62,31 @@ class DefinedTerm extends \OpenActive\Models\SchemaOrg\Intangible
         $termCode = self::checkTypes($termCode, $types);
 
         $this->termCode = $termCode;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\DefinedTermSet
+     */
+    public function getInDefinedTermSet()
+    {
+        return $this->inDefinedTermSet;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\DefinedTermSet $inDefinedTermSet
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInDefinedTermSet($inDefinedTermSet)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\DefinedTermSet",
+        ];
+
+        $inDefinedTermSet = self::checkTypes($inDefinedTermSet, $types);
+
+        $this->inDefinedTermSet = $inDefinedTermSet;
     }
 
 }

@@ -17,55 +17,31 @@ class MediaSubscription extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "authenticator" => "authenticator",
             "expectsAcceptanceOf" => "expectsAcceptanceOf",
+            "authenticator" => "authenticator",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The Organization responsible for authenticating the user's subscription. For example, many media apps require a cable/satellite provider to authenticate your subscription before playing media.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization
-     */
-    protected $authenticator;
-
-    /**
      * An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Offer
+     * @var \OpenActive\Models\SchemaOrg\Offer|string
      */
     protected $expectsAcceptanceOf;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization
+     * The Organization responsible for authenticating the user's subscription. For example, many media apps require a cable/satellite provider to authenticate your subscription before playing media.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|string
      */
-    public function getAuthenticator()
-    {
-        return $this->authenticator;
-    }
+    protected $authenticator;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization $authenticator
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAuthenticator($authenticator)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-        ];
-
-        $authenticator = self::checkTypes($authenticator, $types);
-
-        $this->authenticator = $authenticator;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Offer
+     * @return \OpenActive\Models\SchemaOrg\Offer|string
      */
     public function getExpectsAcceptanceOf()
     {
@@ -73,7 +49,7 @@ class MediaSubscription extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Offer $expectsAcceptanceOf
+     * @param \OpenActive\Models\SchemaOrg\Offer|string $expectsAcceptanceOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -81,11 +57,37 @@ class MediaSubscription extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Offer",
+            "string",
         ];
 
         $expectsAcceptanceOf = self::checkTypes($expectsAcceptanceOf, $types);
 
         $this->expectsAcceptanceOf = $expectsAcceptanceOf;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getAuthenticator()
+    {
+        return $this->authenticator;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|string $authenticator
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAuthenticator($authenticator)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $authenticator = self::checkTypes($authenticator, $types);
+
+        $this->authenticator = $authenticator;
     }
 
 }

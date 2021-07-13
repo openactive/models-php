@@ -17,30 +17,14 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "guidelineDate" => "guidelineDate",
-            "evidenceLevel" => "evidenceLevel",
             "evidenceOrigin" => "evidenceOrigin",
+            "evidenceLevel" => "evidenceLevel",
+            "guidelineDate" => "guidelineDate",
             "guidelineSubject" => "guidelineSubject",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Date on which this guideline's recommendation was made.
-     *
-     *
-     * @var Date|null
-     */
-    protected $guidelineDate;
-
-    /**
-     * Strength of evidence of the data used to formulate the guideline (enumerated).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalEvidenceLevel
-     */
-    protected $evidenceLevel;
 
     /**
      * Source of the data used to formulate the guidance, e.g. RCT, consensus opinion, etc.
@@ -51,12 +35,77 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $evidenceOrigin;
 
     /**
+     * Strength of evidence of the data used to formulate the guideline (enumerated).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalEvidenceLevel|string
+     */
+    protected $evidenceLevel;
+
+    /**
+     * Date on which this guideline's recommendation was made.
+     *
+     *
+     * @var Date|null
+     */
+    protected $guidelineDate;
+
+    /**
      * The medical conditions, treatments, etc. that are the subject of the guideline.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalEntity
+     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
     protected $guidelineSubject;
+
+    /**
+     * @return string
+     */
+    public function getEvidenceOrigin()
+    {
+        return $this->evidenceOrigin;
+    }
+
+    /**
+     * @param string $evidenceOrigin
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEvidenceOrigin($evidenceOrigin)
+    {
+        $types = [
+            "string",
+        ];
+
+        $evidenceOrigin = self::checkTypes($evidenceOrigin, $types);
+
+        $this->evidenceOrigin = $evidenceOrigin;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalEvidenceLevel|string
+     */
+    public function getEvidenceLevel()
+    {
+        return $this->evidenceLevel;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalEvidenceLevel|string $evidenceLevel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEvidenceLevel($evidenceLevel)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalEvidenceLevel",
+            "string",
+        ];
+
+        $evidenceLevel = self::checkTypes($evidenceLevel, $types);
+
+        $this->evidenceLevel = $evidenceLevel;
+    }
 
     /**
      * @return Date|null
@@ -84,55 +133,7 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalEvidenceLevel
-     */
-    public function getEvidenceLevel()
-    {
-        return $this->evidenceLevel;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalEvidenceLevel $evidenceLevel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEvidenceLevel($evidenceLevel)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalEvidenceLevel",
-        ];
-
-        $evidenceLevel = self::checkTypes($evidenceLevel, $types);
-
-        $this->evidenceLevel = $evidenceLevel;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEvidenceOrigin()
-    {
-        return $this->evidenceOrigin;
-    }
-
-    /**
-     * @param string $evidenceOrigin
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEvidenceOrigin($evidenceOrigin)
-    {
-        $types = [
-            "string",
-        ];
-
-        $evidenceOrigin = self::checkTypes($evidenceOrigin, $types);
-
-        $this->evidenceOrigin = $evidenceOrigin;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalEntity
+     * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
     public function getGuidelineSubject()
     {
@@ -140,7 +141,7 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalEntity $guidelineSubject
+     * @param \OpenActive\Models\SchemaOrg\MedicalEntity|string $guidelineSubject
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -148,6 +149,7 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalEntity",
+            "string",
         ];
 
         $guidelineSubject = self::checkTypes($guidelineSubject, $types);

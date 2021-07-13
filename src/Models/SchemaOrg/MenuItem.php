@@ -17,23 +17,39 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "offers" => "offers",
-            "suitableForDiet" => "suitableForDiet",
             "menuAddOn" => "menuAddOn",
+            "offers" => "offers",
             "nutrition" => "nutrition",
+            "suitableForDiet" => "suitableForDiet",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
+     * Additional menu item(s) such as a side dish of salad or side order of fries that can be added to this menu item. Additionally it can be a menu section containing allowed add-on menu items for this menu item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MenuSection|\OpenActive\Models\SchemaOrg\MenuItem|string
+     */
+    protected $menuAddOn;
+
+    /**
      * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use [[businessFunction]] to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a [[Demand]]. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer.
      *       
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand
+     * @var \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer|string
      */
     protected $offers;
+
+    /**
+     * Nutrition information about the recipe or menu item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\NutritionInformation|string
+     */
+    protected $nutrition;
 
     /**
      * Indicates a dietary restriction or guideline for which this recipe or menu item is suitable, e.g. diabetic, halal etc.
@@ -44,23 +60,33 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $suitableForDiet;
 
     /**
-     * Additional menu item(s) such as a side dish of salad or side order of fries that can be added to this menu item. Additionally it can be a menu section containing allowed add-on menu items for this menu item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\MenuSection
+     * @return \OpenActive\Models\SchemaOrg\MenuSection|\OpenActive\Models\SchemaOrg\MenuItem|string
      */
-    protected $menuAddOn;
+    public function getMenuAddOn()
+    {
+        return $this->menuAddOn;
+    }
 
     /**
-     * Nutrition information about the recipe or menu item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\NutritionInformation
+     * @param \OpenActive\Models\SchemaOrg\MenuSection|\OpenActive\Models\SchemaOrg\MenuItem|string $menuAddOn
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $nutrition;
+    public function setMenuAddOn($menuAddOn)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MenuSection",
+            "\OpenActive\Models\SchemaOrg\MenuItem",
+            "string",
+        ];
+
+        $menuAddOn = self::checkTypes($menuAddOn, $types);
+
+        $this->menuAddOn = $menuAddOn;
+    }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand
+     * @return \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer|string
      */
     public function getOffers()
     {
@@ -68,20 +94,46 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand $offers
+     * @param \OpenActive\Models\SchemaOrg\Demand|\OpenActive\Models\SchemaOrg\Offer|string $offers
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOffers($offers)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Offer",
             "\OpenActive\Models\SchemaOrg\Demand",
+            "\OpenActive\Models\SchemaOrg\Offer",
+            "string",
         ];
 
         $offers = self::checkTypes($offers, $types);
 
         $this->offers = $offers;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\NutritionInformation|string
+     */
+    public function getNutrition()
+    {
+        return $this->nutrition;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\NutritionInformation|string $nutrition
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNutrition($nutrition)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\NutritionInformation",
+            "string",
+        ];
+
+        $nutrition = self::checkTypes($nutrition, $types);
+
+        $this->nutrition = $nutrition;
     }
 
     /**
@@ -107,55 +159,6 @@ class MenuItem extends \OpenActive\Models\SchemaOrg\Intangible
         $suitableForDiet = self::checkTypes($suitableForDiet, $types);
 
         $this->suitableForDiet = $suitableForDiet;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\MenuSection
-     */
-    public function getMenuAddOn()
-    {
-        return $this->menuAddOn;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MenuItem|\OpenActive\Models\SchemaOrg\MenuSection $menuAddOn
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMenuAddOn($menuAddOn)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MenuItem",
-            "\OpenActive\Models\SchemaOrg\MenuSection",
-        ];
-
-        $menuAddOn = self::checkTypes($menuAddOn, $types);
-
-        $this->menuAddOn = $menuAddOn;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\NutritionInformation
-     */
-    public function getNutrition()
-    {
-        return $this->nutrition;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\NutritionInformation $nutrition
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNutrition($nutrition)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\NutritionInformation",
-        ];
-
-        $nutrition = self::checkTypes($nutrition, $types);
-
-        $this->nutrition = $nutrition;
     }
 
 }

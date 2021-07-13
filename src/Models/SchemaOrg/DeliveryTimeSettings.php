@@ -17,14 +17,22 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "isUnlabelledFallback" => "isUnlabelledFallback",
             "shippingDestination" => "shippingDestination",
-            "transitTimeLabel" => "transitTimeLabel",
+            "isUnlabelledFallback" => "isUnlabelledFallback",
             "deliveryTime" => "deliveryTime",
+            "transitTimeLabel" => "transitTimeLabel",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * indicates (possibly multiple) shipping destinations. These can be defined in several ways e.g. postalCode ranges.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedRegion|string
+     */
+    protected $shippingDestination;
 
     /**
      * This can be marked 'true' to indicate that some published [[DeliveryTimeSettings]] or [[ShippingRateSettings]] are intended to apply to all [[OfferShippingDetails]] published by the same merchant, when referenced by a [[shippingSettingsLink]] in those settings. It is not meaningful to use a 'true' value for this property alongside a transitTimeLabel (for [[DeliveryTimeSettings]]) or shippingLabel (for [[ShippingRateSettings]]), since this property is for use with unlabelled settings.
@@ -35,12 +43,12 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $isUnlabelledFallback;
 
     /**
-     * indicates (possibly multiple) shipping destinations. These can be defined in several ways e.g. postalCode ranges.
+     * The total delay between the receipt of the order and the goods reaching the final customer.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DefinedRegion
+     * @var \OpenActive\Models\SchemaOrg\ShippingDeliveryTime|string
      */
-    protected $shippingDestination;
+    protected $deliveryTime;
 
     /**
      * Label to match an [[OfferShippingDetails]] with a [[DeliveryTimeSettings]] (within the context of a [[shippingSettingsLink]] cross-reference).
@@ -51,12 +59,29 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $transitTimeLabel;
 
     /**
-     * The total delay between the receipt of the order and the goods reaching the final customer.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ShippingDeliveryTime
+     * @return \OpenActive\Models\SchemaOrg\DefinedRegion|string
      */
-    protected $deliveryTime;
+    public function getShippingDestination()
+    {
+        return $this->shippingDestination;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedRegion|string $shippingDestination
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setShippingDestination($shippingDestination)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedRegion",
+            "string",
+        ];
+
+        $shippingDestination = self::checkTypes($shippingDestination, $types);
+
+        $this->shippingDestination = $shippingDestination;
+    }
 
     /**
      * @return bool|null
@@ -84,27 +109,28 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedRegion
+     * @return \OpenActive\Models\SchemaOrg\ShippingDeliveryTime|string
      */
-    public function getShippingDestination()
+    public function getDeliveryTime()
     {
-        return $this->shippingDestination;
+        return $this->deliveryTime;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedRegion $shippingDestination
+     * @param \OpenActive\Models\SchemaOrg\ShippingDeliveryTime|string $deliveryTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setShippingDestination($shippingDestination)
+    public function setDeliveryTime($deliveryTime)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\DefinedRegion",
+            "\OpenActive\Models\SchemaOrg\ShippingDeliveryTime",
+            "string",
         ];
 
-        $shippingDestination = self::checkTypes($shippingDestination, $types);
+        $deliveryTime = self::checkTypes($deliveryTime, $types);
 
-        $this->shippingDestination = $shippingDestination;
+        $this->deliveryTime = $deliveryTime;
     }
 
     /**
@@ -129,30 +155,6 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
         $transitTimeLabel = self::checkTypes($transitTimeLabel, $types);
 
         $this->transitTimeLabel = $transitTimeLabel;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ShippingDeliveryTime
-     */
-    public function getDeliveryTime()
-    {
-        return $this->deliveryTime;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ShippingDeliveryTime $deliveryTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDeliveryTime($deliveryTime)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ShippingDeliveryTime",
-        ];
-
-        $deliveryTime = self::checkTypes($deliveryTime, $types);
-
-        $this->deliveryTime = $deliveryTime;
     }
 
 }

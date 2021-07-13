@@ -18,9 +18,9 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     public static function fieldList() {
         $fields = [
             "accessCode" => "accessCode",
+            "availableThrough" => "availableThrough",
             "hasDeliveryMethod" => "hasDeliveryMethod",
             "availableFrom" => "availableFrom",
-            "availableThrough" => "availableThrough",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -33,6 +33,14 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
      * @var string
      */
     protected $accessCode;
+
+    /**
+     * After this date, the item will no longer be available for pickup.
+     *
+     *
+     * @var DateTime|null
+     */
+    protected $availableThrough;
 
     /**
      * Method used for delivery or shipping.
@@ -49,14 +57,6 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
      * @var DateTime|null
      */
     protected $availableFrom;
-
-    /**
-     * After this date, the item will no longer be available for pickup.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $availableThrough;
 
     /**
      * @return string
@@ -80,6 +80,31 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
         $accessCode = self::checkTypes($accessCode, $types);
 
         $this->accessCode = $accessCode;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getAvailableThrough()
+    {
+        return $this->availableThrough;
+    }
+
+    /**
+     * @param DateTime|null $availableThrough
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAvailableThrough($availableThrough)
+    {
+        $types = [
+            "DateTime",
+            "null",
+        ];
+
+        $availableThrough = self::checkTypes($availableThrough, $types);
+
+        $this->availableThrough = $availableThrough;
     }
 
     /**
@@ -130,31 +155,6 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
         $availableFrom = self::checkTypes($availableFrom, $types);
 
         $this->availableFrom = $availableFrom;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getAvailableThrough()
-    {
-        return $this->availableThrough;
-    }
-
-    /**
-     * @param DateTime|null $availableThrough
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAvailableThrough($availableThrough)
-    {
-        $types = [
-            "DateTime",
-            "null",
-        ];
-
-        $availableThrough = self::checkTypes($availableThrough, $types);
-
-        $this->availableThrough = $availableThrough;
     }
 
 }

@@ -27,12 +27,12 @@ class MedicalRiskFactor extends \OpenActive\Models\SchemaOrg\MedicalEntity
      * The condition, complication, etc. influenced by this factor.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalEntity
+     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
     protected $increasesRiskOf;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalEntity
+     * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
     public function getIncreasesRiskOf()
     {
@@ -40,7 +40,7 @@ class MedicalRiskFactor extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalEntity $increasesRiskOf
+     * @param \OpenActive\Models\SchemaOrg\MedicalEntity|string $increasesRiskOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class MedicalRiskFactor extends \OpenActive\Models\SchemaOrg\MedicalEntity
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalEntity",
+            "string",
         ];
 
         $increasesRiskOf = self::checkTypes($increasesRiskOf, $types);

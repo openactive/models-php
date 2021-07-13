@@ -27,12 +27,12 @@ class LeaveAction extends \OpenActive\Models\SchemaOrg\InteractAction
      * Upcoming or past event associated with this place, organization, or action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Event
+     * @var \OpenActive\Models\SchemaOrg\Event|string
      */
     protected $event;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Event
+     * @return \OpenActive\Models\SchemaOrg\Event|string
      */
     public function getEvent()
     {
@@ -40,7 +40,7 @@ class LeaveAction extends \OpenActive\Models\SchemaOrg\InteractAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Event $event
+     * @param \OpenActive\Models\SchemaOrg\Event|string $event
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class LeaveAction extends \OpenActive\Models\SchemaOrg\InteractAction
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Event",
+            "string",
         ];
 
         $event = self::checkTypes($event, $types);

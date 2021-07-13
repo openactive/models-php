@@ -17,20 +17,12 @@ class Substance extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "maximumIntake" => "maximumIntake",
             "activeIngredient" => "activeIngredient",
+            "maximumIntake" => "maximumIntake",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Recommended intake of this supplement for a given population as defined by a specific recommending authority.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MaximumDoseSchedule
-     */
-    protected $maximumIntake;
 
     /**
      * An active ingredient, typically chemical compounds and/or biologic substances.
@@ -41,28 +33,12 @@ class Substance extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $activeIngredient;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MaximumDoseSchedule
+     * Recommended intake of this supplement for a given population as defined by a specific recommending authority.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string
      */
-    public function getMaximumIntake()
-    {
-        return $this->maximumIntake;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MaximumDoseSchedule $maximumIntake
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMaximumIntake($maximumIntake)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MaximumDoseSchedule",
-        ];
-
-        $maximumIntake = self::checkTypes($maximumIntake, $types);
-
-        $this->maximumIntake = $maximumIntake;
-    }
+    protected $maximumIntake;
 
     /**
      * @return string
@@ -86,6 +62,31 @@ class Substance extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $activeIngredient = self::checkTypes($activeIngredient, $types);
 
         $this->activeIngredient = $activeIngredient;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string
+     */
+    public function getMaximumIntake()
+    {
+        return $this->maximumIntake;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string $maximumIntake
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMaximumIntake($maximumIntake)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MaximumDoseSchedule",
+            "string",
+        ];
+
+        $maximumIntake = self::checkTypes($maximumIntake, $types);
+
+        $this->maximumIntake = $maximumIntake;
     }
 
 }

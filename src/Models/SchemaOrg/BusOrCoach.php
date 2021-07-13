@@ -17,20 +17,12 @@ class BusOrCoach extends \OpenActive\Models\SchemaOrg\Vehicle
 
     public static function fieldList() {
         $fields = [
-            "roofLoad" => "roofLoad",
             "acrissCode" => "acrissCode",
+            "roofLoad" => "roofLoad",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The permitted total weight of cargo and installations (e.g. a roof rack) on top of the vehicle.\n\nTypical unit code(s): KGM for kilogram, LBR for pound\n\n* Note 1: You can indicate additional information in the [[name]] of the [[QuantitativeValue]] node.\n* Note 2: You may also link to a [[QualitativeValue]] node that provides additional information using [[valueReference]]\n* Note 3: Note that you can use [[minValue]] and [[maxValue]] to indicate ranges.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    protected $roofLoad;
 
     /**
      * The ACRISS Car Classification Code is a code used by many car rental companies, for classifying vehicles. ACRISS stands for Association of Car Rental Industry Systems and Standards.
@@ -41,28 +33,12 @@ class BusOrCoach extends \OpenActive\Models\SchemaOrg\Vehicle
     protected $acrissCode;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
+     * The permitted total weight of cargo and installations (e.g. a roof rack) on top of the vehicle.\n\nTypical unit code(s): KGM for kilogram, LBR for pound\n\n* Note 1: You can indicate additional information in the [[name]] of the [[QuantitativeValue]] node.\n* Note 2: You may also link to a [[QualitativeValue]] node that provides additional information using [[valueReference]]\n* Note 3: Note that you can use [[minValue]] and [[maxValue]] to indicate ranges.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
-    public function getRoofLoad()
-    {
-        return $this->roofLoad;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $roofLoad
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRoofLoad($roofLoad)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-        ];
-
-        $roofLoad = self::checkTypes($roofLoad, $types);
-
-        $this->roofLoad = $roofLoad;
-    }
+    protected $roofLoad;
 
     /**
      * @return string
@@ -86,6 +62,31 @@ class BusOrCoach extends \OpenActive\Models\SchemaOrg\Vehicle
         $acrissCode = self::checkTypes($acrissCode, $types);
 
         $this->acrissCode = $acrissCode;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    public function getRoofLoad()
+    {
+        return $this->roofLoad;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $roofLoad
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRoofLoad($roofLoad)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
+        ];
+
+        $roofLoad = self::checkTypes($roofLoad, $types);
+
+        $this->roofLoad = $roofLoad;
     }
 
 }

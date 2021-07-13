@@ -29,7 +29,7 @@ class EnergyConsumptionDetails extends \OpenActive\Models\SchemaOrg\Intangible
      * Specifies the most energy efficient class on the regulated EU energy consumption scale for the product category a product belongs to. For example, energy consumption for televisions placed on the market after January 1, 2020 is scaled from D to A+++.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration
+     * @var \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration|string
      */
     protected $energyEfficiencyScaleMax;
 
@@ -37,7 +37,7 @@ class EnergyConsumptionDetails extends \OpenActive\Models\SchemaOrg\Intangible
      * Specifies the least energy efficient class on the regulated EU energy consumption scale for the product category a product belongs to. For example, energy consumption for televisions placed on the market after January 1, 2020 is scaled from D to A+++.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration
+     * @var \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration|string
      */
     protected $energyEfficiencyScaleMin;
 
@@ -50,7 +50,7 @@ class EnergyConsumptionDetails extends \OpenActive\Models\SchemaOrg\Intangible
     protected $hasEnergyEfficiencyCategory;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration
+     * @return \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration|string
      */
     public function getEnergyEfficiencyScaleMax()
     {
@@ -58,7 +58,7 @@ class EnergyConsumptionDetails extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration $energyEfficiencyScaleMax
+     * @param \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration|string $energyEfficiencyScaleMax
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -66,6 +66,7 @@ class EnergyConsumptionDetails extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration",
+            "string",
         ];
 
         $energyEfficiencyScaleMax = self::checkTypes($energyEfficiencyScaleMax, $types);
@@ -74,7 +75,7 @@ class EnergyConsumptionDetails extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration
+     * @return \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration|string
      */
     public function getEnergyEfficiencyScaleMin()
     {
@@ -82,7 +83,7 @@ class EnergyConsumptionDetails extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration $energyEfficiencyScaleMin
+     * @param \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration|string $energyEfficiencyScaleMin
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -90,6 +91,7 @@ class EnergyConsumptionDetails extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration",
+            "string",
         ];
 
         $energyEfficiencyScaleMin = self::checkTypes($energyEfficiencyScaleMin, $types);

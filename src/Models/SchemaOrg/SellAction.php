@@ -28,7 +28,7 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
      * A sub property of participant. The participant/person/organization that bought the object.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
     protected $buyer;
 
@@ -36,12 +36,12 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
      * The warranty promise(s) included in the offer.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\WarrantyPromise
+     * @var \OpenActive\Models\SchemaOrg\WarrantyPromise|string
      */
     protected $warrantyPromise;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
     public function getBuyer()
     {
@@ -49,7 +49,7 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $buyer
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $buyer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -57,6 +57,8 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
         ];
 
         $buyer = self::checkTypes($buyer, $types);
@@ -65,7 +67,7 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\WarrantyPromise
+     * @return \OpenActive\Models\SchemaOrg\WarrantyPromise|string
      */
     public function getWarrantyPromise()
     {
@@ -73,7 +75,7 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\WarrantyPromise $warrantyPromise
+     * @param \OpenActive\Models\SchemaOrg\WarrantyPromise|string $warrantyPromise
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -81,6 +83,7 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\WarrantyPromise",
+            "string",
         ];
 
         $warrantyPromise = self::checkTypes($warrantyPromise, $types);

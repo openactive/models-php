@@ -27,12 +27,12 @@ class ImagingTest extends \OpenActive\Models\SchemaOrg\MedicalTest
      * Imaging technique used.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalImagingTechnique
+     * @var \OpenActive\Models\SchemaOrg\MedicalImagingTechnique|string
      */
     protected $imagingTechnique;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalImagingTechnique
+     * @return \OpenActive\Models\SchemaOrg\MedicalImagingTechnique|string
      */
     public function getImagingTechnique()
     {
@@ -40,7 +40,7 @@ class ImagingTest extends \OpenActive\Models\SchemaOrg\MedicalTest
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalImagingTechnique $imagingTechnique
+     * @param \OpenActive\Models\SchemaOrg\MedicalImagingTechnique|string $imagingTechnique
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class ImagingTest extends \OpenActive\Models\SchemaOrg\MedicalTest
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalImagingTechnique",
+            "string",
         ];
 
         $imagingTechnique = self::checkTypes($imagingTechnique, $types);

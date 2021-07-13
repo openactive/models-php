@@ -17,22 +17,22 @@ class DoseSchedule extends \OpenActive\Models\SchemaOrg\MedicalIntangible
 
     public static function fieldList() {
         $fields = [
-            "frequency" => "frequency",
+            "targetPopulation" => "targetPopulation",
             "doseValue" => "doseValue",
             "doseUnit" => "doseUnit",
-            "targetPopulation" => "targetPopulation",
+            "frequency" => "frequency",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * How often the dose is taken, e.g. 'daily'.
+     * Characteristics of the population for which this is intended, or which typically uses it, e.g. 'adults'.
      *
      *
      * @var string
      */
-    protected $frequency;
+    protected $targetPopulation;
 
     /**
      * The value of the dose, e.g. 500.
@@ -51,35 +51,35 @@ class DoseSchedule extends \OpenActive\Models\SchemaOrg\MedicalIntangible
     protected $doseUnit;
 
     /**
-     * Characteristics of the population for which this is intended, or which typically uses it, e.g. 'adults'.
+     * How often the dose is taken, e.g. 'daily'.
      *
      *
      * @var string
      */
-    protected $targetPopulation;
+    protected $frequency;
 
     /**
      * @return string
      */
-    public function getFrequency()
+    public function getTargetPopulation()
     {
-        return $this->frequency;
+        return $this->targetPopulation;
     }
 
     /**
-     * @param string $frequency
+     * @param string $targetPopulation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setFrequency($frequency)
+    public function setTargetPopulation($targetPopulation)
     {
         $types = [
             "string",
         ];
 
-        $frequency = self::checkTypes($frequency, $types);
+        $targetPopulation = self::checkTypes($targetPopulation, $types);
 
-        $this->frequency = $frequency;
+        $this->targetPopulation = $targetPopulation;
     }
 
     /**
@@ -135,25 +135,25 @@ class DoseSchedule extends \OpenActive\Models\SchemaOrg\MedicalIntangible
     /**
      * @return string
      */
-    public function getTargetPopulation()
+    public function getFrequency()
     {
-        return $this->targetPopulation;
+        return $this->frequency;
     }
 
     /**
-     * @param string $targetPopulation
+     * @param string $frequency
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTargetPopulation($targetPopulation)
+    public function setFrequency($frequency)
     {
         $types = [
             "string",
         ];
 
-        $targetPopulation = self::checkTypes($targetPopulation, $types);
+        $frequency = self::checkTypes($frequency, $types);
 
-        $this->targetPopulation = $targetPopulation;
+        $this->frequency = $frequency;
     }
 
 }

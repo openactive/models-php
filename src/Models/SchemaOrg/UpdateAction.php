@@ -28,7 +28,7 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
      * A sub property of object. The collection target of the action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
     protected $collection;
 
@@ -36,12 +36,12 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
      * A sub property of object. The collection target of the action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
     protected $targetCollection;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
     public function getCollection()
     {
@@ -49,7 +49,7 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $collection
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $collection
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -57,6 +57,7 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
         ];
 
         $collection = self::checkTypes($collection, $types);
@@ -65,7 +66,7 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
     public function getTargetCollection()
     {
@@ -73,7 +74,7 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $targetCollection
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $targetCollection
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -81,6 +82,7 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
         ];
 
         $targetCollection = self::checkTypes($targetCollection, $types);

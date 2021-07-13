@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class HealthClub extends \OpenActive\Models\SchemaOrg\HealthAndBeautyBusiness
+class HealthClub extends \OpenActive\Models\SchemaOrg\SportsActivityLocation
 {
     /**
      * @return string[]|null

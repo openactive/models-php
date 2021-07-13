@@ -27,12 +27,12 @@ class TravelAction extends \OpenActive\Models\SchemaOrg\MoveAction
      * The distance travelled, e.g. exercising or travelling.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Distance
+     * @var \OpenActive\Models\SchemaOrg\Distance|string
      */
     protected $distance;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Distance
+     * @return \OpenActive\Models\SchemaOrg\Distance|string
      */
     public function getDistance()
     {
@@ -40,7 +40,7 @@ class TravelAction extends \OpenActive\Models\SchemaOrg\MoveAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Distance $distance
+     * @param \OpenActive\Models\SchemaOrg\Distance|string $distance
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class TravelAction extends \OpenActive\Models\SchemaOrg\MoveAction
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Distance",
+            "string",
         ];
 
         $distance = self::checkTypes($distance, $types);

@@ -27,12 +27,12 @@ class PerformAction extends \OpenActive\Models\SchemaOrg\PlayAction
      * A sub property of location. The entertainment business where the action occurred.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\EntertainmentBusiness
+     * @var \OpenActive\Models\SchemaOrg\EntertainmentBusiness|string
      */
     protected $entertainmentBusiness;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\EntertainmentBusiness
+     * @return \OpenActive\Models\SchemaOrg\EntertainmentBusiness|string
      */
     public function getEntertainmentBusiness()
     {
@@ -40,7 +40,7 @@ class PerformAction extends \OpenActive\Models\SchemaOrg\PlayAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\EntertainmentBusiness $entertainmentBusiness
+     * @param \OpenActive\Models\SchemaOrg\EntertainmentBusiness|string $entertainmentBusiness
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class PerformAction extends \OpenActive\Models\SchemaOrg\PlayAction
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\EntertainmentBusiness",
+            "string",
         ];
 
         $entertainmentBusiness = self::checkTypes($entertainmentBusiness, $types);

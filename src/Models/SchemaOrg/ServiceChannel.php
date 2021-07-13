@@ -17,50 +17,42 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "providesService" => "providesService",
-            "servicePhone" => "servicePhone",
-            "availableLanguage" => "availableLanguage",
-            "serviceSmsNumber" => "serviceSmsNumber",
-            "serviceUrl" => "serviceUrl",
+            "processingTime" => "processingTime",
             "serviceLocation" => "serviceLocation",
             "servicePostalAddress" => "servicePostalAddress",
-            "processingTime" => "processingTime",
+            "serviceUrl" => "serviceUrl",
+            "providesService" => "providesService",
+            "serviceSmsNumber" => "serviceSmsNumber",
+            "servicePhone" => "servicePhone",
+            "availableLanguage" => "availableLanguage",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The service provided by this channel.
+     * Estimated processing time for the service using this channel.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Service
+     * @var DateInterval|string|null
      */
-    protected $providesService;
+    protected $processingTime;
 
     /**
-     * The phone number to use to access the service.
+     * The location (e.g. civic structure, local business, etc.) where a person can go to access the service.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ContactPoint
+     * @var \OpenActive\Models\SchemaOrg\Place|string
      */
-    protected $servicePhone;
+    protected $serviceLocation;
 
     /**
-     * A language someone may use with or at the item, service or place. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[inLanguage]]
+     * The address for accessing the service by mail.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Language|string
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string
      */
-    protected $availableLanguage;
-
-    /**
-     * The number to access the service by text message.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ContactPoint
-     */
-    protected $serviceSmsNumber;
+    protected $servicePostalAddress;
 
     /**
      * The website to access the service.
@@ -71,124 +63,111 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     protected $serviceUrl;
 
     /**
-     * The location (e.g. civic structure, local business, etc.) where a person can go to access the service.
+     * The service provided by this channel.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place
+     * @var \OpenActive\Models\SchemaOrg\Service|string
      */
-    protected $serviceLocation;
+    protected $providesService;
 
     /**
-     * The address for accessing the service by mail.
+     * The number to access the service by text message.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PostalAddress
+     * @var \OpenActive\Models\SchemaOrg\ContactPoint|string
      */
-    protected $servicePostalAddress;
+    protected $serviceSmsNumber;
 
     /**
-     * Estimated processing time for the service using this channel.
+     * The phone number to use to access the service.
      *
      *
-     * @var DateInterval|null
+     * @var \OpenActive\Models\SchemaOrg\ContactPoint|string
      */
-    protected $processingTime;
+    protected $servicePhone;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Service
+     * A language someone may use with or at the item, service or place. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[inLanguage]]
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Language
      */
-    public function getProvidesService()
+    protected $availableLanguage;
+
+    /**
+     * @return DateInterval|string|null
+     */
+    public function getProcessingTime()
     {
-        return $this->providesService;
+        return $this->processingTime;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Service $providesService
+     * @param DateInterval|string|null $processingTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setProvidesService($providesService)
+    public function setProcessingTime($processingTime)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Service",
+            "DateInterval",
+            "string",
+            "null",
         ];
 
-        $providesService = self::checkTypes($providesService, $types);
+        $processingTime = self::checkTypes($processingTime, $types);
 
-        $this->providesService = $providesService;
+        $this->processingTime = $processingTime;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ContactPoint
+     * @return \OpenActive\Models\SchemaOrg\Place|string
      */
-    public function getServicePhone()
+    public function getServiceLocation()
     {
-        return $this->servicePhone;
+        return $this->serviceLocation;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ContactPoint $servicePhone
+     * @param \OpenActive\Models\SchemaOrg\Place|string $serviceLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setServicePhone($servicePhone)
+    public function setServiceLocation($serviceLocation)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
-        ];
-
-        $servicePhone = self::checkTypes($servicePhone, $types);
-
-        $this->servicePhone = $servicePhone;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Language|string
-     */
-    public function getAvailableLanguage()
-    {
-        return $this->availableLanguage;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Language|string $availableLanguage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAvailableLanguage($availableLanguage)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Language",
+            "\OpenActive\Models\SchemaOrg\Place",
             "string",
         ];
 
-        $availableLanguage = self::checkTypes($availableLanguage, $types);
+        $serviceLocation = self::checkTypes($serviceLocation, $types);
 
-        $this->availableLanguage = $availableLanguage;
+        $this->serviceLocation = $serviceLocation;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ContactPoint
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress|string
      */
-    public function getServiceSmsNumber()
+    public function getServicePostalAddress()
     {
-        return $this->serviceSmsNumber;
+        return $this->servicePostalAddress;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ContactPoint $serviceSmsNumber
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress|string $servicePostalAddress
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setServiceSmsNumber($serviceSmsNumber)
+    public function setServicePostalAddress($servicePostalAddress)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "string",
         ];
 
-        $serviceSmsNumber = self::checkTypes($serviceSmsNumber, $types);
+        $servicePostalAddress = self::checkTypes($servicePostalAddress, $types);
 
-        $this->serviceSmsNumber = $serviceSmsNumber;
+        $this->servicePostalAddress = $servicePostalAddress;
     }
 
     /**
@@ -216,76 +195,103 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place
+     * @return \OpenActive\Models\SchemaOrg\Service|string
      */
-    public function getServiceLocation()
+    public function getProvidesService()
     {
-        return $this->serviceLocation;
+        return $this->providesService;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place $serviceLocation
+     * @param \OpenActive\Models\SchemaOrg\Service|string $providesService
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setServiceLocation($serviceLocation)
+    public function setProvidesService($providesService)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\Service",
+            "string",
         ];
 
-        $serviceLocation = self::checkTypes($serviceLocation, $types);
+        $providesService = self::checkTypes($providesService, $types);
 
-        $this->serviceLocation = $serviceLocation;
+        $this->providesService = $providesService;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PostalAddress
+     * @return \OpenActive\Models\SchemaOrg\ContactPoint|string
      */
-    public function getServicePostalAddress()
+    public function getServiceSmsNumber()
     {
-        return $this->servicePostalAddress;
+        return $this->serviceSmsNumber;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PostalAddress $servicePostalAddress
+     * @param \OpenActive\Models\SchemaOrg\ContactPoint|string $serviceSmsNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setServicePostalAddress($servicePostalAddress)
+    public function setServiceSmsNumber($serviceSmsNumber)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
+            "string",
         ];
 
-        $servicePostalAddress = self::checkTypes($servicePostalAddress, $types);
+        $serviceSmsNumber = self::checkTypes($serviceSmsNumber, $types);
 
-        $this->servicePostalAddress = $servicePostalAddress;
+        $this->serviceSmsNumber = $serviceSmsNumber;
     }
 
     /**
-     * @return DateInterval|null
+     * @return \OpenActive\Models\SchemaOrg\ContactPoint|string
      */
-    public function getProcessingTime()
+    public function getServicePhone()
     {
-        return $this->processingTime;
+        return $this->servicePhone;
     }
 
     /**
-     * @param DateInterval|null $processingTime
+     * @param \OpenActive\Models\SchemaOrg\ContactPoint|string $servicePhone
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setProcessingTime($processingTime)
+    public function setServicePhone($servicePhone)
     {
         $types = [
-            "DateInterval",
-            "null",
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
+            "string",
         ];
 
-        $processingTime = self::checkTypes($processingTime, $types);
+        $servicePhone = self::checkTypes($servicePhone, $types);
 
-        $this->processingTime = $processingTime;
+        $this->servicePhone = $servicePhone;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Language
+     */
+    public function getAvailableLanguage()
+    {
+        return $this->availableLanguage;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Language $availableLanguage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAvailableLanguage($availableLanguage)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\Language",
+        ];
+
+        $availableLanguage = self::checkTypes($availableLanguage, $types);
+
+        $this->availableLanguage = $availableLanguage;
     }
 
 }

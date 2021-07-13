@@ -3,7 +3,7 @@
 namespace OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration;
 
 /**
- * ReturnFeesEnumeration expresses policies for return fees.
+ * Enumerates several kinds of policies for product return fees.
  *
  */
 class OriginalShippingFees extends \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration

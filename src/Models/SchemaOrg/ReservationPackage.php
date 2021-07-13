@@ -27,12 +27,12 @@ class ReservationPackage extends \OpenActive\Models\SchemaOrg\Reservation
      * The individual reservations included in the package. Typically a repeated property.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Reservation
+     * @var \OpenActive\Models\SchemaOrg\Reservation|string
      */
     protected $subReservation;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Reservation
+     * @return \OpenActive\Models\SchemaOrg\Reservation|string
      */
     public function getSubReservation()
     {
@@ -40,7 +40,7 @@ class ReservationPackage extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Reservation $subReservation
+     * @param \OpenActive\Models\SchemaOrg\Reservation|string $subReservation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class ReservationPackage extends \OpenActive\Models\SchemaOrg\Reservation
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Reservation",
+            "string",
         ];
 
         $subReservation = self::checkTypes($subReservation, $types);

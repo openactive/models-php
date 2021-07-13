@@ -27,12 +27,12 @@ class InsertAction extends \OpenActive\Models\SchemaOrg\AddAction
      * A sub property of location. The final location of the object or the agent after the action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place
+     * @var \OpenActive\Models\SchemaOrg\Place|string
      */
     protected $toLocation;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place
+     * @return \OpenActive\Models\SchemaOrg\Place|string
      */
     public function getToLocation()
     {
@@ -40,7 +40,7 @@ class InsertAction extends \OpenActive\Models\SchemaOrg\AddAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place $toLocation
+     * @param \OpenActive\Models\SchemaOrg\Place|string $toLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class InsertAction extends \OpenActive\Models\SchemaOrg\AddAction
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Place",
+            "string",
         ];
 
         $toLocation = self::checkTypes($toLocation, $types);

@@ -17,27 +17,19 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
 
     public static function fieldList() {
         $fields = [
-            "foodEvent" => "foodEvent",
             "recipe" => "recipe",
             "foodEstablishment" => "foodEstablishment",
+            "foodEvent" => "foodEvent",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A sub property of location. The specific food event where the action occurred.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\FoodEvent
-     */
-    protected $foodEvent;
-
-    /**
      * A sub property of instrument. The recipe/instructions used to perform the action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Recipe
+     * @var \OpenActive\Models\SchemaOrg\Recipe|string
      */
     protected $recipe;
 
@@ -45,36 +37,20 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
      * A sub property of location. The specific food establishment where the action occurred.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment
+     * @var \OpenActive\Models\SchemaOrg\FoodEstablishment|\OpenActive\Models\SchemaOrg\Place|string
      */
     protected $foodEstablishment;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\FoodEvent
+     * A sub property of location. The specific food event where the action occurred.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\FoodEvent|string
      */
-    public function getFoodEvent()
-    {
-        return $this->foodEvent;
-    }
+    protected $foodEvent;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\FoodEvent $foodEvent
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFoodEvent($foodEvent)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\FoodEvent",
-        ];
-
-        $foodEvent = self::checkTypes($foodEvent, $types);
-
-        $this->foodEvent = $foodEvent;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Recipe
+     * @return \OpenActive\Models\SchemaOrg\Recipe|string
      */
     public function getRecipe()
     {
@@ -82,7 +58,7 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Recipe $recipe
+     * @param \OpenActive\Models\SchemaOrg\Recipe|string $recipe
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -90,6 +66,7 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Recipe",
+            "string",
         ];
 
         $recipe = self::checkTypes($recipe, $types);
@@ -98,7 +75,7 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment
+     * @return \OpenActive\Models\SchemaOrg\FoodEstablishment|\OpenActive\Models\SchemaOrg\Place|string
      */
     public function getFoodEstablishment()
     {
@@ -106,20 +83,46 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment $foodEstablishment
+     * @param \OpenActive\Models\SchemaOrg\FoodEstablishment|\OpenActive\Models\SchemaOrg\Place|string $foodEstablishment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFoodEstablishment($foodEstablishment)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Place",
             "\OpenActive\Models\SchemaOrg\FoodEstablishment",
+            "\OpenActive\Models\SchemaOrg\Place",
+            "string",
         ];
 
         $foodEstablishment = self::checkTypes($foodEstablishment, $types);
 
         $this->foodEstablishment = $foodEstablishment;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\FoodEvent|string
+     */
+    public function getFoodEvent()
+    {
+        return $this->foodEvent;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\FoodEvent|string $foodEvent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFoodEvent($foodEvent)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\FoodEvent",
+            "string",
+        ];
+
+        $foodEvent = self::checkTypes($foodEvent, $types);
+
+        $this->foodEvent = $foodEvent;
     }
 
 }

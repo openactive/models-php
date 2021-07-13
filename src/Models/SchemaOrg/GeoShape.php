@@ -18,13 +18,13 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     public static function fieldList() {
         $fields = [
             "polygon" => "polygon",
-            "circle" => "circle",
-            "address" => "address",
-            "addressCountry" => "addressCountry",
-            "line" => "line",
-            "box" => "box",
             "postalCode" => "postalCode",
+            "line" => "line",
+            "circle" => "circle",
             "elevation" => "elevation",
+            "address" => "address",
+            "box" => "box",
+            "addressCountry" => "addressCountry",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -39,28 +39,12 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $polygon;
 
     /**
-     * A circle is the circular region of a specified radius centered at a specified latitude and longitude. A circle is expressed as a pair followed by a radius in meters.
+     * The postal code. For example, 94043.
      *
      *
      * @var string
      */
-    protected $circle;
-
-    /**
-     * Physical address of the item.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\PostalAddress
-     */
-    protected $address;
-
-    /**
-     * The country. For example, USA. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1).
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Country
-     */
-    protected $addressCountry;
+    protected $postalCode;
 
     /**
      * A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space.
@@ -71,20 +55,12 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $line;
 
     /**
-     * A box is the area enclosed by the rectangle formed by two points. The first point is the lower corner, the second point is the upper corner. A box is expressed as two points separated by a space character.
+     * A circle is the circular region of a specified radius centered at a specified latitude and longitude. A circle is expressed as a pair followed by a radius in meters.
      *
      *
      * @var string
      */
-    protected $box;
-
-    /**
-     * The postal code. For example, 94043.
-     *
-     *
-     * @var string
-     */
-    protected $postalCode;
+    protected $circle;
 
     /**
      * The elevation of a location ([WGS 84](https://en.wikipedia.org/wiki/World_Geodetic_System)). Values may be of the form 'NUMBER UNIT_OF_MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters.
@@ -93,6 +69,30 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
      * @var string|Number|null
      */
     protected $elevation;
+
+    /**
+     * Physical address of the item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string
+     */
+    protected $address;
+
+    /**
+     * A box is the area enclosed by the rectangle formed by two points. The first point is the lower corner, the second point is the upper corner. A box is expressed as two points separated by a space character.
+     *
+     *
+     * @var string
+     */
+    protected $box;
+
+    /**
+     * The country. For example, USA. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1).
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Country
+     */
+    protected $addressCountry;
 
     /**
      * @return string
@@ -121,75 +121,25 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @return string
      */
-    public function getCircle()
+    public function getPostalCode()
     {
-        return $this->circle;
+        return $this->postalCode;
     }
 
     /**
-     * @param string $circle
+     * @param string $postalCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCircle($circle)
+    public function setPostalCode($postalCode)
     {
         $types = [
             "string",
         ];
 
-        $circle = self::checkTypes($circle, $types);
+        $postalCode = self::checkTypes($postalCode, $types);
 
-        $this->circle = $circle;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\PostalAddress
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\PostalAddress $address
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAddress($address)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
-        ];
-
-        $address = self::checkTypes($address, $types);
-
-        $this->address = $address;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Country
-     */
-    public function getAddressCountry()
-    {
-        return $this->addressCountry;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Country $addressCountry
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAddressCountry($addressCountry)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\Country",
-        ];
-
-        $addressCountry = self::checkTypes($addressCountry, $types);
-
-        $this->addressCountry = $addressCountry;
+        $this->postalCode = $postalCode;
     }
 
     /**
@@ -219,49 +169,25 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @return string
      */
-    public function getBox()
+    public function getCircle()
     {
-        return $this->box;
+        return $this->circle;
     }
 
     /**
-     * @param string $box
+     * @param string $circle
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBox($box)
+    public function setCircle($circle)
     {
         $types = [
             "string",
         ];
 
-        $box = self::checkTypes($box, $types);
+        $circle = self::checkTypes($circle, $types);
 
-        $this->box = $box;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPostalCode()
-    {
-        return $this->postalCode;
-    }
-
-    /**
-     * @param string $postalCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPostalCode($postalCode)
-    {
-        $types = [
-            "string",
-        ];
-
-        $postalCode = self::checkTypes($postalCode, $types);
-
-        $this->postalCode = $postalCode;
+        $this->circle = $circle;
     }
 
     /**
@@ -288,6 +214,80 @@ class GeoShape extends \OpenActive\Models\SchemaOrg\StructuredValue
         $elevation = self::checkTypes($elevation, $types);
 
         $this->elevation = $elevation;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress|string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress|string $address
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAddress($address)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "string",
+        ];
+
+        $address = self::checkTypes($address, $types);
+
+        $this->address = $address;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBox()
+    {
+        return $this->box;
+    }
+
+    /**
+     * @param string $box
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBox($box)
+    {
+        $types = [
+            "string",
+        ];
+
+        $box = self::checkTypes($box, $types);
+
+        $this->box = $box;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Country
+     */
+    public function getAddressCountry()
+    {
+        return $this->addressCountry;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Country $addressCountry
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAddressCountry($addressCountry)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\Country",
+        ];
+
+        $addressCountry = self::checkTypes($addressCountry, $types);
+
+        $this->addressCountry = $addressCountry;
     }
 
 }

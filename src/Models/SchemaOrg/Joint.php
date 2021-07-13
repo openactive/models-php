@@ -29,7 +29,7 @@ class Joint extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
      * The degree of mobility the joint allows.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
+     * @var string|\OpenActive\Models\SchemaOrg\MedicalEntity
      */
     protected $functionalClass;
 
@@ -50,7 +50,7 @@ class Joint extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     protected $biomechnicalClass;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
+     * @return string|\OpenActive\Models\SchemaOrg\MedicalEntity
      */
     public function getFunctionalClass()
     {
@@ -58,15 +58,15 @@ class Joint extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalEntity|string $functionalClass
+     * @param string|\OpenActive\Models\SchemaOrg\MedicalEntity $functionalClass
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFunctionalClass($functionalClass)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalEntity",
             "string",
+            "\OpenActive\Models\SchemaOrg\MedicalEntity",
         ];
 
         $functionalClass = self::checkTypes($functionalClass, $types);

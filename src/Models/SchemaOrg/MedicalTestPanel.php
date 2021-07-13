@@ -27,12 +27,12 @@ class MedicalTestPanel extends \OpenActive\Models\SchemaOrg\MedicalTest
      * A component test of the panel.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTest
+     * @var \OpenActive\Models\SchemaOrg\MedicalTest|string
      */
     protected $subTest;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTest
+     * @return \OpenActive\Models\SchemaOrg\MedicalTest|string
      */
     public function getSubTest()
     {
@@ -40,7 +40,7 @@ class MedicalTestPanel extends \OpenActive\Models\SchemaOrg\MedicalTest
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTest $subTest
+     * @param \OpenActive\Models\SchemaOrg\MedicalTest|string $subTest
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class MedicalTestPanel extends \OpenActive\Models\SchemaOrg\MedicalTest
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalTest",
+            "string",
         ];
 
         $subTest = self::checkTypes($subTest, $types);

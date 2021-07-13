@@ -17,21 +17,13 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "parentItem" => "parentItem",
             "downvoteCount" => "downvoteCount",
             "upvoteCount" => "upvoteCount",
+            "parentItem" => "parentItem",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The parent of a question, answer or item in general.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Comment
-     */
-    protected $parentItem;
 
     /**
      * The number of downvotes this question, answer or comment has received from the community.
@@ -50,28 +42,12 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $upvoteCount;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Comment
+     * The parent of a question, answer or item in general.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Comment|string
      */
-    public function getParentItem()
-    {
-        return $this->parentItem;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Comment $parentItem
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setParentItem($parentItem)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Comment",
-        ];
-
-        $parentItem = self::checkTypes($parentItem, $types);
-
-        $this->parentItem = $parentItem;
-    }
+    protected $parentItem;
 
     /**
      * @return int|null
@@ -121,6 +97,31 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
         $upvoteCount = self::checkTypes($upvoteCount, $types);
 
         $this->upvoteCount = $upvoteCount;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Comment|string
+     */
+    public function getParentItem()
+    {
+        return $this->parentItem;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Comment|string $parentItem
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setParentItem($parentItem)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Comment",
+            "string",
+        ];
+
+        $parentItem = self::checkTypes($parentItem, $types);
+
+        $this->parentItem = $parentItem;
     }
 
 }

@@ -36,7 +36,7 @@ class BedDetails extends \OpenActive\Models\SchemaOrg\Intangible
      * The type of bed to which the BedDetail refers, i.e. the type of bed available in the quantity indicated by quantity.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\BedType
+     * @var \OpenActive\Models\SchemaOrg\BedType|string
      */
     protected $typeOfBed;
 
@@ -66,7 +66,7 @@ class BedDetails extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\BedType
+     * @return \OpenActive\Models\SchemaOrg\BedType|string
      */
     public function getTypeOfBed()
     {
@@ -74,15 +74,15 @@ class BedDetails extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\BedType $typeOfBed
+     * @param \OpenActive\Models\SchemaOrg\BedType|string $typeOfBed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTypeOfBed($typeOfBed)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\BedType",
+            "string",
         ];
 
         $typeOfBed = self::checkTypes($typeOfBed, $types);

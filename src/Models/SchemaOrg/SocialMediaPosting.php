@@ -27,12 +27,12 @@ class SocialMediaPosting extends \OpenActive\Models\SchemaOrg\Article
      * A CreativeWork such as an image, video, or audio clip shared as part of this posting.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     protected $sharedContent;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     public function getSharedContent()
     {
@@ -40,7 +40,7 @@ class SocialMediaPosting extends \OpenActive\Models\SchemaOrg\Article
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork $sharedContent
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $sharedContent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class SocialMediaPosting extends \OpenActive\Models\SchemaOrg\Article
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
         ];
 
         $sharedContent = self::checkTypes($sharedContent, $types);

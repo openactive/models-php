@@ -84,7 +84,7 @@ class Concept extends \OpenActive\BaseModel
     protected $hiddenLabel;
 
     /**
-     * A stable URL reference for the taxonomy, which must be `https://openactive.io/activity-list` to reference the OpenActive Activity List.
+     * A stable URL reference for the taxonomy, which must be `https://openactive.io/activity-list` to [reference the OpenActive Activity List](https://developer.openactive.io/publishing-data/activity-list-references).
      *
      * ```json
      * "inScheme": "https://openactive.io/activity-list"

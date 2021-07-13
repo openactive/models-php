@@ -27,12 +27,12 @@ class InvestmentOrDeposit extends \OpenActive\Models\SchemaOrg\FinancialProduct
      * The amount of money.
      *
      *
-     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
      */
     protected $amount;
 
     /**
-     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
      */
     public function getAmount()
     {
@@ -40,7 +40,7 @@ class InvestmentOrDeposit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $amount
+     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $amount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -49,6 +49,7 @@ class InvestmentOrDeposit extends \OpenActive\Models\SchemaOrg\FinancialProduct
         $types = [
             "Number",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
             "null",
         ];
 

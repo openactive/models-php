@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Audiobook extends \OpenActive\Models\SchemaOrg\Book
+class Audiobook extends \OpenActive\Models\SchemaOrg\AudioObject
 {
     /**
      * @return string[]|null
@@ -17,55 +17,31 @@ class Audiobook extends \OpenActive\Models\SchemaOrg\Book
 
     public static function fieldList() {
         $fields = [
-            "readBy" => "readBy",
             "duration" => "duration",
+            "readBy" => "readBy",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A person who reads (performs) the audiobook.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person
-     */
-    protected $readBy;
-
-    /**
      * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).
      *
      *
-     * @var DateInterval|null
+     * @var DateInterval|string|null
      */
     protected $duration;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * A person who reads (performs) the audiobook.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getReadBy()
-    {
-        return $this->readBy;
-    }
+    protected $readBy;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $readBy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReadBy($readBy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-        ];
-
-        $readBy = self::checkTypes($readBy, $types);
-
-        $this->readBy = $readBy;
-    }
-
-    /**
-     * @return DateInterval|null
+     * @return DateInterval|string|null
      */
     public function getDuration()
     {
@@ -73,7 +49,7 @@ class Audiobook extends \OpenActive\Models\SchemaOrg\Book
     }
 
     /**
-     * @param DateInterval|null $duration
+     * @param DateInterval|string|null $duration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -81,12 +57,38 @@ class Audiobook extends \OpenActive\Models\SchemaOrg\Book
     {
         $types = [
             "DateInterval",
+            "string",
             "null",
         ];
 
         $duration = self::checkTypes($duration, $types);
 
         $this->duration = $duration;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getReadBy()
+    {
+        return $this->readBy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $readBy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReadBy($readBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $readBy = self::checkTypes($readBy, $types);
+
+        $this->readBy = $readBy;
     }
 
 }

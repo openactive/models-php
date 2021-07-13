@@ -17,64 +17,65 @@ class TherapeuticProcedure extends \OpenActive\Models\SchemaOrg\MedicalProcedure
 
     public static function fieldList() {
         $fields = [
-            "drug" => "drug",
-            "adverseOutcome" => "adverseOutcome",
             "doseSchedule" => "doseSchedule",
+            "adverseOutcome" => "adverseOutcome",
+            "drug" => "drug",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Specifying a drug or medicine used in a medication procedure.
+     * A dosing schedule for the drug for a given population, either observed, recommended, or maximum dose based on the type used.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Drug
+     * @var \OpenActive\Models\SchemaOrg\DoseSchedule|string
      */
-    protected $drug;
+    protected $doseSchedule;
 
     /**
      * A possible complication and/or side effect of this therapy. If it is known that an adverse outcome is serious (resulting in death, disability, or permanent damage; requiring hospitalization; or is otherwise life-threatening or requires immediate medical attention), tag it as a seriouseAdverseOutcome instead.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalEntity
+     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
     protected $adverseOutcome;
 
     /**
-     * A dosing schedule for the drug for a given population, either observed, recommended, or maximum dose based on the type used.
+     * Specifying a drug or medicine used in a medication procedure.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DoseSchedule
+     * @var \OpenActive\Models\SchemaOrg\Drug|string
      */
-    protected $doseSchedule;
+    protected $drug;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Drug
+     * @return \OpenActive\Models\SchemaOrg\DoseSchedule|string
      */
-    public function getDrug()
+    public function getDoseSchedule()
     {
-        return $this->drug;
+        return $this->doseSchedule;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Drug $drug
+     * @param \OpenActive\Models\SchemaOrg\DoseSchedule|string $doseSchedule
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDrug($drug)
+    public function setDoseSchedule($doseSchedule)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Drug",
+            "\OpenActive\Models\SchemaOrg\DoseSchedule",
+            "string",
         ];
 
-        $drug = self::checkTypes($drug, $types);
+        $doseSchedule = self::checkTypes($doseSchedule, $types);
 
-        $this->drug = $drug;
+        $this->doseSchedule = $doseSchedule;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalEntity
+     * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
     public function getAdverseOutcome()
     {
@@ -82,7 +83,7 @@ class TherapeuticProcedure extends \OpenActive\Models\SchemaOrg\MedicalProcedure
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalEntity $adverseOutcome
+     * @param \OpenActive\Models\SchemaOrg\MedicalEntity|string $adverseOutcome
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -90,6 +91,7 @@ class TherapeuticProcedure extends \OpenActive\Models\SchemaOrg\MedicalProcedure
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalEntity",
+            "string",
         ];
 
         $adverseOutcome = self::checkTypes($adverseOutcome, $types);
@@ -98,27 +100,28 @@ class TherapeuticProcedure extends \OpenActive\Models\SchemaOrg\MedicalProcedure
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DoseSchedule
+     * @return \OpenActive\Models\SchemaOrg\Drug|string
      */
-    public function getDoseSchedule()
+    public function getDrug()
     {
-        return $this->doseSchedule;
+        return $this->drug;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DoseSchedule $doseSchedule
+     * @param \OpenActive\Models\SchemaOrg\Drug|string $drug
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDoseSchedule($doseSchedule)
+    public function setDrug($drug)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\DoseSchedule",
+            "\OpenActive\Models\SchemaOrg\Drug",
+            "string",
         ];
 
-        $doseSchedule = self::checkTypes($doseSchedule, $types);
+        $drug = self::checkTypes($drug, $types);
 
-        $this->doseSchedule = $doseSchedule;
+        $this->drug = $drug;
     }
 
 }

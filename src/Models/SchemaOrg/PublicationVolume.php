@@ -17,22 +17,14 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "pagination" => "pagination",
             "pageStart" => "pageStart",
             "volumeNumber" => "volumeNumber",
+            "pagination" => "pagination",
             "pageEnd" => "pageEnd",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49".
-     *
-     *
-     * @var string
-     */
-    protected $pagination;
 
     /**
      * The page on which the work starts; for example "135" or "xiii".
@@ -51,36 +43,20 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $volumeNumber;
 
     /**
+     * Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49".
+     *
+     *
+     * @var string
+     */
+    protected $pagination;
+
+    /**
      * The page on which the work ends; for example "138" or "xvi".
      *
      *
      * @var string|int|null
      */
     protected $pageEnd;
-
-    /**
-     * @return string
-     */
-    public function getPagination()
-    {
-        return $this->pagination;
-    }
-
-    /**
-     * @param string $pagination
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPagination($pagination)
-    {
-        $types = [
-            "string",
-        ];
-
-        $pagination = self::checkTypes($pagination, $types);
-
-        $this->pagination = $pagination;
-    }
 
     /**
      * @return string|int|null
@@ -132,6 +108,30 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
         $volumeNumber = self::checkTypes($volumeNumber, $types);
 
         $this->volumeNumber = $volumeNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPagination()
+    {
+        return $this->pagination;
+    }
+
+    /**
+     * @param string $pagination
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPagination($pagination)
+    {
+        $types = [
+            "string",
+        ];
+
+        $pagination = self::checkTypes($pagination, $types);
+
+        $this->pagination = $pagination;
     }
 
     /**

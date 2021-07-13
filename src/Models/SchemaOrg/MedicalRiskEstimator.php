@@ -17,55 +17,31 @@ class MedicalRiskEstimator extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "includedRiskFactor" => "includedRiskFactor",
             "estimatesRiskOf" => "estimatesRiskOf",
+            "includedRiskFactor" => "includedRiskFactor",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A modifiable or non-modifiable risk factor included in the calculation, e.g. age, coexisting condition.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalRiskFactor
-     */
-    protected $includedRiskFactor;
-
-    /**
      * The condition, complication, or symptom whose risk is being estimated.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalEntity
+     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
     protected $estimatesRiskOf;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalRiskFactor
+     * A modifiable or non-modifiable risk factor included in the calculation, e.g. age, coexisting condition.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalRiskFactor|string
      */
-    public function getIncludedRiskFactor()
-    {
-        return $this->includedRiskFactor;
-    }
+    protected $includedRiskFactor;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalRiskFactor $includedRiskFactor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIncludedRiskFactor($includedRiskFactor)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalRiskFactor",
-        ];
-
-        $includedRiskFactor = self::checkTypes($includedRiskFactor, $types);
-
-        $this->includedRiskFactor = $includedRiskFactor;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalEntity
+     * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
     public function getEstimatesRiskOf()
     {
@@ -73,7 +49,7 @@ class MedicalRiskEstimator extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalEntity $estimatesRiskOf
+     * @param \OpenActive\Models\SchemaOrg\MedicalEntity|string $estimatesRiskOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -81,11 +57,37 @@ class MedicalRiskEstimator extends \OpenActive\Models\SchemaOrg\MedicalEntity
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalEntity",
+            "string",
         ];
 
         $estimatesRiskOf = self::checkTypes($estimatesRiskOf, $types);
 
         $this->estimatesRiskOf = $estimatesRiskOf;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalRiskFactor|string
+     */
+    public function getIncludedRiskFactor()
+    {
+        return $this->includedRiskFactor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalRiskFactor|string $includedRiskFactor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIncludedRiskFactor($includedRiskFactor)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalRiskFactor",
+            "string",
+        ];
+
+        $includedRiskFactor = self::checkTypes($includedRiskFactor, $types);
+
+        $this->includedRiskFactor = $includedRiskFactor;
     }
 
 }

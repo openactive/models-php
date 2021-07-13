@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class ProductCollection extends \OpenActive\Models\SchemaOrg\Collection
+class ProductCollection extends \OpenActive\Models\SchemaOrg\Product
 {
     /**
      * @return string[]|null
@@ -27,12 +27,12 @@ class ProductCollection extends \OpenActive\Models\SchemaOrg\Collection
      * This links to a node or nodes indicating the exact quantity of the products included in  an [[Offer]] or [[ProductCollection]].
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\TypeAndQuantityNode
+     * @var \OpenActive\Models\SchemaOrg\TypeAndQuantityNode|string
      */
     protected $includesObject;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\TypeAndQuantityNode
+     * @return \OpenActive\Models\SchemaOrg\TypeAndQuantityNode|string
      */
     public function getIncludesObject()
     {
@@ -40,7 +40,7 @@ class ProductCollection extends \OpenActive\Models\SchemaOrg\Collection
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\TypeAndQuantityNode $includesObject
+     * @param \OpenActive\Models\SchemaOrg\TypeAndQuantityNode|string $includesObject
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class ProductCollection extends \OpenActive\Models\SchemaOrg\Collection
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\TypeAndQuantityNode",
+            "string",
         ];
 
         $includesObject = self::checkTypes($includesObject, $types);

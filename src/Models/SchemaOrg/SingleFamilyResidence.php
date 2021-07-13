@@ -29,7 +29,7 @@ class SingleFamilyResidence extends \OpenActive\Models\SchemaOrg\House
      * Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue.
      *
      *
-     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null
      */
     protected $numberOfRooms;
 
@@ -38,12 +38,12 @@ class SingleFamilyResidence extends \OpenActive\Models\SchemaOrg\House
      * Typical unit code(s): C62 for person
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
     protected $occupancy;
 
     /**
-     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null
      */
     public function getNumberOfRooms()
     {
@@ -51,15 +51,16 @@ class SingleFamilyResidence extends \OpenActive\Models\SchemaOrg\House
     }
 
     /**
-     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|null $numberOfRooms
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null $numberOfRooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfRooms($numberOfRooms)
     {
         $types = [
-            "Number",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
+            "Number",
             "null",
         ];
 
@@ -69,7 +70,7 @@ class SingleFamilyResidence extends \OpenActive\Models\SchemaOrg\House
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
     public function getOccupancy()
     {
@@ -77,7 +78,7 @@ class SingleFamilyResidence extends \OpenActive\Models\SchemaOrg\House
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $occupancy
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $occupancy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -85,6 +86,7 @@ class SingleFamilyResidence extends \OpenActive\Models\SchemaOrg\House
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
         ];
 
         $occupancy = self::checkTypes($occupancy, $types);

@@ -27,12 +27,12 @@ class TVClip extends \OpenActive\Models\SchemaOrg\Clip
      * The TV series to which this episode or season belongs.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\TVSeries
+     * @var \OpenActive\Models\SchemaOrg\TVSeries|string
      */
     protected $partOfTVSeries;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\TVSeries
+     * @return \OpenActive\Models\SchemaOrg\TVSeries|string
      */
     public function getPartOfTVSeries()
     {
@@ -40,7 +40,7 @@ class TVClip extends \OpenActive\Models\SchemaOrg\Clip
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\TVSeries $partOfTVSeries
+     * @param \OpenActive\Models\SchemaOrg\TVSeries|string $partOfTVSeries
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class TVClip extends \OpenActive\Models\SchemaOrg\Clip
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\TVSeries",
+            "string",
         ];
 
         $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);

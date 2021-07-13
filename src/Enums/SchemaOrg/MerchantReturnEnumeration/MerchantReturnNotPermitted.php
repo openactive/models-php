@@ -3,7 +3,7 @@
 namespace OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration;
 
 /**
- * MerchantReturnEnumeration enumerates several kinds of product return policy. Note that this structure may not capture all aspects of the policy.
+ * Enumerates several kinds of product return policies.
  *
  */
 class MerchantReturnNotPermitted extends \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration

@@ -17,39 +17,31 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "orderItemStatus" => "orderItemStatus",
             "orderDelivery" => "orderDelivery",
-            "orderItemNumber" => "orderItemNumber",
-            "orderQuantity" => "orderQuantity",
             "orderedItem" => "orderedItem",
+            "orderQuantity" => "orderQuantity",
+            "orderItemNumber" => "orderItemNumber",
+            "orderItemStatus" => "orderItemStatus",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The current status of the order item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\OrderStatus
-     */
-    protected $orderItemStatus;
-
-    /**
      * The delivery of the parcel related to this order or order item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ParcelDelivery
+     * @var \OpenActive\Models\SchemaOrg\ParcelDelivery|string
      */
     protected $orderDelivery;
 
     /**
-     * The identifier of the order item.
+     * The item ordered.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
      */
-    protected $orderItemNumber;
+    protected $orderedItem;
 
     /**
      * The number of the item ordered. If the property is not set, assume the quantity is one.
@@ -60,39 +52,23 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $orderQuantity;
 
     /**
-     * The item ordered.
+     * The identifier of the order item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Service
+     * @var string
      */
-    protected $orderedItem;
+    protected $orderItemNumber;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\OrderStatus
+     * The current status of the order item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\OrderStatus|string
      */
-    public function getOrderItemStatus()
-    {
-        return $this->orderItemStatus;
-    }
+    protected $orderItemStatus;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\OrderStatus $orderItemStatus
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOrderItemStatus($orderItemStatus)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\OrderStatus",
-        ];
-
-        $orderItemStatus = self::checkTypes($orderItemStatus, $types);
-
-        $this->orderItemStatus = $orderItemStatus;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ParcelDelivery
+     * @return \OpenActive\Models\SchemaOrg\ParcelDelivery|string
      */
     public function getOrderDelivery()
     {
@@ -100,7 +76,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ParcelDelivery $orderDelivery
+     * @param \OpenActive\Models\SchemaOrg\ParcelDelivery|string $orderDelivery
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -108,6 +84,7 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\ParcelDelivery",
+            "string",
         ];
 
         $orderDelivery = self::checkTypes($orderDelivery, $types);
@@ -116,27 +93,30 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
      */
-    public function getOrderItemNumber()
+    public function getOrderedItem()
     {
-        return $this->orderItemNumber;
+        return $this->orderedItem;
     }
 
     /**
-     * @param string $orderItemNumber
+     * @param \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string $orderedItem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOrderItemNumber($orderItemNumber)
+    public function setOrderedItem($orderedItem)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\OrderItem",
+            "\OpenActive\Models\SchemaOrg\Product",
+            "\OpenActive\Models\SchemaOrg\Service",
             "string",
         ];
 
-        $orderItemNumber = self::checkTypes($orderItemNumber, $types);
+        $orderedItem = self::checkTypes($orderedItem, $types);
 
-        $this->orderItemNumber = $orderItemNumber;
+        $this->orderedItem = $orderedItem;
     }
 
     /**
@@ -165,29 +145,52 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Service
+     * @return string
      */
-    public function getOrderedItem()
+    public function getOrderItemNumber()
     {
-        return $this->orderedItem;
+        return $this->orderItemNumber;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Service $orderedItem
+     * @param string $orderItemNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOrderedItem($orderedItem)
+    public function setOrderItemNumber($orderItemNumber)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Product",
-            "\OpenActive\Models\SchemaOrg\OrderItem",
-            "\OpenActive\Models\SchemaOrg\Service",
+            "string",
         ];
 
-        $orderedItem = self::checkTypes($orderedItem, $types);
+        $orderItemNumber = self::checkTypes($orderItemNumber, $types);
 
-        $this->orderedItem = $orderedItem;
+        $this->orderItemNumber = $orderItemNumber;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\OrderStatus|string
+     */
+    public function getOrderItemStatus()
+    {
+        return $this->orderItemStatus;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\OrderStatus|string $orderItemStatus
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOrderItemStatus($orderItemStatus)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\OrderStatus",
+            "string",
+        ];
+
+        $orderItemStatus = self::checkTypes($orderItemStatus, $types);
+
+        $this->orderItemStatus = $orderItemStatus;
     }
 
 }

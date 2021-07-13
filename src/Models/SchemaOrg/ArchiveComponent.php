@@ -17,8 +17,8 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "holdingArchive" => "holdingArchive",
             "itemLocation" => "itemLocation",
+            "holdingArchive" => "holdingArchive",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -28,44 +28,20 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
      * [object Object]
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ArchiveOrganization
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place
      */
-    protected $holdingArchive;
+    protected $itemLocation;
 
     /**
      * [object Object]
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|string
+     * @var \OpenActive\Models\SchemaOrg\ArchiveOrganization|string
      */
-    protected $itemLocation;
+    protected $holdingArchive;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ArchiveOrganization
-     */
-    public function getHoldingArchive()
-    {
-        return $this->holdingArchive;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ArchiveOrganization $holdingArchive
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHoldingArchive($holdingArchive)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ArchiveOrganization",
-        ];
-
-        $holdingArchive = self::checkTypes($holdingArchive, $types);
-
-        $this->holdingArchive = $holdingArchive;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|string
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place
      */
     public function getItemLocation()
     {
@@ -73,7 +49,7 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|string $itemLocation
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place $itemLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -81,13 +57,38 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\PostalAddress",
-            "\OpenActive\Models\SchemaOrg\Place",
             "string",
+            "\OpenActive\Models\SchemaOrg\Place",
         ];
 
         $itemLocation = self::checkTypes($itemLocation, $types);
 
         $this->itemLocation = $itemLocation;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ArchiveOrganization|string
+     */
+    public function getHoldingArchive()
+    {
+        return $this->holdingArchive;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ArchiveOrganization|string $holdingArchive
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHoldingArchive($holdingArchive)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ArchiveOrganization",
+            "string",
+        ];
+
+        $holdingArchive = self::checkTypes($holdingArchive, $types);
+
+        $this->holdingArchive = $holdingArchive;
     }
 
 }

@@ -17,23 +17,15 @@ class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
 
     public static function fieldList() {
         $fields = [
-            "physiologicalBenefits" => "physiologicalBenefits",
             "risks" => "risks",
-            "expertConsiderations" => "expertConsiderations",
             "endorsers" => "endorsers",
+            "expertConsiderations" => "expertConsiderations",
+            "physiologicalBenefits" => "physiologicalBenefits",
             "dietFeatures" => "dietFeatures",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Specific physiologic benefits associated to the plan.
-     *
-     *
-     * @var string
-     */
-    protected $physiologicalBenefits;
 
     /**
      * Specific physiologic risks associated to the diet plan.
@@ -44,6 +36,14 @@ class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
     protected $risks;
 
     /**
+     * People or organizations that endorse the plan.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $endorsers;
+
+    /**
      * Medical expert advice related to the plan.
      *
      *
@@ -52,12 +52,12 @@ class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
     protected $expertConsiderations;
 
     /**
-     * People or organizations that endorse the plan.
+     * Specific physiologic benefits associated to the plan.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var string
      */
-    protected $endorsers;
+    protected $physiologicalBenefits;
 
     /**
      * Nutritional information specific to the dietary plan. May include dietary recommendations on what foods to avoid, what foods to consume, and specific alterations/deviations from the USDA or other regulatory body's approved dietary guidelines.
@@ -66,30 +66,6 @@ class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
      * @var string
      */
     protected $dietFeatures;
-
-    /**
-     * @return string
-     */
-    public function getPhysiologicalBenefits()
-    {
-        return $this->physiologicalBenefits;
-    }
-
-    /**
-     * @param string $physiologicalBenefits
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPhysiologicalBenefits($physiologicalBenefits)
-    {
-        $types = [
-            "string",
-        ];
-
-        $physiologicalBenefits = self::checkTypes($physiologicalBenefits, $types);
-
-        $this->physiologicalBenefits = $physiologicalBenefits;
-    }
 
     /**
      * @return string
@@ -113,6 +89,32 @@ class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
         $risks = self::checkTypes($risks, $types);
 
         $this->risks = $risks;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getEndorsers()
+    {
+        return $this->endorsers;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $endorsers
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEndorsers($endorsers)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $endorsers = self::checkTypes($endorsers, $types);
+
+        $this->endorsers = $endorsers;
     }
 
     /**
@@ -140,28 +142,27 @@ class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return string
      */
-    public function getEndorsers()
+    public function getPhysiologicalBenefits()
     {
-        return $this->endorsers;
+        return $this->physiologicalBenefits;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $endorsers
+     * @param string $physiologicalBenefits
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEndorsers($endorsers)
+    public function setPhysiologicalBenefits($physiologicalBenefits)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
-        $endorsers = self::checkTypes($endorsers, $types);
+        $physiologicalBenefits = self::checkTypes($physiologicalBenefits, $types);
 
-        $this->endorsers = $endorsers;
+        $this->physiologicalBenefits = $physiologicalBenefits;
     }
 
     /**

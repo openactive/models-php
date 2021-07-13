@@ -7,7 +7,7 @@ namespace OpenActive\Models\OA;
  * This type is derived from https://schema.org/Action, which means that any of this type's properties within schema.org may also be used.
  *
  */
-class SellerRequestedCancellationWithMessageSimulateAction extends \OpenActive\Models\OA\SellerRequestedCancellationSimulateAction
+class SellerRequestedCancellationWithMessageSimulateAction extends \OpenActive\Models\OA\OpenBookingSimulateAction
 {
     /**
      * @return string[]|null

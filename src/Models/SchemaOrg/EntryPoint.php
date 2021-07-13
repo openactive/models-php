@@ -18,11 +18,11 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     public static function fieldList() {
         $fields = [
             "contentType" => "contentType",
-            "application" => "application",
-            "encodingType" => "encodingType",
             "actionApplication" => "actionApplication",
-            "httpMethod" => "httpMethod",
+            "application" => "application",
             "actionPlatform" => "actionPlatform",
+            "encodingType" => "encodingType",
+            "httpMethod" => "httpMethod",
             "urlTemplate" => "urlTemplate",
         ];
 
@@ -41,9 +41,25 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
      * An application that can complete the request.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SoftwareApplication
+     * @var \OpenActive\Models\SchemaOrg\SoftwareApplication|string
+     */
+    protected $actionApplication;
+
+    /**
+     * An application that can complete the request.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\SoftwareApplication|string
      */
     protected $application;
+
+    /**
+     * The high level platform(s) where the Action can be performed for the given URL. To specify a specific application or operating system instance, use actionApplication.
+     *
+     *
+     * @var string
+     */
+    protected $actionPlatform;
 
     /**
      * The supported encoding type(s) for an EntryPoint request.
@@ -54,28 +70,12 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     protected $encodingType;
 
     /**
-     * An application that can complete the request.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\SoftwareApplication
-     */
-    protected $actionApplication;
-
-    /**
      * An HTTP method that specifies the appropriate HTTP method for a request to an HTTP EntryPoint. Values are capitalized strings as used in HTTP.
      *
      *
      * @var string
      */
     protected $httpMethod;
-
-    /**
-     * The high level platform(s) where the Action can be performed for the given URL. To specify a specific application or operating system instance, use actionApplication.
-     *
-     *
-     * @var string
-     */
-    protected $actionPlatform;
 
     /**
      * An url template (RFC6570) that will be used to construct the target of the execution of the action.
@@ -110,7 +110,32 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SoftwareApplication
+     * @return \OpenActive\Models\SchemaOrg\SoftwareApplication|string
+     */
+    public function getActionApplication()
+    {
+        return $this->actionApplication;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\SoftwareApplication|string $actionApplication
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActionApplication($actionApplication)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\SoftwareApplication",
+            "string",
+        ];
+
+        $actionApplication = self::checkTypes($actionApplication, $types);
+
+        $this->actionApplication = $actionApplication;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\SoftwareApplication|string
      */
     public function getApplication()
     {
@@ -118,7 +143,7 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SoftwareApplication $application
+     * @param \OpenActive\Models\SchemaOrg\SoftwareApplication|string $application
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -126,11 +151,36 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\SoftwareApplication",
+            "string",
         ];
 
         $application = self::checkTypes($application, $types);
 
         $this->application = $application;
+    }
+
+    /**
+     * @return string
+     */
+    public function getActionPlatform()
+    {
+        return $this->actionPlatform;
+    }
+
+    /**
+     * @param string $actionPlatform
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActionPlatform($actionPlatform)
+    {
+        $types = [
+            "string",
+        ];
+
+        $actionPlatform = self::checkTypes($actionPlatform, $types);
+
+        $this->actionPlatform = $actionPlatform;
     }
 
     /**
@@ -158,30 +208,6 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SoftwareApplication
-     */
-    public function getActionApplication()
-    {
-        return $this->actionApplication;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\SoftwareApplication $actionApplication
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActionApplication($actionApplication)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\SoftwareApplication",
-        ];
-
-        $actionApplication = self::checkTypes($actionApplication, $types);
-
-        $this->actionApplication = $actionApplication;
-    }
-
-    /**
      * @return string
      */
     public function getHttpMethod()
@@ -203,30 +229,6 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
         $httpMethod = self::checkTypes($httpMethod, $types);
 
         $this->httpMethod = $httpMethod;
-    }
-
-    /**
-     * @return string
-     */
-    public function getActionPlatform()
-    {
-        return $this->actionPlatform;
-    }
-
-    /**
-     * @param string $actionPlatform
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActionPlatform($actionPlatform)
-    {
-        $types = [
-            "string",
-        ];
-
-        $actionPlatform = self::checkTypes($actionPlatform, $types);
-
-        $this->actionPlatform = $actionPlatform;
     }
 
     /**

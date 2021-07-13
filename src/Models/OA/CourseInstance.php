@@ -19,8 +19,11 @@ class CourseInstance extends \OpenActive\Models\OA\Event
     public static function fieldList() {
         $fields = [
             "eventSchedule" => "eventSchedule",
+            "instanceOfCourse" => "instanceOfCourse",
             "startDate" => "startDate",
             "endDate" => "endDate",
+            "subEvent" => "subEvent",
+            "superEvent" => "superEvent",
             "course" => "beta:course",
         ];
 
@@ -50,6 +53,14 @@ class CourseInstance extends \OpenActive\Models\OA\Event
     protected $eventSchedule;
 
     /**
+     * The description of the Course for which this is a distinct instance.
+     *
+     *
+     * @var \OpenActive\Models\OA\Course
+     */
+    protected $instanceOfCourse;
+
+    /**
      * The start date of this course.
      *
      * ```json
@@ -72,13 +83,31 @@ class CourseInstance extends \OpenActive\Models\OA\Event
     protected $endDate;
 
     /**
-     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
+     * The occurrences of this CourseInstance.
+     *
+     *
+     * @var \OpenActive\Models\OA\Event[]
+     */
+    protected $subEvent;
+
+    /**
+     * Relates a child event to a parent event. Properties describing the parent event can be assumed to apply to the child, unless otherwise specified. A parent event might specify a recurring schedule, of which the child event is one specific instance
+     *
+     *
+     * @var \OpenActive\Models\OA\Event
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    protected $superEvent;
+
+    /**
+     * [DEPRECATED: This term has graduated from the beta namespace and is highly likely to be removed in future versions of this library, please use `instanceOfCourse` instead.]
      * This course for which this is an offering.
      * 
      * If you are using this property, please join the discussion at proposal [#164](https://github.com/openactive/modelling-opportunity-data/issues/164).
      *
      *
      * @var \OpenActive\Models\Course
+     * @deprecated This term has graduated from the beta namespace and is highly likely to be removed in future versions of this library, please use `instanceOfCourse` instead.
      */
     protected $course;
 
@@ -104,6 +133,30 @@ class CourseInstance extends \OpenActive\Models\OA\Event
         $eventSchedule = self::checkTypes($eventSchedule, $types);
 
         $this->eventSchedule = $eventSchedule;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\Course
+     */
+    public function getInstanceOfCourse()
+    {
+        return $this->instanceOfCourse;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\Course $instanceOfCourse
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInstanceOfCourse($instanceOfCourse)
+    {
+        $types = [
+            "\OpenActive\Models\OA\Course",
+        ];
+
+        $instanceOfCourse = self::checkTypes($instanceOfCourse, $types);
+
+        $this->instanceOfCourse = $instanceOfCourse;
     }
 
     /**
@@ -157,7 +210,58 @@ class CourseInstance extends \OpenActive\Models\OA\Event
     }
 
     /**
+     * @return \OpenActive\Models\OA\Event[]
+     */
+    public function getSubEvent()
+    {
+        return $this->subEvent;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\Event[] $subEvent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSubEvent($subEvent)
+    {
+        $types = [
+            "\OpenActive\Models\OA\Event[]",
+        ];
+
+        $subEvent = self::checkTypes($subEvent, $types);
+
+        $this->subEvent = $subEvent;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\Event
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function getSuperEvent()
+    {
+        return $this->superEvent;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\Event $superEvent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function setSuperEvent($superEvent)
+    {
+        $types = [
+            "\OpenActive\Models\OA\Event",
+        ];
+
+        $superEvent = self::checkTypes($superEvent, $types);
+
+        $this->superEvent = $superEvent;
+    }
+
+    /**
      * @return \OpenActive\Models\Course
+     * @deprecated This term has graduated from the beta namespace and is highly likely to be removed in future versions of this library, please use `instanceOfCourse` instead.
      */
     public function getCourse()
     {
@@ -168,6 +272,7 @@ class CourseInstance extends \OpenActive\Models\OA\Event
      * @param \OpenActive\Models\Course $course
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This term has graduated from the beta namespace and is highly likely to be removed in future versions of this library, please use `instanceOfCourse` instead.
      */
     public function setCourse($course)
     {

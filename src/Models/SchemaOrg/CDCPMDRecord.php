@@ -17,107 +17,27 @@ class CDCPMDRecord extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "cvdNumC19OverflowPats" => "cvdNumC19OverflowPats",
-            "cvdNumTotBeds" => "cvdNumTotBeds",
-            "cvdNumBeds" => "cvdNumBeds",
-            "cvdNumC19OFMechVentPats" => "cvdNumC19OFMechVentPats",
-            "cvdNumC19HospPats" => "cvdNumC19HospPats",
-            "cvdNumVent" => "cvdNumVent",
-            "cvdNumBedsOcc" => "cvdNumBedsOcc",
-            "cvdNumC19HOPats" => "cvdNumC19HOPats",
-            "cvdNumC19Died" => "cvdNumC19Died",
-            "cvdCollectionDate" => "cvdCollectionDate",
             "cvdNumVentUse" => "cvdNumVentUse",
+            "cvdNumTotBeds" => "cvdNumTotBeds",
+            "cvdNumC19Died" => "cvdNumC19Died",
+            "cvdNumC19HOPats" => "cvdNumC19HOPats",
             "cvdFacilityCounty" => "cvdFacilityCounty",
-            "cvdNumICUBedsOcc" => "cvdNumICUBedsOcc",
+            "cvdNumC19OverflowPats" => "cvdNumC19OverflowPats",
+            "cvdNumBeds" => "cvdNumBeds",
             "datePosted" => "datePosted",
+            "cvdNumICUBedsOcc" => "cvdNumICUBedsOcc",
+            "cvdNumVent" => "cvdNumVent",
+            "cvdNumC19HospPats" => "cvdNumC19HospPats",
             "cvdNumICUBeds" => "cvdNumICUBeds",
-            "cvdFacilityId" => "cvdFacilityId",
+            "cvdNumC19OFMechVentPats" => "cvdNumC19OFMechVentPats",
             "cvdNumC19MechVentPats" => "cvdNumC19MechVentPats",
+            "cvdFacilityId" => "cvdFacilityId",
+            "cvdCollectionDate" => "cvdCollectionDate",
+            "cvdNumBedsOcc" => "cvdNumBedsOcc",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * numc19overflowpats - ED/OVERFLOW: Patients with suspected or confirmed COVID-19 who are in the ED or any overflow location awaiting an inpatient bed.
-     *
-     *
-     * @var Number|null
-     */
-    protected $cvdNumC19OverflowPats;
-
-    /**
-     * numtotbeds - ALL HOSPITAL BEDS: Total number of all Inpatient and outpatient beds, including all staffed,ICU, licensed, and overflow (surge) beds used for inpatients or outpatients.
-     *
-     *
-     * @var Number|null
-     */
-    protected $cvdNumTotBeds;
-
-    /**
-     * numbeds - HOSPITAL INPATIENT BEDS: Inpatient beds, including all staffed, licensed, and overflow (surge) beds used for inpatients.
-     *
-     *
-     * @var Number|null
-     */
-    protected $cvdNumBeds;
-
-    /**
-     * numc19ofmechventpats - ED/OVERFLOW and VENTILATED: Patients with suspected or confirmed COVID-19 who are in the ED or any overflow location awaiting an inpatient bed and on a mechanical ventilator.
-     *
-     *
-     * @var Number|null
-     */
-    protected $cvdNumC19OFMechVentPats;
-
-    /**
-     * numc19hosppats - HOSPITALIZED: Patients currently hospitalized in an inpatient care location who have suspected or confirmed COVID-19.
-     *
-     *
-     * @var Number|null
-     */
-    protected $cvdNumC19HospPats;
-
-    /**
-     * numvent - MECHANICAL VENTILATORS: Total number of ventilators available.
-     *
-     *
-     * @var Number|null
-     */
-    protected $cvdNumVent;
-
-    /**
-     * numbedsocc - HOSPITAL INPATIENT BED OCCUPANCY: Total number of staffed inpatient beds that are occupied.
-     *
-     *
-     * @var Number|null
-     */
-    protected $cvdNumBedsOcc;
-
-    /**
-     * numc19hopats - HOSPITAL ONSET: Patients hospitalized in an NHSN inpatient care location with onset of suspected or confirmed COVID-19 14 or more days after hospitalization.
-     *
-     *
-     * @var Number|null
-     */
-    protected $cvdNumC19HOPats;
-
-    /**
-     * numc19died - DEATHS: Patients with suspected or confirmed COVID-19 who died in the hospital, ED, or any overflow location.
-     *
-     *
-     * @var Number|null
-     */
-    protected $cvdNumC19Died;
-
-    /**
-     * collectiondate - Date for which patient counts are reported.
-     *
-     *
-     * @var DateTime|string|null
-     */
-    protected $cvdCollectionDate;
 
     /**
      * numventuse - MECHANICAL VENTILATORS IN USE: Total number of ventilators in use.
@@ -128,6 +48,30 @@ class CDCPMDRecord extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $cvdNumVentUse;
 
     /**
+     * numtotbeds - ALL HOSPITAL BEDS: Total number of all Inpatient and outpatient beds, including all staffed,ICU, licensed, and overflow (surge) beds used for inpatients or outpatients.
+     *
+     *
+     * @var Number|null
+     */
+    protected $cvdNumTotBeds;
+
+    /**
+     * numc19died - DEATHS: Patients with suspected or confirmed COVID-19 who died in the hospital, ED, or any overflow location.
+     *
+     *
+     * @var Number|null
+     */
+    protected $cvdNumC19Died;
+
+    /**
+     * numc19hopats - HOSPITAL ONSET: Patients hospitalized in an NHSN inpatient care location with onset of suspected or confirmed COVID-19 14 or more days after hospitalization.
+     *
+     *
+     * @var Number|null
+     */
+    protected $cvdNumC19HOPats;
+
+    /**
      * Name of the County of the NHSN facility that this data record applies to. Use [[cvdFacilityId]] to identify the facility. To provide other details, [[healthcareReportingData]] can be used on a [[Hospital]] entry.
      *
      *
@@ -136,12 +80,20 @@ class CDCPMDRecord extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $cvdFacilityCounty;
 
     /**
-     * numicubedsocc - ICU BED OCCUPANCY: Total number of staffed inpatient ICU beds that are occupied.
+     * numc19overflowpats - ED/OVERFLOW: Patients with suspected or confirmed COVID-19 who are in the ED or any overflow location awaiting an inpatient bed.
      *
      *
      * @var Number|null
      */
-    protected $cvdNumICUBedsOcc;
+    protected $cvdNumC19OverflowPats;
+
+    /**
+     * numbeds - HOSPITAL INPATIENT BEDS: Inpatient beds, including all staffed, licensed, and overflow (surge) beds used for inpatients.
+     *
+     *
+     * @var Number|null
+     */
+    protected $cvdNumBeds;
 
     /**
      * Publication date of an online listing.
@@ -152,6 +104,30 @@ class CDCPMDRecord extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $datePosted;
 
     /**
+     * numicubedsocc - ICU BED OCCUPANCY: Total number of staffed inpatient ICU beds that are occupied.
+     *
+     *
+     * @var Number|null
+     */
+    protected $cvdNumICUBedsOcc;
+
+    /**
+     * numvent - MECHANICAL VENTILATORS: Total number of ventilators available.
+     *
+     *
+     * @var Number|null
+     */
+    protected $cvdNumVent;
+
+    /**
+     * numc19hosppats - HOSPITALIZED: Patients currently hospitalized in an inpatient care location who have suspected or confirmed COVID-19.
+     *
+     *
+     * @var Number|null
+     */
+    protected $cvdNumC19HospPats;
+
+    /**
      * numicubeds - ICU BEDS: Total number of staffed inpatient intensive care unit (ICU) beds.
      *
      *
@@ -160,12 +136,12 @@ class CDCPMDRecord extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $cvdNumICUBeds;
 
     /**
-     * Identifier of the NHSN facility that this data record applies to. Use [[cvdFacilityCounty]] to indicate the county. To provide other details, [[healthcareReportingData]] can be used on a [[Hospital]] entry.
+     * numc19ofmechventpats - ED/OVERFLOW and VENTILATED: Patients with suspected or confirmed COVID-19 who are in the ED or any overflow location awaiting an inpatient bed and on a mechanical ventilator.
      *
      *
-     * @var string
+     * @var Number|null
      */
-    protected $cvdFacilityId;
+    protected $cvdNumC19OFMechVentPats;
 
     /**
      * numc19mechventpats - HOSPITALIZED and VENTILATED: Patients hospitalized in an NHSN inpatient care location who have suspected or confirmed COVID-19 and are on a mechanical ventilator.
@@ -176,28 +152,52 @@ class CDCPMDRecord extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $cvdNumC19MechVentPats;
 
     /**
+     * Identifier of the NHSN facility that this data record applies to. Use [[cvdFacilityCounty]] to indicate the county. To provide other details, [[healthcareReportingData]] can be used on a [[Hospital]] entry.
+     *
+     *
+     * @var string
+     */
+    protected $cvdFacilityId;
+
+    /**
+     * collectiondate - Date for which patient counts are reported.
+     *
+     *
+     * @var DateTime|string|null
+     */
+    protected $cvdCollectionDate;
+
+    /**
+     * numbedsocc - HOSPITAL INPATIENT BED OCCUPANCY: Total number of staffed inpatient beds that are occupied.
+     *
+     *
+     * @var Number|null
+     */
+    protected $cvdNumBedsOcc;
+
+    /**
      * @return Number|null
      */
-    public function getCvdNumC19OverflowPats()
+    public function getCvdNumVentUse()
     {
-        return $this->cvdNumC19OverflowPats;
+        return $this->cvdNumVentUse;
     }
 
     /**
-     * @param Number|null $cvdNumC19OverflowPats
+     * @param Number|null $cvdNumVentUse
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCvdNumC19OverflowPats($cvdNumC19OverflowPats)
+    public function setCvdNumVentUse($cvdNumVentUse)
     {
         $types = [
             "Number",
             "null",
         ];
 
-        $cvdNumC19OverflowPats = self::checkTypes($cvdNumC19OverflowPats, $types);
+        $cvdNumVentUse = self::checkTypes($cvdNumVentUse, $types);
 
-        $this->cvdNumC19OverflowPats = $cvdNumC19OverflowPats;
+        $this->cvdNumVentUse = $cvdNumVentUse;
     }
 
     /**
@@ -228,126 +228,26 @@ class CDCPMDRecord extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @return Number|null
      */
-    public function getCvdNumBeds()
+    public function getCvdNumC19Died()
     {
-        return $this->cvdNumBeds;
+        return $this->cvdNumC19Died;
     }
 
     /**
-     * @param Number|null $cvdNumBeds
+     * @param Number|null $cvdNumC19Died
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCvdNumBeds($cvdNumBeds)
+    public function setCvdNumC19Died($cvdNumC19Died)
     {
         $types = [
             "Number",
             "null",
         ];
 
-        $cvdNumBeds = self::checkTypes($cvdNumBeds, $types);
+        $cvdNumC19Died = self::checkTypes($cvdNumC19Died, $types);
 
-        $this->cvdNumBeds = $cvdNumBeds;
-    }
-
-    /**
-     * @return Number|null
-     */
-    public function getCvdNumC19OFMechVentPats()
-    {
-        return $this->cvdNumC19OFMechVentPats;
-    }
-
-    /**
-     * @param Number|null $cvdNumC19OFMechVentPats
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCvdNumC19OFMechVentPats($cvdNumC19OFMechVentPats)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $cvdNumC19OFMechVentPats = self::checkTypes($cvdNumC19OFMechVentPats, $types);
-
-        $this->cvdNumC19OFMechVentPats = $cvdNumC19OFMechVentPats;
-    }
-
-    /**
-     * @return Number|null
-     */
-    public function getCvdNumC19HospPats()
-    {
-        return $this->cvdNumC19HospPats;
-    }
-
-    /**
-     * @param Number|null $cvdNumC19HospPats
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCvdNumC19HospPats($cvdNumC19HospPats)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $cvdNumC19HospPats = self::checkTypes($cvdNumC19HospPats, $types);
-
-        $this->cvdNumC19HospPats = $cvdNumC19HospPats;
-    }
-
-    /**
-     * @return Number|null
-     */
-    public function getCvdNumVent()
-    {
-        return $this->cvdNumVent;
-    }
-
-    /**
-     * @param Number|null $cvdNumVent
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCvdNumVent($cvdNumVent)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $cvdNumVent = self::checkTypes($cvdNumVent, $types);
-
-        $this->cvdNumVent = $cvdNumVent;
-    }
-
-    /**
-     * @return Number|null
-     */
-    public function getCvdNumBedsOcc()
-    {
-        return $this->cvdNumBedsOcc;
-    }
-
-    /**
-     * @param Number|null $cvdNumBedsOcc
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCvdNumBedsOcc($cvdNumBedsOcc)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $cvdNumBedsOcc = self::checkTypes($cvdNumBedsOcc, $types);
-
-        $this->cvdNumBedsOcc = $cvdNumBedsOcc;
+        $this->cvdNumC19Died = $cvdNumC19Died;
     }
 
     /**
@@ -373,82 +273,6 @@ class CDCPMDRecord extends \OpenActive\Models\SchemaOrg\StructuredValue
         $cvdNumC19HOPats = self::checkTypes($cvdNumC19HOPats, $types);
 
         $this->cvdNumC19HOPats = $cvdNumC19HOPats;
-    }
-
-    /**
-     * @return Number|null
-     */
-    public function getCvdNumC19Died()
-    {
-        return $this->cvdNumC19Died;
-    }
-
-    /**
-     * @param Number|null $cvdNumC19Died
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCvdNumC19Died($cvdNumC19Died)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $cvdNumC19Died = self::checkTypes($cvdNumC19Died, $types);
-
-        $this->cvdNumC19Died = $cvdNumC19Died;
-    }
-
-    /**
-     * @return DateTime|string|null
-     */
-    public function getCvdCollectionDate()
-    {
-        return $this->cvdCollectionDate;
-    }
-
-    /**
-     * @param DateTime|string|null $cvdCollectionDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCvdCollectionDate($cvdCollectionDate)
-    {
-        $types = [
-            "DateTime",
-            "string",
-            "null",
-        ];
-
-        $cvdCollectionDate = self::checkTypes($cvdCollectionDate, $types);
-
-        $this->cvdCollectionDate = $cvdCollectionDate;
-    }
-
-    /**
-     * @return Number|null
-     */
-    public function getCvdNumVentUse()
-    {
-        return $this->cvdNumVentUse;
-    }
-
-    /**
-     * @param Number|null $cvdNumVentUse
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCvdNumVentUse($cvdNumVentUse)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $cvdNumVentUse = self::checkTypes($cvdNumVentUse, $types);
-
-        $this->cvdNumVentUse = $cvdNumVentUse;
     }
 
     /**
@@ -478,26 +302,51 @@ class CDCPMDRecord extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @return Number|null
      */
-    public function getCvdNumICUBedsOcc()
+    public function getCvdNumC19OverflowPats()
     {
-        return $this->cvdNumICUBedsOcc;
+        return $this->cvdNumC19OverflowPats;
     }
 
     /**
-     * @param Number|null $cvdNumICUBedsOcc
+     * @param Number|null $cvdNumC19OverflowPats
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCvdNumICUBedsOcc($cvdNumICUBedsOcc)
+    public function setCvdNumC19OverflowPats($cvdNumC19OverflowPats)
     {
         $types = [
             "Number",
             "null",
         ];
 
-        $cvdNumICUBedsOcc = self::checkTypes($cvdNumICUBedsOcc, $types);
+        $cvdNumC19OverflowPats = self::checkTypes($cvdNumC19OverflowPats, $types);
 
-        $this->cvdNumICUBedsOcc = $cvdNumICUBedsOcc;
+        $this->cvdNumC19OverflowPats = $cvdNumC19OverflowPats;
+    }
+
+    /**
+     * @return Number|null
+     */
+    public function getCvdNumBeds()
+    {
+        return $this->cvdNumBeds;
+    }
+
+    /**
+     * @param Number|null $cvdNumBeds
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCvdNumBeds($cvdNumBeds)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $cvdNumBeds = self::checkTypes($cvdNumBeds, $types);
+
+        $this->cvdNumBeds = $cvdNumBeds;
     }
 
     /**
@@ -529,6 +378,81 @@ class CDCPMDRecord extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @return Number|null
      */
+    public function getCvdNumICUBedsOcc()
+    {
+        return $this->cvdNumICUBedsOcc;
+    }
+
+    /**
+     * @param Number|null $cvdNumICUBedsOcc
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCvdNumICUBedsOcc($cvdNumICUBedsOcc)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $cvdNumICUBedsOcc = self::checkTypes($cvdNumICUBedsOcc, $types);
+
+        $this->cvdNumICUBedsOcc = $cvdNumICUBedsOcc;
+    }
+
+    /**
+     * @return Number|null
+     */
+    public function getCvdNumVent()
+    {
+        return $this->cvdNumVent;
+    }
+
+    /**
+     * @param Number|null $cvdNumVent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCvdNumVent($cvdNumVent)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $cvdNumVent = self::checkTypes($cvdNumVent, $types);
+
+        $this->cvdNumVent = $cvdNumVent;
+    }
+
+    /**
+     * @return Number|null
+     */
+    public function getCvdNumC19HospPats()
+    {
+        return $this->cvdNumC19HospPats;
+    }
+
+    /**
+     * @param Number|null $cvdNumC19HospPats
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCvdNumC19HospPats($cvdNumC19HospPats)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $cvdNumC19HospPats = self::checkTypes($cvdNumC19HospPats, $types);
+
+        $this->cvdNumC19HospPats = $cvdNumC19HospPats;
+    }
+
+    /**
+     * @return Number|null
+     */
     public function getCvdNumICUBeds()
     {
         return $this->cvdNumICUBeds;
@@ -549,6 +473,56 @@ class CDCPMDRecord extends \OpenActive\Models\SchemaOrg\StructuredValue
         $cvdNumICUBeds = self::checkTypes($cvdNumICUBeds, $types);
 
         $this->cvdNumICUBeds = $cvdNumICUBeds;
+    }
+
+    /**
+     * @return Number|null
+     */
+    public function getCvdNumC19OFMechVentPats()
+    {
+        return $this->cvdNumC19OFMechVentPats;
+    }
+
+    /**
+     * @param Number|null $cvdNumC19OFMechVentPats
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCvdNumC19OFMechVentPats($cvdNumC19OFMechVentPats)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $cvdNumC19OFMechVentPats = self::checkTypes($cvdNumC19OFMechVentPats, $types);
+
+        $this->cvdNumC19OFMechVentPats = $cvdNumC19OFMechVentPats;
+    }
+
+    /**
+     * @return Number|null
+     */
+    public function getCvdNumC19MechVentPats()
+    {
+        return $this->cvdNumC19MechVentPats;
+    }
+
+    /**
+     * @param Number|null $cvdNumC19MechVentPats
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCvdNumC19MechVentPats($cvdNumC19MechVentPats)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $cvdNumC19MechVentPats = self::checkTypes($cvdNumC19MechVentPats, $types);
+
+        $this->cvdNumC19MechVentPats = $cvdNumC19MechVentPats;
     }
 
     /**
@@ -576,28 +550,54 @@ class CDCPMDRecord extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return Number|null
+     * @return DateTime|string|null
      */
-    public function getCvdNumC19MechVentPats()
+    public function getCvdCollectionDate()
     {
-        return $this->cvdNumC19MechVentPats;
+        return $this->cvdCollectionDate;
     }
 
     /**
-     * @param Number|null $cvdNumC19MechVentPats
+     * @param DateTime|string|null $cvdCollectionDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCvdNumC19MechVentPats($cvdNumC19MechVentPats)
+    public function setCvdCollectionDate($cvdCollectionDate)
+    {
+        $types = [
+            "DateTime",
+            "string",
+            "null",
+        ];
+
+        $cvdCollectionDate = self::checkTypes($cvdCollectionDate, $types);
+
+        $this->cvdCollectionDate = $cvdCollectionDate;
+    }
+
+    /**
+     * @return Number|null
+     */
+    public function getCvdNumBedsOcc()
+    {
+        return $this->cvdNumBedsOcc;
+    }
+
+    /**
+     * @param Number|null $cvdNumBedsOcc
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCvdNumBedsOcc($cvdNumBedsOcc)
     {
         $types = [
             "Number",
             "null",
         ];
 
-        $cvdNumC19MechVentPats = self::checkTypes($cvdNumC19MechVentPats, $types);
+        $cvdNumBedsOcc = self::checkTypes($cvdNumBedsOcc, $types);
 
-        $this->cvdNumC19MechVentPats = $cvdNumC19MechVentPats;
+        $this->cvdNumBedsOcc = $cvdNumBedsOcc;
     }
 
 }

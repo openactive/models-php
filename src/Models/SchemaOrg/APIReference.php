@@ -17,15 +17,23 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
 
     public static function fieldList() {
         $fields = [
+            "assemblyVersion" => "assemblyVersion",
             "programmingModel" => "programmingModel",
-            "targetPlatform" => "targetPlatform",
             "assembly" => "assembly",
             "executableLibraryName" => "executableLibraryName",
-            "assemblyVersion" => "assemblyVersion",
+            "targetPlatform" => "targetPlatform",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Associated product/technology version. e.g., .NET Framework 4.5.
+     *
+     *
+     * @var string
+     */
+    protected $assemblyVersion;
 
     /**
      * Indicates whether API is managed or unmanaged.
@@ -34,14 +42,6 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
      * @var string
      */
     protected $programmingModel;
-
-    /**
-     * Type of app development: phone, Metro style, desktop, XBox, etc.
-     *
-     *
-     * @var string
-     */
-    protected $targetPlatform;
 
     /**
      * Library file name e.g., mscorlib.dll, system.web.dll.
@@ -60,12 +60,36 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     protected $executableLibraryName;
 
     /**
-     * Associated product/technology version. e.g., .NET Framework 4.5.
+     * Type of app development: phone, Metro style, desktop, XBox, etc.
      *
      *
      * @var string
      */
-    protected $assemblyVersion;
+    protected $targetPlatform;
+
+    /**
+     * @return string
+     */
+    public function getAssemblyVersion()
+    {
+        return $this->assemblyVersion;
+    }
+
+    /**
+     * @param string $assemblyVersion
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAssemblyVersion($assemblyVersion)
+    {
+        $types = [
+            "string",
+        ];
+
+        $assemblyVersion = self::checkTypes($assemblyVersion, $types);
+
+        $this->assemblyVersion = $assemblyVersion;
+    }
 
     /**
      * @return string
@@ -89,30 +113,6 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
         $programmingModel = self::checkTypes($programmingModel, $types);
 
         $this->programmingModel = $programmingModel;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTargetPlatform()
-    {
-        return $this->targetPlatform;
-    }
-
-    /**
-     * @param string $targetPlatform
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTargetPlatform($targetPlatform)
-    {
-        $types = [
-            "string",
-        ];
-
-        $targetPlatform = self::checkTypes($targetPlatform, $types);
-
-        $this->targetPlatform = $targetPlatform;
     }
 
     /**
@@ -166,25 +166,25 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     /**
      * @return string
      */
-    public function getAssemblyVersion()
+    public function getTargetPlatform()
     {
-        return $this->assemblyVersion;
+        return $this->targetPlatform;
     }
 
     /**
-     * @param string $assemblyVersion
+     * @param string $targetPlatform
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAssemblyVersion($assemblyVersion)
+    public function setTargetPlatform($targetPlatform)
     {
         $types = [
             "string",
         ];
 
-        $assemblyVersion = self::checkTypes($assemblyVersion, $types);
+        $targetPlatform = self::checkTypes($targetPlatform, $types);
 
-        $this->assemblyVersion = $assemblyVersion;
+        $this->targetPlatform = $targetPlatform;
     }
 
 }

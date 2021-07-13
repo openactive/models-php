@@ -17,14 +17,30 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "dateModified" => "dateModified",
-            "item" => "item",
-            "dateCreated" => "dateCreated",
             "dateDeleted" => "dateDeleted",
+            "item" => "item",
+            "dateModified" => "dateModified",
+            "dateCreated" => "dateCreated",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The datetime the item was removed from the DataFeed.
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $dateDeleted;
+
+    /**
+     * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    protected $item;
 
     /**
      * The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
@@ -35,14 +51,6 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $dateModified;
 
     /**
-     * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $item;
-
-    /**
      * The date on which the CreativeWork was created or the item was added to a DataFeed.
      *
      *
@@ -51,12 +59,55 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $dateCreated;
 
     /**
-     * The datetime the item was removed from the DataFeed.
-     *
-     *
-     * @var Date|DateTime|null
+     * @return Date|DateTime|null
      */
-    protected $dateDeleted;
+    public function getDateDeleted()
+    {
+        return $this->dateDeleted;
+    }
+
+    /**
+     * @param Date|DateTime|null $dateDeleted
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDateDeleted($dateDeleted)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $dateDeleted = self::checkTypes($dateDeleted, $types);
+
+        $this->dateDeleted = $dateDeleted;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    public function getItem()
+    {
+        return $this->item;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $item
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setItem($item)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
+        ];
+
+        $item = self::checkTypes($item, $types);
+
+        $this->item = $item;
+    }
 
     /**
      * @return Date|DateTime|null
@@ -85,30 +136,6 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getItem()
-    {
-        return $this->item;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing $item
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setItem($item)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
-        ];
-
-        $item = self::checkTypes($item, $types);
-
-        $this->item = $item;
-    }
-
-    /**
      * @return Date|DateTime|null
      */
     public function getDateCreated()
@@ -132,32 +159,6 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
         $dateCreated = self::checkTypes($dateCreated, $types);
 
         $this->dateCreated = $dateCreated;
-    }
-
-    /**
-     * @return Date|DateTime|null
-     */
-    public function getDateDeleted()
-    {
-        return $this->dateDeleted;
-    }
-
-    /**
-     * @param Date|DateTime|null $dateDeleted
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDateDeleted($dateDeleted)
-    {
-        $types = [
-            "Date",
-            "DateTime",
-            "null",
-        ];
-
-        $dateDeleted = self::checkTypes($dateDeleted, $types);
-
-        $this->dateDeleted = $dateDeleted;
     }
 
 }

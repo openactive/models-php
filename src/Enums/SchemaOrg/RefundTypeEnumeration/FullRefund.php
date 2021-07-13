@@ -3,7 +3,7 @@
 namespace OpenActive\Enums\SchemaOrg\RefundTypeEnumeration;
 
 /**
- * RefundTypeEnumeration enumerates several kinds of product return refund types.
+ * Enumerates several kinds of product return refund types.
  *
  */
 class FullRefund extends \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration

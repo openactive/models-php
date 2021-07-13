@@ -27,12 +27,12 @@ class CategoryCodeSet extends \OpenActive\Models\SchemaOrg\DefinedTermSet
      * A Category code contained in this code set.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CategoryCode
+     * @var \OpenActive\Models\SchemaOrg\CategoryCode|string
      */
     protected $hasCategoryCode;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CategoryCode
+     * @return \OpenActive\Models\SchemaOrg\CategoryCode|string
      */
     public function getHasCategoryCode()
     {
@@ -40,7 +40,7 @@ class CategoryCodeSet extends \OpenActive\Models\SchemaOrg\DefinedTermSet
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CategoryCode $hasCategoryCode
+     * @param \OpenActive\Models\SchemaOrg\CategoryCode|string $hasCategoryCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class CategoryCodeSet extends \OpenActive\Models\SchemaOrg\DefinedTermSet
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\CategoryCode",
+            "string",
         ];
 
         $hasCategoryCode = self::checkTypes($hasCategoryCode, $types);

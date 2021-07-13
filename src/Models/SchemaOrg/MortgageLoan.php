@@ -36,7 +36,7 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
      * Amount of mortgage mandate that can be converted into a proper mortgage at a later stage.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string
      */
     protected $loanMortgageMandateAmount;
 
@@ -66,7 +66,7 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string
      */
     public function getLoanMortgageMandateAmount()
     {
@@ -74,7 +74,7 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount $loanMortgageMandateAmount
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string $loanMortgageMandateAmount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -82,6 +82,7 @@ class MortgageLoan extends \OpenActive\Models\SchemaOrg\LoanOrCredit
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
         ];
 
         $loanMortgageMandateAmount = self::checkTypes($loanMortgageMandateAmount, $types);

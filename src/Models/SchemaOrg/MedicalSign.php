@@ -28,7 +28,7 @@ class MedicalSign extends \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom
      * A physical examination that can identify this sign.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PhysicalExam
+     * @var \OpenActive\Models\SchemaOrg\PhysicalExam|string
      */
     protected $identifyingExam;
 
@@ -36,12 +36,12 @@ class MedicalSign extends \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom
      * A diagnostic test that can identify this sign.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTest
+     * @var \OpenActive\Models\SchemaOrg\MedicalTest|string
      */
     protected $identifyingTest;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PhysicalExam
+     * @return \OpenActive\Models\SchemaOrg\PhysicalExam|string
      */
     public function getIdentifyingExam()
     {
@@ -49,7 +49,7 @@ class MedicalSign extends \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PhysicalExam $identifyingExam
+     * @param \OpenActive\Models\SchemaOrg\PhysicalExam|string $identifyingExam
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -57,6 +57,7 @@ class MedicalSign extends \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\PhysicalExam",
+            "string",
         ];
 
         $identifyingExam = self::checkTypes($identifyingExam, $types);
@@ -65,7 +66,7 @@ class MedicalSign extends \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTest
+     * @return \OpenActive\Models\SchemaOrg\MedicalTest|string
      */
     public function getIdentifyingTest()
     {
@@ -73,7 +74,7 @@ class MedicalSign extends \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTest $identifyingTest
+     * @param \OpenActive\Models\SchemaOrg\MedicalTest|string $identifyingTest
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -81,6 +82,7 @@ class MedicalSign extends \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalTest",
+            "string",
         ];
 
         $identifyingTest = self::checkTypes($identifyingTest, $types);

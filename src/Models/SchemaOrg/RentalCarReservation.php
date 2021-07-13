@@ -17,9 +17,9 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
 
     public static function fieldList() {
         $fields = [
+            "pickupLocation" => "pickupLocation",
             "dropoffLocation" => "dropoffLocation",
             "pickupTime" => "pickupTime",
-            "pickupLocation" => "pickupLocation",
             "dropoffTime" => "dropoffTime",
         ];
 
@@ -27,10 +27,18 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
+     * Where a taxi will pick up a passenger or a rental car can be picked up.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|string
+     */
+    protected $pickupLocation;
+
+    /**
      * Where a rental car can be dropped off.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place
+     * @var \OpenActive\Models\SchemaOrg\Place|string
      */
     protected $dropoffLocation;
 
@@ -43,14 +51,6 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $pickupTime;
 
     /**
-     * Where a taxi will pick up a passenger or a rental car can be picked up.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Place
-     */
-    protected $pickupLocation;
-
-    /**
      * When a rental car can be dropped off.
      *
      *
@@ -59,7 +59,32 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $dropoffTime;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place
+     * @return \OpenActive\Models\SchemaOrg\Place|string
+     */
+    public function getPickupLocation()
+    {
+        return $this->pickupLocation;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Place|string $pickupLocation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPickupLocation($pickupLocation)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Place",
+            "string",
+        ];
+
+        $pickupLocation = self::checkTypes($pickupLocation, $types);
+
+        $this->pickupLocation = $pickupLocation;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Place|string
      */
     public function getDropoffLocation()
     {
@@ -67,7 +92,7 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place $dropoffLocation
+     * @param \OpenActive\Models\SchemaOrg\Place|string $dropoffLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -75,6 +100,7 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Place",
+            "string",
         ];
 
         $dropoffLocation = self::checkTypes($dropoffLocation, $types);
@@ -105,30 +131,6 @@ class RentalCarReservation extends \OpenActive\Models\SchemaOrg\Reservation
         $pickupTime = self::checkTypes($pickupTime, $types);
 
         $this->pickupTime = $pickupTime;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Place
-     */
-    public function getPickupLocation()
-    {
-        return $this->pickupLocation;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Place $pickupLocation
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPickupLocation($pickupLocation)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Place",
-        ];
-
-        $pickupLocation = self::checkTypes($pickupLocation, $types);
-
-        $this->pickupLocation = $pickupLocation;
     }
 
     /**
