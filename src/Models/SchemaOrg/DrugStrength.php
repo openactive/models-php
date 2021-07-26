@@ -17,39 +17,15 @@ class DrugStrength extends \OpenActive\Models\SchemaOrg\MedicalIntangible
 
     public static function fieldList() {
         $fields = [
-            "strengthUnit" => "strengthUnit",
-            "maximumIntake" => "maximumIntake",
-            "strengthValue" => "strengthValue",
             "activeIngredient" => "activeIngredient",
             "availableIn" => "availableIn",
+            "strengthUnit" => "strengthUnit",
+            "strengthValue" => "strengthValue",
+            "maximumIntake" => "maximumIntake",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The units of an active ingredient's strength, e.g. mg.
-     *
-     *
-     * @var string
-     */
-    protected $strengthUnit;
-
-    /**
-     * Recommended intake of this supplement for a given population as defined by a specific recommending authority.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MaximumDoseSchedule
-     */
-    protected $maximumIntake;
-
-    /**
-     * The value of an active ingredient's strength, e.g. 325.
-     *
-     *
-     * @var Number|null
-     */
-    protected $strengthValue;
 
     /**
      * An active ingredient, typically chemical compounds and/or biologic substances.
@@ -63,9 +39,82 @@ class DrugStrength extends \OpenActive\Models\SchemaOrg\MedicalIntangible
      * The location in which the strength is available.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea
+     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
      */
     protected $availableIn;
+
+    /**
+     * The units of an active ingredient's strength, e.g. mg.
+     *
+     *
+     * @var string
+     */
+    protected $strengthUnit;
+
+    /**
+     * The value of an active ingredient's strength, e.g. 325.
+     *
+     *
+     * @var Number|null
+     */
+    protected $strengthValue;
+
+    /**
+     * Recommended intake of this supplement for a given population as defined by a specific recommending authority.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string
+     */
+    protected $maximumIntake;
+
+    /**
+     * @return string
+     */
+    public function getActiveIngredient()
+    {
+        return $this->activeIngredient;
+    }
+
+    /**
+     * @param string $activeIngredient
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActiveIngredient($activeIngredient)
+    {
+        $types = [
+            "string",
+        ];
+
+        $activeIngredient = self::checkTypes($activeIngredient, $types);
+
+        $this->activeIngredient = $activeIngredient;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
+     */
+    public function getAvailableIn()
+    {
+        return $this->availableIn;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $availableIn
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAvailableIn($availableIn)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+            "string",
+        ];
+
+        $availableIn = self::checkTypes($availableIn, $types);
+
+        $this->availableIn = $availableIn;
+    }
 
     /**
      * @return string
@@ -89,30 +138,6 @@ class DrugStrength extends \OpenActive\Models\SchemaOrg\MedicalIntangible
         $strengthUnit = self::checkTypes($strengthUnit, $types);
 
         $this->strengthUnit = $strengthUnit;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MaximumDoseSchedule
-     */
-    public function getMaximumIntake()
-    {
-        return $this->maximumIntake;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MaximumDoseSchedule $maximumIntake
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMaximumIntake($maximumIntake)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MaximumDoseSchedule",
-        ];
-
-        $maximumIntake = self::checkTypes($maximumIntake, $types);
-
-        $this->maximumIntake = $maximumIntake;
     }
 
     /**
@@ -141,51 +166,28 @@ class DrugStrength extends \OpenActive\Models\SchemaOrg\MedicalIntangible
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string
      */
-    public function getActiveIngredient()
+    public function getMaximumIntake()
     {
-        return $this->activeIngredient;
+        return $this->maximumIntake;
     }
 
     /**
-     * @param string $activeIngredient
+     * @param \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string $maximumIntake
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setActiveIngredient($activeIngredient)
+    public function setMaximumIntake($maximumIntake)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\MaximumDoseSchedule",
             "string",
         ];
 
-        $activeIngredient = self::checkTypes($activeIngredient, $types);
+        $maximumIntake = self::checkTypes($maximumIntake, $types);
 
-        $this->activeIngredient = $activeIngredient;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea
-     */
-    public function getAvailableIn()
-    {
-        return $this->availableIn;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea $availableIn
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAvailableIn($availableIn)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-        ];
-
-        $availableIn = self::checkTypes($availableIn, $types);
-
-        $this->availableIn = $availableIn;
+        $this->maximumIntake = $maximumIntake;
     }
 
 }

@@ -17,19 +17,27 @@ class MedicalTherapy extends \OpenActive\Models\SchemaOrg\TherapeuticProcedure
 
     public static function fieldList() {
         $fields = [
+            "duplicateTherapy" => "duplicateTherapy",
             "seriousAdverseOutcome" => "seriousAdverseOutcome",
             "contraindication" => "contraindication",
-            "duplicateTherapy" => "duplicateTherapy",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
+     * A therapy that duplicates or overlaps this one.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     */
+    protected $duplicateTherapy;
+
+    /**
      * A possible serious complication and/or serious side effect of this therapy. Serious adverse outcomes include those that are life-threatening; result in death, disability, or permanent damage; require hospitalization or prolong existing hospitalization; cause congenital anomalies or birth defects; or jeopardize the patient and may require medical or surgical intervention to prevent one of the outcomes in this definition.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalEntity
+     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
     protected $seriousAdverseOutcome;
 
@@ -37,20 +45,37 @@ class MedicalTherapy extends \OpenActive\Models\SchemaOrg\TherapeuticProcedure
      * A contraindication for this therapy.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\MedicalContraindication
+     * @var \OpenActive\Models\SchemaOrg\MedicalContraindication|string
      */
     protected $contraindication;
 
     /**
-     * A therapy that duplicates or overlaps this one.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy
+     * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
-    protected $duplicateTherapy;
+    public function getDuplicateTherapy()
+    {
+        return $this->duplicateTherapy;
+    }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalEntity
+     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy|string $duplicateTherapy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDuplicateTherapy($duplicateTherapy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalTherapy",
+            "string",
+        ];
+
+        $duplicateTherapy = self::checkTypes($duplicateTherapy, $types);
+
+        $this->duplicateTherapy = $duplicateTherapy;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
     public function getSeriousAdverseOutcome()
     {
@@ -58,7 +83,7 @@ class MedicalTherapy extends \OpenActive\Models\SchemaOrg\TherapeuticProcedure
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalEntity $seriousAdverseOutcome
+     * @param \OpenActive\Models\SchemaOrg\MedicalEntity|string $seriousAdverseOutcome
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -66,6 +91,7 @@ class MedicalTherapy extends \OpenActive\Models\SchemaOrg\TherapeuticProcedure
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalEntity",
+            "string",
         ];
 
         $seriousAdverseOutcome = self::checkTypes($seriousAdverseOutcome, $types);
@@ -74,7 +100,7 @@ class MedicalTherapy extends \OpenActive\Models\SchemaOrg\TherapeuticProcedure
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\MedicalContraindication
+     * @return \OpenActive\Models\SchemaOrg\MedicalContraindication|string
      */
     public function getContraindication()
     {
@@ -82,44 +108,20 @@ class MedicalTherapy extends \OpenActive\Models\SchemaOrg\TherapeuticProcedure
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\MedicalContraindication $contraindication
+     * @param \OpenActive\Models\SchemaOrg\MedicalContraindication|string $contraindication
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContraindication($contraindication)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\MedicalContraindication",
+            "string",
         ];
 
         $contraindication = self::checkTypes($contraindication, $types);
 
         $this->contraindication = $contraindication;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTherapy
-     */
-    public function getDuplicateTherapy()
-    {
-        return $this->duplicateTherapy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy $duplicateTherapy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDuplicateTherapy($duplicateTherapy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalTherapy",
-        ];
-
-        $duplicateTherapy = self::checkTypes($duplicateTherapy, $types);
-
-        $this->duplicateTherapy = $duplicateTherapy;
     }
 
 }

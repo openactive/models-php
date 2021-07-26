@@ -27,12 +27,12 @@ class ReplyAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
      * A sub property of result. The Comment created or sent as a result of this action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Comment
+     * @var \OpenActive\Models\SchemaOrg\Comment|string
      */
     protected $resultComment;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Comment
+     * @return \OpenActive\Models\SchemaOrg\Comment|string
      */
     public function getResultComment()
     {
@@ -40,7 +40,7 @@ class ReplyAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Comment $resultComment
+     * @param \OpenActive\Models\SchemaOrg\Comment|string $resultComment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class ReplyAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Comment",
+            "string",
         ];
 
         $resultComment = self::checkTypes($resultComment, $types);

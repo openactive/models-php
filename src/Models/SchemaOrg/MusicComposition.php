@@ -17,68 +17,44 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "musicCompositionForm" => "musicCompositionForm",
-            "firstPerformance" => "firstPerformance",
-            "iswcCode" => "iswcCode",
+            "composer" => "composer",
+            "includedComposition" => "includedComposition",
             "lyrics" => "lyrics",
+            "musicalKey" => "musicalKey",
             "musicArrangement" => "musicArrangement",
             "recordedAs" => "recordedAs",
-            "musicalKey" => "musicalKey",
-            "includedComposition" => "includedComposition",
+            "iswcCode" => "iswcCode",
+            "firstPerformance" => "firstPerformance",
             "lyricist" => "lyricist",
-            "composer" => "composer",
+            "musicCompositionForm" => "musicCompositionForm",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The type of composition (e.g. overture, sonata, symphony, etc.).
+     * The person or organization who wrote a composition, or who is the composer of a work performed at some event.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $musicCompositionForm;
+    protected $composer;
 
     /**
-     * The date and place the work was first performed.
+     * Smaller compositions included in this work (e.g. a movement in a symphony).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Event
+     * @var \OpenActive\Models\SchemaOrg\MusicComposition|string
      */
-    protected $firstPerformance;
-
-    /**
-     * The International Standard Musical Work Code for the composition.
-     *
-     *
-     * @var string
-     */
-    protected $iswcCode;
+    protected $includedComposition;
 
     /**
      * The words in the song.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     protected $lyrics;
-
-    /**
-     * An arrangement derived from the composition.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MusicComposition
-     */
-    protected $musicArrangement;
-
-    /**
-     * An audio recording of the work.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MusicRecording
-     */
-    protected $recordedAs;
 
     /**
      * The key, mode, or scale this composition uses.
@@ -89,103 +65,106 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $musicalKey;
 
     /**
-     * Smaller compositions included in this work (e.g. a movement in a symphony).
+     * An arrangement derived from the composition.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MusicComposition
+     * @var \OpenActive\Models\SchemaOrg\MusicComposition|string
      */
-    protected $includedComposition;
+    protected $musicArrangement;
+
+    /**
+     * An audio recording of the work.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MusicRecording|string
+     */
+    protected $recordedAs;
+
+    /**
+     * The International Standard Musical Work Code for the composition.
+     *
+     *
+     * @var string
+     */
+    protected $iswcCode;
+
+    /**
+     * The date and place the work was first performed.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Event|string
+     */
+    protected $firstPerformance;
 
     /**
      * The person who wrote the words.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
     protected $lyricist;
 
     /**
-     * The person or organization who wrote a composition, or who is the composer of a work performed at some event.
+     * The type of composition (e.g. overture, sonata, symphony, etc.).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @var string
      */
-    protected $composer;
+    protected $musicCompositionForm;
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getMusicCompositionForm()
+    public function getComposer()
     {
-        return $this->musicCompositionForm;
+        return $this->composer;
     }
 
     /**
-     * @param string $musicCompositionForm
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $composer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMusicCompositionForm($musicCompositionForm)
+    public function setComposer($composer)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
             "string",
         ];
 
-        $musicCompositionForm = self::checkTypes($musicCompositionForm, $types);
+        $composer = self::checkTypes($composer, $types);
 
-        $this->musicCompositionForm = $musicCompositionForm;
+        $this->composer = $composer;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Event
+     * @return \OpenActive\Models\SchemaOrg\MusicComposition|string
      */
-    public function getFirstPerformance()
+    public function getIncludedComposition()
     {
-        return $this->firstPerformance;
+        return $this->includedComposition;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Event $firstPerformance
+     * @param \OpenActive\Models\SchemaOrg\MusicComposition|string $includedComposition
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setFirstPerformance($firstPerformance)
+    public function setIncludedComposition($includedComposition)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Event",
-        ];
-
-        $firstPerformance = self::checkTypes($firstPerformance, $types);
-
-        $this->firstPerformance = $firstPerformance;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIswcCode()
-    {
-        return $this->iswcCode;
-    }
-
-    /**
-     * @param string $iswcCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIswcCode($iswcCode)
-    {
-        $types = [
+            "\OpenActive\Models\SchemaOrg\MusicComposition",
             "string",
         ];
 
-        $iswcCode = self::checkTypes($iswcCode, $types);
+        $includedComposition = self::checkTypes($includedComposition, $types);
 
-        $this->iswcCode = $iswcCode;
+        $this->includedComposition = $includedComposition;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     public function getLyrics()
     {
@@ -193,7 +172,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork $lyrics
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $lyrics
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -201,59 +180,12 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
         ];
 
         $lyrics = self::checkTypes($lyrics, $types);
 
         $this->lyrics = $lyrics;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MusicComposition
-     */
-    public function getMusicArrangement()
-    {
-        return $this->musicArrangement;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MusicComposition $musicArrangement
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMusicArrangement($musicArrangement)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MusicComposition",
-        ];
-
-        $musicArrangement = self::checkTypes($musicArrangement, $types);
-
-        $this->musicArrangement = $musicArrangement;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MusicRecording
-     */
-    public function getRecordedAs()
-    {
-        return $this->recordedAs;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MusicRecording $recordedAs
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRecordedAs($recordedAs)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MusicRecording",
-        ];
-
-        $recordedAs = self::checkTypes($recordedAs, $types);
-
-        $this->recordedAs = $recordedAs;
     }
 
     /**
@@ -281,31 +213,106 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MusicComposition
+     * @return \OpenActive\Models\SchemaOrg\MusicComposition|string
      */
-    public function getIncludedComposition()
+    public function getMusicArrangement()
     {
-        return $this->includedComposition;
+        return $this->musicArrangement;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MusicComposition $includedComposition
+     * @param \OpenActive\Models\SchemaOrg\MusicComposition|string $musicArrangement
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIncludedComposition($includedComposition)
+    public function setMusicArrangement($musicArrangement)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MusicComposition",
+            "string",
         ];
 
-        $includedComposition = self::checkTypes($includedComposition, $types);
+        $musicArrangement = self::checkTypes($musicArrangement, $types);
 
-        $this->includedComposition = $includedComposition;
+        $this->musicArrangement = $musicArrangement;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person
+     * @return \OpenActive\Models\SchemaOrg\MusicRecording|string
+     */
+    public function getRecordedAs()
+    {
+        return $this->recordedAs;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MusicRecording|string $recordedAs
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRecordedAs($recordedAs)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MusicRecording",
+            "string",
+        ];
+
+        $recordedAs = self::checkTypes($recordedAs, $types);
+
+        $this->recordedAs = $recordedAs;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIswcCode()
+    {
+        return $this->iswcCode;
+    }
+
+    /**
+     * @param string $iswcCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIswcCode($iswcCode)
+    {
+        $types = [
+            "string",
+        ];
+
+        $iswcCode = self::checkTypes($iswcCode, $types);
+
+        $this->iswcCode = $iswcCode;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Event|string
+     */
+    public function getFirstPerformance()
+    {
+        return $this->firstPerformance;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Event|string $firstPerformance
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFirstPerformance($firstPerformance)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Event",
+            "string",
+        ];
+
+        $firstPerformance = self::checkTypes($firstPerformance, $types);
+
+        $this->firstPerformance = $firstPerformance;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
     public function getLyricist()
     {
@@ -313,7 +320,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person $lyricist
+     * @param \OpenActive\Models\SchemaOrg\Person|string $lyricist
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -321,6 +328,7 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
         $lyricist = self::checkTypes($lyricist, $types);
@@ -329,28 +337,27 @@ class MusicComposition extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
+     * @return string
      */
-    public function getComposer()
+    public function getMusicCompositionForm()
     {
-        return $this->composer;
+        return $this->musicCompositionForm;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $composer
+     * @param string $musicCompositionForm
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setComposer($composer)
+    public function setMusicCompositionForm($musicCompositionForm)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
-        $composer = self::checkTypes($composer, $types);
+        $musicCompositionForm = self::checkTypes($musicCompositionForm, $types);
 
-        $this->composer = $composer;
+        $this->musicCompositionForm = $musicCompositionForm;
     }
 
 }

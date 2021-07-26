@@ -27,12 +27,12 @@ class MedicalCause extends \OpenActive\Models\SchemaOrg\MedicalEntity
      * The condition, complication, symptom, sign, etc. caused.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalEntity
+     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
     protected $causeOf;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalEntity
+     * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
     public function getCauseOf()
     {
@@ -40,7 +40,7 @@ class MedicalCause extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalEntity $causeOf
+     * @param \OpenActive\Models\SchemaOrg\MedicalEntity|string $causeOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class MedicalCause extends \OpenActive\Models\SchemaOrg\MedicalEntity
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalEntity",
+            "string",
         ];
 
         $causeOf = self::checkTypes($causeOf, $types);

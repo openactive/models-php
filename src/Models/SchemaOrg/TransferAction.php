@@ -28,7 +28,7 @@ class TransferAction extends \OpenActive\Models\SchemaOrg\Action
      * A sub property of location. The original location of the object or the agent before the action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place
+     * @var \OpenActive\Models\SchemaOrg\Place|string
      */
     protected $fromLocation;
 
@@ -36,12 +36,12 @@ class TransferAction extends \OpenActive\Models\SchemaOrg\Action
      * A sub property of location. The final location of the object or the agent after the action.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place
+     * @var \OpenActive\Models\SchemaOrg\Place|string
      */
     protected $toLocation;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place
+     * @return \OpenActive\Models\SchemaOrg\Place|string
      */
     public function getFromLocation()
     {
@@ -49,7 +49,7 @@ class TransferAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place $fromLocation
+     * @param \OpenActive\Models\SchemaOrg\Place|string $fromLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -57,6 +57,7 @@ class TransferAction extends \OpenActive\Models\SchemaOrg\Action
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Place",
+            "string",
         ];
 
         $fromLocation = self::checkTypes($fromLocation, $types);
@@ -65,7 +66,7 @@ class TransferAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place
+     * @return \OpenActive\Models\SchemaOrg\Place|string
      */
     public function getToLocation()
     {
@@ -73,7 +74,7 @@ class TransferAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place $toLocation
+     * @param \OpenActive\Models\SchemaOrg\Place|string $toLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -81,6 +82,7 @@ class TransferAction extends \OpenActive\Models\SchemaOrg\Action
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Place",
+            "string",
         ];
 
         $toLocation = self::checkTypes($toLocation, $types);

@@ -17,29 +17,21 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "usedToDiagnose" => "usedToDiagnose",
             "usesDevice" => "usesDevice",
             "normalRange" => "normalRange",
             "affectedBy" => "affectedBy",
             "signDetected" => "signDetected",
+            "usedToDiagnose" => "usedToDiagnose",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A condition the test is used to diagnose.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalCondition
-     */
-    protected $usedToDiagnose;
-
-    /**
      * Device used to perform the test.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalDevice
+     * @var \OpenActive\Models\SchemaOrg\MedicalDevice|string
      */
     protected $usesDevice;
 
@@ -47,7 +39,7 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
      * Range of acceptable values for a typical patient, when applicable.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\MedicalEnumeration|string|null
+     * @var string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
      */
     protected $normalRange;
 
@@ -55,7 +47,7 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
      * Drugs that affect the test's results.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Drug
+     * @var \OpenActive\Models\SchemaOrg\Drug|string
      */
     protected $affectedBy;
 
@@ -63,36 +55,20 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
      * A sign detected by the test.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalSign
+     * @var \OpenActive\Models\SchemaOrg\MedicalSign|string
      */
     protected $signDetected;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalCondition
+     * A condition the test is used to diagnose.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalCondition|string
      */
-    public function getUsedToDiagnose()
-    {
-        return $this->usedToDiagnose;
-    }
+    protected $usedToDiagnose;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalCondition $usedToDiagnose
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setUsedToDiagnose($usedToDiagnose)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalCondition",
-        ];
-
-        $usedToDiagnose = self::checkTypes($usedToDiagnose, $types);
-
-        $this->usedToDiagnose = $usedToDiagnose;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalDevice
+     * @return \OpenActive\Models\SchemaOrg\MedicalDevice|string
      */
     public function getUsesDevice()
     {
@@ -100,7 +76,7 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalDevice $usesDevice
+     * @param \OpenActive\Models\SchemaOrg\MedicalDevice|string $usesDevice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -108,6 +84,7 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalDevice",
+            "string",
         ];
 
         $usesDevice = self::checkTypes($usesDevice, $types);
@@ -116,7 +93,7 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\MedicalEnumeration|string|null
+     * @return string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
      */
     public function getNormalRange()
     {
@@ -124,15 +101,15 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\MedicalEnumeration|string|null $normalRange
+     * @param string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null $normalRange
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNormalRange($normalRange)
     {
         $types = [
-            "\OpenActive\Enums\SchemaOrg\MedicalEnumeration",
             "string",
+            "\OpenActive\Enums\SchemaOrg\MedicalEnumeration",
             "null",
         ];
 
@@ -142,7 +119,7 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Drug
+     * @return \OpenActive\Models\SchemaOrg\Drug|string
      */
     public function getAffectedBy()
     {
@@ -150,7 +127,7 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Drug $affectedBy
+     * @param \OpenActive\Models\SchemaOrg\Drug|string $affectedBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -158,6 +135,7 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Drug",
+            "string",
         ];
 
         $affectedBy = self::checkTypes($affectedBy, $types);
@@ -166,7 +144,7 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalSign
+     * @return \OpenActive\Models\SchemaOrg\MedicalSign|string
      */
     public function getSignDetected()
     {
@@ -174,7 +152,7 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalSign $signDetected
+     * @param \OpenActive\Models\SchemaOrg\MedicalSign|string $signDetected
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -182,11 +160,37 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalSign",
+            "string",
         ];
 
         $signDetected = self::checkTypes($signDetected, $types);
 
         $this->signDetected = $signDetected;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
+     */
+    public function getUsedToDiagnose()
+    {
+        return $this->usedToDiagnose;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalCondition|string $usedToDiagnose
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUsedToDiagnose($usedToDiagnose)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalCondition",
+            "string",
+        ];
+
+        $usedToDiagnose = self::checkTypes($usedToDiagnose, $types);
+
+        $this->usedToDiagnose = $usedToDiagnose;
     }
 
 }

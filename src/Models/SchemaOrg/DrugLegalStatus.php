@@ -27,12 +27,12 @@ class DrugLegalStatus extends \OpenActive\Models\SchemaOrg\MedicalIntangible
      * The location in which the status applies.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea
+     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
      */
     protected $applicableLocation;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea
+     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
      */
     public function getApplicableLocation()
     {
@@ -40,7 +40,7 @@ class DrugLegalStatus extends \OpenActive\Models\SchemaOrg\MedicalIntangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea $applicableLocation
+     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $applicableLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class DrugLegalStatus extends \OpenActive\Models\SchemaOrg\MedicalIntangible
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+            "string",
         ];
 
         $applicableLocation = self::checkTypes($applicableLocation, $types);

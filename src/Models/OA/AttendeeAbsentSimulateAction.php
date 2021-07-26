@@ -7,14 +7,14 @@ namespace OpenActive\Models\OA;
  * This type is derived from https://schema.org/Action, which means that any of this type's properties within schema.org may also be used.
  *
  */
-class OpportunityAttendanceUpdateSimulateAction extends \OpenActive\Models\OA\OpenBookingSimulateAction
+class AttendeeAbsentSimulateAction extends \OpenActive\Models\OA\OpenBookingSimulateAction
 {
     /**
      * @return string[]|null
      */
     public static function getType()
     {
-        return "test:OpportunityAttendanceUpdateSimulateAction";
+        return "test:AttendeeAbsentSimulateAction";
     }
 
     public static function fieldList() {

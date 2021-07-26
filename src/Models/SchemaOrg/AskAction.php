@@ -27,12 +27,12 @@ class AskAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
      * A sub property of object. A question.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Question
+     * @var \OpenActive\Models\SchemaOrg\Question|string
      */
     protected $question;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Question
+     * @return \OpenActive\Models\SchemaOrg\Question|string
      */
     public function getQuestion()
     {
@@ -40,7 +40,7 @@ class AskAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Question $question
+     * @param \OpenActive\Models\SchemaOrg\Question|string $question
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class AskAction extends \OpenActive\Models\SchemaOrg\CommunicateAction
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Question",
+            "string",
         ];
 
         $question = self::checkTypes($question, $types);

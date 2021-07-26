@@ -17,12 +17,20 @@ class CategoryCode extends \OpenActive\Models\SchemaOrg\DefinedTerm
 
     public static function fieldList() {
         $fields = [
-            "inCodeSet" => "inCodeSet",
             "codeValue" => "codeValue",
+            "inCodeSet" => "inCodeSet",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A short textual code that uniquely identifies the value.
+     *
+     *
+     * @var string
+     */
+    protected $codeValue;
 
     /**
      * A [[CategoryCodeSet]] that contains this category code.
@@ -33,12 +41,28 @@ class CategoryCode extends \OpenActive\Models\SchemaOrg\DefinedTerm
     protected $inCodeSet;
 
     /**
-     * A short textual code that uniquely identifies the value.
-     *
-     *
-     * @var string
+     * @return string
      */
-    protected $codeValue;
+    public function getCodeValue()
+    {
+        return $this->codeValue;
+    }
+
+    /**
+     * @param string $codeValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCodeValue($codeValue)
+    {
+        $types = [
+            "string",
+        ];
+
+        $codeValue = self::checkTypes($codeValue, $types);
+
+        $this->codeValue = $codeValue;
+    }
 
     /**
      * @return string|\OpenActive\Models\SchemaOrg\CategoryCodeSet
@@ -63,30 +87,6 @@ class CategoryCode extends \OpenActive\Models\SchemaOrg\DefinedTerm
         $inCodeSet = self::checkTypes($inCodeSet, $types);
 
         $this->inCodeSet = $inCodeSet;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCodeValue()
-    {
-        return $this->codeValue;
-    }
-
-    /**
-     * @param string $codeValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCodeValue($codeValue)
-    {
-        $types = [
-            "string",
-        ];
-
-        $codeValue = self::checkTypes($codeValue, $types);
-
-        $this->codeValue = $codeValue;
     }
 
 }

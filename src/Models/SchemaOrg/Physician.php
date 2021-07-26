@@ -17,66 +17,65 @@ class Physician extends \OpenActive\Models\SchemaOrg\MedicalBusiness
 
     public static function fieldList() {
         $fields = [
-            "availableService" => "availableService",
-            "hospitalAffiliation" => "hospitalAffiliation",
             "medicalSpecialty" => "medicalSpecialty",
+            "hospitalAffiliation" => "hospitalAffiliation",
+            "availableService" => "availableService",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A medical service available from this provider.
+     * A medical specialty of the provider.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalTherapy|\OpenActive\Models\SchemaOrg\MedicalProcedure
+     * @var \OpenActive\Models\SchemaOrg\MedicalSpecialty|string
      */
-    protected $availableService;
+    protected $medicalSpecialty;
 
     /**
      * A hospital with which the physician or office is affiliated.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Hospital
+     * @var \OpenActive\Models\SchemaOrg\Hospital|string
      */
     protected $hospitalAffiliation;
 
     /**
-     * A medical specialty of the provider.
+     * A medical service available from this provider.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalSpecialty
+     * @var \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
-    protected $medicalSpecialty;
+    protected $availableService;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalTherapy|\OpenActive\Models\SchemaOrg\MedicalProcedure
+     * @return \OpenActive\Models\SchemaOrg\MedicalSpecialty|string
      */
-    public function getAvailableService()
+    public function getMedicalSpecialty()
     {
-        return $this->availableService;
+        return $this->medicalSpecialty;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalTherapy|\OpenActive\Models\SchemaOrg\MedicalProcedure $availableService
+     * @param \OpenActive\Models\SchemaOrg\MedicalSpecialty|string $medicalSpecialty
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAvailableService($availableService)
+    public function setMedicalSpecialty($medicalSpecialty)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalTest",
-            "\OpenActive\Models\SchemaOrg\MedicalTherapy",
-            "\OpenActive\Models\SchemaOrg\MedicalProcedure",
+            "\OpenActive\Models\SchemaOrg\MedicalSpecialty",
+            "string",
         ];
 
-        $availableService = self::checkTypes($availableService, $types);
+        $medicalSpecialty = self::checkTypes($medicalSpecialty, $types);
 
-        $this->availableService = $availableService;
+        $this->medicalSpecialty = $medicalSpecialty;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Hospital
+     * @return \OpenActive\Models\SchemaOrg\Hospital|string
      */
     public function getHospitalAffiliation()
     {
@@ -84,7 +83,7 @@ class Physician extends \OpenActive\Models\SchemaOrg\MedicalBusiness
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Hospital $hospitalAffiliation
+     * @param \OpenActive\Models\SchemaOrg\Hospital|string $hospitalAffiliation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -92,6 +91,7 @@ class Physician extends \OpenActive\Models\SchemaOrg\MedicalBusiness
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Hospital",
+            "string",
         ];
 
         $hospitalAffiliation = self::checkTypes($hospitalAffiliation, $types);
@@ -100,27 +100,30 @@ class Physician extends \OpenActive\Models\SchemaOrg\MedicalBusiness
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalSpecialty
+     * @return \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
-    public function getMedicalSpecialty()
+    public function getAvailableService()
     {
-        return $this->medicalSpecialty;
+        return $this->availableService;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalSpecialty $medicalSpecialty
+     * @param \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string $availableService
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMedicalSpecialty($medicalSpecialty)
+    public function setAvailableService($availableService)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalSpecialty",
+            "\OpenActive\Models\SchemaOrg\MedicalTest",
+            "\OpenActive\Models\SchemaOrg\MedicalProcedure",
+            "\OpenActive\Models\SchemaOrg\MedicalTherapy",
+            "string",
         ];
 
-        $medicalSpecialty = self::checkTypes($medicalSpecialty, $types);
+        $availableService = self::checkTypes($availableService, $types);
 
-        $this->medicalSpecialty = $medicalSpecialty;
+        $this->availableService = $availableService;
     }
 
 }

@@ -18,8 +18,8 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     public static function fieldList() {
         $fields = [
             "subtitleLanguage" => "subtitleLanguage",
-            "titleEIDR" => "titleEIDR",
             "countryOfOrigin" => "countryOfOrigin",
+            "titleEIDR" => "titleEIDR",
             "partOfTVSeries" => "partOfTVSeries",
         ];
 
@@ -30,9 +30,21 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
      * Languages in which subtitles/captions are available, in [IETF BCP 47 standard format](http://tools.ietf.org/html/bcp47).
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Language
+     * @var \OpenActive\Models\SchemaOrg\Language|string
      */
     protected $subtitleLanguage;
+
+    /**
+     * The country of origin of something, including products as well as creative  works such as movie and TV content.
+     * 
+     * In the case of TV and movie, this would be the country of the principle offices of the production company or individual responsible for the movie. For other kinds of [[CreativeWork]] it is difficult to provide fully general guidance, and properties such as [[contentLocation]] and [[locationCreated]] may be more applicable.
+     * 
+     * In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Country|string
+     */
+    protected $countryOfOrigin;
 
     /**
      * An [EIDR](https://eidr.org/) (Entertainment Identifier Registry) [[identifier]] representing at the most general/abstract level, a work of film or television.
@@ -48,23 +60,15 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     protected $titleEIDR;
 
     /**
-     * The country of the principal offices of the production company or individual responsible for the movie or program.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Country
-     */
-    protected $countryOfOrigin;
-
-    /**
      * The TV series to which this episode or season belongs.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\TVSeries
+     * @var \OpenActive\Models\SchemaOrg\TVSeries|string
      */
     protected $partOfTVSeries;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Language
+     * @return \OpenActive\Models\SchemaOrg\Language|string
      */
     public function getSubtitleLanguage()
     {
@@ -72,20 +76,45 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Language $subtitleLanguage
+     * @param \OpenActive\Models\SchemaOrg\Language|string $subtitleLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSubtitleLanguage($subtitleLanguage)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\Language",
+            "string",
         ];
 
         $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
 
         $this->subtitleLanguage = $subtitleLanguage;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Country|string
+     */
+    public function getCountryOfOrigin()
+    {
+        return $this->countryOfOrigin;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Country|string $countryOfOrigin
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCountryOfOrigin($countryOfOrigin)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Country",
+            "string",
+        ];
+
+        $countryOfOrigin = self::checkTypes($countryOfOrigin, $types);
+
+        $this->countryOfOrigin = $countryOfOrigin;
     }
 
     /**
@@ -113,31 +142,7 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Country
-     */
-    public function getCountryOfOrigin()
-    {
-        return $this->countryOfOrigin;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Country $countryOfOrigin
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCountryOfOrigin($countryOfOrigin)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Country",
-        ];
-
-        $countryOfOrigin = self::checkTypes($countryOfOrigin, $types);
-
-        $this->countryOfOrigin = $countryOfOrigin;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\TVSeries
+     * @return \OpenActive\Models\SchemaOrg\TVSeries|string
      */
     public function getPartOfTVSeries()
     {
@@ -145,7 +150,7 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\TVSeries $partOfTVSeries
+     * @param \OpenActive\Models\SchemaOrg\TVSeries|string $partOfTVSeries
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -153,6 +158,7 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\TVSeries",
+            "string",
         ];
 
         $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);

@@ -17,31 +17,31 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
 
     public static function fieldList() {
         $fields = [
-            "creator" => "creator",
             "discusses" => "discusses",
+            "commentText" => "commentText",
             "replyToUrl" => "replyToUrl",
             "commentTime" => "commentTime",
-            "commentText" => "commentText",
+            "creator" => "creator",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    protected $creator;
-
-    /**
      * Specifies the CreativeWork associated with the UserComment.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     protected $discusses;
+
+    /**
+     * The text of the UserComment.
+     *
+     *
+     * @var string
+     */
+    protected $commentText;
 
     /**
      * The URL at which a reply may be posted to the specified UserComment.
@@ -60,40 +60,15 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     protected $commentTime;
 
     /**
-     * The text of the UserComment.
+     * The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
-    protected $commentText;
+    protected $creator;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person
-     */
-    public function getCreator()
-    {
-        return $this->creator;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person $creator
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCreator($creator)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-        ];
-
-        $creator = self::checkTypes($creator, $types);
-
-        $this->creator = $creator;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     public function getDiscusses()
     {
@@ -101,7 +76,7 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork $discusses
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $discusses
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -109,11 +84,36 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
         ];
 
         $discusses = self::checkTypes($discusses, $types);
 
         $this->discusses = $discusses;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCommentText()
+    {
+        return $this->commentText;
+    }
+
+    /**
+     * @param string $commentText
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCommentText($commentText)
+    {
+        $types = [
+            "string",
+        ];
+
+        $commentText = self::checkTypes($commentText, $types);
+
+        $this->commentText = $commentText;
     }
 
     /**
@@ -167,27 +167,29 @@ class UserComments extends \OpenActive\Models\SchemaOrg\UserInteraction
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
-    public function getCommentText()
+    public function getCreator()
     {
-        return $this->commentText;
+        return $this->creator;
     }
 
     /**
-     * @param string $commentText
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $creator
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCommentText($commentText)
+    public function setCreator($creator)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
             "string",
         ];
 
-        $commentText = self::checkTypes($commentText, $types);
+        $creator = self::checkTypes($creator, $types);
 
-        $this->commentText = $commentText;
+        $this->creator = $creator;
     }
 
 }

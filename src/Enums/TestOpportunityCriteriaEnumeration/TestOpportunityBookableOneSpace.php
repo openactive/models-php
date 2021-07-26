@@ -7,8 +7,8 @@ namespace OpenActive\Enums\TestOpportunityCriteriaEnumeration;
  * An enumeration of test opportunity criteria to which an opportunity must conform.
  *
  */
-class TestOpportunityOpenBookingNotAllowed extends \OpenActive\Enums\TestOpportunityCriteriaEnumeration
+class TestOpportunityBookableOneSpace extends \OpenActive\Enums\TestOpportunityCriteriaEnumeration
 {
-    const value = "TestOpportunityOpenBookingNotAllowed";
-    const memberVal = "https://openactive.io/test-interface#TestOpportunityOpenBookingNotAllowed";
+    const value = "TestOpportunityBookableOneSpace";
+    const memberVal = "https://openactive.io/test-interface#TestOpportunityBookableOneSpace";
 }

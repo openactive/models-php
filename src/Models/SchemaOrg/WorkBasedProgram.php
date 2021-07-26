@@ -28,7 +28,7 @@ class WorkBasedProgram extends \OpenActive\Models\SchemaOrg\EducationalOccupatio
      * The estimated salary earned while in the program.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmountDistribution
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|string
      */
     protected $trainingSalary;
 
@@ -42,7 +42,7 @@ class WorkBasedProgram extends \OpenActive\Models\SchemaOrg\EducationalOccupatio
     protected $occupationalCategory;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmountDistribution
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|string
      */
     public function getTrainingSalary()
     {
@@ -50,7 +50,7 @@ class WorkBasedProgram extends \OpenActive\Models\SchemaOrg\EducationalOccupatio
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmountDistribution $trainingSalary
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|string $trainingSalary
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -58,6 +58,7 @@ class WorkBasedProgram extends \OpenActive\Models\SchemaOrg\EducationalOccupatio
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution",
+            "string",
         ];
 
         $trainingSalary = self::checkTypes($trainingSalary, $types);

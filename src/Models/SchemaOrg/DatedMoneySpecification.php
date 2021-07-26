@@ -18,8 +18,8 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     public static function fieldList() {
         $fields = [
             "amount" => "amount",
-            "startDate" => "startDate",
             "endDate" => "endDate",
+            "startDate" => "startDate",
             "currency" => "currency",
         ];
 
@@ -30,17 +30,9 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
      * The amount of money.
      *
      *
-     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
      */
     protected $amount;
-
-    /**
-     * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
-     *
-     *
-     * @var Date|DateTime|null
-     */
-    protected $startDate;
 
     /**
      * The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
@@ -51,6 +43,14 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     protected $endDate;
 
     /**
+     * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $startDate;
+
+    /**
      * The currency in which the monetary amount is expressed.\n\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217) e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies e.g. "BTC"; well known names for [Local Exchange Tradings Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types e.g. "Ithaca HOUR".
      *
      *
@@ -59,7 +59,7 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     protected $currency;
 
     /**
-     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|null
+     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
      */
     public function getAmount()
     {
@@ -67,7 +67,7 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     }
 
     /**
-     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|null $amount
+     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $amount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -76,38 +76,13 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
         $types = [
             "Number",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
             "null",
         ];
 
         $amount = self::checkTypes($amount, $types);
 
         $this->amount = $amount;
-    }
-
-    /**
-     * @return Date|DateTime|null
-     */
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
-
-    /**
-     * @param Date|DateTime|null $startDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setStartDate($startDate)
-    {
-        $types = [
-            "Date",
-            "DateTime",
-            "null",
-        ];
-
-        $startDate = self::checkTypes($startDate, $types);
-
-        $this->startDate = $startDate;
     }
 
     /**
@@ -134,6 +109,32 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
         $endDate = self::checkTypes($endDate, $types);
 
         $this->endDate = $endDate;
+    }
+
+    /**
+     * @return Date|DateTime|null
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @param Date|DateTime|null $startDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setStartDate($startDate)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $startDate = self::checkTypes($startDate, $types);
+
+        $this->startDate = $startDate;
     }
 
     /**

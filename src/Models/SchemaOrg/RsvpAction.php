@@ -18,8 +18,8 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     public static function fieldList() {
         $fields = [
             "additionalNumberOfGuests" => "additionalNumberOfGuests",
-            "rsvpResponse" => "rsvpResponse",
             "comment" => "comment",
+            "rsvpResponse" => "rsvpResponse",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -34,20 +34,20 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     protected $additionalNumberOfGuests;
 
     /**
+     * Comments, typically from users.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Comment|string
+     */
+    protected $comment;
+
+    /**
      * The response (yes, no, maybe) to the RSVP.
      *
      *
      * @var \OpenActive\Enums\SchemaOrg\RsvpResponseType|null
      */
     protected $rsvpResponse;
-
-    /**
-     * Comments, typically from users.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Comment
-     */
-    protected $comment;
 
     /**
      * @return Number|null
@@ -75,6 +75,31 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\Comment|string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Comment|string $comment
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setComment($comment)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Comment",
+            "string",
+        ];
+
+        $comment = self::checkTypes($comment, $types);
+
+        $this->comment = $comment;
+    }
+
+    /**
      * @return \OpenActive\Enums\SchemaOrg\RsvpResponseType|null
      */
     public function getRsvpResponse()
@@ -97,30 +122,6 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
         $rsvpResponse = self::checkTypes($rsvpResponse, $types);
 
         $this->rsvpResponse = $rsvpResponse;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Comment
-     */
-    public function getComment()
-    {
-        return $this->comment;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Comment $comment
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setComment($comment)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Comment",
-        ];
-
-        $comment = self::checkTypes($comment, $types);
-
-        $this->comment = $comment;
     }
 
 }

@@ -18,8 +18,8 @@ class Muscle extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     public static function fieldList() {
         $fields = [
             "nerve" => "nerve",
-            "antagonist" => "antagonist",
             "muscleAction" => "muscleAction",
+            "antagonist" => "antagonist",
             "bloodSupply" => "bloodSupply",
             "insertion" => "insertion",
         ];
@@ -31,17 +31,9 @@ class Muscle extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
      * The underlying innervation associated with the muscle.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Nerve
+     * @var \OpenActive\Models\SchemaOrg\Nerve|string
      */
     protected $nerve;
-
-    /**
-     * The muscle whose action counteracts the specified muscle.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Muscle
-     */
-    protected $antagonist;
 
     /**
      * The movement the muscle generates.
@@ -52,10 +44,18 @@ class Muscle extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     protected $muscleAction;
 
     /**
+     * The muscle whose action counteracts the specified muscle.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Muscle|string
+     */
+    protected $antagonist;
+
+    /**
      * The blood vessel that carries blood from the heart to the muscle.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Vessel
+     * @var \OpenActive\Models\SchemaOrg\Vessel|string
      */
     protected $bloodSupply;
 
@@ -63,12 +63,12 @@ class Muscle extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
      * The place of attachment of a muscle, or what the muscle moves.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure
+     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
      */
     protected $insertion;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Nerve
+     * @return \OpenActive\Models\SchemaOrg\Nerve|string
      */
     public function getNerve()
     {
@@ -76,7 +76,7 @@ class Muscle extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Nerve $nerve
+     * @param \OpenActive\Models\SchemaOrg\Nerve|string $nerve
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -84,35 +84,12 @@ class Muscle extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Nerve",
+            "string",
         ];
 
         $nerve = self::checkTypes($nerve, $types);
 
         $this->nerve = $nerve;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Muscle
-     */
-    public function getAntagonist()
-    {
-        return $this->antagonist;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Muscle $antagonist
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAntagonist($antagonist)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Muscle",
-        ];
-
-        $antagonist = self::checkTypes($antagonist, $types);
-
-        $this->antagonist = $antagonist;
     }
 
     /**
@@ -140,7 +117,32 @@ class Muscle extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Vessel
+     * @return \OpenActive\Models\SchemaOrg\Muscle|string
+     */
+    public function getAntagonist()
+    {
+        return $this->antagonist;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Muscle|string $antagonist
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAntagonist($antagonist)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Muscle",
+            "string",
+        ];
+
+        $antagonist = self::checkTypes($antagonist, $types);
+
+        $this->antagonist = $antagonist;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Vessel|string
      */
     public function getBloodSupply()
     {
@@ -148,7 +150,7 @@ class Muscle extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Vessel $bloodSupply
+     * @param \OpenActive\Models\SchemaOrg\Vessel|string $bloodSupply
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -156,6 +158,7 @@ class Muscle extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Vessel",
+            "string",
         ];
 
         $bloodSupply = self::checkTypes($bloodSupply, $types);
@@ -164,7 +167,7 @@ class Muscle extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure
+     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
      */
     public function getInsertion()
     {
@@ -172,7 +175,7 @@ class Muscle extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure $insertion
+     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|string $insertion
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -180,6 +183,7 @@ class Muscle extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
+            "string",
         ];
 
         $insertion = self::checkTypes($insertion, $types);

@@ -27,12 +27,12 @@ class ArchiveOrganization extends \OpenActive\Models\SchemaOrg\LocalBusiness
      * [object Object]
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ArchiveComponent
+     * @var \OpenActive\Models\SchemaOrg\ArchiveComponent|string
      */
     protected $archiveHeld;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ArchiveComponent
+     * @return \OpenActive\Models\SchemaOrg\ArchiveComponent|string
      */
     public function getArchiveHeld()
     {
@@ -40,7 +40,7 @@ class ArchiveOrganization extends \OpenActive\Models\SchemaOrg\LocalBusiness
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ArchiveComponent $archiveHeld
+     * @param \OpenActive\Models\SchemaOrg\ArchiveComponent|string $archiveHeld
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -48,6 +48,7 @@ class ArchiveOrganization extends \OpenActive\Models\SchemaOrg\LocalBusiness
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\ArchiveComponent",
+            "string",
         ];
 
         $archiveHeld = self::checkTypes($archiveHeld, $types);

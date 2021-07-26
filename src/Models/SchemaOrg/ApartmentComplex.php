@@ -19,9 +19,9 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
         $fields = [
             "numberOfBedrooms" => "numberOfBedrooms",
             "tourBookingPage" => "tourBookingPage",
-            "numberOfAvailableAccommodationUnits" => "numberOfAvailableAccommodationUnits",
-            "petsAllowed" => "petsAllowed",
             "numberOfAccommodationUnits" => "numberOfAccommodationUnits",
+            "petsAllowed" => "petsAllowed",
+            "numberOfAvailableAccommodationUnits" => "numberOfAvailableAccommodationUnits",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -31,7 +31,7 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
      * The total integer number of bedrooms in a some [[Accommodation]], [[ApartmentComplex]] or [[FloorPlan]].
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|Number|null
+     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
     protected $numberOfBedrooms;
 
@@ -44,12 +44,12 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     protected $tourBookingPage;
 
     /**
-     * Indicates the number of available accommodation units in an [[ApartmentComplex]], or the number of accommodation units for a specific [[FloorPlan]] (within its specific [[ApartmentComplex]]). See also [[numberOfAccommodationUnits]].
+     * Indicates the total (available plus unavailable) number of accommodation units in an [[ApartmentComplex]], or the number of accommodation units for a specific [[FloorPlan]] (within its specific [[ApartmentComplex]]). See also [[numberOfAvailableAccommodationUnits]].
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
-    protected $numberOfAvailableAccommodationUnits;
+    protected $numberOfAccommodationUnits;
 
     /**
      * Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value.
@@ -60,15 +60,15 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     protected $petsAllowed;
 
     /**
-     * Indicates the total (available plus unavailable) number of accommodation units in an [[ApartmentComplex]], or the number of accommodation units for a specific [[FloorPlan]] (within its specific [[ApartmentComplex]]). See also [[numberOfAvailableAccommodationUnits]].
+     * Indicates the number of available accommodation units in an [[ApartmentComplex]], or the number of accommodation units for a specific [[FloorPlan]] (within its specific [[ApartmentComplex]]). See also [[numberOfAccommodationUnits]].
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
-    protected $numberOfAccommodationUnits;
+    protected $numberOfAvailableAccommodationUnits;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|Number|null
+     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
     public function getNumberOfBedrooms()
     {
@@ -76,15 +76,16 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|Number|null $numberOfBedrooms
+     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $numberOfBedrooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfBedrooms($numberOfBedrooms)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "Number",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
             "null",
         ];
 
@@ -118,27 +119,28 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
-    public function getNumberOfAvailableAccommodationUnits()
+    public function getNumberOfAccommodationUnits()
     {
-        return $this->numberOfAvailableAccommodationUnits;
+        return $this->numberOfAccommodationUnits;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $numberOfAvailableAccommodationUnits
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $numberOfAccommodationUnits
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfAvailableAccommodationUnits($numberOfAvailableAccommodationUnits)
+    public function setNumberOfAccommodationUnits($numberOfAccommodationUnits)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
         ];
 
-        $numberOfAvailableAccommodationUnits = self::checkTypes($numberOfAvailableAccommodationUnits, $types);
+        $numberOfAccommodationUnits = self::checkTypes($numberOfAccommodationUnits, $types);
 
-        $this->numberOfAvailableAccommodationUnits = $numberOfAvailableAccommodationUnits;
+        $this->numberOfAccommodationUnits = $numberOfAccommodationUnits;
     }
 
     /**
@@ -168,27 +170,28 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
-    public function getNumberOfAccommodationUnits()
+    public function getNumberOfAvailableAccommodationUnits()
     {
-        return $this->numberOfAccommodationUnits;
+        return $this->numberOfAvailableAccommodationUnits;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue $numberOfAccommodationUnits
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $numberOfAvailableAccommodationUnits
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfAccommodationUnits($numberOfAccommodationUnits)
+    public function setNumberOfAvailableAccommodationUnits($numberOfAvailableAccommodationUnits)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
         ];
 
-        $numberOfAccommodationUnits = self::checkTypes($numberOfAccommodationUnits, $types);
+        $numberOfAvailableAccommodationUnits = self::checkTypes($numberOfAvailableAccommodationUnits, $types);
 
-        $this->numberOfAccommodationUnits = $numberOfAccommodationUnits;
+        $this->numberOfAvailableAccommodationUnits = $numberOfAvailableAccommodationUnits;
     }
 
 }
