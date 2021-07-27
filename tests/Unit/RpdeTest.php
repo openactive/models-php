@@ -631,6 +631,34 @@ class RpdeTest extends TestCase
         );
     }
 
+    /**
+     * @dataProvider serializationModifiersDataProvider
+     * @param array $feed
+     * @param string $expectedJson
+     */
+    public function testAppliesModificationsAfterSerialization($feed, $expectedJson)
+    {
+        $body = RpdeBody::createFromModifiedId(
+            'https://www.example.com/feed',
+            1,
+            "1",
+            $feed
+        );
+
+        $this->assertEquals(
+            json_decode($expectedJson),
+            json_decode(RpdeBody::serialize($body, false, false, [
+                function ($class, $key, $value) {
+                    if ('data' !== $key || !is_array($value) || 'OrderProposal' !== $value['@type']) {
+                        return $value;
+                    }
+                    $value['extra'] = ['foo' => 'bar'];
+                    return $value;
+                }
+            ]))
+        );
+    }
+
     public function jsonAfterModifiedAfterIdProvider()
     {
         $data = array();
@@ -755,6 +783,14 @@ class RpdeTest extends TestCase
             [require $res . '/Orders.php', file_get_contents($res . '/orders.json')],
             [require $res . '/FacilityUses.php', file_get_contents($res . '/facility_uses.json')],
             [require $res . '/Slots.php', file_get_contents($res . '/slots.json')],
+        ];
+    }
+
+    public function serializationModifiersDataProvider()
+    {
+        $res = __DIR__ . '/RpdeResources';
+        return [
+            [require $res . '/Orders.php', file_get_contents($res . '/orders-modified.json')],
         ];
     }
 }

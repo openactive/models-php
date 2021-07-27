@@ -23,9 +23,10 @@ class JsonLd
      * @param \OpenActive\BaseModel $obj The given instance to convert to JSON-LD
      * @param object|null $parent The parent node in the structure.
      * @param bool $schema Whether to add a Schema.org context
+     * @param callable[] $modifiers A list of closures with this signature: function (string $class, string $key, $value): mixed
      * @return array
      */
-    public static function prepareDataForSerialization($obj, $parent = null, $schema = false)
+    public static function prepareDataForSerialization($obj, $parent = null, $schema = false, array $modifiers = [])
     {
         // Get fully qualified namespace of the object's class name
         $fq_classname = "\\".get_class($obj);
@@ -101,7 +102,8 @@ class JsonLd
                         $item = self::prepareDataForSerialization(
                             $item,
                             $attrValue,
-                            $schema
+                            $schema,
+                            $modifiers
                         );
                     }
 
@@ -117,11 +119,16 @@ class JsonLd
                 $attrValue = self::prepareDataForSerialization(
                     $attrValue,
                     $obj,
-                    $schema
+                    $schema,
+                    $modifiers
                 );
             }
 
             $data[$attrName] = $attrValue;
+
+            foreach ($modifiers as $modifier) {
+                $data[$attrName] = $modifier($fq_classname, $attrName, $data[$attrName]);
+            }
         }
 
         // Remove empty elements
