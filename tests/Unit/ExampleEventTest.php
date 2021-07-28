@@ -138,6 +138,50 @@ class ExampleEventTest extends TestCase
         $this->assertSame($encode, $reencode);
     }
 
+    public function testSerializeOfferEncodeWithModifications()
+    {
+        $offer = new Offer([
+            "Id" => "https://www.example.com/event_offer/12345_201803180430",
+            "Url" => "https://www.example.com/event_offer/12345_201803180430",
+            "Price" => 30.32,
+            "PriceCurrency" => "USD",
+            "ValidFrom" => new \DateTime(
+                "2017-01-20 16:20:00",
+                new \DateTimeZone("-0800")
+            )
+        ]);
+
+        $encoded = Offer::serialize($offer, true, false, [
+            function ($class, $attr, $value) {
+                if ($class !== '\\' . Offer::class) {
+                    return $value;
+                }
+                if ($attr !== 'price') {
+                    return $value;
+                }
+                return (string) $value;
+            },
+            function ($class, $attr, $value) {
+                if ($attr !== 'priceCurrency') {
+                    return $value;
+                }
+                return 'GBP';
+            }
+        ]);
+        $this->assertEquals(json_encode([
+            '@type' => 'Offer',
+            '@context' => [
+                'https://openactive.io/',
+                'https://openactive.io/ns-beta'
+            ],
+            '@id' => 'https://www.example.com/event_offer/12345_201803180430',
+            'url' => 'https://www.example.com/event_offer/12345_201803180430',
+            'priceCurrency' => 'GBP',
+            'price' => "30.32",
+            'validFrom' => '2017-01-20T16:20:00-08:00'
+        ], JSON_PRETTY_PRINT), $encoded);
+    }
+
     /**
      * Returns an array of arrays.
      * Each item contains a classname and the deserialized representation

@@ -208,7 +208,7 @@ new Schedule([
 
 This package provides support for JSON-LD serialization/deserialization of [models](#models) and and for the `\OpenActive\Rpde\RpdeBody` object.
 
-#### `serialize($obj, $prettyPrint = false)`
+#### `serialize($obj, $prettyPrint = false, $schema = false, $modifiers = [])`
 
 Returns the JSON-LD string representation of the given object `$obj`.
 
@@ -240,7 +240,7 @@ Will output:
 }
 ```
 
-**Please note:** at the moment, only the OpenActive `@context` is rendered in the serialization output. Future versions of this package may allow to include more and/or different `@context`.
+**Please note:** at the moment by default, only the OpenActive `@context` is rendered in the serialization output. You may supply the `$schema` flag to add the Schema.org `@context`.
 
 #### `deserialize($data)`
 
@@ -353,6 +353,54 @@ object(OpenActive\Models\OA\Action)#3 (24) {
   ["id":protected]=>
   NULL
 }
+```
+
+#### Modifiers
+
+Modifiers allow you to change the serialized context *after* it has been normalized by the library. An example use-case
+for this is if you are working with a third party who does not completely adhere to the specification, or has other
+implementation details which require non-standard serialization. For example, if the third party requires a different
+date format you could do this:
+
+```
+use OpenActive\Models\OA\SessionSeries;
+
+echo SessionSeries::serialize($sessionSeries, true, false, [
+    function ($class, $key, $value) {
+      if (!in_array($key, ['startDate', 'endDate'])) {
+        return $value;
+      }
+      return (new \DateTime($value))->format('Y.m.d.H:i:s');
+    }
+]);
+```
+
+The given modifiers **MUST** adhere to this method signature:
+
+```
+function (string $class, string $key, mixed $value): mixed
+```
+
+Each modifier **MUST** always respond with a value, as the modifiers are always applied. If it does not return a value
+all the data in your object will be wiped during serialization. You **SHOULD** use the `$class` and `$key` parameters to
+determine if the modifier should run for the parameter, and simply return the `$value` if it is not necessary.
+
+Modifiers can also be added to the Deserialization process, and are applied *before* the property is set. This can be
+useful when having to handle migration paths as changes happen in the library, or to fix data coming from an
+incompatible seller. Building on the previous example, if the third party in this case is sending dates in an odd format
+you could do this:
+
+```
+use OpenActive\Models\OA\SessionSeries;
+
+$session = SessionSeries::deserialize('{...}', [
+    function ($class, $key, $value) {
+      if (!in_array($key, ['startDate', 'endDate'])) {
+        return $value;
+      }
+      return \DateTime::createFromFormat('Y.m.d.H:i:s', $value, new \DateTimeZone('Europe/London'));
+    }
+]);
 ```
 
 ## Contributing
