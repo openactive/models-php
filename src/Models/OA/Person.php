@@ -110,13 +110,13 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     protected $familyName;
 
     /**
-     * Indicates the gender of the person.
+     * Indicates the gender of the person. While `https://schema.org/Male` and `https://schema.org/Female` may be used, text strings are also acceptable for people who do not identify as a binary gender.
      *
      * ```json
      * "gender": "https://schema.org/Female"
      * ```
      *
-     * @var \OpenActive\Enums\SchemaOrg\GenderType|null
+     * @var string|\OpenActive\Enums\SchemaOrg\GenderType|null
      */
     protected $gender;
 
@@ -409,7 +409,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\GenderType|null
+     * @return string|\OpenActive\Enums\SchemaOrg\GenderType|null
      */
     public function getGender()
     {
@@ -417,13 +417,14 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\GenderType|null $gender
+     * @param string|\OpenActive\Enums\SchemaOrg\GenderType|null $gender
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGender($gender)
     {
         $types = [
+            "string",
             "\OpenActive\Enums\SchemaOrg\GenderType",
             "null",
         ];
