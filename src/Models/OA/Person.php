@@ -23,6 +23,7 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
             "description" => "description",
             "address" => "address",
             "email" => "email",
+            "emergencyContact" => "emergencyContact",
             "familyName" => "familyName",
             "gender" => "gender",
             "givenName" => "givenName",
@@ -96,6 +97,14 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
      * @var string
      */
     protected $email;
+
+    /**
+     * Person to contact in case of emergencies related to this Person.
+     *
+     *
+     * @var \OpenActive\Models\OA\Person
+     */
+    protected $emergencyContact;
 
     /**
      * A last name for the person.
@@ -382,6 +391,30 @@ class Person extends \OpenActive\Models\SchemaOrg\Person
         $email = self::checkTypes($email, $types);
 
         $this->email = $email;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\Person
+     */
+    public function getEmergencyContact()
+    {
+        return $this->emergencyContact;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\Person $emergencyContact
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEmergencyContact($emergencyContact)
+    {
+        $types = [
+            "\OpenActive\Models\OA\Person",
+        ];
+
+        $emergencyContact = self::checkTypes($emergencyContact, $types);
+
+        $this->emergencyContact = $emergencyContact;
     }
 
     /**
