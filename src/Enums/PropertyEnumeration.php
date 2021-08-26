@@ -28,6 +28,7 @@ class PropertyEnumeration
     const CancellationMessage = \OpenActive\Enums\PropertyEnumeration\CancellationMessage::class;
     const Concept = \OpenActive\Enums\PropertyEnumeration\Concept::class;
     const CustomerNotice = \OpenActive\Enums\PropertyEnumeration\CustomerNotice::class;
+    const EmergencyContact = \OpenActive\Enums\PropertyEnumeration\EmergencyContact::class;
     const FacilityUse = \OpenActive\Enums\PropertyEnumeration\FacilityUse::class;
     const GenderRestriction = \OpenActive\Enums\PropertyEnumeration\GenderRestriction::class;
     const IdTemplate = \OpenActive\Enums\PropertyEnumeration\IdTemplate::class;
