@@ -627,7 +627,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
      *
      *
-     * @var \OpenActive\Models\VideoObject[]
+     * @var \OpenActive\Models\OA\VideoObject[]
      */
     protected $video;
 
@@ -682,7 +682,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * If you are using this property, please join the discussion at proposal [#224](https://github.com/openactive/modelling-opportunity-data/issues/224).
      *
      *
-     * @var \OpenActive\Models\VirtualLocation
+     * @var \OpenActive\Models\OA\VirtualLocation
      */
     protected $virtualLocation;
 
@@ -1788,7 +1788,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Models\VideoObject[]
+     * @return \OpenActive\Models\OA\VideoObject[]
      */
     public function getVideo()
     {
@@ -1796,14 +1796,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\VideoObject[] $video
+     * @param \OpenActive\Models\OA\VideoObject[] $video
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVideo($video)
     {
         $types = [
-            "\OpenActive\Models\VideoObject[]",
+            "\OpenActive\Models\OA\VideoObject[]",
         ];
 
         $video = self::checkTypes($video, $types);
@@ -1911,7 +1911,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Models\VirtualLocation
+     * @return \OpenActive\Models\OA\VirtualLocation
      */
     public function getVirtualLocation()
     {
@@ -1919,14 +1919,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\VirtualLocation $virtualLocation
+     * @param \OpenActive\Models\OA\VirtualLocation $virtualLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVirtualLocation($virtualLocation)
     {
         $types = [
-            "\OpenActive\Models\VirtualLocation",
+            "\OpenActive\Models\OA\VirtualLocation",
         ];
 
         $virtualLocation = self::checkTypes($virtualLocation, $types);
