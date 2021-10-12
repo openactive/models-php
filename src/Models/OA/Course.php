@@ -31,6 +31,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
             "image" => "image",
             "level" => "level",
             "url" => "url",
+            "formattedDescription" => "beta:formattedDescription",
             "video" => "beta:video",
         ];
 
@@ -222,6 +223,17 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
      * @var string
      */
     protected $url;
+
+    /**
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
+     * Sometimes a description is stored with formatting (e.g. href, bold, italics, embedded YouTube videos). This formatting can be useful for data consumers. This property must contain HTML.
+     * 
+     * If you are using this property, please join the discussion at proposal [#276](https://github.com/openactive/modelling-opportunity-data/issues/276).
+     *
+     *
+     * @var string
+     */
+    protected $formattedDescription;
 
     /**
      * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
@@ -553,6 +565,30 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
         $url = self::checkTypes($url, $types);
 
         $this->url = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormattedDescription()
+    {
+        return $this->formattedDescription;
+    }
+
+    /**
+     * @param string $formattedDescription
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFormattedDescription($formattedDescription)
+    {
+        $types = [
+            "string",
+        ];
+
+        $formattedDescription = self::checkTypes($formattedDescription, $types);
+
+        $this->formattedDescription = $formattedDescription;
     }
 
     /**
