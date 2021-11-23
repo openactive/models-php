@@ -21,6 +21,7 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
             "ageRange" => "ageRange",
             "ageRestriction" => "ageRestriction",
             "allowCustomerCancellationFullRefund" => "allowCustomerCancellationFullRefund",
+            "eligibleEntitlementType" => "eligibleEntitlementType",
             "latestCancellationBeforeStartDate" => "latestCancellationBeforeStartDate",
             "openBookingInAdvance" => "openBookingInAdvance",
             "openBookingPrepayment" => "openBookingPrepayment",
@@ -65,6 +66,26 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $allowCustomerCancellationFullRefund;
+
+    /**
+     * Offers in open data can be marked as requiring an entitlement type via `eligibleEntitlementType`. The same Offer may be applicable to multiple entitlement types, and the Customer must have at least one matching entitlement type to qualify for the Offer.
+     * Note that this property is in EARLY RELEASE AND IS SUBJECT TO CHANGE, as the [Customer Accounts proposal](https://github.com/openactive/customer-accounts) evolves.
+     *
+     * ```json
+     * "eligibleEntitlementType": [
+     *   {
+     *     "@type": "Concept",
+     *     "@id": "https://data.mcractive.com/openactive/entitlement-list#5e78bcbe-36db-425a-9064-bf96d09cc351",
+     *     "prefLabel": "MCRactive Adult Resident",
+     *     "inScheme": "https://data.mcractive.com/openactive/entitlement-list"
+     *   }
+     * ]
+     * ```
+     *
+     * @var \OpenActive\Models\OA\Concept[]
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    protected $eligibleEntitlementType;
 
     /**
      * The duration before the startDate during which this Offer may not be cancelled, given in ISO 8601 format.
@@ -187,6 +208,32 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
         $allowCustomerCancellationFullRefund = self::checkTypes($allowCustomerCancellationFullRefund, $types);
 
         $this->allowCustomerCancellationFullRefund = $allowCustomerCancellationFullRefund;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\Concept[]
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function getEligibleEntitlementType()
+    {
+        return $this->eligibleEntitlementType;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\Concept[] $eligibleEntitlementType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function setEligibleEntitlementType($eligibleEntitlementType)
+    {
+        $types = [
+            "\OpenActive\Models\OA\Concept[]",
+        ];
+
+        $eligibleEntitlementType = self::checkTypes($eligibleEntitlementType, $types);
+
+        $this->eligibleEntitlementType = $eligibleEntitlementType;
     }
 
     /**
