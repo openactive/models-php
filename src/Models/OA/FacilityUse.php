@@ -27,10 +27,12 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
             "additionalAdmissionRestriction" => "additionalAdmissionRestriction",
             "attendeeInstructions" => "attendeeInstructions",
             "category" => "category",
+            "customerAccountBookingRestriction" => "customerAccountBookingRestriction",
             "event" => "event",
             "hoursAvailable" => "hoursAvailable",
             "image" => "image",
             "individualFacilityUse" => "individualFacilityUse",
+            "isOpenBookingWithCustomerAccountAllowed" => "isOpenBookingWithCustomerAccountAllowed",
             "location" => "location",
             "offers" => "offers",
             "provider" => "provider",
@@ -172,6 +174,21 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     protected $category;
 
     /**
+     * Free text restrictions to display to the Customer at the browse stage, that may apply when using a Customer Account to make the booking.
+     * Note that this property is in EARLY RELEASE AND IS SUBJECT TO CHANGE, as the [Customer Accounts proposal](https://github.com/openactive/customer-accounts) evolves.
+     *
+     * ```json
+     * "customerAccountBookingRestriction": [
+     *   "Gold members only",
+     *   "Gym induction required"
+     * ]
+     * ```
+     *
+     * @var string[]
+     */
+    protected $customerAccountBookingRestriction;
+
+    /**
      * An array of slots of availability of this FacilityUse.
      *
      * ```json
@@ -233,6 +250,18 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * @var \OpenActive\Models\OA\IndividualFacilityUse[]
      */
     protected $individualFacilityUse;
+
+    /**
+     * Indicates that a Customer Account may be used to book that opportunity.
+     * Note that this property is in EARLY RELEASE AND IS SUBJECT TO CHANGE, as the [Customer Accounts proposal](https://github.com/openactive/customer-accounts) evolves.
+     *
+     * ```json
+     * "isOpenBookingWithCustomerAccountAllowed": "true"
+     * ```
+     *
+     * @var bool|null
+     */
+    protected $isOpenBookingWithCustomerAccountAllowed;
 
     /**
      * The location at which the facility use will take place.
@@ -618,6 +647,30 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
+     * @return string[]
+     */
+    public function getCustomerAccountBookingRestriction()
+    {
+        return $this->customerAccountBookingRestriction;
+    }
+
+    /**
+     * @param string[] $customerAccountBookingRestriction
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCustomerAccountBookingRestriction($customerAccountBookingRestriction)
+    {
+        $types = [
+            "string[]",
+        ];
+
+        $customerAccountBookingRestriction = self::checkTypes($customerAccountBookingRestriction, $types);
+
+        $this->customerAccountBookingRestriction = $customerAccountBookingRestriction;
+    }
+
+    /**
      * @return \OpenActive\Models\OA\Slot[]
      */
     public function getEvent()
@@ -711,6 +764,31 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
         $individualFacilityUse = self::checkTypes($individualFacilityUse, $types);
 
         $this->individualFacilityUse = $individualFacilityUse;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getIsOpenBookingWithCustomerAccountAllowed()
+    {
+        return $this->isOpenBookingWithCustomerAccountAllowed;
+    }
+
+    /**
+     * @param bool|null $isOpenBookingWithCustomerAccountAllowed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsOpenBookingWithCustomerAccountAllowed($isOpenBookingWithCustomerAccountAllowed)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $isOpenBookingWithCustomerAccountAllowed = self::checkTypes($isOpenBookingWithCustomerAccountAllowed, $types);
+
+        $this->isOpenBookingWithCustomerAccountAllowed = $isOpenBookingWithCustomerAccountAllowed;
     }
 
     /**

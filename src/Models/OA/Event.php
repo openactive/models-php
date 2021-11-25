@@ -30,6 +30,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
             "attendeeInstructions" => "attendeeInstructions",
             "category" => "category",
             "contributor" => "contributor",
+            "customerAccountBookingRestriction" => "customerAccountBookingRestriction",
             "duration" => "duration",
             "eventAttendanceMode" => "eventAttendanceMode",
             "eventStatus" => "eventStatus",
@@ -37,6 +38,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
             "image" => "image",
             "isAccessibleForFree" => "isAccessibleForFree",
             "isCoached" => "isCoached",
+            "isOpenBookingWithCustomerAccountAllowed" => "isOpenBookingWithCustomerAccountAllowed",
             "leader" => "leader",
             "level" => "level",
             "location" => "location",
@@ -247,6 +249,21 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     protected $contributor;
 
     /**
+     * Free text restrictions to display to the Customer at the browse stage, that may apply when using a Customer Account to make the booking.
+     * Note that this property is in EARLY RELEASE AND IS SUBJECT TO CHANGE, as the [Customer Accounts proposal](https://github.com/openactive/customer-accounts) evolves.
+     *
+     * ```json
+     * "customerAccountBookingRestriction": [
+     *   "Gold members only",
+     *   "Gym induction required"
+     * ]
+     * ```
+     *
+     * @var string[]
+     */
+    protected $customerAccountBookingRestriction;
+
+    /**
      * The duration of the event given in [ISO8601] format.
      *
      * ```json
@@ -333,6 +350,18 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * @var bool|null
      */
     protected $isCoached;
+
+    /**
+     * Indicates that a Customer Account may be used to book that opportunity.
+     * Note that this property is in EARLY RELEASE AND IS SUBJECT TO CHANGE, as the [Customer Accounts proposal](https://github.com/openactive/customer-accounts) evolves.
+     *
+     * ```json
+     * "isOpenBookingWithCustomerAccountAllowed": "true"
+     * ```
+     *
+     * @var bool|null
+     */
+    protected $isOpenBookingWithCustomerAccountAllowed;
 
     /**
      * Refers to a person (schema:Person) who will be leading an event. E.g. a coach. This is a more specific role than an organiser or a contributor. The person will need to have given their consent for their personal information to be present in the Open Data.
@@ -1074,6 +1103,30 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
+     * @return string[]
+     */
+    public function getCustomerAccountBookingRestriction()
+    {
+        return $this->customerAccountBookingRestriction;
+    }
+
+    /**
+     * @param string[] $customerAccountBookingRestriction
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCustomerAccountBookingRestriction($customerAccountBookingRestriction)
+    {
+        $types = [
+            "string[]",
+        ];
+
+        $customerAccountBookingRestriction = self::checkTypes($customerAccountBookingRestriction, $types);
+
+        $this->customerAccountBookingRestriction = $customerAccountBookingRestriction;
+    }
+
+    /**
      * @return DateInterval|null
      */
     public function getDuration()
@@ -1245,6 +1298,31 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
         $isCoached = self::checkTypes($isCoached, $types);
 
         $this->isCoached = $isCoached;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getIsOpenBookingWithCustomerAccountAllowed()
+    {
+        return $this->isOpenBookingWithCustomerAccountAllowed;
+    }
+
+    /**
+     * @param bool|null $isOpenBookingWithCustomerAccountAllowed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsOpenBookingWithCustomerAccountAllowed($isOpenBookingWithCustomerAccountAllowed)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $isOpenBookingWithCustomerAccountAllowed = self::checkTypes($isOpenBookingWithCustomerAccountAllowed, $types);
+
+        $this->isOpenBookingWithCustomerAccountAllowed = $isOpenBookingWithCustomerAccountAllowed;
     }
 
     /**

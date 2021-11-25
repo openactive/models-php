@@ -23,6 +23,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
             "description" => "description",
             "address" => "address",
             "email" => "email",
+            "hasAccount" => "hasAccount",
             "isOpenBookingAllowed" => "isOpenBookingAllowed",
             "legalName" => "legalName",
             "logo" => "logo",
@@ -91,6 +92,15 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      * @var string
      */
     protected $email;
+
+    /**
+     * Reference to the CustomerAccount associated with this Customer, for use within the Open Booking API flow.
+     * Note that this property is in EARLY RELEASE AND IS SUBJECT TO CHANGE, as the [Customer Accounts proposal](https://github.com/openactive/customer-accounts) evolves.
+     *
+     *
+     * @var \OpenActive\Models\OA\CustomerAccount|string
+     */
+    protected $hasAccount;
 
     /**
      * Indicates whether the Seller allows open booking or not
@@ -343,6 +353,31 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
         $email = self::checkTypes($email, $types);
 
         $this->email = $email;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\CustomerAccount|string
+     */
+    public function getHasAccount()
+    {
+        return $this->hasAccount;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\CustomerAccount|string $hasAccount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasAccount($hasAccount)
+    {
+        $types = [
+            "\OpenActive\Models\OA\CustomerAccount",
+            "string",
+        ];
+
+        $hasAccount = self::checkTypes($hasAccount, $types);
+
+        $this->hasAccount = $hasAccount;
     }
 
     /**
