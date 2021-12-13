@@ -58,7 +58,7 @@ class Entitlement extends \OpenActive\Models\SchemaOrg\Permit
      * The date the entitlement becomes valid. This must be in the past.
      *
      *
-     * @var DateTime|null
+     * @var Date|null
      */
     protected $validFrom;
 
@@ -66,7 +66,7 @@ class Entitlement extends \OpenActive\Models\SchemaOrg\Permit
      * The date that the entitlement is no longer valid. This must be in the future.
      *
      *
-     * @var DateTime|null
+     * @var Date|null
      */
     protected $validUntil;
 
@@ -120,7 +120,7 @@ class Entitlement extends \OpenActive\Models\SchemaOrg\Permit
     }
 
     /**
-     * @return DateTime|null
+     * @return Date|null
      */
     public function getValidFrom()
     {
@@ -128,14 +128,14 @@ class Entitlement extends \OpenActive\Models\SchemaOrg\Permit
     }
 
     /**
-     * @param DateTime|null $validFrom
+     * @param Date|null $validFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidFrom($validFrom)
     {
         $types = [
-            "DateTime",
+            "Date",
             "null",
         ];
 
@@ -145,7 +145,7 @@ class Entitlement extends \OpenActive\Models\SchemaOrg\Permit
     }
 
     /**
-     * @return DateTime|null
+     * @return Date|null
      */
     public function getValidUntil()
     {
@@ -153,14 +153,14 @@ class Entitlement extends \OpenActive\Models\SchemaOrg\Permit
     }
 
     /**
-     * @param DateTime|null $validUntil
+     * @param Date|null $validUntil
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setValidUntil($validUntil)
     {
         $types = [
-            "DateTime",
+            "Date",
             "null",
         ];
 
