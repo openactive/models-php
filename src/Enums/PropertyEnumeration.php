@@ -35,6 +35,7 @@ class PropertyEnumeration
     const Entitlement = \OpenActive\Enums\PropertyEnumeration\Entitlement::class;
     const EntitlementType = \OpenActive\Enums\PropertyEnumeration\EntitlementType::class;
     const EvidenceRequestAction = \OpenActive\Enums\PropertyEnumeration\EvidenceRequestAction::class;
+    const FacilityType = \OpenActive\Enums\PropertyEnumeration\FacilityType::class;
     const FacilityUse = \OpenActive\Enums\PropertyEnumeration\FacilityUse::class;
     const GenderRestriction = \OpenActive\Enums\PropertyEnumeration\GenderRestriction::class;
     const HasAccount = \OpenActive\Enums\PropertyEnumeration\HasAccount::class;
@@ -80,6 +81,7 @@ class PropertyEnumeration
     const TotalPaymentTax = \OpenActive\Enums\PropertyEnumeration\TotalPaymentTax::class;
     const UnitTaxSpecification = \OpenActive\Enums\PropertyEnumeration\UnitTaxSpecification::class;
     const ValidFromBeforeStartDate = \OpenActive\Enums\PropertyEnumeration\ValidFromBeforeStartDate::class;
+    const ValidThroughBeforeStartDate = \OpenActive\Enums\PropertyEnumeration\ValidThroughBeforeStartDate::class;
     const ValueOption = \OpenActive\Enums\PropertyEnumeration\ValueOption::class;
     const About = \OpenActive\Enums\PropertyEnumeration\About::class;
     const Abridged = \OpenActive\Enums\PropertyEnumeration\Abridged::class;

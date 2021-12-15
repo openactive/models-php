@@ -29,6 +29,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
             "category" => "category",
             "customerAccountBookingRestriction" => "customerAccountBookingRestriction",
             "event" => "event",
+            "facilityType" => "facilityType",
             "hoursAvailable" => "hoursAvailable",
             "image" => "image",
             "individualFacilityUse" => "individualFacilityUse",
@@ -42,7 +43,6 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
             "video" => "beta:video",
             "sportsActivityLocation" => "beta:sportsActivityLocation",
             "offerValidityPeriod" => "beta:offerValidityPeriod",
-            "facilityType" => "beta:facilityType",
             "facilitySetting" => "beta:facilitySetting",
             "bookingChannel" => "beta:bookingChannel",
         ];
@@ -113,6 +113,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     protected $accessibilitySupport;
 
     /**
+     * [DEPRECATED: Use `facilityType` instead of `activity` within `FacilityUse` and `IndividualFacilityUse`, as the `facilityType` controlled vocabulary has been designed specifically for facilities.]
      * Specifies the physical activity or activities that will take place during a facility use.
      *
      * ```json
@@ -127,6 +128,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * ```
      *
      * @var \OpenActive\Models\OA\Concept[]
+     * @deprecated Use `facilityType` instead of `activity` within `FacilityUse` and `IndividualFacilityUse`, as the `facilityType` controlled vocabulary has been designed specifically for facilities.
      */
     protected $activity;
 
@@ -210,6 +212,25 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     protected $event;
 
     /**
+     * Specifies the types of facility being described.
+     * NOTE: this property has been added to tooling and documentation ahead of inclusion in the next point release of the OpenActive Modelling Opportunity Data specification, as agreed on [the W3C call 2021-06-02](https://github.com/openactive/facility-types/issues/1#issuecomment-853759213).
+     *
+     * ```json
+     * "facilityType": [
+     *   {
+     *     "@type": "Concept",
+     *     "@id": "https://openactive.io/facility-types#bba8ae59-d152-40bc-85cc-88c5375696d4",
+     *     "prefLabel": "Tennis Court",
+     *     "inScheme": "https://openactive.io/facility-types"
+     *   }
+     * ]
+     * ```
+     *
+     * @var \OpenActive\Models\OA\Concept[]
+     */
+    protected $facilityType;
+
+    /**
      * The times the facility use is available
      *
      *
@@ -241,7 +262,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * "individualFacilityUse": [
      *   {
      *     "@type": "IndividualFacilityUse",
-     *     "@id": "http://www.example.org/facility-uses/1",
+     *     "@id": "http://www.example.org/facility-uses/1/individual-facility-uses/1",
      *     "name": "Tennis Court 1"
      *   }
      * ]
@@ -394,17 +415,6 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
 
     /**
      * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
-     * The type of facility in use. See https://openactive.io/facility-types/.
-     * 
-     * If you are using this property, please join the discussion at proposal [#1](https://github.com/openactive/facility-types/issues/1).
-     *
-     *
-     * @var \OpenActive\Models\Concept[]
-     */
-    protected $facilityType;
-
-    /**
-     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
      * Whether the event or facility is indoor or outdoor.
      * 
      * If you are using this property, please join the discussion at proposal [#1](https://github.com/openactive/facility-types/issues/1).
@@ -551,6 +561,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
 
     /**
      * @return \OpenActive\Models\OA\Concept[]
+     * @deprecated Use `facilityType` instead of `activity` within `FacilityUse` and `IndividualFacilityUse`, as the `facilityType` controlled vocabulary has been designed specifically for facilities.
      */
     public function getActivity()
     {
@@ -561,6 +572,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * @param \OpenActive\Models\OA\Concept[] $activity
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated Use `facilityType` instead of `activity` within `FacilityUse` and `IndividualFacilityUse`, as the `facilityType` controlled vocabulary has been designed specifically for facilities.
      */
     public function setActivity($activity)
     {
@@ -692,6 +704,30 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
         $event = self::checkTypes($event, $types);
 
         $this->event = $event;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\Concept[]
+     */
+    public function getFacilityType()
+    {
+        return $this->facilityType;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\Concept[] $facilityType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFacilityType($facilityType)
+    {
+        $types = [
+            "\OpenActive\Models\OA\Concept[]",
+        ];
+
+        $facilityType = self::checkTypes($facilityType, $types);
+
+        $this->facilityType = $facilityType;
     }
 
     /**
@@ -1007,30 +1043,6 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
         $offerValidityPeriod = self::checkTypes($offerValidityPeriod, $types);
 
         $this->offerValidityPeriod = $offerValidityPeriod;
-    }
-
-    /**
-     * @return \OpenActive\Models\Concept[]
-     */
-    public function getFacilityType()
-    {
-        return $this->facilityType;
-    }
-
-    /**
-     * @param \OpenActive\Models\Concept[] $facilityType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFacilityType($facilityType)
-    {
-        $types = [
-            "\OpenActive\Models\Concept[]",
-        ];
-
-        $facilityType = self::checkTypes($facilityType, $types);
-
-        $this->facilityType = $facilityType;
     }
 
     /**

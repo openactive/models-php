@@ -26,6 +26,7 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
             "openBookingInAdvance" => "openBookingInAdvance",
             "openBookingPrepayment" => "openBookingPrepayment",
             "validFromBeforeStartDate" => "validFromBeforeStartDate",
+            "validThroughBeforeStartDate" => "validThroughBeforeStartDate",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -121,13 +122,22 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
     protected $openBookingPrepayment;
 
     /**
-     * The duration before the startDate for which this Offer is valid, given in ISO 8601 format. This is a relatively-defined equivalent of schema:validFrom, to allow for Offer inheritance.
+     * The duration before the `startDate` for which this `Offer` is valid, given in ISO 8601 format. This is a relatively-defined equivalent of `schema:validFrom`, to allow for `Offer` inheritance.
      *
      *
      * @var DateInterval|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $validFromBeforeStartDate;
+
+    /**
+     * The duration before the `startDate` after which the `Offer` is no longer valid, given in ISO 8601 format. This is a relatively-defined equivalent of `schema:validThrough`, to allow for `Offer` inheritance.
+     *
+     *
+     * @var DateInterval|null
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    protected $validThroughBeforeStartDate;
 
     /**
      * @return \OpenActive\Models\OA\QuantitativeValue
@@ -342,6 +352,33 @@ class OfferOverride extends \OpenActive\Models\OA\Offer
         $validFromBeforeStartDate = self::checkTypes($validFromBeforeStartDate, $types);
 
         $this->validFromBeforeStartDate = $validFromBeforeStartDate;
+    }
+
+    /**
+     * @return DateInterval|null
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function getValidThroughBeforeStartDate()
+    {
+        return $this->validThroughBeforeStartDate;
+    }
+
+    /**
+     * @param DateInterval|null $validThroughBeforeStartDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function setValidThroughBeforeStartDate($validThroughBeforeStartDate)
+    {
+        $types = [
+            "DateInterval",
+            "null",
+        ];
+
+        $validThroughBeforeStartDate = self::checkTypes($validThroughBeforeStartDate, $types);
+
+        $this->validThroughBeforeStartDate = $validThroughBeforeStartDate;
     }
 
 }
