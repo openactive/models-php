@@ -72,6 +72,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
             "participantSuppliedEquipment" => "beta:participantSuppliedEquipment",
             "donationPaymentUrl" => "beta:donationPaymentUrl",
             "isFirstSessionAccessibleForFree" => "beta:isFirstSessionAccessibleForFree",
+            "isScheduledAsSlots" => "beta:isScheduledAsSlots",
             "contactPoint" => "beta:contactPoint",
             "bookingChannel" => "beta:bookingChannel",
             "testOpenBookingFlow" => "test:testOpenBookingFlow",
@@ -769,6 +770,17 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * @var bool|null
      */
     protected $isFirstSessionAccessibleForFree;
+
+    /**
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
+     * A property that indicates whether the event contains a high frequency of occurrences. Intended as a UI hint for interfaces that represent these occurrences.
+     * 
+     * If you are using this property, please join the discussion at proposal [#301](https://github.com/openactive/modelling-opportunity-data/issues/301).
+     *
+     *
+     * @var bool|null
+     */
+    protected $isScheduledAsSlots;
 
     /**
      * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
@@ -2133,6 +2145,31 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
         $isFirstSessionAccessibleForFree = self::checkTypes($isFirstSessionAccessibleForFree, $types);
 
         $this->isFirstSessionAccessibleForFree = $isFirstSessionAccessibleForFree;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getIsScheduledAsSlots()
+    {
+        return $this->isScheduledAsSlots;
+    }
+
+    /**
+     * @param bool|null $isScheduledAsSlots
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsScheduledAsSlots($isScheduledAsSlots)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $isScheduledAsSlots = self::checkTypes($isScheduledAsSlots, $types);
+
+        $this->isScheduledAsSlots = $isScheduledAsSlots;
     }
 
     /**

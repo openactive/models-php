@@ -32,6 +32,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
             "telephone" => "telephone",
             "url" => "url",
             "formattedDescription" => "beta:formattedDescription",
+            "placeType" => "beta:placeType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -241,6 +242,17 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * @var string
      */
     protected $formattedDescription;
+
+    /**
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
+     * The type of Place. See https://openactive.io/place-types/.
+     * 
+     * If you are using this property, please join the discussion at proposal [#1](https://github.com/openactive/place-types/issues/1).
+     *
+     *
+     * @var \OpenActive\Models\Concept[]
+     */
+    protected $placeType;
 
     /**
      * @return string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
@@ -581,6 +593,30 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
         $formattedDescription = self::checkTypes($formattedDescription, $types);
 
         $this->formattedDescription = $formattedDescription;
+    }
+
+    /**
+     * @return \OpenActive\Models\Concept[]
+     */
+    public function getPlaceType()
+    {
+        return $this->placeType;
+    }
+
+    /**
+     * @param \OpenActive\Models\Concept[] $placeType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPlaceType($placeType)
+    {
+        $types = [
+            "\OpenActive\Models\Concept[]",
+        ];
+
+        $placeType = self::checkTypes($placeType, $types);
+
+        $this->placeType = $placeType;
     }
 
 }
