@@ -133,7 +133,9 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
                 $classname = "\\OpenActive\\Models\\SchemaOrg\\".
                     str_replace("schema:", "", $type);
             } else {
-                $classname = "\\OpenActive\\Models\\OA\\".$type;
+                $classname = "\\OpenActive\\Models\\OA\\".
+                    // If the type is in beta, remove the prefix to resolve the model
+                    str_replace("beta:", "", $type);
             }
 
             return $classname::deserialize($value);
