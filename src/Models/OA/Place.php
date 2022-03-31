@@ -250,7 +250,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * If you are using this property, please join the discussion at proposal [#1](https://github.com/openactive/place-types/issues/1).
      *
      *
-     * @var \OpenActive\Models\Concept[]
+     * @var \OpenActive\Models\OA\Concept[]
      */
     protected $placeType;
 
@@ -596,7 +596,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return \OpenActive\Models\Concept[]
+     * @return \OpenActive\Models\OA\Concept[]
      */
     public function getPlaceType()
     {
@@ -604,14 +604,14 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param \OpenActive\Models\Concept[] $placeType
+     * @param \OpenActive\Models\OA\Concept[] $placeType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPlaceType($placeType)
     {
         $types = [
-            "\OpenActive\Models\Concept[]",
+            "\OpenActive\Models\OA\Concept[]",
         ];
 
         $placeType = self::checkTypes($placeType, $types);
