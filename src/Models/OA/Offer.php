@@ -237,7 +237,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
      * If you are using this property, please join the discussion at proposal [#250](https://github.com/openactive/modelling-opportunity-data/issues/250).
      *
      *
-     * @var \OpenActive\Models\QuantitativeValue
+     * @var \OpenActive\Models\OA\QuantitativeValue
      */
     protected $partySize;
 
@@ -665,7 +665,7 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @return \OpenActive\Models\QuantitativeValue
+     * @return \OpenActive\Models\OA\QuantitativeValue
      */
     public function getPartySize()
     {
@@ -673,14 +673,14 @@ class Offer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * @param \OpenActive\Models\QuantitativeValue $partySize
+     * @param \OpenActive\Models\OA\QuantitativeValue $partySize
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPartySize($partySize)
     {
         $types = [
-            "\OpenActive\Models\QuantitativeValue",
+            "\OpenActive\Models\OA\QuantitativeValue",
         ];
 
         $partySize = self::checkTypes($partySize, $types);

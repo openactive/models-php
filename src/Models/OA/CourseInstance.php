@@ -106,7 +106,7 @@ class CourseInstance extends \OpenActive\Models\OA\Event
      * If you are using this property, please join the discussion at proposal [#164](https://github.com/openactive/modelling-opportunity-data/issues/164).
      *
      *
-     * @var \OpenActive\Models\Course
+     * @var \OpenActive\Models\OA\Course
      * @deprecated This term has graduated from the beta namespace and is highly likely to be removed in future versions of this library, please use `instanceOfCourse` instead.
      */
     protected $course;
@@ -260,7 +260,7 @@ class CourseInstance extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return \OpenActive\Models\Course
+     * @return \OpenActive\Models\OA\Course
      * @deprecated This term has graduated from the beta namespace and is highly likely to be removed in future versions of this library, please use `instanceOfCourse` instead.
      */
     public function getCourse()
@@ -269,7 +269,7 @@ class CourseInstance extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param \OpenActive\Models\Course $course
+     * @param \OpenActive\Models\OA\Course $course
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This term has graduated from the beta namespace and is highly likely to be removed in future versions of this library, please use `instanceOfCourse` instead.
@@ -277,7 +277,7 @@ class CourseInstance extends \OpenActive\Models\OA\Event
     public function setCourse($course)
     {
         $types = [
-            "\OpenActive\Models\Course",
+            "\OpenActive\Models\OA\Course",
         ];
 
         $course = self::checkTypes($course, $types);
