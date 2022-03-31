@@ -22,4 +22,5 @@ class RpdeKind
     const EVENT_SERIES = "EventSeries";
     const ORDER = "Order";
     const ORDER_PROPOSAL = "OrderProposal";
+    const ON_DEMAND_EVENT = "OnDemandEvent";
 }
