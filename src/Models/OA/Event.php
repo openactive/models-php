@@ -602,7 +602,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * If you are using this property, please join the discussion at proposal [#275](https://github.com/openactive/modelling-opportunity-data/issues/275).
      *
      *
-     * @var \OpenActive\Models\QuantitativeValue
+     * @var \OpenActive\Models\OA\QuantitativeValue
      */
     protected $distance;
 
@@ -646,7 +646,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * If you are using this property, please join the discussion at proposal [#201](https://github.com/openactive/modelling-opportunity-data/issues/201).
      *
      *
-     * @var \OpenActive\Models\QuantitativeValue
+     * @var \OpenActive\Models\OA\QuantitativeValue
      */
     protected $estimatedDuration;
 
@@ -657,7 +657,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
      *
      *
-     * @var \OpenActive\Models\VideoObject[]
+     * @var \OpenActive\Models\OA\VideoObject[]
      */
     protected $video;
 
@@ -712,7 +712,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * If you are using this property, please join the discussion at proposal [#224](https://github.com/openactive/modelling-opportunity-data/issues/224).
      *
      *
-     * @var \OpenActive\Models\VirtualLocation
+     * @var \OpenActive\Models\OA\VirtualLocation
      */
     protected $virtualLocation;
 
@@ -723,7 +723,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
      * If you are using this property, please join the discussion at proposal [#227](https://github.com/openactive/modelling-opportunity-data/issues/227).
      *
      *
-     * @var \OpenActive\Models\Place
+     * @var \OpenActive\Models\OA\Place
      */
     protected $affiliatedLocation;
 
@@ -1755,7 +1755,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Models\QuantitativeValue
+     * @return \OpenActive\Models\OA\QuantitativeValue
      */
     public function getDistance()
     {
@@ -1763,14 +1763,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\QuantitativeValue $distance
+     * @param \OpenActive\Models\OA\QuantitativeValue $distance
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDistance($distance)
     {
         $types = [
-            "\OpenActive\Models\QuantitativeValue",
+            "\OpenActive\Models\OA\QuantitativeValue",
         ];
 
         $distance = self::checkTypes($distance, $types);
@@ -1854,7 +1854,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Models\QuantitativeValue
+     * @return \OpenActive\Models\OA\QuantitativeValue
      */
     public function getEstimatedDuration()
     {
@@ -1862,14 +1862,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\QuantitativeValue $estimatedDuration
+     * @param \OpenActive\Models\OA\QuantitativeValue $estimatedDuration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEstimatedDuration($estimatedDuration)
     {
         $types = [
-            "\OpenActive\Models\QuantitativeValue",
+            "\OpenActive\Models\OA\QuantitativeValue",
         ];
 
         $estimatedDuration = self::checkTypes($estimatedDuration, $types);
@@ -1878,7 +1878,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Models\VideoObject[]
+     * @return \OpenActive\Models\OA\VideoObject[]
      */
     public function getVideo()
     {
@@ -1886,14 +1886,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\VideoObject[] $video
+     * @param \OpenActive\Models\OA\VideoObject[] $video
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVideo($video)
     {
         $types = [
-            "\OpenActive\Models\VideoObject[]",
+            "\OpenActive\Models\OA\VideoObject[]",
         ];
 
         $video = self::checkTypes($video, $types);
@@ -2001,7 +2001,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Models\VirtualLocation
+     * @return \OpenActive\Models\OA\VirtualLocation
      */
     public function getVirtualLocation()
     {
@@ -2009,14 +2009,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\VirtualLocation $virtualLocation
+     * @param \OpenActive\Models\OA\VirtualLocation $virtualLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVirtualLocation($virtualLocation)
     {
         $types = [
-            "\OpenActive\Models\VirtualLocation",
+            "\OpenActive\Models\OA\VirtualLocation",
         ];
 
         $virtualLocation = self::checkTypes($virtualLocation, $types);
@@ -2025,7 +2025,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Models\Place
+     * @return \OpenActive\Models\OA\Place
      */
     public function getAffiliatedLocation()
     {
@@ -2033,14 +2033,14 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\Place $affiliatedLocation
+     * @param \OpenActive\Models\OA\Place $affiliatedLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAffiliatedLocation($affiliatedLocation)
     {
         $types = [
-            "\OpenActive\Models\Place",
+            "\OpenActive\Models\OA\Place",
         ];
 
         $affiliatedLocation = self::checkTypes($affiliatedLocation, $types);

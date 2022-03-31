@@ -216,7 +216,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
      *
      *
-     * @var \OpenActive\Models\VideoObject[]
+     * @var \OpenActive\Models\OA\VideoObject[]
      */
     protected $video;
 
@@ -623,7 +623,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @return \OpenActive\Models\VideoObject[]
+     * @return \OpenActive\Models\OA\VideoObject[]
      */
     public function getVideo()
     {
@@ -631,14 +631,14 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @param \OpenActive\Models\VideoObject[] $video
+     * @param \OpenActive\Models\OA\VideoObject[] $video
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVideo($video)
     {
         $types = [
-            "\OpenActive\Models\VideoObject[]",
+            "\OpenActive\Models\OA\VideoObject[]",
         ];
 
         $video = self::checkTypes($video, $types);
