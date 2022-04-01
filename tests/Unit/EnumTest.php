@@ -5,6 +5,8 @@ namespace OpenActive\Models\Tests\Unit;
 use PHPUnit\Framework\TestCase;
 use OpenActive\Enums\SchemaOrg\EventStatusType;
 use OpenActive\Models\OA\ScheduledSession;
+use OpenActive\Enums\PaymentMethod;
+use OpenActive\Models\OA\Offer;
 
 class EnumTest extends TestCase
 {
@@ -62,6 +64,18 @@ class EnumTest extends TestCase
         $this->assertEquals(
             $serializedData['eventStatus'],
             $eventStatus::memberVal
+        );
+    }
+
+    public function testPaymentMethodEnum()
+    {
+        $paymentMethod = new PaymentMethod\Cash;
+
+        $offer = new Offer(['acceptedPaymentMethod' => [$paymentMethod]]);
+
+        $this->assertEquals(
+            [$paymentMethod],
+            $offer->getAcceptedPaymentMethod()
         );
     }
 }

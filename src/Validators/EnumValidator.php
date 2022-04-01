@@ -84,6 +84,7 @@ class EnumValidator extends BaseValidator
                 "https://openactive.io/ns-beta#",
                 "https://openactive.io/",
                 "https://schema.org/",
+                "http://purl.org/goodrelations/v1#",
             ),
             "",
             $url
