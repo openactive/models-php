@@ -2,9 +2,12 @@
 
 namespace OpenActive\Models\Tests\Unit;
 
+use OpenActive\Exceptions\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use OpenActive\Enums\SchemaOrg\EventStatusType;
 use OpenActive\Models\OA\ScheduledSession;
+use OpenActive\Enums\PaymentMethod;
+use OpenActive\Models\OA\Offer;
 
 class EnumTest extends TestCase
 {
@@ -63,5 +66,35 @@ class EnumTest extends TestCase
             $serializedData['eventStatus'],
             $eventStatus::memberVal
         );
+    }
+
+    public function testPaymentMethodEnum()
+    {
+        $paymentMethod = new PaymentMethod\Cash;
+
+        $offer = new Offer(['acceptedPaymentMethod' => [$paymentMethod]]);
+
+        $this->assertEquals(
+            [$paymentMethod],
+            $offer->getAcceptedPaymentMethod()
+        );
+    }
+
+    /** @dataProvider invalidEnumValues */
+    public function testInvalidPaymentMethodEnum($value)
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new Offer(['acceptedPaymentMethod' => [$value]]);
+    }
+
+    public function invalidEnumValues()
+    {
+        return [
+            'string' => ['dummy'],
+            'numeric' => [50],
+            'object' => [new \stdClass],
+            'array' => [[1, 2, 3]],
+        ];
     }
 }
