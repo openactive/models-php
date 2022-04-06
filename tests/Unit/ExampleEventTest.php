@@ -177,7 +177,7 @@ class ExampleEventTest extends TestCase
             '@id' => 'https://www.example.com/event_offer/12345_201803180430',
             'url' => 'https://www.example.com/event_offer/12345_201803180430',
             'priceCurrency' => 'GBP',
-            'price' => "30.32",
+            'price' => 30.32,
             'validFrom' => '2017-01-20T16:20:00-08:00'
         ], JSON_PRETTY_PRINT), $encoded);
     }
