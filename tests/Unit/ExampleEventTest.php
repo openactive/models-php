@@ -33,9 +33,9 @@ class ExampleEventTest extends TestCase
 
         $jsonEvent = $classname::serialize($event);
 
-        $this->assertEquals(
-            json_decode($json, true),
-            json_decode($jsonEvent, true)
+        $this->assertJsonStringEqualsJsonString(
+            $json,
+            $jsonEvent
         );
     }
 
@@ -65,9 +65,9 @@ class ExampleEventTest extends TestCase
         $decode = Concept::deserialize($original);
         $encode = Concept::serialize($decode);
 
-        $this->assertEquals(
-            json_decode($original, true),
-            json_decode($encode, true)
+        $this->assertJsonStringEqualsJsonString(
+            $original,
+            $encode
         );
     }
 
@@ -85,9 +85,9 @@ class ExampleEventTest extends TestCase
         $decode = Concept::deserialize($original);
         $encode = Concept::serialize($decode);
 
-        $this->assertEquals(
-            json_decode($expected, true),
-            json_decode($encode, true)
+        $this->assertJsonStringEqualsJsonString(
+            $expected,
+            $encode
         );
     }
 
@@ -135,7 +135,7 @@ class ExampleEventTest extends TestCase
 
         // output.WriteLine($encode);
         // output.WriteLine($reencode);
-        $this->assertSame($encode, $reencode);
+        $this->assertJsonStringEqualsJsonString($encode, $reencode);
     }
 
     public function testSerializeOfferEncodeWithModifications()
@@ -168,7 +168,7 @@ class ExampleEventTest extends TestCase
                 return 'GBP';
             }
         ]);
-        $this->assertEquals(json_encode([
+        $this->assertJsonStringEqualsJsonString(json_encode([
             '@type' => 'Offer',
             '@context' => [
                 'https://openactive.io/',
