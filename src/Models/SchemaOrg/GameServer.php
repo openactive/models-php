@@ -18,8 +18,8 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
     public static function fieldList() {
         $fields = [
             "serverStatus" => "serverStatus",
-            "playersOnline" => "playersOnline",
             "game" => "game",
+            "playersOnline" => "playersOnline",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -34,20 +34,20 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
     protected $serverStatus;
 
     /**
-     * Number of players on the server.
-     *
-     *
-     * @var int|null
-     */
-    protected $playersOnline;
-
-    /**
      * Video game which is played on this server.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\VideoGame|string
      */
     protected $game;
+
+    /**
+     * Number of players on the server.
+     *
+     *
+     * @var int|null
+     */
+    protected $playersOnline;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\GameServerStatus|string
@@ -75,31 +75,6 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return int|null
-     */
-    public function getPlayersOnline()
-    {
-        return $this->playersOnline;
-    }
-
-    /**
-     * @param int|null $playersOnline
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPlayersOnline($playersOnline)
-    {
-        $types = [
-            "int",
-            "null",
-        ];
-
-        $playersOnline = self::checkTypes($playersOnline, $types);
-
-        $this->playersOnline = $playersOnline;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\VideoGame|string
      */
     public function getGame()
@@ -122,6 +97,31 @@ class GameServer extends \OpenActive\Models\SchemaOrg\Intangible
         $game = self::checkTypes($game, $types);
 
         $this->game = $game;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPlayersOnline()
+    {
+        return $this->playersOnline;
+    }
+
+    /**
+     * @param int|null $playersOnline
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPlayersOnline($playersOnline)
+    {
+        $types = [
+            "int",
+            "null",
+        ];
+
+        $playersOnline = self::checkTypes($playersOnline, $types);
+
+        $this->playersOnline = $playersOnline;
     }
 
 }

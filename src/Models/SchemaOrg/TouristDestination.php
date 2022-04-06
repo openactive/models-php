@@ -17,12 +17,20 @@ class TouristDestination extends \OpenActive\Models\SchemaOrg\Place
 
     public static function fieldList() {
         $fields = [
-            "includesAttraction" => "includesAttraction",
             "touristType" => "touristType",
+            "includesAttraction" => "includesAttraction",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Attraction suitable for type(s) of tourist. eg. Children, visitors from a particular country, etc. 
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Audience|string
+     */
+    protected $touristType;
 
     /**
      * Attraction located at destination.
@@ -33,12 +41,29 @@ class TouristDestination extends \OpenActive\Models\SchemaOrg\Place
     protected $includesAttraction;
 
     /**
-     * Attraction suitable for type(s) of tourist. eg. Children, visitors from a particular country, etc. 
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Audience
+     * @return \OpenActive\Models\SchemaOrg\Audience|string
      */
-    protected $touristType;
+    public function getTouristType()
+    {
+        return $this->touristType;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Audience|string $touristType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTouristType($touristType)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Audience",
+            "string",
+        ];
+
+        $touristType = self::checkTypes($touristType, $types);
+
+        $this->touristType = $touristType;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\TouristAttraction|string
@@ -63,31 +88,6 @@ class TouristDestination extends \OpenActive\Models\SchemaOrg\Place
         $includesAttraction = self::checkTypes($includesAttraction, $types);
 
         $this->includesAttraction = $includesAttraction;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Audience
-     */
-    public function getTouristType()
-    {
-        return $this->touristType;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Audience $touristType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTouristType($touristType)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\Audience",
-        ];
-
-        $touristType = self::checkTypes($touristType, $types);
-
-        $this->touristType = $touristType;
     }
 
 }

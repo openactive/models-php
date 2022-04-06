@@ -18,9 +18,9 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
     public static function fieldList() {
         $fields = [
             "pageStart" => "pageStart",
+            "pageEnd" => "pageEnd",
             "volumeNumber" => "volumeNumber",
             "pagination" => "pagination",
-            "pageEnd" => "pageEnd",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -33,6 +33,14 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var string|int|null
      */
     protected $pageStart;
+
+    /**
+     * The page on which the work ends; for example "138" or "xvi".
+     *
+     *
+     * @var string|int|null
+     */
+    protected $pageEnd;
 
     /**
      * Identifies the volume of publication or multi-part work; for example, "iii" or "2".
@@ -49,14 +57,6 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var string
      */
     protected $pagination;
-
-    /**
-     * The page on which the work ends; for example "138" or "xvi".
-     *
-     *
-     * @var string|int|null
-     */
-    protected $pageEnd;
 
     /**
      * @return string|int|null
@@ -82,6 +82,32 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
         $pageStart = self::checkTypes($pageStart, $types);
 
         $this->pageStart = $pageStart;
+    }
+
+    /**
+     * @return string|int|null
+     */
+    public function getPageEnd()
+    {
+        return $this->pageEnd;
+    }
+
+    /**
+     * @param string|int|null $pageEnd
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPageEnd($pageEnd)
+    {
+        $types = [
+            "string",
+            "int",
+            "null",
+        ];
+
+        $pageEnd = self::checkTypes($pageEnd, $types);
+
+        $this->pageEnd = $pageEnd;
     }
 
     /**
@@ -132,32 +158,6 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
         $pagination = self::checkTypes($pagination, $types);
 
         $this->pagination = $pagination;
-    }
-
-    /**
-     * @return string|int|null
-     */
-    public function getPageEnd()
-    {
-        return $this->pageEnd;
-    }
-
-    /**
-     * @param string|int|null $pageEnd
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPageEnd($pageEnd)
-    {
-        $types = [
-            "string",
-            "int",
-            "null",
-        ];
-
-        $pageEnd = self::checkTypes($pageEnd, $types);
-
-        $this->pageEnd = $pageEnd;
     }
 
 }

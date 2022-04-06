@@ -17,47 +17,15 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "usesDevice" => "usesDevice",
-            "normalRange" => "normalRange",
-            "affectedBy" => "affectedBy",
-            "signDetected" => "signDetected",
             "usedToDiagnose" => "usedToDiagnose",
+            "affectedBy" => "affectedBy",
+            "normalRange" => "normalRange",
+            "signDetected" => "signDetected",
+            "usesDevice" => "usesDevice",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Device used to perform the test.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalDevice|string
-     */
-    protected $usesDevice;
-
-    /**
-     * Range of acceptable values for a typical patient, when applicable.
-     *
-     *
-     * @var string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
-     */
-    protected $normalRange;
-
-    /**
-     * Drugs that affect the test's results.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Drug|string
-     */
-    protected $affectedBy;
-
-    /**
-     * A sign detected by the test.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalSign|string
-     */
-    protected $signDetected;
 
     /**
      * A condition the test is used to diagnose.
@@ -68,28 +36,85 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $usedToDiagnose;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalDevice|string
+     * Drugs that affect the test's results.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Drug|string
      */
-    public function getUsesDevice()
+    protected $affectedBy;
+
+    /**
+     * Range of acceptable values for a typical patient, when applicable.
+     *
+     *
+     * @var string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
+     */
+    protected $normalRange;
+
+    /**
+     * A sign detected by the test.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalSign|string
+     */
+    protected $signDetected;
+
+    /**
+     * Device used to perform the test.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalDevice|string
+     */
+    protected $usesDevice;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
+     */
+    public function getUsedToDiagnose()
     {
-        return $this->usesDevice;
+        return $this->usedToDiagnose;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalDevice|string $usesDevice
+     * @param \OpenActive\Models\SchemaOrg\MedicalCondition|string $usedToDiagnose
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setUsesDevice($usesDevice)
+    public function setUsedToDiagnose($usedToDiagnose)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalDevice",
+            "\OpenActive\Models\SchemaOrg\MedicalCondition",
             "string",
         ];
 
-        $usesDevice = self::checkTypes($usesDevice, $types);
+        $usedToDiagnose = self::checkTypes($usedToDiagnose, $types);
 
-        $this->usesDevice = $usesDevice;
+        $this->usedToDiagnose = $usedToDiagnose;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Drug|string
+     */
+    public function getAffectedBy()
+    {
+        return $this->affectedBy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Drug|string $affectedBy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAffectedBy($affectedBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Drug",
+            "string",
+        ];
+
+        $affectedBy = self::checkTypes($affectedBy, $types);
+
+        $this->affectedBy = $affectedBy;
     }
 
     /**
@@ -119,31 +144,6 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Drug|string
-     */
-    public function getAffectedBy()
-    {
-        return $this->affectedBy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Drug|string $affectedBy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAffectedBy($affectedBy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Drug",
-            "string",
-        ];
-
-        $affectedBy = self::checkTypes($affectedBy, $types);
-
-        $this->affectedBy = $affectedBy;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\MedicalSign|string
      */
     public function getSignDetected()
@@ -169,28 +169,28 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
+     * @return \OpenActive\Models\SchemaOrg\MedicalDevice|string
      */
-    public function getUsedToDiagnose()
+    public function getUsesDevice()
     {
-        return $this->usedToDiagnose;
+        return $this->usesDevice;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalCondition|string $usedToDiagnose
+     * @param \OpenActive\Models\SchemaOrg\MedicalDevice|string $usesDevice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setUsedToDiagnose($usedToDiagnose)
+    public function setUsesDevice($usesDevice)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalCondition",
+            "\OpenActive\Models\SchemaOrg\MedicalDevice",
             "string",
         ];
 
-        $usedToDiagnose = self::checkTypes($usedToDiagnose, $types);
+        $usesDevice = self::checkTypes($usesDevice, $types);
 
-        $this->usedToDiagnose = $usedToDiagnose;
+        $this->usesDevice = $usesDevice;
     }
 
 }

@@ -37,7 +37,7 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
      * A sub property of location. The specific food establishment where the action occurred.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\FoodEstablishment|\OpenActive\Models\SchemaOrg\Place|string
+     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment|string
      */
     protected $foodEstablishment;
 
@@ -75,7 +75,7 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\FoodEstablishment|\OpenActive\Models\SchemaOrg\Place|string
+     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment|string
      */
     public function getFoodEstablishment()
     {
@@ -83,15 +83,15 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\FoodEstablishment|\OpenActive\Models\SchemaOrg\Place|string $foodEstablishment
+     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment|string $foodEstablishment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFoodEstablishment($foodEstablishment)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\FoodEstablishment",
             "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\FoodEstablishment",
             "string",
         ];
 

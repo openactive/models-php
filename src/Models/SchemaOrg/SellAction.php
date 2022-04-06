@@ -17,12 +17,20 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
 
     public static function fieldList() {
         $fields = [
-            "buyer" => "buyer",
             "warrantyPromise" => "warrantyPromise",
+            "buyer" => "buyer",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The warranty promise(s) included in the offer.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\WarrantyPromise|string
+     */
+    protected $warrantyPromise;
 
     /**
      * A sub property of participant. The participant/person/organization that bought the object.
@@ -33,12 +41,29 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
     protected $buyer;
 
     /**
-     * The warranty promise(s) included in the offer.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\WarrantyPromise|string
+     * @return \OpenActive\Models\SchemaOrg\WarrantyPromise|string
      */
-    protected $warrantyPromise;
+    public function getWarrantyPromise()
+    {
+        return $this->warrantyPromise;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\WarrantyPromise|string $warrantyPromise
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setWarrantyPromise($warrantyPromise)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\WarrantyPromise",
+            "string",
+        ];
+
+        $warrantyPromise = self::checkTypes($warrantyPromise, $types);
+
+        $this->warrantyPromise = $warrantyPromise;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
@@ -64,31 +89,6 @@ class SellAction extends \OpenActive\Models\SchemaOrg\TradeAction
         $buyer = self::checkTypes($buyer, $types);
 
         $this->buyer = $buyer;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\WarrantyPromise|string
-     */
-    public function getWarrantyPromise()
-    {
-        return $this->warrantyPromise;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\WarrantyPromise|string $warrantyPromise
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setWarrantyPromise($warrantyPromise)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\WarrantyPromise",
-            "string",
-        ];
-
-        $warrantyPromise = self::checkTypes($warrantyPromise, $types);
-
-        $this->warrantyPromise = $warrantyPromise;
     }
 
 }

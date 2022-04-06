@@ -17,20 +17,12 @@ class Substance extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "activeIngredient" => "activeIngredient",
             "maximumIntake" => "maximumIntake",
+            "activeIngredient" => "activeIngredient",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * An active ingredient, typically chemical compounds and/or biologic substances.
-     *
-     *
-     * @var string
-     */
-    protected $activeIngredient;
 
     /**
      * Recommended intake of this supplement for a given population as defined by a specific recommending authority.
@@ -41,28 +33,12 @@ class Substance extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $maximumIntake;
 
     /**
-     * @return string
+     * An active ingredient, typically chemical compounds and/or biologic substances.
+     *
+     *
+     * @var string
      */
-    public function getActiveIngredient()
-    {
-        return $this->activeIngredient;
-    }
-
-    /**
-     * @param string $activeIngredient
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActiveIngredient($activeIngredient)
-    {
-        $types = [
-            "string",
-        ];
-
-        $activeIngredient = self::checkTypes($activeIngredient, $types);
-
-        $this->activeIngredient = $activeIngredient;
-    }
+    protected $activeIngredient;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string
@@ -87,6 +63,30 @@ class Substance extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $maximumIntake = self::checkTypes($maximumIntake, $types);
 
         $this->maximumIntake = $maximumIntake;
+    }
+
+    /**
+     * @return string
+     */
+    public function getActiveIngredient()
+    {
+        return $this->activeIngredient;
+    }
+
+    /**
+     * @param string $activeIngredient
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActiveIngredient($activeIngredient)
+    {
+        $types = [
+            "string",
+        ];
+
+        $activeIngredient = self::checkTypes($activeIngredient, $types);
+
+        $this->activeIngredient = $activeIngredient;
     }
 
 }

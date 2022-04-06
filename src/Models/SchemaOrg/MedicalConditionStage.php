@@ -17,12 +17,20 @@ class MedicalConditionStage extends \OpenActive\Models\SchemaOrg\MedicalIntangib
 
     public static function fieldList() {
         $fields = [
-            "stageAsNumber" => "stageAsNumber",
             "subStageSuffix" => "subStageSuffix",
+            "stageAsNumber" => "stageAsNumber",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The substage, e.g. 'a' for Stage IIIa.
+     *
+     *
+     * @var string
+     */
+    protected $subStageSuffix;
 
     /**
      * The stage represented as a number, e.g. 3.
@@ -33,12 +41,28 @@ class MedicalConditionStage extends \OpenActive\Models\SchemaOrg\MedicalIntangib
     protected $stageAsNumber;
 
     /**
-     * The substage, e.g. 'a' for Stage IIIa.
-     *
-     *
-     * @var string
+     * @return string
      */
-    protected $subStageSuffix;
+    public function getSubStageSuffix()
+    {
+        return $this->subStageSuffix;
+    }
+
+    /**
+     * @param string $subStageSuffix
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSubStageSuffix($subStageSuffix)
+    {
+        $types = [
+            "string",
+        ];
+
+        $subStageSuffix = self::checkTypes($subStageSuffix, $types);
+
+        $this->subStageSuffix = $subStageSuffix;
+    }
 
     /**
      * @return Number|null
@@ -63,30 +87,6 @@ class MedicalConditionStage extends \OpenActive\Models\SchemaOrg\MedicalIntangib
         $stageAsNumber = self::checkTypes($stageAsNumber, $types);
 
         $this->stageAsNumber = $stageAsNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSubStageSuffix()
-    {
-        return $this->subStageSuffix;
-    }
-
-    /**
-     * @param string $subStageSuffix
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSubStageSuffix($subStageSuffix)
-    {
-        $types = [
-            "string",
-        ];
-
-        $subStageSuffix = self::checkTypes($subStageSuffix, $types);
-
-        $this->subStageSuffix = $subStageSuffix;
     }
 
 }

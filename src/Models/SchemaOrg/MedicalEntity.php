@@ -17,33 +17,34 @@ class MedicalEntity extends \OpenActive\Models\SchemaOrg\Thing
 
     public static function fieldList() {
         $fields = [
-            "medicineSystem" => "medicineSystem",
-            "guideline" => "guideline",
-            "study" => "study",
-            "relevantSpecialty" => "relevantSpecialty",
-            "recognizingAuthority" => "recognizingAuthority",
-            "code" => "code",
             "legalStatus" => "legalStatus",
+            "funding" => "funding",
+            "study" => "study",
+            "code" => "code",
+            "guideline" => "guideline",
+            "recognizingAuthority" => "recognizingAuthority",
+            "medicineSystem" => "medicineSystem",
+            "relevantSpecialty" => "relevantSpecialty",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The system of medicine that includes this MedicalEntity, for example 'evidence-based', 'homeopathic', 'chiropractic', etc.
+     * The drug or supplement's legal status, including any controlled substance schedules that apply.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicineSystem|string
+     * @var \OpenActive\Models\SchemaOrg\DrugLegalStatus|string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
      */
-    protected $medicineSystem;
+    protected $legalStatus;
 
     /**
-     * A medical guideline related to this entity.
+     * A [[Grant]] that directly or indirectly provide funding or sponsorship for this item. See also [[ownershipFundingInfo]].
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalGuideline|string
+     * @var \OpenActive\Models\SchemaOrg\Grant|string
      */
-    protected $guideline;
+    protected $funding;
 
     /**
      * A medical study or trial related to this entity.
@@ -54,12 +55,20 @@ class MedicalEntity extends \OpenActive\Models\SchemaOrg\Thing
     protected $study;
 
     /**
-     * If applicable, a medical specialty in which this entity is relevant.
+     * A medical code for the entity, taken from a controlled vocabulary or ontology such as ICD-9, DiseasesDB, MeSH, SNOMED-CT, RxNorm, etc.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalSpecialty|string
+     * @var \OpenActive\Models\SchemaOrg\MedicalCode|string
      */
-    protected $relevantSpecialty;
+    protected $code;
+
+    /**
+     * A medical guideline related to this entity.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalGuideline|string
+     */
+    protected $guideline;
 
     /**
      * If applicable, the organization that officially recognizes this entity as part of its endorsed system of medicine.
@@ -70,69 +79,71 @@ class MedicalEntity extends \OpenActive\Models\SchemaOrg\Thing
     protected $recognizingAuthority;
 
     /**
-     * A medical code for the entity, taken from a controlled vocabulary or ontology such as ICD-9, DiseasesDB, MeSH, SNOMED-CT, RxNorm, etc.
+     * The system of medicine that includes this MedicalEntity, for example 'evidence-based', 'homeopathic', 'chiropractic', etc.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalCode|string
+     * @var \OpenActive\Models\SchemaOrg\MedicineSystem|string
      */
-    protected $code;
+    protected $medicineSystem;
 
     /**
-     * The drug or supplement's legal status, including any controlled substance schedules that apply.
+     * If applicable, a medical specialty in which this entity is relevant.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\MedicalEnumeration|\OpenActive\Models\SchemaOrg\DrugLegalStatus|string|null
+     * @var \OpenActive\Models\SchemaOrg\MedicalSpecialty|string
      */
-    protected $legalStatus;
+    protected $relevantSpecialty;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicineSystem|string
+     * @return \OpenActive\Models\SchemaOrg\DrugLegalStatus|string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
      */
-    public function getMedicineSystem()
+    public function getLegalStatus()
     {
-        return $this->medicineSystem;
+        return $this->legalStatus;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicineSystem|string $medicineSystem
+     * @param \OpenActive\Models\SchemaOrg\DrugLegalStatus|string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null $legalStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMedicineSystem($medicineSystem)
+    public function setLegalStatus($legalStatus)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicineSystem",
+            "\OpenActive\Models\SchemaOrg\DrugLegalStatus",
             "string",
+            "\OpenActive\Enums\SchemaOrg\MedicalEnumeration",
+            "null",
         ];
 
-        $medicineSystem = self::checkTypes($medicineSystem, $types);
+        $legalStatus = self::checkTypes($legalStatus, $types);
 
-        $this->medicineSystem = $medicineSystem;
+        $this->legalStatus = $legalStatus;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalGuideline|string
+     * @return \OpenActive\Models\SchemaOrg\Grant|string
      */
-    public function getGuideline()
+    public function getFunding()
     {
-        return $this->guideline;
+        return $this->funding;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalGuideline|string $guideline
+     * @param \OpenActive\Models\SchemaOrg\Grant|string $funding
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setGuideline($guideline)
+    public function setFunding($funding)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalGuideline",
+            "\OpenActive\Models\SchemaOrg\Grant",
             "string",
         ];
 
-        $guideline = self::checkTypes($guideline, $types);
+        $funding = self::checkTypes($funding, $types);
 
-        $this->guideline = $guideline;
+        $this->funding = $funding;
     }
 
     /**
@@ -161,28 +172,53 @@ class MedicalEntity extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalSpecialty|string
+     * @return \OpenActive\Models\SchemaOrg\MedicalCode|string
      */
-    public function getRelevantSpecialty()
+    public function getCode()
     {
-        return $this->relevantSpecialty;
+        return $this->code;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalSpecialty|string $relevantSpecialty
+     * @param \OpenActive\Models\SchemaOrg\MedicalCode|string $code
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRelevantSpecialty($relevantSpecialty)
+    public function setCode($code)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalSpecialty",
+            "\OpenActive\Models\SchemaOrg\MedicalCode",
             "string",
         ];
 
-        $relevantSpecialty = self::checkTypes($relevantSpecialty, $types);
+        $code = self::checkTypes($code, $types);
 
-        $this->relevantSpecialty = $relevantSpecialty;
+        $this->code = $code;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalGuideline|string
+     */
+    public function getGuideline()
+    {
+        return $this->guideline;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalGuideline|string $guideline
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGuideline($guideline)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalGuideline",
+            "string",
+        ];
+
+        $guideline = self::checkTypes($guideline, $types);
+
+        $this->guideline = $guideline;
     }
 
     /**
@@ -211,55 +247,53 @@ class MedicalEntity extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalCode|string
+     * @return \OpenActive\Models\SchemaOrg\MedicineSystem|string
      */
-    public function getCode()
+    public function getMedicineSystem()
     {
-        return $this->code;
+        return $this->medicineSystem;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalCode|string $code
+     * @param \OpenActive\Models\SchemaOrg\MedicineSystem|string $medicineSystem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCode($code)
+    public function setMedicineSystem($medicineSystem)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalCode",
+            "\OpenActive\Models\SchemaOrg\MedicineSystem",
             "string",
         ];
 
-        $code = self::checkTypes($code, $types);
+        $medicineSystem = self::checkTypes($medicineSystem, $types);
 
-        $this->code = $code;
+        $this->medicineSystem = $medicineSystem;
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\MedicalEnumeration|\OpenActive\Models\SchemaOrg\DrugLegalStatus|string|null
+     * @return \OpenActive\Models\SchemaOrg\MedicalSpecialty|string
      */
-    public function getLegalStatus()
+    public function getRelevantSpecialty()
     {
-        return $this->legalStatus;
+        return $this->relevantSpecialty;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\MedicalEnumeration|\OpenActive\Models\SchemaOrg\DrugLegalStatus|string|null $legalStatus
+     * @param \OpenActive\Models\SchemaOrg\MedicalSpecialty|string $relevantSpecialty
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLegalStatus($legalStatus)
+    public function setRelevantSpecialty($relevantSpecialty)
     {
         $types = [
-            "\OpenActive\Enums\SchemaOrg\MedicalEnumeration",
-            "\OpenActive\Models\SchemaOrg\DrugLegalStatus",
+            "\OpenActive\Models\SchemaOrg\MedicalSpecialty",
             "string",
-            "null",
         ];
 
-        $legalStatus = self::checkTypes($legalStatus, $types);
+        $relevantSpecialty = self::checkTypes($relevantSpecialty, $types);
 
-        $this->legalStatus = $legalStatus;
+        $this->relevantSpecialty = $relevantSpecialty;
     }
 
 }

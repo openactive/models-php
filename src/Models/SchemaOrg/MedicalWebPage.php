@@ -17,12 +17,20 @@ class MedicalWebPage extends \OpenActive\Models\SchemaOrg\WebPage
 
     public static function fieldList() {
         $fields = [
-            "medicalAudience" => "medicalAudience",
             "aspect" => "aspect",
+            "medicalAudience" => "medicalAudience",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * An aspect of medical practice that is considered on the page, such as 'diagnosis', 'treatment', 'causes', 'prognosis', 'etiology', 'epidemiology', etc.
+     *
+     *
+     * @var string
+     */
+    protected $aspect;
 
     /**
      * Medical audience for page.
@@ -33,12 +41,28 @@ class MedicalWebPage extends \OpenActive\Models\SchemaOrg\WebPage
     protected $medicalAudience;
 
     /**
-     * An aspect of medical practice that is considered on the page, such as 'diagnosis', 'treatment', 'causes', 'prognosis', 'etiology', 'epidemiology', etc.
-     *
-     *
-     * @var string
+     * @return string
      */
-    protected $aspect;
+    public function getAspect()
+    {
+        return $this->aspect;
+    }
+
+    /**
+     * @param string $aspect
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAspect($aspect)
+    {
+        $types = [
+            "string",
+        ];
+
+        $aspect = self::checkTypes($aspect, $types);
+
+        $this->aspect = $aspect;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MedicalAudienceType|\OpenActive\Models\SchemaOrg\MedicalAudience|string
@@ -64,30 +88,6 @@ class MedicalWebPage extends \OpenActive\Models\SchemaOrg\WebPage
         $medicalAudience = self::checkTypes($medicalAudience, $types);
 
         $this->medicalAudience = $medicalAudience;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAspect()
-    {
-        return $this->aspect;
-    }
-
-    /**
-     * @param string $aspect
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAspect($aspect)
-    {
-        $types = [
-            "string",
-        ];
-
-        $aspect = self::checkTypes($aspect, $types);
-
-        $this->aspect = $aspect;
     }
 
 }

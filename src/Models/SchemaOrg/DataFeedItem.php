@@ -18,9 +18,9 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     public static function fieldList() {
         $fields = [
             "dateDeleted" => "dateDeleted",
-            "item" => "item",
-            "dateModified" => "dateModified",
             "dateCreated" => "dateCreated",
+            "dateModified" => "dateModified",
+            "item" => "item",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -35,12 +35,12 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $dateDeleted;
 
     /**
-     * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
+     * The date on which the CreativeWork was created or the item was added to a DataFeed.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     * @var Date|DateTime|null
      */
-    protected $item;
+    protected $dateCreated;
 
     /**
      * The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed.
@@ -51,12 +51,12 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $dateModified;
 
     /**
-     * The date on which the CreativeWork was created or the item was added to a DataFeed.
+     * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
      *
      *
-     * @var Date|DateTime|null
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $dateCreated;
+    protected $item;
 
     /**
      * @return Date|DateTime|null
@@ -85,28 +85,29 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     * @return Date|DateTime|null
      */
-    public function getItem()
+    public function getDateCreated()
     {
-        return $this->item;
+        return $this->dateCreated;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $item
+     * @param Date|DateTime|null $dateCreated
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setItem($item)
+    public function setDateCreated($dateCreated)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
+            "Date",
+            "DateTime",
+            "null",
         ];
 
-        $item = self::checkTypes($item, $types);
+        $dateCreated = self::checkTypes($dateCreated, $types);
 
-        $this->item = $item;
+        $this->dateCreated = $dateCreated;
     }
 
     /**
@@ -136,29 +137,28 @@ class DataFeedItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
-    public function getDateCreated()
+    public function getItem()
     {
-        return $this->dateCreated;
+        return $this->item;
     }
 
     /**
-     * @param Date|DateTime|null $dateCreated
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $item
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDateCreated($dateCreated)
+    public function setItem($item)
     {
         $types = [
-            "Date",
-            "DateTime",
-            "null",
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
         ];
 
-        $dateCreated = self::checkTypes($dateCreated, $types);
+        $item = self::checkTypes($item, $types);
 
-        $this->dateCreated = $dateCreated;
+        $this->item = $item;
     }
 
 }

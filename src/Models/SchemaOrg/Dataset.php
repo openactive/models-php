@@ -17,18 +17,26 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "includedDataCatalog" => "includedDataCatalog",
-            "datasetTimeInterval" => "datasetTimeInterval",
-            "measurementTechnique" => "measurementTechnique",
             "catalog" => "catalog",
-            "distribution" => "distribution",
-            "includedInDataCatalog" => "includedInDataCatalog",
-            "issn" => "issn",
+            "includedDataCatalog" => "includedDataCatalog",
             "variableMeasured" => "variableMeasured",
+            "measurementTechnique" => "measurementTechnique",
+            "datasetTimeInterval" => "datasetTimeInterval",
+            "distribution" => "distribution",
+            "issn" => "issn",
+            "includedInDataCatalog" => "includedInDataCatalog",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A data catalog which contains this dataset.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DataCatalog|string
+     */
+    protected $catalog;
 
     /**
      * A data catalog which contains this dataset (this property was previously 'catalog', preferred name is now 'includedInDataCatalog').
@@ -39,12 +47,12 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $includedDataCatalog;
 
     /**
-     * The range of temporal applicability of a dataset, e.g. for a 2011 census dataset, the year 2011 (in ISO 8601 time interval format).
+     * The variableMeasured property can indicate (repeated as necessary) the  variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue.
      *
      *
-     * @var DateTime|null
+     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
-    protected $datasetTimeInterval;
+    protected $variableMeasured;
 
     /**
      * A technique or technology used in a [[Dataset]] (or [[DataDownload]], [[DataCatalog]]),
@@ -63,12 +71,12 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $measurementTechnique;
 
     /**
-     * A data catalog which contains this dataset.
+     * The range of temporal applicability of a dataset, e.g. for a 2011 census dataset, the year 2011 (in ISO 8601 time interval format).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DataCatalog|string
+     * @var DateTime|null
      */
-    protected $catalog;
+    protected $datasetTimeInterval;
 
     /**
      * A downloadable form of this dataset, at a specific location, in a specific format.
@@ -79,14 +87,6 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $distribution;
 
     /**
-     * A data catalog which contains this dataset.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DataCatalog|string
-     */
-    protected $includedInDataCatalog;
-
-    /**
      * The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication.
      *
      *
@@ -95,12 +95,37 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $issn;
 
     /**
-     * The variableMeasured property can indicate (repeated as necessary) the  variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue.
+     * A data catalog which contains this dataset.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
+     * @var \OpenActive\Models\SchemaOrg\DataCatalog|string
      */
-    protected $variableMeasured;
+    protected $includedInDataCatalog;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DataCatalog|string
+     */
+    public function getCatalog()
+    {
+        return $this->catalog;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DataCatalog|string $catalog
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCatalog($catalog)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DataCatalog",
+            "string",
+        ];
+
+        $catalog = self::checkTypes($catalog, $types);
+
+        $this->catalog = $catalog;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\DataCatalog|string
@@ -125,6 +150,55 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
         $includedDataCatalog = self::checkTypes($includedDataCatalog, $types);
 
         $this->includedDataCatalog = $includedDataCatalog;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
+     */
+    public function getVariableMeasured()
+    {
+        return $this->variableMeasured;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $variableMeasured
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVariableMeasured($variableMeasured)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "string",
+        ];
+
+        $variableMeasured = self::checkTypes($variableMeasured, $types);
+
+        $this->variableMeasured = $variableMeasured;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMeasurementTechnique()
+    {
+        return $this->measurementTechnique;
+    }
+
+    /**
+     * @param string $measurementTechnique
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMeasurementTechnique($measurementTechnique)
+    {
+        $types = [
+            "string",
+        ];
+
+        $measurementTechnique = self::checkTypes($measurementTechnique, $types);
+
+        $this->measurementTechnique = $measurementTechnique;
     }
 
     /**
@@ -153,55 +227,6 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string
-     */
-    public function getMeasurementTechnique()
-    {
-        return $this->measurementTechnique;
-    }
-
-    /**
-     * @param string $measurementTechnique
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMeasurementTechnique($measurementTechnique)
-    {
-        $types = [
-            "string",
-        ];
-
-        $measurementTechnique = self::checkTypes($measurementTechnique, $types);
-
-        $this->measurementTechnique = $measurementTechnique;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DataCatalog|string
-     */
-    public function getCatalog()
-    {
-        return $this->catalog;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DataCatalog|string $catalog
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCatalog($catalog)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DataCatalog",
-            "string",
-        ];
-
-        $catalog = self::checkTypes($catalog, $types);
-
-        $this->catalog = $catalog;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\DataDownload|string
      */
     public function getDistribution()
@@ -224,31 +249,6 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
         $distribution = self::checkTypes($distribution, $types);
 
         $this->distribution = $distribution;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DataCatalog|string
-     */
-    public function getIncludedInDataCatalog()
-    {
-        return $this->includedInDataCatalog;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DataCatalog|string $includedInDataCatalog
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIncludedInDataCatalog($includedInDataCatalog)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DataCatalog",
-            "string",
-        ];
-
-        $includedInDataCatalog = self::checkTypes($includedInDataCatalog, $types);
-
-        $this->includedInDataCatalog = $includedInDataCatalog;
     }
 
     /**
@@ -276,28 +276,28 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
+     * @return \OpenActive\Models\SchemaOrg\DataCatalog|string
      */
-    public function getVariableMeasured()
+    public function getIncludedInDataCatalog()
     {
-        return $this->variableMeasured;
+        return $this->includedInDataCatalog;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $variableMeasured
+     * @param \OpenActive\Models\SchemaOrg\DataCatalog|string $includedInDataCatalog
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setVariableMeasured($variableMeasured)
+    public function setIncludedInDataCatalog($includedInDataCatalog)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "\OpenActive\Models\SchemaOrg\DataCatalog",
             "string",
         ];
 
-        $variableMeasured = self::checkTypes($variableMeasured, $types);
+        $includedInDataCatalog = self::checkTypes($includedInDataCatalog, $types);
 
-        $this->variableMeasured = $variableMeasured;
+        $this->includedInDataCatalog = $includedInDataCatalog;
     }
 
 }

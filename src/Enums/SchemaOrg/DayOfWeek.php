@@ -11,12 +11,12 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class DayOfWeek
 {
-    const Saturday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Saturday::class;
-    const Monday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Monday::class;
     const Thursday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Thursday::class;
-    const Sunday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Sunday::class;
-    const Wednesday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Wednesday::class;
-    const PublicHolidays = \OpenActive\Enums\SchemaOrg\DayOfWeek\PublicHolidays::class;
+    const Saturday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Saturday::class;
     const Tuesday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Tuesday::class;
     const Friday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Friday::class;
+    const Monday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Monday::class;
+    const Wednesday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Wednesday::class;
+    const PublicHolidays = \OpenActive\Enums\SchemaOrg\DayOfWeek\PublicHolidays::class;
+    const Sunday = \OpenActive\Enums\SchemaOrg\DayOfWeek\Sunday::class;
 }

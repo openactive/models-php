@@ -17,22 +17,14 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
 
     public static function fieldList() {
         $fields = [
-            "subtitleLanguage" => "subtitleLanguage",
             "countryOfOrigin" => "countryOfOrigin",
             "titleEIDR" => "titleEIDR",
+            "subtitleLanguage" => "subtitleLanguage",
             "partOfTVSeries" => "partOfTVSeries",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Languages in which subtitles/captions are available, in [IETF BCP 47 standard format](http://tools.ietf.org/html/bcp47).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Language|string
-     */
-    protected $subtitleLanguage;
 
     /**
      * The country of origin of something, including products as well as creative  works such as movie and TV content.
@@ -60,37 +52,20 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     protected $titleEIDR;
 
     /**
+     * Languages in which subtitles/captions are available, in [IETF BCP 47 standard format](http://tools.ietf.org/html/bcp47).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Language|string
+     */
+    protected $subtitleLanguage;
+
+    /**
      * The TV series to which this episode or season belongs.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\TVSeries|string
      */
     protected $partOfTVSeries;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Language|string
-     */
-    public function getSubtitleLanguage()
-    {
-        return $this->subtitleLanguage;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Language|string $subtitleLanguage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSubtitleLanguage($subtitleLanguage)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Language",
-            "string",
-        ];
-
-        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
-
-        $this->subtitleLanguage = $subtitleLanguage;
-    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Country|string
@@ -139,6 +114,31 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
         $titleEIDR = self::checkTypes($titleEIDR, $types);
 
         $this->titleEIDR = $titleEIDR;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Language|string
+     */
+    public function getSubtitleLanguage()
+    {
+        return $this->subtitleLanguage;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Language|string $subtitleLanguage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSubtitleLanguage($subtitleLanguage)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Language",
+            "string",
+        ];
+
+        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
+
+        $this->subtitleLanguage = $subtitleLanguage;
     }
 
     /**

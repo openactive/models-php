@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class StadiumOrArena extends \OpenActive\Models\SchemaOrg\CivicStructure
+class StadiumOrArena extends \OpenActive\Models\SchemaOrg\SportsActivityLocation
 {
     /**
      * @return string[]|null

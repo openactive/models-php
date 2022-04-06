@@ -17,20 +17,12 @@ class ParentAudience extends \OpenActive\Models\SchemaOrg\PeopleAudience
 
     public static function fieldList() {
         $fields = [
-            "childMinAge" => "childMinAge",
             "childMaxAge" => "childMaxAge",
+            "childMinAge" => "childMinAge",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Minimal age of the child.
-     *
-     *
-     * @var Number|null
-     */
-    protected $childMinAge;
 
     /**
      * Maximal age of the child.
@@ -41,29 +33,12 @@ class ParentAudience extends \OpenActive\Models\SchemaOrg\PeopleAudience
     protected $childMaxAge;
 
     /**
-     * @return Number|null
+     * Minimal age of the child.
+     *
+     *
+     * @var Number|null
      */
-    public function getChildMinAge()
-    {
-        return $this->childMinAge;
-    }
-
-    /**
-     * @param Number|null $childMinAge
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setChildMinAge($childMinAge)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $childMinAge = self::checkTypes($childMinAge, $types);
-
-        $this->childMinAge = $childMinAge;
-    }
+    protected $childMinAge;
 
     /**
      * @return Number|null
@@ -88,6 +63,31 @@ class ParentAudience extends \OpenActive\Models\SchemaOrg\PeopleAudience
         $childMaxAge = self::checkTypes($childMaxAge, $types);
 
         $this->childMaxAge = $childMaxAge;
+    }
+
+    /**
+     * @return Number|null
+     */
+    public function getChildMinAge()
+    {
+        return $this->childMinAge;
+    }
+
+    /**
+     * @param Number|null $childMinAge
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setChildMinAge($childMinAge)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $childMinAge = self::checkTypes($childMinAge, $types);
+
+        $this->childMinAge = $childMinAge;
     }
 
 }

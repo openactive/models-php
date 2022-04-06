@@ -28,7 +28,7 @@ class GovernmentService extends \OpenActive\Models\SchemaOrg\Service
      * Indicates a legal jurisdiction, e.g. of some legislation, or where some government service is based.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
+     * @var string|\OpenActive\Models\SchemaOrg\AdministrativeArea
      */
     protected $jurisdiction;
 
@@ -41,7 +41,7 @@ class GovernmentService extends \OpenActive\Models\SchemaOrg\Service
     protected $serviceOperator;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
+     * @return string|\OpenActive\Models\SchemaOrg\AdministrativeArea
      */
     public function getJurisdiction()
     {
@@ -49,15 +49,15 @@ class GovernmentService extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $jurisdiction
+     * @param string|\OpenActive\Models\SchemaOrg\AdministrativeArea $jurisdiction
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setJurisdiction($jurisdiction)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
             "string",
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
         ];
 
         $jurisdiction = self::checkTypes($jurisdiction, $types);

@@ -17,13 +17,21 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
 
     public static function fieldList() {
         $fields = [
+            "itemReviewed" => "itemReviewed",
             "reviewCount" => "reviewCount",
             "ratingCount" => "ratingCount",
-            "itemReviewed" => "itemReviewed",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The item that is being reviewed/rated.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    protected $itemReviewed;
 
     /**
      * The count of total number of reviews.
@@ -42,12 +50,29 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
     protected $ratingCount;
 
     /**
-     * The item that is being reviewed/rated.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $itemReviewed;
+    public function getItemReviewed()
+    {
+        return $this->itemReviewed;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $itemReviewed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setItemReviewed($itemReviewed)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
+        ];
+
+        $itemReviewed = self::checkTypes($itemReviewed, $types);
+
+        $this->itemReviewed = $itemReviewed;
+    }
 
     /**
      * @return int|null
@@ -97,31 +122,6 @@ class AggregateRating extends \OpenActive\Models\SchemaOrg\Rating
         $ratingCount = self::checkTypes($ratingCount, $types);
 
         $this->ratingCount = $ratingCount;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    public function getItemReviewed()
-    {
-        return $this->itemReviewed;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $itemReviewed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setItemReviewed($itemReviewed)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
-        ];
-
-        $itemReviewed = self::checkTypes($itemReviewed, $types);
-
-        $this->itemReviewed = $itemReviewed;
     }
 
 }

@@ -17,50 +17,18 @@ class AnatomicalStructure extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "diagram" => "diagram",
-            "subStructure" => "subStructure",
-            "connectedTo" => "connectedTo",
-            "relatedCondition" => "relatedCondition",
             "bodyLocation" => "bodyLocation",
-            "relatedTherapy" => "relatedTherapy",
+            "connectedTo" => "connectedTo",
             "partOfSystem" => "partOfSystem",
+            "relatedTherapy" => "relatedTherapy",
+            "diagram" => "diagram",
+            "relatedCondition" => "relatedCondition",
+            "subStructure" => "subStructure",
             "associatedPathophysiology" => "associatedPathophysiology",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * An image containing a diagram that illustrates the structure and/or its component substructures and/or connections with other structures.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
-     */
-    protected $diagram;
-
-    /**
-     * Component (sub-)structure(s) that comprise this anatomical structure.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
-     */
-    protected $subStructure;
-
-    /**
-     * Other anatomical structures to which this structure is connected.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
-     */
-    protected $connectedTo;
-
-    /**
-     * A medical condition associated with this anatomy.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalCondition|string
-     */
-    protected $relatedCondition;
 
     /**
      * Location in the body of the anatomical structure.
@@ -71,12 +39,12 @@ class AnatomicalStructure extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $bodyLocation;
 
     /**
-     * A medical therapy related to this anatomy.
+     * Other anatomical structures to which this structure is connected.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
      */
-    protected $relatedTherapy;
+    protected $connectedTo;
 
     /**
      * The anatomical or organ system that this structure is part of.
@@ -87,6 +55,38 @@ class AnatomicalStructure extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $partOfSystem;
 
     /**
+     * A medical therapy related to this anatomy.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     */
+    protected $relatedTherapy;
+
+    /**
+     * An image containing a diagram that illustrates the structure and/or its component substructures and/or connections with other structures.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
+     */
+    protected $diagram;
+
+    /**
+     * A medical condition associated with this anatomy.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalCondition|string
+     */
+    protected $relatedCondition;
+
+    /**
+     * Component (sub-)structure(s) that comprise this anatomical structure.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
+     */
+    protected $subStructure;
+
+    /**
      * If applicable, a description of the pathophysiology associated with the anatomical system, including potential abnormal changes in the mechanical, physical, and biochemical functions of the system.
      *
      *
@@ -95,53 +95,27 @@ class AnatomicalStructure extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $associatedPathophysiology;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
+     * @return string
      */
-    public function getDiagram()
+    public function getBodyLocation()
     {
-        return $this->diagram;
+        return $this->bodyLocation;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $diagram
+     * @param string $bodyLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDiagram($diagram)
+    public function setBodyLocation($bodyLocation)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\ImageObject",
             "string",
         ];
 
-        $diagram = self::checkTypes($diagram, $types);
+        $bodyLocation = self::checkTypes($bodyLocation, $types);
 
-        $this->diagram = $diagram;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
-     */
-    public function getSubStructure()
-    {
-        return $this->subStructure;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|string $subStructure
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSubStructure($subStructure)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
-            "string",
-        ];
-
-        $subStructure = self::checkTypes($subStructure, $types);
-
-        $this->subStructure = $subStructure;
+        $this->bodyLocation = $bodyLocation;
     }
 
     /**
@@ -170,52 +144,28 @@ class AnatomicalStructure extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
+     * @return \OpenActive\Models\SchemaOrg\AnatomicalSystem|string
      */
-    public function getRelatedCondition()
+    public function getPartOfSystem()
     {
-        return $this->relatedCondition;
+        return $this->partOfSystem;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalCondition|string $relatedCondition
+     * @param \OpenActive\Models\SchemaOrg\AnatomicalSystem|string $partOfSystem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRelatedCondition($relatedCondition)
+    public function setPartOfSystem($partOfSystem)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalCondition",
+            "\OpenActive\Models\SchemaOrg\AnatomicalSystem",
             "string",
         ];
 
-        $relatedCondition = self::checkTypes($relatedCondition, $types);
+        $partOfSystem = self::checkTypes($partOfSystem, $types);
 
-        $this->relatedCondition = $relatedCondition;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBodyLocation()
-    {
-        return $this->bodyLocation;
-    }
-
-    /**
-     * @param string $bodyLocation
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBodyLocation($bodyLocation)
-    {
-        $types = [
-            "string",
-        ];
-
-        $bodyLocation = self::checkTypes($bodyLocation, $types);
-
-        $this->bodyLocation = $bodyLocation;
+        $this->partOfSystem = $partOfSystem;
     }
 
     /**
@@ -244,28 +194,78 @@ class AnatomicalStructure extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AnatomicalSystem|string
+     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
      */
-    public function getPartOfSystem()
+    public function getDiagram()
     {
-        return $this->partOfSystem;
+        return $this->diagram;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AnatomicalSystem|string $partOfSystem
+     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $diagram
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPartOfSystem($partOfSystem)
+    public function setDiagram($diagram)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\AnatomicalSystem",
+            "\OpenActive\Models\SchemaOrg\ImageObject",
             "string",
         ];
 
-        $partOfSystem = self::checkTypes($partOfSystem, $types);
+        $diagram = self::checkTypes($diagram, $types);
 
-        $this->partOfSystem = $partOfSystem;
+        $this->diagram = $diagram;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
+     */
+    public function getRelatedCondition()
+    {
+        return $this->relatedCondition;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalCondition|string $relatedCondition
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRelatedCondition($relatedCondition)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalCondition",
+            "string",
+        ];
+
+        $relatedCondition = self::checkTypes($relatedCondition, $types);
+
+        $this->relatedCondition = $relatedCondition;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
+     */
+    public function getSubStructure()
+    {
+        return $this->subStructure;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|string $subStructure
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSubStructure($subStructure)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
+            "string",
+        ];
+
+        $subStructure = self::checkTypes($subStructure, $types);
+
+        $this->subStructure = $subStructure;
     }
 
     /**

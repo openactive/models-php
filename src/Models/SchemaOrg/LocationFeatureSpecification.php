@@ -17,13 +17,21 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
 
     public static function fieldList() {
         $fields = [
+            "hoursAvailable" => "hoursAvailable",
             "validFrom" => "validFrom",
             "validThrough" => "validThrough",
-            "hoursAvailable" => "hoursAvailable",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The hours during which this service or contact is available.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\OpeningHoursSpecification|string
+     */
+    protected $hoursAvailable;
 
     /**
      * The date when the item becomes valid.
@@ -42,12 +50,29 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     protected $validThrough;
 
     /**
-     * The hours during which this service or contact is available.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\OpeningHoursSpecification|string
+     * @return \OpenActive\Models\SchemaOrg\OpeningHoursSpecification|string
      */
-    protected $hoursAvailable;
+    public function getHoursAvailable()
+    {
+        return $this->hoursAvailable;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\OpeningHoursSpecification|string $hoursAvailable
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHoursAvailable($hoursAvailable)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\OpeningHoursSpecification",
+            "string",
+        ];
+
+        $hoursAvailable = self::checkTypes($hoursAvailable, $types);
+
+        $this->hoursAvailable = $hoursAvailable;
+    }
 
     /**
      * @return Date|DateTime|null
@@ -99,31 +124,6 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
         $validThrough = self::checkTypes($validThrough, $types);
 
         $this->validThrough = $validThrough;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\OpeningHoursSpecification|string
-     */
-    public function getHoursAvailable()
-    {
-        return $this->hoursAvailable;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\OpeningHoursSpecification|string $hoursAvailable
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHoursAvailable($hoursAvailable)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\OpeningHoursSpecification",
-            "string",
-        ];
-
-        $hoursAvailable = self::checkTypes($hoursAvailable, $types);
-
-        $this->hoursAvailable = $hoursAvailable;
     }
 
 }

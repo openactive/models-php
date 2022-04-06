@@ -18,10 +18,10 @@ class MedicalProcedure extends \OpenActive\Models\SchemaOrg\MedicalEntity
     public static function fieldList() {
         $fields = [
             "procedureType" => "procedureType",
-            "howPerformed" => "howPerformed",
             "preparation" => "preparation",
-            "status" => "status",
             "bodyLocation" => "bodyLocation",
+            "status" => "status",
+            "howPerformed" => "howPerformed",
             "followup" => "followup",
         ];
 
@@ -37,14 +37,6 @@ class MedicalProcedure extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $procedureType;
 
     /**
-     * How the procedure is performed.
-     *
-     *
-     * @var string
-     */
-    protected $howPerformed;
-
-    /**
      * Typical preparation that a patient must undergo before having the procedure performed.
      *
      *
@@ -53,20 +45,28 @@ class MedicalProcedure extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $preparation;
 
     /**
-     * The status of the study (enumerated).
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|\OpenActive\Enums\SchemaOrg\EventStatusType|null
-     */
-    protected $status;
-
-    /**
      * Location in the body of the anatomical structure.
      *
      *
      * @var string
      */
     protected $bodyLocation;
+
+    /**
+     * The status of the study (enumerated).
+     *
+     *
+     * @var string|\OpenActive\Enums\SchemaOrg\EventStatusType|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|null
+     */
+    protected $status;
+
+    /**
+     * How the procedure is performed.
+     *
+     *
+     * @var string
+     */
+    protected $howPerformed;
 
     /**
      * Typical or recommended followup care after the procedure is performed.
@@ -102,30 +102,6 @@ class MedicalProcedure extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return string
-     */
-    public function getHowPerformed()
-    {
-        return $this->howPerformed;
-    }
-
-    /**
-     * @param string $howPerformed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHowPerformed($howPerformed)
-    {
-        $types = [
-            "string",
-        ];
-
-        $howPerformed = self::checkTypes($howPerformed, $types);
-
-        $this->howPerformed = $howPerformed;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
     public function getPreparation()
@@ -151,33 +127,6 @@ class MedicalProcedure extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|\OpenActive\Enums\SchemaOrg\EventStatusType|null
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|\OpenActive\Enums\SchemaOrg\EventStatusType|null $status
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setStatus($status)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\MedicalStudyStatus",
-            "\OpenActive\Enums\SchemaOrg\EventStatusType",
-            "null",
-        ];
-
-        $status = self::checkTypes($status, $types);
-
-        $this->status = $status;
-    }
-
-    /**
      * @return string
      */
     public function getBodyLocation()
@@ -199,6 +148,57 @@ class MedicalProcedure extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $bodyLocation = self::checkTypes($bodyLocation, $types);
 
         $this->bodyLocation = $bodyLocation;
+    }
+
+    /**
+     * @return string|\OpenActive\Enums\SchemaOrg\EventStatusType|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|null
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string|\OpenActive\Enums\SchemaOrg\EventStatusType|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|null $status
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setStatus($status)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Enums\SchemaOrg\EventStatusType",
+            "\OpenActive\Models\SchemaOrg\MedicalStudyStatus",
+            "null",
+        ];
+
+        $status = self::checkTypes($status, $types);
+
+        $this->status = $status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHowPerformed()
+    {
+        return $this->howPerformed;
+    }
+
+    /**
+     * @param string $howPerformed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHowPerformed($howPerformed)
+    {
+        $types = [
+            "string",
+        ];
+
+        $howPerformed = self::checkTypes($howPerformed, $types);
+
+        $this->howPerformed = $howPerformed;
     }
 
     /**

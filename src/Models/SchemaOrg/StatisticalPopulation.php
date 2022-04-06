@@ -17,13 +17,21 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
+            "populationType" => "populationType",
             "numConstraints" => "numConstraints",
             "constrainingProperty" => "constrainingProperty",
-            "populationType" => "populationType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Indicates the populationType common to all members of a [[StatisticalPopulation]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Class|string
+     */
+    protected $populationType;
 
     /**
      * Indicates the number of constraints (not counting [[populationType]]) defined for a particular [[StatisticalPopulation]]. This helps applications understand if they have access to a sufficiently complete description of a [[StatisticalPopulation]].
@@ -43,12 +51,29 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $constrainingProperty;
 
     /**
-     * Indicates the populationType common to all members of a [[StatisticalPopulation]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Class|string
+     * @return \OpenActive\Models\SchemaOrg\Class|string
      */
-    protected $populationType;
+    public function getPopulationType()
+    {
+        return $this->populationType;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Class|string $populationType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPopulationType($populationType)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Class",
+            "string",
+        ];
+
+        $populationType = self::checkTypes($populationType, $types);
+
+        $this->populationType = $populationType;
+    }
 
     /**
      * @return int|null
@@ -98,31 +123,6 @@ class StatisticalPopulation extends \OpenActive\Models\SchemaOrg\Intangible
         $constrainingProperty = self::checkTypes($constrainingProperty, $types);
 
         $this->constrainingProperty = $constrainingProperty;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Class|string
-     */
-    public function getPopulationType()
-    {
-        return $this->populationType;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Class|string $populationType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPopulationType($populationType)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Class",
-            "string",
-        ];
-
-        $populationType = self::checkTypes($populationType, $types);
-
-        $this->populationType = $populationType;
     }
 
 }

@@ -27,12 +27,12 @@ class HowToSupply extends \OpenActive\Models\SchemaOrg\HowToItem
      * The estimated cost of the supply or supplies consumed when performing instructions.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string
+     * @var string|\OpenActive\Models\SchemaOrg\MonetaryAmount
      */
     protected $estimatedCost;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string
+     * @return string|\OpenActive\Models\SchemaOrg\MonetaryAmount
      */
     public function getEstimatedCost()
     {
@@ -40,15 +40,15 @@ class HowToSupply extends \OpenActive\Models\SchemaOrg\HowToItem
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string $estimatedCost
+     * @param string|\OpenActive\Models\SchemaOrg\MonetaryAmount $estimatedCost
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEstimatedCost($estimatedCost)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "string",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
         ];
 
         $estimatedCost = self::checkTypes($estimatedCost, $types);

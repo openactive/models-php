@@ -17,8 +17,8 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
 
     public static function fieldList() {
         $fields = [
-            "collection" => "collection",
             "targetCollection" => "targetCollection",
+            "collection" => "collection",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -30,7 +30,7 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
      *
      * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $collection;
+    protected $targetCollection;
 
     /**
      * A sub property of object. The collection target of the action.
@@ -38,32 +38,7 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
      *
      * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $targetCollection;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    public function getCollection()
-    {
-        return $this->collection;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $collection
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCollection($collection)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
-        ];
-
-        $collection = self::checkTypes($collection, $types);
-
-        $this->collection = $collection;
-    }
+    protected $collection;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing|string
@@ -88,6 +63,31 @@ class UpdateAction extends \OpenActive\Models\SchemaOrg\Action
         $targetCollection = self::checkTypes($targetCollection, $types);
 
         $this->targetCollection = $targetCollection;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    public function getCollection()
+    {
+        return $this->collection;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $collection
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCollection($collection)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
+        ];
+
+        $collection = self::checkTypes($collection, $types);
+
+        $this->collection = $collection;
     }
 
 }

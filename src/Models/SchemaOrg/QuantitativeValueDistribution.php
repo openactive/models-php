@@ -18,11 +18,11 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     public static function fieldList() {
         $fields = [
             "percentile75" => "percentile75",
-            "duration" => "duration",
+            "median" => "median",
+            "percentile10" => "percentile10",
             "percentile25" => "percentile25",
             "percentile90" => "percentile90",
-            "percentile10" => "percentile10",
-            "median" => "median",
+            "duration" => "duration",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -37,12 +37,20 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     protected $percentile75;
 
     /**
-     * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).
+     * The median value.
      *
      *
-     * @var DateInterval|string|null
+     * @var Number|null
      */
-    protected $duration;
+    protected $median;
+
+    /**
+     * The 10th percentile value.
+     *
+     *
+     * @var Number|null
+     */
+    protected $percentile10;
 
     /**
      * The 25th percentile value.
@@ -61,20 +69,12 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     protected $percentile90;
 
     /**
-     * The 10th percentile value.
+     * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).
      *
      *
-     * @var Number|null
+     * @var DateInterval|string|null
      */
-    protected $percentile10;
-
-    /**
-     * The median value.
-     *
-     *
-     * @var Number|null
-     */
-    protected $median;
+    protected $duration;
 
     /**
      * @return Number|null
@@ -102,29 +102,53 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @return DateInterval|string|null
+     * @return Number|null
      */
-    public function getDuration()
+    public function getMedian()
     {
-        return $this->duration;
+        return $this->median;
     }
 
     /**
-     * @param DateInterval|string|null $duration
+     * @param Number|null $median
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDuration($duration)
+    public function setMedian($median)
     {
         $types = [
-            "DateInterval",
-            "string",
+            "Number",
             "null",
         ];
 
-        $duration = self::checkTypes($duration, $types);
+        $median = self::checkTypes($median, $types);
 
-        $this->duration = $duration;
+        $this->median = $median;
+    }
+
+    /**
+     * @return Number|null
+     */
+    public function getPercentile10()
+    {
+        return $this->percentile10;
+    }
+
+    /**
+     * @param Number|null $percentile10
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPercentile10($percentile10)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $percentile10 = self::checkTypes($percentile10, $types);
+
+        $this->percentile10 = $percentile10;
     }
 
     /**
@@ -178,53 +202,29 @@ class QuantitativeValueDistribution extends \OpenActive\Models\SchemaOrg\Structu
     }
 
     /**
-     * @return Number|null
+     * @return DateInterval|string|null
      */
-    public function getPercentile10()
+    public function getDuration()
     {
-        return $this->percentile10;
+        return $this->duration;
     }
 
     /**
-     * @param Number|null $percentile10
+     * @param DateInterval|string|null $duration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPercentile10($percentile10)
+    public function setDuration($duration)
     {
         $types = [
-            "Number",
+            "DateInterval",
+            "string",
             "null",
         ];
 
-        $percentile10 = self::checkTypes($percentile10, $types);
+        $duration = self::checkTypes($duration, $types);
 
-        $this->percentile10 = $percentile10;
-    }
-
-    /**
-     * @return Number|null
-     */
-    public function getMedian()
-    {
-        return $this->median;
-    }
-
-    /**
-     * @param Number|null $median
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMedian($median)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $median = self::checkTypes($median, $types);
-
-        $this->median = $median;
+        $this->duration = $duration;
     }
 
 }

@@ -8,9 +8,9 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class ReturnFeesEnumeration
 {
-    const ReturnShippingFees = \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration\ReturnShippingFees::class;
     const ReturnFeesCustomerResponsibility = \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration\ReturnFeesCustomerResponsibility::class;
-    const RestockingFees = \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration\RestockingFees::class;
     const OriginalShippingFees = \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration\OriginalShippingFees::class;
+    const ReturnShippingFees = \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration\ReturnShippingFees::class;
     const FreeReturn = \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration\FreeReturn::class;
+    const RestockingFees = \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration\RestockingFees::class;
 }

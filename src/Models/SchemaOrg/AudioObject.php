@@ -18,8 +18,8 @@ class AudioObject extends \OpenActive\Models\SchemaOrg\MediaObject
     public static function fieldList() {
         $fields = [
             "embeddedTextCaption" => "embeddedTextCaption",
-            "transcript" => "transcript",
             "caption" => "caption",
+            "transcript" => "transcript",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -34,20 +34,20 @@ class AudioObject extends \OpenActive\Models\SchemaOrg\MediaObject
     protected $embeddedTextCaption;
 
     /**
+     * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the [[encodingFormat]].
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\MediaObject
+     */
+    protected $caption;
+
+    /**
      * If this MediaObject is an AudioObject or VideoObject, the transcript of that object.
      *
      *
      * @var string
      */
     protected $transcript;
-
-    /**
-     * The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the [[encodingFormat]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MediaObject|string
-     */
-    protected $caption;
 
     /**
      * @return string
@@ -74,6 +74,31 @@ class AudioObject extends \OpenActive\Models\SchemaOrg\MediaObject
     }
 
     /**
+     * @return string|\OpenActive\Models\SchemaOrg\MediaObject
+     */
+    public function getCaption()
+    {
+        return $this->caption;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $caption
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCaption($caption)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\MediaObject",
+        ];
+
+        $caption = self::checkTypes($caption, $types);
+
+        $this->caption = $caption;
+    }
+
+    /**
      * @return string
      */
     public function getTranscript()
@@ -95,31 +120,6 @@ class AudioObject extends \OpenActive\Models\SchemaOrg\MediaObject
         $transcript = self::checkTypes($transcript, $types);
 
         $this->transcript = $transcript;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MediaObject|string
-     */
-    public function getCaption()
-    {
-        return $this->caption;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MediaObject|string $caption
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCaption($caption)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MediaObject",
-            "string",
-        ];
-
-        $caption = self::checkTypes($caption, $types);
-
-        $this->caption = $caption;
     }
 
 }

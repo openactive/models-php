@@ -17,32 +17,16 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "broadcastChannelId" => "broadcastChannelId",
-            "broadcastFrequency" => "broadcastFrequency",
             "genre" => "genre",
+            "broadcastFrequency" => "broadcastFrequency",
             "providesBroadcastService" => "providesBroadcastService",
-            "broadcastServiceTier" => "broadcastServiceTier",
+            "broadcastChannelId" => "broadcastChannelId",
             "inBroadcastLineup" => "inBroadcastLineup",
+            "broadcastServiceTier" => "broadcastServiceTier",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The unique address by which the BroadcastService can be identified in a provider lineup. In US, this is typically a number.
-     *
-     *
-     * @var string
-     */
-    protected $broadcastChannelId;
-
-    /**
-     * The frequency used for over-the-air broadcasts. Numeric values or simple ranges e.g. 87-99. In addition a shortcut idiom is supported for frequences of AM and FM radio channels, e.g. "87 FM".
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification
-     */
-    protected $broadcastFrequency;
 
     /**
      * Genre of the creative work, broadcast channel or group.
@@ -53,6 +37,14 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     protected $genre;
 
     /**
+     * The frequency used for over-the-air broadcasts. Numeric values or simple ranges e.g. 87-99. In addition a shortcut idiom is supported for frequences of AM and FM radio channels, e.g. "87 FM".
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string
+     */
+    protected $broadcastFrequency;
+
+    /**
      * The BroadcastService offered on this channel.
      *
      *
@@ -61,12 +53,12 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     protected $providesBroadcastService;
 
     /**
-     * The type of service required to have access to the channel (e.g. Standard or Premium).
+     * The unique address by which the BroadcastService can be identified in a provider lineup. In US, this is typically a number.
      *
      *
      * @var string
      */
-    protected $broadcastServiceTier;
+    protected $broadcastChannelId;
 
     /**
      * The CableOrSatelliteService offering the channel.
@@ -77,53 +69,12 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     protected $inBroadcastLineup;
 
     /**
-     * @return string
+     * The type of service required to have access to the channel (e.g. Standard or Premium).
+     *
+     *
+     * @var string
      */
-    public function getBroadcastChannelId()
-    {
-        return $this->broadcastChannelId;
-    }
-
-    /**
-     * @param string $broadcastChannelId
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBroadcastChannelId($broadcastChannelId)
-    {
-        $types = [
-            "string",
-        ];
-
-        $broadcastChannelId = self::checkTypes($broadcastChannelId, $types);
-
-        $this->broadcastChannelId = $broadcastChannelId;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification
-     */
-    public function getBroadcastFrequency()
-    {
-        return $this->broadcastFrequency;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification $broadcastFrequency
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBroadcastFrequency($broadcastFrequency)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification",
-        ];
-
-        $broadcastFrequency = self::checkTypes($broadcastFrequency, $types);
-
-        $this->broadcastFrequency = $broadcastFrequency;
-    }
+    protected $broadcastServiceTier;
 
     /**
      * @return string
@@ -147,6 +98,31 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
         $genre = self::checkTypes($genre, $types);
 
         $this->genre = $genre;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string
+     */
+    public function getBroadcastFrequency()
+    {
+        return $this->broadcastFrequency;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string $broadcastFrequency
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBroadcastFrequency($broadcastFrequency)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification",
+            "string",
+        ];
+
+        $broadcastFrequency = self::checkTypes($broadcastFrequency, $types);
+
+        $this->broadcastFrequency = $broadcastFrequency;
     }
 
     /**
@@ -177,25 +153,25 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return string
      */
-    public function getBroadcastServiceTier()
+    public function getBroadcastChannelId()
     {
-        return $this->broadcastServiceTier;
+        return $this->broadcastChannelId;
     }
 
     /**
-     * @param string $broadcastServiceTier
+     * @param string $broadcastChannelId
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBroadcastServiceTier($broadcastServiceTier)
+    public function setBroadcastChannelId($broadcastChannelId)
     {
         $types = [
             "string",
         ];
 
-        $broadcastServiceTier = self::checkTypes($broadcastServiceTier, $types);
+        $broadcastChannelId = self::checkTypes($broadcastChannelId, $types);
 
-        $this->broadcastServiceTier = $broadcastServiceTier;
+        $this->broadcastChannelId = $broadcastChannelId;
     }
 
     /**
@@ -221,6 +197,30 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
         $inBroadcastLineup = self::checkTypes($inBroadcastLineup, $types);
 
         $this->inBroadcastLineup = $inBroadcastLineup;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBroadcastServiceTier()
+    {
+        return $this->broadcastServiceTier;
+    }
+
+    /**
+     * @param string $broadcastServiceTier
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBroadcastServiceTier($broadcastServiceTier)
+    {
+        $types = [
+            "string",
+        ];
+
+        $broadcastServiceTier = self::checkTypes($broadcastServiceTier, $types);
+
+        $this->broadcastServiceTier = $broadcastServiceTier;
     }
 
 }

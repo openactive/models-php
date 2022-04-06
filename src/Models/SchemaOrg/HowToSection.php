@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class HowToSection extends \OpenActive\Models\SchemaOrg\ItemList
+class HowToSection extends \OpenActive\Models\SchemaOrg\ListItem
 {
     /**
      * @return string[]|null
@@ -27,12 +27,12 @@ class HowToSection extends \OpenActive\Models\SchemaOrg\ItemList
      * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed 'steps'; 'step' is preferred).
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     protected $steps;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     public function getSteps()
     {
@@ -40,16 +40,16 @@ class HowToSection extends \OpenActive\Models\SchemaOrg\ItemList
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork $steps
+     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork|string $steps
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSteps($steps)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\ItemList",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
         ];
 
         $steps = self::checkTypes($steps, $types);
