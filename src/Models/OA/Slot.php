@@ -553,14 +553,13 @@ class Slot extends \OpenActive\Models\OA\Event
     protected $superEvent;
 
     /**
-     * A URL to a web page (or section of a page) that describes the event.
+     * A URL to a web page (or section of a page) that describes the specific Slot.
      *
      * ```json
-     * "url": "https://example.com/event/1234"
+     * "url": "https://example.com/slots/1234"
      * ```
      *
      * @var string
-     * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $url;
 
@@ -1491,7 +1490,6 @@ class Slot extends \OpenActive\Models\OA\Event
 
     /**
      * @return string
-     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getUrl()
     {
@@ -1502,7 +1500,6 @@ class Slot extends \OpenActive\Models\OA\Event
      * @param string $url
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function setUrl($url)
     {

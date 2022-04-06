@@ -143,7 +143,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * }
      * ```
      *
-     * @var \OpenActive\Models\OA\Place
+     * @var \OpenActive\Models\OA\Place|string
      */
     protected $containedInPlace;
 
@@ -380,7 +380,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @return \OpenActive\Models\OA\Place
+     * @return \OpenActive\Models\OA\Place|string
      */
     public function getContainedInPlace()
     {
@@ -388,7 +388,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     }
 
     /**
-     * @param \OpenActive\Models\OA\Place $containedInPlace
+     * @param \OpenActive\Models\OA\Place|string $containedInPlace
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -396,6 +396,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     {
         $types = [
             "\OpenActive\Models\OA\Place",
+            "string",
         ];
 
         $containedInPlace = self::checkTypes($containedInPlace, $types);

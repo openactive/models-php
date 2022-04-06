@@ -160,6 +160,7 @@ class PropertyEnumeration
     const AnswerExplanation = \OpenActive\Enums\PropertyEnumeration\AnswerExplanation::class;
     const Antagonist = \OpenActive\Enums\PropertyEnumeration\Antagonist::class;
     const Appearance = \OpenActive\Enums\PropertyEnumeration\Appearance::class;
+    const ApplicableCountry = \OpenActive\Enums\PropertyEnumeration\ApplicableCountry::class;
     const ApplicableLocation = \OpenActive\Enums\PropertyEnumeration\ApplicableLocation::class;
     const ApplicantLocationRequirements = \OpenActive\Enums\PropertyEnumeration\ApplicantLocationRequirements::class;
     const Application = \OpenActive\Enums\PropertyEnumeration\Application::class;
@@ -621,7 +622,10 @@ class PropertyEnumeration
     const FunctionalClass = \OpenActive\Enums\PropertyEnumeration\FunctionalClass::class;
     const FundedItem = \OpenActive\Enums\PropertyEnumeration\FundedItem::class;
     const Funder = \OpenActive\Enums\PropertyEnumeration\Funder::class;
+    const Funding = \OpenActive\Enums\PropertyEnumeration\Funding::class;
     const Game = \OpenActive\Enums\PropertyEnumeration\Game::class;
+    const GameAvailabilityType = \OpenActive\Enums\PropertyEnumeration\GameAvailabilityType::class;
+    const GameEdition = \OpenActive\Enums\PropertyEnumeration\GameEdition::class;
     const GameItem = \OpenActive\Enums\PropertyEnumeration\GameItem::class;
     const GameLocation = \OpenActive\Enums\PropertyEnumeration\GameLocation::class;
     const GamePlatform = \OpenActive\Enums\PropertyEnumeration\GamePlatform::class;
@@ -660,6 +664,7 @@ class PropertyEnumeration
     const GuidelineDate = \OpenActive\Enums\PropertyEnumeration\GuidelineDate::class;
     const GuidelineSubject = \OpenActive\Enums\PropertyEnumeration\GuidelineSubject::class;
     const HandlingTime = \OpenActive\Enums\PropertyEnumeration\HandlingTime::class;
+    const HasAdultConsideration = \OpenActive\Enums\PropertyEnumeration\HasAdultConsideration::class;
     const HasBioChemEntityPart = \OpenActive\Enums\PropertyEnumeration\HasBioChemEntityPart::class;
     const HasBioPolymerSequence = \OpenActive\Enums\PropertyEnumeration\HasBioPolymerSequence::class;
     const HasBroadcastChannel = \OpenActive\Enums\PropertyEnumeration\HasBroadcastChannel::class;
@@ -791,6 +796,7 @@ class PropertyEnumeration
     const IsVariantOf = \OpenActive\Enums\PropertyEnumeration\IsVariantOf::class;
     const Isbn = \OpenActive\Enums\PropertyEnumeration\Isbn::class;
     const IsicV4 = \OpenActive\Enums\PropertyEnumeration\IsicV4::class;
+    const Iso6523Code = \OpenActive\Enums\PropertyEnumeration\Iso6523Code::class;
     const IsrcCode = \OpenActive\Enums\PropertyEnumeration\IsrcCode::class;
     const Issn = \OpenActive\Enums\PropertyEnumeration\Issn::class;
     const IssueNumber = \OpenActive\Enums\PropertyEnumeration\IssueNumber::class;
