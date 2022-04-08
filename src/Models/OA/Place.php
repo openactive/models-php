@@ -32,6 +32,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
             "telephone" => "telephone",
             "url" => "url",
             "formattedDescription" => "beta:formattedDescription",
+            "video" => "beta:video",
             "placeType" => "beta:placeType",
         ];
 
@@ -242,6 +243,17 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * @var string
      */
     protected $formattedDescription;
+
+    /**
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
+     * A related video object.
+     * 
+     * If you are using this property, please join the discussion at proposal [#88](https://github.com/openactive/modelling-opportunity-data/issues/88).
+     *
+     *
+     * @var \OpenActive\Models\OA\VideoObject[]
+     */
+    protected $video;
 
     /**
      * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
@@ -594,6 +606,30 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
         $formattedDescription = self::checkTypes($formattedDescription, $types);
 
         $this->formattedDescription = $formattedDescription;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\VideoObject[]
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\VideoObject[] $video
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVideo($video)
+    {
+        $types = [
+            "\OpenActive\Models\OA\VideoObject[]",
+        ];
+
+        $video = self::checkTypes($video, $types);
+
+        $this->video = $video;
     }
 
     /**
