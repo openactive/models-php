@@ -17,21 +17,13 @@ class HealthPlanNetwork extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "healthPlanNetworkTier" => "healthPlanNetworkTier",
             "healthPlanNetworkId" => "healthPlanNetworkId",
             "healthPlanCostSharing" => "healthPlanCostSharing",
+            "healthPlanNetworkTier" => "healthPlanNetworkTier",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The tier(s) for this network.
-     *
-     *
-     * @var string
-     */
-    protected $healthPlanNetworkTier;
 
     /**
      * Name or unique ID of network. (Networks are often reused across different insurance plans).
@@ -50,28 +42,12 @@ class HealthPlanNetwork extends \OpenActive\Models\SchemaOrg\Intangible
     protected $healthPlanCostSharing;
 
     /**
-     * @return string
+     * The tier(s) for this network.
+     *
+     *
+     * @var string
      */
-    public function getHealthPlanNetworkTier()
-    {
-        return $this->healthPlanNetworkTier;
-    }
-
-    /**
-     * @param string $healthPlanNetworkTier
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHealthPlanNetworkTier($healthPlanNetworkTier)
-    {
-        $types = [
-            "string",
-        ];
-
-        $healthPlanNetworkTier = self::checkTypes($healthPlanNetworkTier, $types);
-
-        $this->healthPlanNetworkTier = $healthPlanNetworkTier;
-    }
+    protected $healthPlanNetworkTier;
 
     /**
      * @return string
@@ -120,6 +96,30 @@ class HealthPlanNetwork extends \OpenActive\Models\SchemaOrg\Intangible
         $healthPlanCostSharing = self::checkTypes($healthPlanCostSharing, $types);
 
         $this->healthPlanCostSharing = $healthPlanCostSharing;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHealthPlanNetworkTier()
+    {
+        return $this->healthPlanNetworkTier;
+    }
+
+    /**
+     * @param string $healthPlanNetworkTier
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHealthPlanNetworkTier($healthPlanNetworkTier)
+    {
+        $types = [
+            "string",
+        ];
+
+        $healthPlanNetworkTier = self::checkTypes($healthPlanNetworkTier, $types);
+
+        $this->healthPlanNetworkTier = $healthPlanNetworkTier;
     }
 
 }

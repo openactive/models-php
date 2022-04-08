@@ -17,12 +17,20 @@ class TouristAttraction extends \OpenActive\Models\SchemaOrg\Place
 
     public static function fieldList() {
         $fields = [
-            "availableLanguage" => "availableLanguage",
             "touristType" => "touristType",
+            "availableLanguage" => "availableLanguage",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Attraction suitable for type(s) of tourist. eg. Children, visitors from a particular country, etc. 
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Audience|string
+     */
+    protected $touristType;
 
     /**
      * A language someone may use with or at the item, service or place. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[inLanguage]]
@@ -33,12 +41,29 @@ class TouristAttraction extends \OpenActive\Models\SchemaOrg\Place
     protected $availableLanguage;
 
     /**
-     * Attraction suitable for type(s) of tourist. eg. Children, visitors from a particular country, etc. 
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Audience
+     * @return \OpenActive\Models\SchemaOrg\Audience|string
      */
-    protected $touristType;
+    public function getTouristType()
+    {
+        return $this->touristType;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Audience|string $touristType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTouristType($touristType)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Audience",
+            "string",
+        ];
+
+        $touristType = self::checkTypes($touristType, $types);
+
+        $this->touristType = $touristType;
+    }
 
     /**
      * @return string|\OpenActive\Models\SchemaOrg\Language
@@ -63,31 +88,6 @@ class TouristAttraction extends \OpenActive\Models\SchemaOrg\Place
         $availableLanguage = self::checkTypes($availableLanguage, $types);
 
         $this->availableLanguage = $availableLanguage;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Audience
-     */
-    public function getTouristType()
-    {
-        return $this->touristType;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Audience $touristType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTouristType($touristType)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\Audience",
-        ];
-
-        $touristType = self::checkTypes($touristType, $types);
-
-        $this->touristType = $touristType;
     }
 
 }

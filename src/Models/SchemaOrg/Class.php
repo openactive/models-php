@@ -27,12 +27,12 @@ class Class extends \OpenActive\Models\SchemaOrg\Intangible
      * Relates a term (i.e. a property, class or enumeration) to one that supersedes it.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Class|\OpenActive\Models\SchemaOrg\Enumeration|string|\OpenActive\Enums\PropertyEnumeration|null
+     * @var \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|\OpenActive\Enums\PropertyEnumeration|null
      */
     protected $supersededBy;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Class|\OpenActive\Models\SchemaOrg\Enumeration|string|\OpenActive\Enums\PropertyEnumeration|null
+     * @return \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|\OpenActive\Enums\PropertyEnumeration|null
      */
     public function getSupersededBy()
     {
@@ -40,15 +40,15 @@ class Class extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Class|\OpenActive\Models\SchemaOrg\Enumeration|string|\OpenActive\Enums\PropertyEnumeration|null $supersededBy
+     * @param \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|\OpenActive\Enums\PropertyEnumeration|null $supersededBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSupersededBy($supersededBy)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Class",
             "\OpenActive\Models\SchemaOrg\Enumeration",
+            "\OpenActive\Models\SchemaOrg\Class",
             "string",
             "\OpenActive\Enums\PropertyEnumeration",
             "null",

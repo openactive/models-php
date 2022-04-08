@@ -17,30 +17,22 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "membershipNumber" => "membershipNumber",
             "membershipPointsEarned" => "membershipPointsEarned",
             "member" => "member",
-            "members" => "members",
-            "programName" => "programName",
+            "membershipNumber" => "membershipNumber",
             "hostingOrganization" => "hostingOrganization",
+            "programName" => "programName",
+            "members" => "members",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A unique identifier for the membership.
-     *
-     *
-     * @var string
-     */
-    protected $membershipNumber;
-
-    /**
      * The number of membership points earned by the member. If necessary, the unitText can be used to express the units the points are issued in. (e.g. stars, miles, etc.)
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null
+     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
     protected $membershipPointsEarned;
 
@@ -53,20 +45,12 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     protected $member;
 
     /**
-     * A member of this organization.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $members;
-
-    /**
-     * The program providing the membership.
+     * A unique identifier for the membership.
      *
      *
      * @var string
      */
-    protected $programName;
+    protected $membershipNumber;
 
     /**
      * The organization (airline, travelers' club, etc.) the membership is made with.
@@ -77,31 +61,23 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     protected $hostingOrganization;
 
     /**
-     * @return string
+     * The program providing the membership.
+     *
+     *
+     * @var string
      */
-    public function getMembershipNumber()
-    {
-        return $this->membershipNumber;
-    }
+    protected $programName;
 
     /**
-     * @param string $membershipNumber
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * A member of this organization.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
-    public function setMembershipNumber($membershipNumber)
-    {
-        $types = [
-            "string",
-        ];
-
-        $membershipNumber = self::checkTypes($membershipNumber, $types);
-
-        $this->membershipNumber = $membershipNumber;
-    }
+    protected $members;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null
+     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
     public function getMembershipPointsEarned()
     {
@@ -109,16 +85,16 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null $membershipPointsEarned
+     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $membershipPointsEarned
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMembershipPointsEarned($membershipPointsEarned)
     {
         $types = [
+            "Number",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
-            "Number",
             "null",
         ];
 
@@ -154,29 +130,52 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
+     * @return string
      */
-    public function getMembers()
+    public function getMembershipNumber()
     {
-        return $this->members;
+        return $this->membershipNumber;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $members
+     * @param string $membershipNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMembers($members)
+    public function setMembershipNumber($membershipNumber)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $membershipNumber = self::checkTypes($membershipNumber, $types);
+
+        $this->membershipNumber = $membershipNumber;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getHostingOrganization()
+    {
+        return $this->hostingOrganization;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|string $hostingOrganization
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHostingOrganization($hostingOrganization)
+    {
+        $types = [
             "\OpenActive\Models\SchemaOrg\Organization",
             "string",
         ];
 
-        $members = self::checkTypes($members, $types);
+        $hostingOrganization = self::checkTypes($hostingOrganization, $types);
 
-        $this->members = $members;
+        $this->hostingOrganization = $hostingOrganization;
     }
 
     /**
@@ -204,28 +203,29 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|string
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
-    public function getHostingOrganization()
+    public function getMembers()
     {
-        return $this->hostingOrganization;
+        return $this->members;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|string $hostingOrganization
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $members
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHostingOrganization($hostingOrganization)
+    public function setMembers($members)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Organization",
             "string",
         ];
 
-        $hostingOrganization = self::checkTypes($hostingOrganization, $types);
+        $members = self::checkTypes($members, $types);
 
-        $this->hostingOrganization = $hostingOrganization;
+        $this->members = $members;
     }
 
 }

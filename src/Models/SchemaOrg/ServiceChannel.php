@@ -17,50 +17,18 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "processingTime" => "processingTime",
-            "serviceLocation" => "serviceLocation",
-            "servicePostalAddress" => "servicePostalAddress",
-            "serviceUrl" => "serviceUrl",
             "providesService" => "providesService",
             "serviceSmsNumber" => "serviceSmsNumber",
+            "servicePostalAddress" => "servicePostalAddress",
+            "serviceUrl" => "serviceUrl",
             "servicePhone" => "servicePhone",
             "availableLanguage" => "availableLanguage",
+            "processingTime" => "processingTime",
+            "serviceLocation" => "serviceLocation",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Estimated processing time for the service using this channel.
-     *
-     *
-     * @var DateInterval|string|null
-     */
-    protected $processingTime;
-
-    /**
-     * The location (e.g. civic structure, local business, etc.) where a person can go to access the service.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Place|string
-     */
-    protected $serviceLocation;
-
-    /**
-     * The address for accessing the service by mail.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string
-     */
-    protected $servicePostalAddress;
-
-    /**
-     * The website to access the service.
-     *
-     *
-     * @var string
-     */
-    protected $serviceUrl;
 
     /**
      * The service provided by this channel.
@@ -79,6 +47,22 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     protected $serviceSmsNumber;
 
     /**
+     * The address for accessing the service by mail.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string
+     */
+    protected $servicePostalAddress;
+
+    /**
+     * The website to access the service.
+     *
+     *
+     * @var string
+     */
+    protected $serviceUrl;
+
+    /**
      * The phone number to use to access the service.
      *
      *
@@ -95,104 +79,20 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     protected $availableLanguage;
 
     /**
-     * @return DateInterval|string|null
+     * Estimated processing time for the service using this channel.
+     *
+     *
+     * @var DateInterval|string|null
      */
-    public function getProcessingTime()
-    {
-        return $this->processingTime;
-    }
+    protected $processingTime;
 
     /**
-     * @param DateInterval|string|null $processingTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The location (e.g. civic structure, local business, etc.) where a person can go to access the service.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|string
      */
-    public function setProcessingTime($processingTime)
-    {
-        $types = [
-            "DateInterval",
-            "string",
-            "null",
-        ];
-
-        $processingTime = self::checkTypes($processingTime, $types);
-
-        $this->processingTime = $processingTime;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Place|string
-     */
-    public function getServiceLocation()
-    {
-        return $this->serviceLocation;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Place|string $serviceLocation
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setServiceLocation($serviceLocation)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Place",
-            "string",
-        ];
-
-        $serviceLocation = self::checkTypes($serviceLocation, $types);
-
-        $this->serviceLocation = $serviceLocation;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\PostalAddress|string
-     */
-    public function getServicePostalAddress()
-    {
-        return $this->servicePostalAddress;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\PostalAddress|string $servicePostalAddress
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setServicePostalAddress($servicePostalAddress)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
-            "string",
-        ];
-
-        $servicePostalAddress = self::checkTypes($servicePostalAddress, $types);
-
-        $this->servicePostalAddress = $servicePostalAddress;
-    }
-
-    /**
-     * @return string
-     */
-    public function getServiceUrl()
-    {
-        return $this->serviceUrl;
-    }
-
-    /**
-     * @param string $serviceUrl
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setServiceUrl($serviceUrl)
-    {
-        $types = [
-            "string",
-        ];
-
-        $serviceUrl = self::checkTypes($serviceUrl, $types);
-
-        $this->serviceUrl = $serviceUrl;
-    }
+    protected $serviceLocation;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Service|string
@@ -245,6 +145,55 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress|string
+     */
+    public function getServicePostalAddress()
+    {
+        return $this->servicePostalAddress;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress|string $servicePostalAddress
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setServicePostalAddress($servicePostalAddress)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "string",
+        ];
+
+        $servicePostalAddress = self::checkTypes($servicePostalAddress, $types);
+
+        $this->servicePostalAddress = $servicePostalAddress;
+    }
+
+    /**
+     * @return string
+     */
+    public function getServiceUrl()
+    {
+        return $this->serviceUrl;
+    }
+
+    /**
+     * @param string $serviceUrl
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setServiceUrl($serviceUrl)
+    {
+        $types = [
+            "string",
+        ];
+
+        $serviceUrl = self::checkTypes($serviceUrl, $types);
+
+        $this->serviceUrl = $serviceUrl;
+    }
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\ContactPoint|string
      */
     public function getServicePhone()
@@ -292,6 +241,57 @@ class ServiceChannel extends \OpenActive\Models\SchemaOrg\Intangible
         $availableLanguage = self::checkTypes($availableLanguage, $types);
 
         $this->availableLanguage = $availableLanguage;
+    }
+
+    /**
+     * @return DateInterval|string|null
+     */
+    public function getProcessingTime()
+    {
+        return $this->processingTime;
+    }
+
+    /**
+     * @param DateInterval|string|null $processingTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProcessingTime($processingTime)
+    {
+        $types = [
+            "DateInterval",
+            "string",
+            "null",
+        ];
+
+        $processingTime = self::checkTypes($processingTime, $types);
+
+        $this->processingTime = $processingTime;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Place|string
+     */
+    public function getServiceLocation()
+    {
+        return $this->serviceLocation;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Place|string $serviceLocation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setServiceLocation($serviceLocation)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Place",
+            "string",
+        ];
+
+        $serviceLocation = self::checkTypes($serviceLocation, $types);
+
+        $this->serviceLocation = $serviceLocation;
     }
 
 }

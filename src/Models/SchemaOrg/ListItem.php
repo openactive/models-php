@@ -19,8 +19,8 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
         $fields = [
             "position" => "position",
             "nextItem" => "nextItem",
-            "previousItem" => "previousItem",
             "item" => "item",
+            "previousItem" => "previousItem",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -43,20 +43,20 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $nextItem;
 
     /**
-     * A link to the ListItem that preceeds the current one.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ListItem|string
-     */
-    protected $previousItem;
-
-    /**
      * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
     protected $item;
+
+    /**
+     * A link to the ListItem that preceeds the current one.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ListItem|string
+     */
+    protected $previousItem;
 
     /**
      * @return string|int|null
@@ -110,31 +110,6 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ListItem|string
-     */
-    public function getPreviousItem()
-    {
-        return $this->previousItem;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ListItem|string $previousItem
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPreviousItem($previousItem)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ListItem",
-            "string",
-        ];
-
-        $previousItem = self::checkTypes($previousItem, $types);
-
-        $this->previousItem = $previousItem;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
     public function getItem()
@@ -157,6 +132,31 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
         $item = self::checkTypes($item, $types);
 
         $this->item = $item;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ListItem|string
+     */
+    public function getPreviousItem()
+    {
+        return $this->previousItem;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ListItem|string $previousItem
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPreviousItem($previousItem)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ListItem",
+            "string",
+        ];
+
+        $previousItem = self::checkTypes($previousItem, $types);
+
+        $this->previousItem = $previousItem;
     }
 
 }

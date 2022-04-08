@@ -17,37 +17,22 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
 
     public static function fieldList() {
         $fields = [
-            "actors" => "actors",
-            "trailer" => "trailer",
             "director" => "director",
-            "gamePlatform" => "gamePlatform",
-            "playMode" => "playMode",
-            "cheatCode" => "cheatCode",
             "actor" => "actor",
-            "gameTip" => "gameTip",
+            "trailer" => "trailer",
+            "gameEdition" => "gameEdition",
+            "cheatCode" => "cheatCode",
             "gameServer" => "gameServer",
-            "directors" => "directors",
+            "gameTip" => "gameTip",
+            "actors" => "actors",
+            "playMode" => "playMode",
+            "gamePlatform" => "gamePlatform",
             "musicBy" => "musicBy",
+            "directors" => "directors",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $actors;
-
-    /**
-     * The trailer of a movie or tv/radio series, season, episode, etc.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\VideoObject|string
-     */
-    protected $trailer;
 
     /**
      * A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
@@ -58,20 +43,28 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     protected $director;
 
     /**
-     * The electronic systems used to play <a href="http://en.wikipedia.org/wiki/Category:Video_game_platforms">video games</a>.
+     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $gamePlatform;
+    protected $actor;
 
     /**
-     * Indicates whether this game is multi-player, co-op or single-player.  The game can be marked as multi-player, co-op and single-player at the same time.
+     * The trailer of a movie or tv/radio series, season, episode, etc.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\GamePlayMode|null
+     * @var \OpenActive\Models\SchemaOrg\VideoObject|string
      */
-    protected $playMode;
+    protected $trailer;
+
+    /**
+     * The edition of a video game.
+     *
+     *
+     * @var string
+     */
+    protected $gameEdition;
 
     /**
      * Cheat codes to the game.
@@ -82,12 +75,12 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     protected $cheatCode;
 
     /**
-     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
+     * The server on which  it is possible to play the game.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
+     * @var \OpenActive\Models\SchemaOrg\GameServer|string
      */
-    protected $actor;
+    protected $gameServer;
 
     /**
      * Links to tips, tactics, etc.
@@ -98,20 +91,28 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     protected $gameTip;
 
     /**
-     * The server on which  it is possible to play the game.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\GameServer|string
-     */
-    protected $gameServer;
-
-    /**
-     * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
+     * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $directors;
+    protected $actors;
+
+    /**
+     * Indicates whether this game is multi-player, co-op or single-player.  The game can be marked as multi-player, co-op and single-player at the same time.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\GamePlayMode|null
+     */
+    protected $playMode;
+
+    /**
+     * The electronic systems used to play <a href="http://en.wikipedia.org/wiki/Category:Video_game_platforms">video games</a>.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Thing
+     */
+    protected $gamePlatform;
 
     /**
      * The composer of the soundtrack.
@@ -122,54 +123,12 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     protected $musicBy;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
+     * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getActors()
-    {
-        return $this->actors;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $actors
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActors($actors)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $actors = self::checkTypes($actors, $types);
-
-        $this->actors = $actors;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\VideoObject|string
-     */
-    public function getTrailer()
-    {
-        return $this->trailer;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\VideoObject|string $trailer
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTrailer($trailer)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\VideoObject",
-            "string",
-        ];
-
-        $trailer = self::checkTypes($trailer, $types);
-
-        $this->trailer = $trailer;
-    }
+    protected $directors;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Person|string
@@ -194,81 +153,6 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
         $director = self::checkTypes($director, $types);
 
         $this->director = $director;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getGamePlatform()
-    {
-        return $this->gamePlatform;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Thing $gamePlatform
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGamePlatform($gamePlatform)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\Thing",
-        ];
-
-        $gamePlatform = self::checkTypes($gamePlatform, $types);
-
-        $this->gamePlatform = $gamePlatform;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\GamePlayMode|null
-     */
-    public function getPlayMode()
-    {
-        return $this->playMode;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\GamePlayMode|null $playMode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPlayMode($playMode)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\GamePlayMode",
-            "null",
-        ];
-
-        $playMode = self::checkTypes($playMode, $types);
-
-        $this->playMode = $playMode;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
-     */
-    public function getCheatCode()
-    {
-        return $this->cheatCode;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $cheatCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCheatCode($cheatCode)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-            "string",
-        ];
-
-        $cheatCode = self::checkTypes($cheatCode, $types);
-
-        $this->cheatCode = $cheatCode;
     }
 
     /**
@@ -297,28 +181,77 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     * @return \OpenActive\Models\SchemaOrg\VideoObject|string
      */
-    public function getGameTip()
+    public function getTrailer()
     {
-        return $this->gameTip;
+        return $this->trailer;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $gameTip
+     * @param \OpenActive\Models\SchemaOrg\VideoObject|string $trailer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setGameTip($gameTip)
+    public function setTrailer($trailer)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\VideoObject",
+            "string",
+        ];
+
+        $trailer = self::checkTypes($trailer, $types);
+
+        $this->trailer = $trailer;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGameEdition()
+    {
+        return $this->gameEdition;
+    }
+
+    /**
+     * @param string $gameEdition
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGameEdition($gameEdition)
+    {
+        $types = [
+            "string",
+        ];
+
+        $gameEdition = self::checkTypes($gameEdition, $types);
+
+        $this->gameEdition = $gameEdition;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    public function getCheatCode()
+    {
+        return $this->cheatCode;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $cheatCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCheatCode($cheatCode)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\CreativeWork",
             "string",
         ];
 
-        $gameTip = self::checkTypes($gameTip, $types);
+        $cheatCode = self::checkTypes($cheatCode, $types);
 
-        $this->gameTip = $gameTip;
+        $this->cheatCode = $cheatCode;
     }
 
     /**
@@ -347,28 +280,103 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
-    public function getDirectors()
+    public function getGameTip()
     {
-        return $this->directors;
+        return $this->gameTip;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $directors
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $gameTip
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDirectors($directors)
+    public function setGameTip($gameTip)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
+        ];
+
+        $gameTip = self::checkTypes($gameTip, $types);
+
+        $this->gameTip = $gameTip;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getActors()
+    {
+        return $this->actors;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $actors
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActors($actors)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
             "string",
         ];
 
-        $directors = self::checkTypes($directors, $types);
+        $actors = self::checkTypes($actors, $types);
 
-        $this->directors = $directors;
+        $this->actors = $actors;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\GamePlayMode|null
+     */
+    public function getPlayMode()
+    {
+        return $this->playMode;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\GamePlayMode|null $playMode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPlayMode($playMode)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\GamePlayMode",
+            "null",
+        ];
+
+        $playMode = self::checkTypes($playMode, $types);
+
+        $this->playMode = $playMode;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Thing
+     */
+    public function getGamePlatform()
+    {
+        return $this->gamePlatform;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Thing $gamePlatform
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGamePlatform($gamePlatform)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
+        ];
+
+        $gamePlatform = self::checkTypes($gamePlatform, $types);
+
+        $this->gamePlatform = $gamePlatform;
     }
 
     /**
@@ -395,6 +403,31 @@ class VideoGame extends \OpenActive\Models\SchemaOrg\SoftwareApplication
         $musicBy = self::checkTypes($musicBy, $types);
 
         $this->musicBy = $musicBy;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getDirectors()
+    {
+        return $this->directors;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $directors
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDirectors($directors)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $directors = self::checkTypes($directors, $types);
+
+        $this->directors = $directors;
     }
 
 }

@@ -17,22 +17,22 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "seatNumber" => "seatNumber",
-            "seatSection" => "seatSection",
             "seatingType" => "seatingType",
+            "seatSection" => "seatSection",
             "seatRow" => "seatRow",
+            "seatNumber" => "seatNumber",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The location of the reserved seat (e.g., 27).
+     * The type/class of the seat.
      *
      *
-     * @var string
+     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
      */
-    protected $seatNumber;
+    protected $seatingType;
 
     /**
      * The section location of the reserved seat (e.g. Orchestra).
@@ -43,14 +43,6 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
     protected $seatSection;
 
     /**
-     * The type/class of the seat.
-     *
-     *
-     * @var string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
-     */
-    protected $seatingType;
-
-    /**
      * The row location of the reserved seat (e.g., B).
      *
      *
@@ -59,27 +51,37 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
     protected $seatRow;
 
     /**
-     * @return string
+     * The location of the reserved seat (e.g., 27).
+     *
+     *
+     * @var string
      */
-    public function getSeatNumber()
+    protected $seatNumber;
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     */
+    public function getSeatingType()
     {
-        return $this->seatNumber;
+        return $this->seatingType;
     }
 
     /**
-     * @param string $seatNumber
+     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null $seatingType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSeatNumber($seatNumber)
+    public function setSeatingType($seatingType)
     {
         $types = [
+            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
             "string",
+            "null",
         ];
 
-        $seatNumber = self::checkTypes($seatNumber, $types);
+        $seatingType = self::checkTypes($seatingType, $types);
 
-        $this->seatNumber = $seatNumber;
+        $this->seatingType = $seatingType;
     }
 
     /**
@@ -107,32 +109,6 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
-     */
-    public function getSeatingType()
-    {
-        return $this->seatingType;
-    }
-
-    /**
-     * @param string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null $seatingType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSeatingType($seatingType)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
-            "null",
-        ];
-
-        $seatingType = self::checkTypes($seatingType, $types);
-
-        $this->seatingType = $seatingType;
-    }
-
-    /**
      * @return string
      */
     public function getSeatRow()
@@ -154,6 +130,30 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
         $seatRow = self::checkTypes($seatRow, $types);
 
         $this->seatRow = $seatRow;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeatNumber()
+    {
+        return $this->seatNumber;
+    }
+
+    /**
+     * @param string $seatNumber
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSeatNumber($seatNumber)
+    {
+        $types = [
+            "string",
+        ];
+
+        $seatNumber = self::checkTypes($seatNumber, $types);
+
+        $this->seatNumber = $seatNumber;
     }
 
 }

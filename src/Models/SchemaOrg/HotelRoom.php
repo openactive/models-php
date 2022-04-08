@@ -29,7 +29,7 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
      *       If you want to indicate the quantity of a certain kind of bed, use an instance of BedDetails. For more detailed information, use the amenityFeature property.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\BedType|\OpenActive\Models\SchemaOrg\BedDetails|string
+     * @var \OpenActive\Models\SchemaOrg\BedDetails|string|\OpenActive\Models\SchemaOrg\BedType
      */
     protected $bed;
 
@@ -43,7 +43,7 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
     protected $occupancy;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\BedType|\OpenActive\Models\SchemaOrg\BedDetails|string
+     * @return \OpenActive\Models\SchemaOrg\BedDetails|string|\OpenActive\Models\SchemaOrg\BedType
      */
     public function getBed()
     {
@@ -51,16 +51,16 @@ class HotelRoom extends \OpenActive\Models\SchemaOrg\Room
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\BedType|\OpenActive\Models\SchemaOrg\BedDetails|string $bed
+     * @param \OpenActive\Models\SchemaOrg\BedDetails|string|\OpenActive\Models\SchemaOrg\BedType $bed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBed($bed)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\BedType",
             "\OpenActive\Models\SchemaOrg\BedDetails",
             "string",
+            "\OpenActive\Models\SchemaOrg\BedType",
         ];
 
         $bed = self::checkTypes($bed, $types);

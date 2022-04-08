@@ -17,93 +17,21 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
 
     public static function fieldList() {
         $fields = [
-            "broadcastFrequency" => "broadcastFrequency",
-            "broadcaster" => "broadcaster",
-            "videoFormat" => "videoFormat",
-            "area" => "area",
-            "broadcastDisplayName" => "broadcastDisplayName",
-            "broadcastTimezone" => "broadcastTimezone",
-            "hasBroadcastChannel" => "hasBroadcastChannel",
-            "broadcastAffiliateOf" => "broadcastAffiliateOf",
-            "inLanguage" => "inLanguage",
             "parentService" => "parentService",
+            "broadcastDisplayName" => "broadcastDisplayName",
+            "videoFormat" => "videoFormat",
+            "broadcastTimezone" => "broadcastTimezone",
+            "broadcastFrequency" => "broadcastFrequency",
             "callSign" => "callSign",
+            "inLanguage" => "inLanguage",
+            "hasBroadcastChannel" => "hasBroadcastChannel",
+            "broadcaster" => "broadcaster",
+            "broadcastAffiliateOf" => "broadcastAffiliateOf",
+            "area" => "area",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The frequency used for over-the-air broadcasts. Numeric values or simple ranges e.g. 87-99. In addition a shortcut idiom is supported for frequences of AM and FM radio channels, e.g. "87 FM".
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification
-     */
-    protected $broadcastFrequency;
-
-    /**
-     * The organization owning or operating the broadcast service.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $broadcaster;
-
-    /**
-     * The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
-     *
-     *
-     * @var string
-     */
-    protected $videoFormat;
-
-    /**
-     * The area within which users can expect to reach the broadcast service.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Place|string
-     */
-    protected $area;
-
-    /**
-     * The name displayed in the channel guide. For many US affiliates, it is the network name.
-     *
-     *
-     * @var string
-     */
-    protected $broadcastDisplayName;
-
-    /**
-     * The timezone in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601) for which the service bases its broadcasts
-     *
-     *
-     * @var string
-     */
-    protected $broadcastTimezone;
-
-    /**
-     * A broadcast channel of a broadcast service.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\BroadcastChannel|string
-     */
-    protected $hasBroadcastChannel;
-
-    /**
-     * The media network(s) whose content is broadcast on this station.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $broadcastAffiliateOf;
-
-    /**
-     * The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]].
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Language
-     */
-    protected $inLanguage;
 
     /**
      * A broadcast service to which the broadcast service may belong to such as regional variations of a national channel.
@@ -114,6 +42,38 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     protected $parentService;
 
     /**
+     * The name displayed in the channel guide. For many US affiliates, it is the network name.
+     *
+     *
+     * @var string
+     */
+    protected $broadcastDisplayName;
+
+    /**
+     * The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
+     *
+     *
+     * @var string
+     */
+    protected $videoFormat;
+
+    /**
+     * The timezone in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601) for which the service bases its broadcasts
+     *
+     *
+     * @var string
+     */
+    protected $broadcastTimezone;
+
+    /**
+     * The frequency used for over-the-air broadcasts. Numeric values or simple ranges e.g. 87-99. In addition a shortcut idiom is supported for frequences of AM and FM radio channels, e.g. "87 FM".
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string
+     */
+    protected $broadcastFrequency;
+
+    /**
      * A [callsign](https://en.wikipedia.org/wiki/Call_sign), as used in broadcasting and radio communications to identify people, radio and TV stations, or vehicles.
      *
      *
@@ -122,102 +82,68 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     protected $callSign;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification
+     * The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]].
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Language
      */
-    public function getBroadcastFrequency()
+    protected $inLanguage;
+
+    /**
+     * A broadcast channel of a broadcast service.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\BroadcastChannel|string
+     */
+    protected $hasBroadcastChannel;
+
+    /**
+     * The organization owning or operating the broadcast service.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    protected $broadcaster;
+
+    /**
+     * The media network(s) whose content is broadcast on this station.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    protected $broadcastAffiliateOf;
+
+    /**
+     * The area within which users can expect to reach the broadcast service.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|string
+     */
+    protected $area;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\BroadcastService|string
+     */
+    public function getParentService()
     {
-        return $this->broadcastFrequency;
+        return $this->parentService;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification $broadcastFrequency
+     * @param \OpenActive\Models\SchemaOrg\BroadcastService|string $parentService
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBroadcastFrequency($broadcastFrequency)
+    public function setParentService($parentService)
     {
         $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification",
-        ];
-
-        $broadcastFrequency = self::checkTypes($broadcastFrequency, $types);
-
-        $this->broadcastFrequency = $broadcastFrequency;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getBroadcaster()
-    {
-        return $this->broadcaster;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|string $broadcaster
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBroadcaster($broadcaster)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\BroadcastService",
             "string",
         ];
 
-        $broadcaster = self::checkTypes($broadcaster, $types);
+        $parentService = self::checkTypes($parentService, $types);
 
-        $this->broadcaster = $broadcaster;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVideoFormat()
-    {
-        return $this->videoFormat;
-    }
-
-    /**
-     * @param string $videoFormat
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVideoFormat($videoFormat)
-    {
-        $types = [
-            "string",
-        ];
-
-        $videoFormat = self::checkTypes($videoFormat, $types);
-
-        $this->videoFormat = $videoFormat;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Place|string
-     */
-    public function getArea()
-    {
-        return $this->area;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Place|string $area
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setArea($area)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Place",
-            "string",
-        ];
-
-        $area = self::checkTypes($area, $types);
-
-        $this->area = $area;
+        $this->parentService = $parentService;
     }
 
     /**
@@ -247,6 +173,30 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @return string
      */
+    public function getVideoFormat()
+    {
+        return $this->videoFormat;
+    }
+
+    /**
+     * @param string $videoFormat
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVideoFormat($videoFormat)
+    {
+        $types = [
+            "string",
+        ];
+
+        $videoFormat = self::checkTypes($videoFormat, $types);
+
+        $this->videoFormat = $videoFormat;
+    }
+
+    /**
+     * @return string
+     */
     public function getBroadcastTimezone()
     {
         return $this->broadcastTimezone;
@@ -266,6 +216,80 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
         $broadcastTimezone = self::checkTypes($broadcastTimezone, $types);
 
         $this->broadcastTimezone = $broadcastTimezone;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string
+     */
+    public function getBroadcastFrequency()
+    {
+        return $this->broadcastFrequency;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string $broadcastFrequency
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBroadcastFrequency($broadcastFrequency)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification",
+            "string",
+        ];
+
+        $broadcastFrequency = self::checkTypes($broadcastFrequency, $types);
+
+        $this->broadcastFrequency = $broadcastFrequency;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCallSign()
+    {
+        return $this->callSign;
+    }
+
+    /**
+     * @param string $callSign
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCallSign($callSign)
+    {
+        $types = [
+            "string",
+        ];
+
+        $callSign = self::checkTypes($callSign, $types);
+
+        $this->callSign = $callSign;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Language
+     */
+    public function getInLanguage()
+    {
+        return $this->inLanguage;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Language $inLanguage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInLanguage($inLanguage)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\Language",
+        ];
+
+        $inLanguage = self::checkTypes($inLanguage, $types);
+
+        $this->inLanguage = $inLanguage;
     }
 
     /**
@@ -296,6 +320,31 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     /**
      * @return \OpenActive\Models\SchemaOrg\Organization|string
      */
+    public function getBroadcaster()
+    {
+        return $this->broadcaster;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|string $broadcaster
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBroadcaster($broadcaster)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $broadcaster = self::checkTypes($broadcaster, $types);
+
+        $this->broadcaster = $broadcaster;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|string
+     */
     public function getBroadcastAffiliateOf()
     {
         return $this->broadcastAffiliateOf;
@@ -319,77 +368,28 @@ class BroadcastService extends \OpenActive\Models\SchemaOrg\Service
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Language
+     * @return \OpenActive\Models\SchemaOrg\Place|string
      */
-    public function getInLanguage()
+    public function getArea()
     {
-        return $this->inLanguage;
+        return $this->area;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Language $inLanguage
+     * @param \OpenActive\Models\SchemaOrg\Place|string $area
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setInLanguage($inLanguage)
+    public function setArea($area)
     {
         $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\Language",
-        ];
-
-        $inLanguage = self::checkTypes($inLanguage, $types);
-
-        $this->inLanguage = $inLanguage;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\BroadcastService|string
-     */
-    public function getParentService()
-    {
-        return $this->parentService;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\BroadcastService|string $parentService
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setParentService($parentService)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\BroadcastService",
+            "\OpenActive\Models\SchemaOrg\Place",
             "string",
         ];
 
-        $parentService = self::checkTypes($parentService, $types);
+        $area = self::checkTypes($area, $types);
 
-        $this->parentService = $parentService;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCallSign()
-    {
-        return $this->callSign;
-    }
-
-    /**
-     * @param string $callSign
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCallSign($callSign)
-    {
-        $types = [
-            "string",
-        ];
-
-        $callSign = self::checkTypes($callSign, $types);
-
-        $this->callSign = $callSign;
+        $this->area = $area;
     }
 
 }

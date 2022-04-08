@@ -8,7 +8,7 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class CarUsageType
 {
-    const DrivingSchoolVehicleUsage = \OpenActive\Enums\SchemaOrg\CarUsageType\DrivingSchoolVehicleUsage::class;
     const TaxiVehicleUsage = \OpenActive\Enums\SchemaOrg\CarUsageType\TaxiVehicleUsage::class;
+    const DrivingSchoolVehicleUsage = \OpenActive\Enums\SchemaOrg\CarUsageType\DrivingSchoolVehicleUsage::class;
     const RentalVehicleUsage = \OpenActive\Enums\SchemaOrg\CarUsageType\RentalVehicleUsage::class;
 }

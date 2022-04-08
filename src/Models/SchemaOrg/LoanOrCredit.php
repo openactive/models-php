@@ -17,35 +17,19 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
 
     public static function fieldList() {
         $fields = [
-            "loanRepaymentForm" => "loanRepaymentForm",
-            "requiredCollateral" => "requiredCollateral",
             "renegotiableLoan" => "renegotiableLoan",
             "loanType" => "loanType",
-            "amount" => "amount",
             "recourseLoan" => "recourseLoan",
-            "gracePeriod" => "gracePeriod",
             "loanTerm" => "loanTerm",
+            "gracePeriod" => "gracePeriod",
+            "requiredCollateral" => "requiredCollateral",
             "currency" => "currency",
+            "amount" => "amount",
+            "loanRepaymentForm" => "loanRepaymentForm",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A form of paying back money previously borrowed from a lender. Repayment usually takes the form of periodic payments that normally include part principal plus interest in each payment.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\RepaymentSpecification|string
-     */
-    protected $loanRepaymentForm;
-
-    /**
-     * Assets required to secure loan or credit repayments. It may take form of third party pledge, goods, financial instruments (cash, securities, etc.)
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $requiredCollateral;
 
     /**
      * Whether the terms for payment of interest can be renegotiated during the life of the loan.
@@ -64,28 +48,12 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     protected $loanType;
 
     /**
-     * The amount of money.
-     *
-     *
-     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
-     */
-    protected $amount;
-
-    /**
      * The only way you get the money back in the event of default is the security. Recourse is where you still have the opportunity to go back to the borrower for the rest of the money.
      *
      *
      * @var bool|null
      */
     protected $recourseLoan;
-
-    /**
-     * The period of time after any due date that the borrower has to fulfil its obligations before a default (failure to pay) is deemed to have occurred.
-     *
-     *
-     * @var DateInterval|string|null
-     */
-    protected $gracePeriod;
 
     /**
      * The duration of the loan or credit agreement.
@@ -96,6 +64,22 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     protected $loanTerm;
 
     /**
+     * The period of time after any due date that the borrower has to fulfil its obligations before a default (failure to pay) is deemed to have occurred.
+     *
+     *
+     * @var DateInterval|string|null
+     */
+    protected $gracePeriod;
+
+    /**
+     * Assets required to secure loan or credit repayments. It may take form of third party pledge, goods, financial instruments (cash, securities, etc.)
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Thing
+     */
+    protected $requiredCollateral;
+
+    /**
      * The currency in which the monetary amount is expressed.\n\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217) e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies e.g. "BTC"; well known names for [Local Exchange Tradings Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types e.g. "Ithaca HOUR".
      *
      *
@@ -104,54 +88,20 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     protected $currency;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\RepaymentSpecification|string
+     * The amount of money.
+     *
+     *
+     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
      */
-    public function getLoanRepaymentForm()
-    {
-        return $this->loanRepaymentForm;
-    }
+    protected $amount;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\RepaymentSpecification|string $loanRepaymentForm
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * A form of paying back money previously borrowed from a lender. Repayment usually takes the form of periodic payments that normally include part principal plus interest in each payment.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\RepaymentSpecification|string
      */
-    public function setLoanRepaymentForm($loanRepaymentForm)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\RepaymentSpecification",
-            "string",
-        ];
-
-        $loanRepaymentForm = self::checkTypes($loanRepaymentForm, $types);
-
-        $this->loanRepaymentForm = $loanRepaymentForm;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getRequiredCollateral()
-    {
-        return $this->requiredCollateral;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Thing $requiredCollateral
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRequiredCollateral($requiredCollateral)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\Thing",
-        ];
-
-        $requiredCollateral = self::checkTypes($requiredCollateral, $types);
-
-        $this->requiredCollateral = $requiredCollateral;
-    }
+    protected $loanRepaymentForm;
 
     /**
      * @return bool|null
@@ -203,33 +153,6 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
-     */
-    public function getAmount()
-    {
-        return $this->amount;
-    }
-
-    /**
-     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $amount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAmount($amount)
-    {
-        $types = [
-            "Number",
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "string",
-            "null",
-        ];
-
-        $amount = self::checkTypes($amount, $types);
-
-        $this->amount = $amount;
-    }
-
-    /**
      * @return bool|null
      */
     public function getRecourseLoan()
@@ -252,6 +175,31 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
         $recourseLoan = self::checkTypes($recourseLoan, $types);
 
         $this->recourseLoan = $recourseLoan;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    public function getLoanTerm()
+    {
+        return $this->loanTerm;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $loanTerm
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLoanTerm($loanTerm)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
+        ];
+
+        $loanTerm = self::checkTypes($loanTerm, $types);
+
+        $this->loanTerm = $loanTerm;
     }
 
     /**
@@ -281,28 +229,28 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     * @return string|\OpenActive\Models\SchemaOrg\Thing
      */
-    public function getLoanTerm()
+    public function getRequiredCollateral()
     {
-        return $this->loanTerm;
+        return $this->requiredCollateral;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $loanTerm
+     * @param string|\OpenActive\Models\SchemaOrg\Thing $requiredCollateral
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLoanTerm($loanTerm)
+    public function setRequiredCollateral($requiredCollateral)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
         ];
 
-        $loanTerm = self::checkTypes($loanTerm, $types);
+        $requiredCollateral = self::checkTypes($requiredCollateral, $types);
 
-        $this->loanTerm = $loanTerm;
+        $this->requiredCollateral = $requiredCollateral;
     }
 
     /**
@@ -327,6 +275,58 @@ class LoanOrCredit extends \OpenActive\Models\SchemaOrg\FinancialProduct
         $currency = self::checkTypes($currency, $types);
 
         $this->currency = $currency;
+    }
+
+    /**
+     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $amount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAmount($amount)
+    {
+        $types = [
+            "Number",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
+            "null",
+        ];
+
+        $amount = self::checkTypes($amount, $types);
+
+        $this->amount = $amount;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\RepaymentSpecification|string
+     */
+    public function getLoanRepaymentForm()
+    {
+        return $this->loanRepaymentForm;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\RepaymentSpecification|string $loanRepaymentForm
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLoanRepaymentForm($loanRepaymentForm)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\RepaymentSpecification",
+            "string",
+        ];
+
+        $loanRepaymentForm = self::checkTypes($loanRepaymentForm, $types);
+
+        $this->loanRepaymentForm = $loanRepaymentForm;
     }
 
 }

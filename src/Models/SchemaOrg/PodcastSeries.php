@@ -17,20 +17,12 @@ class PodcastSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
 
     public static function fieldList() {
         $fields = [
-            "webFeed" => "webFeed",
             "actor" => "actor",
+            "webFeed" => "webFeed",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The URL for a feed, e.g. associated with a podcast series, blog, or series of date-stamped updates. This is usually RSS or Atom.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DataFeed|string
-     */
-    protected $webFeed;
 
     /**
      * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
@@ -41,29 +33,12 @@ class PodcastSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     protected $actor;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DataFeed|string
+     * The URL for a feed, e.g. associated with a podcast series, blog, or series of date-stamped updates. This is usually RSS or Atom.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DataFeed|string
      */
-    public function getWebFeed()
-    {
-        return $this->webFeed;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DataFeed|string $webFeed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setWebFeed($webFeed)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DataFeed",
-            "string",
-        ];
-
-        $webFeed = self::checkTypes($webFeed, $types);
-
-        $this->webFeed = $webFeed;
-    }
+    protected $webFeed;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Person|string
@@ -88,6 +63,31 @@ class PodcastSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
         $actor = self::checkTypes($actor, $types);
 
         $this->actor = $actor;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DataFeed|string
+     */
+    public function getWebFeed()
+    {
+        return $this->webFeed;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DataFeed|string $webFeed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setWebFeed($webFeed)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DataFeed",
+            "string",
+        ];
+
+        $webFeed = self::checkTypes($webFeed, $types);
+
+        $this->webFeed = $webFeed;
     }
 
 }

@@ -17,25 +17,17 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "contentType" => "contentType",
             "actionApplication" => "actionApplication",
             "application" => "application",
             "actionPlatform" => "actionPlatform",
-            "encodingType" => "encodingType",
             "httpMethod" => "httpMethod",
             "urlTemplate" => "urlTemplate",
+            "encodingType" => "encodingType",
+            "contentType" => "contentType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The supported content type(s) for an EntryPoint response.
-     *
-     *
-     * @var string
-     */
-    protected $contentType;
 
     /**
      * An application that can complete the request.
@@ -57,17 +49,9 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
      * The high level platform(s) where the Action can be performed for the given URL. To specify a specific application or operating system instance, use actionApplication.
      *
      *
-     * @var string
+     * @var string|\OpenActive\Enums\SchemaOrg\DigitalPlatformEnumeration|null
      */
     protected $actionPlatform;
-
-    /**
-     * The supported encoding type(s) for an EntryPoint request.
-     *
-     *
-     * @var string
-     */
-    protected $encodingType;
 
     /**
      * An HTTP method that specifies the appropriate HTTP method for a request to an HTTP EntryPoint. Values are capitalized strings as used in HTTP.
@@ -86,28 +70,20 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     protected $urlTemplate;
 
     /**
-     * @return string
+     * The supported encoding type(s) for an EntryPoint request.
+     *
+     *
+     * @var string
      */
-    public function getContentType()
-    {
-        return $this->contentType;
-    }
+    protected $encodingType;
 
     /**
-     * @param string $contentType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The supported content type(s) for an EntryPoint response.
+     *
+     *
+     * @var string
      */
-    public function setContentType($contentType)
-    {
-        $types = [
-            "string",
-        ];
-
-        $contentType = self::checkTypes($contentType, $types);
-
-        $this->contentType = $contentType;
-    }
+    protected $contentType;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\SoftwareApplication|string
@@ -160,7 +136,7 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
+     * @return string|\OpenActive\Enums\SchemaOrg\DigitalPlatformEnumeration|null
      */
     public function getActionPlatform()
     {
@@ -168,7 +144,7 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string $actionPlatform
+     * @param string|\OpenActive\Enums\SchemaOrg\DigitalPlatformEnumeration|null $actionPlatform
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -176,35 +152,13 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     {
         $types = [
             "string",
+            "\OpenActive\Enums\SchemaOrg\DigitalPlatformEnumeration",
+            "null",
         ];
 
         $actionPlatform = self::checkTypes($actionPlatform, $types);
 
         $this->actionPlatform = $actionPlatform;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEncodingType()
-    {
-        return $this->encodingType;
-    }
-
-    /**
-     * @param string $encodingType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEncodingType($encodingType)
-    {
-        $types = [
-            "string",
-        ];
-
-        $encodingType = self::checkTypes($encodingType, $types);
-
-        $this->encodingType = $encodingType;
     }
 
     /**
@@ -253,6 +207,54 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
         $urlTemplate = self::checkTypes($urlTemplate, $types);
 
         $this->urlTemplate = $urlTemplate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEncodingType()
+    {
+        return $this->encodingType;
+    }
+
+    /**
+     * @param string $encodingType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEncodingType($encodingType)
+    {
+        $types = [
+            "string",
+        ];
+
+        $encodingType = self::checkTypes($encodingType, $types);
+
+        $this->encodingType = $encodingType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContentType()
+    {
+        return $this->contentType;
+    }
+
+    /**
+     * @param string $contentType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setContentType($contentType)
+    {
+        $types = [
+            "string",
+        ];
+
+        $contentType = self::checkTypes($contentType, $types);
+
+        $this->contentType = $contentType;
     }
 
 }

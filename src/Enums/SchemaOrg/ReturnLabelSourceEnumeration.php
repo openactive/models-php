@@ -8,7 +8,7 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class ReturnLabelSourceEnumeration
 {
+    const ReturnLabelCustomerResponsibility = \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration\ReturnLabelCustomerResponsibility::class;
     const ReturnLabelDownloadAndPrint = \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration\ReturnLabelDownloadAndPrint::class;
     const ReturnLabelInBox = \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration\ReturnLabelInBox::class;
-    const ReturnLabelCustomerResponsibility = \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration\ReturnLabelCustomerResponsibility::class;
 }

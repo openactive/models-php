@@ -17,25 +17,17 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "issuedThrough" => "issuedThrough",
             "validFor" => "validFor",
+            "issuedBy" => "issuedBy",
             "validUntil" => "validUntil",
             "validFrom" => "validFrom",
-            "permitAudience" => "permitAudience",
-            "issuedBy" => "issuedBy",
+            "issuedThrough" => "issuedThrough",
             "validIn" => "validIn",
+            "permitAudience" => "permitAudience",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The service through with the permit was granted.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Service|string
-     */
-    protected $issuedThrough;
 
     /**
      * The duration of validity of a permit or similar thing.
@@ -44,6 +36,14 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
      * @var DateInterval|string|null
      */
     protected $validFor;
+
+    /**
+     * The organization issuing the ticket or permit.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    protected $issuedBy;
 
     /**
      * The date when the item is no longer valid.
@@ -62,20 +62,12 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     protected $validFrom;
 
     /**
-     * The target audience for this permit.
+     * The service through with the permit was granted.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Audience|string
+     * @var \OpenActive\Models\SchemaOrg\Service|string
      */
-    protected $permitAudience;
-
-    /**
-     * The organization issuing the ticket or permit.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $issuedBy;
+    protected $issuedThrough;
 
     /**
      * The geographic area where a permit or similar thing is valid.
@@ -86,29 +78,12 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     protected $validIn;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Service|string
+     * The target audience for this permit.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Audience|string
      */
-    public function getIssuedThrough()
-    {
-        return $this->issuedThrough;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Service|string $issuedThrough
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIssuedThrough($issuedThrough)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Service",
-            "string",
-        ];
-
-        $issuedThrough = self::checkTypes($issuedThrough, $types);
-
-        $this->issuedThrough = $issuedThrough;
-    }
+    protected $permitAudience;
 
     /**
      * @return DateInterval|string|null
@@ -134,6 +109,31 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
         $validFor = self::checkTypes($validFor, $types);
 
         $this->validFor = $validFor;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getIssuedBy()
+    {
+        return $this->issuedBy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|string $issuedBy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIssuedBy($issuedBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $issuedBy = self::checkTypes($issuedBy, $types);
+
+        $this->issuedBy = $issuedBy;
     }
 
     /**
@@ -188,53 +188,28 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Audience|string
+     * @return \OpenActive\Models\SchemaOrg\Service|string
      */
-    public function getPermitAudience()
+    public function getIssuedThrough()
     {
-        return $this->permitAudience;
+        return $this->issuedThrough;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Audience|string $permitAudience
+     * @param \OpenActive\Models\SchemaOrg\Service|string $issuedThrough
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPermitAudience($permitAudience)
+    public function setIssuedThrough($issuedThrough)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Audience",
+            "\OpenActive\Models\SchemaOrg\Service",
             "string",
         ];
 
-        $permitAudience = self::checkTypes($permitAudience, $types);
+        $issuedThrough = self::checkTypes($issuedThrough, $types);
 
-        $this->permitAudience = $permitAudience;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getIssuedBy()
-    {
-        return $this->issuedBy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|string $issuedBy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIssuedBy($issuedBy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "string",
-        ];
-
-        $issuedBy = self::checkTypes($issuedBy, $types);
-
-        $this->issuedBy = $issuedBy;
+        $this->issuedThrough = $issuedThrough;
     }
 
     /**
@@ -260,6 +235,31 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
         $validIn = self::checkTypes($validIn, $types);
 
         $this->validIn = $validIn;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Audience|string
+     */
+    public function getPermitAudience()
+    {
+        return $this->permitAudience;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Audience|string $permitAudience
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPermitAudience($permitAudience)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Audience",
+            "string",
+        ];
+
+        $permitAudience = self::checkTypes($permitAudience, $types);
+
+        $this->permitAudience = $permitAudience;
     }
 
 }

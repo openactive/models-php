@@ -17,22 +17,30 @@ class Question extends \OpenActive\Models\SchemaOrg\Comment
 
     public static function fieldList() {
         $fields = [
-            "eduQuestionType" => "eduQuestionType",
-            "answerCount" => "answerCount",
             "suggestedAnswer" => "suggestedAnswer",
             "acceptedAnswer" => "acceptedAnswer",
+            "answerCount" => "answerCount",
+            "eduQuestionType" => "eduQuestionType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * For questions that are part of learning resources (e.g. Quiz), eduQuestionType indicates the format of question being given. Example: "Multiple choice", "Open ended", "Flashcard".
+     * An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer|string
      */
-    protected $eduQuestionType;
+    protected $suggestedAnswer;
+
+    /**
+     * The answer(s) that has been accepted as best, typically on a Question/Answer site. Sites vary in their selection mechanisms, e.g. drawing on community opinion and/or the view of the Question author.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList|string
+     */
+    protected $acceptedAnswer;
 
     /**
      * The number of answers this question has received.
@@ -43,43 +51,63 @@ class Question extends \OpenActive\Models\SchemaOrg\Comment
     protected $answerCount;
 
     /**
-     * An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site.
+     * For questions that are part of learning resources (e.g. Quiz), eduQuestionType indicates the format of question being given. Example: "Multiple choice", "Open ended", "Flashcard".
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList|string
+     * @var string
      */
-    protected $suggestedAnswer;
+    protected $eduQuestionType;
 
     /**
-     * The answer(s) that has been accepted as best, typically on a Question/Answer site. Sites vary in their selection mechanisms, e.g. drawing on community opinion and/or the view of the Question author.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer|string
+     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer|string
      */
-    protected $acceptedAnswer;
-
-    /**
-     * @return string
-     */
-    public function getEduQuestionType()
+    public function getSuggestedAnswer()
     {
-        return $this->eduQuestionType;
+        return $this->suggestedAnswer;
     }
 
     /**
-     * @param string $eduQuestionType
+     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer|string $suggestedAnswer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEduQuestionType($eduQuestionType)
+    public function setSuggestedAnswer($suggestedAnswer)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\ItemList",
+            "\OpenActive\Models\SchemaOrg\Answer",
             "string",
         ];
 
-        $eduQuestionType = self::checkTypes($eduQuestionType, $types);
+        $suggestedAnswer = self::checkTypes($suggestedAnswer, $types);
 
-        $this->eduQuestionType = $eduQuestionType;
+        $this->suggestedAnswer = $suggestedAnswer;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList|string
+     */
+    public function getAcceptedAnswer()
+    {
+        return $this->acceptedAnswer;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList|string $acceptedAnswer
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAcceptedAnswer($acceptedAnswer)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Answer",
+            "\OpenActive\Models\SchemaOrg\ItemList",
+            "string",
+        ];
+
+        $acceptedAnswer = self::checkTypes($acceptedAnswer, $types);
+
+        $this->acceptedAnswer = $acceptedAnswer;
     }
 
     /**
@@ -108,55 +136,27 @@ class Question extends \OpenActive\Models\SchemaOrg\Comment
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList|string
+     * @return string
      */
-    public function getSuggestedAnswer()
+    public function getEduQuestionType()
     {
-        return $this->suggestedAnswer;
+        return $this->eduQuestionType;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList|string $suggestedAnswer
+     * @param string $eduQuestionType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSuggestedAnswer($suggestedAnswer)
+    public function setEduQuestionType($eduQuestionType)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Answer",
-            "\OpenActive\Models\SchemaOrg\ItemList",
             "string",
         ];
 
-        $suggestedAnswer = self::checkTypes($suggestedAnswer, $types);
+        $eduQuestionType = self::checkTypes($eduQuestionType, $types);
 
-        $this->suggestedAnswer = $suggestedAnswer;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer|string
-     */
-    public function getAcceptedAnswer()
-    {
-        return $this->acceptedAnswer;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer|string $acceptedAnswer
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAcceptedAnswer($acceptedAnswer)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ItemList",
-            "\OpenActive\Models\SchemaOrg\Answer",
-            "string",
-        ];
-
-        $acceptedAnswer = self::checkTypes($acceptedAnswer, $types);
-
-        $this->acceptedAnswer = $acceptedAnswer;
+        $this->eduQuestionType = $eduQuestionType;
     }
 
 }

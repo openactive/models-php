@@ -18,10 +18,10 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     public static function fieldList() {
         $fields = [
             "orderDelivery" => "orderDelivery",
-            "orderedItem" => "orderedItem",
+            "orderItemStatus" => "orderItemStatus",
             "orderQuantity" => "orderQuantity",
             "orderItemNumber" => "orderItemNumber",
-            "orderItemStatus" => "orderItemStatus",
+            "orderedItem" => "orderedItem",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -36,12 +36,12 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $orderDelivery;
 
     /**
-     * The item ordered.
+     * The current status of the order item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
+     * @var \OpenActive\Models\SchemaOrg\OrderStatus|string
      */
-    protected $orderedItem;
+    protected $orderItemStatus;
 
     /**
      * The number of the item ordered. If the property is not set, assume the quantity is one.
@@ -60,12 +60,12 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $orderItemNumber;
 
     /**
-     * The current status of the order item.
+     * The item ordered.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\OrderStatus|string
+     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|string
      */
-    protected $orderItemStatus;
+    protected $orderedItem;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\ParcelDelivery|string
@@ -93,30 +93,28 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
+     * @return \OpenActive\Models\SchemaOrg\OrderStatus|string
      */
-    public function getOrderedItem()
+    public function getOrderItemStatus()
     {
-        return $this->orderedItem;
+        return $this->orderItemStatus;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string $orderedItem
+     * @param \OpenActive\Models\SchemaOrg\OrderStatus|string $orderItemStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOrderedItem($orderedItem)
+    public function setOrderItemStatus($orderItemStatus)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\OrderItem",
-            "\OpenActive\Models\SchemaOrg\Product",
-            "\OpenActive\Models\SchemaOrg\Service",
+            "\OpenActive\Models\SchemaOrg\OrderStatus",
             "string",
         ];
 
-        $orderedItem = self::checkTypes($orderedItem, $types);
+        $orderItemStatus = self::checkTypes($orderItemStatus, $types);
 
-        $this->orderedItem = $orderedItem;
+        $this->orderItemStatus = $orderItemStatus;
     }
 
     /**
@@ -169,28 +167,30 @@ class OrderItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\OrderStatus|string
+     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|string
      */
-    public function getOrderItemStatus()
+    public function getOrderedItem()
     {
-        return $this->orderItemStatus;
+        return $this->orderedItem;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\OrderStatus|string $orderItemStatus
+     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|string $orderedItem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOrderItemStatus($orderItemStatus)
+    public function setOrderedItem($orderedItem)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\OrderStatus",
+            "\OpenActive\Models\SchemaOrg\Service",
+            "\OpenActive\Models\SchemaOrg\OrderItem",
+            "\OpenActive\Models\SchemaOrg\Product",
             "string",
         ];
 
-        $orderItemStatus = self::checkTypes($orderItemStatus, $types);
+        $orderedItem = self::checkTypes($orderedItem, $types);
 
-        $this->orderItemStatus = $orderItemStatus;
+        $this->orderedItem = $orderedItem;
     }
 
 }

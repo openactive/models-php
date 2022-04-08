@@ -29,7 +29,7 @@ class EducationEvent extends \OpenActive\Models\SchemaOrg\Event
      * The item being described is intended to help a person learn the competency or learning outcome defined by the referenced term.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
     protected $teaches;
 
@@ -45,12 +45,12 @@ class EducationEvent extends \OpenActive\Models\SchemaOrg\Event
      * The item being described is intended to assess the competency or learning outcome defined by the referenced term.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
     protected $assesses;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
     public function getTeaches()
     {
@@ -58,15 +58,15 @@ class EducationEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $teaches
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $teaches
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTeaches($teaches)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
         ];
 
         $teaches = self::checkTypes($teaches, $types);
@@ -100,7 +100,7 @@ class EducationEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
     public function getAssesses()
     {
@@ -108,15 +108,15 @@ class EducationEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $assesses
+     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $assesses
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAssesses($assesses)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
             "string",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
         ];
 
         $assesses = self::checkTypes($assesses, $types);

@@ -18,8 +18,8 @@ class ChemicalSubstance extends \OpenActive\Models\SchemaOrg\BioChemEntity
     public static function fieldList() {
         $fields = [
             "chemicalComposition" => "chemicalComposition",
-            "chemicalRole" => "chemicalRole",
             "potentialUse" => "potentialUse",
+            "chemicalRole" => "chemicalRole",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -34,20 +34,20 @@ class ChemicalSubstance extends \OpenActive\Models\SchemaOrg\BioChemEntity
     protected $chemicalComposition;
 
     /**
-     * A role played by the BioChemEntity within a chemical context.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
-     */
-    protected $chemicalRole;
-
-    /**
      * Intended use of the BioChemEntity by humans.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
     protected $potentialUse;
+
+    /**
+     * A role played by the BioChemEntity within a chemical context.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    protected $chemicalRole;
 
     /**
      * @return string
@@ -76,31 +76,6 @@ class ChemicalSubstance extends \OpenActive\Models\SchemaOrg\BioChemEntity
     /**
      * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
-    public function getChemicalRole()
-    {
-        return $this->chemicalRole;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $chemicalRole
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setChemicalRole($chemicalRole)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-            "string",
-        ];
-
-        $chemicalRole = self::checkTypes($chemicalRole, $types);
-
-        $this->chemicalRole = $chemicalRole;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
-     */
     public function getPotentialUse()
     {
         return $this->potentialUse;
@@ -121,6 +96,31 @@ class ChemicalSubstance extends \OpenActive\Models\SchemaOrg\BioChemEntity
         $potentialUse = self::checkTypes($potentialUse, $types);
 
         $this->potentialUse = $potentialUse;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    public function getChemicalRole()
+    {
+        return $this->chemicalRole;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $chemicalRole
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setChemicalRole($chemicalRole)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
+        ];
+
+        $chemicalRole = self::checkTypes($chemicalRole, $types);
+
+        $this->chemicalRole = $chemicalRole;
     }
 
 }

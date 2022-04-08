@@ -17,23 +17,23 @@ class AnatomicalSystem extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "comprisedOf" => "comprisedOf",
+            "relatedTherapy" => "relatedTherapy",
             "relatedCondition" => "relatedCondition",
             "relatedStructure" => "relatedStructure",
-            "relatedTherapy" => "relatedTherapy",
             "associatedPathophysiology" => "associatedPathophysiology",
+            "comprisedOf" => "comprisedOf",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Specifying something physically contained by something else. Typically used here for the underlying anatomical structures, such as organs, that comprise the anatomical system.
+     * A medical therapy related to this anatomy.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string
+     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
-    protected $comprisedOf;
+    protected $relatedTherapy;
 
     /**
      * A medical condition associated with this anatomy.
@@ -52,14 +52,6 @@ class AnatomicalSystem extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $relatedStructure;
 
     /**
-     * A medical therapy related to this anatomy.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
-     */
-    protected $relatedTherapy;
-
-    /**
      * If applicable, a description of the pathophysiology associated with the anatomical system, including potential abnormal changes in the mechanical, physical, and biochemical functions of the system.
      *
      *
@@ -68,29 +60,36 @@ class AnatomicalSystem extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $associatedPathophysiology;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string
+     * Specifying something physically contained by something else. Typically used here for the underlying anatomical structures, such as organs, that comprise the anatomical system.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string
      */
-    public function getComprisedOf()
+    protected $comprisedOf;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     */
+    public function getRelatedTherapy()
     {
-        return $this->comprisedOf;
+        return $this->relatedTherapy;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string $comprisedOf
+     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy|string $relatedTherapy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setComprisedOf($comprisedOf)
+    public function setRelatedTherapy($relatedTherapy)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\AnatomicalSystem",
-            "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
+            "\OpenActive\Models\SchemaOrg\MedicalTherapy",
             "string",
         ];
 
-        $comprisedOf = self::checkTypes($comprisedOf, $types);
+        $relatedTherapy = self::checkTypes($relatedTherapy, $types);
 
-        $this->comprisedOf = $comprisedOf;
+        $this->relatedTherapy = $relatedTherapy;
     }
 
     /**
@@ -144,31 +143,6 @@ class AnatomicalSystem extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|string
-     */
-    public function getRelatedTherapy()
-    {
-        return $this->relatedTherapy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy|string $relatedTherapy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRelatedTherapy($relatedTherapy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalTherapy",
-            "string",
-        ];
-
-        $relatedTherapy = self::checkTypes($relatedTherapy, $types);
-
-        $this->relatedTherapy = $relatedTherapy;
-    }
-
-    /**
      * @return string
      */
     public function getAssociatedPathophysiology()
@@ -190,6 +164,32 @@ class AnatomicalSystem extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $associatedPathophysiology = self::checkTypes($associatedPathophysiology, $types);
 
         $this->associatedPathophysiology = $associatedPathophysiology;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string
+     */
+    public function getComprisedOf()
+    {
+        return $this->comprisedOf;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string $comprisedOf
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setComprisedOf($comprisedOf)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
+            "\OpenActive\Models\SchemaOrg\AnatomicalSystem",
+            "string",
+        ];
+
+        $comprisedOf = self::checkTypes($comprisedOf, $types);
+
+        $this->comprisedOf = $comprisedOf;
     }
 
 }

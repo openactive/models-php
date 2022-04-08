@@ -17,40 +17,40 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
 
     public static function fieldList() {
         $fields = [
-            "actors" => "actors",
+            "season" => "season",
             "containsSeason" => "containsSeason",
-            "numberOfSeasons" => "numberOfSeasons",
-            "gameLocation" => "gameLocation",
+            "director" => "director",
+            "actor" => "actor",
             "trailer" => "trailer",
             "episodes" => "episodes",
-            "numberOfEpisodes" => "numberOfEpisodes",
-            "director" => "director",
-            "productionCompany" => "productionCompany",
-            "gamePlatform" => "gamePlatform",
-            "seasons" => "seasons",
-            "season" => "season",
-            "playMode" => "playMode",
             "characterAttribute" => "characterAttribute",
+            "numberOfEpisodes" => "numberOfEpisodes",
+            "seasons" => "seasons",
             "cheatCode" => "cheatCode",
-            "actor" => "actor",
-            "quest" => "quest",
             "gameItem" => "gameItem",
+            "productionCompany" => "productionCompany",
+            "actors" => "actors",
+            "playMode" => "playMode",
+            "gamePlatform" => "gamePlatform",
+            "numberOfSeasons" => "numberOfSeasons",
+            "musicBy" => "musicBy",
             "numberOfPlayers" => "numberOfPlayers",
+            "quest" => "quest",
+            "gameLocation" => "gameLocation",
             "episode" => "episode",
             "directors" => "directors",
-            "musicBy" => "musicBy",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
+     * A season in a media series.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
+     * @var string|\OpenActive\Models\SchemaOrg\CreativeWorkSeason
      */
-    protected $actors;
+    protected $season;
 
     /**
      * A season that is part of the media series.
@@ -61,20 +61,20 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     protected $containsSeason;
 
     /**
-     * The number of seasons in this series.
+     * A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var int|null
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $numberOfSeasons;
+    protected $director;
 
     /**
-     * Real or fictional location of the game (or part of game).
+     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|string
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $gameLocation;
+    protected $actor;
 
     /**
      * The trailer of a movie or tv/radio series, season, episode, etc.
@@ -93,36 +93,20 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     protected $episodes;
 
     /**
+     * A piece of data that represents a particular aspect of a fictional character (skill, power, character points, advantage, disadvantage).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    protected $characterAttribute;
+
+    /**
      * The number of episodes in this season or series.
      *
      *
      * @var int|null
      */
     protected $numberOfEpisodes;
-
-    /**
-     * A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $director;
-
-    /**
-     * The production company or studio responsible for the item e.g. series, video game, episode etc.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $productionCompany;
-
-    /**
-     * The electronic systems used to play <a href="http://en.wikipedia.org/wiki/Category:Video_game_platforms">video games</a>.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Thing
-     */
-    protected $gamePlatform;
 
     /**
      * A season in a media series.
@@ -133,52 +117,12 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     protected $seasons;
 
     /**
-     * A season in a media series.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string
-     */
-    protected $season;
-
-    /**
-     * Indicates whether this game is multi-player, co-op or single-player.  The game can be marked as multi-player, co-op and single-player at the same time.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\GamePlayMode|null
-     */
-    protected $playMode;
-
-    /**
-     * A piece of data that represents a particular aspect of a fictional character (skill, power, character points, advantage, disadvantage).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    protected $characterAttribute;
-
-    /**
      * Cheat codes to the game.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     protected $cheatCode;
-
-    /**
-     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $actor;
-
-    /**
-     * The task that a player-controlled character, or group of characters may complete in order to gain a reward.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    protected $quest;
 
     /**
      * An item is an object within the game world that can be collected by a player or, occasionally, a non-player character.
@@ -189,12 +133,76 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     protected $gameItem;
 
     /**
+     * The production company or studio responsible for the item e.g. series, video game, episode etc.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    protected $productionCompany;
+
+    /**
+     * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $actors;
+
+    /**
+     * Indicates whether this game is multi-player, co-op or single-player.  The game can be marked as multi-player, co-op and single-player at the same time.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\GamePlayMode|null
+     */
+    protected $playMode;
+
+    /**
+     * The electronic systems used to play <a href="http://en.wikipedia.org/wiki/Category:Video_game_platforms">video games</a>.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Thing
+     */
+    protected $gamePlatform;
+
+    /**
+     * The number of seasons in this series.
+     *
+     *
+     * @var int|null
+     */
+    protected $numberOfSeasons;
+
+    /**
+     * The composer of the soundtrack.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string
+     */
+    protected $musicBy;
+
+    /**
      * Indicate how many people can play this game (minimum, maximum, or range).
      *
      *
      * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
     protected $numberOfPlayers;
+
+    /**
+     * The task that a player-controlled character, or group of characters may complete in order to gain a reward.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    protected $quest;
+
+    /**
+     * Real or fictional location of the game (or part of game).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress
+     */
+    protected $gameLocation;
 
     /**
      * An episode of a tv, radio or game media within a series or season.
@@ -213,36 +221,28 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     protected $directors;
 
     /**
-     * The composer of the soundtrack.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string
+     * @return string|\OpenActive\Models\SchemaOrg\CreativeWorkSeason
      */
-    protected $musicBy;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getActors()
+    public function getSeason()
     {
-        return $this->actors;
+        return $this->season;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $actors
+     * @param string|\OpenActive\Models\SchemaOrg\CreativeWorkSeason $season
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setActors($actors)
+    public function setSeason($season)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
             "string",
+            "\OpenActive\Models\SchemaOrg\CreativeWorkSeason",
         ];
 
-        $actors = self::checkTypes($actors, $types);
+        $season = self::checkTypes($season, $types);
 
-        $this->actors = $actors;
+        $this->season = $season;
     }
 
     /**
@@ -271,54 +271,53 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return int|null
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getNumberOfSeasons()
+    public function getDirector()
     {
-        return $this->numberOfSeasons;
+        return $this->director;
     }
 
     /**
-     * @param int|null $numberOfSeasons
+     * @param \OpenActive\Models\SchemaOrg\Person|string $director
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfSeasons($numberOfSeasons)
+    public function setDirector($director)
     {
         $types = [
-            "int",
-            "null",
-        ];
-
-        $numberOfSeasons = self::checkTypes($numberOfSeasons, $types);
-
-        $this->numberOfSeasons = $numberOfSeasons;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|string
-     */
-    public function getGameLocation()
-    {
-        return $this->gameLocation;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|string $gameLocation
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGameLocation($gameLocation)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
-            "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\Person",
             "string",
         ];
 
-        $gameLocation = self::checkTypes($gameLocation, $types);
+        $director = self::checkTypes($director, $types);
 
-        $this->gameLocation = $gameLocation;
+        $this->director = $director;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getActor()
+    {
+        return $this->actor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $actor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActor($actor)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $actor = self::checkTypes($actor, $types);
+
+        $this->actor = $actor;
     }
 
     /**
@@ -372,6 +371,31 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    public function getCharacterAttribute()
+    {
+        return $this->characterAttribute;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $characterAttribute
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCharacterAttribute($characterAttribute)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
+        ];
+
+        $characterAttribute = self::checkTypes($characterAttribute, $types);
+
+        $this->characterAttribute = $characterAttribute;
+    }
+
+    /**
      * @return int|null
      */
     public function getNumberOfEpisodes()
@@ -394,81 +418,6 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
         $numberOfEpisodes = self::checkTypes($numberOfEpisodes, $types);
 
         $this->numberOfEpisodes = $numberOfEpisodes;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getDirector()
-    {
-        return $this->director;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $director
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDirector($director)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $director = self::checkTypes($director, $types);
-
-        $this->director = $director;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getProductionCompany()
-    {
-        return $this->productionCompany;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|string $productionCompany
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProductionCompany($productionCompany)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "string",
-        ];
-
-        $productionCompany = self::checkTypes($productionCompany, $types);
-
-        $this->productionCompany = $productionCompany;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getGamePlatform()
-    {
-        return $this->gamePlatform;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Thing $gamePlatform
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGamePlatform($gamePlatform)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\Thing",
-        ];
-
-        $gamePlatform = self::checkTypes($gamePlatform, $types);
-
-        $this->gamePlatform = $gamePlatform;
     }
 
     /**
@@ -497,81 +446,6 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string
-     */
-    public function getSeason()
-    {
-        return $this->season;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string $season
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSeason($season)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\CreativeWorkSeason",
-            "string",
-        ];
-
-        $season = self::checkTypes($season, $types);
-
-        $this->season = $season;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\GamePlayMode|null
-     */
-    public function getPlayMode()
-    {
-        return $this->playMode;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\GamePlayMode|null $playMode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPlayMode($playMode)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\GamePlayMode",
-            "null",
-        ];
-
-        $playMode = self::checkTypes($playMode, $types);
-
-        $this->playMode = $playMode;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    public function getCharacterAttribute()
-    {
-        return $this->characterAttribute;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $characterAttribute
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCharacterAttribute($characterAttribute)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
-        ];
-
-        $characterAttribute = self::checkTypes($characterAttribute, $types);
-
-        $this->characterAttribute = $characterAttribute;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     public function getCheatCode()
@@ -594,56 +468,6 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
         $cheatCode = self::checkTypes($cheatCode, $types);
 
         $this->cheatCode = $cheatCode;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getActor()
-    {
-        return $this->actor;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $actor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActor($actor)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $actor = self::checkTypes($actor, $types);
-
-        $this->actor = $actor;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    public function getQuest()
-    {
-        return $this->quest;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $quest
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setQuest($quest)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
-        ];
-
-        $quest = self::checkTypes($quest, $types);
-
-        $this->quest = $quest;
     }
 
     /**
@@ -672,6 +496,157 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getProductionCompany()
+    {
+        return $this->productionCompany;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|string $productionCompany
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProductionCompany($productionCompany)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $productionCompany = self::checkTypes($productionCompany, $types);
+
+        $this->productionCompany = $productionCompany;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getActors()
+    {
+        return $this->actors;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $actors
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActors($actors)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $actors = self::checkTypes($actors, $types);
+
+        $this->actors = $actors;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\GamePlayMode|null
+     */
+    public function getPlayMode()
+    {
+        return $this->playMode;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\GamePlayMode|null $playMode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPlayMode($playMode)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\GamePlayMode",
+            "null",
+        ];
+
+        $playMode = self::checkTypes($playMode, $types);
+
+        $this->playMode = $playMode;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Thing
+     */
+    public function getGamePlatform()
+    {
+        return $this->gamePlatform;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Thing $gamePlatform
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGamePlatform($gamePlatform)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
+        ];
+
+        $gamePlatform = self::checkTypes($gamePlatform, $types);
+
+        $this->gamePlatform = $gamePlatform;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNumberOfSeasons()
+    {
+        return $this->numberOfSeasons;
+    }
+
+    /**
+     * @param int|null $numberOfSeasons
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumberOfSeasons($numberOfSeasons)
+    {
+        $types = [
+            "int",
+            "null",
+        ];
+
+        $numberOfSeasons = self::checkTypes($numberOfSeasons, $types);
+
+        $this->numberOfSeasons = $numberOfSeasons;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string
+     */
+    public function getMusicBy()
+    {
+        return $this->musicBy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string $musicBy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMusicBy($musicBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "string",
+        ];
+
+        $musicBy = self::checkTypes($musicBy, $types);
+
+        $this->musicBy = $musicBy;
+    }
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
     public function getNumberOfPlayers()
@@ -694,6 +669,57 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
         $numberOfPlayers = self::checkTypes($numberOfPlayers, $types);
 
         $this->numberOfPlayers = $numberOfPlayers;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    public function getQuest()
+    {
+        return $this->quest;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $quest
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setQuest($quest)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
+        ];
+
+        $quest = self::checkTypes($quest, $types);
+
+        $this->quest = $quest;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress
+     */
+    public function getGameLocation()
+    {
+        return $this->gameLocation;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress $gameLocation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGameLocation($gameLocation)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Place",
+            "string",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
+        ];
+
+        $gameLocation = self::checkTypes($gameLocation, $types);
+
+        $this->gameLocation = $gameLocation;
     }
 
     /**
@@ -744,32 +770,6 @@ class VideoGameSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
         $directors = self::checkTypes($directors, $types);
 
         $this->directors = $directors;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string
-     */
-    public function getMusicBy()
-    {
-        return $this->musicBy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string $musicBy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMusicBy($musicBy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\MusicGroup",
-            "string",
-        ];
-
-        $musicBy = self::checkTypes($musicBy, $types);
-
-        $this->musicBy = $musicBy;
     }
 
 }
