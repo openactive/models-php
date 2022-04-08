@@ -17,22 +17,14 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "evidenceOrigin" => "evidenceOrigin",
             "evidenceLevel" => "evidenceLevel",
-            "guidelineDate" => "guidelineDate",
+            "evidenceOrigin" => "evidenceOrigin",
             "guidelineSubject" => "guidelineSubject",
+            "guidelineDate" => "guidelineDate",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Source of the data used to formulate the guidance, e.g. RCT, consensus opinion, etc.
-     *
-     *
-     * @var string
-     */
-    protected $evidenceOrigin;
 
     /**
      * Strength of evidence of the data used to formulate the guideline (enumerated).
@@ -43,12 +35,12 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $evidenceLevel;
 
     /**
-     * Date on which this guideline's recommendation was made.
+     * Source of the data used to formulate the guidance, e.g. RCT, consensus opinion, etc.
      *
      *
-     * @var Date|null
+     * @var string
      */
-    protected $guidelineDate;
+    protected $evidenceOrigin;
 
     /**
      * The medical conditions, treatments, etc. that are the subject of the guideline.
@@ -59,28 +51,12 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $guidelineSubject;
 
     /**
-     * @return string
+     * Date on which this guideline's recommendation was made.
+     *
+     *
+     * @var Date|null
      */
-    public function getEvidenceOrigin()
-    {
-        return $this->evidenceOrigin;
-    }
-
-    /**
-     * @param string $evidenceOrigin
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEvidenceOrigin($evidenceOrigin)
-    {
-        $types = [
-            "string",
-        ];
-
-        $evidenceOrigin = self::checkTypes($evidenceOrigin, $types);
-
-        $this->evidenceOrigin = $evidenceOrigin;
-    }
+    protected $guidelineDate;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MedicalEvidenceLevel|string
@@ -108,28 +84,27 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return Date|null
+     * @return string
      */
-    public function getGuidelineDate()
+    public function getEvidenceOrigin()
     {
-        return $this->guidelineDate;
+        return $this->evidenceOrigin;
     }
 
     /**
-     * @param Date|null $guidelineDate
+     * @param string $evidenceOrigin
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setGuidelineDate($guidelineDate)
+    public function setEvidenceOrigin($evidenceOrigin)
     {
         $types = [
-            "Date",
-            "null",
+            "string",
         ];
 
-        $guidelineDate = self::checkTypes($guidelineDate, $types);
+        $evidenceOrigin = self::checkTypes($evidenceOrigin, $types);
 
-        $this->guidelineDate = $guidelineDate;
+        $this->evidenceOrigin = $evidenceOrigin;
     }
 
     /**
@@ -155,6 +130,31 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $guidelineSubject = self::checkTypes($guidelineSubject, $types);
 
         $this->guidelineSubject = $guidelineSubject;
+    }
+
+    /**
+     * @return Date|null
+     */
+    public function getGuidelineDate()
+    {
+        return $this->guidelineDate;
+    }
+
+    /**
+     * @param Date|null $guidelineDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGuidelineDate($guidelineDate)
+    {
+        $types = [
+            "Date",
+            "null",
+        ];
+
+        $guidelineDate = self::checkTypes($guidelineDate, $types);
+
+        $this->guidelineDate = $guidelineDate;
     }
 
 }

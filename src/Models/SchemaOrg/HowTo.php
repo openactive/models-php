@@ -19,13 +19,13 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
         $fields = [
             "yield" => "yield",
             "estimatedCost" => "estimatedCost",
-            "prepTime" => "prepTime",
+            "supply" => "supply",
             "step" => "step",
             "totalTime" => "totalTime",
-            "performTime" => "performTime",
             "tool" => "tool",
+            "prepTime" => "prepTime",
             "steps" => "steps",
-            "supply" => "supply",
+            "performTime" => "performTime",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -43,23 +43,23 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
      * The estimated cost of the supply or supplies consumed when performing instructions.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string
+     * @var string|\OpenActive\Models\SchemaOrg\MonetaryAmount
      */
     protected $estimatedCost;
 
     /**
-     * The length of time it takes to prepare the items to be used in instructions or a direction, in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
+     * A sub-property of instrument. A supply consumed when performing instructions or a direction.
      *
      *
-     * @var DateInterval|string|null
+     * @var \OpenActive\Models\SchemaOrg\HowToSupply|string
      */
-    protected $prepTime;
+    protected $supply;
 
     /**
      * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\HowToStep|string|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\HowToSection
+     * @var \OpenActive\Models\SchemaOrg\HowToStep|\OpenActive\Models\SchemaOrg\HowToSection|string|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     protected $step;
 
@@ -72,36 +72,36 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $totalTime;
 
     /**
+     * A sub property of instrument. An object used (but not consumed) when performing instructions or a direction.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\HowToTool|string
+     */
+    protected $tool;
+
+    /**
+     * The length of time it takes to prepare the items to be used in instructions or a direction, in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
+     *
+     *
+     * @var DateInterval|string|null
+     */
+    protected $prepTime;
+
+    /**
+     * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed 'steps'; 'step' is preferred).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    protected $steps;
+
+    /**
      * The length of time it takes to perform instructions or a direction (not including time to prepare the supplies), in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
      *
      *
      * @var DateInterval|string|null
      */
     protected $performTime;
-
-    /**
-     * A sub property of instrument. An object used (but not consumed) when performing instructions or a direction.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\HowToTool
-     */
-    protected $tool;
-
-    /**
-     * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed 'steps'; 'step' is preferred).
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    protected $steps;
-
-    /**
-     * A sub-property of instrument. A supply consumed when performing instructions or a direction.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\HowToSupply
-     */
-    protected $supply;
 
     /**
      * @return string|\OpenActive\Models\SchemaOrg\QuantitativeValue
@@ -129,7 +129,7 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string
+     * @return string|\OpenActive\Models\SchemaOrg\MonetaryAmount
      */
     public function getEstimatedCost()
     {
@@ -137,15 +137,15 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string $estimatedCost
+     * @param string|\OpenActive\Models\SchemaOrg\MonetaryAmount $estimatedCost
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEstimatedCost($estimatedCost)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "string",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
         ];
 
         $estimatedCost = self::checkTypes($estimatedCost, $types);
@@ -154,33 +154,32 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return DateInterval|string|null
+     * @return \OpenActive\Models\SchemaOrg\HowToSupply|string
      */
-    public function getPrepTime()
+    public function getSupply()
     {
-        return $this->prepTime;
+        return $this->supply;
     }
 
     /**
-     * @param DateInterval|string|null $prepTime
+     * @param \OpenActive\Models\SchemaOrg\HowToSupply|string $supply
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPrepTime($prepTime)
+    public function setSupply($supply)
     {
         $types = [
-            "DateInterval",
+            "\OpenActive\Models\SchemaOrg\HowToSupply",
             "string",
-            "null",
         ];
 
-        $prepTime = self::checkTypes($prepTime, $types);
+        $supply = self::checkTypes($supply, $types);
 
-        $this->prepTime = $prepTime;
+        $this->supply = $supply;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\HowToStep|string|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\HowToSection
+     * @return \OpenActive\Models\SchemaOrg\HowToStep|\OpenActive\Models\SchemaOrg\HowToSection|string|\OpenActive\Models\SchemaOrg\CreativeWork
      */
     public function getStep()
     {
@@ -188,7 +187,7 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\HowToStep|string|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\HowToSection $step
+     * @param \OpenActive\Models\SchemaOrg\HowToStep|\OpenActive\Models\SchemaOrg\HowToSection|string|\OpenActive\Models\SchemaOrg\CreativeWork $step
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -196,9 +195,9 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\HowToStep",
+            "\OpenActive\Models\SchemaOrg\HowToSection",
             "string",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
-            "\OpenActive\Models\SchemaOrg\HowToSection",
         ];
 
         $step = self::checkTypes($step, $types);
@@ -233,6 +232,83 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\HowToTool|string
+     */
+    public function getTool()
+    {
+        return $this->tool;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\HowToTool|string $tool
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTool($tool)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\HowToTool",
+            "string",
+        ];
+
+        $tool = self::checkTypes($tool, $types);
+
+        $this->tool = $tool;
+    }
+
+    /**
+     * @return DateInterval|string|null
+     */
+    public function getPrepTime()
+    {
+        return $this->prepTime;
+    }
+
+    /**
+     * @param DateInterval|string|null $prepTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPrepTime($prepTime)
+    {
+        $types = [
+            "DateInterval",
+            "string",
+            "null",
+        ];
+
+        $prepTime = self::checkTypes($prepTime, $types);
+
+        $this->prepTime = $prepTime;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    public function getSteps()
+    {
+        return $this->steps;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork|string $steps
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSteps($steps)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ItemList",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
+        ];
+
+        $steps = self::checkTypes($steps, $types);
+
+        $this->steps = $steps;
+    }
+
+    /**
      * @return DateInterval|string|null
      */
     public function getPerformTime()
@@ -256,82 +332,6 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
         $performTime = self::checkTypes($performTime, $types);
 
         $this->performTime = $performTime;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\HowToTool
-     */
-    public function getTool()
-    {
-        return $this->tool;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\HowToTool $tool
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTool($tool)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\HowToTool",
-        ];
-
-        $tool = self::checkTypes($tool, $types);
-
-        $this->tool = $tool;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    public function getSteps()
-    {
-        return $this->steps;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork $steps
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSteps($steps)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\ItemList",
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-        ];
-
-        $steps = self::checkTypes($steps, $types);
-
-        $this->steps = $steps;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\HowToSupply
-     */
-    public function getSupply()
-    {
-        return $this->supply;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\HowToSupply $supply
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSupply($supply)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\HowToSupply",
-        ];
-
-        $supply = self::checkTypes($supply, $types);
-
-        $this->supply = $supply;
     }
 
 }

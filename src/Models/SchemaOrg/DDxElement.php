@@ -17,20 +17,12 @@ class DDxElement extends \OpenActive\Models\SchemaOrg\MedicalIntangible
 
     public static function fieldList() {
         $fields = [
-            "diagnosis" => "diagnosis",
             "distinguishingSign" => "distinguishingSign",
+            "diagnosis" => "diagnosis",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * One or more alternative conditions considered in the differential diagnosis process as output of a diagnosis process.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalCondition|string
-     */
-    protected $diagnosis;
 
     /**
      * One of a set of signs and symptoms that can be used to distinguish this diagnosis from others in the differential diagnosis.
@@ -41,29 +33,12 @@ class DDxElement extends \OpenActive\Models\SchemaOrg\MedicalIntangible
     protected $distinguishingSign;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
+     * One or more alternative conditions considered in the differential diagnosis process as output of a diagnosis process.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalCondition|string
      */
-    public function getDiagnosis()
-    {
-        return $this->diagnosis;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalCondition|string $diagnosis
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDiagnosis($diagnosis)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalCondition",
-            "string",
-        ];
-
-        $diagnosis = self::checkTypes($diagnosis, $types);
-
-        $this->diagnosis = $diagnosis;
-    }
+    protected $diagnosis;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom|string
@@ -88,6 +63,31 @@ class DDxElement extends \OpenActive\Models\SchemaOrg\MedicalIntangible
         $distinguishingSign = self::checkTypes($distinguishingSign, $types);
 
         $this->distinguishingSign = $distinguishingSign;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
+     */
+    public function getDiagnosis()
+    {
+        return $this->diagnosis;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalCondition|string $diagnosis
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDiagnosis($diagnosis)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalCondition",
+            "string",
+        ];
+
+        $diagnosis = self::checkTypes($diagnosis, $types);
+
+        $this->diagnosis = $diagnosis;
     }
 
 }

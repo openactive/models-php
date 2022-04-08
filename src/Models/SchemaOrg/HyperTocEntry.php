@@ -17,21 +17,13 @@ class HyperTocEntry extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "utterances" => "utterances",
             "tocContinuation" => "tocContinuation",
             "associatedMedia" => "associatedMedia",
+            "utterances" => "utterances",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Text of an utterances (spoken words, lyrics etc.) that occurs at a certain section of a media object, represented as a [[HyperTocEntry]].
-     *
-     *
-     * @var string
-     */
-    protected $utterances;
 
     /**
      * A [[HyperTocEntry]] can have a [[tocContinuation]] indicated, which is another [[HyperTocEntry]] that would be the default next item to play or render.
@@ -50,28 +42,12 @@ class HyperTocEntry extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $associatedMedia;
 
     /**
-     * @return string
+     * Text of an utterances (spoken words, lyrics etc.) that occurs at a certain section of a media object, represented as a [[HyperTocEntry]].
+     *
+     *
+     * @var string
      */
-    public function getUtterances()
-    {
-        return $this->utterances;
-    }
-
-    /**
-     * @param string $utterances
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setUtterances($utterances)
-    {
-        $types = [
-            "string",
-        ];
-
-        $utterances = self::checkTypes($utterances, $types);
-
-        $this->utterances = $utterances;
-    }
+    protected $utterances;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\HyperTocEntry|string
@@ -121,6 +97,30 @@ class HyperTocEntry extends \OpenActive\Models\SchemaOrg\CreativeWork
         $associatedMedia = self::checkTypes($associatedMedia, $types);
 
         $this->associatedMedia = $associatedMedia;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUtterances()
+    {
+        return $this->utterances;
+    }
+
+    /**
+     * @param string $utterances
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUtterances($utterances)
+    {
+        $types = [
+            "string",
+        ];
+
+        $utterances = self::checkTypes($utterances, $types);
+
+        $this->utterances = $utterances;
     }
 
 }

@@ -17,15 +17,23 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
 
     public static function fieldList() {
         $fields = [
+            "healthPlanCoinsuranceRate" => "healthPlanCoinsuranceRate",
             "healthPlanCoinsuranceOption" => "healthPlanCoinsuranceOption",
             "healthPlanPharmacyCategory" => "healthPlanPharmacyCategory",
             "healthPlanCopay" => "healthPlanCopay",
             "healthPlanCopayOption" => "healthPlanCopayOption",
-            "healthPlanCoinsuranceRate" => "healthPlanCoinsuranceRate",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Whether The rate of coinsurance expressed as a number between 0.0 and 1.0.
+     *
+     *
+     * @var Number|null
+     */
+    protected $healthPlanCoinsuranceRate;
 
     /**
      * Whether the coinsurance applies before or after deductible, etc. TODO: Is this a closed set?
@@ -60,12 +68,29 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
     protected $healthPlanCopayOption;
 
     /**
-     * Whether The rate of coinsurance expressed as a number between 0.0 and 1.0.
-     *
-     *
-     * @var Number|null
+     * @return Number|null
      */
-    protected $healthPlanCoinsuranceRate;
+    public function getHealthPlanCoinsuranceRate()
+    {
+        return $this->healthPlanCoinsuranceRate;
+    }
+
+    /**
+     * @param Number|null $healthPlanCoinsuranceRate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHealthPlanCoinsuranceRate($healthPlanCoinsuranceRate)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $healthPlanCoinsuranceRate = self::checkTypes($healthPlanCoinsuranceRate, $types);
+
+        $this->healthPlanCoinsuranceRate = $healthPlanCoinsuranceRate;
+    }
 
     /**
      * @return string
@@ -162,31 +187,6 @@ class HealthPlanCostSharingSpecification extends \OpenActive\Models\SchemaOrg\In
         $healthPlanCopayOption = self::checkTypes($healthPlanCopayOption, $types);
 
         $this->healthPlanCopayOption = $healthPlanCopayOption;
-    }
-
-    /**
-     * @return Number|null
-     */
-    public function getHealthPlanCoinsuranceRate()
-    {
-        return $this->healthPlanCoinsuranceRate;
-    }
-
-    /**
-     * @param Number|null $healthPlanCoinsuranceRate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHealthPlanCoinsuranceRate($healthPlanCoinsuranceRate)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $healthPlanCoinsuranceRate = self::checkTypes($healthPlanCoinsuranceRate, $types);
-
-        $this->healthPlanCoinsuranceRate = $healthPlanCoinsuranceRate;
     }
 
 }

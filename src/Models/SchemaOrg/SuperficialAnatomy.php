@@ -17,15 +17,23 @@ class SuperficialAnatomy extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
+            "relatedTherapy" => "relatedTherapy",
             "significance" => "significance",
             "relatedAnatomy" => "relatedAnatomy",
             "relatedCondition" => "relatedCondition",
-            "relatedTherapy" => "relatedTherapy",
             "associatedPathophysiology" => "associatedPathophysiology",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A medical therapy related to this anatomy.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     */
+    protected $relatedTherapy;
 
     /**
      * The significance associated with the superficial anatomy; as an example, how characteristics of the superficial anatomy can suggest underlying medical conditions or courses of treatment.
@@ -39,7 +47,7 @@ class SuperficialAnatomy extends \OpenActive\Models\SchemaOrg\MedicalEntity
      * Anatomical systems or structures that relate to the superficial anatomy.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string
+     * @var \OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string
      */
     protected $relatedAnatomy;
 
@@ -52,20 +60,37 @@ class SuperficialAnatomy extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $relatedCondition;
 
     /**
-     * A medical therapy related to this anatomy.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
-     */
-    protected $relatedTherapy;
-
-    /**
      * If applicable, a description of the pathophysiology associated with the anatomical system, including potential abnormal changes in the mechanical, physical, and biochemical functions of the system.
      *
      *
      * @var string
      */
     protected $associatedPathophysiology;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     */
+    public function getRelatedTherapy()
+    {
+        return $this->relatedTherapy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy|string $relatedTherapy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRelatedTherapy($relatedTherapy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalTherapy",
+            "string",
+        ];
+
+        $relatedTherapy = self::checkTypes($relatedTherapy, $types);
+
+        $this->relatedTherapy = $relatedTherapy;
+    }
 
     /**
      * @return string
@@ -92,7 +117,7 @@ class SuperficialAnatomy extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string
+     * @return \OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string
      */
     public function getRelatedAnatomy()
     {
@@ -100,15 +125,15 @@ class SuperficialAnatomy extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string $relatedAnatomy
+     * @param \OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string $relatedAnatomy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRelatedAnatomy($relatedAnatomy)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
             "\OpenActive\Models\SchemaOrg\AnatomicalSystem",
+            "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
             "string",
         ];
 
@@ -140,31 +165,6 @@ class SuperficialAnatomy extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $relatedCondition = self::checkTypes($relatedCondition, $types);
 
         $this->relatedCondition = $relatedCondition;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|string
-     */
-    public function getRelatedTherapy()
-    {
-        return $this->relatedTherapy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy|string $relatedTherapy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRelatedTherapy($relatedTherapy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalTherapy",
-            "string",
-        ];
-
-        $relatedTherapy = self::checkTypes($relatedTherapy, $types);
-
-        $this->relatedTherapy = $relatedTherapy;
     }
 
     /**

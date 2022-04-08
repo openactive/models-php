@@ -17,15 +17,47 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
 
     public static function fieldList() {
         $fields = [
-            "dateline" => "dateline",
-            "printSection" => "printSection",
-            "printPage" => "printPage",
-            "printColumn" => "printColumn",
             "printEdition" => "printEdition",
+            "printColumn" => "printColumn",
+            "printPage" => "printPage",
+            "printSection" => "printSection",
+            "dateline" => "dateline",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The edition of the print product in which the NewsArticle appears.
+     *
+     *
+     * @var string
+     */
+    protected $printEdition;
+
+    /**
+     * The number of the column in which the NewsArticle appears in the print edition.
+     *
+     *
+     * @var string
+     */
+    protected $printColumn;
+
+    /**
+     * If this NewsArticle appears in print, this field indicates the name of the page on which the article is found. Please note that this field is intended for the exact page name (e.g. A5, B18).
+     *
+     *
+     * @var string
+     */
+    protected $printPage;
+
+    /**
+     * If this NewsArticle appears in print, this field indicates the print section in which the article appeared.
+     *
+     *
+     * @var string
+     */
+    protected $printSection;
 
     /**
      * A [dateline](https://en.wikipedia.org/wiki/Dateline) is a brief piece of text included in news articles that describes where and when the story was written or filed though the date is often omitted. Sometimes only a placename is provided.
@@ -41,107 +73,27 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
     protected $dateline;
 
     /**
-     * If this NewsArticle appears in print, this field indicates the print section in which the article appeared.
-     *
-     *
-     * @var string
-     */
-    protected $printSection;
-
-    /**
-     * If this NewsArticle appears in print, this field indicates the name of the page on which the article is found. Please note that this field is intended for the exact page name (e.g. A5, B18).
-     *
-     *
-     * @var string
-     */
-    protected $printPage;
-
-    /**
-     * The number of the column in which the NewsArticle appears in the print edition.
-     *
-     *
-     * @var string
-     */
-    protected $printColumn;
-
-    /**
-     * The edition of the print product in which the NewsArticle appears.
-     *
-     *
-     * @var string
-     */
-    protected $printEdition;
-
-    /**
      * @return string
      */
-    public function getDateline()
+    public function getPrintEdition()
     {
-        return $this->dateline;
+        return $this->printEdition;
     }
 
     /**
-     * @param string $dateline
+     * @param string $printEdition
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDateline($dateline)
+    public function setPrintEdition($printEdition)
     {
         $types = [
             "string",
         ];
 
-        $dateline = self::checkTypes($dateline, $types);
+        $printEdition = self::checkTypes($printEdition, $types);
 
-        $this->dateline = $dateline;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPrintSection()
-    {
-        return $this->printSection;
-    }
-
-    /**
-     * @param string $printSection
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPrintSection($printSection)
-    {
-        $types = [
-            "string",
-        ];
-
-        $printSection = self::checkTypes($printSection, $types);
-
-        $this->printSection = $printSection;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPrintPage()
-    {
-        return $this->printPage;
-    }
-
-    /**
-     * @param string $printPage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPrintPage($printPage)
-    {
-        $types = [
-            "string",
-        ];
-
-        $printPage = self::checkTypes($printPage, $types);
-
-        $this->printPage = $printPage;
+        $this->printEdition = $printEdition;
     }
 
     /**
@@ -171,25 +123,73 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
     /**
      * @return string
      */
-    public function getPrintEdition()
+    public function getPrintPage()
     {
-        return $this->printEdition;
+        return $this->printPage;
     }
 
     /**
-     * @param string $printEdition
+     * @param string $printPage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPrintEdition($printEdition)
+    public function setPrintPage($printPage)
     {
         $types = [
             "string",
         ];
 
-        $printEdition = self::checkTypes($printEdition, $types);
+        $printPage = self::checkTypes($printPage, $types);
 
-        $this->printEdition = $printEdition;
+        $this->printPage = $printPage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrintSection()
+    {
+        return $this->printSection;
+    }
+
+    /**
+     * @param string $printSection
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPrintSection($printSection)
+    {
+        $types = [
+            "string",
+        ];
+
+        $printSection = self::checkTypes($printSection, $types);
+
+        $this->printSection = $printSection;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateline()
+    {
+        return $this->dateline;
+    }
+
+    /**
+     * @param string $dateline
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDateline($dateline)
+    {
+        $types = [
+            "string",
+        ];
+
+        $dateline = self::checkTypes($dateline, $types);
+
+        $this->dateline = $dateline;
     }
 
 }

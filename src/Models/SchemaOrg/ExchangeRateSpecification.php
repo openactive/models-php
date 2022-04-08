@@ -17,21 +17,13 @@ class ExchangeRateSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
 
     public static function fieldList() {
         $fields = [
-            "exchangeRateSpread" => "exchangeRateSpread",
             "currentExchangeRate" => "currentExchangeRate",
+            "exchangeRateSpread" => "exchangeRateSpread",
             "currency" => "currency",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The difference between the price at which a broker or other intermediary buys and sells foreign currency.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
-     */
-    protected $exchangeRateSpread;
 
     /**
      * The current price of a currency.
@@ -42,39 +34,20 @@ class ExchangeRateSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     protected $currentExchangeRate;
 
     /**
+     * The difference between the price at which a broker or other intermediary buys and sells foreign currency.
+     *
+     *
+     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     */
+    protected $exchangeRateSpread;
+
+    /**
      * The currency in which the monetary amount is expressed.\n\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217) e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies e.g. "BTC"; well known names for [Local Exchange Tradings Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types e.g. "Ithaca HOUR".
      *
      *
      * @var string
      */
     protected $currency;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
-     */
-    public function getExchangeRateSpread()
-    {
-        return $this->exchangeRateSpread;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null $exchangeRateSpread
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setExchangeRateSpread($exchangeRateSpread)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "string",
-            "Number",
-            "null",
-        ];
-
-        $exchangeRateSpread = self::checkTypes($exchangeRateSpread, $types);
-
-        $this->exchangeRateSpread = $exchangeRateSpread;
-    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\UnitPriceSpecification|string
@@ -99,6 +72,33 @@ class ExchangeRateSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
         $currentExchangeRate = self::checkTypes($currentExchangeRate, $types);
 
         $this->currentExchangeRate = $currentExchangeRate;
+    }
+
+    /**
+     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     */
+    public function getExchangeRateSpread()
+    {
+        return $this->exchangeRateSpread;
+    }
+
+    /**
+     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $exchangeRateSpread
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setExchangeRateSpread($exchangeRateSpread)
+    {
+        $types = [
+            "Number",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
+            "null",
+        ];
+
+        $exchangeRateSpread = self::checkTypes($exchangeRateSpread, $types);
+
+        $this->exchangeRateSpread = $exchangeRateSpread;
     }
 
     /**

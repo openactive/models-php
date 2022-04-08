@@ -17,30 +17,30 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "numberOfBedrooms" => "numberOfBedrooms",
+            "isPlanForApartment" => "isPlanForApartment",
             "numberOfBathroomsTotal" => "numberOfBathroomsTotal",
-            "numberOfPartialBathrooms" => "numberOfPartialBathrooms",
-            "layoutImage" => "layoutImage",
-            "amenityFeature" => "amenityFeature",
             "numberOfRooms" => "numberOfRooms",
             "numberOfAccommodationUnits" => "numberOfAccommodationUnits",
-            "petsAllowed" => "petsAllowed",
-            "floorSize" => "floorSize",
-            "isPlanForApartment" => "isPlanForApartment",
-            "numberOfFullBathrooms" => "numberOfFullBathrooms",
             "numberOfAvailableAccommodationUnits" => "numberOfAvailableAccommodationUnits",
+            "amenityFeature" => "amenityFeature",
+            "numberOfBedrooms" => "numberOfBedrooms",
+            "numberOfPartialBathrooms" => "numberOfPartialBathrooms",
+            "floorSize" => "floorSize",
+            "numberOfFullBathrooms" => "numberOfFullBathrooms",
+            "petsAllowed" => "petsAllowed",
+            "layoutImage" => "layoutImage",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The total integer number of bedrooms in a some [[Accommodation]], [[ApartmentComplex]] or [[FloorPlan]].
+     * Indicates some accommodation that this floor plan describes.
      *
      *
-     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     * @var \OpenActive\Models\SchemaOrg\Accommodation|string
      */
-    protected $numberOfBedrooms;
+    protected $isPlanForApartment;
 
     /**
      * The total integer number of bathrooms in a some [[Accommodation]], following real estate conventions as [documented in RESO](https://ddwiki.reso.org/display/DDW17/BathroomsTotalInteger+Field): "The simple sum of the number of bathrooms. For example for a property with two Full Bathrooms and one Half Bathroom, the Bathrooms Total Integer will be 3.". See also [[numberOfRooms]].
@@ -49,30 +49,6 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
      * @var int|null
      */
     protected $numberOfBathroomsTotal;
-
-    /**
-     * Number of partial bathrooms - The total number of half and ¼ bathrooms in an [[Accommodation]]. This corresponds to the [BathroomsPartial field in RESO](https://ddwiki.reso.org/display/DDW17/BathroomsPartial+Field). 
-     *
-     *
-     * @var Number|null
-     */
-    protected $numberOfPartialBathrooms;
-
-    /**
-     * A schematic image showing the floorplan layout.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\ImageObject
-     */
-    protected $layoutImage;
-
-    /**
-     * An amenity feature (e.g. a characteristic or service) of the Accommodation. This generic property does not make a statement about whether the feature is included in an offer for the main accommodation or available at extra costs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\LocationFeatureSpecification|string
-     */
-    protected $amenityFeature;
 
     /**
      * The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business.
@@ -92,12 +68,36 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
     protected $numberOfAccommodationUnits;
 
     /**
-     * Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value.
+     * Indicates the number of available accommodation units in an [[ApartmentComplex]], or the number of accommodation units for a specific [[FloorPlan]] (within its specific [[ApartmentComplex]]). See also [[numberOfAccommodationUnits]].
      *
      *
-     * @var bool|string|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
-    protected $petsAllowed;
+    protected $numberOfAvailableAccommodationUnits;
+
+    /**
+     * An amenity feature (e.g. a characteristic or service) of the Accommodation. This generic property does not make a statement about whether the feature is included in an offer for the main accommodation or available at extra costs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\LocationFeatureSpecification|string
+     */
+    protected $amenityFeature;
+
+    /**
+     * The total integer number of bedrooms in a some [[Accommodation]], [[ApartmentComplex]] or [[FloorPlan]].
+     *
+     *
+     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     */
+    protected $numberOfBedrooms;
+
+    /**
+     * Number of partial bathrooms - The total number of half and ¼ bathrooms in an [[Accommodation]]. This corresponds to the [BathroomsPartial field in RESO](https://ddwiki.reso.org/display/DDW17/BathroomsPartial+Field). 
+     *
+     *
+     * @var Number|null
+     */
+    protected $numberOfPartialBathrooms;
 
     /**
      * The size of the accommodation, e.g. in square meter or squarefoot.
@@ -109,14 +109,6 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
     protected $floorSize;
 
     /**
-     * Indicates some accommodation that this floor plan describes.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Accommodation|string
-     */
-    protected $isPlanForApartment;
-
-    /**
      * Number of full bathrooms - The total number of full and ¾ bathrooms in an [[Accommodation]]. This corresponds to the [BathroomsFull field in RESO](https://ddwiki.reso.org/display/DDW17/BathroomsFull+Field).
      *
      *
@@ -125,38 +117,44 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
     protected $numberOfFullBathrooms;
 
     /**
-     * Indicates the number of available accommodation units in an [[ApartmentComplex]], or the number of accommodation units for a specific [[FloorPlan]] (within its specific [[ApartmentComplex]]). See also [[numberOfAccommodationUnits]].
+     * Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     * @var bool|string|null
      */
-    protected $numberOfAvailableAccommodationUnits;
+    protected $petsAllowed;
 
     /**
-     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     * A schematic image showing the floorplan layout.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
      */
-    public function getNumberOfBedrooms()
+    protected $layoutImage;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Accommodation|string
+     */
+    public function getIsPlanForApartment()
     {
-        return $this->numberOfBedrooms;
+        return $this->isPlanForApartment;
     }
 
     /**
-     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $numberOfBedrooms
+     * @param \OpenActive\Models\SchemaOrg\Accommodation|string $isPlanForApartment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfBedrooms($numberOfBedrooms)
+    public function setIsPlanForApartment($isPlanForApartment)
     {
         $types = [
-            "Number",
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "\OpenActive\Models\SchemaOrg\Accommodation",
             "string",
-            "null",
         ];
 
-        $numberOfBedrooms = self::checkTypes($numberOfBedrooms, $types);
+        $isPlanForApartment = self::checkTypes($isPlanForApartment, $types);
 
-        $this->numberOfBedrooms = $numberOfBedrooms;
+        $this->isPlanForApartment = $isPlanForApartment;
     }
 
     /**
@@ -182,81 +180,6 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
         $numberOfBathroomsTotal = self::checkTypes($numberOfBathroomsTotal, $types);
 
         $this->numberOfBathroomsTotal = $numberOfBathroomsTotal;
-    }
-
-    /**
-     * @return Number|null
-     */
-    public function getNumberOfPartialBathrooms()
-    {
-        return $this->numberOfPartialBathrooms;
-    }
-
-    /**
-     * @param Number|null $numberOfPartialBathrooms
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNumberOfPartialBathrooms($numberOfPartialBathrooms)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $numberOfPartialBathrooms = self::checkTypes($numberOfPartialBathrooms, $types);
-
-        $this->numberOfPartialBathrooms = $numberOfPartialBathrooms;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\ImageObject
-     */
-    public function getLayoutImage()
-    {
-        return $this->layoutImage;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\ImageObject $layoutImage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLayoutImage($layoutImage)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\ImageObject",
-        ];
-
-        $layoutImage = self::checkTypes($layoutImage, $types);
-
-        $this->layoutImage = $layoutImage;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\LocationFeatureSpecification|string
-     */
-    public function getAmenityFeature()
-    {
-        return $this->amenityFeature;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\LocationFeatureSpecification|string $amenityFeature
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAmenityFeature($amenityFeature)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\LocationFeatureSpecification",
-            "string",
-        ];
-
-        $amenityFeature = self::checkTypes($amenityFeature, $types);
-
-        $this->amenityFeature = $amenityFeature;
     }
 
     /**
@@ -312,29 +235,105 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return bool|string|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
-    public function getPetsAllowed()
+    public function getNumberOfAvailableAccommodationUnits()
     {
-        return $this->petsAllowed;
+        return $this->numberOfAvailableAccommodationUnits;
     }
 
     /**
-     * @param bool|string|null $petsAllowed
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $numberOfAvailableAccommodationUnits
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPetsAllowed($petsAllowed)
+    public function setNumberOfAvailableAccommodationUnits($numberOfAvailableAccommodationUnits)
     {
         $types = [
-            "bool",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
+        ];
+
+        $numberOfAvailableAccommodationUnits = self::checkTypes($numberOfAvailableAccommodationUnits, $types);
+
+        $this->numberOfAvailableAccommodationUnits = $numberOfAvailableAccommodationUnits;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\LocationFeatureSpecification|string
+     */
+    public function getAmenityFeature()
+    {
+        return $this->amenityFeature;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\LocationFeatureSpecification|string $amenityFeature
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAmenityFeature($amenityFeature)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\LocationFeatureSpecification",
+            "string",
+        ];
+
+        $amenityFeature = self::checkTypes($amenityFeature, $types);
+
+        $this->amenityFeature = $amenityFeature;
+    }
+
+    /**
+     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     */
+    public function getNumberOfBedrooms()
+    {
+        return $this->numberOfBedrooms;
+    }
+
+    /**
+     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $numberOfBedrooms
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumberOfBedrooms($numberOfBedrooms)
+    {
+        $types = [
+            "Number",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
             "null",
         ];
 
-        $petsAllowed = self::checkTypes($petsAllowed, $types);
+        $numberOfBedrooms = self::checkTypes($numberOfBedrooms, $types);
 
-        $this->petsAllowed = $petsAllowed;
+        $this->numberOfBedrooms = $numberOfBedrooms;
+    }
+
+    /**
+     * @return Number|null
+     */
+    public function getNumberOfPartialBathrooms()
+    {
+        return $this->numberOfPartialBathrooms;
+    }
+
+    /**
+     * @param Number|null $numberOfPartialBathrooms
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumberOfPartialBathrooms($numberOfPartialBathrooms)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $numberOfPartialBathrooms = self::checkTypes($numberOfPartialBathrooms, $types);
+
+        $this->numberOfPartialBathrooms = $numberOfPartialBathrooms;
     }
 
     /**
@@ -363,31 +362,6 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Accommodation|string
-     */
-    public function getIsPlanForApartment()
-    {
-        return $this->isPlanForApartment;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Accommodation|string $isPlanForApartment
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIsPlanForApartment($isPlanForApartment)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Accommodation",
-            "string",
-        ];
-
-        $isPlanForApartment = self::checkTypes($isPlanForApartment, $types);
-
-        $this->isPlanForApartment = $isPlanForApartment;
-    }
-
-    /**
      * @return Number|null
      */
     public function getNumberOfFullBathrooms()
@@ -413,28 +387,54 @@ class FloorPlan extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     * @return bool|string|null
      */
-    public function getNumberOfAvailableAccommodationUnits()
+    public function getPetsAllowed()
     {
-        return $this->numberOfAvailableAccommodationUnits;
+        return $this->petsAllowed;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $numberOfAvailableAccommodationUnits
+     * @param bool|string|null $petsAllowed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfAvailableAccommodationUnits($numberOfAvailableAccommodationUnits)
+    public function setPetsAllowed($petsAllowed)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "bool",
+            "string",
+            "null",
+        ];
+
+        $petsAllowed = self::checkTypes($petsAllowed, $types);
+
+        $this->petsAllowed = $petsAllowed;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
+     */
+    public function getLayoutImage()
+    {
+        return $this->layoutImage;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $layoutImage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLayoutImage($layoutImage)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ImageObject",
             "string",
         ];
 
-        $numberOfAvailableAccommodationUnits = self::checkTypes($numberOfAvailableAccommodationUnits, $types);
+        $layoutImage = self::checkTypes($layoutImage, $types);
 
-        $this->numberOfAvailableAccommodationUnits = $numberOfAvailableAccommodationUnits;
+        $this->layoutImage = $layoutImage;
     }
 
 }

@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class MedicalCode extends \OpenActive\Models\SchemaOrg\CategoryCode
+class MedicalCode extends \OpenActive\Models\SchemaOrg\MedicalIntangible
 {
     /**
      * @return string[]|null

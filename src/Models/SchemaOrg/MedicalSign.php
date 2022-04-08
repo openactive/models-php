@@ -17,20 +17,12 @@ class MedicalSign extends \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom
 
     public static function fieldList() {
         $fields = [
-            "identifyingExam" => "identifyingExam",
             "identifyingTest" => "identifyingTest",
+            "identifyingExam" => "identifyingExam",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A physical examination that can identify this sign.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\PhysicalExam|string
-     */
-    protected $identifyingExam;
 
     /**
      * A diagnostic test that can identify this sign.
@@ -41,29 +33,12 @@ class MedicalSign extends \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom
     protected $identifyingTest;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PhysicalExam|string
+     * A physical examination that can identify this sign.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PhysicalExam|string
      */
-    public function getIdentifyingExam()
-    {
-        return $this->identifyingExam;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\PhysicalExam|string $identifyingExam
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIdentifyingExam($identifyingExam)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\PhysicalExam",
-            "string",
-        ];
-
-        $identifyingExam = self::checkTypes($identifyingExam, $types);
-
-        $this->identifyingExam = $identifyingExam;
-    }
+    protected $identifyingExam;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MedicalTest|string
@@ -88,6 +63,31 @@ class MedicalSign extends \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom
         $identifyingTest = self::checkTypes($identifyingTest, $types);
 
         $this->identifyingTest = $identifyingTest;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\PhysicalExam|string
+     */
+    public function getIdentifyingExam()
+    {
+        return $this->identifyingExam;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\PhysicalExam|string $identifyingExam
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIdentifyingExam($identifyingExam)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\PhysicalExam",
+            "string",
+        ];
+
+        $identifyingExam = self::checkTypes($identifyingExam, $types);
+
+        $this->identifyingExam = $identifyingExam;
     }
 
 }

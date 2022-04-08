@@ -17,32 +17,16 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "illustrator" => "illustrator",
-            "abridged" => "abridged",
             "isbn" => "isbn",
+            "illustrator" => "illustrator",
             "numberOfPages" => "numberOfPages",
+            "abridged" => "abridged",
             "bookFormat" => "bookFormat",
             "bookEdition" => "bookEdition",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The illustrator of the book.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $illustrator;
-
-    /**
-     * Indicates whether the book is an abridged edition.
-     *
-     *
-     * @var bool|null
-     */
-    protected $abridged;
 
     /**
      * The ISBN of the book.
@@ -53,12 +37,28 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $isbn;
 
     /**
+     * The illustrator of the book.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $illustrator;
+
+    /**
      * The number of pages in the book.
      *
      *
      * @var int|null
      */
     protected $numberOfPages;
+
+    /**
+     * Indicates whether the book is an abridged edition.
+     *
+     *
+     * @var bool|null
+     */
+    protected $abridged;
 
     /**
      * The format of the book.
@@ -75,6 +75,30 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var string
      */
     protected $bookEdition;
+
+    /**
+     * @return string
+     */
+    public function getIsbn()
+    {
+        return $this->isbn;
+    }
+
+    /**
+     * @param string $isbn
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsbn($isbn)
+    {
+        $types = [
+            "string",
+        ];
+
+        $isbn = self::checkTypes($isbn, $types);
+
+        $this->isbn = $isbn;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Person|string
@@ -102,55 +126,6 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return bool|null
-     */
-    public function getAbridged()
-    {
-        return $this->abridged;
-    }
-
-    /**
-     * @param bool|null $abridged
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAbridged($abridged)
-    {
-        $types = [
-            "bool",
-            "null",
-        ];
-
-        $abridged = self::checkTypes($abridged, $types);
-
-        $this->abridged = $abridged;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIsbn()
-    {
-        return $this->isbn;
-    }
-
-    /**
-     * @param string $isbn
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIsbn($isbn)
-    {
-        $types = [
-            "string",
-        ];
-
-        $isbn = self::checkTypes($isbn, $types);
-
-        $this->isbn = $isbn;
-    }
-
-    /**
      * @return int|null
      */
     public function getNumberOfPages()
@@ -173,6 +148,31 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
         $numberOfPages = self::checkTypes($numberOfPages, $types);
 
         $this->numberOfPages = $numberOfPages;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getAbridged()
+    {
+        return $this->abridged;
+    }
+
+    /**
+     * @param bool|null $abridged
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAbridged($abridged)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $abridged = self::checkTypes($abridged, $types);
+
+        $this->abridged = $abridged;
     }
 
     /**

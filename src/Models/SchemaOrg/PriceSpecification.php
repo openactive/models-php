@@ -17,19 +17,59 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
+            "minPrice" => "minPrice",
+            "eligibleQuantity" => "eligibleQuantity",
+            "validFrom" => "validFrom",
+            "maxPrice" => "maxPrice",
+            "priceCurrency" => "priceCurrency",
             "valueAddedTaxIncluded" => "valueAddedTaxIncluded",
             "eligibleTransactionVolume" => "eligibleTransactionVolume",
-            "priceCurrency" => "priceCurrency",
-            "price" => "price",
-            "maxPrice" => "maxPrice",
-            "minPrice" => "minPrice",
-            "validFrom" => "validFrom",
             "validThrough" => "validThrough",
-            "eligibleQuantity" => "eligibleQuantity",
+            "price" => "price",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The lowest price if the price is a range.
+     *
+     *
+     * @var Number|null
+     */
+    protected $minPrice;
+
+    /**
+     * The interval and unit of measurement of ordering quantities for which the offer or price specification is valid. This allows e.g. specifying that a certain freight charge is valid only for a certain quantity.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    protected $eligibleQuantity;
+
+    /**
+     * The date when the item becomes valid.
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $validFrom;
+
+    /**
+     * The highest price if the price is a range.
+     *
+     *
+     * @var Number|null
+     */
+    protected $maxPrice;
+
+    /**
+     * The currency of the price, or a price component when attached to [[PriceSpecification]] and its subtypes.\n\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217) e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies e.g. "BTC"; well known names for [Local Exchange Tradings Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types e.g. "Ithaca HOUR".
+     *
+     *
+     * @var string
+     */
+    protected $priceCurrency;
 
     /**
      * Specifies whether the applicable value-added tax (VAT) is included in the price specification or not.
@@ -48,12 +88,12 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $eligibleTransactionVolume;
 
     /**
-     * The currency of the price, or a price component when attached to [[PriceSpecification]] and its subtypes.\n\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217) e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies e.g. "BTC"; well known names for [Local Exchange Tradings Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types e.g. "Ithaca HOUR".
+     * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
      *
      *
-     * @var string
+     * @var Date|DateTime|null
      */
-    protected $priceCurrency;
+    protected $validThrough;
 
     /**
      * The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.\n\nUsage guidelines:\n\n* Use the [[priceCurrency]] property (with standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217) e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies e.g. "BTC"; well known names for [Local Exchange Tradings Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types e.g. "Ithaca HOUR") instead of including [ambiguous symbols](http://en.wikipedia.org/wiki/Dollar_sign#Currencies_that_use_the_dollar_or_peso_sign) such as '$' in the value.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.\n* Note that both [RDFa](http://www.w3.org/TR/xhtml-rdfa-primer/#using-the-content-attribute) and Microdata syntax allow the use of a "content=" attribute for publishing simple machine-readable values alongside more human-friendly formatting.\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.
@@ -65,44 +105,129 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $price;
 
     /**
-     * The highest price if the price is a range.
-     *
-     *
-     * @var Number|null
+     * @return Number|null
      */
-    protected $maxPrice;
+    public function getMinPrice()
+    {
+        return $this->minPrice;
+    }
 
     /**
-     * The lowest price if the price is a range.
-     *
-     *
-     * @var Number|null
+     * @param Number|null $minPrice
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $minPrice;
+    public function setMinPrice($minPrice)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $minPrice = self::checkTypes($minPrice, $types);
+
+        $this->minPrice = $minPrice;
+    }
 
     /**
-     * The date when the item becomes valid.
-     *
-     *
-     * @var Date|DateTime|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
-    protected $validFrom;
+    public function getEligibleQuantity()
+    {
+        return $this->eligibleQuantity;
+    }
 
     /**
-     * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
-     *
-     *
-     * @var Date|DateTime|null
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $eligibleQuantity
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $validThrough;
+    public function setEligibleQuantity($eligibleQuantity)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
+        ];
+
+        $eligibleQuantity = self::checkTypes($eligibleQuantity, $types);
+
+        $this->eligibleQuantity = $eligibleQuantity;
+    }
 
     /**
-     * The interval and unit of measurement of ordering quantities for which the offer or price specification is valid. This allows e.g. specifying that a certain freight charge is valid only for a certain quantity.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     * @return Date|DateTime|null
      */
-    protected $eligibleQuantity;
+    public function getValidFrom()
+    {
+        return $this->validFrom;
+    }
+
+    /**
+     * @param Date|DateTime|null $validFrom
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValidFrom($validFrom)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $validFrom = self::checkTypes($validFrom, $types);
+
+        $this->validFrom = $validFrom;
+    }
+
+    /**
+     * @return Number|null
+     */
+    public function getMaxPrice()
+    {
+        return $this->maxPrice;
+    }
+
+    /**
+     * @param Number|null $maxPrice
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMaxPrice($maxPrice)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $maxPrice = self::checkTypes($maxPrice, $types);
+
+        $this->maxPrice = $maxPrice;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPriceCurrency()
+    {
+        return $this->priceCurrency;
+    }
+
+    /**
+     * @param string $priceCurrency
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPriceCurrency($priceCurrency)
+    {
+        $types = [
+            "string",
+        ];
+
+        $priceCurrency = self::checkTypes($priceCurrency, $types);
+
+        $this->priceCurrency = $priceCurrency;
+    }
 
     /**
      * @return bool|null
@@ -155,132 +280,6 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string
-     */
-    public function getPriceCurrency()
-    {
-        return $this->priceCurrency;
-    }
-
-    /**
-     * @param string $priceCurrency
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPriceCurrency($priceCurrency)
-    {
-        $types = [
-            "string",
-        ];
-
-        $priceCurrency = self::checkTypes($priceCurrency, $types);
-
-        $this->priceCurrency = $priceCurrency;
-    }
-
-    /**
-     * @return string|Number|null
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * @param string|Number|null $price
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPrice($price)
-    {
-        $types = [
-            "string",
-            "Number",
-            "null",
-        ];
-
-        $price = self::checkTypes($price, $types);
-
-        $this->price = $price;
-    }
-
-    /**
-     * @return Number|null
-     */
-    public function getMaxPrice()
-    {
-        return $this->maxPrice;
-    }
-
-    /**
-     * @param Number|null $maxPrice
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMaxPrice($maxPrice)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $maxPrice = self::checkTypes($maxPrice, $types);
-
-        $this->maxPrice = $maxPrice;
-    }
-
-    /**
-     * @return Number|null
-     */
-    public function getMinPrice()
-    {
-        return $this->minPrice;
-    }
-
-    /**
-     * @param Number|null $minPrice
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMinPrice($minPrice)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $minPrice = self::checkTypes($minPrice, $types);
-
-        $this->minPrice = $minPrice;
-    }
-
-    /**
-     * @return Date|DateTime|null
-     */
-    public function getValidFrom()
-    {
-        return $this->validFrom;
-    }
-
-    /**
-     * @param Date|DateTime|null $validFrom
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setValidFrom($validFrom)
-    {
-        $types = [
-            "Date",
-            "DateTime",
-            "null",
-        ];
-
-        $validFrom = self::checkTypes($validFrom, $types);
-
-        $this->validFrom = $validFrom;
-    }
-
-    /**
      * @return Date|DateTime|null
      */
     public function getValidThrough()
@@ -307,28 +306,29 @@ class PriceSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     * @return string|Number|null
      */
-    public function getEligibleQuantity()
+    public function getPrice()
     {
-        return $this->eligibleQuantity;
+        return $this->price;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $eligibleQuantity
+     * @param string|Number|null $price
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEligibleQuantity($eligibleQuantity)
+    public function setPrice($price)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
+            "Number",
+            "null",
         ];
 
-        $eligibleQuantity = self::checkTypes($eligibleQuantity, $types);
+        $price = self::checkTypes($price, $types);
 
-        $this->eligibleQuantity = $eligibleQuantity;
+        $this->price = $price;
     }
 
 }

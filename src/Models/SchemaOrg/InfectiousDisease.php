@@ -17,29 +17,13 @@ class InfectiousDisease extends \OpenActive\Models\SchemaOrg\MedicalCondition
 
     public static function fieldList() {
         $fields = [
-            "transmissionMethod" => "transmissionMethod",
-            "infectiousAgent" => "infectiousAgent",
             "infectiousAgentClass" => "infectiousAgentClass",
+            "infectiousAgent" => "infectiousAgent",
+            "transmissionMethod" => "transmissionMethod",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * How the disease spreads, either as a route or vector, for example 'direct contact', 'Aedes aegypti', etc.
-     *
-     *
-     * @var string
-     */
-    protected $transmissionMethod;
-
-    /**
-     * The actual infectious agent, such as a specific bacterium.
-     *
-     *
-     * @var string
-     */
-    protected $infectiousAgent;
 
     /**
      * The class of infectious agent (bacteria, prion, etc.) that causes the disease.
@@ -50,27 +34,44 @@ class InfectiousDisease extends \OpenActive\Models\SchemaOrg\MedicalCondition
     protected $infectiousAgentClass;
 
     /**
-     * @return string
+     * The actual infectious agent, such as a specific bacterium.
+     *
+     *
+     * @var string
      */
-    public function getTransmissionMethod()
+    protected $infectiousAgent;
+
+    /**
+     * How the disease spreads, either as a route or vector, for example 'direct contact', 'Aedes aegypti', etc.
+     *
+     *
+     * @var string
+     */
+    protected $transmissionMethod;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\InfectiousAgentClass|string
+     */
+    public function getInfectiousAgentClass()
     {
-        return $this->transmissionMethod;
+        return $this->infectiousAgentClass;
     }
 
     /**
-     * @param string $transmissionMethod
+     * @param \OpenActive\Models\SchemaOrg\InfectiousAgentClass|string $infectiousAgentClass
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTransmissionMethod($transmissionMethod)
+    public function setInfectiousAgentClass($infectiousAgentClass)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\InfectiousAgentClass",
             "string",
         ];
 
-        $transmissionMethod = self::checkTypes($transmissionMethod, $types);
+        $infectiousAgentClass = self::checkTypes($infectiousAgentClass, $types);
 
-        $this->transmissionMethod = $transmissionMethod;
+        $this->infectiousAgentClass = $infectiousAgentClass;
     }
 
     /**
@@ -98,28 +99,27 @@ class InfectiousDisease extends \OpenActive\Models\SchemaOrg\MedicalCondition
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\InfectiousAgentClass|string
+     * @return string
      */
-    public function getInfectiousAgentClass()
+    public function getTransmissionMethod()
     {
-        return $this->infectiousAgentClass;
+        return $this->transmissionMethod;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\InfectiousAgentClass|string $infectiousAgentClass
+     * @param string $transmissionMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setInfectiousAgentClass($infectiousAgentClass)
+    public function setTransmissionMethod($transmissionMethod)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\InfectiousAgentClass",
             "string",
         ];
 
-        $infectiousAgentClass = self::checkTypes($infectiousAgentClass, $types);
+        $transmissionMethod = self::checkTypes($transmissionMethod, $types);
 
-        $this->infectiousAgentClass = $infectiousAgentClass;
+        $this->transmissionMethod = $transmissionMethod;
     }
 
 }

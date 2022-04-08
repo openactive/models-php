@@ -17,29 +17,13 @@ class ProductGroup extends \OpenActive\Models\SchemaOrg\Product
 
     public static function fieldList() {
         $fields = [
-            "variesBy" => "variesBy",
-            "productGroupID" => "productGroupID",
             "hasVariant" => "hasVariant",
+            "productGroupID" => "productGroupID",
+            "variesBy" => "variesBy",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Indicates the property or properties by which the variants in a [[ProductGroup]] vary, e.g. their size, color etc. Schema.org properties can be referenced by their short name e.g. "color"; terms defined elsewhere can be referenced with their URIs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
-     */
-    protected $variesBy;
-
-    /**
-     * Indicates a textual identifier for a ProductGroup.
-     *
-     *
-     * @var string
-     */
-    protected $productGroupID;
 
     /**
      * Indicates a [[Product]] that is a member of this [[ProductGroup]] (or [[ProductModel]]).
@@ -50,28 +34,44 @@ class ProductGroup extends \OpenActive\Models\SchemaOrg\Product
     protected $hasVariant;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     * Indicates a textual identifier for a ProductGroup.
+     *
+     *
+     * @var string
      */
-    public function getVariesBy()
+    protected $productGroupID;
+
+    /**
+     * Indicates the property or properties by which the variants in a [[ProductGroup]] vary, e.g. their size, color etc. Schema.org properties can be referenced by their short name e.g. "color"; terms defined elsewhere can be referenced with their URIs.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     */
+    protected $variesBy;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Product|string
+     */
+    public function getHasVariant()
     {
-        return $this->variesBy;
+        return $this->hasVariant;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $variesBy
+     * @param \OpenActive\Models\SchemaOrg\Product|string $hasVariant
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setVariesBy($variesBy)
+    public function setHasVariant($hasVariant)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "\OpenActive\Models\SchemaOrg\Product",
             "string",
         ];
 
-        $variesBy = self::checkTypes($variesBy, $types);
+        $hasVariant = self::checkTypes($hasVariant, $types);
 
-        $this->variesBy = $variesBy;
+        $this->hasVariant = $hasVariant;
     }
 
     /**
@@ -99,28 +99,28 @@ class ProductGroup extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Product|string
+     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
-    public function getHasVariant()
+    public function getVariesBy()
     {
-        return $this->hasVariant;
+        return $this->variesBy;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Product|string $hasVariant
+     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $variesBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHasVariant($hasVariant)
+    public function setVariesBy($variesBy)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Product",
             "string",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
         ];
 
-        $hasVariant = self::checkTypes($hasVariant, $types);
+        $variesBy = self::checkTypes($variesBy, $types);
 
-        $this->hasVariant = $hasVariant;
+        $this->variesBy = $variesBy;
     }
 
 }

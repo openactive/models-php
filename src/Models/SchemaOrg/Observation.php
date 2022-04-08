@@ -17,15 +17,31 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
+            "measuredValue" => "measuredValue",
+            "observedNode" => "observedNode",
             "measuredProperty" => "measuredProperty",
             "observationDate" => "observationDate",
             "marginOfError" => "marginOfError",
-            "observedNode" => "observedNode",
-            "measuredValue" => "measuredValue",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The measuredValue of an [[Observation]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DataType
+     */
+    protected $measuredValue;
+
+    /**
+     * The observedNode of an [[Observation]], often a [[StatisticalPopulation]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\StatisticalPopulation|string
+     */
+    protected $observedNode;
 
     /**
      * The measuredProperty of an [[Observation]], either a schema.org property, a property from other RDF-compatible systems e.g. W3C RDF Data Cube, or schema.org extensions such as [GS1's](https://www.gs1.org/voc/?show=properties).
@@ -52,20 +68,53 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $marginOfError;
 
     /**
-     * The observedNode of an [[Observation]], often a [[StatisticalPopulation]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\StatisticalPopulation|string
+     * @return \OpenActive\Models\SchemaOrg\DataType
      */
-    protected $observedNode;
+    public function getMeasuredValue()
+    {
+        return $this->measuredValue;
+    }
 
     /**
-     * The measuredValue of an [[Observation]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DataType
+     * @param \OpenActive\Models\SchemaOrg\DataType $measuredValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $measuredValue;
+    public function setMeasuredValue($measuredValue)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DataType",
+        ];
+
+        $measuredValue = self::checkTypes($measuredValue, $types);
+
+        $this->measuredValue = $measuredValue;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\StatisticalPopulation|string
+     */
+    public function getObservedNode()
+    {
+        return $this->observedNode;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\StatisticalPopulation|string $observedNode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setObservedNode($observedNode)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\StatisticalPopulation",
+            "string",
+        ];
+
+        $observedNode = self::checkTypes($observedNode, $types);
+
+        $this->observedNode = $observedNode;
+    }
 
     /**
      * @return string|\OpenActive\Enums\PropertyEnumeration|null
@@ -141,55 +190,6 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
         $marginOfError = self::checkTypes($marginOfError, $types);
 
         $this->marginOfError = $marginOfError;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\StatisticalPopulation|string
-     */
-    public function getObservedNode()
-    {
-        return $this->observedNode;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\StatisticalPopulation|string $observedNode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setObservedNode($observedNode)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\StatisticalPopulation",
-            "string",
-        ];
-
-        $observedNode = self::checkTypes($observedNode, $types);
-
-        $this->observedNode = $observedNode;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DataType
-     */
-    public function getMeasuredValue()
-    {
-        return $this->measuredValue;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DataType $measuredValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMeasuredValue($measuredValue)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DataType",
-        ];
-
-        $measuredValue = self::checkTypes($measuredValue, $types);
-
-        $this->measuredValue = $measuredValue;
     }
 
 }

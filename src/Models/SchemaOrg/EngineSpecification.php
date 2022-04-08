@@ -17,31 +17,15 @@ class EngineSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "torque" => "torque",
-            "engineType" => "engineType",
             "fuelType" => "fuelType",
+            "torque" => "torque",
             "engineDisplacement" => "engineDisplacement",
             "enginePower" => "enginePower",
+            "engineType" => "engineType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The torque (turning force) of the vehicle's engine.\n\nTypical unit code(s): NU for newton metre (N m), F17 for pound-force per foot, or F48 for pound-force per inch\n\n* Note 1: You can link to information about how the given value has been determined (e.g. reference RPM) using the [[valueReference]] property.\n* Note 2: You can use [[minValue]] and [[maxValue]] to indicate ranges.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
-     */
-    protected $torque;
-
-    /**
-     * The type of engine or engines powering the vehicle.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
-     */
-    protected $engineType;
 
     /**
      * The type of fuel suitable for the engine or engines of the vehicle. If the vehicle has only one engine, this property can be attached directly to the vehicle.
@@ -50,6 +34,14 @@ class EngineSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
      * @var string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
      */
     protected $fuelType;
+
+    /**
+     * The torque (turning force) of the vehicle's engine.\n\nTypical unit code(s): NU for newton metre (N m), F17 for pound-force per foot, or F48 for pound-force per inch\n\n* Note 1: You can link to information about how the given value has been determined (e.g. reference RPM) using the [[valueReference]] property.\n* Note 2: You can use [[minValue]] and [[maxValue]] to indicate ranges.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    protected $torque;
 
     /**
      * The volume swept by all of the pistons inside the cylinders of an internal combustion engine in a single movement. \n\nTypical unit code(s): CMQ for cubic centimeter, LTR for liters, INQ for cubic inches\n* Note 1: You can link to information about how the given value has been determined using the [[valueReference]] property.\n* Note 2: You can use [[minValue]] and [[maxValue]] to indicate ranges.
@@ -69,55 +61,12 @@ class EngineSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $enginePower;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     * The type of engine or engines powering the vehicle.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
      */
-    public function getTorque()
-    {
-        return $this->torque;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $torque
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTorque($torque)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "string",
-        ];
-
-        $torque = self::checkTypes($torque, $types);
-
-        $this->torque = $torque;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
-     */
-    public function getEngineType()
-    {
-        return $this->engineType;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null $engineType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEngineType($engineType)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
-            "string",
-            "null",
-        ];
-
-        $engineType = self::checkTypes($engineType, $types);
-
-        $this->engineType = $engineType;
-    }
+    protected $engineType;
 
     /**
      * @return string|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
@@ -143,6 +92,31 @@ class EngineSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
         $fuelType = self::checkTypes($fuelType, $types);
 
         $this->fuelType = $fuelType;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    public function getTorque()
+    {
+        return $this->torque;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $torque
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTorque($torque)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
+        ];
+
+        $torque = self::checkTypes($torque, $types);
+
+        $this->torque = $torque;
     }
 
     /**
@@ -193,6 +167,32 @@ class EngineSpecification extends \OpenActive\Models\SchemaOrg\StructuredValue
         $enginePower = self::checkTypes($enginePower, $types);
 
         $this->enginePower = $enginePower;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     */
+    public function getEngineType()
+    {
+        return $this->engineType;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null $engineType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEngineType($engineType)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
+            "string",
+            "null",
+        ];
+
+        $engineType = self::checkTypes($engineType, $types);
+
+        $this->engineType = $engineType;
     }
 
 }

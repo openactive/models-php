@@ -18,9 +18,9 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
     public static function fieldList() {
         $fields = [
             "domainIncludes" => "domainIncludes",
+            "supersededBy" => "supersededBy",
             "rangeIncludes" => "rangeIncludes",
             "inverseOf" => "inverseOf",
-            "supersededBy" => "supersededBy",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -33,6 +33,14 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
      * @var \OpenActive\Models\SchemaOrg\Class|string
      */
     protected $domainIncludes;
+
+    /**
+     * Relates a term (i.e. a property, class or enumeration) to one that supersedes it.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|\OpenActive\Enums\PropertyEnumeration|null
+     */
+    protected $supersededBy;
 
     /**
      * Relates a property to a class that constitutes (one of) the expected type(s) for values of the property.
@@ -49,14 +57,6 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
      * @var string|\OpenActive\Enums\PropertyEnumeration|null
      */
     protected $inverseOf;
-
-    /**
-     * Relates a term (i.e. a property, class or enumeration) to one that supersedes it.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Class|\OpenActive\Models\SchemaOrg\Enumeration|string|\OpenActive\Enums\PropertyEnumeration|null
-     */
-    protected $supersededBy;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Class|string
@@ -81,6 +81,34 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
         $domainIncludes = self::checkTypes($domainIncludes, $types);
 
         $this->domainIncludes = $domainIncludes;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|\OpenActive\Enums\PropertyEnumeration|null
+     */
+    public function getSupersededBy()
+    {
+        return $this->supersededBy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|\OpenActive\Enums\PropertyEnumeration|null $supersededBy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSupersededBy($supersededBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Enumeration",
+            "\OpenActive\Models\SchemaOrg\Class",
+            "string",
+            "\OpenActive\Enums\PropertyEnumeration",
+            "null",
+        ];
+
+        $supersededBy = self::checkTypes($supersededBy, $types);
+
+        $this->supersededBy = $supersededBy;
     }
 
     /**
@@ -132,34 +160,6 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
         $inverseOf = self::checkTypes($inverseOf, $types);
 
         $this->inverseOf = $inverseOf;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Class|\OpenActive\Models\SchemaOrg\Enumeration|string|\OpenActive\Enums\PropertyEnumeration|null
-     */
-    public function getSupersededBy()
-    {
-        return $this->supersededBy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Class|\OpenActive\Models\SchemaOrg\Enumeration|string|\OpenActive\Enums\PropertyEnumeration|null $supersededBy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSupersededBy($supersededBy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Class",
-            "\OpenActive\Models\SchemaOrg\Enumeration",
-            "string",
-            "\OpenActive\Enums\PropertyEnumeration",
-            "null",
-        ];
-
-        $supersededBy = self::checkTypes($supersededBy, $types);
-
-        $this->supersededBy = $supersededBy;
     }
 
 }
