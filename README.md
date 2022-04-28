@@ -116,17 +116,17 @@ use OpenActive\Rpde\RpdeItem;
 
 $feedItems = [
     new RpdeItem([
-        "Id" => "2",
-        "Modified" => 4,
-        "State" => RpdeState::UPDATED,
-        "Kind" => RpdeKind::SESSION_SERIES,
-        "Data" => $sessionSeries2,
+        "id" => "2",
+        "modified" => 4,
+        "state" => RpdeState::UPDATED,
+        "kind" => RpdeKind::SESSION_SERIES,
+        "data" => $sessionSeries2,
     ]),
     new RpdeItem([
-        "Id" => "1",
-        "Modified" => 5,
-        "State" => RpdeState::DELETED,
-        "Kind" => RpdeKind::SESSION_SERIES,
+        "id" => "1",
+        "modified" => 5,
+        "state" => RpdeState::DELETED,
+        "kind" => RpdeKind::SESSION_SERIES,
     ]),
 ];
 ```
