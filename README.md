@@ -158,8 +158,8 @@ use OpenActive\Rpde\RpdeBody;
 
 $feedPage = RpdeBody::createFromModifiedId(
     'https://www.example.com/rpde-feeds/session-series', # $feedBaseUrl
-    0, # $id
     0, # $modified,
+    0, # $id
     $feedItems
 );
 
