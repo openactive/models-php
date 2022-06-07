@@ -127,7 +127,7 @@ class JsonLd
             $data[$attrName] = $attrValue;
 
             foreach ($modifiers as $modifier) {
-                $data[$attrName] = $modifier($fq_classname, $attrName, $data[$attrName]);
+                $data[$attrName] = $modifier($fq_classname, $attrName, $data[$attrName], $obj);
             }
         }
 
