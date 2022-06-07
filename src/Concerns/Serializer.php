@@ -64,7 +64,7 @@ trait Serializer
 
         foreach ($data as $key => $value) {
             foreach ($modifiers as $modifier) {
-                $value = $modifier($class, $key, $value);
+                $value = $modifier($class, $key, $value, $self);
             }
             $self->defineProperty($key, $value);
         }
