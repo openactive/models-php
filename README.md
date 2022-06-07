@@ -16,6 +16,7 @@ OpenActive aims to provide model files for all classes defined in its Opportunit
     - [Serialization](#serialization)
         - [`serialize($obj, $prettyPrint = false)`](#serializeobj-prettyprint--false)
         - [`deserialize($data)`](#deserializedata)
+        - [Modifiers](#modifiers)
 - [Contributing](#contributing)
 
 ## Requirements
@@ -366,7 +367,7 @@ date format you could do this:
 use OpenActive\Models\OA\SessionSeries;
 
 echo SessionSeries::serialize($sessionSeries, true, false, [
-    function ($class, $key, $value) {
+    function ($class, $key, $value, $object) {
       if (!in_array($key, ['startDate', 'endDate'])) {
         return $value;
       }
@@ -378,12 +379,14 @@ echo SessionSeries::serialize($sessionSeries, true, false, [
 The given modifiers **MUST** adhere to this method signature:
 
 ```
-function (string $class, string $key, mixed $value): mixed
+function (string $class, string $key, mixed $value, mixed $object): mixed
 ```
 
 Each modifier **MUST** always respond with a value, as the modifiers are always applied. If it does not return a value
 all the data in your object will be wiped during serialization. You **SHOULD** use the `$class` and `$key` parameters to
-determine if the modifier should run for the parameter, and simply return the `$value` if it is not necessary.
+determine if the modifier should run for the parameter, and simply return the `$value` if it is not necessary. The
+`$object` parameter is also available for modifiers which require further information from the 
+parent object.
 
 Modifiers can also be added to the Deserialization process, and are applied *before* the property is set. This can be
 useful when having to handle migration paths as changes happen in the library, or to fix data coming from an
@@ -394,7 +397,7 @@ you could do this:
 use OpenActive\Models\OA\SessionSeries;
 
 $session = SessionSeries::deserialize('{...}', [
-    function ($class, $key, $value) {
+    function ($class, $key, $value, $object) {
       if (!in_array($key, ['startDate', 'endDate'])) {
         return $value;
       }
@@ -402,6 +405,8 @@ $session = SessionSeries::deserialize('{...}', [
     }
 ]);
 ```
+
+Example & helper modifiers can be found in the `src/Modifiers` directory.
 
 ## Contributing
 
