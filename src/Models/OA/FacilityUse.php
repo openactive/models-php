@@ -43,6 +43,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
             "video" => "beta:video",
             "sportsActivityLocation" => "beta:sportsActivityLocation",
             "offerValidityPeriod" => "beta:offerValidityPeriod",
+            "facilityAttribute" => "beta:facilityAttribute",
             "facilitySetting" => "beta:facilitySetting",
             "bookingChannel" => "beta:bookingChannel",
         ];
@@ -310,7 +311,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * }
      * ```
      *
-     * @var \OpenActive\Models\OA\Place
+     * @var \OpenActive\Models\OA\Place|string
      */
     protected $location;
 
@@ -398,7 +399,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * If you are using this property, please join the discussion at proposal [#110](https://github.com/openactive/modelling-opportunity-data/issues/110).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SportsActivityLocation[]
+     * @var \OpenActive\Models\OA\SportsActivityLocation[]
      */
     protected $sportsActivityLocation;
 
@@ -412,6 +413,17 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
      * @var DateInterval|null
      */
     protected $offerValidityPeriod;
+
+    /**
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
+     * Attributes associated with the facility in use. See https://openactive.io/facility-attribute-list/.
+     * 
+     * If you are using this property, please join the discussion at proposal [#1](https://github.com/openactive/facility-types/issues/1).
+     *
+     *
+     * @var \OpenActive\Models\OA\Concept[]
+     */
+    protected $facilityAttribute;
 
     /**
      * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
@@ -828,7 +840,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\OA\Place
+     * @return \OpenActive\Models\OA\Place|string
      */
     public function getLocation()
     {
@@ -836,7 +848,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param \OpenActive\Models\OA\Place $location
+     * @param \OpenActive\Models\OA\Place|string $location
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -844,6 +856,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     {
         $types = [
             "\OpenActive\Models\OA\Place",
+            "string",
         ];
 
         $location = self::checkTypes($location, $types);
@@ -997,7 +1010,7 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SportsActivityLocation[]
+     * @return \OpenActive\Models\OA\SportsActivityLocation[]
      */
     public function getSportsActivityLocation()
     {
@@ -1005,14 +1018,14 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SportsActivityLocation[] $sportsActivityLocation
+     * @param \OpenActive\Models\OA\SportsActivityLocation[] $sportsActivityLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSportsActivityLocation($sportsActivityLocation)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\SportsActivityLocation[]",
+            "\OpenActive\Models\OA\SportsActivityLocation[]",
         ];
 
         $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);
@@ -1043,6 +1056,30 @@ class FacilityUse extends \OpenActive\Models\SchemaOrg\Product
         $offerValidityPeriod = self::checkTypes($offerValidityPeriod, $types);
 
         $this->offerValidityPeriod = $offerValidityPeriod;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\Concept[]
+     */
+    public function getFacilityAttribute()
+    {
+        return $this->facilityAttribute;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\Concept[] $facilityAttribute
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFacilityAttribute($facilityAttribute)
+    {
+        $types = [
+            "\OpenActive\Models\OA\Concept[]",
+        ];
+
+        $facilityAttribute = self::checkTypes($facilityAttribute, $types);
+
+        $this->facilityAttribute = $facilityAttribute;
     }
 
     /**

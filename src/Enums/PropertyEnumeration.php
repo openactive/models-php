@@ -32,6 +32,7 @@ class PropertyEnumeration
     const CustomerNotice = \OpenActive\Enums\PropertyEnumeration\CustomerNotice::class;
     const EligibleEntitlementType = \OpenActive\Enums\PropertyEnumeration\EligibleEntitlementType::class;
     const EmergencyContact = \OpenActive\Enums\PropertyEnumeration\EmergencyContact::class;
+    const EndpointUrl = \OpenActive\Enums\PropertyEnumeration\EndpointUrl::class;
     const Entitlement = \OpenActive\Enums\PropertyEnumeration\Entitlement::class;
     const EntitlementType = \OpenActive\Enums\PropertyEnumeration\EntitlementType::class;
     const EvidenceRequestAction = \OpenActive\Enums\PropertyEnumeration\EvidenceRequestAction::class;

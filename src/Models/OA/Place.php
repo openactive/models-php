@@ -25,6 +25,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
             "amenityFeature" => "amenityFeature",
             "containedInPlace" => "containedInPlace",
             "containsPlace" => "containsPlace",
+            "email" => "email",
             "geo" => "geo",
             "image" => "image",
             "openingHoursSpecification" => "openingHoursSpecification",
@@ -33,6 +34,8 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
             "url" => "url",
             "formattedDescription" => "beta:formattedDescription",
             "video" => "beta:video",
+            "virtualTour" => "beta:virtualTour",
+            "serviceOperator" => "beta:serviceOperator",
             "placeType" => "beta:placeType",
         ];
 
@@ -92,7 +95,7 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     protected $address;
 
     /**
-     * An array listing the Ammenities of the Place.
+     * An array listing the Amenities of the Place.
      *
      * ```json
      * "amenityFeature": [
@@ -162,6 +165,17 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * @var \OpenActive\Models\OA\Place[]
      */
     protected $containsPlace;
+
+    /**
+     * General enquiries e-mail address for the Place.
+     *
+     * ```json
+     * "email": "info@example.com"
+     * ```
+     *
+     * @var string
+     */
+    protected $email;
 
     /**
      * The geo coordinates of the Place.
@@ -254,6 +268,28 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
      * @var \OpenActive\Models\OA\VideoObject[]
      */
     protected $video;
+
+    /**
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
+     * A related virtual tour.
+     * 
+     * If you are using this property, please join the discussion at proposal [#306](https://github.com/openactive/modelling-opportunity-data/issues/306).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\3DModel[]
+     */
+    protected $virtualTour;
+
+    /**
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
+     * The organization responsible for the operation of the `Place`.
+     * 
+     * If you are using this property, please join the discussion at proposal [#307](https://github.com/openactive/modelling-opportunity-data/issues/307).
+     *
+     *
+     * @var \OpenActive\Models\OA\Organization
+     */
+    protected $serviceOperator;
 
     /**
      * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
@@ -438,6 +474,30 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
         $containsPlace = self::checkTypes($containsPlace, $types);
 
         $this->containsPlace = $containsPlace;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEmail($email)
+    {
+        $types = [
+            "string",
+        ];
+
+        $email = self::checkTypes($email, $types);
+
+        $this->email = $email;
     }
 
     /**
@@ -630,6 +690,54 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
         $video = self::checkTypes($video, $types);
 
         $this->video = $video;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\3DModel[]
+     */
+    public function getVirtualTour()
+    {
+        return $this->virtualTour;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\3DModel[] $virtualTour
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVirtualTour($virtualTour)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\3DModel[]",
+        ];
+
+        $virtualTour = self::checkTypes($virtualTour, $types);
+
+        $this->virtualTour = $virtualTour;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\Organization
+     */
+    public function getServiceOperator()
+    {
+        return $this->serviceOperator;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\Organization $serviceOperator
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setServiceOperator($serviceOperator)
+    {
+        $types = [
+            "\OpenActive\Models\OA\Organization",
+        ];
+
+        $serviceOperator = self::checkTypes($serviceOperator, $types);
+
+        $this->serviceOperator = $serviceOperator;
     }
 
     /**
