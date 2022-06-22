@@ -4,7 +4,7 @@ namespace OpenActive\Modifiers;
 
 class OrdersFeedModifier
 {
-    public function __invoke(string $class, string $key, $value)
+    public function __invoke($class, $key, $value)
     {
         if (in_array($key, [
             'orderNumber',
