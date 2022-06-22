@@ -82,7 +82,7 @@ class OrdersFeedModifierTest extends TestCase
      *
      * @return Order
      */
-    protected function getTestOrder(): Order
+    protected function getTestOrder()
     {
         return new Order([
             'id' => 'https://testseller.local/orders/00000000-0000-0000-0000-000000000000',
