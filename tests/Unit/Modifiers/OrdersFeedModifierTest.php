@@ -69,7 +69,7 @@ class OrdersFeedModifierTest extends TestCase
         $this->assertArrayNotHasKey('brokerRole', $decoded);
         $this->assertArrayNotHasKey('payment', $decoded);
 
-        // Check that the orderedItem(s) don't have the position element
+        // Check that the orderedItem(s) don't have the position key
         $orderedItem = $decoded['orderedItem'];
         foreach ($orderedItem as $item) {
             $this->assertArrayNotHasKey('position', $item);
