@@ -18,6 +18,7 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
 
     public static function fieldList() {
         $fields = [
+            "organizer" => "organizer",
             "startDate" => "startDate",
             "endDate" => "endDate",
             "subEvent" => "subEvent",
@@ -26,6 +27,23 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The person or organization ultimately responsible for an event. An organizer might be an  schema:Organization or a schema:Person.
+     *
+     * ```json
+     * "organizer": {
+     *   "@type": "Organization",
+     *   "@id": "https://id.bookingsystem.example.com/organizers/1",
+     *   "name": "Central Speedball Association",
+     *   "url": "http://www.speedball-world.com"
+     * }
+     * ```
+     *
+     * @var \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    protected $organizer;
 
     /**
      * The start date and time of the event.
@@ -66,6 +84,33 @@ class ScheduledSession extends \OpenActive\Models\OA\Event
      * @var \OpenActive\Models\OA\Event|string
      */
     protected $superEvent;
+
+    /**
+     * @return \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function getOrganizer()
+    {
+        return $this->organizer;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\Person|\OpenActive\Models\OA\Organization $organizer
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * @deprecated This property is disinherited in this type, and must not be used.
+     */
+    public function setOrganizer($organizer)
+    {
+        $types = [
+            "\OpenActive\Models\OA\Person",
+            "\OpenActive\Models\OA\Organization",
+        ];
+
+        $organizer = self::checkTypes($organizer, $types);
+
+        $this->organizer = $organizer;
+    }
 
     /**
      * @return DateTime|null
