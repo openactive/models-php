@@ -390,7 +390,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * }
      * ```
      *
-     * @var \OpenActive\Models\OA\Place
+     * @var \OpenActive\Models\OA\Place|string
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $location;
@@ -570,7 +570,7 @@ class Slot extends \OpenActive\Models\OA\Event
      * If you are using this property, please join the discussion at proposal [#110](https://github.com/openactive/modelling-opportunity-data/issues/110).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SportsActivityLocation[]
+     * @var \OpenActive\Models\OA\SportsActivityLocation[]
      */
     protected $sportsActivityLocation;
 
@@ -1128,7 +1128,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return \OpenActive\Models\OA\Place
+     * @return \OpenActive\Models\OA\Place|string
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getLocation()
@@ -1137,7 +1137,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param \OpenActive\Models\OA\Place $location
+     * @param \OpenActive\Models\OA\Place|string $location
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -1146,6 +1146,7 @@ class Slot extends \OpenActive\Models\OA\Event
     {
         $types = [
             "\OpenActive\Models\OA\Place",
+            "string",
         ];
 
         $location = self::checkTypes($location, $types);
@@ -1513,7 +1514,7 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SportsActivityLocation[]
+     * @return \OpenActive\Models\OA\SportsActivityLocation[]
      */
     public function getSportsActivityLocation()
     {
@@ -1521,14 +1522,14 @@ class Slot extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SportsActivityLocation[] $sportsActivityLocation
+     * @param \OpenActive\Models\OA\SportsActivityLocation[] $sportsActivityLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSportsActivityLocation($sportsActivityLocation)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\SportsActivityLocation[]",
+            "\OpenActive\Models\OA\SportsActivityLocation[]",
         ];
 
         $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);

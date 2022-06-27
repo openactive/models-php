@@ -19,6 +19,7 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
     public static function fieldList() {
         $fields = [
             "name" => "name",
+            "hasCredential" => "hasCredential",
             "softwareVersion" => "softwareVersion",
             "termsOfService" => "termsOfService",
             "url" => "url",
@@ -34,6 +35,14 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
      * @var string
      */
     protected $name;
+
+    /**
+     * A human and machine-readable certification file that asserts the service's conformance to established standards. The value of this property should be a URL that resolves to a valid and up-to-date OpenActive Test Suite Conformance Certificate for this implementation. Note this property is in EARLY RELEASE AND IS SUBJECT TO CHANGE, as the [Dataset API Discovery specification](https://openactive.io/dataset-api-discovery/EditorsDraft/) evolves.
+     *
+     *
+     * @var string
+     */
+    protected $hasCredential;
 
     /**
      * The version of the application, useful for on-premise installations. Note this property is in EARLY RELEASE AND IS SUBJECT TO CHANGE, as the [Dataset API Discovery specification](https://openactive.io/dataset-api-discovery/EditorsDraft/) evolves.
@@ -81,6 +90,30 @@ class BookingService extends \OpenActive\Models\SchemaOrg\Service
         $name = self::checkTypes($name, $types);
 
         $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHasCredential()
+    {
+        return $this->hasCredential;
+    }
+
+    /**
+     * @param string $hasCredential
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasCredential($hasCredential)
+    {
+        $types = [
+            "string",
+        ];
+
+        $hasCredential = self::checkTypes($hasCredential, $types);
+
+        $this->hasCredential = $hasCredential;
     }
 
     /**

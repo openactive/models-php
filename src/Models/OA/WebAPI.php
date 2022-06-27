@@ -27,7 +27,7 @@ class WebAPI extends \OpenActive\BaseModel
             "conformsTo" => "conformsTo",
             "documentation" => "documentation",
             "endpointDescription" => "endpointDescription",
-            "endpointURL" => "endpointURL",
+            "endpointUrl" => "endpointUrl",
             "landingPage" => "landingPage",
             "termsOfService" => "termsOfService",
         ];
@@ -107,12 +107,12 @@ class WebAPI extends \OpenActive\BaseModel
      * The base URL of the Open Booking API
      *
      * ```json
-     * "endpointURL": "https://example.bookingsystem.com/api/openbooking"
+     * "endpointUrl": "https://example.bookingsystem.com/api/openbooking"
      * ```
      *
      * @var string
      */
-    protected $endpointURL;
+    protected $endpointUrl;
 
     /**
      * The web page the broker uses to obtain access to the API, e.g. via a web form.
@@ -283,25 +283,25 @@ class WebAPI extends \OpenActive\BaseModel
     /**
      * @return string
      */
-    public function getEndpointURL()
+    public function getEndpointUrl()
     {
-        return $this->endpointURL;
+        return $this->endpointUrl;
     }
 
     /**
-     * @param string $endpointURL
+     * @param string $endpointUrl
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEndpointURL($endpointURL)
+    public function setEndpointUrl($endpointUrl)
     {
         $types = [
             "string",
         ];
 
-        $endpointURL = self::checkTypes($endpointURL, $types);
+        $endpointUrl = self::checkTypes($endpointUrl, $types);
 
-        $this->endpointURL = $endpointURL;
+        $this->endpointUrl = $endpointUrl;
     }
 
     /**

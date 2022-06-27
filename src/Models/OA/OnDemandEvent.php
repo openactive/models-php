@@ -87,7 +87,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
      * }
      * ```
      *
-     * @var \OpenActive\Models\OA\Place
+     * @var \OpenActive\Models\OA\Place|string
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $location;
@@ -270,7 +270,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return \OpenActive\Models\OA\Place
+     * @return \OpenActive\Models\OA\Place|string
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getLocation()
@@ -279,7 +279,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param \OpenActive\Models\OA\Place $location
+     * @param \OpenActive\Models\OA\Place|string $location
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -288,6 +288,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     {
         $types = [
             "\OpenActive\Models\OA\Place",
+            "string",
         ];
 
         $location = self::checkTypes($location, $types);
