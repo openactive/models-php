@@ -39,7 +39,7 @@ class OrdersFeedModifierTest extends TestCase
 
 
         // Serialise and decode the order
-        $serialized = $order::serialize($order);
+        $serialized = Order::serialize($order);
         $decoded = json_decode($serialized, true);
 
         // Check that the test order has the keys without the serialization filter
