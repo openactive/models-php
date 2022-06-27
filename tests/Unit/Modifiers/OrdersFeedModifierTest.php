@@ -56,7 +56,7 @@ class OrdersFeedModifierTest extends TestCase
 
         // Serialise and decode the order again,
         // this time with the Orders feed filter
-        $serialized = $order::serialize($order, false, false, [
+        $serialized = Order::serialize($order, false, false, [
             new OrdersFeedModifier()
         ]);
         $decoded = json_decode($serialized, true);
