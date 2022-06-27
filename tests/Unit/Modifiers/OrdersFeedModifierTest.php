@@ -20,8 +20,6 @@ use PHPUnit\Framework\TestCase;
 
 class OrdersFeedModifierTest extends TestCase
 {
-    protected $testKeys = ['orderNumber', 'seller', 'customer', 'broker', 'brokerRole', 'payment', 'position'];
-
     /**
      * Check that the Order RPDE Feed serialization filter correctly
      * filters elements out of orders that should not be in the RPDE
@@ -34,20 +32,19 @@ class OrdersFeedModifierTest extends TestCase
         // Generate a test order
         $order = $this->getTestOrder();
 
-
         // Check the order has the items we're going to filter out
-
 
         // Serialise and decode the order
         $serialized = Order::serialize($order);
         $decoded = json_decode($serialized, true);
 
         // Check that the test order has the keys without the serialization filter
-        foreach ($this->testKeys as $key) {
-            if ($key != 'position') { // not a top level key
-                $this->assertArrayHasKey($key, $decoded);
-            }
-        }
+        $this->assertArrayHasKey('orderNumber', $decoded);
+        $this->assertArrayHasKey('seller', $decoded);
+        $this->assertArrayHasKey('customer', $decoded);
+        $this->assertArrayHasKey('broker', $decoded);
+        $this->assertArrayHasKey('brokerRole', $decoded);
+        $this->assertArrayHasKey('payment', $decoded);
 
         // Check the orderedItem(s) have the position key
         $orderedItem = $decoded['orderedItem'];
@@ -57,7 +54,6 @@ class OrdersFeedModifierTest extends TestCase
 
         // Test the filter
 
-
         // Serialise and decode the order again,
         // this time with the Orders feed filter
         $serialized = $order::serialize($order, false, false, [
@@ -66,9 +62,12 @@ class OrdersFeedModifierTest extends TestCase
         $decoded = json_decode($serialized, true);
 
         // Check the keys have been removed
-        foreach ($this->testKeys as $key) {
-            $this->assertArrayNotHasKey($key, $decoded);
-        }
+        $this->assertArrayNotHasKey('orderNumber', $decoded);
+        $this->assertArrayNotHasKey('seller', $decoded);
+        $this->assertArrayNotHasKey('customer', $decoded);
+        $this->assertArrayNotHasKey('broker', $decoded);
+        $this->assertArrayNotHasKey('brokerRole', $decoded);
+        $this->assertArrayNotHasKey('payment', $decoded);
 
         // Check that the orderedItem(s) don't have the position element
         $orderedItem = $decoded['orderedItem'];
