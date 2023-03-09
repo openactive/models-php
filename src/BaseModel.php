@@ -129,9 +129,12 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
 
         if ($type) {
             // If type is schema.org target right namespace
-            if(strpos($type, "schema:") === 0) {
-                $classname = "\\OpenActive\\Models\\SchemaOrg\\".
+            if (strpos($type, "schema:") === 0) {
+                $classname = "\\OpenActive\\Models\\SchemaOrg\\" .
                     str_replace("schema:", "", $type);
+            } elseif (strpos($type, "playfinder:") === 0) {
+                $classname = "\\OpenActive\\Models\\Playfinder\\" .
+                    str_replace("playfinder:", "", $type);
             } else {
                 $classname = "\\OpenActive\\Models\\OA\\".
                     // If the type is in beta, remove the prefix to resolve the model
