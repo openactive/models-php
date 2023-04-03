@@ -41,7 +41,7 @@ jobs:
         
       - name: Create Pull Request
         id: cpr
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v4
         with:
           path: ./models-php/
           token: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
@@ -56,9 +56,6 @@ jobs:
             Update PHP data models to the latest version based on the [OpenActive Vocabulary](https://openactive.io/ns/) (codified by the [Data Models](https://github.com/openactive/data-models)), [Test Interface](https://openactive.io/test-interface/) and [Beta Namespace](https://openactive.io/ns-beta/).
           labels: |
             automated pr
-          team-reviewers: |
-            owners
-            maintainers
           draft: false
 
       - name: Check outputs
