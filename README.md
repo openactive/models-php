@@ -414,7 +414,7 @@ Example & helper modifiers can be found in the `src/Modifiers` directory.
 **Please note:** [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos) is required for dependency management.
 
 ```bash
-git clone https://github.com/openactive/models-php.git
+git clone git@github.com:openactive/models-php.git
 cd models-php
 composer install
 ```
