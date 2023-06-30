@@ -20,10 +20,8 @@ class AggregateFacilityUseProviderModifier
 {
     public function __invoke($class, $key, $value)
     {
-        if ($key == 'aggregateFacilityUse') {
-            if (isset($value['provider'])) {
-                unset($value['provider']);
-            }
+        if ($key == 'aggregateFacilityUse' && isset($value['provider'])) {
+            unset($value['provider']);
         }
 
         return $value;
