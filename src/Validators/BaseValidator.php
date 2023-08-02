@@ -4,6 +4,8 @@ namespace OpenActive\Validators;
 
 class BaseValidator implements ValidatorInterface
 {
+    protected string $classname;
+
     /**
      * Coerce given value to the type the validator is validating against.
      * PLEASE NOTE: no checks are performed on the given $value.
