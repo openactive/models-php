@@ -17,13 +17,29 @@ class Claim extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "claimInterpreter" => "claimInterpreter",
             "firstAppearance" => "firstAppearance",
             "appearance" => "appearance",
+            "claimInterpreter" => "claimInterpreter",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Indicates the first known occurrence of a [[Claim]] in some [[CreativeWork]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    protected $firstAppearance;
+
+    /**
+     * Indicates an occurrence of a [[Claim]] in some [[CreativeWork]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    protected $appearance;
 
     /**
      * For a [[Claim]] interpreted from [[MediaObject]] content
@@ -33,48 +49,6 @@ class Claim extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
     protected $claimInterpreter;
-
-    /**
-     * Indicates the first known occurence of a [[Claim]] in some [[CreativeWork]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
-     */
-    protected $firstAppearance;
-
-    /**
-     * Indicates an occurence of a [[Claim]] in some [[CreativeWork]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
-     */
-    protected $appearance;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getClaimInterpreter()
-    {
-        return $this->claimInterpreter;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $claimInterpreter
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setClaimInterpreter($claimInterpreter)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "string",
-        ];
-
-        $claimInterpreter = self::checkTypes($claimInterpreter, $types);
-
-        $this->claimInterpreter = $claimInterpreter;
-    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
@@ -124,6 +98,32 @@ class Claim extends \OpenActive\Models\SchemaOrg\CreativeWork
         $appearance = self::checkTypes($appearance, $types);
 
         $this->appearance = $appearance;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getClaimInterpreter()
+    {
+        return $this->claimInterpreter;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $claimInterpreter
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setClaimInterpreter($claimInterpreter)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $claimInterpreter = self::checkTypes($claimInterpreter, $types);
+
+        $this->claimInterpreter = $claimInterpreter;
     }
 
 }

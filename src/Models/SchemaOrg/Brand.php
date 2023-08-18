@@ -17,22 +17,14 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "review" => "review",
             "aggregateRating" => "aggregateRating",
-            "slogan" => "slogan",
             "logo" => "logo",
+            "slogan" => "slogan",
+            "review" => "review",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A review of the item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Review|string
-     */
-    protected $review;
 
     /**
      * The overall rating, based on a collection of reviews or ratings, of the item.
@@ -43,6 +35,14 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $aggregateRating;
 
     /**
+     * An associated logo.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
+     */
+    protected $logo;
+
+    /**
      * A slogan or motto associated with the item.
      *
      *
@@ -51,37 +51,12 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $slogan;
 
     /**
-     * An associated logo.
+     * A review of the item.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\ImageObject
+     * @var \OpenActive\Models\SchemaOrg\Review|string
      */
-    protected $logo;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Review|string
-     */
-    public function getReview()
-    {
-        return $this->review;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Review|string $review
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReview($review)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Review",
-            "string",
-        ];
-
-        $review = self::checkTypes($review, $types);
-
-        $this->review = $review;
-    }
+    protected $review;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\AggregateRating|string
@@ -109,6 +84,31 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $logo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLogo($logo)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ImageObject",
+            "string",
+        ];
+
+        $logo = self::checkTypes($logo, $types);
+
+        $this->logo = $logo;
+    }
+
+    /**
      * @return string
      */
     public function getSlogan()
@@ -133,28 +133,28 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\ImageObject
+     * @return \OpenActive\Models\SchemaOrg\Review|string
      */
-    public function getLogo()
+    public function getReview()
     {
-        return $this->logo;
+        return $this->review;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\ImageObject $logo
+     * @param \OpenActive\Models\SchemaOrg\Review|string $review
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLogo($logo)
+    public function setReview($review)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\Review",
             "string",
-            "\OpenActive\Models\SchemaOrg\ImageObject",
         ];
 
-        $logo = self::checkTypes($logo, $types);
+        $review = self::checkTypes($review, $types);
 
-        $this->logo = $logo;
+        $this->review = $review;
     }
 
 }

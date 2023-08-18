@@ -17,16 +17,48 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
+            "numberOfPages" => "numberOfPages",
+            "bookEdition" => "bookEdition",
+            "bookFormat" => "bookFormat",
+            "abridged" => "abridged",
             "isbn" => "isbn",
             "illustrator" => "illustrator",
-            "numberOfPages" => "numberOfPages",
-            "abridged" => "abridged",
-            "bookFormat" => "bookFormat",
-            "bookEdition" => "bookEdition",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The number of pages in the book.
+     *
+     *
+     * @var int|null
+     */
+    protected $numberOfPages;
+
+    /**
+     * The edition of the book.
+     *
+     *
+     * @var string
+     */
+    protected $bookEdition;
+
+    /**
+     * The format of the book.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\BookFormatType|null
+     */
+    protected $bookFormat;
+
+    /**
+     * Indicates whether the book is an abridged edition.
+     *
+     *
+     * @var bool|null
+     */
+    protected $abridged;
 
     /**
      * The ISBN of the book.
@@ -45,36 +77,103 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $illustrator;
 
     /**
-     * The number of pages in the book.
-     *
-     *
-     * @var int|null
+     * @return int|null
      */
-    protected $numberOfPages;
+    public function getNumberOfPages()
+    {
+        return $this->numberOfPages;
+    }
 
     /**
-     * Indicates whether the book is an abridged edition.
-     *
-     *
-     * @var bool|null
+     * @param int|null $numberOfPages
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $abridged;
+    public function setNumberOfPages($numberOfPages)
+    {
+        $types = [
+            "int",
+            "null",
+        ];
+
+        $numberOfPages = self::checkTypes($numberOfPages, $types);
+
+        $this->numberOfPages = $numberOfPages;
+    }
 
     /**
-     * The format of the book.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\BookFormatType|null
+     * @return string
      */
-    protected $bookFormat;
+    public function getBookEdition()
+    {
+        return $this->bookEdition;
+    }
 
     /**
-     * The edition of the book.
-     *
-     *
-     * @var string
+     * @param string $bookEdition
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $bookEdition;
+    public function setBookEdition($bookEdition)
+    {
+        $types = [
+            "string",
+        ];
+
+        $bookEdition = self::checkTypes($bookEdition, $types);
+
+        $this->bookEdition = $bookEdition;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\BookFormatType|null
+     */
+    public function getBookFormat()
+    {
+        return $this->bookFormat;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\BookFormatType|null $bookFormat
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBookFormat($bookFormat)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\BookFormatType",
+            "null",
+        ];
+
+        $bookFormat = self::checkTypes($bookFormat, $types);
+
+        $this->bookFormat = $bookFormat;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getAbridged()
+    {
+        return $this->abridged;
+    }
+
+    /**
+     * @param bool|null $abridged
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAbridged($abridged)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $abridged = self::checkTypes($abridged, $types);
+
+        $this->abridged = $abridged;
+    }
 
     /**
      * @return string
@@ -123,105 +222,6 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
         $illustrator = self::checkTypes($illustrator, $types);
 
         $this->illustrator = $illustrator;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getNumberOfPages()
-    {
-        return $this->numberOfPages;
-    }
-
-    /**
-     * @param int|null $numberOfPages
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNumberOfPages($numberOfPages)
-    {
-        $types = [
-            "int",
-            "null",
-        ];
-
-        $numberOfPages = self::checkTypes($numberOfPages, $types);
-
-        $this->numberOfPages = $numberOfPages;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getAbridged()
-    {
-        return $this->abridged;
-    }
-
-    /**
-     * @param bool|null $abridged
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAbridged($abridged)
-    {
-        $types = [
-            "bool",
-            "null",
-        ];
-
-        $abridged = self::checkTypes($abridged, $types);
-
-        $this->abridged = $abridged;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\BookFormatType|null
-     */
-    public function getBookFormat()
-    {
-        return $this->bookFormat;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\BookFormatType|null $bookFormat
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBookFormat($bookFormat)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\BookFormatType",
-            "null",
-        ];
-
-        $bookFormat = self::checkTypes($bookFormat, $types);
-
-        $this->bookFormat = $bookFormat;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBookEdition()
-    {
-        return $this->bookEdition;
-    }
-
-    /**
-     * @param string $bookEdition
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBookEdition($bookEdition)
-    {
-        $types = [
-            "string",
-        ];
-
-        $bookEdition = self::checkTypes($bookEdition, $types);
-
-        $this->bookEdition = $bookEdition;
     }
 
 }

@@ -17,25 +17,41 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "actionApplication" => "actionApplication",
+            "contentType" => "contentType",
+            "encodingType" => "encodingType",
+            "httpMethod" => "httpMethod",
             "application" => "application",
             "actionPlatform" => "actionPlatform",
-            "httpMethod" => "httpMethod",
+            "actionApplication" => "actionApplication",
             "urlTemplate" => "urlTemplate",
-            "encodingType" => "encodingType",
-            "contentType" => "contentType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * An application that can complete the request.
+     * The supported content type(s) for an EntryPoint response.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SoftwareApplication|string
+     * @var string
      */
-    protected $actionApplication;
+    protected $contentType;
+
+    /**
+     * The supported encoding type(s) for an EntryPoint request.
+     *
+     *
+     * @var string
+     */
+    protected $encodingType;
+
+    /**
+     * An HTTP method that specifies the appropriate HTTP method for a request to an HTTP EntryPoint. Values are capitalized strings as used in HTTP.
+     *
+     *
+     * @var string
+     */
+    protected $httpMethod;
 
     /**
      * An application that can complete the request.
@@ -54,12 +70,12 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     protected $actionPlatform;
 
     /**
-     * An HTTP method that specifies the appropriate HTTP method for a request to an HTTP EntryPoint. Values are capitalized strings as used in HTTP.
+     * An application that can complete the request.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\SoftwareApplication|string
      */
-    protected $httpMethod;
+    protected $actionApplication;
 
     /**
      * An url template (RFC6570) that will be used to construct the target of the execution of the action.
@@ -70,44 +86,75 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     protected $urlTemplate;
 
     /**
-     * The supported encoding type(s) for an EntryPoint request.
-     *
-     *
-     * @var string
+     * @return string
      */
-    protected $encodingType;
-
-    /**
-     * The supported content type(s) for an EntryPoint response.
-     *
-     *
-     * @var string
-     */
-    protected $contentType;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\SoftwareApplication|string
-     */
-    public function getActionApplication()
+    public function getContentType()
     {
-        return $this->actionApplication;
+        return $this->contentType;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SoftwareApplication|string $actionApplication
+     * @param string $contentType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setActionApplication($actionApplication)
+    public function setContentType($contentType)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\SoftwareApplication",
             "string",
         ];
 
-        $actionApplication = self::checkTypes($actionApplication, $types);
+        $contentType = self::checkTypes($contentType, $types);
 
-        $this->actionApplication = $actionApplication;
+        $this->contentType = $contentType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEncodingType()
+    {
+        return $this->encodingType;
+    }
+
+    /**
+     * @param string $encodingType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEncodingType($encodingType)
+    {
+        $types = [
+            "string",
+        ];
+
+        $encodingType = self::checkTypes($encodingType, $types);
+
+        $this->encodingType = $encodingType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHttpMethod()
+    {
+        return $this->httpMethod;
+    }
+
+    /**
+     * @param string $httpMethod
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHttpMethod($httpMethod)
+    {
+        $types = [
+            "string",
+        ];
+
+        $httpMethod = self::checkTypes($httpMethod, $types);
+
+        $this->httpMethod = $httpMethod;
     }
 
     /**
@@ -162,27 +209,28 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\SoftwareApplication|string
      */
-    public function getHttpMethod()
+    public function getActionApplication()
     {
-        return $this->httpMethod;
+        return $this->actionApplication;
     }
 
     /**
-     * @param string $httpMethod
+     * @param \OpenActive\Models\SchemaOrg\SoftwareApplication|string $actionApplication
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHttpMethod($httpMethod)
+    public function setActionApplication($actionApplication)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\SoftwareApplication",
             "string",
         ];
 
-        $httpMethod = self::checkTypes($httpMethod, $types);
+        $actionApplication = self::checkTypes($actionApplication, $types);
 
-        $this->httpMethod = $httpMethod;
+        $this->actionApplication = $actionApplication;
     }
 
     /**
@@ -207,54 +255,6 @@ class EntryPoint extends \OpenActive\Models\SchemaOrg\Intangible
         $urlTemplate = self::checkTypes($urlTemplate, $types);
 
         $this->urlTemplate = $urlTemplate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEncodingType()
-    {
-        return $this->encodingType;
-    }
-
-    /**
-     * @param string $encodingType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEncodingType($encodingType)
-    {
-        $types = [
-            "string",
-        ];
-
-        $encodingType = self::checkTypes($encodingType, $types);
-
-        $this->encodingType = $encodingType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContentType()
-    {
-        return $this->contentType;
-    }
-
-    /**
-     * @param string $contentType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setContentType($contentType)
-    {
-        $types = [
-            "string",
-        ];
-
-        $contentType = self::checkTypes($contentType, $types);
-
-        $this->contentType = $contentType;
     }
 
 }

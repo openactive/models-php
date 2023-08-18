@@ -17,14 +17,22 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
 
     public static function fieldList() {
         $fields = [
-            "parentTaxon" => "parentTaxon",
-            "taxonRank" => "taxonRank",
-            "childTaxon" => "childTaxon",
             "hasDefinedTerm" => "hasDefinedTerm",
+            "parentTaxon" => "parentTaxon",
+            "childTaxon" => "childTaxon",
+            "taxonRank" => "taxonRank",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A Defined Term contained in this term set.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    protected $hasDefinedTerm;
 
     /**
      * Closest parent taxon of the taxon in question.
@@ -35,14 +43,6 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
     protected $parentTaxon;
 
     /**
-     * The taxonomic rank of this taxon given preferably as a URI from a controlled vocabulary – (typically the ranks from TDWG TaxonRank ontology or equivalent Wikidata URIs).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
-     */
-    protected $taxonRank;
-
-    /**
      * Closest child taxa of the taxon in question.
      *
      *
@@ -51,12 +51,37 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
     protected $childTaxon;
 
     /**
-     * A Defined Term contained in this term set.
+     * The taxonomic rank of this taxon given preferably as a URI from a controlled vocabulary – typically the ranks from TDWG TaxonRank ontology or equivalent Wikidata URIs.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
-    protected $hasDefinedTerm;
+    protected $taxonRank;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    public function getHasDefinedTerm()
+    {
+        return $this->hasDefinedTerm;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $hasDefinedTerm
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasDefinedTerm($hasDefinedTerm)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
+        ];
+
+        $hasDefinedTerm = self::checkTypes($hasDefinedTerm, $types);
+
+        $this->hasDefinedTerm = $hasDefinedTerm;
+    }
 
     /**
      * @return string|\OpenActive\Models\SchemaOrg\Taxon
@@ -81,31 +106,6 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
         $parentTaxon = self::checkTypes($parentTaxon, $types);
 
         $this->parentTaxon = $parentTaxon;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
-     */
-    public function getTaxonRank()
-    {
-        return $this->taxonRank;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $taxonRank
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTaxonRank($taxonRank)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\PropertyValue",
-            "string",
-        ];
-
-        $taxonRank = self::checkTypes($taxonRank, $types);
-
-        $this->taxonRank = $taxonRank;
     }
 
     /**
@@ -134,28 +134,28 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
-    public function getHasDefinedTerm()
+    public function getTaxonRank()
     {
-        return $this->hasDefinedTerm;
+        return $this->taxonRank;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $hasDefinedTerm
+     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $taxonRank
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHasDefinedTerm($hasDefinedTerm)
+    public function setTaxonRank($taxonRank)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
             "string",
         ];
 
-        $hasDefinedTerm = self::checkTypes($hasDefinedTerm, $types);
+        $taxonRank = self::checkTypes($taxonRank, $types);
 
-        $this->hasDefinedTerm = $hasDefinedTerm;
+        $this->taxonRank = $taxonRank;
     }
 
 }

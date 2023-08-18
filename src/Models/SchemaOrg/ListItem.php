@@ -43,7 +43,7 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $nextItem;
 
     /**
-     * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
+     * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists').
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Thing|string
@@ -51,7 +51,7 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $item;
 
     /**
-     * A link to the ListItem that preceeds the current one.
+     * A link to the ListItem that precedes the current one.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\ListItem|string

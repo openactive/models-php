@@ -18,10 +18,10 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     public static function fieldList() {
         $fields = [
             "usedToDiagnose" => "usedToDiagnose",
-            "affectedBy" => "affectedBy",
-            "normalRange" => "normalRange",
             "signDetected" => "signDetected",
             "usesDevice" => "usesDevice",
+            "normalRange" => "normalRange",
+            "affectedBy" => "affectedBy",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -34,22 +34,6 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
      * @var \OpenActive\Models\SchemaOrg\MedicalCondition|string
      */
     protected $usedToDiagnose;
-
-    /**
-     * Drugs that affect the test's results.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Drug|string
-     */
-    protected $affectedBy;
-
-    /**
-     * Range of acceptable values for a typical patient, when applicable.
-     *
-     *
-     * @var string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
-     */
-    protected $normalRange;
 
     /**
      * A sign detected by the test.
@@ -66,6 +50,22 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
      * @var \OpenActive\Models\SchemaOrg\MedicalDevice|string
      */
     protected $usesDevice;
+
+    /**
+     * Range of acceptable values for a typical patient, when applicable.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\MedicalEnumeration|string|null
+     */
+    protected $normalRange;
+
+    /**
+     * Drugs that affect the test's results.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Drug|string
+     */
+    protected $affectedBy;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
@@ -90,57 +90,6 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $usedToDiagnose = self::checkTypes($usedToDiagnose, $types);
 
         $this->usedToDiagnose = $usedToDiagnose;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Drug|string
-     */
-    public function getAffectedBy()
-    {
-        return $this->affectedBy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Drug|string $affectedBy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAffectedBy($affectedBy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Drug",
-            "string",
-        ];
-
-        $affectedBy = self::checkTypes($affectedBy, $types);
-
-        $this->affectedBy = $affectedBy;
-    }
-
-    /**
-     * @return string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
-     */
-    public function getNormalRange()
-    {
-        return $this->normalRange;
-    }
-
-    /**
-     * @param string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null $normalRange
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNormalRange($normalRange)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Enums\SchemaOrg\MedicalEnumeration",
-            "null",
-        ];
-
-        $normalRange = self::checkTypes($normalRange, $types);
-
-        $this->normalRange = $normalRange;
     }
 
     /**
@@ -191,6 +140,57 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $usesDevice = self::checkTypes($usesDevice, $types);
 
         $this->usesDevice = $usesDevice;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\MedicalEnumeration|string|null
+     */
+    public function getNormalRange()
+    {
+        return $this->normalRange;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\MedicalEnumeration|string|null $normalRange
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNormalRange($normalRange)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\MedicalEnumeration",
+            "string",
+            "null",
+        ];
+
+        $normalRange = self::checkTypes($normalRange, $types);
+
+        $this->normalRange = $normalRange;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Drug|string
+     */
+    public function getAffectedBy()
+    {
+        return $this->affectedBy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Drug|string $affectedBy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAffectedBy($affectedBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Drug",
+            "string",
+        ];
+
+        $affectedBy = self::checkTypes($affectedBy, $types);
+
+        $this->affectedBy = $affectedBy;
     }
 
 }

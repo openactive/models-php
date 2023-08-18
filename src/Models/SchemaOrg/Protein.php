@@ -24,7 +24,7 @@ class Protein extends \OpenActive\Models\SchemaOrg\BioChemEntity
     }
 
     /**
-     * A symbolic representation of a BioChemEnity. For example, a nucleotide sequence of a Gene or an amino acid sequence of a Protein.
+     * A symbolic representation of a BioChemEntity. For example, a nucleotide sequence of a Gene or an amino acid sequence of a Protein.
      *
      *
      * @var string

@@ -17,15 +17,31 @@ class FoodEstablishment extends \OpenActive\Models\SchemaOrg\LocalBusiness
 
     public static function fieldList() {
         $fields = [
+            "hasMenu" => "hasMenu",
+            "acceptsReservations" => "acceptsReservations",
             "starRating" => "starRating",
             "servesCuisine" => "servesCuisine",
-            "acceptsReservations" => "acceptsReservations",
-            "hasMenu" => "hasMenu",
             "menu" => "menu",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Either the actual menu as a structured representation, as text, or a URL of the menu.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Menu
+     */
+    protected $hasMenu;
+
+    /**
+     * Indicates whether a FoodEstablishment accepts reservations. Values can be Boolean, an URL at which reservations can be made or (for backwards compatibility) the strings ```Yes``` or ```No```.
+     *
+     *
+     * @var bool|string|null
+     */
+    protected $acceptsReservations;
 
     /**
      * An official rating for a lodging business or food establishment, e.g. from national associations or standards bodies. Use the author property to indicate the rating organization, e.g. as an Organization with name such as (e.g. HOTREC, DEHOGA, WHR, or Hotelstars).
@@ -44,28 +60,63 @@ class FoodEstablishment extends \OpenActive\Models\SchemaOrg\LocalBusiness
     protected $servesCuisine;
 
     /**
-     * Indicates whether a FoodEstablishment accepts reservations. Values can be Boolean, an URL at which reservations can be made or (for backwards compatibility) the strings ```Yes``` or ```No```.
-     *
-     *
-     * @var bool|string|null
-     */
-    protected $acceptsReservations;
-
-    /**
-     * Either the actual menu as a structured representation, as text, or a URL of the menu.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Menu
-     */
-    protected $hasMenu;
-
-    /**
      * Either the actual menu as a structured representation, as text, or a URL of the menu.
      *
      *
      * @var string|\OpenActive\Models\SchemaOrg\Menu
      */
     protected $menu;
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Menu
+     */
+    public function getHasMenu()
+    {
+        return $this->hasMenu;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Menu $hasMenu
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasMenu($hasMenu)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\Menu",
+        ];
+
+        $hasMenu = self::checkTypes($hasMenu, $types);
+
+        $this->hasMenu = $hasMenu;
+    }
+
+    /**
+     * @return bool|string|null
+     */
+    public function getAcceptsReservations()
+    {
+        return $this->acceptsReservations;
+    }
+
+    /**
+     * @param bool|string|null $acceptsReservations
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAcceptsReservations($acceptsReservations)
+    {
+        $types = [
+            "bool",
+            "string",
+            "null",
+        ];
+
+        $acceptsReservations = self::checkTypes($acceptsReservations, $types);
+
+        $this->acceptsReservations = $acceptsReservations;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Rating|string
@@ -114,57 +165,6 @@ class FoodEstablishment extends \OpenActive\Models\SchemaOrg\LocalBusiness
         $servesCuisine = self::checkTypes($servesCuisine, $types);
 
         $this->servesCuisine = $servesCuisine;
-    }
-
-    /**
-     * @return bool|string|null
-     */
-    public function getAcceptsReservations()
-    {
-        return $this->acceptsReservations;
-    }
-
-    /**
-     * @param bool|string|null $acceptsReservations
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAcceptsReservations($acceptsReservations)
-    {
-        $types = [
-            "bool",
-            "string",
-            "null",
-        ];
-
-        $acceptsReservations = self::checkTypes($acceptsReservations, $types);
-
-        $this->acceptsReservations = $acceptsReservations;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Menu
-     */
-    public function getHasMenu()
-    {
-        return $this->hasMenu;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Menu $hasMenu
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHasMenu($hasMenu)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\Menu",
-        ];
-
-        $hasMenu = self::checkTypes($hasMenu, $types);
-
-        $this->hasMenu = $hasMenu;
     }
 
     /**

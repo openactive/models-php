@@ -17,25 +17,25 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
+            "runtime" => "runtime",
+            "codeSampleType" => "codeSampleType",
+            "targetProduct" => "targetProduct",
             "programmingLanguage" => "programmingLanguage",
+            "codeRepository" => "codeRepository",
             "sampleType" => "sampleType",
             "runtimePlatform" => "runtimePlatform",
-            "runtime" => "runtime",
-            "targetProduct" => "targetProduct",
-            "codeRepository" => "codeRepository",
-            "codeSampleType" => "codeSampleType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The computer programming language.
+     * Runtime platform or script interpreter dependencies (example: Java v1, Python 2.3, .NET Framework 3.0).
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\ComputerLanguage
+     * @var string
      */
-    protected $programmingLanguage;
+    protected $runtime;
 
     /**
      * What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template.
@@ -43,23 +43,7 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
      *
      * @var string
      */
-    protected $sampleType;
-
-    /**
-     * Runtime platform or script interpreter dependencies (Example - Java v1, Python2.3, .Net Framework 3.0).
-     *
-     *
-     * @var string
-     */
-    protected $runtimePlatform;
-
-    /**
-     * Runtime platform or script interpreter dependencies (Example - Java v1, Python2.3, .Net Framework 3.0).
-     *
-     *
-     * @var string
-     */
-    protected $runtime;
+    protected $codeSampleType;
 
     /**
      * Target Operating System / Product to which the code applies.  If applies to several versions, just the product name can be used.
@@ -70,7 +54,15 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $targetProduct;
 
     /**
-     * Link to the repository where the un-compiled, human readable code and related code is located (SVN, github, CodePlex).
+     * The computer programming language.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ComputerLanguage|string
+     */
+    protected $programmingLanguage;
+
+    /**
+     * Link to the repository where the un-compiled, human readable code and related code is located (SVN, GitHub, CodePlex).
      *
      *
      * @var string
@@ -83,10 +75,91 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
      *
      * @var string
      */
-    protected $codeSampleType;
+    protected $sampleType;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\ComputerLanguage
+     * Runtime platform or script interpreter dependencies (example: Java v1, Python 2.3, .NET Framework 3.0).
+     *
+     *
+     * @var string
+     */
+    protected $runtimePlatform;
+
+    /**
+     * @return string
+     */
+    public function getRuntime()
+    {
+        return $this->runtime;
+    }
+
+    /**
+     * @param string $runtime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRuntime($runtime)
+    {
+        $types = [
+            "string",
+        ];
+
+        $runtime = self::checkTypes($runtime, $types);
+
+        $this->runtime = $runtime;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodeSampleType()
+    {
+        return $this->codeSampleType;
+    }
+
+    /**
+     * @param string $codeSampleType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCodeSampleType($codeSampleType)
+    {
+        $types = [
+            "string",
+        ];
+
+        $codeSampleType = self::checkTypes($codeSampleType, $types);
+
+        $this->codeSampleType = $codeSampleType;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\SoftwareApplication|string
+     */
+    public function getTargetProduct()
+    {
+        return $this->targetProduct;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\SoftwareApplication|string $targetProduct
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTargetProduct($targetProduct)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\SoftwareApplication",
+            "string",
+        ];
+
+        $targetProduct = self::checkTypes($targetProduct, $types);
+
+        $this->targetProduct = $targetProduct;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ComputerLanguage|string
      */
     public function getProgrammingLanguage()
     {
@@ -94,20 +167,44 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\ComputerLanguage $programmingLanguage
+     * @param \OpenActive\Models\SchemaOrg\ComputerLanguage|string $programmingLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setProgrammingLanguage($programmingLanguage)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\ComputerLanguage",
+            "string",
         ];
 
         $programmingLanguage = self::checkTypes($programmingLanguage, $types);
 
         $this->programmingLanguage = $programmingLanguage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodeRepository()
+    {
+        return $this->codeRepository;
+    }
+
+    /**
+     * @param string $codeRepository
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCodeRepository($codeRepository)
+    {
+        $types = [
+            "string",
+        ];
+
+        $codeRepository = self::checkTypes($codeRepository, $types);
+
+        $this->codeRepository = $codeRepository;
     }
 
     /**
@@ -156,103 +253,6 @@ class SoftwareSourceCode extends \OpenActive\Models\SchemaOrg\CreativeWork
         $runtimePlatform = self::checkTypes($runtimePlatform, $types);
 
         $this->runtimePlatform = $runtimePlatform;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRuntime()
-    {
-        return $this->runtime;
-    }
-
-    /**
-     * @param string $runtime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRuntime($runtime)
-    {
-        $types = [
-            "string",
-        ];
-
-        $runtime = self::checkTypes($runtime, $types);
-
-        $this->runtime = $runtime;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\SoftwareApplication|string
-     */
-    public function getTargetProduct()
-    {
-        return $this->targetProduct;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\SoftwareApplication|string $targetProduct
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTargetProduct($targetProduct)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\SoftwareApplication",
-            "string",
-        ];
-
-        $targetProduct = self::checkTypes($targetProduct, $types);
-
-        $this->targetProduct = $targetProduct;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCodeRepository()
-    {
-        return $this->codeRepository;
-    }
-
-    /**
-     * @param string $codeRepository
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCodeRepository($codeRepository)
-    {
-        $types = [
-            "string",
-        ];
-
-        $codeRepository = self::checkTypes($codeRepository, $types);
-
-        $this->codeRepository = $codeRepository;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCodeSampleType()
-    {
-        return $this->codeSampleType;
-    }
-
-    /**
-     * @param string $codeSampleType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCodeSampleType($codeSampleType)
-    {
-        $types = [
-            "string",
-        ];
-
-        $codeSampleType = self::checkTypes($codeSampleType, $types);
-
-        $this->codeSampleType = $codeSampleType;
     }
 
 }

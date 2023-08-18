@@ -34,7 +34,7 @@ class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
     protected $yearlyRevenue;
 
     /**
-     * The number of employees in an organization e.g. business.
+     * The number of employees in an organization, e.g. business.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string

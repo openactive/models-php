@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class ProductCollection extends \OpenActive\Models\SchemaOrg\Product
+class ProductCollection extends \OpenActive\Models\SchemaOrg\Collection
 {
     /**
      * @return string[]|null

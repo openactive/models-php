@@ -18,11 +18,11 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
     public static function fieldList() {
         $fields = [
             "tracks" => "tracks",
+            "track" => "track",
+            "album" => "album",
             "genre" => "genre",
             "musicGroupMember" => "musicGroupMember",
             "albums" => "albums",
-            "track" => "track",
-            "album" => "album",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -35,6 +35,22 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
      * @var \OpenActive\Models\SchemaOrg\MusicRecording|string
      */
     protected $tracks;
+
+    /**
+     * A music recording (track)&#x2014;usually a single song. If an ItemList is given, the list should contain items of type MusicRecording.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MusicRecording|\OpenActive\Models\SchemaOrg\ItemList|string
+     */
+    protected $track;
+
+    /**
+     * A music album.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MusicAlbum|string
+     */
+    protected $album;
 
     /**
      * Genre of the creative work, broadcast channel or group.
@@ -61,22 +77,6 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
     protected $albums;
 
     /**
-     * A music recording (track)&#x2014;usually a single song. If an ItemList is given, the list should contain items of type MusicRecording.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\MusicRecording|string
-     */
-    protected $track;
-
-    /**
-     * A music album.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MusicAlbum|string
-     */
-    protected $album;
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\MusicRecording|string
      */
     public function getTracks()
@@ -99,6 +99,57 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
         $tracks = self::checkTypes($tracks, $types);
 
         $this->tracks = $tracks;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MusicRecording|\OpenActive\Models\SchemaOrg\ItemList|string
+     */
+    public function getTrack()
+    {
+        return $this->track;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MusicRecording|\OpenActive\Models\SchemaOrg\ItemList|string $track
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTrack($track)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MusicRecording",
+            "\OpenActive\Models\SchemaOrg\ItemList",
+            "string",
+        ];
+
+        $track = self::checkTypes($track, $types);
+
+        $this->track = $track;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MusicAlbum|string
+     */
+    public function getAlbum()
+    {
+        return $this->album;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MusicAlbum|string $album
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAlbum($album)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MusicAlbum",
+            "string",
+        ];
+
+        $album = self::checkTypes($album, $types);
+
+        $this->album = $album;
     }
 
     /**
@@ -173,57 +224,6 @@ class MusicGroup extends \OpenActive\Models\SchemaOrg\PerformingGroup
         $albums = self::checkTypes($albums, $types);
 
         $this->albums = $albums;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\MusicRecording|string
-     */
-    public function getTrack()
-    {
-        return $this->track;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\MusicRecording|string $track
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTrack($track)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ItemList",
-            "\OpenActive\Models\SchemaOrg\MusicRecording",
-            "string",
-        ];
-
-        $track = self::checkTypes($track, $types);
-
-        $this->track = $track;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MusicAlbum|string
-     */
-    public function getAlbum()
-    {
-        return $this->album;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MusicAlbum|string $album
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAlbum($album)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MusicAlbum",
-            "string",
-        ];
-
-        $album = self::checkTypes($album, $types);
-
-        $this->album = $album;
     }
 
 }

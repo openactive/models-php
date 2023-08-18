@@ -18,8 +18,8 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     public static function fieldList() {
         $fields = [
             "rsvpResponse" => "rsvpResponse",
-            "comment" => "comment",
             "additionalNumberOfGuests" => "additionalNumberOfGuests",
+            "comment" => "comment",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -34,20 +34,20 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     protected $rsvpResponse;
 
     /**
-     * Comments, typically from users.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Comment|string
-     */
-    protected $comment;
-
-    /**
      * If responding yes, the number of guests who will attend in addition to the invitee.
      *
      *
      * @var Number|null
      */
     protected $additionalNumberOfGuests;
+
+    /**
+     * Comments, typically from users.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Comment|string
+     */
+    protected $comment;
 
     /**
      * @return \OpenActive\Enums\SchemaOrg\RsvpResponseType|null
@@ -75,31 +75,6 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Comment|string
-     */
-    public function getComment()
-    {
-        return $this->comment;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Comment|string $comment
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setComment($comment)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Comment",
-            "string",
-        ];
-
-        $comment = self::checkTypes($comment, $types);
-
-        $this->comment = $comment;
-    }
-
-    /**
      * @return Number|null
      */
     public function getAdditionalNumberOfGuests()
@@ -122,6 +97,31 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
         $additionalNumberOfGuests = self::checkTypes($additionalNumberOfGuests, $types);
 
         $this->additionalNumberOfGuests = $additionalNumberOfGuests;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Comment|string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Comment|string $comment
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setComment($comment)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Comment",
+            "string",
+        ];
+
+        $comment = self::checkTypes($comment, $types);
+
+        $this->comment = $comment;
     }
 
 }

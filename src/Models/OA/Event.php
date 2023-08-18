@@ -535,25 +535,25 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     protected $schedulingNote;
 
     /**
-     * The start date and time of the event. Can be specified as a schema:Date or schema:DateTime.
+     * The start date and time of the event. Can be specified as a schema:DateTime.
      *
      * ```json
      * "startDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var Date|DateTime|null
+     * @var DateTime|null
      */
     protected $startDate;
 
     /**
-     * The end date and time of the event. Can be specified as a schema:Date or  schema:DateTime
+     * The end date and time of the event. Can be specified as a schema:DateTime
      * It is recommended that publishers provide either an schema:endDate or a schema:duration for an event.
      *
      * ```json
      * "endDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var Date|DateTime|null
+     * @var DateTime|null
      */
     protected $endDate;
 
@@ -1608,7 +1608,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return DateTime|null
      */
     public function getStartDate()
     {
@@ -1616,14 +1616,13 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Date|DateTime|null $startDate
+     * @param DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartDate($startDate)
     {
         $types = [
-            "Date",
             "DateTime",
             "null",
         ];
@@ -1634,7 +1633,7 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return DateTime|null
      */
     public function getEndDate()
     {
@@ -1642,14 +1641,13 @@ class Event extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param Date|DateTime|null $endDate
+     * @param DateTime|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEndDate($endDate)
     {
         $types = [
-            "Date",
             "DateTime",
             "null",
         ];

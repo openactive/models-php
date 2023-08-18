@@ -27,12 +27,12 @@ class Answer extends \OpenActive\Models\SchemaOrg\Comment
      * A step-by-step or full explanation about Answer. Can outline how this Answer was achieved or contain more broad clarification or statement about it. 
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\WebContent|\OpenActive\Models\SchemaOrg\Comment|string
+     * @var \OpenActive\Models\SchemaOrg\Comment|\OpenActive\Models\SchemaOrg\WebContent|string
      */
     protected $answerExplanation;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\WebContent|\OpenActive\Models\SchemaOrg\Comment|string
+     * @return \OpenActive\Models\SchemaOrg\Comment|\OpenActive\Models\SchemaOrg\WebContent|string
      */
     public function getAnswerExplanation()
     {
@@ -40,15 +40,15 @@ class Answer extends \OpenActive\Models\SchemaOrg\Comment
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\WebContent|\OpenActive\Models\SchemaOrg\Comment|string $answerExplanation
+     * @param \OpenActive\Models\SchemaOrg\Comment|\OpenActive\Models\SchemaOrg\WebContent|string $answerExplanation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAnswerExplanation($answerExplanation)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\WebContent",
             "\OpenActive\Models\SchemaOrg\Comment",
+            "\OpenActive\Models\SchemaOrg\WebContent",
             "string",
         ];
 

@@ -17,13 +17,21 @@ class Blog extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
+            "blogPost" => "blogPost",
             "blogPosts" => "blogPosts",
             "issn" => "issn",
-            "blogPost" => "blogPost",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A posting that is part of this blog.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\BlogPosting|string
+     */
+    protected $blogPost;
 
     /**
      * Indicates a post that is part of a [[Blog]]. Note that historically, what we term a "Blog" was once known as a "weblog", and that what we term a "BlogPosting" is now often colloquially referred to as a "blog".
@@ -42,12 +50,29 @@ class Blog extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $issn;
 
     /**
-     * A posting that is part of this blog.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\BlogPosting|string
+     * @return \OpenActive\Models\SchemaOrg\BlogPosting|string
      */
-    protected $blogPost;
+    public function getBlogPost()
+    {
+        return $this->blogPost;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\BlogPosting|string $blogPost
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBlogPost($blogPost)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\BlogPosting",
+            "string",
+        ];
+
+        $blogPost = self::checkTypes($blogPost, $types);
+
+        $this->blogPost = $blogPost;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\BlogPosting|string
@@ -96,31 +121,6 @@ class Blog extends \OpenActive\Models\SchemaOrg\CreativeWork
         $issn = self::checkTypes($issn, $types);
 
         $this->issn = $issn;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\BlogPosting|string
-     */
-    public function getBlogPost()
-    {
-        return $this->blogPost;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\BlogPosting|string $blogPost
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBlogPost($blogPost)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\BlogPosting",
-            "string",
-        ];
-
-        $blogPost = self::checkTypes($blogPost, $types);
-
-        $this->blogPost = $blogPost;
     }
 
 }

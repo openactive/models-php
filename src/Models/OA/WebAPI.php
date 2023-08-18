@@ -58,7 +58,7 @@ class WebAPI extends \OpenActive\BaseModel
     protected $description;
 
     /**
-     * The location of the OpenID Provider or other relevant authentication authority that must be used to access the API.
+     * The location of the OpenID Provider that must be used to access the API.
      *
      * ```json
      * "authenticationAuthority": "https://auth.bookingsystem.com"
@@ -82,10 +82,10 @@ class WebAPI extends \OpenActive\BaseModel
     protected $conformsTo;
 
     /**
-     * A link to documentation related to the Dataset, or a link to the OpenActive developer documentation if no Dataset-specific documentation is available.
+     * A link to documentation related to how to use the Open Booking API, or a link to the OpenActive developer documentation using `https://permalink.openactive.io/dataset-site/open-booking-api-documentation` if no system-specific documentation is available.
      *
      * ```json
-     * "documentation": "https://developer.openactive.io"
+     * "documentation": "https://permalink.openactive.io/dataset-site/open-booking-api-documentation"
      * ```
      *
      * @var string
@@ -104,7 +104,7 @@ class WebAPI extends \OpenActive\BaseModel
     protected $endpointDescription;
 
     /**
-     * The base URL of the Open Booking API
+     * The Base URI of this implementation of the Open Booking API
      *
      * ```json
      * "endpointUrl": "https://example.bookingsystem.com/api/openbooking"
@@ -115,7 +115,7 @@ class WebAPI extends \OpenActive\BaseModel
     protected $endpointUrl;
 
     /**
-     * The web page the broker uses to obtain access to the API, e.g. via a web form.
+     * The URL of a web page that the Broker may use to obtain access to the API, e.g. via a web form.
      *
      * ```json
      * "landingPage": "https://exampleforms.com/get-me-an-api-access-key"

@@ -17,23 +17,23 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
 
     public static function fieldList() {
         $fields = [
-            "numberOfLoanPayments" => "numberOfLoanPayments",
+            "downPayment" => "downPayment",
             "earlyPrepaymentPenalty" => "earlyPrepaymentPenalty",
             "loanPaymentAmount" => "loanPaymentAmount",
+            "numberOfLoanPayments" => "numberOfLoanPayments",
             "loanPaymentFrequency" => "loanPaymentFrequency",
-            "downPayment" => "downPayment",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The number of payments contractually required at origination to repay the loan. For monthly paying loans this is the number of months from the contractual first payment date to the maturity date.
+     * a type of payment made in cash during the onset of the purchase of an expensive good/service. The payment typically represents only a percentage of the full purchase price.
      *
      *
-     * @var Number|null
+     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
      */
-    protected $numberOfLoanPayments;
+    protected $downPayment;
 
     /**
      * The amount to be paid as a penalty in the event of early payment of the loan.
@@ -52,6 +52,14 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
     protected $loanPaymentAmount;
 
     /**
+     * The number of payments contractually required at origination to repay the loan. For monthly paying loans this is the number of months from the contractual first payment date to the maturity date.
+     *
+     *
+     * @var Number|null
+     */
+    protected $numberOfLoanPayments;
+
+    /**
      * Frequency of payments due, i.e. number of months between payments. This is defined as a frequency, i.e. the reciprocal of a period of time.
      *
      *
@@ -60,36 +68,30 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
     protected $loanPaymentFrequency;
 
     /**
-     * a type of payment made in cash during the onset of the purchase of an expensive good/service. The payment typically represents only a percentage of the full purchase price.
-     *
-     *
-     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
      */
-    protected $downPayment;
-
-    /**
-     * @return Number|null
-     */
-    public function getNumberOfLoanPayments()
+    public function getDownPayment()
     {
-        return $this->numberOfLoanPayments;
+        return $this->downPayment;
     }
 
     /**
-     * @param Number|null $numberOfLoanPayments
+     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $downPayment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfLoanPayments($numberOfLoanPayments)
+    public function setDownPayment($downPayment)
     {
         $types = [
             "Number",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
             "null",
         ];
 
-        $numberOfLoanPayments = self::checkTypes($numberOfLoanPayments, $types);
+        $downPayment = self::checkTypes($downPayment, $types);
 
-        $this->numberOfLoanPayments = $numberOfLoanPayments;
+        $this->downPayment = $downPayment;
     }
 
     /**
@@ -145,6 +147,31 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
     /**
      * @return Number|null
      */
+    public function getNumberOfLoanPayments()
+    {
+        return $this->numberOfLoanPayments;
+    }
+
+    /**
+     * @param Number|null $numberOfLoanPayments
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumberOfLoanPayments($numberOfLoanPayments)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $numberOfLoanPayments = self::checkTypes($numberOfLoanPayments, $types);
+
+        $this->numberOfLoanPayments = $numberOfLoanPayments;
+    }
+
+    /**
+     * @return Number|null
+     */
     public function getLoanPaymentFrequency()
     {
         return $this->loanPaymentFrequency;
@@ -165,33 +192,6 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
         $loanPaymentFrequency = self::checkTypes($loanPaymentFrequency, $types);
 
         $this->loanPaymentFrequency = $loanPaymentFrequency;
-    }
-
-    /**
-     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
-     */
-    public function getDownPayment()
-    {
-        return $this->downPayment;
-    }
-
-    /**
-     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $downPayment
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDownPayment($downPayment)
-    {
-        $types = [
-            "Number",
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "string",
-            "null",
-        ];
-
-        $downPayment = self::checkTypes($downPayment, $types);
-
-        $this->downPayment = $downPayment;
     }
 
 }

@@ -19,8 +19,8 @@ class MerchantReturnPolicySeasonalOverride extends \OpenActive\Models\SchemaOrg\
         $fields = [
             "returnPolicyCategory" => "returnPolicyCategory",
             "startDate" => "startDate",
-            "endDate" => "endDate",
             "merchantReturnDays" => "merchantReturnDays",
+            "endDate" => "endDate",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -43,20 +43,20 @@ class MerchantReturnPolicySeasonalOverride extends \OpenActive\Models\SchemaOrg\
     protected $startDate;
 
     /**
-     * The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
-     *
-     *
-     * @var Date|DateTime|null
-     */
-    protected $endDate;
-
-    /**
      * Specifies either a fixed return date or the number of days (from the delivery date) that a product can be returned. Used when the [[returnPolicyCategory]] property is specified as [[MerchantReturnFiniteReturnWindow]].
      *
      *
      * @var Date|DateTime|int|null
      */
     protected $merchantReturnDays;
+
+    /**
+     * The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $endDate;
 
     /**
      * @return \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
@@ -110,32 +110,6 @@ class MerchantReturnPolicySeasonalOverride extends \OpenActive\Models\SchemaOrg\
     }
 
     /**
-     * @return Date|DateTime|null
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
-    /**
-     * @param Date|DateTime|null $endDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEndDate($endDate)
-    {
-        $types = [
-            "Date",
-            "DateTime",
-            "null",
-        ];
-
-        $endDate = self::checkTypes($endDate, $types);
-
-        $this->endDate = $endDate;
-    }
-
-    /**
      * @return Date|DateTime|int|null
      */
     public function getMerchantReturnDays()
@@ -160,6 +134,32 @@ class MerchantReturnPolicySeasonalOverride extends \OpenActive\Models\SchemaOrg\
         $merchantReturnDays = self::checkTypes($merchantReturnDays, $types);
 
         $this->merchantReturnDays = $merchantReturnDays;
+    }
+
+    /**
+     * @return Date|DateTime|null
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * @param Date|DateTime|null $endDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEndDate($endDate)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $endDate = self::checkTypes($endDate, $types);
+
+        $this->endDate = $endDate;
     }
 
 }

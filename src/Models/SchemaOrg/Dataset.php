@@ -17,58 +17,19 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "catalog" => "catalog",
+            "datasetTimeInterval" => "datasetTimeInterval",
             "includedDataCatalog" => "includedDataCatalog",
             "variableMeasured" => "variableMeasured",
             "measurementTechnique" => "measurementTechnique",
-            "datasetTimeInterval" => "datasetTimeInterval",
-            "distribution" => "distribution",
+            "catalog" => "catalog",
             "issn" => "issn",
+            "measurementMethod" => "measurementMethod",
+            "distribution" => "distribution",
             "includedInDataCatalog" => "includedInDataCatalog",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A data catalog which contains this dataset.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DataCatalog|string
-     */
-    protected $catalog;
-
-    /**
-     * A data catalog which contains this dataset (this property was previously 'catalog', preferred name is now 'includedInDataCatalog').
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DataCatalog|string
-     */
-    protected $includedDataCatalog;
-
-    /**
-     * The variableMeasured property can indicate (repeated as necessary) the  variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
-     */
-    protected $variableMeasured;
-
-    /**
-     * A technique or technology used in a [[Dataset]] (or [[DataDownload]], [[DataCatalog]]),
-     * corresponding to the method used for measuring the corresponding variable(s) (described using [[variableMeasured]]). This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but rather as a high level summary for dataset discovery.
-     * 
-     * For example, if [[variableMeasured]] is: molecule concentration, [[measurementTechnique]] could be: "mass spectrometry" or "nmr spectroscopy" or "colorimetry" or "immunofluorescence".
-     * 
-     * If the [[variableMeasured]] is "depression rating", the [[measurementTechnique]] could be "Zung Scale" or "HAM-D" or "Beck Depression Inventory".
-     * 
-     * If there are several [[variableMeasured]] properties recorded for some given data object, use a [[PropertyValue]] for each [[variableMeasured]] and attach the corresponding [[measurementTechnique]].
-     *       
-     *
-     *
-     * @var string
-     */
-    protected $measurementTechnique;
 
     /**
      * The range of temporal applicability of a dataset, e.g. for a 2011 census dataset, the year 2011 (in ISO 8601 time interval format).
@@ -79,12 +40,42 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $datasetTimeInterval;
 
     /**
-     * A downloadable form of this dataset, at a specific location, in a specific format.
+     * A data catalog which contains this dataset (this property was previously 'catalog', preferred name is now 'includedInDataCatalog').
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DataDownload|string
+     * @var \OpenActive\Models\SchemaOrg\DataCatalog|string
      */
-    protected $distribution;
+    protected $includedDataCatalog;
+
+    /**
+     * The variableMeasured property can indicate (repeated as necessary) the  variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue, or more explicitly as a [[StatisticalVariable]].
+     *
+     *
+     * @var \OpenActive\Enums\PropertyEnumeration|\OpenActive\Models\SchemaOrg\StatisticalVariable|string|\OpenActive\Models\SchemaOrg\PropertyValue|null
+     */
+    protected $variableMeasured;
+
+    /**
+     * A technique, method or technology used in an [[Observation]], [[StatisticalVariable]] or [[Dataset]] (or [[DataDownload]], [[DataCatalog]]), corresponding to the method used for measuring the corresponding variable(s) (for datasets, described using [[variableMeasured]]; for [[Observation]], a [[StatisticalVariable]]). Often but not necessarily each [[variableMeasured]] will have an explicit representation as (or mapping to) an property such as those defined in Schema.org, or other RDF vocabularies and "knowledge graphs". In that case the subproperty of [[variableMeasured]] called [[measuredProperty]] is applicable.
+     *     
+     * The [[measurementTechnique]] property helps when extra clarification is needed about how a [[measuredProperty]] was measured. This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but can often serve as a high level summary for dataset discovery. 
+     * 
+     * For example, if [[variableMeasured]] is: molecule concentration, [[measurementTechnique]] could be: "mass spectrometry" or "nmr spectroscopy" or "colorimetry" or "immunofluorescence". If the [[variableMeasured]] is "depression rating", the [[measurementTechnique]] could be "Zung Scale" or "HAM-D" or "Beck Depression Inventory". 
+     * 
+     * If there are several [[variableMeasured]] properties recorded for some given data object, use a [[PropertyValue]] for each [[variableMeasured]] and attach the corresponding [[measurementTechnique]]. The value can also be from an enumeration, organized as a [[MeasurementMetholdEnumeration]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string|\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum|null
+     */
+    protected $measurementTechnique;
+
+    /**
+     * A data catalog which contains this dataset.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DataCatalog|string
+     */
+    protected $catalog;
 
     /**
      * The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication.
@@ -95,6 +86,22 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $issn;
 
     /**
+     * A subproperty of [[measurementTechnique]] that can be used for specifying specific methods, in particular via [[MeasurementMethodEnum]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string|\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum|null
+     */
+    protected $measurementMethod;
+
+    /**
+     * A downloadable form of this dataset, at a specific location, in a specific format. This property can be repeated if different variations are available. There is no expectation that different downloadable distributions must contain exactly equivalent information (see also [DCAT](https://www.w3.org/TR/vocab-dcat-3/#Class:Distribution) on this point). Different distributions might include or exclude different subsets of the entire dataset, for example.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DataDownload|string
+     */
+    protected $distribution;
+
+    /**
      * A data catalog which contains this dataset.
      *
      *
@@ -103,28 +110,28 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $includedInDataCatalog;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DataCatalog|string
+     * @return DateTime|null
      */
-    public function getCatalog()
+    public function getDatasetTimeInterval()
     {
-        return $this->catalog;
+        return $this->datasetTimeInterval;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DataCatalog|string $catalog
+     * @param DateTime|null $datasetTimeInterval
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCatalog($catalog)
+    public function setDatasetTimeInterval($datasetTimeInterval)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\DataCatalog",
-            "string",
+            "DateTime",
+            "null",
         ];
 
-        $catalog = self::checkTypes($catalog, $types);
+        $datasetTimeInterval = self::checkTypes($datasetTimeInterval, $types);
 
-        $this->catalog = $catalog;
+        $this->datasetTimeInterval = $datasetTimeInterval;
     }
 
     /**
@@ -153,7 +160,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
+     * @return \OpenActive\Enums\PropertyEnumeration|\OpenActive\Models\SchemaOrg\StatisticalVariable|string|\OpenActive\Models\SchemaOrg\PropertyValue|null
      */
     public function getVariableMeasured()
     {
@@ -161,15 +168,18 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $variableMeasured
+     * @param \OpenActive\Enums\PropertyEnumeration|\OpenActive\Models\SchemaOrg\StatisticalVariable|string|\OpenActive\Models\SchemaOrg\PropertyValue|null $variableMeasured
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVariableMeasured($variableMeasured)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "\OpenActive\Enums\PropertyEnumeration",
+            "\OpenActive\Models\SchemaOrg\StatisticalVariable",
             "string",
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "null",
         ];
 
         $variableMeasured = self::checkTypes($variableMeasured, $types);
@@ -178,7 +188,7 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string|\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum|null
      */
     public function getMeasurementTechnique()
     {
@@ -186,14 +196,17 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string $measurementTechnique
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string|\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum|null $measurementTechnique
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMeasurementTechnique($measurementTechnique)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
             "string",
+            "\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum",
+            "null",
         ];
 
         $measurementTechnique = self::checkTypes($measurementTechnique, $types);
@@ -202,28 +215,79 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return DateTime|null
+     * @return \OpenActive\Models\SchemaOrg\DataCatalog|string
      */
-    public function getDatasetTimeInterval()
+    public function getCatalog()
     {
-        return $this->datasetTimeInterval;
+        return $this->catalog;
     }
 
     /**
-     * @param DateTime|null $datasetTimeInterval
+     * @param \OpenActive\Models\SchemaOrg\DataCatalog|string $catalog
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDatasetTimeInterval($datasetTimeInterval)
+    public function setCatalog($catalog)
     {
         $types = [
-            "DateTime",
+            "\OpenActive\Models\SchemaOrg\DataCatalog",
+            "string",
+        ];
+
+        $catalog = self::checkTypes($catalog, $types);
+
+        $this->catalog = $catalog;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIssn()
+    {
+        return $this->issn;
+    }
+
+    /**
+     * @param string $issn
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIssn($issn)
+    {
+        $types = [
+            "string",
+        ];
+
+        $issn = self::checkTypes($issn, $types);
+
+        $this->issn = $issn;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string|\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum|null
+     */
+    public function getMeasurementMethod()
+    {
+        return $this->measurementMethod;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string|\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum|null $measurementMethod
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMeasurementMethod($measurementMethod)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
+            "\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum",
             "null",
         ];
 
-        $datasetTimeInterval = self::checkTypes($datasetTimeInterval, $types);
+        $measurementMethod = self::checkTypes($measurementMethod, $types);
 
-        $this->datasetTimeInterval = $datasetTimeInterval;
+        $this->measurementMethod = $measurementMethod;
     }
 
     /**
@@ -249,30 +313,6 @@ class Dataset extends \OpenActive\Models\SchemaOrg\CreativeWork
         $distribution = self::checkTypes($distribution, $types);
 
         $this->distribution = $distribution;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIssn()
-    {
-        return $this->issn;
-    }
-
-    /**
-     * @param string $issn
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIssn($issn)
-    {
-        $types = [
-            "string",
-        ];
-
-        $issn = self::checkTypes($issn, $types);
-
-        $this->issn = $issn;
     }
 
     /**

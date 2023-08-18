@@ -17,15 +17,31 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
 
     public static function fieldList() {
         $fields = [
+            "petsAllowed" => "petsAllowed",
+            "tourBookingPage" => "tourBookingPage",
             "numberOfAccommodationUnits" => "numberOfAccommodationUnits",
             "numberOfAvailableAccommodationUnits" => "numberOfAvailableAccommodationUnits",
-            "tourBookingPage" => "tourBookingPage",
             "numberOfBedrooms" => "numberOfBedrooms",
-            "petsAllowed" => "petsAllowed",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value.
+     *
+     *
+     * @var bool|string|null
+     */
+    protected $petsAllowed;
+
+    /**
+     * A page providing information on how to book a tour of some [[Place]], such as an [[Accommodation]] or [[ApartmentComplex]] in a real estate setting, as well as other kinds of tours as appropriate.
+     *
+     *
+     * @var string
+     */
+    protected $tourBookingPage;
 
     /**
      * Indicates the total (available plus unavailable) number of accommodation units in an [[ApartmentComplex]], or the number of accommodation units for a specific [[FloorPlan]] (within its specific [[ApartmentComplex]]). See also [[numberOfAvailableAccommodationUnits]].
@@ -44,28 +60,62 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     protected $numberOfAvailableAccommodationUnits;
 
     /**
-     * A page providing information on how to book a tour of some [[Place]], such as an [[Accommodation]] or [[ApartmentComplex]] in a real estate setting, as well as other kinds of tours as appropriate.
-     *
-     *
-     * @var string
-     */
-    protected $tourBookingPage;
-
-    /**
      * The total integer number of bedrooms in a some [[Accommodation]], [[ApartmentComplex]] or [[FloorPlan]].
      *
      *
-     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null
      */
     protected $numberOfBedrooms;
 
     /**
-     * Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value.
-     *
-     *
-     * @var bool|string|null
+     * @return bool|string|null
      */
-    protected $petsAllowed;
+    public function getPetsAllowed()
+    {
+        return $this->petsAllowed;
+    }
+
+    /**
+     * @param bool|string|null $petsAllowed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPetsAllowed($petsAllowed)
+    {
+        $types = [
+            "bool",
+            "string",
+            "null",
+        ];
+
+        $petsAllowed = self::checkTypes($petsAllowed, $types);
+
+        $this->petsAllowed = $petsAllowed;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTourBookingPage()
+    {
+        return $this->tourBookingPage;
+    }
+
+    /**
+     * @param string $tourBookingPage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTourBookingPage($tourBookingPage)
+    {
+        $types = [
+            "string",
+        ];
+
+        $tourBookingPage = self::checkTypes($tourBookingPage, $types);
+
+        $this->tourBookingPage = $tourBookingPage;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
@@ -118,31 +168,7 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     }
 
     /**
-     * @return string
-     */
-    public function getTourBookingPage()
-    {
-        return $this->tourBookingPage;
-    }
-
-    /**
-     * @param string $tourBookingPage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTourBookingPage($tourBookingPage)
-    {
-        $types = [
-            "string",
-        ];
-
-        $tourBookingPage = self::checkTypes($tourBookingPage, $types);
-
-        $this->tourBookingPage = $tourBookingPage;
-    }
-
-    /**
-     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null
      */
     public function getNumberOfBedrooms()
     {
@@ -150,48 +176,22 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     }
 
     /**
-     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $numberOfBedrooms
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null $numberOfBedrooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfBedrooms($numberOfBedrooms)
     {
         $types = [
-            "Number",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
+            "Number",
             "null",
         ];
 
         $numberOfBedrooms = self::checkTypes($numberOfBedrooms, $types);
 
         $this->numberOfBedrooms = $numberOfBedrooms;
-    }
-
-    /**
-     * @return bool|string|null
-     */
-    public function getPetsAllowed()
-    {
-        return $this->petsAllowed;
-    }
-
-    /**
-     * @param bool|string|null $petsAllowed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPetsAllowed($petsAllowed)
-    {
-        $types = [
-            "bool",
-            "string",
-            "null",
-        ];
-
-        $petsAllowed = self::checkTypes($petsAllowed, $types);
-
-        $this->petsAllowed = $petsAllowed;
     }
 
 }

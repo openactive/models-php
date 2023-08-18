@@ -17,13 +17,21 @@ class EnergyConsumptionDetails extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
+            "energyEfficiencyScaleMax" => "energyEfficiencyScaleMax",
             "energyEfficiencyScaleMin" => "energyEfficiencyScaleMin",
             "hasEnergyEfficiencyCategory" => "hasEnergyEfficiencyCategory",
-            "energyEfficiencyScaleMax" => "energyEfficiencyScaleMax",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Specifies the most energy efficient class on the regulated EU energy consumption scale for the product category a product belongs to. For example, energy consumption for televisions placed on the market after January 1, 2020 is scaled from D to A+++.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration|string
+     */
+    protected $energyEfficiencyScaleMax;
 
     /**
      * Specifies the least energy efficient class on the regulated EU energy consumption scale for the product category a product belongs to. For example, energy consumption for televisions placed on the market after January 1, 2020 is scaled from D to A+++.
@@ -42,12 +50,29 @@ class EnergyConsumptionDetails extends \OpenActive\Models\SchemaOrg\Intangible
     protected $hasEnergyEfficiencyCategory;
 
     /**
-     * Specifies the most energy efficient class on the regulated EU energy consumption scale for the product category a product belongs to. For example, energy consumption for televisions placed on the market after January 1, 2020 is scaled from D to A+++.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration|string
+     * @return \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration|string
      */
-    protected $energyEfficiencyScaleMax;
+    public function getEnergyEfficiencyScaleMax()
+    {
+        return $this->energyEfficiencyScaleMax;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration|string $energyEfficiencyScaleMax
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEnergyEfficiencyScaleMax($energyEfficiencyScaleMax)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration",
+            "string",
+        ];
+
+        $energyEfficiencyScaleMax = self::checkTypes($energyEfficiencyScaleMax, $types);
+
+        $this->energyEfficiencyScaleMax = $energyEfficiencyScaleMax;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration|string
@@ -97,31 +122,6 @@ class EnergyConsumptionDetails extends \OpenActive\Models\SchemaOrg\Intangible
         $hasEnergyEfficiencyCategory = self::checkTypes($hasEnergyEfficiencyCategory, $types);
 
         $this->hasEnergyEfficiencyCategory = $hasEnergyEfficiencyCategory;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration|string
-     */
-    public function getEnergyEfficiencyScaleMax()
-    {
-        return $this->energyEfficiencyScaleMax;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration|string $energyEfficiencyScaleMax
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEnergyEfficiencyScaleMax($energyEfficiencyScaleMax)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\EUEnergyEfficiencyEnumeration",
-            "string",
-        ];
-
-        $energyEfficiencyScaleMax = self::checkTypes($energyEfficiencyScaleMax, $types);
-
-        $this->energyEfficiencyScaleMax = $energyEfficiencyScaleMax;
     }
 
 }

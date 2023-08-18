@@ -18,42 +18,42 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     public static function fieldList() {
         $fields = [
             "title" => "title",
-            "employerOverview" => "employerOverview",
-            "estimatedSalary" => "estimatedSalary",
-            "jobLocationType" => "jobLocationType",
-            "responsibilities" => "responsibilities",
-            "jobLocation" => "jobLocation",
-            "physicalRequirement" => "physicalRequirement",
-            "incentives" => "incentives",
-            "directApply" => "directApply",
-            "sensoryRequirement" => "sensoryRequirement",
-            "applicantLocationRequirements" => "applicantLocationRequirements",
-            "workHours" => "workHours",
-            "jobStartDate" => "jobStartDate",
-            "employmentType" => "employmentType",
-            "specialCommitments" => "specialCommitments",
             "applicationContact" => "applicationContact",
-            "incentiveCompensation" => "incentiveCompensation",
-            "relevantOccupation" => "relevantOccupation",
-            "totalJobOpenings" => "totalJobOpenings",
+            "jobStartDate" => "jobStartDate",
+            "jobLocation" => "jobLocation",
+            "responsibilities" => "responsibilities",
+            "occupationalCategory" => "occupationalCategory",
+            "securityClearanceRequirement" => "securityClearanceRequirement",
+            "baseSalary" => "baseSalary",
+            "qualifications" => "qualifications",
+            "workHours" => "workHours",
+            "benefits" => "benefits",
+            "hiringOrganization" => "hiringOrganization",
+            "skills" => "skills",
             "experienceRequirements" => "experienceRequirements",
-            "jobBenefits" => "jobBenefits",
+            "validThrough" => "validThrough",
+            "estimatedSalary" => "estimatedSalary",
+            "employmentUnit" => "employmentUnit",
+            "relevantOccupation" => "relevantOccupation",
+            "incentiveCompensation" => "incentiveCompensation",
+            "employerOverview" => "employerOverview",
             "salaryCurrency" => "salaryCurrency",
             "experienceInPlaceOfEducation" => "experienceInPlaceOfEducation",
-            "securityClearanceRequirement" => "securityClearanceRequirement",
             "eligibilityToWorkRequirement" => "eligibilityToWorkRequirement",
-            "educationRequirements" => "educationRequirements",
-            "benefits" => "benefits",
-            "industry" => "industry",
-            "baseSalary" => "baseSalary",
             "datePosted" => "datePosted",
-            "skills" => "skills",
-            "hiringOrganization" => "hiringOrganization",
+            "applicantLocationRequirements" => "applicantLocationRequirements",
+            "jobBenefits" => "jobBenefits",
+            "specialCommitments" => "specialCommitments",
+            "employmentType" => "employmentType",
+            "educationRequirements" => "educationRequirements",
+            "incentives" => "incentives",
+            "sensoryRequirement" => "sensoryRequirement",
+            "jobLocationType" => "jobLocationType",
+            "totalJobOpenings" => "totalJobOpenings",
             "jobImmediateStart" => "jobImmediateStart",
-            "validThrough" => "validThrough",
-            "employmentUnit" => "employmentUnit",
-            "qualifications" => "qualifications",
-            "occupationalCategory" => "occupationalCategory",
+            "industry" => "industry",
+            "physicalRequirement" => "physicalRequirement",
+            "directApply" => "directApply",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -68,92 +68,12 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     protected $title;
 
     /**
-     * A description of the employer, career opportunities and work environment for this position.
+     * Contact details for further information relevant to this job posting.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\ContactPoint|string
      */
-    protected $employerOverview;
-
-    /**
-     * An estimated salary for a job posting or occupation, based on a variety of variables including, but not limited to industry, job title, and location. Estimated salaries  are often computed by outside organizations rather than the hiring organization, who may not have committed to the estimated value.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
-     */
-    protected $estimatedSalary;
-
-    /**
-     * A description of the job location (e.g TELECOMMUTE for telecommute jobs).
-     *
-     *
-     * @var string
-     */
-    protected $jobLocationType;
-
-    /**
-     * Responsibilities associated with this role or Occupation.
-     *
-     *
-     * @var string
-     */
-    protected $responsibilities;
-
-    /**
-     * A (typically single) geographic location associated with the job position.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Place|string
-     */
-    protected $jobLocation;
-
-    /**
-     * A description of the types of physical activity associated with the job. Defined terms such as those in O*net may be used, but note that there is no way to specify the level of ability as well as its nature when using a defined term.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
-     */
-    protected $physicalRequirement;
-
-    /**
-     * Description of bonus and commission compensation aspects of the job.
-     *
-     *
-     * @var string
-     */
-    protected $incentives;
-
-    /**
-     * Indicates whether an [[url]] that is associated with a [[JobPosting]] enables direct application for the job, via the posting website. A job posting is considered to have directApply of [[True]] if an application process for the specified job can be directly initiated via the url(s) given (noting that e.g. multiple internet domains might nevertheless be involved at an implementation level). A value of [[False]] is appropriate if there is no clear path to applying directly online for the specified job, navigating directly from the JobPosting url(s) supplied.
-     *
-     *
-     * @var bool|null
-     */
-    protected $directApply;
-
-    /**
-     * A description of any sensory requirements and levels necessary to function on the job, including hearing and vision. Defined terms such as those in O*net may be used, but note that there is no way to specify the level of ability as well as its nature when using a defined term.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
-     */
-    protected $sensoryRequirement;
-
-    /**
-     * The location(s) applicants can apply from. This is usually used for telecommuting jobs where the applicant does not need to be in a physical office. Note: This should not be used for citizenship or work visa requirements.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
-     */
-    protected $applicantLocationRequirements;
-
-    /**
-     * The typical working hours for this job (e.g. 1st shift, night shift, 8am-5pm).
-     *
-     *
-     * @var string
-     */
-    protected $workHours;
+    protected $applicationContact;
 
     /**
      * The date on which a successful applicant for this job would be expected to start work. Choose a specific date in the future or use the jobImmediateStart property to indicate the position is to be filled as soon as possible.
@@ -164,52 +84,85 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     protected $jobStartDate;
 
     /**
-     * Type of employment (e.g. full-time, part-time, contract, temporary, seasonal, internship).
+     * A (typically single) geographic location associated with the job position.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|string
+     */
+    protected $jobLocation;
+
+    /**
+     * Responsibilities associated with this role or Occupation.
      *
      *
      * @var string
      */
-    protected $employmentType;
+    protected $responsibilities;
 
     /**
-     * Any special commitments associated with this job posting. Valid entries include VeteranCommit, MilitarySpouseCommit, etc.
+     * A category describing the job, preferably using a term from a taxonomy such as [BLS O*NET-SOC](http://www.onetcenter.org/taxonomy.html), [ISCO-08](https://www.ilo.org/public/english/bureau/stat/isco/isco08/) or similar, with the property repeated for each applicable value. Ideally the taxonomy should be identified, and both the textual label and formal code for the category should be provided.\n
+     * Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\CategoryCode
+     */
+    protected $occupationalCategory;
+
+    /**
+     * A description of any security clearance requirements of the job.
      *
      *
      * @var string
      */
-    protected $specialCommitments;
+    protected $securityClearanceRequirement;
 
     /**
-     * Contact details for further information relevant to this job posting.
+     * The base salary of the job or of an employee in an EmployeeRole.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ContactPoint|string
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|string|Number|null
      */
-    protected $applicationContact;
+    protected $baseSalary;
 
     /**
-     * Description of bonus and commission compensation aspects of the job.
+     * Specific qualifications required for this role or Occupation.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     */
+    protected $qualifications;
+
+    /**
+     * The typical working hours for this job (e.g. 1st shift, night shift, 8am-5pm).
      *
      *
      * @var string
      */
-    protected $incentiveCompensation;
+    protected $workHours;
 
     /**
-     * The Occupation for the JobPosting.
+     * Description of benefits associated with the job.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Occupation|string
+     * @var string
      */
-    protected $relevantOccupation;
+    protected $benefits;
 
     /**
-     * The number of positions open for this job posting. Use a positive integer. Do not use if the number of positions is unclear or not known.
+     * Organization or Person offering the job position.
      *
      *
-     * @var int|null
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $totalJobOpenings;
+    protected $hiringOrganization;
+
+    /**
+     * A statement of knowledge, skill, ability, task or any other assertion expressing a competency that is desired or required to fulfill this role or to work in this occupation.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    protected $skills;
 
     /**
      * Description of skills and experience needed for the position or Occupation.
@@ -220,15 +173,55 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     protected $experienceRequirements;
 
     /**
-     * Description of benefits associated with the job.
+     * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $validThrough;
+
+    /**
+     * An estimated salary for a job posting or occupation, based on a variety of variables including, but not limited to industry, job title, and location. Estimated salaries  are often computed by outside organizations rather than the hiring organization, who may not have committed to the estimated value.
+     *
+     *
+     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     */
+    protected $estimatedSalary;
+
+    /**
+     * Indicates the department, unit and/or facility where the employee reports and/or in which the job is to be performed.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    protected $employmentUnit;
+
+    /**
+     * The Occupation for the JobPosting.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Occupation|string
+     */
+    protected $relevantOccupation;
+
+    /**
+     * Description of bonus and commission compensation aspects of the job.
      *
      *
      * @var string
      */
-    protected $jobBenefits;
+    protected $incentiveCompensation;
 
     /**
-     * The currency (coded using [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) ) used for the main salary information in this job posting or for this employee.
+     * A description of the employer, career opportunities and work environment for this position.
+     *
+     *
+     * @var string
+     */
+    protected $employerOverview;
+
+    /**
+     * The currency (coded using [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217)) used for the main salary information in this job posting or for this employee.
      *
      *
      * @var string
@@ -244,52 +237,12 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     protected $experienceInPlaceOfEducation;
 
     /**
-     * A description of any security clearance requirements of the job.
-     *
-     *
-     * @var string
-     */
-    protected $securityClearanceRequirement;
-
-    /**
      * The legal requirements such as citizenship, visa and other documentation required for an applicant to this job.
      *
      *
      * @var string
      */
     protected $eligibilityToWorkRequirement;
-
-    /**
-     * Educational background needed for the position or Occupation.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
-     */
-    protected $educationRequirements;
-
-    /**
-     * Description of benefits associated with the job.
-     *
-     *
-     * @var string
-     */
-    protected $benefits;
-
-    /**
-     * The industry associated with the job position.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
-     */
-    protected $industry;
-
-    /**
-     * The base salary of the job or of an employee in an EmployeeRole.
-     *
-     *
-     * @var Number|\OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
-     */
-    protected $baseSalary;
 
     /**
      * Publication date of an online listing.
@@ -300,20 +253,76 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     protected $datePosted;
 
     /**
-     * A statement of knowledge, skill, ability, task or any other assertion expressing a competency that is desired or required to fulfill this role or to work in this occupation.
+     * The location(s) applicants can apply from. This is usually used for telecommuting jobs where the applicant does not need to be in a physical office. Note: This should not be used for citizenship or work visa requirements.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
+     */
+    protected $applicantLocationRequirements;
+
+    /**
+     * Description of benefits associated with the job.
+     *
+     *
+     * @var string
+     */
+    protected $jobBenefits;
+
+    /**
+     * Any special commitments associated with this job posting. Valid entries include VeteranCommit, MilitarySpouseCommit, etc.
+     *
+     *
+     * @var string
+     */
+    protected $specialCommitments;
+
+    /**
+     * Type of employment (e.g. full-time, part-time, contract, temporary, seasonal, internship).
+     *
+     *
+     * @var string
+     */
+    protected $employmentType;
+
+    /**
+     * Educational background needed for the position or Occupation.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     */
+    protected $educationRequirements;
+
+    /**
+     * Description of bonus and commission compensation aspects of the job.
+     *
+     *
+     * @var string
+     */
+    protected $incentives;
+
+    /**
+     * A description of any sensory requirements and levels necessary to function on the job, including hearing and vision. Defined terms such as those in O*net may be used, but note that there is no way to specify the level of ability as well as its nature when using a defined term.
      *
      *
      * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
-    protected $skills;
+    protected $sensoryRequirement;
 
     /**
-     * Organization offering the job position.
+     * A description of the job location (e.g. TELECOMMUTE for telecommute jobs).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     * @var string
      */
-    protected $hiringOrganization;
+    protected $jobLocationType;
+
+    /**
+     * The number of positions open for this job posting. Use a positive integer. Do not use if the number of positions is unclear or not known.
+     *
+     *
+     * @var int|null
+     */
+    protected $totalJobOpenings;
 
     /**
      * An indicator as to whether a position is available for an immediate start.
@@ -324,37 +333,28 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     protected $jobImmediateStart;
 
     /**
-     * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
+     * The industry associated with the job position.
      *
      *
-     * @var Date|DateTime|null
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
-    protected $validThrough;
+    protected $industry;
 
     /**
-     * Indicates the department, unit and/or facility where the employee reports and/or in which the job is to be performed.
+     * A description of the types of physical activity associated with the job. Defined terms such as those in O*net may be used, but note that there is no way to specify the level of ability as well as its nature when using a defined term.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
-    protected $employmentUnit;
+    protected $physicalRequirement;
 
     /**
-     * Specific qualifications required for this role or Occupation.
+     * Indicates whether an [[url]] that is associated with a [[JobPosting]] enables direct application for the job, via the posting website. A job posting is considered to have directApply of [[True]] if an application process for the specified job can be directly initiated via the url(s) given (noting that e.g. multiple internet domains might nevertheless be involved at an implementation level). A value of [[False]] is appropriate if there is no clear path to applying directly online for the specified job, navigating directly from the JobPosting url(s) supplied.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     * @var bool|null
      */
-    protected $qualifications;
-
-    /**
-     * A category describing the job, preferably using a term from a taxonomy such as [BLS O*NET-SOC](http://www.onetcenter.org/taxonomy.html), [ISCO-08](https://www.ilo.org/public/english/bureau/stat/isco/isco08/) or similar, with the property repeated for each applicable value. Ideally the taxonomy should be identified, and both the textual label and formal code for the category should be provided.\n
-     * Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CategoryCode|string
-     */
-    protected $occupationalCategory;
+    protected $directApply;
 
     /**
      * @return string
@@ -381,276 +381,28 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\ContactPoint|string
      */
-    public function getEmployerOverview()
+    public function getApplicationContact()
     {
-        return $this->employerOverview;
+        return $this->applicationContact;
     }
 
     /**
-     * @param string $employerOverview
+     * @param \OpenActive\Models\SchemaOrg\ContactPoint|string $applicationContact
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEmployerOverview($employerOverview)
+    public function setApplicationContact($applicationContact)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
             "string",
         ];
 
-        $employerOverview = self::checkTypes($employerOverview, $types);
+        $applicationContact = self::checkTypes($applicationContact, $types);
 
-        $this->employerOverview = $employerOverview;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
-     */
-    public function getEstimatedSalary()
-    {
-        return $this->estimatedSalary;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null $estimatedSalary
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEstimatedSalary($estimatedSalary)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution",
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "string",
-            "Number",
-            "null",
-        ];
-
-        $estimatedSalary = self::checkTypes($estimatedSalary, $types);
-
-        $this->estimatedSalary = $estimatedSalary;
-    }
-
-    /**
-     * @return string
-     */
-    public function getJobLocationType()
-    {
-        return $this->jobLocationType;
-    }
-
-    /**
-     * @param string $jobLocationType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setJobLocationType($jobLocationType)
-    {
-        $types = [
-            "string",
-        ];
-
-        $jobLocationType = self::checkTypes($jobLocationType, $types);
-
-        $this->jobLocationType = $jobLocationType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getResponsibilities()
-    {
-        return $this->responsibilities;
-    }
-
-    /**
-     * @param string $responsibilities
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setResponsibilities($responsibilities)
-    {
-        $types = [
-            "string",
-        ];
-
-        $responsibilities = self::checkTypes($responsibilities, $types);
-
-        $this->responsibilities = $responsibilities;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Place|string
-     */
-    public function getJobLocation()
-    {
-        return $this->jobLocation;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Place|string $jobLocation
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setJobLocation($jobLocation)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Place",
-            "string",
-        ];
-
-        $jobLocation = self::checkTypes($jobLocation, $types);
-
-        $this->jobLocation = $jobLocation;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
-     */
-    public function getPhysicalRequirement()
-    {
-        return $this->physicalRequirement;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $physicalRequirement
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPhysicalRequirement($physicalRequirement)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-        ];
-
-        $physicalRequirement = self::checkTypes($physicalRequirement, $types);
-
-        $this->physicalRequirement = $physicalRequirement;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIncentives()
-    {
-        return $this->incentives;
-    }
-
-    /**
-     * @param string $incentives
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIncentives($incentives)
-    {
-        $types = [
-            "string",
-        ];
-
-        $incentives = self::checkTypes($incentives, $types);
-
-        $this->incentives = $incentives;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getDirectApply()
-    {
-        return $this->directApply;
-    }
-
-    /**
-     * @param bool|null $directApply
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDirectApply($directApply)
-    {
-        $types = [
-            "bool",
-            "null",
-        ];
-
-        $directApply = self::checkTypes($directApply, $types);
-
-        $this->directApply = $directApply;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
-     */
-    public function getSensoryRequirement()
-    {
-        return $this->sensoryRequirement;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $sensoryRequirement
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSensoryRequirement($sensoryRequirement)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-            "string",
-        ];
-
-        $sensoryRequirement = self::checkTypes($sensoryRequirement, $types);
-
-        $this->sensoryRequirement = $sensoryRequirement;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
-     */
-    public function getApplicantLocationRequirements()
-    {
-        return $this->applicantLocationRequirements;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $applicantLocationRequirements
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setApplicantLocationRequirements($applicantLocationRequirements)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-            "string",
-        ];
-
-        $applicantLocationRequirements = self::checkTypes($applicantLocationRequirements, $types);
-
-        $this->applicantLocationRequirements = $applicantLocationRequirements;
-    }
-
-    /**
-     * @return string
-     */
-    public function getWorkHours()
-    {
-        return $this->workHours;
-    }
-
-    /**
-     * @param string $workHours
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setWorkHours($workHours)
-    {
-        $types = [
-            "string",
-        ];
-
-        $workHours = self::checkTypes($workHours, $types);
-
-        $this->workHours = $workHours;
+        $this->applicationContact = $applicationContact;
     }
 
     /**
@@ -680,150 +432,253 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\Place|string
      */
-    public function getEmploymentType()
+    public function getJobLocation()
     {
-        return $this->employmentType;
+        return $this->jobLocation;
     }
 
     /**
-     * @param string $employmentType
+     * @param \OpenActive\Models\SchemaOrg\Place|string $jobLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEmploymentType($employmentType)
+    public function setJobLocation($jobLocation)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\Place",
             "string",
         ];
 
-        $employmentType = self::checkTypes($employmentType, $types);
+        $jobLocation = self::checkTypes($jobLocation, $types);
 
-        $this->employmentType = $employmentType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSpecialCommitments()
-    {
-        return $this->specialCommitments;
-    }
-
-    /**
-     * @param string $specialCommitments
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSpecialCommitments($specialCommitments)
-    {
-        $types = [
-            "string",
-        ];
-
-        $specialCommitments = self::checkTypes($specialCommitments, $types);
-
-        $this->specialCommitments = $specialCommitments;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ContactPoint|string
-     */
-    public function getApplicationContact()
-    {
-        return $this->applicationContact;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ContactPoint|string $applicationContact
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setApplicationContact($applicationContact)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
-            "string",
-        ];
-
-        $applicationContact = self::checkTypes($applicationContact, $types);
-
-        $this->applicationContact = $applicationContact;
+        $this->jobLocation = $jobLocation;
     }
 
     /**
      * @return string
      */
-    public function getIncentiveCompensation()
+    public function getResponsibilities()
     {
-        return $this->incentiveCompensation;
+        return $this->responsibilities;
     }
 
     /**
-     * @param string $incentiveCompensation
+     * @param string $responsibilities
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIncentiveCompensation($incentiveCompensation)
+    public function setResponsibilities($responsibilities)
     {
         $types = [
             "string",
         ];
 
-        $incentiveCompensation = self::checkTypes($incentiveCompensation, $types);
+        $responsibilities = self::checkTypes($responsibilities, $types);
 
-        $this->incentiveCompensation = $incentiveCompensation;
+        $this->responsibilities = $responsibilities;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Occupation|string
+     * @return string|\OpenActive\Models\SchemaOrg\CategoryCode
      */
-    public function getRelevantOccupation()
+    public function getOccupationalCategory()
     {
-        return $this->relevantOccupation;
+        return $this->occupationalCategory;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Occupation|string $relevantOccupation
+     * @param string|\OpenActive\Models\SchemaOrg\CategoryCode $occupationalCategory
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRelevantOccupation($relevantOccupation)
+    public function setOccupationalCategory($occupationalCategory)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Occupation",
+            "string",
+            "\OpenActive\Models\SchemaOrg\CategoryCode",
+        ];
+
+        $occupationalCategory = self::checkTypes($occupationalCategory, $types);
+
+        $this->occupationalCategory = $occupationalCategory;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSecurityClearanceRequirement()
+    {
+        return $this->securityClearanceRequirement;
+    }
+
+    /**
+     * @param string $securityClearanceRequirement
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSecurityClearanceRequirement($securityClearanceRequirement)
+    {
+        $types = [
             "string",
         ];
 
-        $relevantOccupation = self::checkTypes($relevantOccupation, $types);
+        $securityClearanceRequirement = self::checkTypes($securityClearanceRequirement, $types);
 
-        $this->relevantOccupation = $relevantOccupation;
+        $this->securityClearanceRequirement = $securityClearanceRequirement;
     }
 
     /**
-     * @return int|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|string|Number|null
      */
-    public function getTotalJobOpenings()
+    public function getBaseSalary()
     {
-        return $this->totalJobOpenings;
+        return $this->baseSalary;
     }
 
     /**
-     * @param int|null $totalJobOpenings
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|string|Number|null $baseSalary
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTotalJobOpenings($totalJobOpenings)
+    public function setBaseSalary($baseSalary)
     {
         $types = [
-            "int",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
+            "string",
+            "Number",
             "null",
         ];
 
-        $totalJobOpenings = self::checkTypes($totalJobOpenings, $types);
+        $baseSalary = self::checkTypes($baseSalary, $types);
 
-        $this->totalJobOpenings = $totalJobOpenings;
+        $this->baseSalary = $baseSalary;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     */
+    public function getQualifications()
+    {
+        return $this->qualifications;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $qualifications
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setQualifications($qualifications)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
+        ];
+
+        $qualifications = self::checkTypes($qualifications, $types);
+
+        $this->qualifications = $qualifications;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWorkHours()
+    {
+        return $this->workHours;
+    }
+
+    /**
+     * @param string $workHours
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setWorkHours($workHours)
+    {
+        $types = [
+            "string",
+        ];
+
+        $workHours = self::checkTypes($workHours, $types);
+
+        $this->workHours = $workHours;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBenefits()
+    {
+        return $this->benefits;
+    }
+
+    /**
+     * @param string $benefits
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBenefits($benefits)
+    {
+        $types = [
+            "string",
+        ];
+
+        $benefits = self::checkTypes($benefits, $types);
+
+        $this->benefits = $benefits;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getHiringOrganization()
+    {
+        return $this->hiringOrganization;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $hiringOrganization
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHiringOrganization($hiringOrganization)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $hiringOrganization = self::checkTypes($hiringOrganization, $types);
+
+        $this->hiringOrganization = $hiringOrganization;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    public function getSkills()
+    {
+        return $this->skills;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $skills
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSkills($skills)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
+        ];
+
+        $skills = self::checkTypes($skills, $types);
+
+        $this->skills = $skills;
     }
 
     /**
@@ -852,27 +707,155 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
+     * @return Date|DateTime|null
      */
-    public function getJobBenefits()
+    public function getValidThrough()
     {
-        return $this->jobBenefits;
+        return $this->validThrough;
     }
 
     /**
-     * @param string $jobBenefits
+     * @param Date|DateTime|null $validThrough
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setJobBenefits($jobBenefits)
+    public function setValidThrough($validThrough)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $validThrough = self::checkTypes($validThrough, $types);
+
+        $this->validThrough = $validThrough;
+    }
+
+    /**
+     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     */
+    public function getEstimatedSalary()
+    {
+        return $this->estimatedSalary;
+    }
+
+    /**
+     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $estimatedSalary
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEstimatedSalary($estimatedSalary)
+    {
+        $types = [
+            "Number",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
+            "null",
+        ];
+
+        $estimatedSalary = self::checkTypes($estimatedSalary, $types);
+
+        $this->estimatedSalary = $estimatedSalary;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getEmploymentUnit()
+    {
+        return $this->employmentUnit;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|string $employmentUnit
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEmploymentUnit($employmentUnit)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $employmentUnit = self::checkTypes($employmentUnit, $types);
+
+        $this->employmentUnit = $employmentUnit;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Occupation|string
+     */
+    public function getRelevantOccupation()
+    {
+        return $this->relevantOccupation;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Occupation|string $relevantOccupation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRelevantOccupation($relevantOccupation)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Occupation",
+            "string",
+        ];
+
+        $relevantOccupation = self::checkTypes($relevantOccupation, $types);
+
+        $this->relevantOccupation = $relevantOccupation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIncentiveCompensation()
+    {
+        return $this->incentiveCompensation;
+    }
+
+    /**
+     * @param string $incentiveCompensation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIncentiveCompensation($incentiveCompensation)
     {
         $types = [
             "string",
         ];
 
-        $jobBenefits = self::checkTypes($jobBenefits, $types);
+        $incentiveCompensation = self::checkTypes($incentiveCompensation, $types);
 
-        $this->jobBenefits = $jobBenefits;
+        $this->incentiveCompensation = $incentiveCompensation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmployerOverview()
+    {
+        return $this->employerOverview;
+    }
+
+    /**
+     * @param string $employerOverview
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEmployerOverview($employerOverview)
+    {
+        $types = [
+            "string",
+        ];
+
+        $employerOverview = self::checkTypes($employerOverview, $types);
+
+        $this->employerOverview = $employerOverview;
     }
 
     /**
@@ -927,30 +910,6 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return string
      */
-    public function getSecurityClearanceRequirement()
-    {
-        return $this->securityClearanceRequirement;
-    }
-
-    /**
-     * @param string $securityClearanceRequirement
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSecurityClearanceRequirement($securityClearanceRequirement)
-    {
-        $types = [
-            "string",
-        ];
-
-        $securityClearanceRequirement = self::checkTypes($securityClearanceRequirement, $types);
-
-        $this->securityClearanceRequirement = $securityClearanceRequirement;
-    }
-
-    /**
-     * @return string
-     */
     public function getEligibilityToWorkRequirement()
     {
         return $this->eligibilityToWorkRequirement;
@@ -970,108 +929,6 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
         $eligibilityToWorkRequirement = self::checkTypes($eligibilityToWorkRequirement, $types);
 
         $this->eligibilityToWorkRequirement = $eligibilityToWorkRequirement;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
-     */
-    public function getEducationRequirements()
-    {
-        return $this->educationRequirements;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string $educationRequirements
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEducationRequirements($educationRequirements)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
-            "string",
-        ];
-
-        $educationRequirements = self::checkTypes($educationRequirements, $types);
-
-        $this->educationRequirements = $educationRequirements;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBenefits()
-    {
-        return $this->benefits;
-    }
-
-    /**
-     * @param string $benefits
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBenefits($benefits)
-    {
-        $types = [
-            "string",
-        ];
-
-        $benefits = self::checkTypes($benefits, $types);
-
-        $this->benefits = $benefits;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
-     */
-    public function getIndustry()
-    {
-        return $this->industry;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $industry
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIndustry($industry)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-            "string",
-        ];
-
-        $industry = self::checkTypes($industry, $types);
-
-        $this->industry = $industry;
-    }
-
-    /**
-     * @return Number|\OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
-     */
-    public function getBaseSalary()
-    {
-        return $this->baseSalary;
-    }
-
-    /**
-     * @param Number|\OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $baseSalary
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBaseSalary($baseSalary)
-    {
-        $types = [
-            "Number",
-            "\OpenActive\Models\SchemaOrg\PriceSpecification",
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "string",
-            "null",
-        ];
-
-        $baseSalary = self::checkTypes($baseSalary, $types);
-
-        $this->baseSalary = $baseSalary;
     }
 
     /**
@@ -1101,53 +958,223 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
      */
-    public function getSkills()
+    public function getApplicantLocationRequirements()
     {
-        return $this->skills;
+        return $this->applicantLocationRequirements;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $skills
+     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $applicantLocationRequirements
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSkills($skills)
+    public function setApplicantLocationRequirements($applicantLocationRequirements)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+            "string",
+        ];
+
+        $applicantLocationRequirements = self::checkTypes($applicantLocationRequirements, $types);
+
+        $this->applicantLocationRequirements = $applicantLocationRequirements;
+    }
+
+    /**
+     * @return string
+     */
+    public function getJobBenefits()
+    {
+        return $this->jobBenefits;
+    }
+
+    /**
+     * @param string $jobBenefits
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setJobBenefits($jobBenefits)
+    {
+        $types = [
+            "string",
+        ];
+
+        $jobBenefits = self::checkTypes($jobBenefits, $types);
+
+        $this->jobBenefits = $jobBenefits;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSpecialCommitments()
+    {
+        return $this->specialCommitments;
+    }
+
+    /**
+     * @param string $specialCommitments
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSpecialCommitments($specialCommitments)
+    {
+        $types = [
+            "string",
+        ];
+
+        $specialCommitments = self::checkTypes($specialCommitments, $types);
+
+        $this->specialCommitments = $specialCommitments;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmploymentType()
+    {
+        return $this->employmentType;
+    }
+
+    /**
+     * @param string $employmentType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEmploymentType($employmentType)
+    {
+        $types = [
+            "string",
+        ];
+
+        $employmentType = self::checkTypes($employmentType, $types);
+
+        $this->employmentType = $employmentType;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     */
+    public function getEducationRequirements()
+    {
+        return $this->educationRequirements;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $educationRequirements
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEducationRequirements($educationRequirements)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
+        ];
+
+        $educationRequirements = self::checkTypes($educationRequirements, $types);
+
+        $this->educationRequirements = $educationRequirements;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIncentives()
+    {
+        return $this->incentives;
+    }
+
+    /**
+     * @param string $incentives
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIncentives($incentives)
+    {
+        $types = [
+            "string",
+        ];
+
+        $incentives = self::checkTypes($incentives, $types);
+
+        $this->incentives = $incentives;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     */
+    public function getSensoryRequirement()
+    {
+        return $this->sensoryRequirement;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $sensoryRequirement
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSensoryRequirement($sensoryRequirement)
     {
         $types = [
             "string",
             "\OpenActive\Models\SchemaOrg\DefinedTerm",
         ];
 
-        $skills = self::checkTypes($skills, $types);
+        $sensoryRequirement = self::checkTypes($sensoryRequirement, $types);
 
-        $this->skills = $skills;
+        $this->sensoryRequirement = $sensoryRequirement;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|string
+     * @return string
      */
-    public function getHiringOrganization()
+    public function getJobLocationType()
     {
-        return $this->hiringOrganization;
+        return $this->jobLocationType;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|string $hiringOrganization
+     * @param string $jobLocationType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHiringOrganization($hiringOrganization)
+    public function setJobLocationType($jobLocationType)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
             "string",
         ];
 
-        $hiringOrganization = self::checkTypes($hiringOrganization, $types);
+        $jobLocationType = self::checkTypes($jobLocationType, $types);
 
-        $this->hiringOrganization = $hiringOrganization;
+        $this->jobLocationType = $jobLocationType;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTotalJobOpenings()
+    {
+        return $this->totalJobOpenings;
+    }
+
+    /**
+     * @param int|null $totalJobOpenings
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTotalJobOpenings($totalJobOpenings)
+    {
+        $types = [
+            "int",
+            "null",
+        ];
+
+        $totalJobOpenings = self::checkTypes($totalJobOpenings, $types);
+
+        $this->totalJobOpenings = $totalJobOpenings;
     }
 
     /**
@@ -1176,104 +1203,78 @@ class JobPosting extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
-    public function getValidThrough()
+    public function getIndustry()
     {
-        return $this->validThrough;
+        return $this->industry;
     }
 
     /**
-     * @param Date|DateTime|null $validThrough
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $industry
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setValidThrough($validThrough)
+    public function setIndustry($industry)
     {
         $types = [
-            "Date",
-            "DateTime",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
+        ];
+
+        $industry = self::checkTypes($industry, $types);
+
+        $this->industry = $industry;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     */
+    public function getPhysicalRequirement()
+    {
+        return $this->physicalRequirement;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $physicalRequirement
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPhysicalRequirement($physicalRequirement)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+        ];
+
+        $physicalRequirement = self::checkTypes($physicalRequirement, $types);
+
+        $this->physicalRequirement = $physicalRequirement;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getDirectApply()
+    {
+        return $this->directApply;
+    }
+
+    /**
+     * @param bool|null $directApply
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDirectApply($directApply)
+    {
+        $types = [
+            "bool",
             "null",
         ];
 
-        $validThrough = self::checkTypes($validThrough, $types);
+        $directApply = self::checkTypes($directApply, $types);
 
-        $this->validThrough = $validThrough;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getEmploymentUnit()
-    {
-        return $this->employmentUnit;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|string $employmentUnit
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEmploymentUnit($employmentUnit)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "string",
-        ];
-
-        $employmentUnit = self::checkTypes($employmentUnit, $types);
-
-        $this->employmentUnit = $employmentUnit;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
-     */
-    public function getQualifications()
-    {
-        return $this->qualifications;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $qualifications
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setQualifications($qualifications)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
-        ];
-
-        $qualifications = self::checkTypes($qualifications, $types);
-
-        $this->qualifications = $qualifications;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CategoryCode|string
-     */
-    public function getOccupationalCategory()
-    {
-        return $this->occupationalCategory;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CategoryCode|string $occupationalCategory
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOccupationalCategory($occupationalCategory)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\CategoryCode",
-            "string",
-        ];
-
-        $occupationalCategory = self::checkTypes($occupationalCategory, $types);
-
-        $this->occupationalCategory = $occupationalCategory;
+        $this->directApply = $directApply;
     }
 
 }

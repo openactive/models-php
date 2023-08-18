@@ -36,7 +36,7 @@ class MonetaryGrant extends \OpenActive\Models\SchemaOrg\Grant
      * The amount of money.
      *
      *
-     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
      */
     protected $amount;
 
@@ -67,7 +67,7 @@ class MonetaryGrant extends \OpenActive\Models\SchemaOrg\Grant
     }
 
     /**
-     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
      */
     public function getAmount()
     {
@@ -75,16 +75,16 @@ class MonetaryGrant extends \OpenActive\Models\SchemaOrg\Grant
     }
 
     /**
-     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $amount
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null $amount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAmount($amount)
     {
         $types = [
-            "Number",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "string",
+            "Number",
             "null",
         ];
 

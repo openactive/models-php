@@ -20,8 +20,8 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
             "unitText" => "unitText",
             "businessFunction" => "businessFunction",
             "typeOfGood" => "typeOfGood",
-            "amountOfThisGood" => "amountOfThisGood",
             "unitCode" => "unitCode",
+            "amountOfThisGood" => "amountOfThisGood",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -48,17 +48,9 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The product that this structured value is referring to.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
+     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product|string
      */
     protected $typeOfGood;
-
-    /**
-     * The quantity of the goods included in the offer.
-     *
-     *
-     * @var Number|null
-     */
-    protected $amountOfThisGood;
 
     /**
      * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
@@ -67,6 +59,14 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
      * @var string
      */
     protected $unitCode;
+
+    /**
+     * The quantity of the goods included in the offer.
+     *
+     *
+     * @var Number|null
+     */
+    protected $amountOfThisGood;
 
     /**
      * @return string
@@ -118,7 +118,7 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
+     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product|string
      */
     public function getTypeOfGood()
     {
@@ -126,21 +126,45 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string $typeOfGood
+     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product|string $typeOfGood
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTypeOfGood($typeOfGood)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Product",
             "\OpenActive\Models\SchemaOrg\Service",
+            "\OpenActive\Models\SchemaOrg\Product",
             "string",
         ];
 
         $typeOfGood = self::checkTypes($typeOfGood, $types);
 
         $this->typeOfGood = $typeOfGood;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUnitCode()
+    {
+        return $this->unitCode;
+    }
+
+    /**
+     * @param string $unitCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUnitCode($unitCode)
+    {
+        $types = [
+            "string",
+        ];
+
+        $unitCode = self::checkTypes($unitCode, $types);
+
+        $this->unitCode = $unitCode;
     }
 
     /**
@@ -166,30 +190,6 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
         $amountOfThisGood = self::checkTypes($amountOfThisGood, $types);
 
         $this->amountOfThisGood = $amountOfThisGood;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUnitCode()
-    {
-        return $this->unitCode;
-    }
-
-    /**
-     * @param string $unitCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setUnitCode($unitCode)
-    {
-        $types = [
-            "string",
-        ];
-
-        $unitCode = self::checkTypes($unitCode, $types);
-
-        $this->unitCode = $unitCode;
     }
 
 }

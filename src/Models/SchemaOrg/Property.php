@@ -17,14 +17,22 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
+            "rangeIncludes" => "rangeIncludes",
             "domainIncludes" => "domainIncludes",
             "supersededBy" => "supersededBy",
-            "rangeIncludes" => "rangeIncludes",
             "inverseOf" => "inverseOf",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Relates a property to a class that constitutes (one of) the expected type(s) for values of the property.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Class|string
+     */
+    protected $rangeIncludes;
 
     /**
      * Relates a property to a class that is (one of) the type(s) the property is expected to be used on.
@@ -38,17 +46,9 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
      * Relates a term (i.e. a property, class or enumeration) to one that supersedes it.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|\OpenActive\Enums\PropertyEnumeration|null
+     * @var \OpenActive\Enums\PropertyEnumeration|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|null
      */
     protected $supersededBy;
-
-    /**
-     * Relates a property to a class that constitutes (one of) the expected type(s) for values of the property.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Class|string
-     */
-    protected $rangeIncludes;
 
     /**
      * Relates a property to a property that is its inverse. Inverse properties relate the same pairs of items to each other, but in reversed direction. For example, the 'alumni' and 'alumniOf' properties are inverseOf each other. Some properties don't have explicit inverses; in these situations RDFa and JSON-LD syntax for reverse properties can be used.
@@ -57,6 +57,31 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
      * @var string|\OpenActive\Enums\PropertyEnumeration|null
      */
     protected $inverseOf;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Class|string
+     */
+    public function getRangeIncludes()
+    {
+        return $this->rangeIncludes;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Class|string $rangeIncludes
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRangeIncludes($rangeIncludes)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Class",
+            "string",
+        ];
+
+        $rangeIncludes = self::checkTypes($rangeIncludes, $types);
+
+        $this->rangeIncludes = $rangeIncludes;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Class|string
@@ -84,7 +109,7 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|\OpenActive\Enums\PropertyEnumeration|null
+     * @return \OpenActive\Enums\PropertyEnumeration|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|null
      */
     public function getSupersededBy()
     {
@@ -92,48 +117,23 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|\OpenActive\Enums\PropertyEnumeration|null $supersededBy
+     * @param \OpenActive\Enums\PropertyEnumeration|\OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|null $supersededBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSupersededBy($supersededBy)
     {
         $types = [
+            "\OpenActive\Enums\PropertyEnumeration",
             "\OpenActive\Models\SchemaOrg\Enumeration",
             "\OpenActive\Models\SchemaOrg\Class",
             "string",
-            "\OpenActive\Enums\PropertyEnumeration",
             "null",
         ];
 
         $supersededBy = self::checkTypes($supersededBy, $types);
 
         $this->supersededBy = $supersededBy;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Class|string
-     */
-    public function getRangeIncludes()
-    {
-        return $this->rangeIncludes;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Class|string $rangeIncludes
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRangeIncludes($rangeIncludes)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Class",
-            "string",
-        ];
-
-        $rangeIncludes = self::checkTypes($rangeIncludes, $types);
-
-        $this->rangeIncludes = $rangeIncludes;
     }
 
     /**
