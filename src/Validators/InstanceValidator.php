@@ -4,6 +4,7 @@ namespace OpenActive\Validators;
 
 class InstanceValidator extends BaseValidator
 {
+    private $classname;
     public function __construct($classname)
     {
         $this->classname = $classname;
