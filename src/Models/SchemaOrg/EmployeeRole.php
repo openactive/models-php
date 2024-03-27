@@ -17,15 +17,23 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
 
     public static function fieldList() {
         $fields = [
-            "salaryCurrency" => "salaryCurrency",
             "baseSalary" => "baseSalary",
+            "salaryCurrency" => "salaryCurrency",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The currency (coded using [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) ) used for the main salary information in this job posting or for this employee.
+     * The base salary of the job or of an employee in an EmployeeRole.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|string|Number|null
+     */
+    protected $baseSalary;
+
+    /**
+     * The currency (coded using [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217)) used for the main salary information in this job posting or for this employee.
      *
      *
      * @var string
@@ -33,12 +41,32 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
     protected $salaryCurrency;
 
     /**
-     * The base salary of the job or of an employee in an EmployeeRole.
-     *
-     *
-     * @var Number|\OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|string|Number|null
      */
-    protected $baseSalary;
+    public function getBaseSalary()
+    {
+        return $this->baseSalary;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\PriceSpecification|string|Number|null $baseSalary
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBaseSalary($baseSalary)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
+            "string",
+            "Number",
+            "null",
+        ];
+
+        $baseSalary = self::checkTypes($baseSalary, $types);
+
+        $this->baseSalary = $baseSalary;
+    }
 
     /**
      * @return string
@@ -62,34 +90,6 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
         $salaryCurrency = self::checkTypes($salaryCurrency, $types);
 
         $this->salaryCurrency = $salaryCurrency;
-    }
-
-    /**
-     * @return Number|\OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
-     */
-    public function getBaseSalary()
-    {
-        return $this->baseSalary;
-    }
-
-    /**
-     * @param Number|\OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $baseSalary
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBaseSalary($baseSalary)
-    {
-        $types = [
-            "Number",
-            "\OpenActive\Models\SchemaOrg\PriceSpecification",
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "string",
-            "null",
-        ];
-
-        $baseSalary = self::checkTypes($baseSalary, $types);
-
-        $this->baseSalary = $baseSalary;
     }
 
 }

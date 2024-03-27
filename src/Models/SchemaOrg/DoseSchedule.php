@@ -17,38 +17,14 @@ class DoseSchedule extends \OpenActive\Models\SchemaOrg\MedicalIntangible
 
     public static function fieldList() {
         $fields = [
-            "targetPopulation" => "targetPopulation",
-            "frequency" => "frequency",
-            "doseUnit" => "doseUnit",
             "doseValue" => "doseValue",
+            "frequency" => "frequency",
+            "targetPopulation" => "targetPopulation",
+            "doseUnit" => "doseUnit",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Characteristics of the population for which this is intended, or which typically uses it, e.g. 'adults'.
-     *
-     *
-     * @var string
-     */
-    protected $targetPopulation;
-
-    /**
-     * How often the dose is taken, e.g. 'daily'.
-     *
-     *
-     * @var string
-     */
-    protected $frequency;
-
-    /**
-     * The unit of the dose, e.g. 'mg'.
-     *
-     *
-     * @var string
-     */
-    protected $doseUnit;
 
     /**
      * The value of the dose, e.g. 500.
@@ -59,27 +35,53 @@ class DoseSchedule extends \OpenActive\Models\SchemaOrg\MedicalIntangible
     protected $doseValue;
 
     /**
-     * @return string
+     * How often the dose is taken, e.g. 'daily'.
+     *
+     *
+     * @var string
      */
-    public function getTargetPopulation()
+    protected $frequency;
+
+    /**
+     * Characteristics of the population for which this is intended, or which typically uses it, e.g. 'adults'.
+     *
+     *
+     * @var string
+     */
+    protected $targetPopulation;
+
+    /**
+     * The unit of the dose, e.g. 'mg'.
+     *
+     *
+     * @var string
+     */
+    protected $doseUnit;
+
+    /**
+     * @return Number|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
+     */
+    public function getDoseValue()
     {
-        return $this->targetPopulation;
+        return $this->doseValue;
     }
 
     /**
-     * @param string $targetPopulation
+     * @param Number|\OpenActive\Enums\SchemaOrg\QualitativeValue|null $doseValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTargetPopulation($targetPopulation)
+    public function setDoseValue($doseValue)
     {
         $types = [
-            "string",
+            "Number",
+            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
+            "null",
         ];
 
-        $targetPopulation = self::checkTypes($targetPopulation, $types);
+        $doseValue = self::checkTypes($doseValue, $types);
 
-        $this->targetPopulation = $targetPopulation;
+        $this->doseValue = $doseValue;
     }
 
     /**
@@ -109,6 +111,30 @@ class DoseSchedule extends \OpenActive\Models\SchemaOrg\MedicalIntangible
     /**
      * @return string
      */
+    public function getTargetPopulation()
+    {
+        return $this->targetPopulation;
+    }
+
+    /**
+     * @param string $targetPopulation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTargetPopulation($targetPopulation)
+    {
+        $types = [
+            "string",
+        ];
+
+        $targetPopulation = self::checkTypes($targetPopulation, $types);
+
+        $this->targetPopulation = $targetPopulation;
+    }
+
+    /**
+     * @return string
+     */
     public function getDoseUnit()
     {
         return $this->doseUnit;
@@ -128,32 +154,6 @@ class DoseSchedule extends \OpenActive\Models\SchemaOrg\MedicalIntangible
         $doseUnit = self::checkTypes($doseUnit, $types);
 
         $this->doseUnit = $doseUnit;
-    }
-
-    /**
-     * @return Number|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
-     */
-    public function getDoseValue()
-    {
-        return $this->doseValue;
-    }
-
-    /**
-     * @param Number|\OpenActive\Enums\SchemaOrg\QualitativeValue|null $doseValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDoseValue($doseValue)
-    {
-        $types = [
-            "Number",
-            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
-            "null",
-        ];
-
-        $doseValue = self::checkTypes($doseValue, $types);
-
-        $this->doseValue = $doseValue;
     }
 
 }

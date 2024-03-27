@@ -17,21 +17,13 @@ class BankAccount extends \OpenActive\Models\SchemaOrg\FinancialProduct
 
     public static function fieldList() {
         $fields = [
-            "bankAccountType" => "bankAccountType",
             "accountMinimumInflow" => "accountMinimumInflow",
+            "bankAccountType" => "bankAccountType",
             "accountOverdraftLimit" => "accountOverdraftLimit",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The type of a bank account.
-     *
-     *
-     * @var string
-     */
-    protected $bankAccountType;
 
     /**
      * A minimum amount that has to be paid in every month.
@@ -42,36 +34,20 @@ class BankAccount extends \OpenActive\Models\SchemaOrg\FinancialProduct
     protected $accountMinimumInflow;
 
     /**
+     * The type of a bank account.
+     *
+     *
+     * @var string
+     */
+    protected $bankAccountType;
+
+    /**
      * An overdraft is an extension of credit from a lending institution when an account reaches zero. An overdraft allows the individual to continue withdrawing money even if the account has no funds in it. Basically the bank allows people to borrow a set amount of money.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string
      */
     protected $accountOverdraftLimit;
-
-    /**
-     * @return string
-     */
-    public function getBankAccountType()
-    {
-        return $this->bankAccountType;
-    }
-
-    /**
-     * @param string $bankAccountType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBankAccountType($bankAccountType)
-    {
-        $types = [
-            "string",
-        ];
-
-        $bankAccountType = self::checkTypes($bankAccountType, $types);
-
-        $this->bankAccountType = $bankAccountType;
-    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string
@@ -96,6 +72,30 @@ class BankAccount extends \OpenActive\Models\SchemaOrg\FinancialProduct
         $accountMinimumInflow = self::checkTypes($accountMinimumInflow, $types);
 
         $this->accountMinimumInflow = $accountMinimumInflow;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBankAccountType()
+    {
+        return $this->bankAccountType;
+    }
+
+    /**
+     * @param string $bankAccountType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBankAccountType($bankAccountType)
+    {
+        $types = [
+            "string",
+        ];
+
+        $bankAccountType = self::checkTypes($bankAccountType, $types);
+
+        $this->bankAccountType = $bankAccountType;
     }
 
     /**

@@ -8,8 +8,8 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class LegalValueLevel
 {
-    const DefinitiveLegalValue = \OpenActive\Enums\SchemaOrg\LegalValueLevel\DefinitiveLegalValue::class;
     const UnofficialLegalValue = \OpenActive\Enums\SchemaOrg\LegalValueLevel\UnofficialLegalValue::class;
-    const OfficialLegalValue = \OpenActive\Enums\SchemaOrg\LegalValueLevel\OfficialLegalValue::class;
+    const DefinitiveLegalValue = \OpenActive\Enums\SchemaOrg\LegalValueLevel\DefinitiveLegalValue::class;
     const AuthoritativeLegalValue = \OpenActive\Enums\SchemaOrg\LegalValueLevel\AuthoritativeLegalValue::class;
+    const OfficialLegalValue = \OpenActive\Enums\SchemaOrg\LegalValueLevel\OfficialLegalValue::class;
 }

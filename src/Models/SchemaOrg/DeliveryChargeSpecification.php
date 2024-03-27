@@ -17,21 +17,29 @@ class DeliveryChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpec
 
     public static function fieldList() {
         $fields = [
+            "appliesToDeliveryMethod" => "appliesToDeliveryMethod",
             "ineligibleRegion" => "ineligibleRegion",
             "eligibleRegion" => "eligibleRegion",
             "areaServed" => "areaServed",
-            "appliesToDeliveryMethod" => "appliesToDeliveryMethod",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
+     * The delivery method(s) to which the delivery charge or payment charge specification applies.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
+     */
+    protected $appliesToDeliveryMethod;
+
+    /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.\n\nSee also [[eligibleRegion]].
      *       
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\GeoShape
+     * @var string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape
      */
     protected $ineligibleRegion;
 
@@ -48,20 +56,37 @@ class DeliveryChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpec
      * The geographic area where a service or offered item is provided.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\Place
+     * @var string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea
      */
     protected $areaServed;
 
     /**
-     * The delivery method(s) to which the delivery charge or payment charge specification applies.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
+     * @return \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
      */
-    protected $appliesToDeliveryMethod;
+    public function getAppliesToDeliveryMethod()
+    {
+        return $this->appliesToDeliveryMethod;
+    }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\GeoShape
+     * @param \OpenActive\Enums\SchemaOrg\DeliveryMethod|null $appliesToDeliveryMethod
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAppliesToDeliveryMethod($appliesToDeliveryMethod)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
+            "null",
+        ];
+
+        $appliesToDeliveryMethod = self::checkTypes($appliesToDeliveryMethod, $types);
+
+        $this->appliesToDeliveryMethod = $appliesToDeliveryMethod;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape
      */
     public function getIneligibleRegion()
     {
@@ -69,15 +94,15 @@ class DeliveryChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpec
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\GeoShape $ineligibleRegion
+     * @param string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape $ineligibleRegion
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIneligibleRegion($ineligibleRegion)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Place",
             "string",
+            "\OpenActive\Models\SchemaOrg\Place",
             "\OpenActive\Models\SchemaOrg\GeoShape",
         ];
 
@@ -113,7 +138,7 @@ class DeliveryChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpec
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\Place
+     * @return string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea
      */
     public function getAreaServed()
     {
@@ -121,47 +146,22 @@ class DeliveryChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpec
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\Place $areaServed
+     * @param string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAreaServed($areaServed)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-            "\OpenActive\Models\SchemaOrg\GeoShape",
             "string",
             "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\GeoShape",
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
         ];
 
         $areaServed = self::checkTypes($areaServed, $types);
 
         $this->areaServed = $areaServed;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\DeliveryMethod|null
-     */
-    public function getAppliesToDeliveryMethod()
-    {
-        return $this->appliesToDeliveryMethod;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\DeliveryMethod|null $appliesToDeliveryMethod
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAppliesToDeliveryMethod($appliesToDeliveryMethod)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\DeliveryMethod",
-            "null",
-        ];
-
-        $appliesToDeliveryMethod = self::checkTypes($appliesToDeliveryMethod, $types);
-
-        $this->appliesToDeliveryMethod = $appliesToDeliveryMethod;
     }
 
 }

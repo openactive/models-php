@@ -17,22 +17,22 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "seatingType" => "seatingType",
-            "seatSection" => "seatSection",
-            "seatRow" => "seatRow",
             "seatNumber" => "seatNumber",
+            "seatSection" => "seatSection",
+            "seatingType" => "seatingType",
+            "seatRow" => "seatRow",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The type/class of the seat.
+     * The location of the reserved seat (e.g., 27).
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     * @var string
      */
-    protected $seatingType;
+    protected $seatNumber;
 
     /**
      * The section location of the reserved seat (e.g. Orchestra).
@@ -43,6 +43,14 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
     protected $seatSection;
 
     /**
+     * The type/class of the seat.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     */
+    protected $seatingType;
+
+    /**
      * The row location of the reserved seat (e.g., B).
      *
      *
@@ -51,12 +59,52 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
     protected $seatRow;
 
     /**
-     * The location of the reserved seat (e.g., 27).
-     *
-     *
-     * @var string
+     * @return string
      */
-    protected $seatNumber;
+    public function getSeatNumber()
+    {
+        return $this->seatNumber;
+    }
+
+    /**
+     * @param string $seatNumber
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSeatNumber($seatNumber)
+    {
+        $types = [
+            "string",
+        ];
+
+        $seatNumber = self::checkTypes($seatNumber, $types);
+
+        $this->seatNumber = $seatNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeatSection()
+    {
+        return $this->seatSection;
+    }
+
+    /**
+     * @param string $seatSection
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSeatSection($seatSection)
+    {
+        $types = [
+            "string",
+        ];
+
+        $seatSection = self::checkTypes($seatSection, $types);
+
+        $this->seatSection = $seatSection;
+    }
 
     /**
      * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
@@ -87,30 +135,6 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return string
      */
-    public function getSeatSection()
-    {
-        return $this->seatSection;
-    }
-
-    /**
-     * @param string $seatSection
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSeatSection($seatSection)
-    {
-        $types = [
-            "string",
-        ];
-
-        $seatSection = self::checkTypes($seatSection, $types);
-
-        $this->seatSection = $seatSection;
-    }
-
-    /**
-     * @return string
-     */
     public function getSeatRow()
     {
         return $this->seatRow;
@@ -130,30 +154,6 @@ class Seat extends \OpenActive\Models\SchemaOrg\Intangible
         $seatRow = self::checkTypes($seatRow, $types);
 
         $this->seatRow = $seatRow;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSeatNumber()
-    {
-        return $this->seatNumber;
-    }
-
-    /**
-     * @param string $seatNumber
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSeatNumber($seatNumber)
-    {
-        $types = [
-            "string",
-        ];
-
-        $seatNumber = self::checkTypes($seatNumber, $types);
-
-        $this->seatNumber = $seatNumber;
     }
 
 }

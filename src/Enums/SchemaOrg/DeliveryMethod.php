@@ -9,7 +9,7 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class DeliveryMethod
 {
-    const ParcelService = \OpenActive\Enums\SchemaOrg\DeliveryMethod\ParcelService::class;
     const OnSitePickup = \OpenActive\Enums\SchemaOrg\DeliveryMethod\OnSitePickup::class;
     const LockerDelivery = \OpenActive\Enums\SchemaOrg\DeliveryMethod\LockerDelivery::class;
+    const ParcelService = \OpenActive\Enums\SchemaOrg\DeliveryMethod\ParcelService::class;
 }

@@ -9,6 +9,6 @@ namespace OpenActive\Enums\SchemaOrg;
 class EventAttendanceModeEnumeration
 {
     const OfflineEventAttendanceMode = \OpenActive\Enums\SchemaOrg\EventAttendanceModeEnumeration\OfflineEventAttendanceMode::class;
-    const MixedEventAttendanceMode = \OpenActive\Enums\SchemaOrg\EventAttendanceModeEnumeration\MixedEventAttendanceMode::class;
     const OnlineEventAttendanceMode = \OpenActive\Enums\SchemaOrg\EventAttendanceModeEnumeration\OnlineEventAttendanceMode::class;
+    const MixedEventAttendanceMode = \OpenActive\Enums\SchemaOrg\EventAttendanceModeEnumeration\MixedEventAttendanceMode::class;
 }

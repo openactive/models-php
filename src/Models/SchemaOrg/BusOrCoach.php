@@ -17,12 +17,20 @@ class BusOrCoach extends \OpenActive\Models\SchemaOrg\Vehicle
 
     public static function fieldList() {
         $fields = [
-            "roofLoad" => "roofLoad",
             "acrissCode" => "acrissCode",
+            "roofLoad" => "roofLoad",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The ACRISS Car Classification Code is a code used by many car rental companies, for classifying vehicles. ACRISS stands for Association of Car Rental Industry Systems and Standards.
+     *
+     *
+     * @var string
+     */
+    protected $acrissCode;
 
     /**
      * The permitted total weight of cargo and installations (e.g. a roof rack) on top of the vehicle.\n\nTypical unit code(s): KGM for kilogram, LBR for pound\n\n* Note 1: You can indicate additional information in the [[name]] of the [[QuantitativeValue]] node.\n* Note 2: You may also link to a [[QualitativeValue]] node that provides additional information using [[valueReference]]\n* Note 3: Note that you can use [[minValue]] and [[maxValue]] to indicate ranges.
@@ -33,12 +41,28 @@ class BusOrCoach extends \OpenActive\Models\SchemaOrg\Vehicle
     protected $roofLoad;
 
     /**
-     * The ACRISS Car Classification Code is a code used by many car rental companies, for classifying vehicles. ACRISS stands for Association of Car Rental Industry Systems and Standards.
-     *
-     *
-     * @var string
+     * @return string
      */
-    protected $acrissCode;
+    public function getAcrissCode()
+    {
+        return $this->acrissCode;
+    }
+
+    /**
+     * @param string $acrissCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAcrissCode($acrissCode)
+    {
+        $types = [
+            "string",
+        ];
+
+        $acrissCode = self::checkTypes($acrissCode, $types);
+
+        $this->acrissCode = $acrissCode;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
@@ -63,30 +87,6 @@ class BusOrCoach extends \OpenActive\Models\SchemaOrg\Vehicle
         $roofLoad = self::checkTypes($roofLoad, $types);
 
         $this->roofLoad = $roofLoad;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAcrissCode()
-    {
-        return $this->acrissCode;
-    }
-
-    /**
-     * @param string $acrissCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAcrissCode($acrissCode)
-    {
-        $types = [
-            "string",
-        ];
-
-        $acrissCode = self::checkTypes($acrissCode, $types);
-
-        $this->acrissCode = $acrissCode;
     }
 
 }

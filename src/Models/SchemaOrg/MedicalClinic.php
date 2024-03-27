@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class MedicalClinic extends \OpenActive\Models\SchemaOrg\MedicalOrganization
+class MedicalClinic extends \OpenActive\Models\SchemaOrg\MedicalBusiness
 {
     /**
      * @return string[]|null
@@ -28,7 +28,7 @@ class MedicalClinic extends \OpenActive\Models\SchemaOrg\MedicalOrganization
      * A medical service available from this provider.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTest|string
      */
     protected $availableService;
 
@@ -41,7 +41,7 @@ class MedicalClinic extends \OpenActive\Models\SchemaOrg\MedicalOrganization
     protected $medicalSpecialty;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTest|string
      */
     public function getAvailableService()
     {
@@ -49,16 +49,16 @@ class MedicalClinic extends \OpenActive\Models\SchemaOrg\MedicalOrganization
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string $availableService
+     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTest|string $availableService
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableService($availableService)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalTest",
-            "\OpenActive\Models\SchemaOrg\MedicalProcedure",
             "\OpenActive\Models\SchemaOrg\MedicalTherapy",
+            "\OpenActive\Models\SchemaOrg\MedicalProcedure",
+            "\OpenActive\Models\SchemaOrg\MedicalTest",
             "string",
         ];
 

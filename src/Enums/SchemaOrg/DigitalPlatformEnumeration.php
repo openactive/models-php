@@ -8,9 +8,9 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class DigitalPlatformEnumeration
 {
-    const MobileWebPlatform = \OpenActive\Enums\SchemaOrg\DigitalPlatformEnumeration\MobileWebPlatform::class;
     const AndroidPlatform = \OpenActive\Enums\SchemaOrg\DigitalPlatformEnumeration\AndroidPlatform::class;
+    const IOSPlatform = \OpenActive\Enums\SchemaOrg\DigitalPlatformEnumeration\IOSPlatform::class;
+    const MobileWebPlatform = \OpenActive\Enums\SchemaOrg\DigitalPlatformEnumeration\MobileWebPlatform::class;
     const GenericWebPlatform = \OpenActive\Enums\SchemaOrg\DigitalPlatformEnumeration\GenericWebPlatform::class;
     const DesktopWebPlatform = \OpenActive\Enums\SchemaOrg\DigitalPlatformEnumeration\DesktopWebPlatform::class;
-    const IOSPlatform = \OpenActive\Enums\SchemaOrg\DigitalPlatformEnumeration\IOSPlatform::class;
 }

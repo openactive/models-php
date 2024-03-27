@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWorkSeason
+class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
      * @return string[]|null
@@ -18,6 +18,7 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWorkSeason
     public static function fieldList() {
         $fields = [
             "countryOfOrigin" => "countryOfOrigin",
+            "titleEIDR" => "titleEIDR",
             "partOfTVSeries" => "partOfTVSeries",
         ];
 
@@ -35,6 +36,19 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWorkSeason
      * @var \OpenActive\Models\SchemaOrg\Country|string
      */
     protected $countryOfOrigin;
+
+    /**
+     * An [EIDR](https://eidr.org/) (Entertainment Identifier Registry) [[identifier]] representing at the most general/abstract level, a work of film or television.
+     * 
+     * For example, the motion picture known as "Ghostbusters" has a titleEIDR of  "10.5240/7EC7-228A-510A-053E-CBB8-J". This title (or work) may have several variants, which EIDR calls "edits". See [[editEIDR]].
+     * 
+     * Since schema.org types like [[Movie]], [[TVEpisode]], [[TVSeason]], and [[TVSeries]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.
+     * 
+     *
+     *
+     * @var string
+     */
+    protected $titleEIDR;
 
     /**
      * The TV series to which this episode or season belongs.
@@ -67,6 +81,30 @@ class TVSeason extends \OpenActive\Models\SchemaOrg\CreativeWorkSeason
         $countryOfOrigin = self::checkTypes($countryOfOrigin, $types);
 
         $this->countryOfOrigin = $countryOfOrigin;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitleEIDR()
+    {
+        return $this->titleEIDR;
+    }
+
+    /**
+     * @param string $titleEIDR
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTitleEIDR($titleEIDR)
+    {
+        $types = [
+            "string",
+        ];
+
+        $titleEIDR = self::checkTypes($titleEIDR, $types);
+
+        $this->titleEIDR = $titleEIDR;
     }
 
     /**

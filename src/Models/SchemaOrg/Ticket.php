@@ -17,18 +17,26 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "ticketToken" => "ticketToken",
-            "ticketedSeat" => "ticketedSeat",
-            "totalPrice" => "totalPrice",
-            "issuedBy" => "issuedBy",
-            "ticketNumber" => "ticketNumber",
-            "dateIssued" => "dateIssued",
             "priceCurrency" => "priceCurrency",
+            "ticketToken" => "ticketToken",
+            "dateIssued" => "dateIssued",
+            "issuedBy" => "issuedBy",
+            "totalPrice" => "totalPrice",
+            "ticketedSeat" => "ticketedSeat",
+            "ticketNumber" => "ticketNumber",
             "underName" => "underName",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The currency of the price, or a price component when attached to [[PriceSpecification]] and its subtypes.\n\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217), e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies, e.g. "BTC"; well known names for [Local Exchange Trading Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types, e.g. "Ithaca HOUR".
+     *
+     *
+     * @var string
+     */
+    protected $priceCurrency;
 
     /**
      * Reference to an asset (e.g., Barcode, QR code image or PDF) usable for entrance.
@@ -39,20 +47,12 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     protected $ticketToken;
 
     /**
-     * The seat associated with the ticket.
+     * The date the ticket was issued.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Seat|string
+     * @var Date|DateTime|null
      */
-    protected $ticketedSeat;
-
-    /**
-     * The total price for the reservation or ticket, including applicable taxes, shipping, etc.\n\nUsage guidelines:\n\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\PriceSpecification|string|Number|null
-     */
-    protected $totalPrice;
+    protected $dateIssued;
 
     /**
      * The organization issuing the ticket or permit.
@@ -63,6 +63,22 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     protected $issuedBy;
 
     /**
+     * The total price for the reservation or ticket, including applicable taxes, shipping, etc.\n\nUsage guidelines:\n\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
+     *
+     *
+     * @var string|Number|\OpenActive\Models\SchemaOrg\PriceSpecification|null
+     */
+    protected $totalPrice;
+
+    /**
+     * The seat associated with the ticket.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Seat|string
+     */
+    protected $ticketedSeat;
+
+    /**
      * The unique identifier for the ticket.
      *
      *
@@ -71,28 +87,36 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     protected $ticketNumber;
 
     /**
-     * The date the ticket was issued.
-     *
-     *
-     * @var Date|DateTime|null
-     */
-    protected $dateIssued;
-
-    /**
-     * The currency of the price, or a price component when attached to [[PriceSpecification]] and its subtypes.\n\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217) e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies e.g. "BTC"; well known names for [Local Exchange Tradings Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types e.g. "Ithaca HOUR".
-     *
-     *
-     * @var string
-     */
-    protected $priceCurrency;
-
-    /**
      * The person or organization the reservation or ticket is for.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
     protected $underName;
+
+    /**
+     * @return string
+     */
+    public function getPriceCurrency()
+    {
+        return $this->priceCurrency;
+    }
+
+    /**
+     * @param string $priceCurrency
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPriceCurrency($priceCurrency)
+    {
+        $types = [
+            "string",
+        ];
+
+        $priceCurrency = self::checkTypes($priceCurrency, $types);
+
+        $this->priceCurrency = $priceCurrency;
+    }
 
     /**
      * @return string
@@ -116,107 +140,6 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
         $ticketToken = self::checkTypes($ticketToken, $types);
 
         $this->ticketToken = $ticketToken;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Seat|string
-     */
-    public function getTicketedSeat()
-    {
-        return $this->ticketedSeat;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Seat|string $ticketedSeat
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTicketedSeat($ticketedSeat)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Seat",
-            "string",
-        ];
-
-        $ticketedSeat = self::checkTypes($ticketedSeat, $types);
-
-        $this->ticketedSeat = $ticketedSeat;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\PriceSpecification|string|Number|null
-     */
-    public function getTotalPrice()
-    {
-        return $this->totalPrice;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\PriceSpecification|string|Number|null $totalPrice
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTotalPrice($totalPrice)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\PriceSpecification",
-            "string",
-            "Number",
-            "null",
-        ];
-
-        $totalPrice = self::checkTypes($totalPrice, $types);
-
-        $this->totalPrice = $totalPrice;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getIssuedBy()
-    {
-        return $this->issuedBy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|string $issuedBy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIssuedBy($issuedBy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "string",
-        ];
-
-        $issuedBy = self::checkTypes($issuedBy, $types);
-
-        $this->issuedBy = $issuedBy;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTicketNumber()
-    {
-        return $this->ticketNumber;
-    }
-
-    /**
-     * @param string $ticketNumber
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTicketNumber($ticketNumber)
-    {
-        $types = [
-            "string",
-        ];
-
-        $ticketNumber = self::checkTypes($ticketNumber, $types);
-
-        $this->ticketNumber = $ticketNumber;
     }
 
     /**
@@ -246,27 +169,104 @@ class Ticket extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\Organization|string
      */
-    public function getPriceCurrency()
+    public function getIssuedBy()
     {
-        return $this->priceCurrency;
+        return $this->issuedBy;
     }
 
     /**
-     * @param string $priceCurrency
+     * @param \OpenActive\Models\SchemaOrg\Organization|string $issuedBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPriceCurrency($priceCurrency)
+    public function setIssuedBy($issuedBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $issuedBy = self::checkTypes($issuedBy, $types);
+
+        $this->issuedBy = $issuedBy;
+    }
+
+    /**
+     * @return string|Number|\OpenActive\Models\SchemaOrg\PriceSpecification|null
+     */
+    public function getTotalPrice()
+    {
+        return $this->totalPrice;
+    }
+
+    /**
+     * @param string|Number|\OpenActive\Models\SchemaOrg\PriceSpecification|null $totalPrice
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTotalPrice($totalPrice)
+    {
+        $types = [
+            "string",
+            "Number",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
+            "null",
+        ];
+
+        $totalPrice = self::checkTypes($totalPrice, $types);
+
+        $this->totalPrice = $totalPrice;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Seat|string
+     */
+    public function getTicketedSeat()
+    {
+        return $this->ticketedSeat;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Seat|string $ticketedSeat
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTicketedSeat($ticketedSeat)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Seat",
+            "string",
+        ];
+
+        $ticketedSeat = self::checkTypes($ticketedSeat, $types);
+
+        $this->ticketedSeat = $ticketedSeat;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTicketNumber()
+    {
+        return $this->ticketNumber;
+    }
+
+    /**
+     * @param string $ticketNumber
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTicketNumber($ticketNumber)
     {
         $types = [
             "string",
         ];
 
-        $priceCurrency = self::checkTypes($priceCurrency, $types);
+        $ticketNumber = self::checkTypes($ticketNumber, $types);
 
-        $this->priceCurrency = $priceCurrency;
+        $this->ticketNumber = $ticketNumber;
     }
 
     /**

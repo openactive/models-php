@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class HowToTip extends \OpenActive\Models\SchemaOrg\CreativeWork
+class HowToTip extends \OpenActive\Models\SchemaOrg\ListItem
 {
     /**
      * @return string[]|null

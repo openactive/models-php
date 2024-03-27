@@ -17,47 +17,15 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "alignmentType" => "alignmentType",
-            "educationalFramework" => "educationalFramework",
-            "targetDescription" => "targetDescription",
-            "targetName" => "targetName",
             "targetUrl" => "targetUrl",
+            "targetName" => "targetName",
+            "educationalFramework" => "educationalFramework",
+            "alignmentType" => "alignmentType",
+            "targetDescription" => "targetDescription",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A category of alignment between the learning resource and the framework node. Recommended values include: 'requires', 'textComplexity', 'readingLevel', and 'educationalSubject'.
-     *
-     *
-     * @var string
-     */
-    protected $alignmentType;
-
-    /**
-     * The framework to which the resource being described is aligned.
-     *
-     *
-     * @var string
-     */
-    protected $educationalFramework;
-
-    /**
-     * The description of a node in an established educational framework.
-     *
-     *
-     * @var string
-     */
-    protected $targetDescription;
-
-    /**
-     * The name of a node in an established educational framework.
-     *
-     *
-     * @var string
-     */
-    protected $targetName;
 
     /**
      * The URL of a node in an established educational framework.
@@ -68,75 +36,59 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
     protected $targetUrl;
 
     /**
+     * The name of a node in an established educational framework.
+     *
+     *
+     * @var string
+     */
+    protected $targetName;
+
+    /**
+     * The framework to which the resource being described is aligned.
+     *
+     *
+     * @var string
+     */
+    protected $educationalFramework;
+
+    /**
+     * A category of alignment between the learning resource and the framework node. Recommended values include: 'requires', 'textComplexity', 'readingLevel', and 'educationalSubject'.
+     *
+     *
+     * @var string
+     */
+    protected $alignmentType;
+
+    /**
+     * The description of a node in an established educational framework.
+     *
+     *
+     * @var string
+     */
+    protected $targetDescription;
+
+    /**
      * @return string
      */
-    public function getAlignmentType()
+    public function getTargetUrl()
     {
-        return $this->alignmentType;
+        return $this->targetUrl;
     }
 
     /**
-     * @param string $alignmentType
+     * @param string $targetUrl
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAlignmentType($alignmentType)
+    public function setTargetUrl($targetUrl)
     {
         $types = [
             "string",
         ];
 
-        $alignmentType = self::checkTypes($alignmentType, $types);
+        $targetUrl = self::checkTypes($targetUrl, $types);
 
-        $this->alignmentType = $alignmentType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEducationalFramework()
-    {
-        return $this->educationalFramework;
-    }
-
-    /**
-     * @param string $educationalFramework
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEducationalFramework($educationalFramework)
-    {
-        $types = [
-            "string",
-        ];
-
-        $educationalFramework = self::checkTypes($educationalFramework, $types);
-
-        $this->educationalFramework = $educationalFramework;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTargetDescription()
-    {
-        return $this->targetDescription;
-    }
-
-    /**
-     * @param string $targetDescription
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTargetDescription($targetDescription)
-    {
-        $types = [
-            "string",
-        ];
-
-        $targetDescription = self::checkTypes($targetDescription, $types);
-
-        $this->targetDescription = $targetDescription;
+        $this->targetUrl = $targetUrl;
     }
 
     /**
@@ -166,25 +118,73 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return string
      */
-    public function getTargetUrl()
+    public function getEducationalFramework()
     {
-        return $this->targetUrl;
+        return $this->educationalFramework;
     }
 
     /**
-     * @param string $targetUrl
+     * @param string $educationalFramework
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTargetUrl($targetUrl)
+    public function setEducationalFramework($educationalFramework)
     {
         $types = [
             "string",
         ];
 
-        $targetUrl = self::checkTypes($targetUrl, $types);
+        $educationalFramework = self::checkTypes($educationalFramework, $types);
 
-        $this->targetUrl = $targetUrl;
+        $this->educationalFramework = $educationalFramework;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlignmentType()
+    {
+        return $this->alignmentType;
+    }
+
+    /**
+     * @param string $alignmentType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAlignmentType($alignmentType)
+    {
+        $types = [
+            "string",
+        ];
+
+        $alignmentType = self::checkTypes($alignmentType, $types);
+
+        $this->alignmentType = $alignmentType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTargetDescription()
+    {
+        return $this->targetDescription;
+    }
+
+    /**
+     * @param string $targetDescription
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTargetDescription($targetDescription)
+    {
+        $types = [
+            "string",
+        ];
+
+        $targetDescription = self::checkTypes($targetDescription, $types);
+
+        $this->targetDescription = $targetDescription;
     }
 
 }

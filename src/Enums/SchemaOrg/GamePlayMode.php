@@ -8,7 +8,7 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class GamePlayMode
 {
-    const MultiPlayer = \OpenActive\Enums\SchemaOrg\GamePlayMode\MultiPlayer::class;
     const CoOp = \OpenActive\Enums\SchemaOrg\GamePlayMode\CoOp::class;
+    const MultiPlayer = \OpenActive\Enums\SchemaOrg\GamePlayMode\MultiPlayer::class;
     const SinglePlayer = \OpenActive\Enums\SchemaOrg\GamePlayMode\SinglePlayer::class;
 }

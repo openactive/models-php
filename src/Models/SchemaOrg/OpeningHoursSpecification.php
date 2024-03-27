@@ -17,31 +17,15 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
 
     public static function fieldList() {
         $fields = [
-            "closes" => "closes",
-            "dayOfWeek" => "dayOfWeek",
             "validFrom" => "validFrom",
             "opens" => "opens",
             "validThrough" => "validThrough",
+            "dayOfWeek" => "dayOfWeek",
+            "closes" => "closes",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The closing hour of the place or service on the given day(s) of the week.
-     *
-     *
-     * @var string|null
-     */
-    protected $closes;
-
-    /**
-     * The day of the week for which these opening hours are valid.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\DayOfWeek|null
-     */
-    protected $dayOfWeek;
 
     /**
      * The date when the item becomes valid.
@@ -68,54 +52,20 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     protected $validThrough;
 
     /**
-     * @return string|null
+     * The day of the week for which these opening hours are valid.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\DayOfWeek|null
      */
-    public function getCloses()
-    {
-        return $this->closes;
-    }
+    protected $dayOfWeek;
 
     /**
-     * @param string|null $closes
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The closing hour of the place or service on the given day(s) of the week.
+     *
+     *
+     * @var string|null
      */
-    public function setCloses($closes)
-    {
-        $types = [
-            "Time",
-            "null",
-        ];
-
-        $closes = self::checkTypes($closes, $types);
-
-        $this->closes = $closes;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\DayOfWeek|null
-     */
-    public function getDayOfWeek()
-    {
-        return $this->dayOfWeek;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\DayOfWeek|null $dayOfWeek
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDayOfWeek($dayOfWeek)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\DayOfWeek",
-            "null",
-        ];
-
-        $dayOfWeek = self::checkTypes($dayOfWeek, $types);
-
-        $this->dayOfWeek = $dayOfWeek;
-    }
+    protected $closes;
 
     /**
      * @return Date|DateTime|null
@@ -192,6 +142,56 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
         $validThrough = self::checkTypes($validThrough, $types);
 
         $this->validThrough = $validThrough;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\DayOfWeek|null
+     */
+    public function getDayOfWeek()
+    {
+        return $this->dayOfWeek;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\DayOfWeek|null $dayOfWeek
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDayOfWeek($dayOfWeek)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\DayOfWeek",
+            "null",
+        ];
+
+        $dayOfWeek = self::checkTypes($dayOfWeek, $types);
+
+        $this->dayOfWeek = $dayOfWeek;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCloses()
+    {
+        return $this->closes;
+    }
+
+    /**
+     * @param string|null $closes
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCloses($closes)
+    {
+        $types = [
+            "Time",
+            "null",
+        ];
+
+        $closes = self::checkTypes($closes, $types);
+
+        $this->closes = $closes;
     }
 
 }

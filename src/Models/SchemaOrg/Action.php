@@ -17,38 +17,38 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
 
     public static function fieldList() {
         $fields = [
-            "agent" => "agent",
-            "startTime" => "startTime",
-            "actionStatus" => "actionStatus",
-            "provider" => "provider",
-            "result" => "result",
             "location" => "location",
             "object" => "object",
-            "target" => "target",
-            "endTime" => "endTime",
+            "actionStatus" => "actionStatus",
             "participant" => "participant",
-            "instrument" => "instrument",
+            "endTime" => "endTime",
+            "startTime" => "startTime",
             "error" => "error",
+            "target" => "target",
+            "provider" => "provider",
+            "instrument" => "instrument",
+            "result" => "result",
+            "agent" => "agent",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The direct performer or driver of the action (animate or inanimate). e.g. *John* wrote a book.
+     * The location of, for example, where an event is happening, where an organization is located, or where an action takes place.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\VirtualLocation|string
      */
-    protected $agent;
+    protected $location;
 
     /**
-     * The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. e.g. John wrote a book from *January* to December. For media, including audio and video, it's the time offset of the start of a clip within a larger file.\n\nNote that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
+     * The object upon which the action is carried out, whose state is kept intact or changed. Also known as the semantic roles patient, affected or undergoer (which change their state) or theme (which doesn't). E.g. John read *a book*.
      *
      *
-     * @var DateTime|string|null
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $startTime;
+    protected $object;
 
     /**
      * Indicates the current disposition of the Action.
@@ -59,55 +59,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     protected $actionStatus;
 
     /**
-     * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $provider;
-
-    /**
-     * The result produced in the action. e.g. John wrote *a book*.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    protected $result;
-
-    /**
-     * The location of, for example, where an event is happening, where an organization is located, or where an action takes place.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\VirtualLocation
-     */
-    protected $location;
-
-    /**
-     * The object upon which the action is carried out, whose state is kept intact or changed. Also known as the semantic roles patient, affected or undergoer (which change their state) or theme (which doesn't). e.g. John read *a book*.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    protected $object;
-
-    /**
-     * Indicates a target EntryPoint for an Action.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\EntryPoint|string
-     */
-    protected $target;
-
-    /**
-     * The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. e.g. John wrote a book from January to *December*. For media, including audio and video, it's the time offset of the end of a clip within a larger file.\n\nNote that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
-     *
-     *
-     * @var DateTime|string|null
-     */
-    protected $endTime;
-
-    /**
-     * Other co-agents that participated in the action indirectly. e.g. John wrote a book with *Steve*.
+     * Other co-agents that participated in the action indirectly. E.g. John wrote a book with *Steve*.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
@@ -115,12 +67,20 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     protected $participant;
 
     /**
-     * The object that helped the agent perform the action. e.g. John wrote a book with *a pen*.
+     * The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. E.g. John wrote a book from January to *December*. For media, including audio and video, it's the time offset of the end of a clip within a larger file.\n\nNote that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     * @var DateTime|string|null
      */
-    protected $instrument;
+    protected $endTime;
+
+    /**
+     * The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. E.g. John wrote a book from *January* to December. For media, including audio and video, it's the time offset of the start of a clip within a larger file.\n\nNote that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
+     *
+     *
+     * @var DateTime|string|null
+     */
+    protected $startTime;
 
     /**
      * For failed actions, more information on the cause of the failure.
@@ -131,135 +91,47 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     protected $error;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     * Indicates a target EntryPoint, or url, for an Action.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\EntryPoint
      */
-    public function getAgent()
-    {
-        return $this->agent;
-    }
+    protected $target;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $agent
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
-    public function setAgent($agent)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $agent = self::checkTypes($agent, $types);
-
-        $this->agent = $agent;
-    }
+    protected $provider;
 
     /**
-     * @return DateTime|string|null
+     * The object that helped the agent perform the action. E.g. John wrote a book with *a pen*.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    public function getStartTime()
-    {
-        return $this->startTime;
-    }
+    protected $instrument;
 
     /**
-     * @param DateTime|string|null $startTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The result produced in the action. E.g. John wrote *a book*.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    public function setStartTime($startTime)
-    {
-        $types = [
-            "DateTime",
-            "Time",
-            "null",
-        ];
-
-        $startTime = self::checkTypes($startTime, $types);
-
-        $this->startTime = $startTime;
-    }
+    protected $result;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ActionStatusType|string
+     * The direct performer or driver of the action (animate or inanimate). E.g. *John* wrote a book.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
-    public function getActionStatus()
-    {
-        return $this->actionStatus;
-    }
+    protected $agent;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ActionStatusType|string $actionStatus
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActionStatus($actionStatus)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ActionStatusType",
-            "string",
-        ];
-
-        $actionStatus = self::checkTypes($actionStatus, $types);
-
-        $this->actionStatus = $actionStatus;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getProvider()
-    {
-        return $this->provider;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $provider
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProvider($provider)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $provider = self::checkTypes($provider, $types);
-
-        $this->provider = $provider;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $result
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setResult($result)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
-        ];
-
-        $result = self::checkTypes($result, $types);
-
-        $this->result = $result;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\VirtualLocation
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\VirtualLocation|string
      */
     public function getLocation()
     {
@@ -267,7 +139,7 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PostalAddress|string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\VirtualLocation $location
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\VirtualLocation|string $location
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -275,9 +147,9 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\PostalAddress",
-            "string",
             "\OpenActive\Models\SchemaOrg\Place",
             "\OpenActive\Models\SchemaOrg\VirtualLocation",
+            "string",
         ];
 
         $location = self::checkTypes($location, $types);
@@ -311,28 +183,54 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\EntryPoint|string
+     * @return \OpenActive\Models\SchemaOrg\ActionStatusType|string
      */
-    public function getTarget()
+    public function getActionStatus()
     {
-        return $this->target;
+        return $this->actionStatus;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\EntryPoint|string $target
+     * @param \OpenActive\Models\SchemaOrg\ActionStatusType|string $actionStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTarget($target)
+    public function setActionStatus($actionStatus)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\EntryPoint",
+            "\OpenActive\Models\SchemaOrg\ActionStatusType",
             "string",
         ];
 
-        $target = self::checkTypes($target, $types);
+        $actionStatus = self::checkTypes($actionStatus, $types);
 
-        $this->target = $target;
+        $this->actionStatus = $actionStatus;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getParticipant()
+    {
+        return $this->participant;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $participant
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setParticipant($participant)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $participant = self::checkTypes($participant, $types);
+
+        $this->participant = $participant;
     }
 
     /**
@@ -362,29 +260,105 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     * @return DateTime|string|null
      */
-    public function getParticipant()
+    public function getStartTime()
     {
-        return $this->participant;
+        return $this->startTime;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $participant
+     * @param DateTime|string|null $startTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setParticipant($participant)
+    public function setStartTime($startTime)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
+            "DateTime",
+            "Time",
+            "null",
+        ];
+
+        $startTime = self::checkTypes($startTime, $types);
+
+        $this->startTime = $startTime;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $error
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setError($error)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
             "string",
         ];
 
-        $participant = self::checkTypes($participant, $types);
+        $error = self::checkTypes($error, $types);
 
-        $this->participant = $participant;
+        $this->error = $error;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\EntryPoint
+     */
+    public function getTarget()
+    {
+        return $this->target;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\EntryPoint $target
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTarget($target)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\EntryPoint",
+        ];
+
+        $target = self::checkTypes($target, $types);
+
+        $this->target = $target;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getProvider()
+    {
+        return $this->provider;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $provider
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProvider($provider)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $provider = self::checkTypes($provider, $types);
+
+        $this->provider = $provider;
     }
 
     /**
@@ -415,26 +389,52 @@ class Action extends \OpenActive\Models\SchemaOrg\Thing
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
-    public function getError()
+    public function getResult()
     {
-        return $this->error;
+        return $this->result;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $error
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $result
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setError($error)
+    public function setResult($result)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Thing",
             "string",
         ];
 
-        $error = self::checkTypes($error, $types);
+        $result = self::checkTypes($result, $types);
 
-        $this->error = $error;
+        $this->result = $result;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getAgent()
+    {
+        return $this->agent;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $agent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAgent($agent)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $agent = self::checkTypes($agent, $types);
+
+        $this->agent = $agent;
     }
 
 }

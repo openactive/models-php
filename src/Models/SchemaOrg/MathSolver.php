@@ -27,12 +27,12 @@ class MathSolver extends \OpenActive\Models\SchemaOrg\CreativeWork
      * A mathematical expression (e.g. 'x^2-3x=0') that may be solved for a specific variable, simplified, or transformed. This can take many formats, e.g. LaTeX, Ascii-Math, or math as you would write with a keyboard.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SolveMathAction|string
+     * @var string|\OpenActive\Models\SchemaOrg\SolveMathAction
      */
     protected $mathExpression;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SolveMathAction|string
+     * @return string|\OpenActive\Models\SchemaOrg\SolveMathAction
      */
     public function getMathExpression()
     {
@@ -40,15 +40,15 @@ class MathSolver extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SolveMathAction|string $mathExpression
+     * @param string|\OpenActive\Models\SchemaOrg\SolveMathAction $mathExpression
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMathExpression($mathExpression)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\SolveMathAction",
             "string",
+            "\OpenActive\Models\SchemaOrg\SolveMathAction",
         ];
 
         $mathExpression = self::checkTypes($mathExpression, $types);

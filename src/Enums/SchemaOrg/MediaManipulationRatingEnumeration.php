@@ -8,10 +8,10 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class MediaManipulationRatingEnumeration
 {
-    const OriginalMediaContent = \OpenActive\Enums\SchemaOrg\MediaManipulationRatingEnumeration\OriginalMediaContent::class;
-    const SatireOrParodyContent = \OpenActive\Enums\SchemaOrg\MediaManipulationRatingEnumeration\SatireOrParodyContent::class;
-    const EditedOrCroppedContent = \OpenActive\Enums\SchemaOrg\MediaManipulationRatingEnumeration\EditedOrCroppedContent::class;
-    const DecontextualizedContent = \OpenActive\Enums\SchemaOrg\MediaManipulationRatingEnumeration\DecontextualizedContent::class;
     const StagedContent = \OpenActive\Enums\SchemaOrg\MediaManipulationRatingEnumeration\StagedContent::class;
+    const OriginalMediaContent = \OpenActive\Enums\SchemaOrg\MediaManipulationRatingEnumeration\OriginalMediaContent::class;
+    const EditedOrCroppedContent = \OpenActive\Enums\SchemaOrg\MediaManipulationRatingEnumeration\EditedOrCroppedContent::class;
+    const SatireOrParodyContent = \OpenActive\Enums\SchemaOrg\MediaManipulationRatingEnumeration\SatireOrParodyContent::class;
     const TransformedContent = \OpenActive\Enums\SchemaOrg\MediaManipulationRatingEnumeration\TransformedContent::class;
+    const DecontextualizedContent = \OpenActive\Enums\SchemaOrg\MediaManipulationRatingEnumeration\DecontextualizedContent::class;
 }
