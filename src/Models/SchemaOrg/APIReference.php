@@ -18,8 +18,8 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     public static function fieldList() {
         $fields = [
             "assembly" => "assembly",
-            "targetPlatform" => "targetPlatform",
             "executableLibraryName" => "executableLibraryName",
+            "targetPlatform" => "targetPlatform",
             "programmingModel" => "programmingModel",
             "assemblyVersion" => "assemblyVersion",
         ];
@@ -28,12 +28,20 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     }
 
     /**
-     * Library file name e.g., mscorlib.dll, system.web.dll.
+     * Library file name, e.g., mscorlib.dll, system.web.dll.
      *
      *
      * @var string
      */
     protected $assembly;
+
+    /**
+     * Library file name, e.g., mscorlib.dll, system.web.dll.
+     *
+     *
+     * @var string
+     */
+    protected $executableLibraryName;
 
     /**
      * Type of app development: phone, Metro style, desktop, XBox, etc.
@@ -44,14 +52,6 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     protected $targetPlatform;
 
     /**
-     * Library file name e.g., mscorlib.dll, system.web.dll.
-     *
-     *
-     * @var string
-     */
-    protected $executableLibraryName;
-
-    /**
      * Indicates whether API is managed or unmanaged.
      *
      *
@@ -60,7 +60,7 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     protected $programmingModel;
 
     /**
-     * Associated product/technology version. e.g., .NET Framework 4.5.
+     * Associated product/technology version. E.g., .NET Framework 4.5.
      *
      *
      * @var string
@@ -94,30 +94,6 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     /**
      * @return string
      */
-    public function getTargetPlatform()
-    {
-        return $this->targetPlatform;
-    }
-
-    /**
-     * @param string $targetPlatform
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTargetPlatform($targetPlatform)
-    {
-        $types = [
-            "string",
-        ];
-
-        $targetPlatform = self::checkTypes($targetPlatform, $types);
-
-        $this->targetPlatform = $targetPlatform;
-    }
-
-    /**
-     * @return string
-     */
     public function getExecutableLibraryName()
     {
         return $this->executableLibraryName;
@@ -137,6 +113,30 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
         $executableLibraryName = self::checkTypes($executableLibraryName, $types);
 
         $this->executableLibraryName = $executableLibraryName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTargetPlatform()
+    {
+        return $this->targetPlatform;
+    }
+
+    /**
+     * @param string $targetPlatform
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTargetPlatform($targetPlatform)
+    {
+        $types = [
+            "string",
+        ];
+
+        $targetPlatform = self::checkTypes($targetPlatform, $types);
+
+        $this->targetPlatform = $targetPlatform;
     }
 
     /**

@@ -17,13 +17,21 @@ class MedicalTherapy extends \OpenActive\Models\SchemaOrg\TherapeuticProcedure
 
     public static function fieldList() {
         $fields = [
+            "contraindication" => "contraindication",
             "duplicateTherapy" => "duplicateTherapy",
             "seriousAdverseOutcome" => "seriousAdverseOutcome",
-            "contraindication" => "contraindication",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A contraindication for this therapy.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\MedicalContraindication
+     */
+    protected $contraindication;
 
     /**
      * A therapy that duplicates or overlaps this one.
@@ -42,12 +50,29 @@ class MedicalTherapy extends \OpenActive\Models\SchemaOrg\TherapeuticProcedure
     protected $seriousAdverseOutcome;
 
     /**
-     * A contraindication for this therapy.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\MedicalContraindication
+     * @return string|\OpenActive\Models\SchemaOrg\MedicalContraindication
      */
-    protected $contraindication;
+    public function getContraindication()
+    {
+        return $this->contraindication;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\MedicalContraindication $contraindication
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setContraindication($contraindication)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\MedicalContraindication",
+        ];
+
+        $contraindication = self::checkTypes($contraindication, $types);
+
+        $this->contraindication = $contraindication;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|string
@@ -97,31 +122,6 @@ class MedicalTherapy extends \OpenActive\Models\SchemaOrg\TherapeuticProcedure
         $seriousAdverseOutcome = self::checkTypes($seriousAdverseOutcome, $types);
 
         $this->seriousAdverseOutcome = $seriousAdverseOutcome;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\MedicalContraindication
-     */
-    public function getContraindication()
-    {
-        return $this->contraindication;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\MedicalContraindication $contraindication
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setContraindication($contraindication)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\MedicalContraindication",
-        ];
-
-        $contraindication = self::checkTypes($contraindication, $types);
-
-        $this->contraindication = $contraindication;
     }
 
 }

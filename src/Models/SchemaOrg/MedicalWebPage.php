@@ -36,7 +36,7 @@ class MedicalWebPage extends \OpenActive\Models\SchemaOrg\WebPage
      * Medical audience for page.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalAudienceType|\OpenActive\Models\SchemaOrg\MedicalAudience|string
+     * @var \OpenActive\Models\SchemaOrg\MedicalAudience|\OpenActive\Models\SchemaOrg\MedicalAudienceType|string
      */
     protected $medicalAudience;
 
@@ -65,7 +65,7 @@ class MedicalWebPage extends \OpenActive\Models\SchemaOrg\WebPage
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalAudienceType|\OpenActive\Models\SchemaOrg\MedicalAudience|string
+     * @return \OpenActive\Models\SchemaOrg\MedicalAudience|\OpenActive\Models\SchemaOrg\MedicalAudienceType|string
      */
     public function getMedicalAudience()
     {
@@ -73,15 +73,15 @@ class MedicalWebPage extends \OpenActive\Models\SchemaOrg\WebPage
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalAudienceType|\OpenActive\Models\SchemaOrg\MedicalAudience|string $medicalAudience
+     * @param \OpenActive\Models\SchemaOrg\MedicalAudience|\OpenActive\Models\SchemaOrg\MedicalAudienceType|string $medicalAudience
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMedicalAudience($medicalAudience)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalAudienceType",
             "\OpenActive\Models\SchemaOrg\MedicalAudience",
+            "\OpenActive\Models\SchemaOrg\MedicalAudienceType",
             "string",
         ];
 

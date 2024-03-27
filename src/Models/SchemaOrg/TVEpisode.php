@@ -43,7 +43,7 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
      * 
      * For example, the motion picture known as "Ghostbusters" has a titleEIDR of  "10.5240/7EC7-228A-510A-053E-CBB8-J". This title (or work) may have several variants, which EIDR calls "edits". See [[editEIDR]].
      * 
-     * Since schema.org types like [[Movie]] and [[TVEpisode]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.
+     * Since schema.org types like [[Movie]], [[TVEpisode]], [[TVSeason]], and [[TVSeries]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.
      * 
      *
      *
@@ -55,7 +55,7 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
      * Languages in which subtitles/captions are available, in [IETF BCP 47 standard format](http://tools.ietf.org/html/bcp47).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Language|string
+     * @var string|\OpenActive\Models\SchemaOrg\Language
      */
     protected $subtitleLanguage;
 
@@ -117,7 +117,7 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Language|string
+     * @return string|\OpenActive\Models\SchemaOrg\Language
      */
     public function getSubtitleLanguage()
     {
@@ -125,15 +125,15 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Language|string $subtitleLanguage
+     * @param string|\OpenActive\Models\SchemaOrg\Language $subtitleLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSubtitleLanguage($subtitleLanguage)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Language",
             "string",
+            "\OpenActive\Models\SchemaOrg\Language",
         ];
 
         $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);

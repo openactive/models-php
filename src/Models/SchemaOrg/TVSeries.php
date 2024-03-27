@@ -17,41 +17,34 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
 
     public static function fieldList() {
         $fields = [
+            "actors" => "actors",
+            "countryOfOrigin" => "countryOfOrigin",
+            "episodes" => "episodes",
+            "titleEIDR" => "titleEIDR",
             "season" => "season",
             "containsSeason" => "containsSeason",
-            "countryOfOrigin" => "countryOfOrigin",
-            "director" => "director",
-            "actor" => "actor",
             "trailer" => "trailer",
-            "episodes" => "episodes",
-            "numberOfEpisodes" => "numberOfEpisodes",
-            "seasons" => "seasons",
             "productionCompany" => "productionCompany",
-            "actors" => "actors",
+            "episode" => "episode",
+            "seasons" => "seasons",
             "numberOfSeasons" => "numberOfSeasons",
             "musicBy" => "musicBy",
-            "episode" => "episode",
             "directors" => "directors",
+            "director" => "director",
+            "numberOfEpisodes" => "numberOfEpisodes",
+            "actor" => "actor",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A season in a media series.
+     * An actor, e.g. in TV, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\CreativeWorkSeason
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $season;
-
-    /**
-     * A season that is part of the media series.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string
-     */
-    protected $containsSeason;
+    protected $actors;
 
     /**
      * The country of origin of something, including products as well as creative  works such as movie and TV content.
@@ -66,30 +59,6 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     protected $countryOfOrigin;
 
     /**
-     * A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $director;
-
-    /**
-     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $actor;
-
-    /**
-     * The trailer of a movie or tv/radio series, season, episode, etc.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\VideoObject|string
-     */
-    protected $trailer;
-
-    /**
      * An episode of a TV/radio series or season.
      *
      *
@@ -98,12 +67,57 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     protected $episodes;
 
     /**
-     * The number of episodes in this season or series.
+     * An [EIDR](https://eidr.org/) (Entertainment Identifier Registry) [[identifier]] representing at the most general/abstract level, a work of film or television.
+     * 
+     * For example, the motion picture known as "Ghostbusters" has a titleEIDR of  "10.5240/7EC7-228A-510A-053E-CBB8-J". This title (or work) may have several variants, which EIDR calls "edits". See [[editEIDR]].
+     * 
+     * Since schema.org types like [[Movie]], [[TVEpisode]], [[TVSeason]], and [[TVSeries]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.
+     * 
      *
      *
-     * @var int|null
+     * @var string
      */
-    protected $numberOfEpisodes;
+    protected $titleEIDR;
+
+    /**
+     * A season in a media series.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string
+     */
+    protected $season;
+
+    /**
+     * A season that is part of the media series.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string
+     */
+    protected $containsSeason;
+
+    /**
+     * The trailer of a movie or TV/radio series, season, episode, etc.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\VideoObject|string
+     */
+    protected $trailer;
+
+    /**
+     * The production company or studio responsible for the item, e.g. series, video game, episode etc.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    protected $productionCompany;
+
+    /**
+     * An episode of a TV, radio or game media within a series or season.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Episode|string
+     */
+    protected $episode;
 
     /**
      * A season in a media series.
@@ -112,22 +126,6 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string
      */
     protected $seasons;
-
-    /**
-     * The production company or studio responsible for the item e.g. series, video game, episode etc.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $productionCompany;
-
-    /**
-     * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $actors;
 
     /**
      * The number of seasons in this series.
@@ -146,15 +144,7 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     protected $musicBy;
 
     /**
-     * An episode of a tv, radio or game media within a series or season.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Episode|string
-     */
-    protected $episode;
-
-    /**
-     * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
+     * A director of e.g. TV, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Person|string
@@ -162,7 +152,130 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     protected $directors;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\CreativeWorkSeason
+     * A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $director;
+
+    /**
+     * The number of episodes in this season or series.
+     *
+     *
+     * @var int|null
+     */
+    protected $numberOfEpisodes;
+
+    /**
+     * An actor, e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $actor;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getActors()
+    {
+        return $this->actors;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $actors
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActors($actors)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $actors = self::checkTypes($actors, $types);
+
+        $this->actors = $actors;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Country|string
+     */
+    public function getCountryOfOrigin()
+    {
+        return $this->countryOfOrigin;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Country|string $countryOfOrigin
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCountryOfOrigin($countryOfOrigin)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Country",
+            "string",
+        ];
+
+        $countryOfOrigin = self::checkTypes($countryOfOrigin, $types);
+
+        $this->countryOfOrigin = $countryOfOrigin;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Episode|string
+     */
+    public function getEpisodes()
+    {
+        return $this->episodes;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Episode|string $episodes
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEpisodes($episodes)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Episode",
+            "string",
+        ];
+
+        $episodes = self::checkTypes($episodes, $types);
+
+        $this->episodes = $episodes;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitleEIDR()
+    {
+        return $this->titleEIDR;
+    }
+
+    /**
+     * @param string $titleEIDR
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTitleEIDR($titleEIDR)
+    {
+        $types = [
+            "string",
+        ];
+
+        $titleEIDR = self::checkTypes($titleEIDR, $types);
+
+        $this->titleEIDR = $titleEIDR;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string
      */
     public function getSeason()
     {
@@ -170,15 +283,15 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CreativeWorkSeason $season
+     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string $season
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSeason($season)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\CreativeWorkSeason",
+            "string",
         ];
 
         $season = self::checkTypes($season, $types);
@@ -212,81 +325,6 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Country|string
-     */
-    public function getCountryOfOrigin()
-    {
-        return $this->countryOfOrigin;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Country|string $countryOfOrigin
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCountryOfOrigin($countryOfOrigin)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Country",
-            "string",
-        ];
-
-        $countryOfOrigin = self::checkTypes($countryOfOrigin, $types);
-
-        $this->countryOfOrigin = $countryOfOrigin;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getDirector()
-    {
-        return $this->director;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $director
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDirector($director)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $director = self::checkTypes($director, $types);
-
-        $this->director = $director;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getActor()
-    {
-        return $this->actor;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $actor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActor($actor)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $actor = self::checkTypes($actor, $types);
-
-        $this->actor = $actor;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\VideoObject|string
      */
     public function getTrailer()
@@ -309,81 +347,6 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
         $trailer = self::checkTypes($trailer, $types);
 
         $this->trailer = $trailer;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Episode|string
-     */
-    public function getEpisodes()
-    {
-        return $this->episodes;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Episode|string $episodes
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEpisodes($episodes)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Episode",
-            "string",
-        ];
-
-        $episodes = self::checkTypes($episodes, $types);
-
-        $this->episodes = $episodes;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getNumberOfEpisodes()
-    {
-        return $this->numberOfEpisodes;
-    }
-
-    /**
-     * @param int|null $numberOfEpisodes
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNumberOfEpisodes($numberOfEpisodes)
-    {
-        $types = [
-            "int",
-            "null",
-        ];
-
-        $numberOfEpisodes = self::checkTypes($numberOfEpisodes, $types);
-
-        $this->numberOfEpisodes = $numberOfEpisodes;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string
-     */
-    public function getSeasons()
-    {
-        return $this->seasons;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string $seasons
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSeasons($seasons)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\CreativeWorkSeason",
-            "string",
-        ];
-
-        $seasons = self::checkTypes($seasons, $types);
-
-        $this->seasons = $seasons;
     }
 
     /**
@@ -412,28 +375,53 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
+     * @return \OpenActive\Models\SchemaOrg\Episode|string
      */
-    public function getActors()
+    public function getEpisode()
     {
-        return $this->actors;
+        return $this->episode;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $actors
+     * @param \OpenActive\Models\SchemaOrg\Episode|string $episode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setActors($actors)
+    public function setEpisode($episode)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Episode",
             "string",
         ];
 
-        $actors = self::checkTypes($actors, $types);
+        $episode = self::checkTypes($episode, $types);
 
-        $this->actors = $actors;
+        $this->episode = $episode;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string
+     */
+    public function getSeasons()
+    {
+        return $this->seasons;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string $seasons
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSeasons($seasons)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CreativeWorkSeason",
+            "string",
+        ];
+
+        $seasons = self::checkTypes($seasons, $types);
+
+        $this->seasons = $seasons;
     }
 
     /**
@@ -488,31 +476,6 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Episode|string
-     */
-    public function getEpisode()
-    {
-        return $this->episode;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Episode|string $episode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEpisode($episode)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Episode",
-            "string",
-        ];
-
-        $episode = self::checkTypes($episode, $types);
-
-        $this->episode = $episode;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Person|string
      */
     public function getDirectors()
@@ -535,6 +498,81 @@ class TVSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
         $directors = self::checkTypes($directors, $types);
 
         $this->directors = $directors;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getDirector()
+    {
+        return $this->director;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $director
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDirector($director)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $director = self::checkTypes($director, $types);
+
+        $this->director = $director;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNumberOfEpisodes()
+    {
+        return $this->numberOfEpisodes;
+    }
+
+    /**
+     * @param int|null $numberOfEpisodes
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNumberOfEpisodes($numberOfEpisodes)
+    {
+        $types = [
+            "int",
+            "null",
+        ];
+
+        $numberOfEpisodes = self::checkTypes($numberOfEpisodes, $types);
+
+        $this->numberOfEpisodes = $numberOfEpisodes;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getActor()
+    {
+        return $this->actor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $actor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActor($actor)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $actor = self::checkTypes($actor, $types);
+
+        $this->actor = $actor;
     }
 
 }

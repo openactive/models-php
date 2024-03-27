@@ -20,15 +20,15 @@ class Thing extends \OpenActive\BaseModel
             "identifier" => "identifier",
             "name" => "name",
             "description" => "description",
-            "mainEntityOfPage" => "mainEntityOfPage",
             "alternateName" => "alternateName",
             "potentialAction" => "potentialAction",
+            "sameAs" => "sameAs",
+            "subjectOf" => "subjectOf",
+            "disambiguatingDescription" => "disambiguatingDescription",
             "image" => "image",
             "url" => "url",
-            "subjectOf" => "subjectOf",
+            "mainEntityOfPage" => "mainEntityOfPage",
             "additionalType" => "additionalType",
-            "disambiguatingDescription" => "disambiguatingDescription",
-            "sameAs" => "sameAs",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -55,17 +55,9 @@ class Thing extends \OpenActive\BaseModel
      * A description of the item.
      *
      *
-     * @var string
+     * @var string|\OpenActive\Models\SchemaOrg\TextObject
      */
     protected $description;
-
-    /**
-     * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See [background notes](/docs/datamodel.html#mainEntityBackground) for details.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
-     */
-    protected $mainEntityOfPage;
 
     /**
      * An alias for the item.
@@ -84,10 +76,34 @@ class Thing extends \OpenActive\BaseModel
     protected $potentialAction;
 
     /**
+     * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.
+     *
+     *
+     * @var string
+     */
+    protected $sameAs;
+
+    /**
+     * A CreativeWork or Event about this Thing.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    protected $subjectOf;
+
+    /**
+     * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
+     *
+     *
+     * @var string
+     */
+    protected $disambiguatingDescription;
+
+    /**
      * An image of the item. This can be a [[URL]] or a fully described [[ImageObject]].
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\ImageObject
+     * @var \OpenActive\Models\SchemaOrg\ImageObject|string
      */
     protected $image;
 
@@ -100,36 +116,21 @@ class Thing extends \OpenActive\BaseModel
     protected $url;
 
     /**
-     * A CreativeWork or Event about this Thing.
+     * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See [background notes](/docs/datamodel.html#mainEntityBackground) for details.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork|string
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
-    protected $subjectOf;
+    protected $mainEntityOfPage;
 
     /**
-     * An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.
+     * An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. Typically the value is a URI-identified RDF class, and in this case corresponds to the 
+     *     use of rdf:type in RDF. Text values can be used sparingly, for cases where useful information can be added without their being an appropriate schema to reference. In the case of text values, the class label should follow the schema.org <a href="https://schema.org/docs/styleguide.html">style guide</a>
      *
      *
      * @var string
      */
     protected $additionalType;
-
-    /**
-     * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
-     *
-     *
-     * @var string
-     */
-    protected $disambiguatingDescription;
-
-    /**
-     * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.
-     *
-     *
-     * @var string
-     */
-    protected $sameAs;
 
     /**
      * @return string|\OpenActive\Models\SchemaOrg\PropertyValue
@@ -181,7 +182,7 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @return string
+     * @return string|\OpenActive\Models\SchemaOrg\TextObject
      */
     public function getDescription()
     {
@@ -189,7 +190,7 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @param string $description
+     * @param string|\OpenActive\Models\SchemaOrg\TextObject $description
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -197,36 +198,12 @@ class Thing extends \OpenActive\BaseModel
     {
         $types = [
             "string",
+            "\OpenActive\Models\SchemaOrg\TextObject",
         ];
 
         $description = self::checkTypes($description, $types);
 
         $this->description = $description;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
-     */
-    public function getMainEntityOfPage()
-    {
-        return $this->mainEntityOfPage;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $mainEntityOfPage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMainEntityOfPage($mainEntityOfPage)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-            "string",
-        ];
-
-        $mainEntityOfPage = self::checkTypes($mainEntityOfPage, $types);
-
-        $this->mainEntityOfPage = $mainEntityOfPage;
     }
 
     /**
@@ -279,7 +256,81 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\ImageObject
+     * @return string
+     */
+    public function getSameAs()
+    {
+        return $this->sameAs;
+    }
+
+    /**
+     * @param string $sameAs
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSameAs($sameAs)
+    {
+        $types = [
+            "string",
+        ];
+
+        $sameAs = self::checkTypes($sameAs, $types);
+
+        $this->sameAs = $sameAs;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    public function getSubjectOf()
+    {
+        return $this->subjectOf;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork|string $subjectOf
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSubjectOf($subjectOf)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Event",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
+        ];
+
+        $subjectOf = self::checkTypes($subjectOf, $types);
+
+        $this->subjectOf = $subjectOf;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDisambiguatingDescription()
+    {
+        return $this->disambiguatingDescription;
+    }
+
+    /**
+     * @param string $disambiguatingDescription
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDisambiguatingDescription($disambiguatingDescription)
+    {
+        $types = [
+            "string",
+        ];
+
+        $disambiguatingDescription = self::checkTypes($disambiguatingDescription, $types);
+
+        $this->disambiguatingDescription = $disambiguatingDescription;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ImageObject|string
      */
     public function getImage()
     {
@@ -287,15 +338,15 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\ImageObject $image
+     * @param \OpenActive\Models\SchemaOrg\ImageObject|string $image
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setImage($image)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\ImageObject",
+            "string",
         ];
 
         $image = self::checkTypes($image, $types);
@@ -328,29 +379,28 @@ class Thing extends \OpenActive\BaseModel
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork|string
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
-    public function getSubjectOf()
+    public function getMainEntityOfPage()
     {
-        return $this->subjectOf;
+        return $this->mainEntityOfPage;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\CreativeWork|string $subjectOf
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $mainEntityOfPage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSubjectOf($subjectOf)
+    public function setMainEntityOfPage($mainEntityOfPage)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Event",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
             "string",
         ];
 
-        $subjectOf = self::checkTypes($subjectOf, $types);
+        $mainEntityOfPage = self::checkTypes($mainEntityOfPage, $types);
 
-        $this->subjectOf = $subjectOf;
+        $this->mainEntityOfPage = $mainEntityOfPage;
     }
 
     /**
@@ -375,54 +425,6 @@ class Thing extends \OpenActive\BaseModel
         $additionalType = self::checkTypes($additionalType, $types);
 
         $this->additionalType = $additionalType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDisambiguatingDescription()
-    {
-        return $this->disambiguatingDescription;
-    }
-
-    /**
-     * @param string $disambiguatingDescription
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDisambiguatingDescription($disambiguatingDescription)
-    {
-        $types = [
-            "string",
-        ];
-
-        $disambiguatingDescription = self::checkTypes($disambiguatingDescription, $types);
-
-        $this->disambiguatingDescription = $disambiguatingDescription;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSameAs()
-    {
-        return $this->sameAs;
-    }
-
-    /**
-     * @param string $sameAs
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSameAs($sameAs)
-    {
-        $types = [
-            "string",
-        ];
-
-        $sameAs = self::checkTypes($sameAs, $types);
-
-        $this->sameAs = $sameAs;
     }
 
 }

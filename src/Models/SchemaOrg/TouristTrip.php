@@ -24,15 +24,15 @@ class TouristTrip extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * Attraction suitable for type(s) of tourist. eg. Children, visitors from a particular country, etc. 
+     * Attraction suitable for type(s) of tourist. E.g. children, visitors from a particular country, etc. 
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Audience|string
+     * @var string|\OpenActive\Models\SchemaOrg\Audience
      */
     protected $touristType;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Audience|string
+     * @return string|\OpenActive\Models\SchemaOrg\Audience
      */
     public function getTouristType()
     {
@@ -40,15 +40,15 @@ class TouristTrip extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Audience|string $touristType
+     * @param string|\OpenActive\Models\SchemaOrg\Audience $touristType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTouristType($touristType)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Audience",
             "string",
+            "\OpenActive\Models\SchemaOrg\Audience",
         ];
 
         $touristType = self::checkTypes($touristType, $types);

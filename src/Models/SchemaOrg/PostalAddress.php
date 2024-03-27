@@ -18,11 +18,11 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
     public static function fieldList() {
         $fields = [
             "addressCountry" => "addressCountry",
-            "addressRegion" => "addressRegion",
-            "addressLocality" => "addressLocality",
-            "postalCode" => "postalCode",
             "postOfficeBoxNumber" => "postOfficeBoxNumber",
+            "postalCode" => "postalCode",
+            "addressRegion" => "addressRegion",
             "streetAddress" => "streetAddress",
+            "addressLocality" => "addressLocality",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -37,20 +37,12 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
     protected $addressCountry;
 
     /**
-     * The region in which the locality is, and which is in the country. For example, California or another appropriate first-level [Administrative division](https://en.wikipedia.org/wiki/List_of_administrative_divisions_by_country) 
+     * The post office box number for PO box addresses.
      *
      *
      * @var string
      */
-    protected $addressRegion;
-
-    /**
-     * The locality in which the street address is, and which is in the region. For example, Mountain View.
-     *
-     *
-     * @var string
-     */
-    protected $addressLocality;
+    protected $postOfficeBoxNumber;
 
     /**
      * The postal code. For example, 94043.
@@ -61,12 +53,12 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
     protected $postalCode;
 
     /**
-     * The post office box number for PO box addresses.
+     * The region in which the locality is, and which is in the country. For example, California or another appropriate first-level [Administrative division](https://en.wikipedia.org/wiki/List_of_administrative_divisions_by_country).
      *
      *
      * @var string
      */
-    protected $postOfficeBoxNumber;
+    protected $addressRegion;
 
     /**
      * The street address. For example, 1600 Amphitheatre Pkwy.
@@ -75,6 +67,14 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
      * @var string
      */
     protected $streetAddress;
+
+    /**
+     * The locality in which the street address is, and which is in the region. For example, Mountain View.
+     *
+     *
+     * @var string
+     */
+    protected $addressLocality;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Country|string
@@ -104,49 +104,25 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
     /**
      * @return string
      */
-    public function getAddressRegion()
+    public function getPostOfficeBoxNumber()
     {
-        return $this->addressRegion;
+        return $this->postOfficeBoxNumber;
     }
 
     /**
-     * @param string $addressRegion
+     * @param string $postOfficeBoxNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAddressRegion($addressRegion)
+    public function setPostOfficeBoxNumber($postOfficeBoxNumber)
     {
         $types = [
             "string",
         ];
 
-        $addressRegion = self::checkTypes($addressRegion, $types);
+        $postOfficeBoxNumber = self::checkTypes($postOfficeBoxNumber, $types);
 
-        $this->addressRegion = $addressRegion;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddressLocality()
-    {
-        return $this->addressLocality;
-    }
-
-    /**
-     * @param string $addressLocality
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAddressLocality($addressLocality)
-    {
-        $types = [
-            "string",
-        ];
-
-        $addressLocality = self::checkTypes($addressLocality, $types);
-
-        $this->addressLocality = $addressLocality;
+        $this->postOfficeBoxNumber = $postOfficeBoxNumber;
     }
 
     /**
@@ -176,25 +152,25 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
     /**
      * @return string
      */
-    public function getPostOfficeBoxNumber()
+    public function getAddressRegion()
     {
-        return $this->postOfficeBoxNumber;
+        return $this->addressRegion;
     }
 
     /**
-     * @param string $postOfficeBoxNumber
+     * @param string $addressRegion
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPostOfficeBoxNumber($postOfficeBoxNumber)
+    public function setAddressRegion($addressRegion)
     {
         $types = [
             "string",
         ];
 
-        $postOfficeBoxNumber = self::checkTypes($postOfficeBoxNumber, $types);
+        $addressRegion = self::checkTypes($addressRegion, $types);
 
-        $this->postOfficeBoxNumber = $postOfficeBoxNumber;
+        $this->addressRegion = $addressRegion;
     }
 
     /**
@@ -219,6 +195,30 @@ class PostalAddress extends \OpenActive\Models\SchemaOrg\ContactPoint
         $streetAddress = self::checkTypes($streetAddress, $types);
 
         $this->streetAddress = $streetAddress;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddressLocality()
+    {
+        return $this->addressLocality;
+    }
+
+    /**
+     * @param string $addressLocality
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAddressLocality($addressLocality)
+    {
+        $types = [
+            "string",
+        ];
+
+        $addressLocality = self::checkTypes($addressLocality, $types);
+
+        $this->addressLocality = $addressLocality;
     }
 
 }

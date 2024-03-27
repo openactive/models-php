@@ -24,7 +24,7 @@ class DataFeed extends \OpenActive\Models\SchemaOrg\Dataset
     }
 
     /**
-     * An item within in a data feed. Data feeds may have many elements.
+     * An item within a data feed. Data feeds may have many elements.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\DataFeedItem|string

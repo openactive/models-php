@@ -17,40 +17,16 @@ class TrainTrip extends \OpenActive\Models\SchemaOrg\Trip
 
     public static function fieldList() {
         $fields = [
-            "trainName" => "trainName",
-            "departureStation" => "departureStation",
-            "departurePlatform" => "departurePlatform",
             "trainNumber" => "trainNumber",
-            "arrivalPlatform" => "arrivalPlatform",
             "arrivalStation" => "arrivalStation",
+            "arrivalPlatform" => "arrivalPlatform",
+            "trainName" => "trainName",
+            "departurePlatform" => "departurePlatform",
+            "departureStation" => "departureStation",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The name of the train (e.g. The Orient Express).
-     *
-     *
-     * @var string
-     */
-    protected $trainName;
-
-    /**
-     * The station from which the train departs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\TrainStation|string
-     */
-    protected $departureStation;
-
-    /**
-     * The platform from which the train departs.
-     *
-     *
-     * @var string
-     */
-    protected $departurePlatform;
 
     /**
      * The unique identifier for the train.
@@ -61,14 +37,6 @@ class TrainTrip extends \OpenActive\Models\SchemaOrg\Trip
     protected $trainNumber;
 
     /**
-     * The platform where the train arrives.
-     *
-     *
-     * @var string
-     */
-    protected $arrivalPlatform;
-
-    /**
      * The station where the train trip ends.
      *
      *
@@ -77,77 +45,36 @@ class TrainTrip extends \OpenActive\Models\SchemaOrg\Trip
     protected $arrivalStation;
 
     /**
-     * @return string
+     * The platform where the train arrives.
+     *
+     *
+     * @var string
      */
-    public function getTrainName()
-    {
-        return $this->trainName;
-    }
+    protected $arrivalPlatform;
 
     /**
-     * @param string $trainName
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The name of the train (e.g. The Orient Express).
+     *
+     *
+     * @var string
      */
-    public function setTrainName($trainName)
-    {
-        $types = [
-            "string",
-        ];
-
-        $trainName = self::checkTypes($trainName, $types);
-
-        $this->trainName = $trainName;
-    }
+    protected $trainName;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\TrainStation|string
+     * The platform from which the train departs.
+     *
+     *
+     * @var string
      */
-    public function getDepartureStation()
-    {
-        return $this->departureStation;
-    }
+    protected $departurePlatform;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\TrainStation|string $departureStation
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The station from which the train departs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\TrainStation|string
      */
-    public function setDepartureStation($departureStation)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\TrainStation",
-            "string",
-        ];
-
-        $departureStation = self::checkTypes($departureStation, $types);
-
-        $this->departureStation = $departureStation;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDeparturePlatform()
-    {
-        return $this->departurePlatform;
-    }
-
-    /**
-     * @param string $departurePlatform
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDeparturePlatform($departurePlatform)
-    {
-        $types = [
-            "string",
-        ];
-
-        $departurePlatform = self::checkTypes($departurePlatform, $types);
-
-        $this->departurePlatform = $departurePlatform;
-    }
+    protected $departureStation;
 
     /**
      * @return string
@@ -171,6 +98,31 @@ class TrainTrip extends \OpenActive\Models\SchemaOrg\Trip
         $trainNumber = self::checkTypes($trainNumber, $types);
 
         $this->trainNumber = $trainNumber;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\TrainStation|string
+     */
+    public function getArrivalStation()
+    {
+        return $this->arrivalStation;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\TrainStation|string $arrivalStation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setArrivalStation($arrivalStation)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\TrainStation",
+            "string",
+        ];
+
+        $arrivalStation = self::checkTypes($arrivalStation, $types);
+
+        $this->arrivalStation = $arrivalStation;
     }
 
     /**
@@ -198,28 +150,76 @@ class TrainTrip extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\TrainStation|string
+     * @return string
      */
-    public function getArrivalStation()
+    public function getTrainName()
     {
-        return $this->arrivalStation;
+        return $this->trainName;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\TrainStation|string $arrivalStation
+     * @param string $trainName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setArrivalStation($arrivalStation)
+    public function setTrainName($trainName)
+    {
+        $types = [
+            "string",
+        ];
+
+        $trainName = self::checkTypes($trainName, $types);
+
+        $this->trainName = $trainName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeparturePlatform()
+    {
+        return $this->departurePlatform;
+    }
+
+    /**
+     * @param string $departurePlatform
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDeparturePlatform($departurePlatform)
+    {
+        $types = [
+            "string",
+        ];
+
+        $departurePlatform = self::checkTypes($departurePlatform, $types);
+
+        $this->departurePlatform = $departurePlatform;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\TrainStation|string
+     */
+    public function getDepartureStation()
+    {
+        return $this->departureStation;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\TrainStation|string $departureStation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDepartureStation($departureStation)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\TrainStation",
             "string",
         ];
 
-        $arrivalStation = self::checkTypes($arrivalStation, $types);
+        $departureStation = self::checkTypes($departureStation, $types);
 
-        $this->arrivalStation = $arrivalStation;
+        $this->departureStation = $departureStation;
     }
 
 }

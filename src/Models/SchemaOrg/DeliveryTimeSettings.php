@@ -27,7 +27,7 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * indicates (possibly multiple) shipping destinations. These can be defined in several ways e.g. postalCode ranges.
+     * indicates (possibly multiple) shipping destinations. These can be defined in several ways, e.g. postalCode ranges.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\DefinedRegion|string

@@ -28,12 +28,12 @@ class GeoCircle extends \OpenActive\Models\SchemaOrg\GeoShape
      * Indicates the approximate radius of a GeoCircle (metres unless indicated otherwise via Distance notation).
      *
      *
-     * @var string|Number|\OpenActive\Models\SchemaOrg\Distance|null
+     * @var \OpenActive\Models\SchemaOrg\Distance|string|Number|null
      */
     protected $geoRadius;
 
     /**
-     * Indicates the GeoCoordinates at the centre of a GeoShape e.g. GeoCircle.
+     * Indicates the GeoCoordinates at the centre of a GeoShape, e.g. GeoCircle.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\GeoCoordinates|string
@@ -41,7 +41,7 @@ class GeoCircle extends \OpenActive\Models\SchemaOrg\GeoShape
     protected $geoMidpoint;
 
     /**
-     * @return string|Number|\OpenActive\Models\SchemaOrg\Distance|null
+     * @return \OpenActive\Models\SchemaOrg\Distance|string|Number|null
      */
     public function getGeoRadius()
     {
@@ -49,16 +49,16 @@ class GeoCircle extends \OpenActive\Models\SchemaOrg\GeoShape
     }
 
     /**
-     * @param string|Number|\OpenActive\Models\SchemaOrg\Distance|null $geoRadius
+     * @param \OpenActive\Models\SchemaOrg\Distance|string|Number|null $geoRadius
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGeoRadius($geoRadius)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\Distance",
             "string",
             "Number",
-            "\OpenActive\Models\SchemaOrg\Distance",
             "null",
         ];
 

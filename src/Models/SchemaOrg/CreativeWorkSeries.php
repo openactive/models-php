@@ -18,8 +18,8 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
     public static function fieldList() {
         $fields = [
             "startDate" => "startDate",
-            "endDate" => "endDate",
             "issn" => "issn",
+            "endDate" => "endDate",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -34,20 +34,20 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $startDate;
 
     /**
-     * The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
-     *
-     *
-     * @var Date|DateTime|null
-     */
-    protected $endDate;
-
-    /**
      * The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication.
      *
      *
      * @var string
      */
     protected $issn;
+
+    /**
+     * The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $endDate;
 
     /**
      * @return Date|DateTime|null
@@ -76,6 +76,30 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
+     * @return string
+     */
+    public function getIssn()
+    {
+        return $this->issn;
+    }
+
+    /**
+     * @param string $issn
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIssn($issn)
+    {
+        $types = [
+            "string",
+        ];
+
+        $issn = self::checkTypes($issn, $types);
+
+        $this->issn = $issn;
+    }
+
+    /**
      * @return Date|DateTime|null
      */
     public function getEndDate()
@@ -99,30 +123,6 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
         $endDate = self::checkTypes($endDate, $types);
 
         $this->endDate = $endDate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIssn()
-    {
-        return $this->issn;
-    }
-
-    /**
-     * @param string $issn
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIssn($issn)
-    {
-        $types = [
-            "string",
-        ];
-
-        $issn = self::checkTypes($issn, $types);
-
-        $this->issn = $issn;
     }
 
 }

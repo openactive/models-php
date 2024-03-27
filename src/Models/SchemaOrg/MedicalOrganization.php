@@ -17,29 +17,13 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
 
     public static function fieldList() {
         $fields = [
-            "isAcceptingNewPatients" => "isAcceptingNewPatients",
-            "healthPlanNetworkId" => "healthPlanNetworkId",
             "medicalSpecialty" => "medicalSpecialty",
+            "healthPlanNetworkId" => "healthPlanNetworkId",
+            "isAcceptingNewPatients" => "isAcceptingNewPatients",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Whether the provider is accepting new patients.
-     *
-     *
-     * @var bool|null
-     */
-    protected $isAcceptingNewPatients;
-
-    /**
-     * Name or unique ID of network. (Networks are often reused across different insurance plans).
-     *
-     *
-     * @var string
-     */
-    protected $healthPlanNetworkId;
 
     /**
      * A medical specialty of the provider.
@@ -50,28 +34,44 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
     protected $medicalSpecialty;
 
     /**
-     * @return bool|null
+     * Name or unique ID of network. (Networks are often reused across different insurance plans.)
+     *
+     *
+     * @var string
      */
-    public function getIsAcceptingNewPatients()
+    protected $healthPlanNetworkId;
+
+    /**
+     * Whether the provider is accepting new patients.
+     *
+     *
+     * @var bool|null
+     */
+    protected $isAcceptingNewPatients;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalSpecialty|string
+     */
+    public function getMedicalSpecialty()
     {
-        return $this->isAcceptingNewPatients;
+        return $this->medicalSpecialty;
     }
 
     /**
-     * @param bool|null $isAcceptingNewPatients
+     * @param \OpenActive\Models\SchemaOrg\MedicalSpecialty|string $medicalSpecialty
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIsAcceptingNewPatients($isAcceptingNewPatients)
+    public function setMedicalSpecialty($medicalSpecialty)
     {
         $types = [
-            "bool",
-            "null",
+            "\OpenActive\Models\SchemaOrg\MedicalSpecialty",
+            "string",
         ];
 
-        $isAcceptingNewPatients = self::checkTypes($isAcceptingNewPatients, $types);
+        $medicalSpecialty = self::checkTypes($medicalSpecialty, $types);
 
-        $this->isAcceptingNewPatients = $isAcceptingNewPatients;
+        $this->medicalSpecialty = $medicalSpecialty;
     }
 
     /**
@@ -99,28 +99,28 @@ class MedicalOrganization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalSpecialty|string
+     * @return bool|null
      */
-    public function getMedicalSpecialty()
+    public function getIsAcceptingNewPatients()
     {
-        return $this->medicalSpecialty;
+        return $this->isAcceptingNewPatients;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalSpecialty|string $medicalSpecialty
+     * @param bool|null $isAcceptingNewPatients
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMedicalSpecialty($medicalSpecialty)
+    public function setIsAcceptingNewPatients($isAcceptingNewPatients)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalSpecialty",
-            "string",
+            "bool",
+            "null",
         ];
 
-        $medicalSpecialty = self::checkTypes($medicalSpecialty, $types);
+        $isAcceptingNewPatients = self::checkTypes($isAcceptingNewPatients, $types);
 
-        $this->medicalSpecialty = $medicalSpecialty;
+        $this->isAcceptingNewPatients = $isAcceptingNewPatients;
     }
 
 }

@@ -18,14 +18,14 @@ class HealthInsurancePlan extends \OpenActive\Models\SchemaOrg\Intangible
     public static function fieldList() {
         $fields = [
             "includesHealthPlanFormulary" => "includesHealthPlanFormulary",
-            "benefitsSummaryUrl" => "benefitsSummaryUrl",
-            "healthPlanDrugOption" => "healthPlanDrugOption",
-            "healthPlanDrugTier" => "healthPlanDrugTier",
-            "healthPlanId" => "healthPlanId",
-            "contactPoint" => "contactPoint",
-            "usesHealthPlanIdStandard" => "usesHealthPlanIdStandard",
-            "includesHealthPlanNetwork" => "includesHealthPlanNetwork",
             "healthPlanMarketingUrl" => "healthPlanMarketingUrl",
+            "usesHealthPlanIdStandard" => "usesHealthPlanIdStandard",
+            "contactPoint" => "contactPoint",
+            "healthPlanDrugTier" => "healthPlanDrugTier",
+            "healthPlanDrugOption" => "healthPlanDrugOption",
+            "benefitsSummaryUrl" => "benefitsSummaryUrl",
+            "includesHealthPlanNetwork" => "includesHealthPlanNetwork",
+            "healthPlanId" => "healthPlanId",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -40,36 +40,20 @@ class HealthInsurancePlan extends \OpenActive\Models\SchemaOrg\Intangible
     protected $includesHealthPlanFormulary;
 
     /**
-     * The URL that goes directly to the summary of benefits and coverage for the specific standard plan or plan variation.
+     * The URL that goes directly to the plan brochure for the specific standard plan or plan variation.
      *
      *
      * @var string
      */
-    protected $benefitsSummaryUrl;
+    protected $healthPlanMarketingUrl;
 
     /**
-     * TODO.
+     * The standard for interpreting the Plan ID. The preferred is "HIOS". See the Centers for Medicare & Medicaid Services for more details.
      *
      *
      * @var string
      */
-    protected $healthPlanDrugOption;
-
-    /**
-     * The tier(s) of drugs offered by this formulary or insurance plan.
-     *
-     *
-     * @var string
-     */
-    protected $healthPlanDrugTier;
-
-    /**
-     * The 14-character, HIOS-generated Plan ID number. (Plan IDs must be unique, even across different markets.)
-     *
-     *
-     * @var string
-     */
-    protected $healthPlanId;
+    protected $usesHealthPlanIdStandard;
 
     /**
      * A contact point for a person or organization.
@@ -80,12 +64,28 @@ class HealthInsurancePlan extends \OpenActive\Models\SchemaOrg\Intangible
     protected $contactPoint;
 
     /**
-     * The standard for interpreting thePlan ID. The preferred is "HIOS". See the Centers for Medicare & Medicaid Services for more details.
+     * The tier(s) of drugs offered by this formulary or insurance plan.
      *
      *
      * @var string
      */
-    protected $usesHealthPlanIdStandard;
+    protected $healthPlanDrugTier;
+
+    /**
+     * TODO.
+     *
+     *
+     * @var string
+     */
+    protected $healthPlanDrugOption;
+
+    /**
+     * The URL that goes directly to the summary of benefits and coverage for the specific standard plan or plan variation.
+     *
+     *
+     * @var string
+     */
+    protected $benefitsSummaryUrl;
 
     /**
      * Networks covered by this plan.
@@ -96,12 +96,12 @@ class HealthInsurancePlan extends \OpenActive\Models\SchemaOrg\Intangible
     protected $includesHealthPlanNetwork;
 
     /**
-     * The URL that goes directly to the plan brochure for the specific standard plan or plan variation.
+     * The 14-character, HIOS-generated Plan ID number. (Plan IDs must be unique, even across different markets.)
      *
      *
      * @var string
      */
-    protected $healthPlanMarketingUrl;
+    protected $healthPlanId;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\HealthPlanFormulary|string
@@ -131,97 +131,49 @@ class HealthInsurancePlan extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return string
      */
-    public function getBenefitsSummaryUrl()
+    public function getHealthPlanMarketingUrl()
     {
-        return $this->benefitsSummaryUrl;
+        return $this->healthPlanMarketingUrl;
     }
 
     /**
-     * @param string $benefitsSummaryUrl
+     * @param string $healthPlanMarketingUrl
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBenefitsSummaryUrl($benefitsSummaryUrl)
+    public function setHealthPlanMarketingUrl($healthPlanMarketingUrl)
     {
         $types = [
             "string",
         ];
 
-        $benefitsSummaryUrl = self::checkTypes($benefitsSummaryUrl, $types);
+        $healthPlanMarketingUrl = self::checkTypes($healthPlanMarketingUrl, $types);
 
-        $this->benefitsSummaryUrl = $benefitsSummaryUrl;
+        $this->healthPlanMarketingUrl = $healthPlanMarketingUrl;
     }
 
     /**
      * @return string
      */
-    public function getHealthPlanDrugOption()
+    public function getUsesHealthPlanIdStandard()
     {
-        return $this->healthPlanDrugOption;
+        return $this->usesHealthPlanIdStandard;
     }
 
     /**
-     * @param string $healthPlanDrugOption
+     * @param string $usesHealthPlanIdStandard
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHealthPlanDrugOption($healthPlanDrugOption)
+    public function setUsesHealthPlanIdStandard($usesHealthPlanIdStandard)
     {
         $types = [
             "string",
         ];
 
-        $healthPlanDrugOption = self::checkTypes($healthPlanDrugOption, $types);
+        $usesHealthPlanIdStandard = self::checkTypes($usesHealthPlanIdStandard, $types);
 
-        $this->healthPlanDrugOption = $healthPlanDrugOption;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHealthPlanDrugTier()
-    {
-        return $this->healthPlanDrugTier;
-    }
-
-    /**
-     * @param string $healthPlanDrugTier
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHealthPlanDrugTier($healthPlanDrugTier)
-    {
-        $types = [
-            "string",
-        ];
-
-        $healthPlanDrugTier = self::checkTypes($healthPlanDrugTier, $types);
-
-        $this->healthPlanDrugTier = $healthPlanDrugTier;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHealthPlanId()
-    {
-        return $this->healthPlanId;
-    }
-
-    /**
-     * @param string $healthPlanId
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHealthPlanId($healthPlanId)
-    {
-        $types = [
-            "string",
-        ];
-
-        $healthPlanId = self::checkTypes($healthPlanId, $types);
-
-        $this->healthPlanId = $healthPlanId;
+        $this->usesHealthPlanIdStandard = $usesHealthPlanIdStandard;
     }
 
     /**
@@ -252,25 +204,73 @@ class HealthInsurancePlan extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return string
      */
-    public function getUsesHealthPlanIdStandard()
+    public function getHealthPlanDrugTier()
     {
-        return $this->usesHealthPlanIdStandard;
+        return $this->healthPlanDrugTier;
     }
 
     /**
-     * @param string $usesHealthPlanIdStandard
+     * @param string $healthPlanDrugTier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setUsesHealthPlanIdStandard($usesHealthPlanIdStandard)
+    public function setHealthPlanDrugTier($healthPlanDrugTier)
     {
         $types = [
             "string",
         ];
 
-        $usesHealthPlanIdStandard = self::checkTypes($usesHealthPlanIdStandard, $types);
+        $healthPlanDrugTier = self::checkTypes($healthPlanDrugTier, $types);
 
-        $this->usesHealthPlanIdStandard = $usesHealthPlanIdStandard;
+        $this->healthPlanDrugTier = $healthPlanDrugTier;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHealthPlanDrugOption()
+    {
+        return $this->healthPlanDrugOption;
+    }
+
+    /**
+     * @param string $healthPlanDrugOption
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHealthPlanDrugOption($healthPlanDrugOption)
+    {
+        $types = [
+            "string",
+        ];
+
+        $healthPlanDrugOption = self::checkTypes($healthPlanDrugOption, $types);
+
+        $this->healthPlanDrugOption = $healthPlanDrugOption;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBenefitsSummaryUrl()
+    {
+        return $this->benefitsSummaryUrl;
+    }
+
+    /**
+     * @param string $benefitsSummaryUrl
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBenefitsSummaryUrl($benefitsSummaryUrl)
+    {
+        $types = [
+            "string",
+        ];
+
+        $benefitsSummaryUrl = self::checkTypes($benefitsSummaryUrl, $types);
+
+        $this->benefitsSummaryUrl = $benefitsSummaryUrl;
     }
 
     /**
@@ -301,25 +301,25 @@ class HealthInsurancePlan extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return string
      */
-    public function getHealthPlanMarketingUrl()
+    public function getHealthPlanId()
     {
-        return $this->healthPlanMarketingUrl;
+        return $this->healthPlanId;
     }
 
     /**
-     * @param string $healthPlanMarketingUrl
+     * @param string $healthPlanId
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHealthPlanMarketingUrl($healthPlanMarketingUrl)
+    public function setHealthPlanId($healthPlanId)
     {
         $types = [
             "string",
         ];
 
-        $healthPlanMarketingUrl = self::checkTypes($healthPlanMarketingUrl, $types);
+        $healthPlanId = self::checkTypes($healthPlanId, $types);
 
-        $this->healthPlanMarketingUrl = $healthPlanMarketingUrl;
+        $this->healthPlanId = $healthPlanId;
     }
 
 }

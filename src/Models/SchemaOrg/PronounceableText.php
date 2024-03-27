@@ -17,30 +17,14 @@ class PronounceableText extends \OpenActive\BaseModel
 
     public static function fieldList() {
         $fields = [
-            "phoneticText" => "phoneticText",
-            "speechToTextMarkup" => "speechToTextMarkup",
             "textValue" => "textValue",
             "inLanguage" => "inLanguage",
+            "phoneticText" => "phoneticText",
+            "speechToTextMarkup" => "speechToTextMarkup",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Representation of a text [[textValue]] using the specified [[speechToTextMarkup]]. For example the city name of Houston in IPA: /ˈhjuːstən/.
-     *
-     *
-     * @var string
-     */
-    protected $phoneticText;
-
-    /**
-     * Form of markup used. eg. [SSML](https://www.w3.org/TR/speech-synthesis11) or [IPA](https://www.wikidata.org/wiki/Property:P898).
-     *
-     *
-     * @var string
-     */
-    protected $speechToTextMarkup;
 
     /**
      * Text value being annotated.
@@ -59,52 +43,20 @@ class PronounceableText extends \OpenActive\BaseModel
     protected $inLanguage;
 
     /**
-     * @return string
+     * Representation of a text [[textValue]] using the specified [[speechToTextMarkup]]. For example the city name of Houston in IPA: /ˈhjuːstən/.
+     *
+     *
+     * @var string
      */
-    public function getPhoneticText()
-    {
-        return $this->phoneticText;
-    }
+    protected $phoneticText;
 
     /**
-     * @param string $phoneticText
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * Form of markup used. eg. [SSML](https://www.w3.org/TR/speech-synthesis11) or [IPA](https://www.wikidata.org/wiki/Property:P898).
+     *
+     *
+     * @var string
      */
-    public function setPhoneticText($phoneticText)
-    {
-        $types = [
-            "string",
-        ];
-
-        $phoneticText = self::checkTypes($phoneticText, $types);
-
-        $this->phoneticText = $phoneticText;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSpeechToTextMarkup()
-    {
-        return $this->speechToTextMarkup;
-    }
-
-    /**
-     * @param string $speechToTextMarkup
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSpeechToTextMarkup($speechToTextMarkup)
-    {
-        $types = [
-            "string",
-        ];
-
-        $speechToTextMarkup = self::checkTypes($speechToTextMarkup, $types);
-
-        $this->speechToTextMarkup = $speechToTextMarkup;
-    }
+    protected $speechToTextMarkup;
 
     /**
      * @return string
@@ -153,6 +105,54 @@ class PronounceableText extends \OpenActive\BaseModel
         $inLanguage = self::checkTypes($inLanguage, $types);
 
         $this->inLanguage = $inLanguage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoneticText()
+    {
+        return $this->phoneticText;
+    }
+
+    /**
+     * @param string $phoneticText
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPhoneticText($phoneticText)
+    {
+        $types = [
+            "string",
+        ];
+
+        $phoneticText = self::checkTypes($phoneticText, $types);
+
+        $this->phoneticText = $phoneticText;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSpeechToTextMarkup()
+    {
+        return $this->speechToTextMarkup;
+    }
+
+    /**
+     * @param string $speechToTextMarkup
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSpeechToTextMarkup($speechToTextMarkup)
+    {
+        $types = [
+            "string",
+        ];
+
+        $speechToTextMarkup = self::checkTypes($speechToTextMarkup, $types);
+
+        $this->speechToTextMarkup = $speechToTextMarkup;
     }
 
 }

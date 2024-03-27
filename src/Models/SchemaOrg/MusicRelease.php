@@ -17,27 +17,35 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
 
     public static function fieldList() {
         $fields = [
-            "releaseOf" => "releaseOf",
+            "creditedTo" => "creditedTo",
+            "catalogNumber" => "catalogNumber",
             "musicReleaseFormat" => "musicReleaseFormat",
             "duration" => "duration",
-            "creditedTo" => "creditedTo",
             "recordLabel" => "recordLabel",
-            "catalogNumber" => "catalogNumber",
+            "releaseOf" => "releaseOf",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The album this is a release of.
+     * The group the release is credited to if different than the byArtist. For example, Red and Blue is credited to "Stefani Germanotta Band", but by Lady Gaga.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MusicAlbum|string
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $releaseOf;
+    protected $creditedTo;
 
     /**
-     * Format of this release (the type of recording media used, ie. compact disc, digital media, LP, etc.).
+     * The catalog number for the release.
+     *
+     *
+     * @var string
+     */
+    protected $catalogNumber;
+
+    /**
+     * Format of this release (the type of recording media used, i.e. compact disc, digital media, LP, etc.).
      *
      *
      * @var \OpenActive\Enums\SchemaOrg\MusicReleaseFormatType|null
@@ -53,14 +61,6 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     protected $duration;
 
     /**
-     * The group the release is credited to if different than the byArtist. For example, Red and Blue is credited to "Stefani Germanotta Band", but by Lady Gaga.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $creditedTo;
-
-    /**
      * The label that issued the release.
      *
      *
@@ -69,36 +69,61 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     protected $recordLabel;
 
     /**
-     * The catalog number for the release.
+     * The album this is a release of.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\MusicAlbum|string
      */
-    protected $catalogNumber;
+    protected $releaseOf;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MusicAlbum|string
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getReleaseOf()
+    public function getCreditedTo()
     {
-        return $this->releaseOf;
+        return $this->creditedTo;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MusicAlbum|string $releaseOf
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $creditedTo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setReleaseOf($releaseOf)
+    public function setCreditedTo($creditedTo)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MusicAlbum",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
             "string",
         ];
 
-        $releaseOf = self::checkTypes($releaseOf, $types);
+        $creditedTo = self::checkTypes($creditedTo, $types);
 
-        $this->releaseOf = $releaseOf;
+        $this->creditedTo = $creditedTo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCatalogNumber()
+    {
+        return $this->catalogNumber;
+    }
+
+    /**
+     * @param string $catalogNumber
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCatalogNumber($catalogNumber)
+    {
+        $types = [
+            "string",
+        ];
+
+        $catalogNumber = self::checkTypes($catalogNumber, $types);
+
+        $this->catalogNumber = $catalogNumber;
     }
 
     /**
@@ -153,32 +178,6 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getCreditedTo()
-    {
-        return $this->creditedTo;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $creditedTo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCreditedTo($creditedTo)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "string",
-        ];
-
-        $creditedTo = self::checkTypes($creditedTo, $types);
-
-        $this->creditedTo = $creditedTo;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Organization|string
      */
     public function getRecordLabel()
@@ -204,27 +203,28 @@ class MusicRelease extends \OpenActive\Models\SchemaOrg\MusicPlaylist
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\MusicAlbum|string
      */
-    public function getCatalogNumber()
+    public function getReleaseOf()
     {
-        return $this->catalogNumber;
+        return $this->releaseOf;
     }
 
     /**
-     * @param string $catalogNumber
+     * @param \OpenActive\Models\SchemaOrg\MusicAlbum|string $releaseOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCatalogNumber($catalogNumber)
+    public function setReleaseOf($releaseOf)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\MusicAlbum",
             "string",
         ];
 
-        $catalogNumber = self::checkTypes($catalogNumber, $types);
+        $releaseOf = self::checkTypes($releaseOf, $types);
 
-        $this->catalogNumber = $catalogNumber;
+        $this->releaseOf = $releaseOf;
     }
 
 }
