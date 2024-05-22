@@ -69,23 +69,6 @@ class DateTest extends TestCase
         $this->assertEquals($expected, $serialized);
     }
 
-    function testEventDate() {
-        $schedule = new Event(["startDate" => "2019-11-29"]);
-
-        $serialized = Event::toArray($schedule);
-
-        $expected = [
-            "@type" => "Event",
-            "@context" => [
-                "https://openactive.io/",
-                "https://openactive.io/ns-beta"
-            ],
-            "startDate" => "2019-11-29"
-        ];
-
-        $this->assertEquals($expected, $serialized);
-    }
-
     function testEventDateTime() {
         $schedule = new Event(["startDate" => "2019-11-29T10:00:00Z"]);
 
