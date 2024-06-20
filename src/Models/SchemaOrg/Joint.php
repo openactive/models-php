@@ -17,13 +17,21 @@ class Joint extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
 
     public static function fieldList() {
         $fields = [
+            "functionalClass" => "functionalClass",
             "structuralClass" => "structuralClass",
             "biomechnicalClass" => "biomechnicalClass",
-            "functionalClass" => "functionalClass",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The degree of mobility the joint allows.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
+     */
+    protected $functionalClass;
 
     /**
      * The name given to how bone physically connects to each other.
@@ -42,12 +50,29 @@ class Joint extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     protected $biomechnicalClass;
 
     /**
-     * The degree of mobility the joint allows.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\MedicalEntity
+     * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
-    protected $functionalClass;
+    public function getFunctionalClass()
+    {
+        return $this->functionalClass;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalEntity|string $functionalClass
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFunctionalClass($functionalClass)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalEntity",
+            "string",
+        ];
+
+        $functionalClass = self::checkTypes($functionalClass, $types);
+
+        $this->functionalClass = $functionalClass;
+    }
 
     /**
      * @return string
@@ -95,31 +120,6 @@ class Joint extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
         $biomechnicalClass = self::checkTypes($biomechnicalClass, $types);
 
         $this->biomechnicalClass = $biomechnicalClass;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\MedicalEntity
-     */
-    public function getFunctionalClass()
-    {
-        return $this->functionalClass;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\MedicalEntity $functionalClass
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFunctionalClass($functionalClass)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\MedicalEntity",
-        ];
-
-        $functionalClass = self::checkTypes($functionalClass, $types);
-
-        $this->functionalClass = $functionalClass;
     }
 
 }

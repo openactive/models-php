@@ -8,6 +8,6 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class BoardingPolicyType
 {
-    const GroupBoardingPolicy = \OpenActive\Enums\SchemaOrg\BoardingPolicyType\GroupBoardingPolicy::class;
     const ZoneBoardingPolicy = \OpenActive\Enums\SchemaOrg\BoardingPolicyType\ZoneBoardingPolicy::class;
+    const GroupBoardingPolicy = \OpenActive\Enums\SchemaOrg\BoardingPolicyType\GroupBoardingPolicy::class;
 }

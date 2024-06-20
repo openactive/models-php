@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Audiobook extends \OpenActive\Models\SchemaOrg\AudioObject
+class Audiobook extends \OpenActive\Models\SchemaOrg\Book
 {
     /**
      * @return string[]|null

@@ -28,7 +28,7 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
      * The person, organization, contact point, or audience that has been granted this permission.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|string
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|string
      */
     protected $grantee;
 
@@ -41,7 +41,7 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
     protected $permissionType;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|string
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|string
      */
     public function getGrantee()
     {
@@ -49,7 +49,7 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\ContactPoint|\OpenActive\Models\SchemaOrg\Organization|string $grantee
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Audience|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\ContactPoint|string $grantee
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -58,8 +58,8 @@ class DigitalDocumentPermission extends \OpenActive\Models\SchemaOrg\Intangible
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Audience",
-            "\OpenActive\Models\SchemaOrg\ContactPoint",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\ContactPoint",
             "string",
         ];
 

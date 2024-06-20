@@ -18,9 +18,9 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
     public static function fieldList() {
         $fields = [
             "parentTaxon" => "parentTaxon",
+            "hasDefinedTerm" => "hasDefinedTerm",
             "taxonRank" => "taxonRank",
             "childTaxon" => "childTaxon",
-            "hasDefinedTerm" => "hasDefinedTerm",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -35,10 +35,18 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
     protected $parentTaxon;
 
     /**
-     * The taxonomic rank of this taxon given preferably as a URI from a controlled vocabulary – (typically the ranks from TDWG TaxonRank ontology or equivalent Wikidata URIs).
+     * A Defined Term contained in this term set.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    protected $hasDefinedTerm;
+
+    /**
+     * The taxonomic rank of this taxon given preferably as a URI from a controlled vocabulary – typically the ranks from TDWG TaxonRank ontology or equivalent Wikidata URIs.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\PropertyValue
      */
     protected $taxonRank;
 
@@ -49,14 +57,6 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
      * @var string|\OpenActive\Models\SchemaOrg\Taxon
      */
     protected $childTaxon;
-
-    /**
-     * A Defined Term contained in this term set.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
-     */
-    protected $hasDefinedTerm;
 
     /**
      * @return string|\OpenActive\Models\SchemaOrg\Taxon
@@ -84,7 +84,32 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    public function getHasDefinedTerm()
+    {
+        return $this->hasDefinedTerm;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $hasDefinedTerm
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasDefinedTerm($hasDefinedTerm)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
+        ];
+
+        $hasDefinedTerm = self::checkTypes($hasDefinedTerm, $types);
+
+        $this->hasDefinedTerm = $hasDefinedTerm;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\PropertyValue
      */
     public function getTaxonRank()
     {
@@ -92,15 +117,15 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $taxonRank
+     * @param string|\OpenActive\Models\SchemaOrg\PropertyValue $taxonRank
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTaxonRank($taxonRank)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\PropertyValue",
             "string",
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
         ];
 
         $taxonRank = self::checkTypes($taxonRank, $types);
@@ -131,31 +156,6 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
         $childTaxon = self::checkTypes($childTaxon, $types);
 
         $this->childTaxon = $childTaxon;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
-     */
-    public function getHasDefinedTerm()
-    {
-        return $this->hasDefinedTerm;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $hasDefinedTerm
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHasDefinedTerm($hasDefinedTerm)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-            "string",
-        ];
-
-        $hasDefinedTerm = self::checkTypes($hasDefinedTerm, $types);
-
-        $this->hasDefinedTerm = $hasDefinedTerm;
     }
 
 }

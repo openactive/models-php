@@ -17,31 +17,39 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "width" => "width",
+            "depth" => "depth",
+            "inker" => "inker",
             "letterer" => "letterer",
+            "artist" => "artist",
+            "artworkSurface" => "artworkSurface",
+            "artform" => "artform",
+            "width" => "width",
+            "artEdition" => "artEdition",
+            "penciler" => "penciler",
             "height" => "height",
+            "artMedium" => "artMedium",
             "surface" => "surface",
             "colorist" => "colorist",
-            "inker" => "inker",
-            "artform" => "artform",
-            "artworkSurface" => "artworkSurface",
-            "artEdition" => "artEdition",
-            "depth" => "depth",
-            "penciler" => "penciler",
-            "artist" => "artist",
-            "artMedium" => "artMedium",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The width of the item.
+     * The depth of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance|string
+     * @var \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
-    protected $width;
+    protected $depth;
+
+    /**
+     * The individual who traces over the pencil drawings in ink after pencils are complete.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $inker;
 
     /**
      * The individual who adds lettering, including speech balloons and sound effects, to artwork.
@@ -52,12 +60,70 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $letterer;
 
     /**
+     * The primary artist for a work
+     *     	in a medium other than pencils or digital line art--for example, if the
+     *     	primary artwork is done in watercolors or digital paints.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $artist;
+
+    /**
+     * The supporting materials for the artwork, e.g. Canvas, Paper, Wood, Board, etc.
+     *
+     *
+     * @var string
+     */
+    protected $artworkSurface;
+
+    /**
+     * e.g. Painting, Drawing, Sculpture, Print, Photograph, Assemblage, Collage, etc.
+     *
+     *
+     * @var string
+     */
+    protected $artform;
+
+    /**
+     * The width of the item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    protected $width;
+
+    /**
+     * The number of copies when multiple copies of a piece of artwork are produced - e.g. for a limited edition of 20 prints, 'artEdition' refers to the total number of copies (in this example "20").
+     *
+     *
+     * @var string|int|null
+     */
+    protected $artEdition;
+
+    /**
+     * The individual who draws the primary narrative artwork.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $penciler;
+
+    /**
      * The height of the item.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
     protected $height;
+
+    /**
+     * The material used. (E.g. Oil, Watercolour, Acrylic, Linoprint, Marble, Cyanotype, Digital, Lithograph, DryPoint, Intaglio, Pastel, Woodcut, Pencil, Mixed Media, etc.)
+     *
+     *
+     * @var string
+     */
+    protected $artMedium;
 
     /**
      * A material used as a surface in some artwork, e.g. Canvas, Paper, Wood, Board, etc.
@@ -76,95 +142,54 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $colorist;
 
     /**
-     * The individual who traces over the pencil drawings in ink after pencils are complete.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
+     * @return \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
-    protected $inker;
-
-    /**
-     * e.g. Painting, Drawing, Sculpture, Print, Photograph, Assemblage, Collage, etc.
-     *
-     *
-     * @var string
-     */
-    protected $artform;
-
-    /**
-     * The supporting materials for the artwork, e.g. Canvas, Paper, Wood, Board, etc.
-     *
-     *
-     * @var string
-     */
-    protected $artworkSurface;
-
-    /**
-     * The number of copies when multiple copies of a piece of artwork are produced - e.g. for a limited edition of 20 prints, 'artEdition' refers to the total number of copies (in this example "20").
-     *
-     *
-     * @var string|int|null
-     */
-    protected $artEdition;
-
-    /**
-     * The depth of the item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue|string
-     */
-    protected $depth;
-
-    /**
-     * The individual who draws the primary narrative artwork.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $penciler;
-
-    /**
-     * The primary artist for a work
-     *     	in a medium other than pencils or digital line art--for example, if the
-     *     	primary artwork is done in watercolors or digital paints.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $artist;
-
-    /**
-     * The material used. (e.g. Oil, Watercolour, Acrylic, Linoprint, Marble, Cyanotype, Digital, Lithograph, DryPoint, Intaglio, Pastel, Woodcut, Pencil, Mixed Media, etc.)
-     *
-     *
-     * @var string
-     */
-    protected $artMedium;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance|string
-     */
-    public function getWidth()
+    public function getDepth()
     {
-        return $this->width;
+        return $this->depth;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|\OpenActive\Models\SchemaOrg\Distance|string $width
+     * @param \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue|string $depth
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setWidth($width)
+    public function setDepth($depth)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "\OpenActive\Models\SchemaOrg\Distance",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
         ];
 
-        $width = self::checkTypes($width, $types);
+        $depth = self::checkTypes($depth, $types);
 
-        $this->width = $width;
+        $this->depth = $depth;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getInker()
+    {
+        return $this->inker;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $inker
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInker($inker)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $inker = self::checkTypes($inker, $types);
+
+        $this->inker = $inker;
     }
 
     /**
@@ -193,6 +218,156 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getArtist()
+    {
+        return $this->artist;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $artist
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setArtist($artist)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $artist = self::checkTypes($artist, $types);
+
+        $this->artist = $artist;
+    }
+
+    /**
+     * @return string
+     */
+    public function getArtworkSurface()
+    {
+        return $this->artworkSurface;
+    }
+
+    /**
+     * @param string $artworkSurface
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setArtworkSurface($artworkSurface)
+    {
+        $types = [
+            "string",
+        ];
+
+        $artworkSurface = self::checkTypes($artworkSurface, $types);
+
+        $this->artworkSurface = $artworkSurface;
+    }
+
+    /**
+     * @return string
+     */
+    public function getArtform()
+    {
+        return $this->artform;
+    }
+
+    /**
+     * @param string $artform
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setArtform($artform)
+    {
+        $types = [
+            "string",
+        ];
+
+        $artform = self::checkTypes($artform, $types);
+
+        $this->artform = $artform;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue|string $width
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setWidth($width)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Distance",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
+        ];
+
+        $width = self::checkTypes($width, $types);
+
+        $this->width = $width;
+    }
+
+    /**
+     * @return string|int|null
+     */
+    public function getArtEdition()
+    {
+        return $this->artEdition;
+    }
+
+    /**
+     * @param string|int|null $artEdition
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setArtEdition($artEdition)
+    {
+        $types = [
+            "string",
+            "int",
+            "null",
+        ];
+
+        $artEdition = self::checkTypes($artEdition, $types);
+
+        $this->artEdition = $artEdition;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getPenciler()
+    {
+        return $this->penciler;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $penciler
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPenciler($penciler)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $penciler = self::checkTypes($penciler, $types);
+
+        $this->penciler = $penciler;
+    }
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
     public function getHeight()
@@ -216,6 +391,30 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
         $height = self::checkTypes($height, $types);
 
         $this->height = $height;
+    }
+
+    /**
+     * @return string
+     */
+    public function getArtMedium()
+    {
+        return $this->artMedium;
+    }
+
+    /**
+     * @param string $artMedium
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setArtMedium($artMedium)
+    {
+        $types = [
+            "string",
+        ];
+
+        $artMedium = self::checkTypes($artMedium, $types);
+
+        $this->artMedium = $artMedium;
     }
 
     /**
@@ -265,205 +464,6 @@ class VisualArtwork extends \OpenActive\Models\SchemaOrg\CreativeWork
         $colorist = self::checkTypes($colorist, $types);
 
         $this->colorist = $colorist;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getInker()
-    {
-        return $this->inker;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $inker
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setInker($inker)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $inker = self::checkTypes($inker, $types);
-
-        $this->inker = $inker;
-    }
-
-    /**
-     * @return string
-     */
-    public function getArtform()
-    {
-        return $this->artform;
-    }
-
-    /**
-     * @param string $artform
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setArtform($artform)
-    {
-        $types = [
-            "string",
-        ];
-
-        $artform = self::checkTypes($artform, $types);
-
-        $this->artform = $artform;
-    }
-
-    /**
-     * @return string
-     */
-    public function getArtworkSurface()
-    {
-        return $this->artworkSurface;
-    }
-
-    /**
-     * @param string $artworkSurface
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setArtworkSurface($artworkSurface)
-    {
-        $types = [
-            "string",
-        ];
-
-        $artworkSurface = self::checkTypes($artworkSurface, $types);
-
-        $this->artworkSurface = $artworkSurface;
-    }
-
-    /**
-     * @return string|int|null
-     */
-    public function getArtEdition()
-    {
-        return $this->artEdition;
-    }
-
-    /**
-     * @param string|int|null $artEdition
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setArtEdition($artEdition)
-    {
-        $types = [
-            "string",
-            "int",
-            "null",
-        ];
-
-        $artEdition = self::checkTypes($artEdition, $types);
-
-        $this->artEdition = $artEdition;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue|string
-     */
-    public function getDepth()
-    {
-        return $this->depth;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Distance|\OpenActive\Models\SchemaOrg\QuantitativeValue|string $depth
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDepth($depth)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Distance",
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "string",
-        ];
-
-        $depth = self::checkTypes($depth, $types);
-
-        $this->depth = $depth;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getPenciler()
-    {
-        return $this->penciler;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $penciler
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPenciler($penciler)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $penciler = self::checkTypes($penciler, $types);
-
-        $this->penciler = $penciler;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getArtist()
-    {
-        return $this->artist;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $artist
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setArtist($artist)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $artist = self::checkTypes($artist, $types);
-
-        $this->artist = $artist;
-    }
-
-    /**
-     * @return string
-     */
-    public function getArtMedium()
-    {
-        return $this->artMedium;
-    }
-
-    /**
-     * @param string $artMedium
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setArtMedium($artMedium)
-    {
-        $types = [
-            "string",
-        ];
-
-        $artMedium = self::checkTypes($artMedium, $types);
-
-        $this->artMedium = $artMedium;
     }
 
 }

@@ -17,22 +17,22 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
 
     public static function fieldList() {
         $fields = [
-            "accessCode" => "accessCode",
+            "availableFrom" => "availableFrom",
             "availableThrough" => "availableThrough",
             "hasDeliveryMethod" => "hasDeliveryMethod",
-            "availableFrom" => "availableFrom",
+            "accessCode" => "accessCode",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Password, PIN, or access code needed for delivery (e.g. from a locker).
+     * When the item is available for pickup from the store, locker, etc.
      *
      *
-     * @var string
+     * @var DateTime|null
      */
-    protected $accessCode;
+    protected $availableFrom;
 
     /**
      * After this date, the item will no longer be available for pickup.
@@ -51,35 +51,36 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     protected $hasDeliveryMethod;
 
     /**
-     * When the item is available for pickup from the store, locker, etc.
+     * Password, PIN, or access code needed for delivery (e.g. from a locker).
      *
      *
-     * @var DateTime|null
+     * @var string
      */
-    protected $availableFrom;
+    protected $accessCode;
 
     /**
-     * @return string
+     * @return DateTime|null
      */
-    public function getAccessCode()
+    public function getAvailableFrom()
     {
-        return $this->accessCode;
+        return $this->availableFrom;
     }
 
     /**
-     * @param string $accessCode
+     * @param DateTime|null $availableFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAccessCode($accessCode)
+    public function setAvailableFrom($availableFrom)
     {
         $types = [
-            "string",
+            "DateTime",
+            "null",
         ];
 
-        $accessCode = self::checkTypes($accessCode, $types);
+        $availableFrom = self::checkTypes($availableFrom, $types);
 
-        $this->accessCode = $accessCode;
+        $this->availableFrom = $availableFrom;
     }
 
     /**
@@ -133,28 +134,27 @@ class DeliveryEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return DateTime|null
+     * @return string
      */
-    public function getAvailableFrom()
+    public function getAccessCode()
     {
-        return $this->availableFrom;
+        return $this->accessCode;
     }
 
     /**
-     * @param DateTime|null $availableFrom
+     * @param string $accessCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAvailableFrom($availableFrom)
+    public function setAccessCode($accessCode)
     {
         $types = [
-            "DateTime",
-            "null",
+            "string",
         ];
 
-        $availableFrom = self::checkTypes($availableFrom, $types);
+        $accessCode = self::checkTypes($accessCode, $types);
 
-        $this->availableFrom = $availableFrom;
+        $this->accessCode = $accessCode;
     }
 
 }

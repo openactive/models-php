@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class FireStation extends \OpenActive\Models\SchemaOrg\CivicStructure
+class FireStation extends \OpenActive\Models\SchemaOrg\EmergencyService
 {
     /**
      * @return string[]|null

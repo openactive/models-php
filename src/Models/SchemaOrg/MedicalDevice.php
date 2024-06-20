@@ -17,11 +17,11 @@ class MedicalDevice extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
+            "postOp" => "postOp",
+            "procedure" => "procedure",
             "adverseOutcome" => "adverseOutcome",
             "preOp" => "preOp",
             "seriousAdverseOutcome" => "seriousAdverseOutcome",
-            "postOp" => "postOp",
-            "procedure" => "procedure",
             "contraindication" => "contraindication",
         ];
 
@@ -29,7 +29,23 @@ class MedicalDevice extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * A possible complication and/or side effect of this therapy. If it is known that an adverse outcome is serious (resulting in death, disability, or permanent damage; requiring hospitalization; or is otherwise life-threatening or requires immediate medical attention), tag it as a seriouseAdverseOutcome instead.
+     * A description of the postoperative procedures, care, and/or followups for this device.
+     *
+     *
+     * @var string
+     */
+    protected $postOp;
+
+    /**
+     * A description of the procedure involved in setting up, using, and/or installing the device.
+     *
+     *
+     * @var string
+     */
+    protected $procedure;
+
+    /**
+     * A possible complication and/or side effect of this therapy. If it is known that an adverse outcome is serious (resulting in death, disability, or permanent damage; requiring hospitalization; or otherwise life-threatening or requiring immediate medical attention), tag it as a seriousAdverseOutcome instead.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
@@ -53,28 +69,60 @@ class MedicalDevice extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $seriousAdverseOutcome;
 
     /**
-     * A description of the postoperative procedures, care, and/or followups for this device.
-     *
-     *
-     * @var string
-     */
-    protected $postOp;
-
-    /**
-     * A description of the procedure involved in setting up, using, and/or installing the device.
-     *
-     *
-     * @var string
-     */
-    protected $procedure;
-
-    /**
      * A contraindication for this therapy.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\MedicalContraindication
+     * @var \OpenActive\Models\SchemaOrg\MedicalContraindication|string
      */
     protected $contraindication;
+
+    /**
+     * @return string
+     */
+    public function getPostOp()
+    {
+        return $this->postOp;
+    }
+
+    /**
+     * @param string $postOp
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPostOp($postOp)
+    {
+        $types = [
+            "string",
+        ];
+
+        $postOp = self::checkTypes($postOp, $types);
+
+        $this->postOp = $postOp;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProcedure()
+    {
+        return $this->procedure;
+    }
+
+    /**
+     * @param string $procedure
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProcedure($procedure)
+    {
+        $types = [
+            "string",
+        ];
+
+        $procedure = self::checkTypes($procedure, $types);
+
+        $this->procedure = $procedure;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
@@ -151,55 +199,7 @@ class MedicalDevice extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return string
-     */
-    public function getPostOp()
-    {
-        return $this->postOp;
-    }
-
-    /**
-     * @param string $postOp
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPostOp($postOp)
-    {
-        $types = [
-            "string",
-        ];
-
-        $postOp = self::checkTypes($postOp, $types);
-
-        $this->postOp = $postOp;
-    }
-
-    /**
-     * @return string
-     */
-    public function getProcedure()
-    {
-        return $this->procedure;
-    }
-
-    /**
-     * @param string $procedure
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProcedure($procedure)
-    {
-        $types = [
-            "string",
-        ];
-
-        $procedure = self::checkTypes($procedure, $types);
-
-        $this->procedure = $procedure;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\MedicalContraindication
+     * @return \OpenActive\Models\SchemaOrg\MedicalContraindication|string
      */
     public function getContraindication()
     {
@@ -207,15 +207,15 @@ class MedicalDevice extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\MedicalContraindication $contraindication
+     * @param \OpenActive\Models\SchemaOrg\MedicalContraindication|string $contraindication
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContraindication($contraindication)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\MedicalContraindication",
+            "string",
         ];
 
         $contraindication = self::checkTypes($contraindication, $types);

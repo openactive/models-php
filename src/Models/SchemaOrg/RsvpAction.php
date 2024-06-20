@@ -17,21 +17,13 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
 
     public static function fieldList() {
         $fields = [
-            "rsvpResponse" => "rsvpResponse",
             "comment" => "comment",
+            "rsvpResponse" => "rsvpResponse",
             "additionalNumberOfGuests" => "additionalNumberOfGuests",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The response (yes, no, maybe) to the RSVP.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\RsvpResponseType|null
-     */
-    protected $rsvpResponse;
 
     /**
      * Comments, typically from users.
@@ -42,37 +34,20 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     protected $comment;
 
     /**
+     * The response (yes, no, maybe) to the RSVP.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\RsvpResponseType|null
+     */
+    protected $rsvpResponse;
+
+    /**
      * If responding yes, the number of guests who will attend in addition to the invitee.
      *
      *
      * @var Number|null
      */
     protected $additionalNumberOfGuests;
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\RsvpResponseType|null
-     */
-    public function getRsvpResponse()
-    {
-        return $this->rsvpResponse;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\RsvpResponseType|null $rsvpResponse
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRsvpResponse($rsvpResponse)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\RsvpResponseType",
-            "null",
-        ];
-
-        $rsvpResponse = self::checkTypes($rsvpResponse, $types);
-
-        $this->rsvpResponse = $rsvpResponse;
-    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Comment|string
@@ -97,6 +72,31 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
         $comment = self::checkTypes($comment, $types);
 
         $this->comment = $comment;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\RsvpResponseType|null
+     */
+    public function getRsvpResponse()
+    {
+        return $this->rsvpResponse;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\RsvpResponseType|null $rsvpResponse
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRsvpResponse($rsvpResponse)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\RsvpResponseType",
+            "null",
+        ];
+
+        $rsvpResponse = self::checkTypes($rsvpResponse, $types);
+
+        $this->rsvpResponse = $rsvpResponse;
     }
 
     /**

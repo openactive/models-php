@@ -17,77 +17,21 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "startOffset" => "startOffset",
-            "endOffset" => "endOffset",
-            "director" => "director",
-            "actor" => "actor",
-            "partOfEpisode" => "partOfEpisode",
-            "clipNumber" => "clipNumber",
-            "partOfSeries" => "partOfSeries",
             "partOfSeason" => "partOfSeason",
-            "actors" => "actors",
+            "endOffset" => "endOffset",
+            "actor" => "actor",
+            "clipNumber" => "clipNumber",
+            "partOfEpisode" => "partOfEpisode",
             "musicBy" => "musicBy",
             "directors" => "directors",
+            "startOffset" => "startOffset",
+            "director" => "director",
+            "actors" => "actors",
+            "partOfSeries" => "partOfSeries",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The start time of the clip expressed as the number of seconds from the beginning of the work.
-     *
-     *
-     * @var Number|\OpenActive\Models\SchemaOrg\HyperTocEntry|string|null
-     */
-    protected $startOffset;
-
-    /**
-     * The end time of the clip expressed as the number of seconds from the beginning of the work.
-     *
-     *
-     * @var Number|\OpenActive\Models\SchemaOrg\HyperTocEntry|string|null
-     */
-    protected $endOffset;
-
-    /**
-     * A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $director;
-
-    /**
-     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $actor;
-
-    /**
-     * The episode to which this clip belongs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Episode|string
-     */
-    protected $partOfEpisode;
-
-    /**
-     * Position of the clip within an ordered group of clips.
-     *
-     *
-     * @var string|int|null
-     */
-    protected $clipNumber;
-
-    /**
-     * The series to which this episode or season belongs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeries|string
-     */
-    protected $partOfSeries;
 
     /**
      * The season to which this episode belongs.
@@ -98,23 +42,47 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $partOfSeason;
 
     /**
-     * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
+     * The end time of the clip expressed as the number of seconds from the beginning of the work.
+     *
+     *
+     * @var Number|\OpenActive\Models\SchemaOrg\HyperTocEntry|string|null
+     */
+    protected $endOffset;
+
+    /**
+     * An actor, e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $actors;
+    protected $actor;
+
+    /**
+     * Position of the clip within an ordered group of clips.
+     *
+     *
+     * @var string|int|null
+     */
+    protected $clipNumber;
+
+    /**
+     * The episode to which this clip belongs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Episode|string
+     */
+    protected $partOfEpisode;
 
     /**
      * The composer of the soundtrack.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person|string
      */
     protected $musicBy;
 
     /**
-     * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
+     * A director of e.g. TV, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Person|string
@@ -122,30 +90,60 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $directors;
 
     /**
-     * @return Number|\OpenActive\Models\SchemaOrg\HyperTocEntry|string|null
+     * The start time of the clip expressed as the number of seconds from the beginning of the work.
+     *
+     *
+     * @var Number|\OpenActive\Models\SchemaOrg\HyperTocEntry|string|null
      */
-    public function getStartOffset()
+    protected $startOffset;
+
+    /**
+     * A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $director;
+
+    /**
+     * An actor, e.g. in TV, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $actors;
+
+    /**
+     * The series to which this episode or season belongs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWorkSeries|string
+     */
+    protected $partOfSeries;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string
+     */
+    public function getPartOfSeason()
     {
-        return $this->startOffset;
+        return $this->partOfSeason;
     }
 
     /**
-     * @param Number|\OpenActive\Models\SchemaOrg\HyperTocEntry|string|null $startOffset
+     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string $partOfSeason
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setStartOffset($startOffset)
+    public function setPartOfSeason($partOfSeason)
     {
         $types = [
-            "Number",
-            "\OpenActive\Models\SchemaOrg\HyperTocEntry",
+            "\OpenActive\Models\SchemaOrg\CreativeWorkSeason",
             "string",
-            "null",
         ];
 
-        $startOffset = self::checkTypes($startOffset, $types);
+        $partOfSeason = self::checkTypes($partOfSeason, $types);
 
-        $this->startOffset = $startOffset;
+        $this->partOfSeason = $partOfSeason;
     }
 
     /**
@@ -178,31 +176,6 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @return \OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getDirector()
-    {
-        return $this->director;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $director
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDirector($director)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $director = self::checkTypes($director, $types);
-
-        $this->director = $director;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
-     */
     public function getActor()
     {
         return $this->actor;
@@ -223,31 +196,6 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
         $actor = self::checkTypes($actor, $types);
 
         $this->actor = $actor;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Episode|string
-     */
-    public function getPartOfEpisode()
-    {
-        return $this->partOfEpisode;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Episode|string $partOfEpisode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPartOfEpisode($partOfEpisode)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Episode",
-            "string",
-        ];
-
-        $partOfEpisode = self::checkTypes($partOfEpisode, $types);
-
-        $this->partOfEpisode = $partOfEpisode;
     }
 
     /**
@@ -277,82 +225,32 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeries|string
+     * @return \OpenActive\Models\SchemaOrg\Episode|string
      */
-    public function getPartOfSeries()
+    public function getPartOfEpisode()
     {
-        return $this->partOfSeries;
+        return $this->partOfEpisode;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeries|string $partOfSeries
+     * @param \OpenActive\Models\SchemaOrg\Episode|string $partOfEpisode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPartOfSeries($partOfSeries)
+    public function setPartOfEpisode($partOfEpisode)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\CreativeWorkSeries",
+            "\OpenActive\Models\SchemaOrg\Episode",
             "string",
         ];
 
-        $partOfSeries = self::checkTypes($partOfSeries, $types);
+        $partOfEpisode = self::checkTypes($partOfEpisode, $types);
 
-        $this->partOfSeries = $partOfSeries;
+        $this->partOfEpisode = $partOfEpisode;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string
-     */
-    public function getPartOfSeason()
-    {
-        return $this->partOfSeason;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeason|string $partOfSeason
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPartOfSeason($partOfSeason)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\CreativeWorkSeason",
-            "string",
-        ];
-
-        $partOfSeason = self::checkTypes($partOfSeason, $types);
-
-        $this->partOfSeason = $partOfSeason;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getActors()
-    {
-        return $this->actors;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $actors
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActors($actors)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $actors = self::checkTypes($actors, $types);
-
-        $this->actors = $actors;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person|string
      */
     public function getMusicBy()
     {
@@ -360,15 +258,15 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string $musicBy
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person|string $musicBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMusicBy($musicBy)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "\OpenActive\Models\SchemaOrg\Person",
             "string",
         ];
 
@@ -400,6 +298,108 @@ class Clip extends \OpenActive\Models\SchemaOrg\CreativeWork
         $directors = self::checkTypes($directors, $types);
 
         $this->directors = $directors;
+    }
+
+    /**
+     * @return Number|\OpenActive\Models\SchemaOrg\HyperTocEntry|string|null
+     */
+    public function getStartOffset()
+    {
+        return $this->startOffset;
+    }
+
+    /**
+     * @param Number|\OpenActive\Models\SchemaOrg\HyperTocEntry|string|null $startOffset
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setStartOffset($startOffset)
+    {
+        $types = [
+            "Number",
+            "\OpenActive\Models\SchemaOrg\HyperTocEntry",
+            "string",
+            "null",
+        ];
+
+        $startOffset = self::checkTypes($startOffset, $types);
+
+        $this->startOffset = $startOffset;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getDirector()
+    {
+        return $this->director;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $director
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDirector($director)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $director = self::checkTypes($director, $types);
+
+        $this->director = $director;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getActors()
+    {
+        return $this->actors;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $actors
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActors($actors)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $actors = self::checkTypes($actors, $types);
+
+        $this->actors = $actors;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWorkSeries|string
+     */
+    public function getPartOfSeries()
+    {
+        return $this->partOfSeries;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWorkSeries|string $partOfSeries
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPartOfSeries($partOfSeries)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CreativeWorkSeries",
+            "string",
+        ];
+
+        $partOfSeries = self::checkTypes($partOfSeries, $types);
+
+        $this->partOfSeries = $partOfSeries;
     }
 
 }
