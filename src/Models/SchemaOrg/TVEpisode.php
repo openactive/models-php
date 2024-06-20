@@ -17,14 +17,30 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
 
     public static function fieldList() {
         $fields = [
-            "countryOfOrigin" => "countryOfOrigin",
-            "titleEIDR" => "titleEIDR",
             "subtitleLanguage" => "subtitleLanguage",
             "partOfTVSeries" => "partOfTVSeries",
+            "countryOfOrigin" => "countryOfOrigin",
+            "titleEIDR" => "titleEIDR",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Languages in which subtitles/captions are available, in [IETF BCP 47 standard format](http://tools.ietf.org/html/bcp47).
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Language
+     */
+    protected $subtitleLanguage;
+
+    /**
+     * The TV series to which this episode or season belongs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\TVSeries|string
+     */
+    protected $partOfTVSeries;
 
     /**
      * The country of origin of something, including products as well as creative  works such as movie and TV content.
@@ -43,7 +59,7 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
      * 
      * For example, the motion picture known as "Ghostbusters" has a titleEIDR of  "10.5240/7EC7-228A-510A-053E-CBB8-J". This title (or work) may have several variants, which EIDR calls "edits". See [[editEIDR]].
      * 
-     * Since schema.org types like [[Movie]] and [[TVEpisode]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.
+     * Since schema.org types like [[Movie]], [[TVEpisode]], [[TVSeason]], and [[TVSeries]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.
      * 
      *
      *
@@ -52,20 +68,54 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     protected $titleEIDR;
 
     /**
-     * Languages in which subtitles/captions are available, in [IETF BCP 47 standard format](http://tools.ietf.org/html/bcp47).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Language|string
+     * @return string|\OpenActive\Models\SchemaOrg\Language
      */
-    protected $subtitleLanguage;
+    public function getSubtitleLanguage()
+    {
+        return $this->subtitleLanguage;
+    }
 
     /**
-     * The TV series to which this episode or season belongs.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\TVSeries|string
+     * @param string|\OpenActive\Models\SchemaOrg\Language $subtitleLanguage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $partOfTVSeries;
+    public function setSubtitleLanguage($subtitleLanguage)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\Language",
+        ];
+
+        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
+
+        $this->subtitleLanguage = $subtitleLanguage;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\TVSeries|string
+     */
+    public function getPartOfTVSeries()
+    {
+        return $this->partOfTVSeries;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\TVSeries|string $partOfTVSeries
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPartOfTVSeries($partOfTVSeries)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\TVSeries",
+            "string",
+        ];
+
+        $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
+
+        $this->partOfTVSeries = $partOfTVSeries;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Country|string
@@ -114,56 +164,6 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
         $titleEIDR = self::checkTypes($titleEIDR, $types);
 
         $this->titleEIDR = $titleEIDR;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Language|string
-     */
-    public function getSubtitleLanguage()
-    {
-        return $this->subtitleLanguage;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Language|string $subtitleLanguage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSubtitleLanguage($subtitleLanguage)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Language",
-            "string",
-        ];
-
-        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
-
-        $this->subtitleLanguage = $subtitleLanguage;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\TVSeries|string
-     */
-    public function getPartOfTVSeries()
-    {
-        return $this->partOfTVSeries;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\TVSeries|string $partOfTVSeries
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPartOfTVSeries($partOfTVSeries)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\TVSeries",
-            "string",
-        ];
-
-        $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
-
-        $this->partOfTVSeries = $partOfTVSeries;
     }
 
 }

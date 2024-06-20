@@ -17,15 +17,23 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
+            "targetName" => "targetName",
             "alignmentType" => "alignmentType",
             "educationalFramework" => "educationalFramework",
             "targetDescription" => "targetDescription",
-            "targetName" => "targetName",
             "targetUrl" => "targetUrl",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The name of a node in an established educational framework.
+     *
+     *
+     * @var string
+     */
+    protected $targetName;
 
     /**
      * A category of alignment between the learning resource and the framework node. Recommended values include: 'requires', 'textComplexity', 'readingLevel', and 'educationalSubject'.
@@ -52,20 +60,36 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
     protected $targetDescription;
 
     /**
-     * The name of a node in an established educational framework.
-     *
-     *
-     * @var string
-     */
-    protected $targetName;
-
-    /**
      * The URL of a node in an established educational framework.
      *
      *
      * @var string
      */
     protected $targetUrl;
+
+    /**
+     * @return string
+     */
+    public function getTargetName()
+    {
+        return $this->targetName;
+    }
+
+    /**
+     * @param string $targetName
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTargetName($targetName)
+    {
+        $types = [
+            "string",
+        ];
+
+        $targetName = self::checkTypes($targetName, $types);
+
+        $this->targetName = $targetName;
+    }
 
     /**
      * @return string
@@ -137,30 +161,6 @@ class AlignmentObject extends \OpenActive\Models\SchemaOrg\Intangible
         $targetDescription = self::checkTypes($targetDescription, $types);
 
         $this->targetDescription = $targetDescription;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTargetName()
-    {
-        return $this->targetName;
-    }
-
-    /**
-     * @param string $targetName
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTargetName($targetName)
-    {
-        $types = [
-            "string",
-        ];
-
-        $targetName = self::checkTypes($targetName, $types);
-
-        $this->targetName = $targetName;
     }
 
     /**

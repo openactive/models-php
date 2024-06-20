@@ -17,31 +17,23 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
 
     public static function fieldList() {
         $fields = [
-            "sportsTeam" => "sportsTeam",
             "course" => "course",
-            "fromLocation" => "fromLocation",
-            "diet" => "diet",
-            "sportsActivityLocation" => "sportsActivityLocation",
-            "distance" => "distance",
-            "exercisePlan" => "exercisePlan",
-            "sportsEvent" => "sportsEvent",
             "exerciseRelatedDiet" => "exerciseRelatedDiet",
+            "sportsEvent" => "sportsEvent",
+            "diet" => "diet",
             "opponent" => "opponent",
-            "exerciseCourse" => "exerciseCourse",
-            "toLocation" => "toLocation",
             "exerciseType" => "exerciseType",
+            "exercisePlan" => "exercisePlan",
+            "toLocation" => "toLocation",
+            "sportsActivityLocation" => "sportsActivityLocation",
+            "exerciseCourse" => "exerciseCourse",
+            "fromLocation" => "fromLocation",
+            "distance" => "distance",
+            "sportsTeam" => "sportsTeam",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A sub property of participant. The sports team that participated on this action.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\SportsTeam|string
-     */
-    protected $sportsTeam;
 
     /**
      * A sub property of location. The course where this action was taken.
@@ -52,44 +44,12 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     protected $course;
 
     /**
-     * A sub property of location. The original location of the object or the agent before the action.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Place|string
-     */
-    protected $fromLocation;
-
-    /**
      * A sub property of instrument. The diet used in this action.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Diet|string
      */
-    protected $diet;
-
-    /**
-     * A sub property of location. The sports activity location where this action occurred.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\SportsActivityLocation|string
-     */
-    protected $sportsActivityLocation;
-
-    /**
-     * The distance travelled, e.g. exercising or travelling.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Distance|string
-     */
-    protected $distance;
-
-    /**
-     * A sub property of instrument. The exercise plan used on this action.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ExercisePlan|string
-     */
-    protected $exercisePlan;
+    protected $exerciseRelatedDiet;
 
     /**
      * A sub property of location. The sports event where this action occurred.
@@ -105,7 +65,7 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
      *
      * @var \OpenActive\Models\SchemaOrg\Diet|string
      */
-    protected $exerciseRelatedDiet;
+    protected $diet;
 
     /**
      * A sub property of participant. The opponent on this action.
@@ -116,12 +76,20 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     protected $opponent;
 
     /**
-     * A sub property of location. The course where this action was taken.
+     * Type(s) of exercise or activity, such as strength training, flexibility training, aerobics, cardiac rehabilitation, etc.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place|string
+     * @var string
      */
-    protected $exerciseCourse;
+    protected $exerciseType;
+
+    /**
+     * A sub property of instrument. The exercise plan used on this action.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ExercisePlan|string
+     */
+    protected $exercisePlan;
 
     /**
      * A sub property of location. The final location of the object or the agent after the action.
@@ -132,37 +100,44 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     protected $toLocation;
 
     /**
-     * Type(s) of exercise or activity, such as strength training, flexibility training, aerobics, cardiac rehabilitation, etc.
+     * A sub property of location. The sports activity location where this action occurred.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\SportsActivityLocation|string
      */
-    protected $exerciseType;
+    protected $sportsActivityLocation;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SportsTeam|string
+     * A sub property of location. The course where this action was taken.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|string
      */
-    public function getSportsTeam()
-    {
-        return $this->sportsTeam;
-    }
+    protected $exerciseCourse;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SportsTeam|string $sportsTeam
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * A sub property of location. The original location of the object or the agent before the action.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|string
      */
-    public function setSportsTeam($sportsTeam)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\SportsTeam",
-            "string",
-        ];
+    protected $fromLocation;
 
-        $sportsTeam = self::checkTypes($sportsTeam, $types);
+    /**
+     * The distance travelled, e.g. exercising or travelling.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Distance|string
+     */
+    protected $distance;
 
-        $this->sportsTeam = $sportsTeam;
-    }
+    /**
+     * A sub property of participant. The sports team that participated on this action.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\SportsTeam|string
+     */
+    protected $sportsTeam;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Place|string
@@ -190,128 +165,28 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place|string
-     */
-    public function getFromLocation()
-    {
-        return $this->fromLocation;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Place|string $fromLocation
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFromLocation($fromLocation)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Place",
-            "string",
-        ];
-
-        $fromLocation = self::checkTypes($fromLocation, $types);
-
-        $this->fromLocation = $fromLocation;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Diet|string
      */
-    public function getDiet()
+    public function getExerciseRelatedDiet()
     {
-        return $this->diet;
+        return $this->exerciseRelatedDiet;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Diet|string $diet
+     * @param \OpenActive\Models\SchemaOrg\Diet|string $exerciseRelatedDiet
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDiet($diet)
+    public function setExerciseRelatedDiet($exerciseRelatedDiet)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Diet",
             "string",
         ];
 
-        $diet = self::checkTypes($diet, $types);
+        $exerciseRelatedDiet = self::checkTypes($exerciseRelatedDiet, $types);
 
-        $this->diet = $diet;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\SportsActivityLocation|string
-     */
-    public function getSportsActivityLocation()
-    {
-        return $this->sportsActivityLocation;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\SportsActivityLocation|string $sportsActivityLocation
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSportsActivityLocation($sportsActivityLocation)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\SportsActivityLocation",
-            "string",
-        ];
-
-        $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);
-
-        $this->sportsActivityLocation = $sportsActivityLocation;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Distance|string
-     */
-    public function getDistance()
-    {
-        return $this->distance;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Distance|string $distance
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDistance($distance)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Distance",
-            "string",
-        ];
-
-        $distance = self::checkTypes($distance, $types);
-
-        $this->distance = $distance;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ExercisePlan|string
-     */
-    public function getExercisePlan()
-    {
-        return $this->exercisePlan;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ExercisePlan|string $exercisePlan
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setExercisePlan($exercisePlan)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ExercisePlan",
-            "string",
-        ];
-
-        $exercisePlan = self::checkTypes($exercisePlan, $types);
-
-        $this->exercisePlan = $exercisePlan;
+        $this->exerciseRelatedDiet = $exerciseRelatedDiet;
     }
 
     /**
@@ -342,26 +217,26 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     /**
      * @return \OpenActive\Models\SchemaOrg\Diet|string
      */
-    public function getExerciseRelatedDiet()
+    public function getDiet()
     {
-        return $this->exerciseRelatedDiet;
+        return $this->diet;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Diet|string $exerciseRelatedDiet
+     * @param \OpenActive\Models\SchemaOrg\Diet|string $diet
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setExerciseRelatedDiet($exerciseRelatedDiet)
+    public function setDiet($diet)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Diet",
             "string",
         ];
 
-        $exerciseRelatedDiet = self::checkTypes($exerciseRelatedDiet, $types);
+        $diet = self::checkTypes($diet, $types);
 
-        $this->exerciseRelatedDiet = $exerciseRelatedDiet;
+        $this->diet = $diet;
     }
 
     /**
@@ -387,6 +262,105 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
         $opponent = self::checkTypes($opponent, $types);
 
         $this->opponent = $opponent;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExerciseType()
+    {
+        return $this->exerciseType;
+    }
+
+    /**
+     * @param string $exerciseType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setExerciseType($exerciseType)
+    {
+        $types = [
+            "string",
+        ];
+
+        $exerciseType = self::checkTypes($exerciseType, $types);
+
+        $this->exerciseType = $exerciseType;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ExercisePlan|string
+     */
+    public function getExercisePlan()
+    {
+        return $this->exercisePlan;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ExercisePlan|string $exercisePlan
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setExercisePlan($exercisePlan)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ExercisePlan",
+            "string",
+        ];
+
+        $exercisePlan = self::checkTypes($exercisePlan, $types);
+
+        $this->exercisePlan = $exercisePlan;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Place|string
+     */
+    public function getToLocation()
+    {
+        return $this->toLocation;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Place|string $toLocation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setToLocation($toLocation)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Place",
+            "string",
+        ];
+
+        $toLocation = self::checkTypes($toLocation, $types);
+
+        $this->toLocation = $toLocation;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\SportsActivityLocation|string
+     */
+    public function getSportsActivityLocation()
+    {
+        return $this->sportsActivityLocation;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\SportsActivityLocation|string $sportsActivityLocation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSportsActivityLocation($sportsActivityLocation)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\SportsActivityLocation",
+            "string",
+        ];
+
+        $sportsActivityLocation = self::checkTypes($sportsActivityLocation, $types);
+
+        $this->sportsActivityLocation = $sportsActivityLocation;
     }
 
     /**
@@ -417,50 +391,76 @@ class ExerciseAction extends \OpenActive\Models\SchemaOrg\PlayAction
     /**
      * @return \OpenActive\Models\SchemaOrg\Place|string
      */
-    public function getToLocation()
+    public function getFromLocation()
     {
-        return $this->toLocation;
+        return $this->fromLocation;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place|string $toLocation
+     * @param \OpenActive\Models\SchemaOrg\Place|string $fromLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setToLocation($toLocation)
+    public function setFromLocation($fromLocation)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Place",
             "string",
         ];
 
-        $toLocation = self::checkTypes($toLocation, $types);
+        $fromLocation = self::checkTypes($fromLocation, $types);
 
-        $this->toLocation = $toLocation;
+        $this->fromLocation = $fromLocation;
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\Distance|string
      */
-    public function getExerciseType()
+    public function getDistance()
     {
-        return $this->exerciseType;
+        return $this->distance;
     }
 
     /**
-     * @param string $exerciseType
+     * @param \OpenActive\Models\SchemaOrg\Distance|string $distance
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setExerciseType($exerciseType)
+    public function setDistance($distance)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\Distance",
             "string",
         ];
 
-        $exerciseType = self::checkTypes($exerciseType, $types);
+        $distance = self::checkTypes($distance, $types);
 
-        $this->exerciseType = $exerciseType;
+        $this->distance = $distance;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\SportsTeam|string
+     */
+    public function getSportsTeam()
+    {
+        return $this->sportsTeam;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\SportsTeam|string $sportsTeam
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSportsTeam($sportsTeam)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\SportsTeam",
+            "string",
+        ];
+
+        $sportsTeam = self::checkTypes($sportsTeam, $types);
+
+        $this->sportsTeam = $sportsTeam;
     }
 
 }

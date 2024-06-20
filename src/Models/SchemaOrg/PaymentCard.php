@@ -18,9 +18,9 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
     public static function fieldList() {
         $fields = [
             "cashBack" => "cashBack",
-            "monthlyMinimumRepaymentAmount" => "monthlyMinimumRepaymentAmount",
             "floorLimit" => "floorLimit",
             "contactlessPayment" => "contactlessPayment",
+            "monthlyMinimumRepaymentAmount" => "monthlyMinimumRepaymentAmount",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -33,14 +33,6 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
      * @var bool|Number|null
      */
     protected $cashBack;
-
-    /**
-     * The minimum payment is the lowest amount of money that one is required to pay on a credit card statement each month.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
-     */
-    protected $monthlyMinimumRepaymentAmount;
 
     /**
      * A floor limit is the amount of money above which credit card transactions must be authorized.
@@ -57,6 +49,14 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
      * @var bool|null
      */
     protected $contactlessPayment;
+
+    /**
+     * The minimum payment is the lowest amount of money that one is required to pay on a credit card statement each month.
+     *
+     *
+     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     */
+    protected $monthlyMinimumRepaymentAmount;
 
     /**
      * @return bool|Number|null
@@ -82,33 +82,6 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
         $cashBack = self::checkTypes($cashBack, $types);
 
         $this->cashBack = $cashBack;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
-     */
-    public function getMonthlyMinimumRepaymentAmount()
-    {
-        return $this->monthlyMinimumRepaymentAmount;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null $monthlyMinimumRepaymentAmount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMonthlyMinimumRepaymentAmount($monthlyMinimumRepaymentAmount)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "string",
-            "Number",
-            "null",
-        ];
-
-        $monthlyMinimumRepaymentAmount = self::checkTypes($monthlyMinimumRepaymentAmount, $types);
-
-        $this->monthlyMinimumRepaymentAmount = $monthlyMinimumRepaymentAmount;
     }
 
     /**
@@ -159,6 +132,33 @@ class PaymentCard extends \OpenActive\Models\SchemaOrg\FinancialProduct
         $contactlessPayment = self::checkTypes($contactlessPayment, $types);
 
         $this->contactlessPayment = $contactlessPayment;
+    }
+
+    /**
+     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     */
+    public function getMonthlyMinimumRepaymentAmount()
+    {
+        return $this->monthlyMinimumRepaymentAmount;
+    }
+
+    /**
+     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $monthlyMinimumRepaymentAmount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMonthlyMinimumRepaymentAmount($monthlyMinimumRepaymentAmount)
+    {
+        $types = [
+            "Number",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
+            "null",
+        ];
+
+        $monthlyMinimumRepaymentAmount = self::checkTypes($monthlyMinimumRepaymentAmount, $types);
+
+        $this->monthlyMinimumRepaymentAmount = $monthlyMinimumRepaymentAmount;
     }
 
 }

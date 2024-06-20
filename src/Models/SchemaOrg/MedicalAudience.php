@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class MedicalAudience extends \OpenActive\Models\SchemaOrg\Audience
+class MedicalAudience extends \OpenActive\Models\SchemaOrg\PeopleAudience
 {
     /**
      * @return string[]|null

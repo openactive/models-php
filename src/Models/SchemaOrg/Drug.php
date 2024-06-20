@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Drug extends \OpenActive\Models\SchemaOrg\Substance
+class Drug extends \OpenActive\Models\SchemaOrg\Product
 {
     /**
      * @return string[]|null
@@ -17,137 +17,40 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
 
     public static function fieldList() {
         $fields = [
-            "pregnancyCategory" => "pregnancyCategory",
-            "overdosage" => "overdosage",
-            "legalStatus" => "legalStatus",
-            "mechanismOfAction" => "mechanismOfAction",
-            "clinicalPharmacology" => "clinicalPharmacology",
-            "rxcui" => "rxcui",
-            "interactingDrug" => "interactingDrug",
-            "dosageForm" => "dosageForm",
-            "labelDetails" => "labelDetails",
-            "maximumIntake" => "maximumIntake",
-            "activeIngredient" => "activeIngredient",
-            "relatedDrug" => "relatedDrug",
             "administrationRoute" => "administrationRoute",
-            "drugUnit" => "drugUnit",
-            "foodWarning" => "foodWarning",
-            "warning" => "warning",
-            "prescriptionStatus" => "prescriptionStatus",
-            "proprietaryName" => "proprietaryName",
-            "drugClass" => "drugClass",
-            "prescribingInfo" => "prescribingInfo",
-            "includedInHealthInsurancePlan" => "includedInHealthInsurancePlan",
-            "nonProprietaryName" => "nonProprietaryName",
-            "manufacturer" => "manufacturer",
-            "isProprietary" => "isProprietary",
-            "clincalPharmacology" => "clincalPharmacology",
-            "isAvailableGenerically" => "isAvailableGenerically",
             "breastfeedingWarning" => "breastfeedingWarning",
-            "pregnancyWarning" => "pregnancyWarning",
+            "clinicalPharmacology" => "clinicalPharmacology",
+            "labelDetails" => "labelDetails",
+            "warning" => "warning",
+            "includedInHealthInsurancePlan" => "includedInHealthInsurancePlan",
+            "proprietaryName" => "proprietaryName",
+            "drugUnit" => "drugUnit",
+            "prescriptionStatus" => "prescriptionStatus",
+            "drugClass" => "drugClass",
+            "activeIngredient" => "activeIngredient",
+            "nonProprietaryName" => "nonProprietaryName",
             "alcoholWarning" => "alcoholWarning",
-            "doseSchedule" => "doseSchedule",
+            "interactingDrug" => "interactingDrug",
             "availableStrength" => "availableStrength",
+            "clincalPharmacology" => "clincalPharmacology",
+            "prescribingInfo" => "prescribingInfo",
+            "maximumIntake" => "maximumIntake",
+            "legalStatus" => "legalStatus",
+            "isProprietary" => "isProprietary",
+            "pregnancyCategory" => "pregnancyCategory",
+            "rxcui" => "rxcui",
+            "doseSchedule" => "doseSchedule",
+            "overdosage" => "overdosage",
+            "dosageForm" => "dosageForm",
+            "relatedDrug" => "relatedDrug",
+            "isAvailableGenerically" => "isAvailableGenerically",
+            "foodWarning" => "foodWarning",
+            "mechanismOfAction" => "mechanismOfAction",
+            "pregnancyWarning" => "pregnancyWarning",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Pregnancy category of this drug.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DrugPregnancyCategory|string
-     */
-    protected $pregnancyCategory;
-
-    /**
-     * Any information related to overdose on a drug, including signs or symptoms, treatments, contact information for emergency response.
-     *
-     *
-     * @var string
-     */
-    protected $overdosage;
-
-    /**
-     * The drug or supplement's legal status, including any controlled substance schedules that apply.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DrugLegalStatus|string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
-     */
-    protected $legalStatus;
-
-    /**
-     * The specific biochemical interaction through which this drug or supplement produces its pharmacological effect.
-     *
-     *
-     * @var string
-     */
-    protected $mechanismOfAction;
-
-    /**
-     * Description of the absorption and elimination of drugs, including their concentration (pharmacokinetics, pK) and biological effects (pharmacodynamics, pD).
-     *
-     *
-     * @var string
-     */
-    protected $clinicalPharmacology;
-
-    /**
-     * The RxCUI drug identifier from RXNORM.
-     *
-     *
-     * @var string
-     */
-    protected $rxcui;
-
-    /**
-     * Another drug that is known to interact with this drug in a way that impacts the effect of this drug or causes a risk to the patient. Note: disease interactions are typically captured as contraindications.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Drug|string
-     */
-    protected $interactingDrug;
-
-    /**
-     * A dosage form in which this drug/supplement is available, e.g. 'tablet', 'suspension', 'injection'.
-     *
-     *
-     * @var string
-     */
-    protected $dosageForm;
-
-    /**
-     * Link to the drug's label details.
-     *
-     *
-     * @var string
-     */
-    protected $labelDetails;
-
-    /**
-     * Recommended intake of this supplement for a given population as defined by a specific recommending authority.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string
-     */
-    protected $maximumIntake;
-
-    /**
-     * An active ingredient, typically chemical compounds and/or biologic substances.
-     *
-     *
-     * @var string
-     */
-    protected $activeIngredient;
-
-    /**
-     * Any other drug related to this one, for example commonly-prescribed alternatives.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Drug|string
-     */
-    protected $relatedDrug;
 
     /**
      * A route by which this drug may be administered, e.g. 'oral'.
@@ -158,20 +61,28 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
     protected $administrationRoute;
 
     /**
-     * The unit in which the drug is measured, e.g. '5 mg tablet'.
+     * Any precaution, guidance, contraindication, etc. related to this drug's use by breastfeeding mothers.
      *
      *
      * @var string
      */
-    protected $drugUnit;
+    protected $breastfeedingWarning;
 
     /**
-     * Any precaution, guidance, contraindication, etc. related to consumption of specific foods while taking this drug.
+     * Description of the absorption and elimination of drugs, including their concentration (pharmacokinetics, pK) and biological effects (pharmacodynamics, pD).
      *
      *
      * @var string
      */
-    protected $foodWarning;
+    protected $clinicalPharmacology;
+
+    /**
+     * Link to the drug's label details.
+     *
+     *
+     * @var string
+     */
+    protected $labelDetails;
 
     /**
      * Any FDA or other warnings about the drug (text or URL).
@@ -182,12 +93,12 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
     protected $warning;
 
     /**
-     * Indicates the status of drug prescription eg. local catalogs classifications or whether the drug is available by prescription or over-the-counter, etc.
+     * The insurance plans that cover this drug.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DrugPrescriptionStatus|string
+     * @var \OpenActive\Models\SchemaOrg\HealthInsurancePlan|string
      */
-    protected $prescriptionStatus;
+    protected $includedInHealthInsurancePlan;
 
     /**
      * Proprietary name given to the diet plan, typically by its originator or creator.
@@ -198,6 +109,22 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
     protected $proprietaryName;
 
     /**
+     * The unit in which the drug is measured, e.g. '5 mg tablet'.
+     *
+     *
+     * @var string
+     */
+    protected $drugUnit;
+
+    /**
+     * Indicates the status of drug prescription, e.g. local catalogs classifications or whether the drug is available by prescription or over-the-counter, etc.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\DrugPrescriptionStatus
+     */
+    protected $prescriptionStatus;
+
+    /**
      * The class of drug this belongs to (e.g., statins).
      *
      *
@@ -206,20 +133,12 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
     protected $drugClass;
 
     /**
-     * Link to prescribing information for the drug.
+     * An active ingredient, typically chemical compounds and/or biologic substances.
      *
      *
      * @var string
      */
-    protected $prescribingInfo;
-
-    /**
-     * The insurance plans that cover this drug.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\HealthInsurancePlan|string
-     */
-    protected $includedInHealthInsurancePlan;
+    protected $activeIngredient;
 
     /**
      * The generic name of this drug or supplement.
@@ -230,54 +149,6 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
     protected $nonProprietaryName;
 
     /**
-     * The manufacturer of the product.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $manufacturer;
-
-    /**
-     * True if this item's name is a proprietary/brand name (vs. generic name).
-     *
-     *
-     * @var bool|null
-     */
-    protected $isProprietary;
-
-    /**
-     * Description of the absorption and elimination of drugs, including their concentration (pharmacokinetics, pK) and biological effects (pharmacodynamics, pD).
-     *
-     *
-     * @var string
-     */
-    protected $clincalPharmacology;
-
-    /**
-     * True if the drug is available in a generic form (regardless of name).
-     *
-     *
-     * @var bool|null
-     */
-    protected $isAvailableGenerically;
-
-    /**
-     * Any precaution, guidance, contraindication, etc. related to this drug's use by breastfeeding mothers.
-     *
-     *
-     * @var string
-     */
-    protected $breastfeedingWarning;
-
-    /**
-     * Any precaution, guidance, contraindication, etc. related to this drug's use during pregnancy.
-     *
-     *
-     * @var string
-     */
-    protected $pregnancyWarning;
-
-    /**
      * Any precaution, guidance, contraindication, etc. related to consumption of alcohol while taking this drug.
      *
      *
@@ -286,12 +157,12 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
     protected $alcoholWarning;
 
     /**
-     * A dosing schedule for the drug for a given population, either observed, recommended, or maximum dose based on the type used.
+     * Another drug that is known to interact with this drug in a way that impacts the effect of this drug or causes a risk to the patient. Note: disease interactions are typically captured as contraindications.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DoseSchedule|string
+     * @var \OpenActive\Models\SchemaOrg\Drug|string
      */
-    protected $doseSchedule;
+    protected $interactingDrug;
 
     /**
      * An available dosage strength for the drug.
@@ -302,103 +173,171 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
     protected $availableStrength;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DrugPregnancyCategory|string
+     * Description of the absorption and elimination of drugs, including their concentration (pharmacokinetics, pK) and biological effects (pharmacodynamics, pD).
+     *
+     *
+     * @var string
      */
-    public function getPregnancyCategory()
+    protected $clincalPharmacology;
+
+    /**
+     * Link to prescribing information for the drug.
+     *
+     *
+     * @var string
+     */
+    protected $prescribingInfo;
+
+    /**
+     * Recommended intake of this supplement for a given population as defined by a specific recommending authority.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string
+     */
+    protected $maximumIntake;
+
+    /**
+     * The drug or supplement's legal status, including any controlled substance schedules that apply.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\MedicalEnumeration|\OpenActive\Models\SchemaOrg\DrugLegalStatus|string|null
+     */
+    protected $legalStatus;
+
+    /**
+     * True if this item's name is a proprietary/brand name (vs. generic name).
+     *
+     *
+     * @var bool|null
+     */
+    protected $isProprietary;
+
+    /**
+     * Pregnancy category of this drug.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DrugPregnancyCategory|string
+     */
+    protected $pregnancyCategory;
+
+    /**
+     * The RxCUI drug identifier from RXNORM.
+     *
+     *
+     * @var string
+     */
+    protected $rxcui;
+
+    /**
+     * A dosing schedule for the drug for a given population, either observed, recommended, or maximum dose based on the type used.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DoseSchedule|string
+     */
+    protected $doseSchedule;
+
+    /**
+     * Any information related to overdose on a drug, including signs or symptoms, treatments, contact information for emergency response.
+     *
+     *
+     * @var string
+     */
+    protected $overdosage;
+
+    /**
+     * A dosage form in which this drug/supplement is available, e.g. 'tablet', 'suspension', 'injection'.
+     *
+     *
+     * @var string
+     */
+    protected $dosageForm;
+
+    /**
+     * Any other drug related to this one, for example commonly-prescribed alternatives.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Drug|string
+     */
+    protected $relatedDrug;
+
+    /**
+     * True if the drug is available in a generic form (regardless of name).
+     *
+     *
+     * @var bool|null
+     */
+    protected $isAvailableGenerically;
+
+    /**
+     * Any precaution, guidance, contraindication, etc. related to consumption of specific foods while taking this drug.
+     *
+     *
+     * @var string
+     */
+    protected $foodWarning;
+
+    /**
+     * The specific biochemical interaction through which this drug or supplement produces its pharmacological effect.
+     *
+     *
+     * @var string
+     */
+    protected $mechanismOfAction;
+
+    /**
+     * Any precaution, guidance, contraindication, etc. related to this drug's use during pregnancy.
+     *
+     *
+     * @var string
+     */
+    protected $pregnancyWarning;
+
+    /**
+     * @return string
+     */
+    public function getAdministrationRoute()
     {
-        return $this->pregnancyCategory;
+        return $this->administrationRoute;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DrugPregnancyCategory|string $pregnancyCategory
+     * @param string $administrationRoute
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPregnancyCategory($pregnancyCategory)
+    public function setAdministrationRoute($administrationRoute)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\DrugPregnancyCategory",
             "string",
         ];
 
-        $pregnancyCategory = self::checkTypes($pregnancyCategory, $types);
+        $administrationRoute = self::checkTypes($administrationRoute, $types);
 
-        $this->pregnancyCategory = $pregnancyCategory;
+        $this->administrationRoute = $administrationRoute;
     }
 
     /**
      * @return string
      */
-    public function getOverdosage()
+    public function getBreastfeedingWarning()
     {
-        return $this->overdosage;
+        return $this->breastfeedingWarning;
     }
 
     /**
-     * @param string $overdosage
+     * @param string $breastfeedingWarning
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOverdosage($overdosage)
+    public function setBreastfeedingWarning($breastfeedingWarning)
     {
         $types = [
             "string",
         ];
 
-        $overdosage = self::checkTypes($overdosage, $types);
+        $breastfeedingWarning = self::checkTypes($breastfeedingWarning, $types);
 
-        $this->overdosage = $overdosage;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DrugLegalStatus|string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
-     */
-    public function getLegalStatus()
-    {
-        return $this->legalStatus;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DrugLegalStatus|string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null $legalStatus
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLegalStatus($legalStatus)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DrugLegalStatus",
-            "string",
-            "\OpenActive\Enums\SchemaOrg\MedicalEnumeration",
-            "null",
-        ];
-
-        $legalStatus = self::checkTypes($legalStatus, $types);
-
-        $this->legalStatus = $legalStatus;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMechanismOfAction()
-    {
-        return $this->mechanismOfAction;
-    }
-
-    /**
-     * @param string $mechanismOfAction
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMechanismOfAction($mechanismOfAction)
-    {
-        $types = [
-            "string",
-        ];
-
-        $mechanismOfAction = self::checkTypes($mechanismOfAction, $types);
-
-        $this->mechanismOfAction = $mechanismOfAction;
+        $this->breastfeedingWarning = $breastfeedingWarning;
     }
 
     /**
@@ -428,79 +367,6 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
     /**
      * @return string
      */
-    public function getRxcui()
-    {
-        return $this->rxcui;
-    }
-
-    /**
-     * @param string $rxcui
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRxcui($rxcui)
-    {
-        $types = [
-            "string",
-        ];
-
-        $rxcui = self::checkTypes($rxcui, $types);
-
-        $this->rxcui = $rxcui;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Drug|string
-     */
-    public function getInteractingDrug()
-    {
-        return $this->interactingDrug;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Drug|string $interactingDrug
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setInteractingDrug($interactingDrug)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Drug",
-            "string",
-        ];
-
-        $interactingDrug = self::checkTypes($interactingDrug, $types);
-
-        $this->interactingDrug = $interactingDrug;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDosageForm()
-    {
-        return $this->dosageForm;
-    }
-
-    /**
-     * @param string $dosageForm
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDosageForm($dosageForm)
-    {
-        $types = [
-            "string",
-        ];
-
-        $dosageForm = self::checkTypes($dosageForm, $types);
-
-        $this->dosageForm = $dosageForm;
-    }
-
-    /**
-     * @return string
-     */
     public function getLabelDetails()
     {
         return $this->labelDetails;
@@ -520,152 +386,6 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
         $labelDetails = self::checkTypes($labelDetails, $types);
 
         $this->labelDetails = $labelDetails;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string
-     */
-    public function getMaximumIntake()
-    {
-        return $this->maximumIntake;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string $maximumIntake
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMaximumIntake($maximumIntake)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MaximumDoseSchedule",
-            "string",
-        ];
-
-        $maximumIntake = self::checkTypes($maximumIntake, $types);
-
-        $this->maximumIntake = $maximumIntake;
-    }
-
-    /**
-     * @return string
-     */
-    public function getActiveIngredient()
-    {
-        return $this->activeIngredient;
-    }
-
-    /**
-     * @param string $activeIngredient
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActiveIngredient($activeIngredient)
-    {
-        $types = [
-            "string",
-        ];
-
-        $activeIngredient = self::checkTypes($activeIngredient, $types);
-
-        $this->activeIngredient = $activeIngredient;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Drug|string
-     */
-    public function getRelatedDrug()
-    {
-        return $this->relatedDrug;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Drug|string $relatedDrug
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRelatedDrug($relatedDrug)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Drug",
-            "string",
-        ];
-
-        $relatedDrug = self::checkTypes($relatedDrug, $types);
-
-        $this->relatedDrug = $relatedDrug;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAdministrationRoute()
-    {
-        return $this->administrationRoute;
-    }
-
-    /**
-     * @param string $administrationRoute
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAdministrationRoute($administrationRoute)
-    {
-        $types = [
-            "string",
-        ];
-
-        $administrationRoute = self::checkTypes($administrationRoute, $types);
-
-        $this->administrationRoute = $administrationRoute;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDrugUnit()
-    {
-        return $this->drugUnit;
-    }
-
-    /**
-     * @param string $drugUnit
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDrugUnit($drugUnit)
-    {
-        $types = [
-            "string",
-        ];
-
-        $drugUnit = self::checkTypes($drugUnit, $types);
-
-        $this->drugUnit = $drugUnit;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFoodWarning()
-    {
-        return $this->foodWarning;
-    }
-
-    /**
-     * @param string $foodWarning
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFoodWarning($foodWarning)
-    {
-        $types = [
-            "string",
-        ];
-
-        $foodWarning = self::checkTypes($foodWarning, $types);
-
-        $this->foodWarning = $foodWarning;
     }
 
     /**
@@ -690,104 +410,6 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
         $warning = self::checkTypes($warning, $types);
 
         $this->warning = $warning;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DrugPrescriptionStatus|string
-     */
-    public function getPrescriptionStatus()
-    {
-        return $this->prescriptionStatus;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DrugPrescriptionStatus|string $prescriptionStatus
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPrescriptionStatus($prescriptionStatus)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DrugPrescriptionStatus",
-            "string",
-        ];
-
-        $prescriptionStatus = self::checkTypes($prescriptionStatus, $types);
-
-        $this->prescriptionStatus = $prescriptionStatus;
-    }
-
-    /**
-     * @return string
-     */
-    public function getProprietaryName()
-    {
-        return $this->proprietaryName;
-    }
-
-    /**
-     * @param string $proprietaryName
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProprietaryName($proprietaryName)
-    {
-        $types = [
-            "string",
-        ];
-
-        $proprietaryName = self::checkTypes($proprietaryName, $types);
-
-        $this->proprietaryName = $proprietaryName;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DrugClass|string
-     */
-    public function getDrugClass()
-    {
-        return $this->drugClass;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DrugClass|string $drugClass
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDrugClass($drugClass)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DrugClass",
-            "string",
-        ];
-
-        $drugClass = self::checkTypes($drugClass, $types);
-
-        $this->drugClass = $drugClass;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPrescribingInfo()
-    {
-        return $this->prescribingInfo;
-    }
-
-    /**
-     * @param string $prescribingInfo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPrescribingInfo($prescribingInfo)
-    {
-        $types = [
-            "string",
-        ];
-
-        $prescribingInfo = self::checkTypes($prescribingInfo, $types);
-
-        $this->prescribingInfo = $prescribingInfo;
     }
 
     /**
@@ -818,6 +440,128 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
     /**
      * @return string
      */
+    public function getProprietaryName()
+    {
+        return $this->proprietaryName;
+    }
+
+    /**
+     * @param string $proprietaryName
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProprietaryName($proprietaryName)
+    {
+        $types = [
+            "string",
+        ];
+
+        $proprietaryName = self::checkTypes($proprietaryName, $types);
+
+        $this->proprietaryName = $proprietaryName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDrugUnit()
+    {
+        return $this->drugUnit;
+    }
+
+    /**
+     * @param string $drugUnit
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDrugUnit($drugUnit)
+    {
+        $types = [
+            "string",
+        ];
+
+        $drugUnit = self::checkTypes($drugUnit, $types);
+
+        $this->drugUnit = $drugUnit;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\DrugPrescriptionStatus
+     */
+    public function getPrescriptionStatus()
+    {
+        return $this->prescriptionStatus;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\DrugPrescriptionStatus $prescriptionStatus
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPrescriptionStatus($prescriptionStatus)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\DrugPrescriptionStatus",
+        ];
+
+        $prescriptionStatus = self::checkTypes($prescriptionStatus, $types);
+
+        $this->prescriptionStatus = $prescriptionStatus;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DrugClass|string
+     */
+    public function getDrugClass()
+    {
+        return $this->drugClass;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DrugClass|string $drugClass
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDrugClass($drugClass)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DrugClass",
+            "string",
+        ];
+
+        $drugClass = self::checkTypes($drugClass, $types);
+
+        $this->drugClass = $drugClass;
+    }
+
+    /**
+     * @return string
+     */
+    public function getActiveIngredient()
+    {
+        return $this->activeIngredient;
+    }
+
+    /**
+     * @param string $activeIngredient
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActiveIngredient($activeIngredient)
+    {
+        $types = [
+            "string",
+        ];
+
+        $activeIngredient = self::checkTypes($activeIngredient, $types);
+
+        $this->activeIngredient = $activeIngredient;
+    }
+
+    /**
+     * @return string
+     */
     public function getNonProprietaryName()
     {
         return $this->nonProprietaryName;
@@ -840,28 +584,177 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|string
+     * @return string
      */
-    public function getManufacturer()
+    public function getAlcoholWarning()
     {
-        return $this->manufacturer;
+        return $this->alcoholWarning;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|string $manufacturer
+     * @param string $alcoholWarning
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setManufacturer($manufacturer)
+    public function setAlcoholWarning($alcoholWarning)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
             "string",
         ];
 
-        $manufacturer = self::checkTypes($manufacturer, $types);
+        $alcoholWarning = self::checkTypes($alcoholWarning, $types);
 
-        $this->manufacturer = $manufacturer;
+        $this->alcoholWarning = $alcoholWarning;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Drug|string
+     */
+    public function getInteractingDrug()
+    {
+        return $this->interactingDrug;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Drug|string $interactingDrug
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInteractingDrug($interactingDrug)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Drug",
+            "string",
+        ];
+
+        $interactingDrug = self::checkTypes($interactingDrug, $types);
+
+        $this->interactingDrug = $interactingDrug;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DrugStrength|string
+     */
+    public function getAvailableStrength()
+    {
+        return $this->availableStrength;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DrugStrength|string $availableStrength
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAvailableStrength($availableStrength)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DrugStrength",
+            "string",
+        ];
+
+        $availableStrength = self::checkTypes($availableStrength, $types);
+
+        $this->availableStrength = $availableStrength;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClincalPharmacology()
+    {
+        return $this->clincalPharmacology;
+    }
+
+    /**
+     * @param string $clincalPharmacology
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setClincalPharmacology($clincalPharmacology)
+    {
+        $types = [
+            "string",
+        ];
+
+        $clincalPharmacology = self::checkTypes($clincalPharmacology, $types);
+
+        $this->clincalPharmacology = $clincalPharmacology;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrescribingInfo()
+    {
+        return $this->prescribingInfo;
+    }
+
+    /**
+     * @param string $prescribingInfo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPrescribingInfo($prescribingInfo)
+    {
+        $types = [
+            "string",
+        ];
+
+        $prescribingInfo = self::checkTypes($prescribingInfo, $types);
+
+        $this->prescribingInfo = $prescribingInfo;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string
+     */
+    public function getMaximumIntake()
+    {
+        return $this->maximumIntake;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string $maximumIntake
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMaximumIntake($maximumIntake)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MaximumDoseSchedule",
+            "string",
+        ];
+
+        $maximumIntake = self::checkTypes($maximumIntake, $types);
+
+        $this->maximumIntake = $maximumIntake;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\MedicalEnumeration|\OpenActive\Models\SchemaOrg\DrugLegalStatus|string|null
+     */
+    public function getLegalStatus()
+    {
+        return $this->legalStatus;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\MedicalEnumeration|\OpenActive\Models\SchemaOrg\DrugLegalStatus|string|null $legalStatus
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegalStatus($legalStatus)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\MedicalEnumeration",
+            "\OpenActive\Models\SchemaOrg\DrugLegalStatus",
+            "string",
+            "null",
+        ];
+
+        $legalStatus = self::checkTypes($legalStatus, $types);
+
+        $this->legalStatus = $legalStatus;
     }
 
     /**
@@ -890,27 +783,150 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\DrugPregnancyCategory|string
      */
-    public function getClincalPharmacology()
+    public function getPregnancyCategory()
     {
-        return $this->clincalPharmacology;
+        return $this->pregnancyCategory;
     }
 
     /**
-     * @param string $clincalPharmacology
+     * @param \OpenActive\Models\SchemaOrg\DrugPregnancyCategory|string $pregnancyCategory
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setClincalPharmacology($clincalPharmacology)
+    public function setPregnancyCategory($pregnancyCategory)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DrugPregnancyCategory",
+            "string",
+        ];
+
+        $pregnancyCategory = self::checkTypes($pregnancyCategory, $types);
+
+        $this->pregnancyCategory = $pregnancyCategory;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRxcui()
+    {
+        return $this->rxcui;
+    }
+
+    /**
+     * @param string $rxcui
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRxcui($rxcui)
     {
         $types = [
             "string",
         ];
 
-        $clincalPharmacology = self::checkTypes($clincalPharmacology, $types);
+        $rxcui = self::checkTypes($rxcui, $types);
 
-        $this->clincalPharmacology = $clincalPharmacology;
+        $this->rxcui = $rxcui;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DoseSchedule|string
+     */
+    public function getDoseSchedule()
+    {
+        return $this->doseSchedule;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DoseSchedule|string $doseSchedule
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDoseSchedule($doseSchedule)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DoseSchedule",
+            "string",
+        ];
+
+        $doseSchedule = self::checkTypes($doseSchedule, $types);
+
+        $this->doseSchedule = $doseSchedule;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOverdosage()
+    {
+        return $this->overdosage;
+    }
+
+    /**
+     * @param string $overdosage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOverdosage($overdosage)
+    {
+        $types = [
+            "string",
+        ];
+
+        $overdosage = self::checkTypes($overdosage, $types);
+
+        $this->overdosage = $overdosage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDosageForm()
+    {
+        return $this->dosageForm;
+    }
+
+    /**
+     * @param string $dosageForm
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDosageForm($dosageForm)
+    {
+        $types = [
+            "string",
+        ];
+
+        $dosageForm = self::checkTypes($dosageForm, $types);
+
+        $this->dosageForm = $dosageForm;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Drug|string
+     */
+    public function getRelatedDrug()
+    {
+        return $this->relatedDrug;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Drug|string $relatedDrug
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRelatedDrug($relatedDrug)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Drug",
+            "string",
+        ];
+
+        $relatedDrug = self::checkTypes($relatedDrug, $types);
+
+        $this->relatedDrug = $relatedDrug;
     }
 
     /**
@@ -941,25 +957,49 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
     /**
      * @return string
      */
-    public function getBreastfeedingWarning()
+    public function getFoodWarning()
     {
-        return $this->breastfeedingWarning;
+        return $this->foodWarning;
     }
 
     /**
-     * @param string $breastfeedingWarning
+     * @param string $foodWarning
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBreastfeedingWarning($breastfeedingWarning)
+    public function setFoodWarning($foodWarning)
     {
         $types = [
             "string",
         ];
 
-        $breastfeedingWarning = self::checkTypes($breastfeedingWarning, $types);
+        $foodWarning = self::checkTypes($foodWarning, $types);
 
-        $this->breastfeedingWarning = $breastfeedingWarning;
+        $this->foodWarning = $foodWarning;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMechanismOfAction()
+    {
+        return $this->mechanismOfAction;
+    }
+
+    /**
+     * @param string $mechanismOfAction
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMechanismOfAction($mechanismOfAction)
+    {
+        $types = [
+            "string",
+        ];
+
+        $mechanismOfAction = self::checkTypes($mechanismOfAction, $types);
+
+        $this->mechanismOfAction = $mechanismOfAction;
     }
 
     /**
@@ -984,80 +1024,6 @@ class Drug extends \OpenActive\Models\SchemaOrg\Substance
         $pregnancyWarning = self::checkTypes($pregnancyWarning, $types);
 
         $this->pregnancyWarning = $pregnancyWarning;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAlcoholWarning()
-    {
-        return $this->alcoholWarning;
-    }
-
-    /**
-     * @param string $alcoholWarning
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAlcoholWarning($alcoholWarning)
-    {
-        $types = [
-            "string",
-        ];
-
-        $alcoholWarning = self::checkTypes($alcoholWarning, $types);
-
-        $this->alcoholWarning = $alcoholWarning;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DoseSchedule|string
-     */
-    public function getDoseSchedule()
-    {
-        return $this->doseSchedule;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DoseSchedule|string $doseSchedule
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDoseSchedule($doseSchedule)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DoseSchedule",
-            "string",
-        ];
-
-        $doseSchedule = self::checkTypes($doseSchedule, $types);
-
-        $this->doseSchedule = $doseSchedule;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DrugStrength|string
-     */
-    public function getAvailableStrength()
-    {
-        return $this->availableStrength;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DrugStrength|string $availableStrength
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAvailableStrength($availableStrength)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DrugStrength",
-            "string",
-        ];
-
-        $availableStrength = self::checkTypes($availableStrength, $types);
-
-        $this->availableStrength = $availableStrength;
     }
 
 }

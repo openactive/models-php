@@ -17,21 +17,21 @@ class MediaReview extends \OpenActive\Models\SchemaOrg\Review
 
     public static function fieldList() {
         $fields = [
-            "originalMediaContextDescription" => "originalMediaContextDescription",
-            "mediaAuthenticityCategory" => "mediaAuthenticityCategory",
             "originalMediaLink" => "originalMediaLink",
+            "mediaAuthenticityCategory" => "mediaAuthenticityCategory",
+            "originalMediaContextDescription" => "originalMediaContextDescription",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Describes, in a [[MediaReview]] when dealing with [[DecontextualizedContent]], background information that can contribute to better interpretation of the [[MediaObject]].
+     * Link to the page containing an original version of the content, or directly to an online copy of the original [[MediaObject]] content, e.g. video file.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\WebPage|string|\OpenActive\Models\SchemaOrg\MediaObject
      */
-    protected $originalMediaContextDescription;
+    protected $originalMediaLink;
 
     /**
      * Indicates a MediaManipulationRatingEnumeration classification of a media object (in the context of how it was published or shared).
@@ -42,35 +42,37 @@ class MediaReview extends \OpenActive\Models\SchemaOrg\Review
     protected $mediaAuthenticityCategory;
 
     /**
-     * Link to the page containing an original version of the content, or directly to an online copy of the original [[MediaObject]] content, e.g. video file.
+     * Describes, in a [[MediaReview]] when dealing with [[DecontextualizedContent]], background information that can contribute to better interpretation of the [[MediaObject]].
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\MediaObject|\OpenActive\Models\SchemaOrg\WebPage
+     * @var string
      */
-    protected $originalMediaLink;
+    protected $originalMediaContextDescription;
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\WebPage|string|\OpenActive\Models\SchemaOrg\MediaObject
      */
-    public function getOriginalMediaContextDescription()
+    public function getOriginalMediaLink()
     {
-        return $this->originalMediaContextDescription;
+        return $this->originalMediaLink;
     }
 
     /**
-     * @param string $originalMediaContextDescription
+     * @param \OpenActive\Models\SchemaOrg\WebPage|string|\OpenActive\Models\SchemaOrg\MediaObject $originalMediaLink
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOriginalMediaContextDescription($originalMediaContextDescription)
+    public function setOriginalMediaLink($originalMediaLink)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\WebPage",
             "string",
+            "\OpenActive\Models\SchemaOrg\MediaObject",
         ];
 
-        $originalMediaContextDescription = self::checkTypes($originalMediaContextDescription, $types);
+        $originalMediaLink = self::checkTypes($originalMediaLink, $types);
 
-        $this->originalMediaContextDescription = $originalMediaContextDescription;
+        $this->originalMediaLink = $originalMediaLink;
     }
 
     /**
@@ -99,29 +101,27 @@ class MediaReview extends \OpenActive\Models\SchemaOrg\Review
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\MediaObject|\OpenActive\Models\SchemaOrg\WebPage
+     * @return string
      */
-    public function getOriginalMediaLink()
+    public function getOriginalMediaContextDescription()
     {
-        return $this->originalMediaLink;
+        return $this->originalMediaContextDescription;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\MediaObject|\OpenActive\Models\SchemaOrg\WebPage $originalMediaLink
+     * @param string $originalMediaContextDescription
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOriginalMediaLink($originalMediaLink)
+    public function setOriginalMediaContextDescription($originalMediaContextDescription)
     {
         $types = [
             "string",
-            "\OpenActive\Models\SchemaOrg\MediaObject",
-            "\OpenActive\Models\SchemaOrg\WebPage",
         ];
 
-        $originalMediaLink = self::checkTypes($originalMediaLink, $types);
+        $originalMediaContextDescription = self::checkTypes($originalMediaContextDescription, $types);
 
-        $this->originalMediaLink = $originalMediaLink;
+        $this->originalMediaContextDescription = $originalMediaContextDescription;
     }
 
 }

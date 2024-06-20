@@ -17,14 +17,22 @@ class BusTrip extends \OpenActive\Models\SchemaOrg\Trip
 
     public static function fieldList() {
         $fields = [
+            "busNumber" => "busNumber",
             "departureBusStop" => "departureBusStop",
             "busName" => "busName",
             "arrivalBusStop" => "arrivalBusStop",
-            "busNumber" => "busNumber",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The unique identifier for the bus.
+     *
+     *
+     * @var string
+     */
+    protected $busNumber;
 
     /**
      * The stop or station from which the bus departs.
@@ -51,12 +59,28 @@ class BusTrip extends \OpenActive\Models\SchemaOrg\Trip
     protected $arrivalBusStop;
 
     /**
-     * The unique identifier for the bus.
-     *
-     *
-     * @var string
+     * @return string
      */
-    protected $busNumber;
+    public function getBusNumber()
+    {
+        return $this->busNumber;
+    }
+
+    /**
+     * @param string $busNumber
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBusNumber($busNumber)
+    {
+        $types = [
+            "string",
+        ];
+
+        $busNumber = self::checkTypes($busNumber, $types);
+
+        $this->busNumber = $busNumber;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\BusStop|\OpenActive\Models\SchemaOrg\BusStation|string
@@ -132,30 +156,6 @@ class BusTrip extends \OpenActive\Models\SchemaOrg\Trip
         $arrivalBusStop = self::checkTypes($arrivalBusStop, $types);
 
         $this->arrivalBusStop = $arrivalBusStop;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBusNumber()
-    {
-        return $this->busNumber;
-    }
-
-    /**
-     * @param string $busNumber
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBusNumber($busNumber)
-    {
-        $types = [
-            "string",
-        ];
-
-        $busNumber = self::checkTypes($busNumber, $types);
-
-        $this->busNumber = $busNumber;
     }
 
 }

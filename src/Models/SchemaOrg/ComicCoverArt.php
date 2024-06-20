@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class ComicCoverArt extends \OpenActive\Models\SchemaOrg\ComicStory
+class ComicCoverArt extends \OpenActive\Models\SchemaOrg\CoverArt
 {
     /**
      * @return string[]|null

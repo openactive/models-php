@@ -17,14 +17,22 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
+            "roleName" => "roleName",
             "namedPosition" => "namedPosition",
             "startDate" => "startDate",
             "endDate" => "endDate",
-            "roleName" => "roleName",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A role played, performed or filled by a person or organization. For example, the team of creators for a comic book might fill the roles named 'inker', 'penciller', and 'letterer'; or an athlete in a SportsTeam might play in the position named 'Quarterback'.
+     *
+     *
+     * @var string
+     */
+    protected $roleName;
 
     /**
      * A position played, performed or filled by a person or organization, as part of an organization. For example, an athlete in a SportsTeam might play in the position named 'Quarterback'.
@@ -51,12 +59,28 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
     protected $endDate;
 
     /**
-     * A role played, performed or filled by a person or organization. For example, the team of creators for a comic book might fill the roles named 'inker', 'penciller', and 'letterer'; or an athlete in a SportsTeam might play in the position named 'Quarterback'.
-     *
-     *
-     * @var string
+     * @return string
      */
-    protected $roleName;
+    public function getRoleName()
+    {
+        return $this->roleName;
+    }
+
+    /**
+     * @param string $roleName
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRoleName($roleName)
+    {
+        $types = [
+            "string",
+        ];
+
+        $roleName = self::checkTypes($roleName, $types);
+
+        $this->roleName = $roleName;
+    }
 
     /**
      * @return string
@@ -132,30 +156,6 @@ class Role extends \OpenActive\Models\SchemaOrg\Intangible
         $endDate = self::checkTypes($endDate, $types);
 
         $this->endDate = $endDate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRoleName()
-    {
-        return $this->roleName;
-    }
-
-    /**
-     * @param string $roleName
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRoleName($roleName)
-    {
-        $types = [
-            "string",
-        ];
-
-        $roleName = self::checkTypes($roleName, $types);
-
-        $this->roleName = $roleName;
     }
 
 }

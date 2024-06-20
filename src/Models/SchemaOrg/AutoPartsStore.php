@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class AutoPartsStore extends \OpenActive\Models\SchemaOrg\Store
+class AutoPartsStore extends \OpenActive\Models\SchemaOrg\AutomotiveBusiness
 {
     /**
      * @return string[]|null

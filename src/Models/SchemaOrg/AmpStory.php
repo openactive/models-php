@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class AmpStory extends \OpenActive\Models\SchemaOrg\CreativeWork
+class AmpStory extends \OpenActive\Models\SchemaOrg\MediaObject
 {
     /**
      * @return string[]|null

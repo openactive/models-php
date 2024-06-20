@@ -17,31 +17,15 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "usedToDiagnose" => "usedToDiagnose",
-            "affectedBy" => "affectedBy",
             "normalRange" => "normalRange",
-            "signDetected" => "signDetected",
+            "usedToDiagnose" => "usedToDiagnose",
             "usesDevice" => "usesDevice",
+            "signDetected" => "signDetected",
+            "affectedBy" => "affectedBy",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A condition the test is used to diagnose.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalCondition|string
-     */
-    protected $usedToDiagnose;
-
-    /**
-     * Drugs that affect the test's results.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Drug|string
-     */
-    protected $affectedBy;
 
     /**
      * Range of acceptable values for a typical patient, when applicable.
@@ -52,12 +36,12 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $normalRange;
 
     /**
-     * A sign detected by the test.
+     * A condition the test is used to diagnose.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalSign|string
+     * @var \OpenActive\Models\SchemaOrg\MedicalCondition|string
      */
-    protected $signDetected;
+    protected $usedToDiagnose;
 
     /**
      * Device used to perform the test.
@@ -68,54 +52,20 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $usesDevice;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
+     * A sign detected by the test.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalSign|string
      */
-    public function getUsedToDiagnose()
-    {
-        return $this->usedToDiagnose;
-    }
+    protected $signDetected;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalCondition|string $usedToDiagnose
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * Drugs that affect the test's results.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Drug|string
      */
-    public function setUsedToDiagnose($usedToDiagnose)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalCondition",
-            "string",
-        ];
-
-        $usedToDiagnose = self::checkTypes($usedToDiagnose, $types);
-
-        $this->usedToDiagnose = $usedToDiagnose;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Drug|string
-     */
-    public function getAffectedBy()
-    {
-        return $this->affectedBy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Drug|string $affectedBy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAffectedBy($affectedBy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Drug",
-            "string",
-        ];
-
-        $affectedBy = self::checkTypes($affectedBy, $types);
-
-        $this->affectedBy = $affectedBy;
-    }
+    protected $affectedBy;
 
     /**
      * @return string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
@@ -144,28 +94,28 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalSign|string
+     * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
      */
-    public function getSignDetected()
+    public function getUsedToDiagnose()
     {
-        return $this->signDetected;
+        return $this->usedToDiagnose;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalSign|string $signDetected
+     * @param \OpenActive\Models\SchemaOrg\MedicalCondition|string $usedToDiagnose
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSignDetected($signDetected)
+    public function setUsedToDiagnose($usedToDiagnose)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalSign",
+            "\OpenActive\Models\SchemaOrg\MedicalCondition",
             "string",
         ];
 
-        $signDetected = self::checkTypes($signDetected, $types);
+        $usedToDiagnose = self::checkTypes($usedToDiagnose, $types);
 
-        $this->signDetected = $signDetected;
+        $this->usedToDiagnose = $usedToDiagnose;
     }
 
     /**
@@ -191,6 +141,56 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $usesDevice = self::checkTypes($usesDevice, $types);
 
         $this->usesDevice = $usesDevice;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalSign|string
+     */
+    public function getSignDetected()
+    {
+        return $this->signDetected;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalSign|string $signDetected
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSignDetected($signDetected)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalSign",
+            "string",
+        ];
+
+        $signDetected = self::checkTypes($signDetected, $types);
+
+        $this->signDetected = $signDetected;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Drug|string
+     */
+    public function getAffectedBy()
+    {
+        return $this->affectedBy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Drug|string $affectedBy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAffectedBy($affectedBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Drug",
+            "string",
+        ];
+
+        $affectedBy = self::checkTypes($affectedBy, $types);
+
+        $this->affectedBy = $affectedBy;
     }
 
 }

@@ -37,7 +37,7 @@ class WorkBasedProgram extends \OpenActive\Models\SchemaOrg\EducationalOccupatio
      * Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\CategoryCode|string
+     * @var string|\OpenActive\Models\SchemaOrg\CategoryCode
      */
     protected $occupationalCategory;
 
@@ -67,7 +67,7 @@ class WorkBasedProgram extends \OpenActive\Models\SchemaOrg\EducationalOccupatio
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CategoryCode|string
+     * @return string|\OpenActive\Models\SchemaOrg\CategoryCode
      */
     public function getOccupationalCategory()
     {
@@ -75,15 +75,15 @@ class WorkBasedProgram extends \OpenActive\Models\SchemaOrg\EducationalOccupatio
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CategoryCode|string $occupationalCategory
+     * @param string|\OpenActive\Models\SchemaOrg\CategoryCode $occupationalCategory
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setOccupationalCategory($occupationalCategory)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\CategoryCode",
             "string",
+            "\OpenActive\Models\SchemaOrg\CategoryCode",
         ];
 
         $occupationalCategory = self::checkTypes($occupationalCategory, $types);

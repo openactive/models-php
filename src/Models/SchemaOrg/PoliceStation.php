@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class PoliceStation extends \OpenActive\Models\SchemaOrg\CivicStructure
+class PoliceStation extends \OpenActive\Models\SchemaOrg\EmergencyService
 {
     /**
      * @return string[]|null
