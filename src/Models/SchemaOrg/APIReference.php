@@ -17,39 +17,15 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
 
     public static function fieldList() {
         $fields = [
-            "assembly" => "assembly",
-            "targetPlatform" => "targetPlatform",
-            "executableLibraryName" => "executableLibraryName",
             "programmingModel" => "programmingModel",
             "assemblyVersion" => "assemblyVersion",
+            "assembly" => "assembly",
+            "executableLibraryName" => "executableLibraryName",
+            "targetPlatform" => "targetPlatform",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Library file name e.g., mscorlib.dll, system.web.dll.
-     *
-     *
-     * @var string
-     */
-    protected $assembly;
-
-    /**
-     * Type of app development: phone, Metro style, desktop, XBox, etc.
-     *
-     *
-     * @var string
-     */
-    protected $targetPlatform;
-
-    /**
-     * Library file name e.g., mscorlib.dll, system.web.dll.
-     *
-     *
-     * @var string
-     */
-    protected $executableLibraryName;
 
     /**
      * Indicates whether API is managed or unmanaged.
@@ -60,7 +36,7 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     protected $programmingModel;
 
     /**
-     * Associated product/technology version. e.g., .NET Framework 4.5.
+     * Associated product/technology version. E.g., .NET Framework 4.5.
      *
      *
      * @var string
@@ -68,76 +44,28 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     protected $assemblyVersion;
 
     /**
-     * @return string
+     * Library file name, e.g., mscorlib.dll, system.web.dll.
+     *
+     *
+     * @var string
      */
-    public function getAssembly()
-    {
-        return $this->assembly;
-    }
+    protected $assembly;
 
     /**
-     * @param string $assembly
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * Library file name, e.g., mscorlib.dll, system.web.dll.
+     *
+     *
+     * @var string
      */
-    public function setAssembly($assembly)
-    {
-        $types = [
-            "string",
-        ];
-
-        $assembly = self::checkTypes($assembly, $types);
-
-        $this->assembly = $assembly;
-    }
+    protected $executableLibraryName;
 
     /**
-     * @return string
+     * Type of app development: phone, Metro style, desktop, XBox, etc.
+     *
+     *
+     * @var string
      */
-    public function getTargetPlatform()
-    {
-        return $this->targetPlatform;
-    }
-
-    /**
-     * @param string $targetPlatform
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTargetPlatform($targetPlatform)
-    {
-        $types = [
-            "string",
-        ];
-
-        $targetPlatform = self::checkTypes($targetPlatform, $types);
-
-        $this->targetPlatform = $targetPlatform;
-    }
-
-    /**
-     * @return string
-     */
-    public function getExecutableLibraryName()
-    {
-        return $this->executableLibraryName;
-    }
-
-    /**
-     * @param string $executableLibraryName
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setExecutableLibraryName($executableLibraryName)
-    {
-        $types = [
-            "string",
-        ];
-
-        $executableLibraryName = self::checkTypes($executableLibraryName, $types);
-
-        $this->executableLibraryName = $executableLibraryName;
-    }
+    protected $targetPlatform;
 
     /**
      * @return string
@@ -185,6 +113,78 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
         $assemblyVersion = self::checkTypes($assemblyVersion, $types);
 
         $this->assemblyVersion = $assemblyVersion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAssembly()
+    {
+        return $this->assembly;
+    }
+
+    /**
+     * @param string $assembly
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAssembly($assembly)
+    {
+        $types = [
+            "string",
+        ];
+
+        $assembly = self::checkTypes($assembly, $types);
+
+        $this->assembly = $assembly;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExecutableLibraryName()
+    {
+        return $this->executableLibraryName;
+    }
+
+    /**
+     * @param string $executableLibraryName
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setExecutableLibraryName($executableLibraryName)
+    {
+        $types = [
+            "string",
+        ];
+
+        $executableLibraryName = self::checkTypes($executableLibraryName, $types);
+
+        $this->executableLibraryName = $executableLibraryName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTargetPlatform()
+    {
+        return $this->targetPlatform;
+    }
+
+    /**
+     * @param string $targetPlatform
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTargetPlatform($targetPlatform)
+    {
+        $types = [
+            "string",
+        ];
+
+        $targetPlatform = self::checkTypes($targetPlatform, $types);
+
+        $this->targetPlatform = $targetPlatform;
     }
 
 }

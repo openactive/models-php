@@ -18,10 +18,10 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
     public static function fieldList() {
         $fields = [
             "printEdition" => "printEdition",
-            "printColumn" => "printColumn",
-            "printPage" => "printPage",
-            "printSection" => "printSection",
             "dateline" => "dateline",
+            "printColumn" => "printColumn",
+            "printSection" => "printSection",
+            "printPage" => "printPage",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -36,20 +36,25 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
     protected $printEdition;
 
     /**
+     * A [dateline](https://en.wikipedia.org/wiki/Dateline) is a brief piece of text included in news articles that describes where and when the story was written or filed though the date is often omitted. Sometimes only a placename is provided.
+     * 
+     * Structured representations of dateline-related information can also be expressed more explicitly using [[locationCreated]] (which represents where a work was created, e.g. where a news report was written).  For location depicted or described in the content, use [[contentLocation]].
+     * 
+     * Dateline summaries are oriented more towards human readers than towards automated processing, and can vary substantially. Some examples: "BEIRUT, Lebanon, June 2.", "Paris, France", "December 19, 2017 11:43AM Reporting from Washington", "Beijing/Moscow", "QUEZON CITY, Philippines".
+     *       
+     *
+     *
+     * @var string
+     */
+    protected $dateline;
+
+    /**
      * The number of the column in which the NewsArticle appears in the print edition.
      *
      *
      * @var string
      */
     protected $printColumn;
-
-    /**
-     * If this NewsArticle appears in print, this field indicates the name of the page on which the article is found. Please note that this field is intended for the exact page name (e.g. A5, B18).
-     *
-     *
-     * @var string
-     */
-    protected $printPage;
 
     /**
      * If this NewsArticle appears in print, this field indicates the print section in which the article appeared.
@@ -60,17 +65,12 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
     protected $printSection;
 
     /**
-     * A [dateline](https://en.wikipedia.org/wiki/Dateline) is a brief piece of text included in news articles that describes where and when the story was written or filed though the date is often omitted. Sometimes only a placename is provided.
-     * 
-     * Structured representations of dateline-related information can also be expressed more explicitly using [[locationCreated]] (which represents where a work was created e.g. where a news report was written).  For location depicted or described in the content, use [[contentLocation]].
-     * 
-     * Dateline summaries are oriented more towards human readers than towards automated processing, and can vary substantially. Some examples: "BEIRUT, Lebanon, June 2.", "Paris, France", "December 19, 2017 11:43AM Reporting from Washington", "Beijing/Moscow", "QUEZON CITY, Philippines".
-     *       
+     * If this NewsArticle appears in print, this field indicates the name of the page on which the article is found. Please note that this field is intended for the exact page name (e.g. A5, B18).
      *
      *
      * @var string
      */
-    protected $dateline;
+    protected $printPage;
 
     /**
      * @return string
@@ -94,6 +94,30 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
         $printEdition = self::checkTypes($printEdition, $types);
 
         $this->printEdition = $printEdition;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateline()
+    {
+        return $this->dateline;
+    }
+
+    /**
+     * @param string $dateline
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDateline($dateline)
+    {
+        $types = [
+            "string",
+        ];
+
+        $dateline = self::checkTypes($dateline, $types);
+
+        $this->dateline = $dateline;
     }
 
     /**
@@ -123,30 +147,6 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
     /**
      * @return string
      */
-    public function getPrintPage()
-    {
-        return $this->printPage;
-    }
-
-    /**
-     * @param string $printPage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPrintPage($printPage)
-    {
-        $types = [
-            "string",
-        ];
-
-        $printPage = self::checkTypes($printPage, $types);
-
-        $this->printPage = $printPage;
-    }
-
-    /**
-     * @return string
-     */
     public function getPrintSection()
     {
         return $this->printSection;
@@ -171,25 +171,25 @@ class NewsArticle extends \OpenActive\Models\SchemaOrg\Article
     /**
      * @return string
      */
-    public function getDateline()
+    public function getPrintPage()
     {
-        return $this->dateline;
+        return $this->printPage;
     }
 
     /**
-     * @param string $dateline
+     * @param string $printPage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDateline($dateline)
+    public function setPrintPage($printPage)
     {
         $types = [
             "string",
         ];
 
-        $dateline = self::checkTypes($dateline, $types);
+        $printPage = self::checkTypes($printPage, $types);
 
-        $this->dateline = $dateline;
+        $this->printPage = $printPage;
     }
 
 }

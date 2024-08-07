@@ -17,9 +17,9 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
 
     public static function fieldList() {
         $fields = [
-            "highPrice" => "highPrice",
-            "offers" => "offers",
             "lowPrice" => "lowPrice",
+            "offers" => "offers",
+            "highPrice" => "highPrice",
             "offerCount" => "offerCount",
         ];
 
@@ -27,12 +27,12 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * The highest price of all offers available.\n\nUsage guidelines:\n\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
+     * The lowest price of all offers available.\n\nUsage guidelines:\n\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
      *
      *
      * @var string|Number|null
      */
-    protected $highPrice;
+    protected $lowPrice;
 
     /**
      * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use [[businessFunction]] to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a [[Demand]]. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer.
@@ -44,12 +44,12 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     protected $offers;
 
     /**
-     * The lowest price of all offers available.\n\nUsage guidelines:\n\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
+     * The highest price of all offers available.\n\nUsage guidelines:\n\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
      *
      *
      * @var string|Number|null
      */
-    protected $lowPrice;
+    protected $highPrice;
 
     /**
      * The number of offers for the product.
@@ -62,17 +62,17 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @return string|Number|null
      */
-    public function getHighPrice()
+    public function getLowPrice()
     {
-        return $this->highPrice;
+        return $this->lowPrice;
     }
 
     /**
-     * @param string|Number|null $highPrice
+     * @param string|Number|null $lowPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHighPrice($highPrice)
+    public function setLowPrice($lowPrice)
     {
         $types = [
             "string",
@@ -80,9 +80,9 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
             "null",
         ];
 
-        $highPrice = self::checkTypes($highPrice, $types);
+        $lowPrice = self::checkTypes($lowPrice, $types);
 
-        $this->highPrice = $highPrice;
+        $this->lowPrice = $lowPrice;
     }
 
     /**
@@ -114,17 +114,17 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     /**
      * @return string|Number|null
      */
-    public function getLowPrice()
+    public function getHighPrice()
     {
-        return $this->lowPrice;
+        return $this->highPrice;
     }
 
     /**
-     * @param string|Number|null $lowPrice
+     * @param string|Number|null $highPrice
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLowPrice($lowPrice)
+    public function setHighPrice($highPrice)
     {
         $types = [
             "string",
@@ -132,9 +132,9 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
             "null",
         ];
 
-        $lowPrice = self::checkTypes($lowPrice, $types);
+        $highPrice = self::checkTypes($highPrice, $types);
 
-        $this->lowPrice = $lowPrice;
+        $this->highPrice = $highPrice;
     }
 
     /**

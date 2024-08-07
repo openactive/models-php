@@ -17,14 +17,22 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "position" => "position",
-            "nextItem" => "nextItem",
             "item" => "item",
+            "position" => "position",
             "previousItem" => "previousItem",
+            "nextItem" => "nextItem",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists').
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    protected $item;
 
     /**
      * The position of an item in a series or sequence of items.
@@ -35,6 +43,14 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $position;
 
     /**
+     * A link to the ListItem that precedes the current one.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ListItem|string
+     */
+    protected $previousItem;
+
+    /**
      * A link to the ListItem that follows the current one.
      *
      *
@@ -43,20 +59,29 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $nextItem;
 
     /**
-     * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $item;
+    public function getItem()
+    {
+        return $this->item;
+    }
 
     /**
-     * A link to the ListItem that preceeds the current one.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ListItem|string
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $item
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $previousItem;
+    public function setItem($item)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
+        ];
+
+        $item = self::checkTypes($item, $types);
+
+        $this->item = $item;
+    }
 
     /**
      * @return string|int|null
@@ -87,56 +112,6 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return \OpenActive\Models\SchemaOrg\ListItem|string
      */
-    public function getNextItem()
-    {
-        return $this->nextItem;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ListItem|string $nextItem
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNextItem($nextItem)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ListItem",
-            "string",
-        ];
-
-        $nextItem = self::checkTypes($nextItem, $types);
-
-        $this->nextItem = $nextItem;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    public function getItem()
-    {
-        return $this->item;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $item
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setItem($item)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
-        ];
-
-        $item = self::checkTypes($item, $types);
-
-        $this->item = $item;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ListItem|string
-     */
     public function getPreviousItem()
     {
         return $this->previousItem;
@@ -157,6 +132,31 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
         $previousItem = self::checkTypes($previousItem, $types);
 
         $this->previousItem = $previousItem;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ListItem|string
+     */
+    public function getNextItem()
+    {
+        return $this->nextItem;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ListItem|string $nextItem
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNextItem($nextItem)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ListItem",
+            "string",
+        ];
+
+        $nextItem = self::checkTypes($nextItem, $types);
+
+        $this->nextItem = $nextItem;
     }
 
 }

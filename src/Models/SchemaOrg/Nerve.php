@@ -18,9 +18,9 @@ class Nerve extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     public static function fieldList() {
         $fields = [
             "sensoryUnit" => "sensoryUnit",
+            "nerveMotor" => "nerveMotor",
             "branch" => "branch",
             "sourcedFrom" => "sourcedFrom",
-            "nerveMotor" => "nerveMotor",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -30,9 +30,17 @@ class Nerve extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
      * The neurological pathway extension that inputs and sends information to the brain or spinal cord.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SuperficialAnatomy|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string
+     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\SuperficialAnatomy|string
      */
     protected $sensoryUnit;
+
+    /**
+     * The neurological pathway extension that involves muscle control.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Muscle|string
+     */
+    protected $nerveMotor;
 
     /**
      * The branches that delineate from the nerve bundle. Not to be confused with [[branchOf]].
@@ -51,15 +59,7 @@ class Nerve extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     protected $sourcedFrom;
 
     /**
-     * The neurological pathway extension that involves muscle control.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Muscle|string
-     */
-    protected $nerveMotor;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\SuperficialAnatomy|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string
+     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\SuperficialAnatomy|string
      */
     public function getSensoryUnit()
     {
@@ -67,21 +67,46 @@ class Nerve extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SuperficialAnatomy|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string $sensoryUnit
+     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\SuperficialAnatomy|string $sensoryUnit
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setSensoryUnit($sensoryUnit)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\SuperficialAnatomy",
             "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
+            "\OpenActive\Models\SchemaOrg\SuperficialAnatomy",
             "string",
         ];
 
         $sensoryUnit = self::checkTypes($sensoryUnit, $types);
 
         $this->sensoryUnit = $sensoryUnit;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Muscle|string
+     */
+    public function getNerveMotor()
+    {
+        return $this->nerveMotor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Muscle|string $nerveMotor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNerveMotor($nerveMotor)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Muscle",
+            "string",
+        ];
+
+        $nerveMotor = self::checkTypes($nerveMotor, $types);
+
+        $this->nerveMotor = $nerveMotor;
     }
 
     /**
@@ -132,31 +157,6 @@ class Nerve extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
         $sourcedFrom = self::checkTypes($sourcedFrom, $types);
 
         $this->sourcedFrom = $sourcedFrom;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Muscle|string
-     */
-    public function getNerveMotor()
-    {
-        return $this->nerveMotor;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Muscle|string $nerveMotor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNerveMotor($nerveMotor)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Muscle",
-            "string",
-        ];
-
-        $nerveMotor = self::checkTypes($nerveMotor, $types);
-
-        $this->nerveMotor = $nerveMotor;
     }
 
 }

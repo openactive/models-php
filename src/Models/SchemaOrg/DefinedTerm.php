@@ -25,7 +25,7 @@ class DefinedTerm extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * A code that identifies this [[DefinedTerm]] within a [[DefinedTermSet]]
+     * A code that identifies this [[DefinedTerm]] within a [[DefinedTermSet]].
      *
      *
      * @var string

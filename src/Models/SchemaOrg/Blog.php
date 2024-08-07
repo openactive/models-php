@@ -18,8 +18,8 @@ class Blog extends \OpenActive\Models\SchemaOrg\CreativeWork
     public static function fieldList() {
         $fields = [
             "blogPosts" => "blogPosts",
-            "issn" => "issn",
             "blogPost" => "blogPost",
+            "issn" => "issn",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -34,20 +34,20 @@ class Blog extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $blogPosts;
 
     /**
-     * The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication.
-     *
-     *
-     * @var string
-     */
-    protected $issn;
-
-    /**
      * A posting that is part of this blog.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\BlogPosting|string
      */
     protected $blogPost;
+
+    /**
+     * The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication.
+     *
+     *
+     * @var string
+     */
+    protected $issn;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\BlogPosting|string
@@ -75,30 +75,6 @@ class Blog extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string
-     */
-    public function getIssn()
-    {
-        return $this->issn;
-    }
-
-    /**
-     * @param string $issn
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIssn($issn)
-    {
-        $types = [
-            "string",
-        ];
-
-        $issn = self::checkTypes($issn, $types);
-
-        $this->issn = $issn;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\BlogPosting|string
      */
     public function getBlogPost()
@@ -121,6 +97,30 @@ class Blog extends \OpenActive\Models\SchemaOrg\CreativeWork
         $blogPost = self::checkTypes($blogPost, $types);
 
         $this->blogPost = $blogPost;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIssn()
+    {
+        return $this->issn;
+    }
+
+    /**
+     * @param string $issn
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIssn($issn)
+    {
+        $types = [
+            "string",
+        ];
+
+        $issn = self::checkTypes($issn, $types);
+
+        $this->issn = $issn;
     }
 
 }

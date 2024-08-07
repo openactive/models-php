@@ -18,8 +18,8 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     public static function fieldList() {
         $fields = [
             "passengerPriorityStatus" => "passengerPriorityStatus",
-            "boardingGroup" => "boardingGroup",
             "securityScreening" => "securityScreening",
+            "boardingGroup" => "boardingGroup",
             "passengerSequenceNumber" => "passengerSequenceNumber",
         ];
 
@@ -35,20 +35,20 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $passengerPriorityStatus;
 
     /**
-     * The airline-specific indicator of boarding order / preference.
-     *
-     *
-     * @var string
-     */
-    protected $boardingGroup;
-
-    /**
      * The type of security screening the passenger is subject to.
      *
      *
      * @var string
      */
     protected $securityScreening;
+
+    /**
+     * The airline-specific indicator of boarding order / preference.
+     *
+     *
+     * @var string
+     */
+    protected $boardingGroup;
 
     /**
      * The passenger's sequence number as assigned by the airline.
@@ -87,30 +87,6 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @return string
      */
-    public function getBoardingGroup()
-    {
-        return $this->boardingGroup;
-    }
-
-    /**
-     * @param string $boardingGroup
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBoardingGroup($boardingGroup)
-    {
-        $types = [
-            "string",
-        ];
-
-        $boardingGroup = self::checkTypes($boardingGroup, $types);
-
-        $this->boardingGroup = $boardingGroup;
-    }
-
-    /**
-     * @return string
-     */
     public function getSecurityScreening()
     {
         return $this->securityScreening;
@@ -130,6 +106,30 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
         $securityScreening = self::checkTypes($securityScreening, $types);
 
         $this->securityScreening = $securityScreening;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBoardingGroup()
+    {
+        return $this->boardingGroup;
+    }
+
+    /**
+     * @param string $boardingGroup
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBoardingGroup($boardingGroup)
+    {
+        $types = [
+            "string",
+        ];
+
+        $boardingGroup = self::checkTypes($boardingGroup, $types);
+
+        $this->boardingGroup = $boardingGroup;
     }
 
     /**

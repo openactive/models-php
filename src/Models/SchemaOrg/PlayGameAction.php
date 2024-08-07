@@ -27,12 +27,12 @@ class PlayGameAction extends \OpenActive\Models\SchemaOrg\ConsumeAction
      * Indicates the availability type of the game content associated with this action, such as whether it is a full version or a demo.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\GameAvailabilityEnumeration|string|null
+     * @var string|\OpenActive\Enums\SchemaOrg\GameAvailabilityEnumeration|null
      */
     protected $gameAvailabilityType;
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\GameAvailabilityEnumeration|string|null
+     * @return string|\OpenActive\Enums\SchemaOrg\GameAvailabilityEnumeration|null
      */
     public function getGameAvailabilityType()
     {
@@ -40,15 +40,15 @@ class PlayGameAction extends \OpenActive\Models\SchemaOrg\ConsumeAction
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\GameAvailabilityEnumeration|string|null $gameAvailabilityType
+     * @param string|\OpenActive\Enums\SchemaOrg\GameAvailabilityEnumeration|null $gameAvailabilityType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGameAvailabilityType($gameAvailabilityType)
     {
         $types = [
-            "\OpenActive\Enums\SchemaOrg\GameAvailabilityEnumeration",
             "string",
+            "\OpenActive\Enums\SchemaOrg\GameAvailabilityEnumeration",
             "null",
         ];
 

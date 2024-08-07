@@ -36,7 +36,7 @@ class MoneyTransfer extends \OpenActive\Models\SchemaOrg\TransferAction
      * The amount of money.
      *
      *
-     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
      */
     protected $amount;
 
@@ -66,7 +66,7 @@ class MoneyTransfer extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
      */
     public function getAmount()
     {
@@ -74,16 +74,16 @@ class MoneyTransfer extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $amount
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null $amount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAmount($amount)
     {
         $types = [
-            "Number",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "string",
+            "Number",
             "null",
         ];
 

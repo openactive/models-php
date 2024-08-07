@@ -17,8 +17,8 @@ class PronounceableText extends \OpenActive\BaseModel
 
     public static function fieldList() {
         $fields = [
-            "phoneticText" => "phoneticText",
             "speechToTextMarkup" => "speechToTextMarkup",
+            "phoneticText" => "phoneticText",
             "textValue" => "textValue",
             "inLanguage" => "inLanguage",
         ];
@@ -27,20 +27,20 @@ class PronounceableText extends \OpenActive\BaseModel
     }
 
     /**
-     * Representation of a text [[textValue]] using the specified [[speechToTextMarkup]]. For example the city name of Houston in IPA: /ˈhjuːstən/.
-     *
-     *
-     * @var string
-     */
-    protected $phoneticText;
-
-    /**
      * Form of markup used. eg. [SSML](https://www.w3.org/TR/speech-synthesis11) or [IPA](https://www.wikidata.org/wiki/Property:P898).
      *
      *
      * @var string
      */
     protected $speechToTextMarkup;
+
+    /**
+     * Representation of a text [[textValue]] using the specified [[speechToTextMarkup]]. For example the city name of Houston in IPA: /ˈhjuːstən/.
+     *
+     *
+     * @var string
+     */
+    protected $phoneticText;
 
     /**
      * Text value being annotated.
@@ -57,30 +57,6 @@ class PronounceableText extends \OpenActive\BaseModel
      * @var string|\OpenActive\Models\SchemaOrg\Language
      */
     protected $inLanguage;
-
-    /**
-     * @return string
-     */
-    public function getPhoneticText()
-    {
-        return $this->phoneticText;
-    }
-
-    /**
-     * @param string $phoneticText
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPhoneticText($phoneticText)
-    {
-        $types = [
-            "string",
-        ];
-
-        $phoneticText = self::checkTypes($phoneticText, $types);
-
-        $this->phoneticText = $phoneticText;
-    }
 
     /**
      * @return string
@@ -104,6 +80,30 @@ class PronounceableText extends \OpenActive\BaseModel
         $speechToTextMarkup = self::checkTypes($speechToTextMarkup, $types);
 
         $this->speechToTextMarkup = $speechToTextMarkup;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoneticText()
+    {
+        return $this->phoneticText;
+    }
+
+    /**
+     * @param string $phoneticText
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPhoneticText($phoneticText)
+    {
+        $types = [
+            "string",
+        ];
+
+        $phoneticText = self::checkTypes($phoneticText, $types);
+
+        $this->phoneticText = $phoneticText;
     }
 
     /**

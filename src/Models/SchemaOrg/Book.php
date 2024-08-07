@@ -17,16 +17,24 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
+            "bookFormat" => "bookFormat",
             "isbn" => "isbn",
-            "illustrator" => "illustrator",
             "numberOfPages" => "numberOfPages",
             "abridged" => "abridged",
-            "bookFormat" => "bookFormat",
+            "illustrator" => "illustrator",
             "bookEdition" => "bookEdition",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The format of the book.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\BookFormatType|null
+     */
+    protected $bookFormat;
 
     /**
      * The ISBN of the book.
@@ -35,14 +43,6 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var string
      */
     protected $isbn;
-
-    /**
-     * The illustrator of the book.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $illustrator;
 
     /**
      * The number of pages in the book.
@@ -61,12 +61,12 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $abridged;
 
     /**
-     * The format of the book.
+     * The illustrator of the book.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\BookFormatType|null
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $bookFormat;
+    protected $illustrator;
 
     /**
      * The edition of the book.
@@ -75,6 +75,31 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var string
      */
     protected $bookEdition;
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\BookFormatType|null
+     */
+    public function getBookFormat()
+    {
+        return $this->bookFormat;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\BookFormatType|null $bookFormat
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBookFormat($bookFormat)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\BookFormatType",
+            "null",
+        ];
+
+        $bookFormat = self::checkTypes($bookFormat, $types);
+
+        $this->bookFormat = $bookFormat;
+    }
 
     /**
      * @return string
@@ -98,31 +123,6 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
         $isbn = self::checkTypes($isbn, $types);
 
         $this->isbn = $isbn;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getIllustrator()
-    {
-        return $this->illustrator;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $illustrator
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIllustrator($illustrator)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $illustrator = self::checkTypes($illustrator, $types);
-
-        $this->illustrator = $illustrator;
     }
 
     /**
@@ -176,28 +176,28 @@ class Book extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\BookFormatType|null
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getBookFormat()
+    public function getIllustrator()
     {
-        return $this->bookFormat;
+        return $this->illustrator;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\BookFormatType|null $bookFormat
+     * @param \OpenActive\Models\SchemaOrg\Person|string $illustrator
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBookFormat($bookFormat)
+    public function setIllustrator($illustrator)
     {
         $types = [
-            "\OpenActive\Enums\SchemaOrg\BookFormatType",
-            "null",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
         ];
 
-        $bookFormat = self::checkTypes($bookFormat, $types);
+        $illustrator = self::checkTypes($illustrator, $types);
 
-        $this->bookFormat = $bookFormat;
+        $this->illustrator = $illustrator;
     }
 
     /**
