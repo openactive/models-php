@@ -4,7 +4,11 @@ namespace OpenActive\Validators;
 
 class RpdeEnumValidator extends BaseValidator
 {
-    private $classname;
+    /**
+    * @var string
+    */
+    protected $classname;
+    
     public function __construct($classname)
     {
         $this->classname = $classname;
