@@ -6,6 +6,11 @@ use ReflectionClass;
 
 class EnumValidator extends BaseValidator
 {
+    /**
+    * @var string
+    */
+    protected $classname;
+    
     public function __construct($classname)
     {
         $this->classname = $classname;
@@ -17,7 +22,7 @@ class EnumValidator extends BaseValidator
      * It is therefore recommended to call the "run" method first before this.
      *
      * @param mixed $value The value to coerce.
-     * @return int The coerced value
+     * @return mixed The coerced value
      */
     public function coerce($value)
     {
