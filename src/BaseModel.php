@@ -72,6 +72,10 @@ class BaseModel implements SerializerInterface, TypeCheckerInterface
 
         // Build setter name
         $setterName = "set" . Str::pascal($key);
+	if (!method_exists($this, $setterName)) {
+            // Don't attempt to set new properties which haven't been defined upstream yet
+            return;
+        }
 
         // Calling the setter will type-enforce the values
 

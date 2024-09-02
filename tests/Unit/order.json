@@ -7,6 +7,7 @@
       "@type":"OrderItem",
       "@id":"https://fencing-book/item/12345",
       "orderItemStatus":"https://openactive.io/OrderItemConfirmed",
+      "foo:unknown-property": "Rawr!",
       "unitTaxSpecification":[
         {
           "@type":"TaxChargeSpecification",
