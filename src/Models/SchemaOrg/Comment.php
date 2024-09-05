@@ -17,19 +17,28 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
+            "upvoteCount" => "upvoteCount",
             "parentItem" => "parentItem",
             "downvoteCount" => "downvoteCount",
-            "upvoteCount" => "upvoteCount",
+            "sharedContent" => "sharedContent",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The parent of a question, answer or item in general.
+     * The number of upvotes this question, answer or comment has received from the community.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Comment|string
+     * @var int|null
+     */
+    protected $upvoteCount;
+
+    /**
+     * The parent of a question, answer or item in general. Typically used for Q/A discussion threads e.g. a chain of comments with the first comment being an [[Article]] or other [[CreativeWork]]. See also [[comment]] which points from something to a comment about it.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Comment|string
      */
     protected $parentItem;
 
@@ -42,15 +51,40 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $downvoteCount;
 
     /**
-     * The number of upvotes this question, answer or comment has received from the community.
+     * A CreativeWork such as an image, video, or audio clip shared as part of this posting.
      *
      *
-     * @var int|null
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
-    protected $upvoteCount;
+    protected $sharedContent;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Comment|string
+     * @return int|null
+     */
+    public function getUpvoteCount()
+    {
+        return $this->upvoteCount;
+    }
+
+    /**
+     * @param int|null $upvoteCount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUpvoteCount($upvoteCount)
+    {
+        $types = [
+            "int",
+            "null",
+        ];
+
+        $upvoteCount = self::checkTypes($upvoteCount, $types);
+
+        $this->upvoteCount = $upvoteCount;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Comment|string
      */
     public function getParentItem()
     {
@@ -58,13 +92,14 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Comment|string $parentItem
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Comment|string $parentItem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setParentItem($parentItem)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
             "\OpenActive\Models\SchemaOrg\Comment",
             "string",
         ];
@@ -100,28 +135,28 @@ class Comment extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return int|null
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
-    public function getUpvoteCount()
+    public function getSharedContent()
     {
-        return $this->upvoteCount;
+        return $this->sharedContent;
     }
 
     /**
-     * @param int|null $upvoteCount
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $sharedContent
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setUpvoteCount($upvoteCount)
+    public function setSharedContent($sharedContent)
     {
         $types = [
-            "int",
-            "null",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
         ];
 
-        $upvoteCount = self::checkTypes($upvoteCount, $types);
+        $sharedContent = self::checkTypes($sharedContent, $types);
 
-        $this->upvoteCount = $upvoteCount;
+        $this->sharedContent = $sharedContent;
     }
 
 }

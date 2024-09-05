@@ -17,8 +17,8 @@ class Gene extends \OpenActive\Models\SchemaOrg\BioChemEntity
 
     public static function fieldList() {
         $fields = [
-            "alternativeOf" => "alternativeOf",
             "hasBioPolymerSequence" => "hasBioPolymerSequence",
+            "alternativeOf" => "alternativeOf",
             "encodesBioChemEntity" => "encodesBioChemEntity",
             "expressedIn" => "expressedIn",
         ];
@@ -27,20 +27,20 @@ class Gene extends \OpenActive\Models\SchemaOrg\BioChemEntity
     }
 
     /**
+     * A symbolic representation of a BioChemEntity. For example, a nucleotide sequence of a Gene or an amino acid sequence of a Protein.
+     *
+     *
+     * @var string
+     */
+    protected $hasBioPolymerSequence;
+
+    /**
      * Another gene which is a variation of this one.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Gene|string
      */
     protected $alternativeOf;
-
-    /**
-     * A symbolic representation of a BioChemEnity. For example, a nucleotide sequence of a Gene or an amino acid sequence of a Protein.
-     *
-     *
-     * @var string
-     */
-    protected $hasBioPolymerSequence;
 
     /**
      * Another BioChemEntity encoded by this one. 
@@ -54,9 +54,33 @@ class Gene extends \OpenActive\Models\SchemaOrg\BioChemEntity
      * Tissue, organ, biological sample, etc in which activity of this gene has been observed experimentally. For example brain, digestive system.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\BioChemEntity|\OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string
+     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\BioChemEntity|string
      */
     protected $expressedIn;
+
+    /**
+     * @return string
+     */
+    public function getHasBioPolymerSequence()
+    {
+        return $this->hasBioPolymerSequence;
+    }
+
+    /**
+     * @param string $hasBioPolymerSequence
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasBioPolymerSequence($hasBioPolymerSequence)
+    {
+        $types = [
+            "string",
+        ];
+
+        $hasBioPolymerSequence = self::checkTypes($hasBioPolymerSequence, $types);
+
+        $this->hasBioPolymerSequence = $hasBioPolymerSequence;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Gene|string
@@ -81,30 +105,6 @@ class Gene extends \OpenActive\Models\SchemaOrg\BioChemEntity
         $alternativeOf = self::checkTypes($alternativeOf, $types);
 
         $this->alternativeOf = $alternativeOf;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHasBioPolymerSequence()
-    {
-        return $this->hasBioPolymerSequence;
-    }
-
-    /**
-     * @param string $hasBioPolymerSequence
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHasBioPolymerSequence($hasBioPolymerSequence)
-    {
-        $types = [
-            "string",
-        ];
-
-        $hasBioPolymerSequence = self::checkTypes($hasBioPolymerSequence, $types);
-
-        $this->hasBioPolymerSequence = $hasBioPolymerSequence;
     }
 
     /**
@@ -133,7 +133,7 @@ class Gene extends \OpenActive\Models\SchemaOrg\BioChemEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\BioChemEntity|\OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string
+     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\BioChemEntity|string
      */
     public function getExpressedIn()
     {
@@ -141,7 +141,7 @@ class Gene extends \OpenActive\Models\SchemaOrg\BioChemEntity
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\BioChemEntity|\OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string $expressedIn
+     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\BioChemEntity|string $expressedIn
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -149,9 +149,9 @@ class Gene extends \OpenActive\Models\SchemaOrg\BioChemEntity
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
-            "\OpenActive\Models\SchemaOrg\BioChemEntity",
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
             "\OpenActive\Models\SchemaOrg\AnatomicalSystem",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "\OpenActive\Models\SchemaOrg\BioChemEntity",
             "string",
         ];
 

@@ -18,10 +18,10 @@ class EducationalOccupationalCredential extends \OpenActive\Models\SchemaOrg\Cre
     public static function fieldList() {
         $fields = [
             "validFor" => "validFor",
-            "educationalLevel" => "educationalLevel",
             "credentialCategory" => "credentialCategory",
-            "recognizedBy" => "recognizedBy",
             "competencyRequired" => "competencyRequired",
+            "educationalLevel" => "educationalLevel",
+            "recognizedBy" => "recognizedBy",
             "validIn" => "validIn",
         ];
 
@@ -37,28 +37,12 @@ class EducationalOccupationalCredential extends \OpenActive\Models\SchemaOrg\Cre
     protected $validFor;
 
     /**
-     * The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
-     */
-    protected $educationalLevel;
-
-    /**
      * The category or type of credential being described, for example "degree”, “certificate”, “badge”, or more specific term.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
     protected $credentialCategory;
-
-    /**
-     * An organization that acknowledges the validity, value or utility of a credential. Note: recognition may include a process of quality assurance or accreditation.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $recognizedBy;
 
     /**
      * Knowledge, skill, ability or personal attribute that must be demonstrated by a person or other entity in order to do something such as earn an Educational Occupational Credential or understand a LearningResource.
@@ -69,7 +53,23 @@ class EducationalOccupationalCredential extends \OpenActive\Models\SchemaOrg\Cre
     protected $competencyRequired;
 
     /**
-     * The geographic area where a permit or similar thing is valid.
+     * The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     */
+    protected $educationalLevel;
+
+    /**
+     * An organization that acknowledges the validity, value or utility of a credential. Note: recognition may include a process of quality assurance or accreditation.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    protected $recognizedBy;
+
+    /**
+     * The geographic area where the item is valid. Applies for example to a [[Permit]], a [[Certification]], or an [[EducationalOccupationalCredential]]. 
      *
      *
      * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
@@ -103,32 +103,7 @@ class EducationalOccupationalCredential extends \OpenActive\Models\SchemaOrg\Cre
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
-     */
-    public function getEducationalLevel()
-    {
-        return $this->educationalLevel;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $educationalLevel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEducationalLevel($educationalLevel)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-        ];
-
-        $educationalLevel = self::checkTypes($educationalLevel, $types);
-
-        $this->educationalLevel = $educationalLevel;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
     public function getCredentialCategory()
     {
@@ -136,45 +111,20 @@ class EducationalOccupationalCredential extends \OpenActive\Models\SchemaOrg\Cre
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $credentialCategory
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $credentialCategory
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCredentialCategory($credentialCategory)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
         ];
 
         $credentialCategory = self::checkTypes($credentialCategory, $types);
 
         $this->credentialCategory = $credentialCategory;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getRecognizedBy()
-    {
-        return $this->recognizedBy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|string $recognizedBy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRecognizedBy($recognizedBy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "string",
-        ];
-
-        $recognizedBy = self::checkTypes($recognizedBy, $types);
-
-        $this->recognizedBy = $recognizedBy;
     }
 
     /**
@@ -200,6 +150,56 @@ class EducationalOccupationalCredential extends \OpenActive\Models\SchemaOrg\Cre
         $competencyRequired = self::checkTypes($competencyRequired, $types);
 
         $this->competencyRequired = $competencyRequired;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     */
+    public function getEducationalLevel()
+    {
+        return $this->educationalLevel;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $educationalLevel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEducationalLevel($educationalLevel)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+        ];
+
+        $educationalLevel = self::checkTypes($educationalLevel, $types);
+
+        $this->educationalLevel = $educationalLevel;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getRecognizedBy()
+    {
+        return $this->recognizedBy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|string $recognizedBy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRecognizedBy($recognizedBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $recognizedBy = self::checkTypes($recognizedBy, $types);
+
+        $this->recognizedBy = $recognizedBy;
     }
 
     /**

@@ -17,40 +17,16 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "membershipPointsEarned" => "membershipPointsEarned",
-            "member" => "member",
-            "membershipNumber" => "membershipNumber",
             "hostingOrganization" => "hostingOrganization",
-            "programName" => "programName",
             "members" => "members",
+            "programName" => "programName",
+            "membershipPointsEarned" => "membershipPointsEarned",
+            "membershipNumber" => "membershipNumber",
+            "member" => "member",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The number of membership points earned by the member. If necessary, the unitText can be used to express the units the points are issued in. (e.g. stars, miles, etc.)
-     *
-     *
-     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
-     */
-    protected $membershipPointsEarned;
-
-    /**
-     * A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $member;
-
-    /**
-     * A unique identifier for the membership.
-     *
-     *
-     * @var string
-     */
-    protected $membershipNumber;
 
     /**
      * The organization (airline, travelers' club, etc.) the membership is made with.
@@ -61,6 +37,14 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     protected $hostingOrganization;
 
     /**
+     * A member of this organization.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
+     */
+    protected $members;
+
+    /**
      * The program providing the membership.
      *
      *
@@ -69,12 +53,103 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     protected $programName;
 
     /**
-     * A member of this organization.
+     * The number of membership points earned by the member. If necessary, the unitText can be used to express the units the points are issued in. (E.g. stars, miles, etc.)
+     *
+     *
+     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     */
+    protected $membershipPointsEarned;
+
+    /**
+     * A unique identifier for the membership.
+     *
+     *
+     * @var string
+     */
+    protected $membershipNumber;
+
+    /**
+     * A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
-    protected $members;
+    protected $member;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getHostingOrganization()
+    {
+        return $this->hostingOrganization;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|string $hostingOrganization
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHostingOrganization($hostingOrganization)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $hostingOrganization = self::checkTypes($hostingOrganization, $types);
+
+        $this->hostingOrganization = $hostingOrganization;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $members
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMembers($members)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $members = self::checkTypes($members, $types);
+
+        $this->members = $members;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProgramName()
+    {
+        return $this->programName;
+    }
+
+    /**
+     * @param string $programName
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProgramName($programName)
+    {
+        $types = [
+            "string",
+        ];
+
+        $programName = self::checkTypes($programName, $types);
+
+        $this->programName = $programName;
+    }
 
     /**
      * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
@@ -104,32 +179,6 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getMember()
-    {
-        return $this->member;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $member
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMember($member)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $member = self::checkTypes($member, $types);
-
-        $this->member = $member;
-    }
-
-    /**
      * @return string
      */
     public function getMembershipNumber()
@@ -154,68 +203,19 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getHostingOrganization()
-    {
-        return $this->hostingOrganization;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|string $hostingOrganization
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHostingOrganization($hostingOrganization)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "string",
-        ];
-
-        $hostingOrganization = self::checkTypes($hostingOrganization, $types);
-
-        $this->hostingOrganization = $hostingOrganization;
-    }
-
-    /**
-     * @return string
-     */
-    public function getProgramName()
-    {
-        return $this->programName;
-    }
-
-    /**
-     * @param string $programName
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProgramName($programName)
-    {
-        $types = [
-            "string",
-        ];
-
-        $programName = self::checkTypes($programName, $types);
-
-        $this->programName = $programName;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
-    public function getMembers()
+    public function getMember()
     {
-        return $this->members;
+        return $this->member;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $members
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $member
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMembers($members)
+    public function setMember($member)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
@@ -223,9 +223,9 @@ class ProgramMembership extends \OpenActive\Models\SchemaOrg\Intangible
             "string",
         ];
 
-        $members = self::checkTypes($members, $types);
+        $member = self::checkTypes($member, $types);
 
-        $this->members = $members;
+        $this->member = $member;
     }
 
 }

@@ -17,22 +17,14 @@ class MerchantReturnPolicySeasonalOverride extends \OpenActive\Models\SchemaOrg\
 
     public static function fieldList() {
         $fields = [
-            "returnPolicyCategory" => "returnPolicyCategory",
             "startDate" => "startDate",
             "endDate" => "endDate",
+            "returnPolicyCategory" => "returnPolicyCategory",
             "merchantReturnDays" => "merchantReturnDays",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Specifies an applicable return policy (from an enumeration).
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
-     */
-    protected $returnPolicyCategory;
 
     /**
      * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
@@ -51,37 +43,20 @@ class MerchantReturnPolicySeasonalOverride extends \OpenActive\Models\SchemaOrg\
     protected $endDate;
 
     /**
+     * Specifies an applicable return policy (from an enumeration).
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
+     */
+    protected $returnPolicyCategory;
+
+    /**
      * Specifies either a fixed return date or the number of days (from the delivery date) that a product can be returned. Used when the [[returnPolicyCategory]] property is specified as [[MerchantReturnFiniteReturnWindow]].
      *
      *
      * @var Date|DateTime|int|null
      */
     protected $merchantReturnDays;
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
-     */
-    public function getReturnPolicyCategory()
-    {
-        return $this->returnPolicyCategory;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null $returnPolicyCategory
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReturnPolicyCategory($returnPolicyCategory)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration",
-            "null",
-        ];
-
-        $returnPolicyCategory = self::checkTypes($returnPolicyCategory, $types);
-
-        $this->returnPolicyCategory = $returnPolicyCategory;
-    }
 
     /**
      * @return Date|DateTime|null
@@ -133,6 +108,31 @@ class MerchantReturnPolicySeasonalOverride extends \OpenActive\Models\SchemaOrg\
         $endDate = self::checkTypes($endDate, $types);
 
         $this->endDate = $endDate;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
+     */
+    public function getReturnPolicyCategory()
+    {
+        return $this->returnPolicyCategory;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null $returnPolicyCategory
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReturnPolicyCategory($returnPolicyCategory)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration",
+            "null",
+        ];
+
+        $returnPolicyCategory = self::checkTypes($returnPolicyCategory, $types);
+
+        $this->returnPolicyCategory = $returnPolicyCategory;
     }
 
     /**

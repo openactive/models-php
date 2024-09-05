@@ -17,33 +17,25 @@ class LearningResource extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "teaches" => "teaches",
-            "educationalLevel" => "educationalLevel",
+            "learningResourceType" => "learningResourceType",
             "assesses" => "assesses",
             "educationalUse" => "educationalUse",
             "educationalAlignment" => "educationalAlignment",
             "competencyRequired" => "competencyRequired",
-            "learningResourceType" => "learningResourceType",
+            "educationalLevel" => "educationalLevel",
+            "teaches" => "teaches",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The item being described is intended to help a person learn the competency or learning outcome defined by the referenced term.
+     * The predominant type or kind characterizing the learning resource. For example, 'presentation', 'handout'.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
-    protected $teaches;
-
-    /**
-     * The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
-     */
-    protected $educationalLevel;
+    protected $learningResourceType;
 
     /**
      * The item being described is intended to assess the competency or learning outcome defined by the referenced term.
@@ -80,61 +72,44 @@ class LearningResource extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $competencyRequired;
 
     /**
-     * The predominant type or kind characterizing the learning resource. For example, 'presentation', 'handout'.
+     * The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     */
+    protected $educationalLevel;
+
+    /**
+     * The item being described is intended to help a person learn the competency or learning outcome defined by the referenced term.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
-    protected $learningResourceType;
+    protected $teaches;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
-    public function getTeaches()
+    public function getLearningResourceType()
     {
-        return $this->teaches;
+        return $this->learningResourceType;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $teaches
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $learningResourceType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTeaches($teaches)
+    public function setLearningResourceType($learningResourceType)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\DefinedTerm",
             "string",
         ];
 
-        $teaches = self::checkTypes($teaches, $types);
+        $learningResourceType = self::checkTypes($learningResourceType, $types);
 
-        $this->teaches = $teaches;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
-     */
-    public function getEducationalLevel()
-    {
-        return $this->educationalLevel;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $educationalLevel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEducationalLevel($educationalLevel)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-        ];
-
-        $educationalLevel = self::checkTypes($educationalLevel, $types);
-
-        $this->educationalLevel = $educationalLevel;
+        $this->learningResourceType = $learningResourceType;
     }
 
     /**
@@ -238,28 +213,53 @@ class LearningResource extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
-    public function getLearningResourceType()
+    public function getEducationalLevel()
     {
-        return $this->learningResourceType;
+        return $this->educationalLevel;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $learningResourceType
+     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $educationalLevel
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLearningResourceType($learningResourceType)
+    public function setEducationalLevel($educationalLevel)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+        ];
+
+        $educationalLevel = self::checkTypes($educationalLevel, $types);
+
+        $this->educationalLevel = $educationalLevel;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    public function getTeaches()
+    {
+        return $this->teaches;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $teaches
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTeaches($teaches)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\DefinedTerm",
             "string",
         ];
 
-        $learningResourceType = self::checkTypes($learningResourceType, $types);
+        $teaches = self::checkTypes($teaches, $types);
 
-        $this->learningResourceType = $learningResourceType;
+        $this->teaches = $teaches;
     }
 
 }

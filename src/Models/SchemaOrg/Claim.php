@@ -17,33 +17,16 @@ class Claim extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "claimInterpreter" => "claimInterpreter",
-            "firstAppearance" => "firstAppearance",
             "appearance" => "appearance",
+            "firstAppearance" => "firstAppearance",
+            "claimInterpreter" => "claimInterpreter",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * For a [[Claim]] interpreted from [[MediaObject]] content
-     *     sed to indicate a claim contained, implied or refined from the content of a [[MediaObject]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $claimInterpreter;
-
-    /**
-     * Indicates the first known occurence of a [[Claim]] in some [[CreativeWork]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
-     */
-    protected $firstAppearance;
-
-    /**
-     * Indicates an occurence of a [[Claim]] in some [[CreativeWork]].
+     * Indicates an occurrence of a [[Claim]] in some [[CreativeWork]].
      *
      *
      * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
@@ -51,29 +34,44 @@ class Claim extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $appearance;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
+     * Indicates the first known occurrence of a [[Claim]] in some [[CreativeWork]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
-    public function getClaimInterpreter()
+    protected $firstAppearance;
+
+    /**
+     * For a [[Claim]] interpreted from [[MediaObject]] content, the [[interpretedAsClaim]] property can be used to indicate a claim contained, implied or refined from the content of a [[MediaObject]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $claimInterpreter;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    public function getAppearance()
     {
-        return $this->claimInterpreter;
+        return $this->appearance;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $claimInterpreter
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $appearance
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setClaimInterpreter($claimInterpreter)
+    public function setAppearance($appearance)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
             "string",
         ];
 
-        $claimInterpreter = self::checkTypes($claimInterpreter, $types);
+        $appearance = self::checkTypes($appearance, $types);
 
-        $this->claimInterpreter = $claimInterpreter;
+        $this->appearance = $appearance;
     }
 
     /**
@@ -102,28 +100,29 @@ class Claim extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getAppearance()
+    public function getClaimInterpreter()
     {
-        return $this->appearance;
+        return $this->claimInterpreter;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $appearance
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $claimInterpreter
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAppearance($appearance)
+    public function setClaimInterpreter($claimInterpreter)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
             "string",
         ];
 
-        $appearance = self::checkTypes($appearance, $types);
+        $claimInterpreter = self::checkTypes($claimInterpreter, $types);
 
-        $this->appearance = $appearance;
+        $this->claimInterpreter = $claimInterpreter;
     }
 
 }

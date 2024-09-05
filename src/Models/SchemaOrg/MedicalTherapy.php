@@ -45,7 +45,7 @@ class MedicalTherapy extends \OpenActive\Models\SchemaOrg\TherapeuticProcedure
      * A contraindication for this therapy.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\MedicalContraindication
+     * @var \OpenActive\Models\SchemaOrg\MedicalContraindication|string
      */
     protected $contraindication;
 
@@ -100,7 +100,7 @@ class MedicalTherapy extends \OpenActive\Models\SchemaOrg\TherapeuticProcedure
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\MedicalContraindication
+     * @return \OpenActive\Models\SchemaOrg\MedicalContraindication|string
      */
     public function getContraindication()
     {
@@ -108,15 +108,15 @@ class MedicalTherapy extends \OpenActive\Models\SchemaOrg\TherapeuticProcedure
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\MedicalContraindication $contraindication
+     * @param \OpenActive\Models\SchemaOrg\MedicalContraindication|string $contraindication
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setContraindication($contraindication)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\MedicalContraindication",
+            "string",
         ];
 
         $contraindication = self::checkTypes($contraindication, $types);

@@ -17,17 +17,25 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
+            "deliveryTime" => "deliveryTime",
             "shippingDestination" => "shippingDestination",
             "transitTimeLabel" => "transitTimeLabel",
             "isUnlabelledFallback" => "isUnlabelledFallback",
-            "deliveryTime" => "deliveryTime",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * indicates (possibly multiple) shipping destinations. These can be defined in several ways e.g. postalCode ranges.
+     * The total delay between the receipt of the order and the goods reaching the final customer.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ShippingDeliveryTime|string
+     */
+    protected $deliveryTime;
+
+    /**
+     * indicates (possibly multiple) shipping destinations. These can be defined in several ways, e.g. postalCode ranges.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\DefinedRegion|string
@@ -51,12 +59,29 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $isUnlabelledFallback;
 
     /**
-     * The total delay between the receipt of the order and the goods reaching the final customer.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ShippingDeliveryTime|string
+     * @return \OpenActive\Models\SchemaOrg\ShippingDeliveryTime|string
      */
-    protected $deliveryTime;
+    public function getDeliveryTime()
+    {
+        return $this->deliveryTime;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ShippingDeliveryTime|string $deliveryTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDeliveryTime($deliveryTime)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ShippingDeliveryTime",
+            "string",
+        ];
+
+        $deliveryTime = self::checkTypes($deliveryTime, $types);
+
+        $this->deliveryTime = $deliveryTime;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\DefinedRegion|string
@@ -130,31 +155,6 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
         $isUnlabelledFallback = self::checkTypes($isUnlabelledFallback, $types);
 
         $this->isUnlabelledFallback = $isUnlabelledFallback;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ShippingDeliveryTime|string
-     */
-    public function getDeliveryTime()
-    {
-        return $this->deliveryTime;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ShippingDeliveryTime|string $deliveryTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDeliveryTime($deliveryTime)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ShippingDeliveryTime",
-            "string",
-        ];
-
-        $deliveryTime = self::checkTypes($deliveryTime, $types);
-
-        $this->deliveryTime = $deliveryTime;
     }
 
 }

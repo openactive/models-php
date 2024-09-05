@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
+class Diet extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
      * @return string[]|null
@@ -17,15 +17,31 @@ class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
 
     public static function fieldList() {
         $fields = [
+            "endorsers" => "endorsers",
+            "dietFeatures" => "dietFeatures",
             "expertConsiderations" => "expertConsiderations",
             "risks" => "risks",
             "physiologicalBenefits" => "physiologicalBenefits",
-            "endorsers" => "endorsers",
-            "dietFeatures" => "dietFeatures",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * People or organizations that endorse the plan.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
+     */
+    protected $endorsers;
+
+    /**
+     * Nutritional information specific to the dietary plan. May include dietary recommendations on what foods to avoid, what foods to consume, and specific alterations/deviations from the USDA or other regulatory body's approved dietary guidelines.
+     *
+     *
+     * @var string
+     */
+    protected $dietFeatures;
 
     /**
      * Medical expert advice related to the plan.
@@ -52,20 +68,54 @@ class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
     protected $physiologicalBenefits;
 
     /**
-     * People or organizations that endorse the plan.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
-    protected $endorsers;
+    public function getEndorsers()
+    {
+        return $this->endorsers;
+    }
 
     /**
-     * Nutritional information specific to the dietary plan. May include dietary recommendations on what foods to avoid, what foods to consume, and specific alterations/deviations from the USDA or other regulatory body's approved dietary guidelines.
-     *
-     *
-     * @var string
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $endorsers
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $dietFeatures;
+    public function setEndorsers($endorsers)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $endorsers = self::checkTypes($endorsers, $types);
+
+        $this->endorsers = $endorsers;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDietFeatures()
+    {
+        return $this->dietFeatures;
+    }
+
+    /**
+     * @param string $dietFeatures
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDietFeatures($dietFeatures)
+    {
+        $types = [
+            "string",
+        ];
+
+        $dietFeatures = self::checkTypes($dietFeatures, $types);
+
+        $this->dietFeatures = $dietFeatures;
+    }
 
     /**
      * @return string
@@ -137,56 +187,6 @@ class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
         $physiologicalBenefits = self::checkTypes($physiologicalBenefits, $types);
 
         $this->physiologicalBenefits = $physiologicalBenefits;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getEndorsers()
-    {
-        return $this->endorsers;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $endorsers
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEndorsers($endorsers)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "string",
-        ];
-
-        $endorsers = self::checkTypes($endorsers, $types);
-
-        $this->endorsers = $endorsers;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDietFeatures()
-    {
-        return $this->dietFeatures;
-    }
-
-    /**
-     * @param string $dietFeatures
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDietFeatures($dietFeatures)
-    {
-        $types = [
-            "string",
-        ];
-
-        $dietFeatures = self::checkTypes($dietFeatures, $types);
-
-        $this->dietFeatures = $dietFeatures;
     }
 
 }

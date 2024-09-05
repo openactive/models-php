@@ -17,39 +17,15 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
 
     public static function fieldList() {
         $fields = [
-            "closes" => "closes",
-            "dayOfWeek" => "dayOfWeek",
-            "validFrom" => "validFrom",
             "opens" => "opens",
             "validThrough" => "validThrough",
+            "dayOfWeek" => "dayOfWeek",
+            "validFrom" => "validFrom",
+            "closes" => "closes",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The closing hour of the place or service on the given day(s) of the week.
-     *
-     *
-     * @var string|null
-     */
-    protected $closes;
-
-    /**
-     * The day of the week for which these opening hours are valid.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\DayOfWeek|null
-     */
-    protected $dayOfWeek;
-
-    /**
-     * The date when the item becomes valid.
-     *
-     *
-     * @var Date|DateTime|null
-     */
-    protected $validFrom;
 
     /**
      * The opening hour of the place or service on the given day(s) of the week.
@@ -68,28 +44,78 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     protected $validThrough;
 
     /**
+     * The day of the week for which these opening hours are valid.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\DayOfWeek|null
+     */
+    protected $dayOfWeek;
+
+    /**
+     * The date when the item becomes valid.
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $validFrom;
+
+    /**
+     * The closing hour of the place or service on the given day(s) of the week.
+     *
+     *
+     * @var string|null
+     */
+    protected $closes;
+
+    /**
      * @return string|null
      */
-    public function getCloses()
+    public function getOpens()
     {
-        return $this->closes;
+        return $this->opens;
     }
 
     /**
-     * @param string|null $closes
+     * @param string|null $opens
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCloses($closes)
+    public function setOpens($opens)
     {
         $types = [
             "Time",
             "null",
         ];
 
-        $closes = self::checkTypes($closes, $types);
+        $opens = self::checkTypes($opens, $types);
 
-        $this->closes = $closes;
+        $this->opens = $opens;
+    }
+
+    /**
+     * @return Date|DateTime|null
+     */
+    public function getValidThrough()
+    {
+        return $this->validThrough;
+    }
+
+    /**
+     * @param Date|DateTime|null $validThrough
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValidThrough($validThrough)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $validThrough = self::checkTypes($validThrough, $types);
+
+        $this->validThrough = $validThrough;
     }
 
     /**
@@ -146,52 +172,26 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     /**
      * @return string|null
      */
-    public function getOpens()
+    public function getCloses()
     {
-        return $this->opens;
+        return $this->closes;
     }
 
     /**
-     * @param string|null $opens
+     * @param string|null $closes
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOpens($opens)
+    public function setCloses($closes)
     {
         $types = [
             "Time",
             "null",
         ];
 
-        $opens = self::checkTypes($opens, $types);
+        $closes = self::checkTypes($closes, $types);
 
-        $this->opens = $opens;
-    }
-
-    /**
-     * @return Date|DateTime|null
-     */
-    public function getValidThrough()
-    {
-        return $this->validThrough;
-    }
-
-    /**
-     * @param Date|DateTime|null $validThrough
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setValidThrough($validThrough)
-    {
-        $types = [
-            "Date",
-            "DateTime",
-            "null",
-        ];
-
-        $validThrough = self::checkTypes($validThrough, $types);
-
-        $this->validThrough = $validThrough;
+        $this->closes = $closes;
     }
 
 }

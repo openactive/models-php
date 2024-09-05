@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class EducationalOrganization extends \OpenActive\Models\SchemaOrg\CivicStructure
+class EducationalOrganization extends \OpenActive\Models\SchemaOrg\Organization
 {
     /**
      * @return string[]|null

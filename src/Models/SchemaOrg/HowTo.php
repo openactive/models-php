@@ -17,35 +17,19 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "yield" => "yield",
-            "estimatedCost" => "estimatedCost",
             "supply" => "supply",
-            "step" => "step",
-            "totalTime" => "totalTime",
+            "estimatedCost" => "estimatedCost",
+            "yield" => "yield",
             "tool" => "tool",
+            "totalTime" => "totalTime",
             "prepTime" => "prepTime",
-            "steps" => "steps",
             "performTime" => "performTime",
+            "step" => "step",
+            "steps" => "steps",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The quantity that results by performing instructions. For example, a paper airplane, 10 personalized candles.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\QuantitativeValue
-     */
-    protected $yield;
-
-    /**
-     * The estimated cost of the supply or supplies consumed when performing instructions.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\MonetaryAmount
-     */
-    protected $estimatedCost;
 
     /**
      * A sub-property of instrument. A supply consumed when performing instructions or a direction.
@@ -56,20 +40,20 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $supply;
 
     /**
-     * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection.
+     * The estimated cost of the supply or supplies consumed when performing instructions.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\HowToStep|\OpenActive\Models\SchemaOrg\HowToSection|string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @var string|\OpenActive\Models\SchemaOrg\MonetaryAmount
      */
-    protected $step;
+    protected $estimatedCost;
 
     /**
-     * The total time required to perform instructions or a direction (including time to prepare the supplies), in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
+     * The quantity that results by performing instructions. For example, a paper airplane, 10 personalized candles.
      *
      *
-     * @var DateInterval|string|null
+     * @var string|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    protected $totalTime;
+    protected $yield;
 
     /**
      * A sub property of instrument. An object used (but not consumed) when performing instructions or a direction.
@@ -80,20 +64,20 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $tool;
 
     /**
+     * The total time required to perform instructions or a direction (including time to prepare the supplies), in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
+     *
+     *
+     * @var DateInterval|string|null
+     */
+    protected $totalTime;
+
+    /**
      * The length of time it takes to prepare the items to be used in instructions or a direction, in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
      *
      *
      * @var DateInterval|string|null
      */
     protected $prepTime;
-
-    /**
-     * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed 'steps'; 'step' is preferred).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork|string
-     */
-    protected $steps;
 
     /**
      * The length of time it takes to perform instructions or a direction (not including time to prepare the supplies), in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
@@ -104,28 +88,44 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $performTime;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\QuantitativeValue
+     * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\HowToStep|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\HowToSection
      */
-    public function getYield()
+    protected $step;
+
+    /**
+     * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed 'steps'; 'step' is preferred).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    protected $steps;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\HowToSupply|string
+     */
+    public function getSupply()
     {
-        return $this->yield;
+        return $this->supply;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\QuantitativeValue $yield
+     * @param \OpenActive\Models\SchemaOrg\HowToSupply|string $supply
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setYield($yield)
+    public function setSupply($supply)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\HowToSupply",
             "string",
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         ];
 
-        $yield = self::checkTypes($yield, $types);
+        $supply = self::checkTypes($supply, $types);
 
-        $this->yield = $yield;
+        $this->supply = $supply;
     }
 
     /**
@@ -154,81 +154,28 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\HowToSupply|string
+     * @return string|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    public function getSupply()
+    public function getYield()
     {
-        return $this->supply;
+        return $this->yield;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\HowToSupply|string $supply
+     * @param string|\OpenActive\Models\SchemaOrg\QuantitativeValue $yield
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSupply($supply)
+    public function setYield($yield)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\HowToSupply",
             "string",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         ];
 
-        $supply = self::checkTypes($supply, $types);
+        $yield = self::checkTypes($yield, $types);
 
-        $this->supply = $supply;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\HowToStep|\OpenActive\Models\SchemaOrg\HowToSection|string|\OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    public function getStep()
-    {
-        return $this->step;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\HowToStep|\OpenActive\Models\SchemaOrg\HowToSection|string|\OpenActive\Models\SchemaOrg\CreativeWork $step
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setStep($step)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\HowToStep",
-            "\OpenActive\Models\SchemaOrg\HowToSection",
-            "string",
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-        ];
-
-        $step = self::checkTypes($step, $types);
-
-        $this->step = $step;
-    }
-
-    /**
-     * @return DateInterval|string|null
-     */
-    public function getTotalTime()
-    {
-        return $this->totalTime;
-    }
-
-    /**
-     * @param DateInterval|string|null $totalTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTotalTime($totalTime)
-    {
-        $types = [
-            "DateInterval",
-            "string",
-            "null",
-        ];
-
-        $totalTime = self::checkTypes($totalTime, $types);
-
-        $this->totalTime = $totalTime;
+        $this->yield = $yield;
     }
 
     /**
@@ -259,6 +206,32 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @return DateInterval|string|null
      */
+    public function getTotalTime()
+    {
+        return $this->totalTime;
+    }
+
+    /**
+     * @param DateInterval|string|null $totalTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTotalTime($totalTime)
+    {
+        $types = [
+            "DateInterval",
+            "string",
+            "null",
+        ];
+
+        $totalTime = self::checkTypes($totalTime, $types);
+
+        $this->totalTime = $totalTime;
+    }
+
+    /**
+     * @return DateInterval|string|null
+     */
     public function getPrepTime()
     {
         return $this->prepTime;
@@ -280,32 +253,6 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
         $prepTime = self::checkTypes($prepTime, $types);
 
         $this->prepTime = $prepTime;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork|string
-     */
-    public function getSteps()
-    {
-        return $this->steps;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork|string $steps
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSteps($steps)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ItemList",
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-            "string",
-        ];
-
-        $steps = self::checkTypes($steps, $types);
-
-        $this->steps = $steps;
     }
 
     /**
@@ -332,6 +279,59 @@ class HowTo extends \OpenActive\Models\SchemaOrg\CreativeWork
         $performTime = self::checkTypes($performTime, $types);
 
         $this->performTime = $performTime;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\HowToStep|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\HowToSection
+     */
+    public function getStep()
+    {
+        return $this->step;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\HowToStep|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\HowToSection $step
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setStep($step)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\HowToStep",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "\OpenActive\Models\SchemaOrg\HowToSection",
+        ];
+
+        $step = self::checkTypes($step, $types);
+
+        $this->step = $step;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    public function getSteps()
+    {
+        return $this->steps;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\CreativeWork|string $steps
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSteps($steps)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ItemList",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
+        ];
+
+        $steps = self::checkTypes($steps, $types);
+
+        $this->steps = $steps;
     }
 
 }

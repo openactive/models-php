@@ -17,13 +17,29 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
 
     public static function fieldList() {
         $fields = [
-            "partySize" => "partySize",
-            "startTime" => "startTime",
             "endTime" => "endTime",
+            "startTime" => "startTime",
+            "partySize" => "partySize",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. E.g. John wrote a book from January to *December*. For media, including audio and video, it's the time offset of the end of a clip within a larger file.\n\nNote that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
+     *
+     *
+     * @var DateTime|string|null
+     */
+    protected $endTime;
+
+    /**
+     * The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. E.g. John wrote a book from *January* to December. For media, including audio and video, it's the time offset of the start of a clip within a larger file.\n\nNote that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
+     *
+     *
+     * @var DateTime|string|null
+     */
+    protected $startTime;
 
     /**
      * Number of people the reservation should accommodate.
@@ -34,46 +50,29 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     protected $partySize;
 
     /**
-     * The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. e.g. John wrote a book from *January* to December. For media, including audio and video, it's the time offset of the start of a clip within a larger file.\n\nNote that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
-     *
-     *
-     * @var DateTime|string|null
+     * @return DateTime|string|null
      */
-    protected $startTime;
-
-    /**
-     * The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. e.g. John wrote a book from January to *December*. For media, including audio and video, it's the time offset of the end of a clip within a larger file.\n\nNote that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
-     *
-     *
-     * @var DateTime|string|null
-     */
-    protected $endTime;
-
-    /**
-     * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
-     */
-    public function getPartySize()
+    public function getEndTime()
     {
-        return $this->partySize;
+        return $this->endTime;
     }
 
     /**
-     * @param int|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $partySize
+     * @param DateTime|string|null $endTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPartySize($partySize)
+    public function setEndTime($endTime)
     {
         $types = [
-            "int",
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "string",
+            "DateTime",
+            "Time",
             "null",
         ];
 
-        $partySize = self::checkTypes($partySize, $types);
+        $endTime = self::checkTypes($endTime, $types);
 
-        $this->partySize = $partySize;
+        $this->endTime = $endTime;
     }
 
     /**
@@ -103,29 +102,30 @@ class FoodEstablishmentReservation extends \OpenActive\Models\SchemaOrg\Reservat
     }
 
     /**
-     * @return DateTime|string|null
+     * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
-    public function getEndTime()
+    public function getPartySize()
     {
-        return $this->endTime;
+        return $this->partySize;
     }
 
     /**
-     * @param DateTime|string|null $endTime
+     * @param int|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $partySize
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEndTime($endTime)
+    public function setPartySize($partySize)
     {
         $types = [
-            "DateTime",
-            "Time",
+            "int",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
             "null",
         ];
 
-        $endTime = self::checkTypes($endTime, $types);
+        $partySize = self::checkTypes($partySize, $types);
 
-        $this->endTime = $endTime;
+        $this->partySize = $partySize;
     }
 
 }

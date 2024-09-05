@@ -33,7 +33,7 @@ class ConsumeAction extends \OpenActive\Models\SchemaOrg\Action
     protected $expectsAcceptanceOf;
 
     /**
-     * A set of requirements that a must be fulfilled in order to perform an Action. If more than one value is specied, fulfilling one set of requirements will allow the Action to be performed.
+     * A set of requirements that must be fulfilled in order to perform an Action. If more than one value is specified, fulfilling one set of requirements will allow the Action to be performed.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\ActionAccessSpecification|string

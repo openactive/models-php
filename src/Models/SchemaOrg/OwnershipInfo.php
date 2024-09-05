@@ -17,14 +17,22 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
+            "acquiredFrom" => "acquiredFrom",
             "ownedFrom" => "ownedFrom",
             "typeOfGood" => "typeOfGood",
-            "acquiredFrom" => "acquiredFrom",
             "ownedThrough" => "ownedThrough",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The organization or person from which the product was acquired.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $acquiredFrom;
 
     /**
      * The date and time of obtaining the product.
@@ -38,17 +46,9 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The product that this structured value is referring to.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
+     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product|string
      */
     protected $typeOfGood;
-
-    /**
-     * The organization or person from which the product was acquired.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $acquiredFrom;
 
     /**
      * The date and time of giving up ownership on the product.
@@ -57,6 +57,32 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
      * @var DateTime|null
      */
     protected $ownedThrough;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getAcquiredFrom()
+    {
+        return $this->acquiredFrom;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $acquiredFrom
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAcquiredFrom($acquiredFrom)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $acquiredFrom = self::checkTypes($acquiredFrom, $types);
+
+        $this->acquiredFrom = $acquiredFrom;
+    }
 
     /**
      * @return DateTime|null
@@ -84,7 +110,7 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
+     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product|string
      */
     public function getTypeOfGood()
     {
@@ -92,47 +118,21 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string $typeOfGood
+     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product|string $typeOfGood
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setTypeOfGood($typeOfGood)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Product",
             "\OpenActive\Models\SchemaOrg\Service",
+            "\OpenActive\Models\SchemaOrg\Product",
             "string",
         ];
 
         $typeOfGood = self::checkTypes($typeOfGood, $types);
 
         $this->typeOfGood = $typeOfGood;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getAcquiredFrom()
-    {
-        return $this->acquiredFrom;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $acquiredFrom
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAcquiredFrom($acquiredFrom)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $acquiredFrom = self::checkTypes($acquiredFrom, $types);
-
-        $this->acquiredFrom = $acquiredFrom;
     }
 
     /**

@@ -18,9 +18,9 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     public static function fieldList() {
         $fields = [
             "addressCountry" => "addressCountry",
+            "postalCode" => "postalCode",
             "latitude" => "latitude",
             "address" => "address",
-            "postalCode" => "postalCode",
             "elevation" => "elevation",
             "longitude" => "longitude",
         ];
@@ -32,9 +32,17 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The country. For example, USA. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Country|string
+     * @var string|\OpenActive\Models\SchemaOrg\Country
      */
     protected $addressCountry;
+
+    /**
+     * The postal code. For example, 94043.
+     *
+     *
+     * @var string
+     */
+    protected $postalCode;
 
     /**
      * The latitude of a location. For example ```37.42242``` ([WGS 84](https://en.wikipedia.org/wiki/World_Geodetic_System)).
@@ -53,15 +61,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $address;
 
     /**
-     * The postal code. For example, 94043.
-     *
-     *
-     * @var string
-     */
-    protected $postalCode;
-
-    /**
-     * The elevation of a location ([WGS 84](https://en.wikipedia.org/wiki/World_Geodetic_System)). Values may be of the form 'NUMBER UNIT_OF_MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters.
+     * The elevation of a location ([WGS 84](https://en.wikipedia.org/wiki/World_Geodetic_System)). Values may be of the form 'NUMBER UNIT\_OF\_MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters.
      *
      *
      * @var string|Number|null
@@ -77,7 +77,7 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $longitude;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Country|string
+     * @return string|\OpenActive\Models\SchemaOrg\Country
      */
     public function getAddressCountry()
     {
@@ -85,20 +85,44 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Country|string $addressCountry
+     * @param string|\OpenActive\Models\SchemaOrg\Country $addressCountry
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddressCountry($addressCountry)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Country",
             "string",
+            "\OpenActive\Models\SchemaOrg\Country",
         ];
 
         $addressCountry = self::checkTypes($addressCountry, $types);
 
         $this->addressCountry = $addressCountry;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPostalCode()
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * @param string $postalCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPostalCode($postalCode)
+    {
+        $types = [
+            "string",
+        ];
+
+        $postalCode = self::checkTypes($postalCode, $types);
+
+        $this->postalCode = $postalCode;
     }
 
     /**
@@ -150,30 +174,6 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
         $address = self::checkTypes($address, $types);
 
         $this->address = $address;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPostalCode()
-    {
-        return $this->postalCode;
-    }
-
-    /**
-     * @param string $postalCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPostalCode($postalCode)
-    {
-        $types = [
-            "string",
-        ];
-
-        $postalCode = self::checkTypes($postalCode, $types);
-
-        $this->postalCode = $postalCode;
     }
 
     /**

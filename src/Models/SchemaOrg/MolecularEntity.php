@@ -17,27 +17,19 @@ class MolecularEntity extends \OpenActive\Models\SchemaOrg\BioChemEntity
 
     public static function fieldList() {
         $fields = [
-            "inChIKey" => "inChIKey",
             "iupacName" => "iupacName",
-            "monoisotopicMolecularWeight" => "monoisotopicMolecularWeight",
-            "molecularFormula" => "molecularFormula",
+            "molecularWeight" => "molecularWeight",
+            "smiles" => "smiles",
             "potentialUse" => "potentialUse",
             "chemicalRole" => "chemicalRole",
-            "molecularWeight" => "molecularWeight",
+            "inChIKey" => "inChIKey",
             "inChI" => "inChI",
-            "smiles" => "smiles",
+            "monoisotopicMolecularWeight" => "monoisotopicMolecularWeight",
+            "molecularFormula" => "molecularFormula",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * InChIKey is a hashed version of the full InChI (using the SHA-256 algorithm).
-     *
-     *
-     * @var string
-     */
-    protected $inChIKey;
 
     /**
      * Systematic method of naming chemical compounds as recommended by the International Union of Pure and Applied Chemistry (IUPAC).
@@ -48,20 +40,20 @@ class MolecularEntity extends \OpenActive\Models\SchemaOrg\BioChemEntity
     protected $iupacName;
 
     /**
-     * The monoisotopic mass is the sum of the masses of the atoms in a molecule using the unbound, ground-state, rest mass of the principal (most abundant) isotope for each element instead of the isotopic average mass. Please include the units the form '&lt;Number&gt; &lt;unit&gt;', for example '770.230488 g/mol' or as '&lt;QuantitativeValue&gt;.
+     * This is the molecular weight of the entity being described, not of the parent. Units should be included in the form '&lt;Number&gt; &lt;unit&gt;', for example '12 amu' or as '&lt;QuantitativeValue&gt;.
      *
      *
      * @var string|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    protected $monoisotopicMolecularWeight;
+    protected $molecularWeight;
 
     /**
-     * The empirical formula is the simplest whole number ratio of all the atoms in a molecule.
+     * A specification in form of a line notation for describing the structure of chemical species using short ASCII strings.  Double bond stereochemistry \ indicators may need to be escaped in the string in formats where the backslash is an escape character.
      *
      *
      * @var string
      */
-    protected $molecularFormula;
+    protected $smiles;
 
     /**
      * Intended use of the BioChemEntity by humans.
@@ -80,12 +72,12 @@ class MolecularEntity extends \OpenActive\Models\SchemaOrg\BioChemEntity
     protected $chemicalRole;
 
     /**
-     * This is the molecular weight of the entity being described, not of the parent. Units should be included in the form '&lt;Number&gt; &lt;unit&gt;', for example '12 amu' or as '&lt;QuantitativeValue&gt;.
+     * InChIKey is a hashed version of the full InChI (using the SHA-256 algorithm).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     * @var string
      */
-    protected $molecularWeight;
+    protected $inChIKey;
 
     /**
      * Non-proprietary identifier for molecular entity that can be used in printed and electronic data sources thus enabling easier linking of diverse data compilations.
@@ -96,36 +88,20 @@ class MolecularEntity extends \OpenActive\Models\SchemaOrg\BioChemEntity
     protected $inChI;
 
     /**
-     * A specification in form of a line notation for describing the structure of chemical species using short ASCII strings.  Double bond stereochemistry \ indicators may need to be escaped in the string in formats where the backslash is an escape character.
+     * The monoisotopic mass is the sum of the masses of the atoms in a molecule using the unbound, ground-state, rest mass of the principal (most abundant) isotope for each element instead of the isotopic average mass. Please include the units in the form '&lt;Number&gt; &lt;unit&gt;', for example '770.230488 g/mol' or as '&lt;QuantitativeValue&gt;.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\QuantitativeValue
+     */
+    protected $monoisotopicMolecularWeight;
+
+    /**
+     * The empirical formula is the simplest whole number ratio of all the atoms in a molecule.
      *
      *
      * @var string
      */
-    protected $smiles;
-
-    /**
-     * @return string
-     */
-    public function getInChIKey()
-    {
-        return $this->inChIKey;
-    }
-
-    /**
-     * @param string $inChIKey
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setInChIKey($inChIKey)
-    {
-        $types = [
-            "string",
-        ];
-
-        $inChIKey = self::checkTypes($inChIKey, $types);
-
-        $this->inChIKey = $inChIKey;
-    }
+    protected $molecularFormula;
 
     /**
      * @return string
@@ -154,50 +130,50 @@ class MolecularEntity extends \OpenActive\Models\SchemaOrg\BioChemEntity
     /**
      * @return string|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    public function getMonoisotopicMolecularWeight()
+    public function getMolecularWeight()
     {
-        return $this->monoisotopicMolecularWeight;
+        return $this->molecularWeight;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\QuantitativeValue $monoisotopicMolecularWeight
+     * @param string|\OpenActive\Models\SchemaOrg\QuantitativeValue $molecularWeight
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMonoisotopicMolecularWeight($monoisotopicMolecularWeight)
+    public function setMolecularWeight($molecularWeight)
     {
         $types = [
             "string",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
         ];
 
-        $monoisotopicMolecularWeight = self::checkTypes($monoisotopicMolecularWeight, $types);
+        $molecularWeight = self::checkTypes($molecularWeight, $types);
 
-        $this->monoisotopicMolecularWeight = $monoisotopicMolecularWeight;
+        $this->molecularWeight = $molecularWeight;
     }
 
     /**
      * @return string
      */
-    public function getMolecularFormula()
+    public function getSmiles()
     {
-        return $this->molecularFormula;
+        return $this->smiles;
     }
 
     /**
-     * @param string $molecularFormula
+     * @param string $smiles
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMolecularFormula($molecularFormula)
+    public function setSmiles($smiles)
     {
         $types = [
             "string",
         ];
 
-        $molecularFormula = self::checkTypes($molecularFormula, $types);
+        $smiles = self::checkTypes($smiles, $types);
 
-        $this->molecularFormula = $molecularFormula;
+        $this->smiles = $smiles;
     }
 
     /**
@@ -251,28 +227,27 @@ class MolecularEntity extends \OpenActive\Models\SchemaOrg\BioChemEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     * @return string
      */
-    public function getMolecularWeight()
+    public function getInChIKey()
     {
-        return $this->molecularWeight;
+        return $this->inChIKey;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $molecularWeight
+     * @param string $inChIKey
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMolecularWeight($molecularWeight)
+    public function setInChIKey($inChIKey)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
         ];
 
-        $molecularWeight = self::checkTypes($molecularWeight, $types);
+        $inChIKey = self::checkTypes($inChIKey, $types);
 
-        $this->molecularWeight = $molecularWeight;
+        $this->inChIKey = $inChIKey;
     }
 
     /**
@@ -300,27 +275,52 @@ class MolecularEntity extends \OpenActive\Models\SchemaOrg\BioChemEntity
     }
 
     /**
-     * @return string
+     * @return string|\OpenActive\Models\SchemaOrg\QuantitativeValue
      */
-    public function getSmiles()
+    public function getMonoisotopicMolecularWeight()
     {
-        return $this->smiles;
+        return $this->monoisotopicMolecularWeight;
     }
 
     /**
-     * @param string $smiles
+     * @param string|\OpenActive\Models\SchemaOrg\QuantitativeValue $monoisotopicMolecularWeight
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSmiles($smiles)
+    public function setMonoisotopicMolecularWeight($monoisotopicMolecularWeight)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+        ];
+
+        $monoisotopicMolecularWeight = self::checkTypes($monoisotopicMolecularWeight, $types);
+
+        $this->monoisotopicMolecularWeight = $monoisotopicMolecularWeight;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMolecularFormula()
+    {
+        return $this->molecularFormula;
+    }
+
+    /**
+     * @param string $molecularFormula
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMolecularFormula($molecularFormula)
     {
         $types = [
             "string",
         ];
 
-        $smiles = self::checkTypes($smiles, $types);
+        $molecularFormula = self::checkTypes($molecularFormula, $types);
 
-        $this->smiles = $smiles;
+        $this->molecularFormula = $molecularFormula;
     }
 
 }
