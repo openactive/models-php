@@ -8,7 +8,7 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class DigitalDocumentPermissionType
 {
-    const CommentPermission = \OpenActive\Enums\SchemaOrg\DigitalDocumentPermissionType\CommentPermission::class;
-    const ReadPermission = \OpenActive\Enums\SchemaOrg\DigitalDocumentPermissionType\ReadPermission::class;
     const WritePermission = \OpenActive\Enums\SchemaOrg\DigitalDocumentPermissionType\WritePermission::class;
+    const ReadPermission = \OpenActive\Enums\SchemaOrg\DigitalDocumentPermissionType\ReadPermission::class;
+    const CommentPermission = \OpenActive\Enums\SchemaOrg\DigitalDocumentPermissionType\CommentPermission::class;
 }

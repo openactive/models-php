@@ -29,12 +29,12 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * Number of people the reservation should accommodate.
      *
      *
-     * @var int|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string|int|null
      */
     protected $partySize;
 
     /**
-     * When a taxi will pickup a passenger or a rental car can be picked up.
+     * When a taxi will pick up a passenger or a rental car can be picked up.
      *
      *
      * @var DateTime|null
@@ -50,7 +50,7 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $pickupLocation;
 
     /**
-     * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string|int|null
      */
     public function getPartySize()
     {
@@ -58,16 +58,16 @@ class TaxiReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
-     * @param int|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $partySize
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string|int|null $partySize
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPartySize($partySize)
     {
         $types = [
-            "int",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
+            "int",
             "null",
         ];
 

@@ -17,20 +17,12 @@ class ReplaceAction extends \OpenActive\Models\SchemaOrg\UpdateAction
 
     public static function fieldList() {
         $fields = [
-            "replacee" => "replacee",
             "replacer" => "replacer",
+            "replacee" => "replacee",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A sub property of object. The object that is being replaced.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    protected $replacee;
 
     /**
      * A sub property of object. The object that replaces.
@@ -41,29 +33,12 @@ class ReplaceAction extends \OpenActive\Models\SchemaOrg\UpdateAction
     protected $replacer;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     * A sub property of object. The object that is being replaced.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    public function getReplacee()
-    {
-        return $this->replacee;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $replacee
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReplacee($replacee)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
-        ];
-
-        $replacee = self::checkTypes($replacee, $types);
-
-        $this->replacee = $replacee;
-    }
+    protected $replacee;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing|string
@@ -88,6 +63,31 @@ class ReplaceAction extends \OpenActive\Models\SchemaOrg\UpdateAction
         $replacer = self::checkTypes($replacer, $types);
 
         $this->replacer = $replacer;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    public function getReplacee()
+    {
+        return $this->replacee;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $replacee
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReplacee($replacee)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
+        ];
+
+        $replacee = self::checkTypes($replacee, $types);
+
+        $this->replacee = $replacee;
     }
 
 }

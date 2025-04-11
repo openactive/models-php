@@ -17,22 +17,14 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "evidenceLevel" => "evidenceLevel",
             "evidenceOrigin" => "evidenceOrigin",
-            "guidelineSubject" => "guidelineSubject",
             "guidelineDate" => "guidelineDate",
+            "guidelineSubject" => "guidelineSubject",
+            "evidenceLevel" => "evidenceLevel",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Strength of evidence of the data used to formulate the guideline (enumerated).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalEvidenceLevel|string
-     */
-    protected $evidenceLevel;
 
     /**
      * Source of the data used to formulate the guidance, e.g. RCT, consensus opinion, etc.
@@ -43,14 +35,6 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $evidenceOrigin;
 
     /**
-     * The medical conditions, treatments, etc. that are the subject of the guideline.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
-     */
-    protected $guidelineSubject;
-
-    /**
      * Date on which this guideline's recommendation was made.
      *
      *
@@ -59,29 +43,20 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $guidelineDate;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalEvidenceLevel|string
+     * The medical conditions, treatments, etc. that are the subject of the guideline.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
-    public function getEvidenceLevel()
-    {
-        return $this->evidenceLevel;
-    }
+    protected $guidelineSubject;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalEvidenceLevel|string $evidenceLevel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * Strength of evidence of the data used to formulate the guideline (enumerated).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalEvidenceLevel|string
      */
-    public function setEvidenceLevel($evidenceLevel)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalEvidenceLevel",
-            "string",
-        ];
-
-        $evidenceLevel = self::checkTypes($evidenceLevel, $types);
-
-        $this->evidenceLevel = $evidenceLevel;
-    }
+    protected $evidenceLevel;
 
     /**
      * @return string
@@ -105,6 +80,31 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $evidenceOrigin = self::checkTypes($evidenceOrigin, $types);
 
         $this->evidenceOrigin = $evidenceOrigin;
+    }
+
+    /**
+     * @return Date|null
+     */
+    public function getGuidelineDate()
+    {
+        return $this->guidelineDate;
+    }
+
+    /**
+     * @param Date|null $guidelineDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGuidelineDate($guidelineDate)
+    {
+        $types = [
+            "Date",
+            "null",
+        ];
+
+        $guidelineDate = self::checkTypes($guidelineDate, $types);
+
+        $this->guidelineDate = $guidelineDate;
     }
 
     /**
@@ -133,28 +133,28 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return Date|null
+     * @return \OpenActive\Models\SchemaOrg\MedicalEvidenceLevel|string
      */
-    public function getGuidelineDate()
+    public function getEvidenceLevel()
     {
-        return $this->guidelineDate;
+        return $this->evidenceLevel;
     }
 
     /**
-     * @param Date|null $guidelineDate
+     * @param \OpenActive\Models\SchemaOrg\MedicalEvidenceLevel|string $evidenceLevel
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setGuidelineDate($guidelineDate)
+    public function setEvidenceLevel($evidenceLevel)
     {
         $types = [
-            "Date",
-            "null",
+            "\OpenActive\Models\SchemaOrg\MedicalEvidenceLevel",
+            "string",
         ];
 
-        $guidelineDate = self::checkTypes($guidelineDate, $types);
+        $evidenceLevel = self::checkTypes($evidenceLevel, $types);
 
-        $this->guidelineDate = $guidelineDate;
+        $this->evidenceLevel = $evidenceLevel;
     }
 
 }

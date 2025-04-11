@@ -17,6 +17,7 @@ class Answer extends \OpenActive\Models\SchemaOrg\Comment
 
     public static function fieldList() {
         $fields = [
+            "parentItem" => "parentItem",
             "answerExplanation" => "answerExplanation",
         ];
 
@@ -24,15 +25,49 @@ class Answer extends \OpenActive\Models\SchemaOrg\Comment
     }
 
     /**
+     * The parent of a question, answer or item in general. Typically used for Q/A discussion threads e.g. a chain of comments with the first comment being an [[Article]] or other [[CreativeWork]]. See also [[comment]] which points from something to a comment about it.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Comment|string
+     */
+    protected $parentItem;
+
+    /**
      * A step-by-step or full explanation about Answer. Can outline how this Answer was achieved or contain more broad clarification or statement about it. 
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\WebContent|\OpenActive\Models\SchemaOrg\Comment|string
+     * @var \OpenActive\Models\SchemaOrg\Comment|\OpenActive\Models\SchemaOrg\WebContent|string
      */
     protected $answerExplanation;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\WebContent|\OpenActive\Models\SchemaOrg\Comment|string
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Comment|string
+     */
+    public function getParentItem()
+    {
+        return $this->parentItem;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Comment|string $parentItem
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setParentItem($parentItem)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "\OpenActive\Models\SchemaOrg\Comment",
+            "string",
+        ];
+
+        $parentItem = self::checkTypes($parentItem, $types);
+
+        $this->parentItem = $parentItem;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Comment|\OpenActive\Models\SchemaOrg\WebContent|string
      */
     public function getAnswerExplanation()
     {
@@ -40,15 +75,15 @@ class Answer extends \OpenActive\Models\SchemaOrg\Comment
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\WebContent|\OpenActive\Models\SchemaOrg\Comment|string $answerExplanation
+     * @param \OpenActive\Models\SchemaOrg\Comment|\OpenActive\Models\SchemaOrg\WebContent|string $answerExplanation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAnswerExplanation($answerExplanation)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\WebContent",
             "\OpenActive\Models\SchemaOrg\Comment",
+            "\OpenActive\Models\SchemaOrg\WebContent",
             "string",
         ];
 

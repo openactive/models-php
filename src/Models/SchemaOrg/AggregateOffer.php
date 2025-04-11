@@ -17,9 +17,9 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
 
     public static function fieldList() {
         $fields = [
+            "lowPrice" => "lowPrice",
             "highPrice" => "highPrice",
             "offers" => "offers",
-            "lowPrice" => "lowPrice",
             "offerCount" => "offerCount",
         ];
 
@@ -27,7 +27,15 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     }
 
     /**
-     * The highest price of all offers available.\n\nUsage guidelines:\n\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
+     * The lowest price of all offers available.\n\nUsage guidelines:\n\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
+     *
+     *
+     * @var string|Number|null
+     */
+    protected $lowPrice;
+
+    /**
+     * The highest price of all offers available.\n\nUsage guidelines:\n\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
      *
      *
      * @var string|Number|null
@@ -44,20 +52,38 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
     protected $offers;
 
     /**
-     * The lowest price of all offers available.\n\nUsage guidelines:\n\n* Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.\n* Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
-     *
-     *
-     * @var string|Number|null
-     */
-    protected $lowPrice;
-
-    /**
      * The number of offers for the product.
      *
      *
      * @var int|null
      */
     protected $offerCount;
+
+    /**
+     * @return string|Number|null
+     */
+    public function getLowPrice()
+    {
+        return $this->lowPrice;
+    }
+
+    /**
+     * @param string|Number|null $lowPrice
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLowPrice($lowPrice)
+    {
+        $types = [
+            "string",
+            "Number",
+            "null",
+        ];
+
+        $lowPrice = self::checkTypes($lowPrice, $types);
+
+        $this->lowPrice = $lowPrice;
+    }
 
     /**
      * @return string|Number|null
@@ -109,32 +135,6 @@ class AggregateOffer extends \OpenActive\Models\SchemaOrg\Offer
         $offers = self::checkTypes($offers, $types);
 
         $this->offers = $offers;
-    }
-
-    /**
-     * @return string|Number|null
-     */
-    public function getLowPrice()
-    {
-        return $this->lowPrice;
-    }
-
-    /**
-     * @param string|Number|null $lowPrice
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLowPrice($lowPrice)
-    {
-        $types = [
-            "string",
-            "Number",
-            "null",
-        ];
-
-        $lowPrice = self::checkTypes($lowPrice, $types);
-
-        $this->lowPrice = $lowPrice;
     }
 
     /**

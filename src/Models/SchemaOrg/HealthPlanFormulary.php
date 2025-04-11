@@ -17,21 +17,21 @@ class HealthPlanFormulary extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "offersPrescriptionByMail" => "offersPrescriptionByMail",
-            "healthPlanDrugTier" => "healthPlanDrugTier",
             "healthPlanCostSharing" => "healthPlanCostSharing",
+            "healthPlanDrugTier" => "healthPlanDrugTier",
+            "offersPrescriptionByMail" => "offersPrescriptionByMail",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Whether prescriptions can be delivered by mail.
+     * The costs to the patient for services under this network or formulary.
      *
      *
      * @var bool|null
      */
-    protected $offersPrescriptionByMail;
+    protected $healthPlanCostSharing;
 
     /**
      * The tier(s) of drugs offered by this formulary or insurance plan.
@@ -42,36 +42,36 @@ class HealthPlanFormulary extends \OpenActive\Models\SchemaOrg\Intangible
     protected $healthPlanDrugTier;
 
     /**
-     * Whether The costs to the patient for services under this network or formulary.
+     * Whether prescriptions can be delivered by mail.
      *
      *
      * @var bool|null
      */
-    protected $healthPlanCostSharing;
+    protected $offersPrescriptionByMail;
 
     /**
      * @return bool|null
      */
-    public function getOffersPrescriptionByMail()
+    public function getHealthPlanCostSharing()
     {
-        return $this->offersPrescriptionByMail;
+        return $this->healthPlanCostSharing;
     }
 
     /**
-     * @param bool|null $offersPrescriptionByMail
+     * @param bool|null $healthPlanCostSharing
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOffersPrescriptionByMail($offersPrescriptionByMail)
+    public function setHealthPlanCostSharing($healthPlanCostSharing)
     {
         $types = [
             "bool",
             "null",
         ];
 
-        $offersPrescriptionByMail = self::checkTypes($offersPrescriptionByMail, $types);
+        $healthPlanCostSharing = self::checkTypes($healthPlanCostSharing, $types);
 
-        $this->offersPrescriptionByMail = $offersPrescriptionByMail;
+        $this->healthPlanCostSharing = $healthPlanCostSharing;
     }
 
     /**
@@ -101,26 +101,26 @@ class HealthPlanFormulary extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return bool|null
      */
-    public function getHealthPlanCostSharing()
+    public function getOffersPrescriptionByMail()
     {
-        return $this->healthPlanCostSharing;
+        return $this->offersPrescriptionByMail;
     }
 
     /**
-     * @param bool|null $healthPlanCostSharing
+     * @param bool|null $offersPrescriptionByMail
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHealthPlanCostSharing($healthPlanCostSharing)
+    public function setOffersPrescriptionByMail($offersPrescriptionByMail)
     {
         $types = [
             "bool",
             "null",
         ];
 
-        $healthPlanCostSharing = self::checkTypes($healthPlanCostSharing, $types);
+        $offersPrescriptionByMail = self::checkTypes($offersPrescriptionByMail, $types);
 
-        $this->healthPlanCostSharing = $healthPlanCostSharing;
+        $this->offersPrescriptionByMail = $offersPrescriptionByMail;
     }
 
 }

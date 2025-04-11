@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class MedicalCode extends \OpenActive\Models\SchemaOrg\MedicalIntangible
+class MedicalCode extends \OpenActive\Models\SchemaOrg\CategoryCode
 {
     /**
      * @return string[]|null
@@ -17,20 +17,12 @@ class MedicalCode extends \OpenActive\Models\SchemaOrg\MedicalIntangible
 
     public static function fieldList() {
         $fields = [
-            "codeValue" => "codeValue",
             "codingSystem" => "codingSystem",
+            "codeValue" => "codeValue",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A short textual code that uniquely identifies the value.
-     *
-     *
-     * @var string
-     */
-    protected $codeValue;
 
     /**
      * The coding system, e.g. 'ICD-10'.
@@ -41,28 +33,12 @@ class MedicalCode extends \OpenActive\Models\SchemaOrg\MedicalIntangible
     protected $codingSystem;
 
     /**
-     * @return string
+     * A short textual code that uniquely identifies the value.
+     *
+     *
+     * @var string
      */
-    public function getCodeValue()
-    {
-        return $this->codeValue;
-    }
-
-    /**
-     * @param string $codeValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCodeValue($codeValue)
-    {
-        $types = [
-            "string",
-        ];
-
-        $codeValue = self::checkTypes($codeValue, $types);
-
-        $this->codeValue = $codeValue;
-    }
+    protected $codeValue;
 
     /**
      * @return string
@@ -86,6 +62,30 @@ class MedicalCode extends \OpenActive\Models\SchemaOrg\MedicalIntangible
         $codingSystem = self::checkTypes($codingSystem, $types);
 
         $this->codingSystem = $codingSystem;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodeValue()
+    {
+        return $this->codeValue;
+    }
+
+    /**
+     * @param string $codeValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCodeValue($codeValue)
+    {
+        $types = [
+            "string",
+        ];
+
+        $codeValue = self::checkTypes($codeValue, $types);
+
+        $this->codeValue = $codeValue;
     }
 
 }

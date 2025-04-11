@@ -8,6 +8,6 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class ContactPointOption
 {
-    const HearingImpairedSupported = \OpenActive\Enums\SchemaOrg\ContactPointOption\HearingImpairedSupported::class;
     const TollFree = \OpenActive\Enums\SchemaOrg\ContactPointOption\TollFree::class;
+    const HearingImpairedSupported = \OpenActive\Enums\SchemaOrg\ContactPointOption\HearingImpairedSupported::class;
 }

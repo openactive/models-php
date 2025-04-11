@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Course extends \OpenActive\Models\SchemaOrg\LearningResource
+class Course extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
      * @return string[]|null
@@ -17,48 +17,28 @@ class Course extends \OpenActive\Models\SchemaOrg\LearningResource
 
     public static function fieldList() {
         $fields = [
-            "coursePrerequisites" => "coursePrerequisites",
-            "educationalCredentialAwarded" => "educationalCredentialAwarded",
-            "numberOfCredits" => "numberOfCredits",
-            "occupationalCredentialAwarded" => "occupationalCredentialAwarded",
+            "syllabusSections" => "syllabusSections",
             "courseCode" => "courseCode",
+            "occupationalCredentialAwarded" => "occupationalCredentialAwarded",
+            "coursePrerequisites" => "coursePrerequisites",
             "hasCourseInstance" => "hasCourseInstance",
+            "totalHistoricalEnrollment" => "totalHistoricalEnrollment",
+            "numberOfCredits" => "numberOfCredits",
+            "educationalCredentialAwarded" => "educationalCredentialAwarded",
+            "availableLanguage" => "availableLanguage",
+            "financialAidEligible" => "financialAidEligible",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Requirements for taking the Course. May be completion of another [[Course]] or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using [[AlignmentObject]].
+     * Indicates (typically several) Syllabus entities that lay out what each section of the overall course will cover.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\AlignmentObject|\OpenActive\Models\SchemaOrg\Course
+     * @var \OpenActive\Models\SchemaOrg\Syllabus|string
      */
-    protected $coursePrerequisites;
-
-    /**
-     * A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
-     */
-    protected $educationalCredentialAwarded;
-
-    /**
-     * The number of credits or units awarded by a Course or required to complete an EducationalOccupationalProgram.
-     *
-     *
-     * @var int|\OpenActive\Models\SchemaOrg\StructuredValue|string|null
-     */
-    protected $numberOfCredits;
-
-    /**
-     * A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
-     */
-    protected $occupationalCredentialAwarded;
+    protected $syllabusSections;
 
     /**
      * The identifier for the [[Course]] used by the course [[provider]] (e.g. CS101 or 6.001).
@@ -69,6 +49,22 @@ class Course extends \OpenActive\Models\SchemaOrg\LearningResource
     protected $courseCode;
 
     /**
+     * A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     */
+    protected $occupationalCredentialAwarded;
+
+    /**
+     * Requirements for taking the Course. May be completion of another [[Course]] or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using [[AlignmentObject]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\AlignmentObject|\OpenActive\Models\SchemaOrg\Course|string
+     */
+    protected $coursePrerequisites;
+
+    /**
      * An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students.
      *
      *
@@ -77,7 +73,121 @@ class Course extends \OpenActive\Models\SchemaOrg\LearningResource
     protected $hasCourseInstance;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\AlignmentObject|\OpenActive\Models\SchemaOrg\Course
+     * The total number of students that have enrolled in the history of the course.
+     *
+     *
+     * @var int|null
+     */
+    protected $totalHistoricalEnrollment;
+
+    /**
+     * The number of credits or units awarded by a Course or required to complete an EducationalOccupationalProgram.
+     *
+     *
+     * @var int|\OpenActive\Models\SchemaOrg\StructuredValue|string|null
+     */
+    protected $numberOfCredits;
+
+    /**
+     * A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     */
+    protected $educationalCredentialAwarded;
+
+    /**
+     * A language someone may use with or at the item, service or place. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[inLanguage]].
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Language
+     */
+    protected $availableLanguage;
+
+    /**
+     * A financial aid type or program which students may use to pay for tuition or fees associated with the program.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     */
+    protected $financialAidEligible;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Syllabus|string
+     */
+    public function getSyllabusSections()
+    {
+        return $this->syllabusSections;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Syllabus|string $syllabusSections
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSyllabusSections($syllabusSections)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Syllabus",
+            "string",
+        ];
+
+        $syllabusSections = self::checkTypes($syllabusSections, $types);
+
+        $this->syllabusSections = $syllabusSections;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCourseCode()
+    {
+        return $this->courseCode;
+    }
+
+    /**
+     * @param string $courseCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCourseCode($courseCode)
+    {
+        $types = [
+            "string",
+        ];
+
+        $courseCode = self::checkTypes($courseCode, $types);
+
+        $this->courseCode = $courseCode;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     */
+    public function getOccupationalCredentialAwarded()
+    {
+        return $this->occupationalCredentialAwarded;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $occupationalCredentialAwarded
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOccupationalCredentialAwarded($occupationalCredentialAwarded)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
+        ];
+
+        $occupationalCredentialAwarded = self::checkTypes($occupationalCredentialAwarded, $types);
+
+        $this->occupationalCredentialAwarded = $occupationalCredentialAwarded;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AlignmentObject|\OpenActive\Models\SchemaOrg\Course|string
      */
     public function getCoursePrerequisites()
     {
@@ -85,16 +195,16 @@ class Course extends \OpenActive\Models\SchemaOrg\LearningResource
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\AlignmentObject|\OpenActive\Models\SchemaOrg\Course $coursePrerequisites
+     * @param \OpenActive\Models\SchemaOrg\AlignmentObject|\OpenActive\Models\SchemaOrg\Course|string $coursePrerequisites
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setCoursePrerequisites($coursePrerequisites)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\AlignmentObject",
             "\OpenActive\Models\SchemaOrg\Course",
+            "string",
         ];
 
         $coursePrerequisites = self::checkTypes($coursePrerequisites, $types);
@@ -103,28 +213,53 @@ class Course extends \OpenActive\Models\SchemaOrg\LearningResource
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     * @return \OpenActive\Models\SchemaOrg\CourseInstance|string
      */
-    public function getEducationalCredentialAwarded()
+    public function getHasCourseInstance()
     {
-        return $this->educationalCredentialAwarded;
+        return $this->hasCourseInstance;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $educationalCredentialAwarded
+     * @param \OpenActive\Models\SchemaOrg\CourseInstance|string $hasCourseInstance
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEducationalCredentialAwarded($educationalCredentialAwarded)
+    public function setHasCourseInstance($hasCourseInstance)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\CourseInstance",
             "string",
-            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
         ];
 
-        $educationalCredentialAwarded = self::checkTypes($educationalCredentialAwarded, $types);
+        $hasCourseInstance = self::checkTypes($hasCourseInstance, $types);
 
-        $this->educationalCredentialAwarded = $educationalCredentialAwarded;
+        $this->hasCourseInstance = $hasCourseInstance;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTotalHistoricalEnrollment()
+    {
+        return $this->totalHistoricalEnrollment;
+    }
+
+    /**
+     * @param int|null $totalHistoricalEnrollment
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTotalHistoricalEnrollment($totalHistoricalEnrollment)
+    {
+        $types = [
+            "int",
+            "null",
+        ];
+
+        $totalHistoricalEnrollment = self::checkTypes($totalHistoricalEnrollment, $types);
+
+        $this->totalHistoricalEnrollment = $totalHistoricalEnrollment;
     }
 
     /**
@@ -155,77 +290,78 @@ class Course extends \OpenActive\Models\SchemaOrg\LearningResource
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
+     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
      */
-    public function getOccupationalCredentialAwarded()
+    public function getEducationalCredentialAwarded()
     {
-        return $this->occupationalCredentialAwarded;
+        return $this->educationalCredentialAwarded;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string $occupationalCredentialAwarded
+     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $educationalCredentialAwarded
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOccupationalCredentialAwarded($occupationalCredentialAwarded)
+    public function setEducationalCredentialAwarded($educationalCredentialAwarded)
     {
         $types = [
+            "string",
             "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
-            "string",
         ];
 
-        $occupationalCredentialAwarded = self::checkTypes($occupationalCredentialAwarded, $types);
+        $educationalCredentialAwarded = self::checkTypes($educationalCredentialAwarded, $types);
 
-        $this->occupationalCredentialAwarded = $occupationalCredentialAwarded;
+        $this->educationalCredentialAwarded = $educationalCredentialAwarded;
     }
 
     /**
-     * @return string
+     * @return string|\OpenActive\Models\SchemaOrg\Language
      */
-    public function getCourseCode()
+    public function getAvailableLanguage()
     {
-        return $this->courseCode;
+        return $this->availableLanguage;
     }
 
     /**
-     * @param string $courseCode
+     * @param string|\OpenActive\Models\SchemaOrg\Language $availableLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCourseCode($courseCode)
+    public function setAvailableLanguage($availableLanguage)
     {
         $types = [
             "string",
+            "\OpenActive\Models\SchemaOrg\Language",
         ];
 
-        $courseCode = self::checkTypes($courseCode, $types);
+        $availableLanguage = self::checkTypes($availableLanguage, $types);
 
-        $this->courseCode = $courseCode;
+        $this->availableLanguage = $availableLanguage;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CourseInstance|string
+     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
-    public function getHasCourseInstance()
+    public function getFinancialAidEligible()
     {
-        return $this->hasCourseInstance;
+        return $this->financialAidEligible;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CourseInstance|string $hasCourseInstance
+     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $financialAidEligible
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHasCourseInstance($hasCourseInstance)
+    public function setFinancialAidEligible($financialAidEligible)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\CourseInstance",
             "string",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
         ];
 
-        $hasCourseInstance = self::checkTypes($hasCourseInstance, $types);
+        $financialAidEligible = self::checkTypes($financialAidEligible, $types);
 
-        $this->hasCourseInstance = $hasCourseInstance;
+        $this->financialAidEligible = $financialAidEligible;
     }
 
 }

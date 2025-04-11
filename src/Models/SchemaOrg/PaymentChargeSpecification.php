@@ -28,7 +28,7 @@ class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
      * The payment method(s) to which the payment charge specification applies.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\PaymentMethod|null
+     * @var \OpenActive\Models\SchemaOrg\PaymentMethod|string
      */
     protected $appliesToPaymentMethod;
 
@@ -41,7 +41,7 @@ class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
     protected $appliesToDeliveryMethod;
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\PaymentMethod|null
+     * @return \OpenActive\Models\SchemaOrg\PaymentMethod|string
      */
     public function getAppliesToPaymentMethod()
     {
@@ -49,15 +49,15 @@ class PaymentChargeSpecification extends \OpenActive\Models\SchemaOrg\PriceSpeci
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\PaymentMethod|null $appliesToPaymentMethod
+     * @param \OpenActive\Models\SchemaOrg\PaymentMethod|string $appliesToPaymentMethod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAppliesToPaymentMethod($appliesToPaymentMethod)
     {
         $types = [
-            "\OpenActive\Enums\SchemaOrg\PaymentMethod",
-            "null",
+            "\OpenActive\Models\SchemaOrg\PaymentMethod",
+            "string",
         ];
 
         $appliesToPaymentMethod = self::checkTypes($appliesToPaymentMethod, $types);

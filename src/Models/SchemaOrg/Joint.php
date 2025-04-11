@@ -17,21 +17,13 @@ class Joint extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
 
     public static function fieldList() {
         $fields = [
-            "structuralClass" => "structuralClass",
             "biomechnicalClass" => "biomechnicalClass",
+            "structuralClass" => "structuralClass",
             "functionalClass" => "functionalClass",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The name given to how bone physically connects to each other.
-     *
-     *
-     * @var string
-     */
-    protected $structuralClass;
 
     /**
      * The biomechanical properties of the bone.
@@ -42,36 +34,20 @@ class Joint extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
     protected $biomechnicalClass;
 
     /**
+     * The name given to how bone physically connects to each other.
+     *
+     *
+     * @var string
+     */
+    protected $structuralClass;
+
+    /**
      * The degree of mobility the joint allows.
      *
      *
      * @var string|\OpenActive\Models\SchemaOrg\MedicalEntity
      */
     protected $functionalClass;
-
-    /**
-     * @return string
-     */
-    public function getStructuralClass()
-    {
-        return $this->structuralClass;
-    }
-
-    /**
-     * @param string $structuralClass
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setStructuralClass($structuralClass)
-    {
-        $types = [
-            "string",
-        ];
-
-        $structuralClass = self::checkTypes($structuralClass, $types);
-
-        $this->structuralClass = $structuralClass;
-    }
 
     /**
      * @return string
@@ -95,6 +71,30 @@ class Joint extends \OpenActive\Models\SchemaOrg\AnatomicalStructure
         $biomechnicalClass = self::checkTypes($biomechnicalClass, $types);
 
         $this->biomechnicalClass = $biomechnicalClass;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStructuralClass()
+    {
+        return $this->structuralClass;
+    }
+
+    /**
+     * @param string $structuralClass
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setStructuralClass($structuralClass)
+    {
+        $types = [
+            "string",
+        ];
+
+        $structuralClass = self::checkTypes($structuralClass, $types);
+
+        $this->structuralClass = $structuralClass;
     }
 
     /**

@@ -17,38 +17,14 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
 
     public static function fieldList() {
         $fields = [
-            "subtitleLanguage" => "subtitleLanguage",
-            "videoFormat" => "videoFormat",
-            "broadcastOfEvent" => "broadcastOfEvent",
             "isLiveBroadcast" => "isLiveBroadcast",
+            "broadcastOfEvent" => "broadcastOfEvent",
+            "videoFormat" => "videoFormat",
+            "subtitleLanguage" => "subtitleLanguage",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Languages in which subtitles/captions are available, in [IETF BCP 47 standard format](http://tools.ietf.org/html/bcp47).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Language|string
-     */
-    protected $subtitleLanguage;
-
-    /**
-     * The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
-     *
-     *
-     * @var string
-     */
-    protected $videoFormat;
-
-    /**
-     * The event being broadcast such as a sporting event or awards ceremony.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Event|string
-     */
-    protected $broadcastOfEvent;
 
     /**
      * True if the broadcast is of a live event.
@@ -59,52 +35,52 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
     protected $isLiveBroadcast;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Language|string
+     * The event being broadcast such as a sporting event or awards ceremony.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Event|string
      */
-    public function getSubtitleLanguage()
+    protected $broadcastOfEvent;
+
+    /**
+     * The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
+     *
+     *
+     * @var string
+     */
+    protected $videoFormat;
+
+    /**
+     * Languages in which subtitles/captions are available, in [IETF BCP 47 standard format](http://tools.ietf.org/html/bcp47).
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Language
+     */
+    protected $subtitleLanguage;
+
+    /**
+     * @return bool|null
+     */
+    public function getIsLiveBroadcast()
     {
-        return $this->subtitleLanguage;
+        return $this->isLiveBroadcast;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Language|string $subtitleLanguage
+     * @param bool|null $isLiveBroadcast
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSubtitleLanguage($subtitleLanguage)
+    public function setIsLiveBroadcast($isLiveBroadcast)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Language",
-            "string",
+            "bool",
+            "null",
         ];
 
-        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
+        $isLiveBroadcast = self::checkTypes($isLiveBroadcast, $types);
 
-        $this->subtitleLanguage = $subtitleLanguage;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVideoFormat()
-    {
-        return $this->videoFormat;
-    }
-
-    /**
-     * @param string $videoFormat
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setVideoFormat($videoFormat)
-    {
-        $types = [
-            "string",
-        ];
-
-        $videoFormat = self::checkTypes($videoFormat, $types);
-
-        $this->videoFormat = $videoFormat;
+        $this->isLiveBroadcast = $isLiveBroadcast;
     }
 
     /**
@@ -133,28 +109,52 @@ class BroadcastEvent extends \OpenActive\Models\SchemaOrg\PublicationEvent
     }
 
     /**
-     * @return bool|null
+     * @return string
      */
-    public function getIsLiveBroadcast()
+    public function getVideoFormat()
     {
-        return $this->isLiveBroadcast;
+        return $this->videoFormat;
     }
 
     /**
-     * @param bool|null $isLiveBroadcast
+     * @param string $videoFormat
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIsLiveBroadcast($isLiveBroadcast)
+    public function setVideoFormat($videoFormat)
     {
         $types = [
-            "bool",
-            "null",
+            "string",
         ];
 
-        $isLiveBroadcast = self::checkTypes($isLiveBroadcast, $types);
+        $videoFormat = self::checkTypes($videoFormat, $types);
 
-        $this->isLiveBroadcast = $isLiveBroadcast;
+        $this->videoFormat = $videoFormat;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Language
+     */
+    public function getSubtitleLanguage()
+    {
+        return $this->subtitleLanguage;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Language $subtitleLanguage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSubtitleLanguage($subtitleLanguage)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\Language",
+        ];
+
+        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
+
+        $this->subtitleLanguage = $subtitleLanguage;
     }
 
 }

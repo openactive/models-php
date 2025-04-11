@@ -17,48 +17,24 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "genre" => "genre",
             "broadcastFrequency" => "broadcastFrequency",
-            "providesBroadcastService" => "providesBroadcastService",
-            "broadcastChannelId" => "broadcastChannelId",
             "inBroadcastLineup" => "inBroadcastLineup",
+            "broadcastChannelId" => "broadcastChannelId",
             "broadcastServiceTier" => "broadcastServiceTier",
+            "providesBroadcastService" => "providesBroadcastService",
+            "genre" => "genre",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Genre of the creative work, broadcast channel or group.
+     * The frequency used for over-the-air broadcasts. Numeric values or simple ranges, e.g. 87-99. In addition a shortcut idiom is supported for frequencies of AM and FM radio channels, e.g. "87 FM".
      *
      *
-     * @var string
-     */
-    protected $genre;
-
-    /**
-     * The frequency used for over-the-air broadcasts. Numeric values or simple ranges e.g. 87-99. In addition a shortcut idiom is supported for frequences of AM and FM radio channels, e.g. "87 FM".
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string
+     * @var string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification
      */
     protected $broadcastFrequency;
-
-    /**
-     * The BroadcastService offered on this channel.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\BroadcastService|string
-     */
-    protected $providesBroadcastService;
-
-    /**
-     * The unique address by which the BroadcastService can be identified in a provider lineup. In US, this is typically a number.
-     *
-     *
-     * @var string
-     */
-    protected $broadcastChannelId;
 
     /**
      * The CableOrSatelliteService offering the channel.
@@ -69,6 +45,14 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     protected $inBroadcastLineup;
 
     /**
+     * The unique address by which the BroadcastService can be identified in a provider lineup. In US, this is typically a number.
+     *
+     *
+     * @var string
+     */
+    protected $broadcastChannelId;
+
+    /**
      * The type of service required to have access to the channel (e.g. Standard or Premium).
      *
      *
@@ -77,31 +61,23 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     protected $broadcastServiceTier;
 
     /**
-     * @return string
+     * The BroadcastService offered on this channel.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\BroadcastService|string
      */
-    public function getGenre()
-    {
-        return $this->genre;
-    }
+    protected $providesBroadcastService;
 
     /**
-     * @param string $genre
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * Genre of the creative work, broadcast channel or group.
+     *
+     *
+     * @var string
      */
-    public function setGenre($genre)
-    {
-        $types = [
-            "string",
-        ];
-
-        $genre = self::checkTypes($genre, $types);
-
-        $this->genre = $genre;
-    }
+    protected $genre;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string
+     * @return string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification
      */
     public function getBroadcastFrequency()
     {
@@ -109,69 +85,20 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification|string $broadcastFrequency
+     * @param string|\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification $broadcastFrequency
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBroadcastFrequency($broadcastFrequency)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification",
             "string",
+            "\OpenActive\Models\SchemaOrg\BroadcastFrequencySpecification",
         ];
 
         $broadcastFrequency = self::checkTypes($broadcastFrequency, $types);
 
         $this->broadcastFrequency = $broadcastFrequency;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\BroadcastService|string
-     */
-    public function getProvidesBroadcastService()
-    {
-        return $this->providesBroadcastService;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\BroadcastService|string $providesBroadcastService
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProvidesBroadcastService($providesBroadcastService)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\BroadcastService",
-            "string",
-        ];
-
-        $providesBroadcastService = self::checkTypes($providesBroadcastService, $types);
-
-        $this->providesBroadcastService = $providesBroadcastService;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBroadcastChannelId()
-    {
-        return $this->broadcastChannelId;
-    }
-
-    /**
-     * @param string $broadcastChannelId
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBroadcastChannelId($broadcastChannelId)
-    {
-        $types = [
-            "string",
-        ];
-
-        $broadcastChannelId = self::checkTypes($broadcastChannelId, $types);
-
-        $this->broadcastChannelId = $broadcastChannelId;
     }
 
     /**
@@ -202,6 +129,30 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return string
      */
+    public function getBroadcastChannelId()
+    {
+        return $this->broadcastChannelId;
+    }
+
+    /**
+     * @param string $broadcastChannelId
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBroadcastChannelId($broadcastChannelId)
+    {
+        $types = [
+            "string",
+        ];
+
+        $broadcastChannelId = self::checkTypes($broadcastChannelId, $types);
+
+        $this->broadcastChannelId = $broadcastChannelId;
+    }
+
+    /**
+     * @return string
+     */
     public function getBroadcastServiceTier()
     {
         return $this->broadcastServiceTier;
@@ -221,6 +172,55 @@ class BroadcastChannel extends \OpenActive\Models\SchemaOrg\Intangible
         $broadcastServiceTier = self::checkTypes($broadcastServiceTier, $types);
 
         $this->broadcastServiceTier = $broadcastServiceTier;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\BroadcastService|string
+     */
+    public function getProvidesBroadcastService()
+    {
+        return $this->providesBroadcastService;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\BroadcastService|string $providesBroadcastService
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProvidesBroadcastService($providesBroadcastService)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\BroadcastService",
+            "string",
+        ];
+
+        $providesBroadcastService = self::checkTypes($providesBroadcastService, $types);
+
+        $this->providesBroadcastService = $providesBroadcastService;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGenre()
+    {
+        return $this->genre;
+    }
+
+    /**
+     * @param string $genre
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGenre($genre)
+    {
+        $types = [
+            "string",
+        ];
+
+        $genre = self::checkTypes($genre, $types);
+
+        $this->genre = $genre;
     }
 
 }

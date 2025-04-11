@@ -36,7 +36,7 @@ class LinkRole extends \OpenActive\Models\SchemaOrg\Role
      * The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]].
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Language
+     * @var \OpenActive\Models\SchemaOrg\Language|string
      */
     protected $inLanguage;
 
@@ -65,7 +65,7 @@ class LinkRole extends \OpenActive\Models\SchemaOrg\Role
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Language
+     * @return \OpenActive\Models\SchemaOrg\Language|string
      */
     public function getInLanguage()
     {
@@ -73,15 +73,15 @@ class LinkRole extends \OpenActive\Models\SchemaOrg\Role
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Language $inLanguage
+     * @param \OpenActive\Models\SchemaOrg\Language|string $inLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInLanguage($inLanguage)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\Language",
+            "string",
         ];
 
         $inLanguage = self::checkTypes($inLanguage, $types);

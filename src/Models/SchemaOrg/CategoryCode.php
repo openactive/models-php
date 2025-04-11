@@ -17,12 +17,20 @@ class CategoryCode extends \OpenActive\Models\SchemaOrg\DefinedTerm
 
     public static function fieldList() {
         $fields = [
-            "codeValue" => "codeValue",
             "inCodeSet" => "inCodeSet",
+            "codeValue" => "codeValue",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A [[CategoryCodeSet]] that contains this category code.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\CategoryCodeSet
+     */
+    protected $inCodeSet;
 
     /**
      * A short textual code that uniquely identifies the value.
@@ -33,12 +41,29 @@ class CategoryCode extends \OpenActive\Models\SchemaOrg\DefinedTerm
     protected $codeValue;
 
     /**
-     * A [[CategoryCodeSet]] that contains this category code.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CategoryCodeSet|string
+     * @return string|\OpenActive\Models\SchemaOrg\CategoryCodeSet
      */
-    protected $inCodeSet;
+    public function getInCodeSet()
+    {
+        return $this->inCodeSet;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\CategoryCodeSet $inCodeSet
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInCodeSet($inCodeSet)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\CategoryCodeSet",
+        ];
+
+        $inCodeSet = self::checkTypes($inCodeSet, $types);
+
+        $this->inCodeSet = $inCodeSet;
+    }
 
     /**
      * @return string
@@ -62,31 +87,6 @@ class CategoryCode extends \OpenActive\Models\SchemaOrg\DefinedTerm
         $codeValue = self::checkTypes($codeValue, $types);
 
         $this->codeValue = $codeValue;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CategoryCodeSet|string
-     */
-    public function getInCodeSet()
-    {
-        return $this->inCodeSet;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CategoryCodeSet|string $inCodeSet
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setInCodeSet($inCodeSet)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\CategoryCodeSet",
-            "string",
-        ];
-
-        $inCodeSet = self::checkTypes($inCodeSet, $types);
-
-        $this->inCodeSet = $inCodeSet;
     }
 
 }
