@@ -18,8 +18,8 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     public static function fieldList() {
         $fields = [
             "shippingDestination" => "shippingDestination",
-            "transitTimeLabel" => "transitTimeLabel",
             "isUnlabelledFallback" => "isUnlabelledFallback",
+            "transitTimeLabel" => "transitTimeLabel",
             "deliveryTime" => "deliveryTime",
         ];
 
@@ -27,20 +27,12 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * indicates (possibly multiple) shipping destinations. These can be defined in several ways e.g. postalCode ranges.
+     * indicates (possibly multiple) shipping destinations. These can be defined in several ways, e.g. postalCode ranges.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\DefinedRegion|string
      */
     protected $shippingDestination;
-
-    /**
-     * Label to match an [[OfferShippingDetails]] with a [[DeliveryTimeSettings]] (within the context of a [[shippingSettingsLink]] cross-reference).
-     *
-     *
-     * @var string
-     */
-    protected $transitTimeLabel;
 
     /**
      * This can be marked 'true' to indicate that some published [[DeliveryTimeSettings]] or [[ShippingRateSettings]] are intended to apply to all [[OfferShippingDetails]] published by the same merchant, when referenced by a [[shippingSettingsLink]] in those settings. It is not meaningful to use a 'true' value for this property alongside a transitTimeLabel (for [[DeliveryTimeSettings]]) or shippingLabel (for [[ShippingRateSettings]]), since this property is for use with unlabelled settings.
@@ -49,6 +41,14 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
      * @var bool|null
      */
     protected $isUnlabelledFallback;
+
+    /**
+     * Label to match an [[OfferShippingDetails]] with a [[DeliveryTimeSettings]] (within the context of a [[shippingSettingsLink]] cross-reference).
+     *
+     *
+     * @var string
+     */
+    protected $transitTimeLabel;
 
     /**
      * The total delay between the receipt of the order and the goods reaching the final customer.
@@ -84,30 +84,6 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string
-     */
-    public function getTransitTimeLabel()
-    {
-        return $this->transitTimeLabel;
-    }
-
-    /**
-     * @param string $transitTimeLabel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTransitTimeLabel($transitTimeLabel)
-    {
-        $types = [
-            "string",
-        ];
-
-        $transitTimeLabel = self::checkTypes($transitTimeLabel, $types);
-
-        $this->transitTimeLabel = $transitTimeLabel;
-    }
-
-    /**
      * @return bool|null
      */
     public function getIsUnlabelledFallback()
@@ -130,6 +106,30 @@ class DeliveryTimeSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
         $isUnlabelledFallback = self::checkTypes($isUnlabelledFallback, $types);
 
         $this->isUnlabelledFallback = $isUnlabelledFallback;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTransitTimeLabel()
+    {
+        return $this->transitTimeLabel;
+    }
+
+    /**
+     * @param string $transitTimeLabel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTransitTimeLabel($transitTimeLabel)
+    {
+        $types = [
+            "string",
+        ];
+
+        $transitTimeLabel = self::checkTypes($transitTimeLabel, $types);
+
+        $this->transitTimeLabel = $transitTimeLabel;
     }
 
     /**

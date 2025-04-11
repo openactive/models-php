@@ -17,50 +17,18 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\ListItem
 
     public static function fieldList() {
         $fields = [
-            "afterMedia" => "afterMedia",
-            "supply" => "supply",
-            "duringMedia" => "duringMedia",
-            "totalTime" => "totalTime",
             "beforeMedia" => "beforeMedia",
-            "tool" => "tool",
             "prepTime" => "prepTime",
+            "tool" => "tool",
+            "totalTime" => "totalTime",
+            "duringMedia" => "duringMedia",
             "performTime" => "performTime",
+            "supply" => "supply",
+            "afterMedia" => "afterMedia",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A media object representing the circumstances after performing this direction.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\MediaObject
-     */
-    protected $afterMedia;
-
-    /**
-     * A sub-property of instrument. A supply consumed when performing instructions or a direction.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\HowToSupply|string
-     */
-    protected $supply;
-
-    /**
-     * A media object representing the circumstances while performing this direction.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\MediaObject
-     */
-    protected $duringMedia;
-
-    /**
-     * The total time required to perform instructions or a direction (including time to prepare the supplies), in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
-     *
-     *
-     * @var DateInterval|string|null
-     */
-    protected $totalTime;
 
     /**
      * A media object representing the circumstances before performing this direction.
@@ -71,6 +39,14 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\ListItem
     protected $beforeMedia;
 
     /**
+     * The length of time it takes to prepare the items to be used in instructions or a direction, in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
+     *
+     *
+     * @var DateInterval|string|null
+     */
+    protected $prepTime;
+
+    /**
      * A sub property of instrument. An object used (but not consumed) when performing instructions or a direction.
      *
      *
@@ -79,12 +55,20 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\ListItem
     protected $tool;
 
     /**
-     * The length of time it takes to prepare the items to be used in instructions or a direction, in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
+     * The total time required to perform instructions or a direction (including time to prepare the supplies), in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
      *
      *
      * @var DateInterval|string|null
      */
-    protected $prepTime;
+    protected $totalTime;
+
+    /**
+     * A media object representing the circumstances while performing this direction.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\MediaObject
+     */
+    protected $duringMedia;
 
     /**
      * The length of time it takes to perform instructions or a direction (not including time to prepare the supplies), in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
@@ -95,78 +79,95 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\ListItem
     protected $performTime;
 
     /**
+     * A sub-property of instrument. A supply consumed when performing instructions or a direction.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\HowToSupply
+     */
+    protected $supply;
+
+    /**
+     * A media object representing the circumstances after performing this direction.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\MediaObject
+     */
+    protected $afterMedia;
+
+    /**
      * @return string|\OpenActive\Models\SchemaOrg\MediaObject
      */
-    public function getAfterMedia()
+    public function getBeforeMedia()
     {
-        return $this->afterMedia;
+        return $this->beforeMedia;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $afterMedia
+     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $beforeMedia
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAfterMedia($afterMedia)
+    public function setBeforeMedia($beforeMedia)
     {
         $types = [
             "string",
             "\OpenActive\Models\SchemaOrg\MediaObject",
         ];
 
-        $afterMedia = self::checkTypes($afterMedia, $types);
+        $beforeMedia = self::checkTypes($beforeMedia, $types);
 
-        $this->afterMedia = $afterMedia;
+        $this->beforeMedia = $beforeMedia;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\HowToSupply|string
+     * @return DateInterval|string|null
      */
-    public function getSupply()
+    public function getPrepTime()
     {
-        return $this->supply;
+        return $this->prepTime;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\HowToSupply|string $supply
+     * @param DateInterval|string|null $prepTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSupply($supply)
+    public function setPrepTime($prepTime)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\HowToSupply",
+            "DateInterval",
             "string",
+            "null",
         ];
 
-        $supply = self::checkTypes($supply, $types);
+        $prepTime = self::checkTypes($prepTime, $types);
 
-        $this->supply = $supply;
+        $this->prepTime = $prepTime;
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\MediaObject
+     * @return \OpenActive\Models\SchemaOrg\HowToTool|string
      */
-    public function getDuringMedia()
+    public function getTool()
     {
-        return $this->duringMedia;
+        return $this->tool;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $duringMedia
+     * @param \OpenActive\Models\SchemaOrg\HowToTool|string $tool
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDuringMedia($duringMedia)
+    public function setTool($tool)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\HowToTool",
             "string",
-            "\OpenActive\Models\SchemaOrg\MediaObject",
         ];
 
-        $duringMedia = self::checkTypes($duringMedia, $types);
+        $tool = self::checkTypes($tool, $types);
 
-        $this->duringMedia = $duringMedia;
+        $this->tool = $tool;
     }
 
     /**
@@ -198,77 +199,26 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\ListItem
     /**
      * @return string|\OpenActive\Models\SchemaOrg\MediaObject
      */
-    public function getBeforeMedia()
+    public function getDuringMedia()
     {
-        return $this->beforeMedia;
+        return $this->duringMedia;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $beforeMedia
+     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $duringMedia
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBeforeMedia($beforeMedia)
+    public function setDuringMedia($duringMedia)
     {
         $types = [
             "string",
             "\OpenActive\Models\SchemaOrg\MediaObject",
         ];
 
-        $beforeMedia = self::checkTypes($beforeMedia, $types);
+        $duringMedia = self::checkTypes($duringMedia, $types);
 
-        $this->beforeMedia = $beforeMedia;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\HowToTool|string
-     */
-    public function getTool()
-    {
-        return $this->tool;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\HowToTool|string $tool
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTool($tool)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\HowToTool",
-            "string",
-        ];
-
-        $tool = self::checkTypes($tool, $types);
-
-        $this->tool = $tool;
-    }
-
-    /**
-     * @return DateInterval|string|null
-     */
-    public function getPrepTime()
-    {
-        return $this->prepTime;
-    }
-
-    /**
-     * @param DateInterval|string|null $prepTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPrepTime($prepTime)
-    {
-        $types = [
-            "DateInterval",
-            "string",
-            "null",
-        ];
-
-        $prepTime = self::checkTypes($prepTime, $types);
-
-        $this->prepTime = $prepTime;
+        $this->duringMedia = $duringMedia;
     }
 
     /**
@@ -295,6 +245,56 @@ class HowToDirection extends \OpenActive\Models\SchemaOrg\ListItem
         $performTime = self::checkTypes($performTime, $types);
 
         $this->performTime = $performTime;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\HowToSupply
+     */
+    public function getSupply()
+    {
+        return $this->supply;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\HowToSupply $supply
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSupply($supply)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\HowToSupply",
+        ];
+
+        $supply = self::checkTypes($supply, $types);
+
+        $this->supply = $supply;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\MediaObject
+     */
+    public function getAfterMedia()
+    {
+        return $this->afterMedia;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\MediaObject $afterMedia
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAfterMedia($afterMedia)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\MediaObject",
+        ];
+
+        $afterMedia = self::checkTypes($afterMedia, $types);
+
+        $this->afterMedia = $afterMedia;
     }
 
 }

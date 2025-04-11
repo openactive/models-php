@@ -27,12 +27,12 @@ class SeekToAction extends \OpenActive\Models\SchemaOrg\Action
      * The start time of the clip expressed as the number of seconds from the beginning of the work.
      *
      *
-     * @var Number|\OpenActive\Models\SchemaOrg\HyperTocEntry|string|null
+     * @var \OpenActive\Models\SchemaOrg\HyperTocEntry|string|Number|null
      */
     protected $startOffset;
 
     /**
-     * @return Number|\OpenActive\Models\SchemaOrg\HyperTocEntry|string|null
+     * @return \OpenActive\Models\SchemaOrg\HyperTocEntry|string|Number|null
      */
     public function getStartOffset()
     {
@@ -40,16 +40,16 @@ class SeekToAction extends \OpenActive\Models\SchemaOrg\Action
     }
 
     /**
-     * @param Number|\OpenActive\Models\SchemaOrg\HyperTocEntry|string|null $startOffset
+     * @param \OpenActive\Models\SchemaOrg\HyperTocEntry|string|Number|null $startOffset
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStartOffset($startOffset)
     {
         $types = [
-            "Number",
             "\OpenActive\Models\SchemaOrg\HyperTocEntry",
             "string",
+            "Number",
             "null",
         ];
 

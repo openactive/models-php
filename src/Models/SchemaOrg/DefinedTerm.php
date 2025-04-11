@@ -17,20 +17,12 @@ class DefinedTerm extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "termCode" => "termCode",
             "inDefinedTermSet" => "inDefinedTermSet",
+            "termCode" => "termCode",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A code that identifies this [[DefinedTerm]] within a [[DefinedTermSet]]
-     *
-     *
-     * @var string
-     */
-    protected $termCode;
 
     /**
      * A [[DefinedTermSet]] that contains this term.
@@ -41,28 +33,12 @@ class DefinedTerm extends \OpenActive\Models\SchemaOrg\Intangible
     protected $inDefinedTermSet;
 
     /**
-     * @return string
+     * A code that identifies this [[DefinedTerm]] within a [[DefinedTermSet]].
+     *
+     *
+     * @var string
      */
-    public function getTermCode()
-    {
-        return $this->termCode;
-    }
-
-    /**
-     * @param string $termCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTermCode($termCode)
-    {
-        $types = [
-            "string",
-        ];
-
-        $termCode = self::checkTypes($termCode, $types);
-
-        $this->termCode = $termCode;
-    }
+    protected $termCode;
 
     /**
      * @return string|\OpenActive\Models\SchemaOrg\DefinedTermSet
@@ -87,6 +63,30 @@ class DefinedTerm extends \OpenActive\Models\SchemaOrg\Intangible
         $inDefinedTermSet = self::checkTypes($inDefinedTermSet, $types);
 
         $this->inDefinedTermSet = $inDefinedTermSet;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTermCode()
+    {
+        return $this->termCode;
+    }
+
+    /**
+     * @param string $termCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTermCode($termCode)
+    {
+        $types = [
+            "string",
+        ];
+
+        $termCode = self::checkTypes($termCode, $types);
+
+        $this->termCode = $termCode;
     }
 
 }

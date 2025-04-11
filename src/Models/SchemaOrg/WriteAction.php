@@ -17,20 +17,12 @@ class WriteAction extends \OpenActive\Models\SchemaOrg\CreateAction
 
     public static function fieldList() {
         $fields = [
-            "inLanguage" => "inLanguage",
             "language" => "language",
+            "inLanguage" => "inLanguage",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]].
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Language
-     */
-    protected $inLanguage;
 
     /**
      * A sub property of instrument. The language used on this action.
@@ -41,29 +33,12 @@ class WriteAction extends \OpenActive\Models\SchemaOrg\CreateAction
     protected $language;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Language
+     * The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Language|string
      */
-    public function getInLanguage()
-    {
-        return $this->inLanguage;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Language $inLanguage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setInLanguage($inLanguage)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\Language",
-        ];
-
-        $inLanguage = self::checkTypes($inLanguage, $types);
-
-        $this->inLanguage = $inLanguage;
-    }
+    protected $inLanguage;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Language|string
@@ -88,6 +63,31 @@ class WriteAction extends \OpenActive\Models\SchemaOrg\CreateAction
         $language = self::checkTypes($language, $types);
 
         $this->language = $language;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Language|string
+     */
+    public function getInLanguage()
+    {
+        return $this->inLanguage;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Language|string $inLanguage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInLanguage($inLanguage)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Language",
+            "string",
+        ];
+
+        $inLanguage = self::checkTypes($inLanguage, $types);
+
+        $this->inLanguage = $inLanguage;
     }
 
 }

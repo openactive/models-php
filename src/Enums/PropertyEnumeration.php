@@ -113,6 +113,7 @@ class PropertyEnumeration
     const ActionApplication = \OpenActive\Enums\PropertyEnumeration\ActionApplication::class;
     const ActionOption = \OpenActive\Enums\PropertyEnumeration\ActionOption::class;
     const ActionPlatform = \OpenActive\Enums\PropertyEnumeration\ActionPlatform::class;
+    const ActionProcess = \OpenActive\Enums\PropertyEnumeration\ActionProcess::class;
     const ActionStatus = \OpenActive\Enums\PropertyEnumeration\ActionStatus::class;
     const ActionableFeedbackPolicy = \OpenActive\Enums\PropertyEnumeration\ActionableFeedbackPolicy::class;
     const ActiveIngredient = \OpenActive\Enums\PropertyEnumeration\ActiveIngredient::class;
@@ -137,6 +138,7 @@ class PropertyEnumeration
     const Affiliation = \OpenActive\Enums\PropertyEnumeration\Affiliation::class;
     const AfterMedia = \OpenActive\Enums\PropertyEnumeration\AfterMedia::class;
     const Agent = \OpenActive\Enums\PropertyEnumeration\Agent::class;
+    const AgentInteractionStatistic = \OpenActive\Enums\PropertyEnumeration\AgentInteractionStatistic::class;
     const AggregateRating = \OpenActive\Enums\PropertyEnumeration\AggregateRating::class;
     const Aircraft = \OpenActive\Enums\PropertyEnumeration\Aircraft::class;
     const Album = \OpenActive\Enums\PropertyEnumeration\Album::class;
@@ -193,6 +195,7 @@ class PropertyEnumeration
     const ArticleSection = \OpenActive\Enums\PropertyEnumeration\ArticleSection::class;
     const Artist = \OpenActive\Enums\PropertyEnumeration\Artist::class;
     const ArtworkSurface = \OpenActive\Enums\PropertyEnumeration\ArtworkSurface::class;
+    const Asin = \OpenActive\Enums\PropertyEnumeration\Asin::class;
     const Aspect = \OpenActive\Enums\PropertyEnumeration\Aspect::class;
     const Assembly = \OpenActive\Enums\PropertyEnumeration\Assembly::class;
     const AssemblyVersion = \OpenActive\Enums\PropertyEnumeration\AssemblyVersion::class;
@@ -211,6 +214,7 @@ class PropertyEnumeration
     const Audience = \OpenActive\Enums\PropertyEnumeration\Audience::class;
     const AudienceType = \OpenActive\Enums\PropertyEnumeration\AudienceType::class;
     const Audio = \OpenActive\Enums\PropertyEnumeration\Audio::class;
+    const AuditDate = \OpenActive\Enums\PropertyEnumeration\AuditDate::class;
     const Authenticator = \OpenActive\Enums\PropertyEnumeration\Authenticator::class;
     const Author = \OpenActive\Enums\PropertyEnumeration\Author::class;
     const Availability = \OpenActive\Enums\PropertyEnumeration\Availability::class;
@@ -308,11 +312,15 @@ class PropertyEnumeration
     const Category = \OpenActive\Enums\PropertyEnumeration\Category::class;
     const CauseOf = \OpenActive\Enums\PropertyEnumeration\CauseOf::class;
     const CcRecipient = \OpenActive\Enums\PropertyEnumeration\CcRecipient::class;
+    const CertificationIdentification = \OpenActive\Enums\PropertyEnumeration\CertificationIdentification::class;
+    const CertificationRating = \OpenActive\Enums\PropertyEnumeration\CertificationRating::class;
+    const CertificationStatus = \OpenActive\Enums\PropertyEnumeration\CertificationStatus::class;
     const Character = \OpenActive\Enums\PropertyEnumeration\Character::class;
     const CharacterAttribute = \OpenActive\Enums\PropertyEnumeration\CharacterAttribute::class;
     const CharacterName = \OpenActive\Enums\PropertyEnumeration\CharacterName::class;
     const CheatCode = \OpenActive\Enums\PropertyEnumeration\CheatCode::class;
     const CheckinTime = \OpenActive\Enums\PropertyEnumeration\CheckinTime::class;
+    const CheckoutPageURLTemplate = \OpenActive\Enums\PropertyEnumeration\CheckoutPageURLTemplate::class;
     const CheckoutTime = \OpenActive\Enums\PropertyEnumeration\CheckoutTime::class;
     const ChemicalComposition = \OpenActive\Enums\PropertyEnumeration\ChemicalComposition::class;
     const ChemicalRole = \OpenActive\Enums\PropertyEnumeration\ChemicalRole::class;
@@ -340,6 +348,7 @@ class PropertyEnumeration
     const Collection = \OpenActive\Enums\PropertyEnumeration\Collection::class;
     const CollectionSize = \OpenActive\Enums\PropertyEnumeration\CollectionSize::class;
     const Color = \OpenActive\Enums\PropertyEnumeration\Color::class;
+    const ColorSwatch = \OpenActive\Enums\PropertyEnumeration\ColorSwatch::class;
     const Colorist = \OpenActive\Enums\PropertyEnumeration\Colorist::class;
     const Comment = \OpenActive\Enums\PropertyEnumeration\Comment::class;
     const CommentCount = \OpenActive\Enums\PropertyEnumeration\CommentCount::class;
@@ -352,7 +361,7 @@ class PropertyEnumeration
     const ConditionsOfAccess = \OpenActive\Enums\PropertyEnumeration\ConditionsOfAccess::class;
     const ConfirmationNumber = \OpenActive\Enums\PropertyEnumeration\ConfirmationNumber::class;
     const ConnectedTo = \OpenActive\Enums\PropertyEnumeration\ConnectedTo::class;
-    const ConstrainingProperty = \OpenActive\Enums\PropertyEnumeration\ConstrainingProperty::class;
+    const ConstraintProperty = \OpenActive\Enums\PropertyEnumeration\ConstraintProperty::class;
     const ContactOption = \OpenActive\Enums\PropertyEnumeration\ContactOption::class;
     const ContactPoint = \OpenActive\Enums\PropertyEnumeration\ContactPoint::class;
     const ContactPoints = \OpenActive\Enums\PropertyEnumeration\ContactPoints::class;
@@ -390,6 +399,7 @@ class PropertyEnumeration
     const CourseCode = \OpenActive\Enums\PropertyEnumeration\CourseCode::class;
     const CourseMode = \OpenActive\Enums\PropertyEnumeration\CourseMode::class;
     const CoursePrerequisites = \OpenActive\Enums\PropertyEnumeration\CoursePrerequisites::class;
+    const CourseSchedule = \OpenActive\Enums\PropertyEnumeration\CourseSchedule::class;
     const CourseWorkload = \OpenActive\Enums\PropertyEnumeration\CourseWorkload::class;
     const CoverageEndTime = \OpenActive\Enums\PropertyEnumeration\CoverageEndTime::class;
     const CoverageStartTime = \OpenActive\Enums\PropertyEnumeration\CoverageStartTime::class;
@@ -464,6 +474,7 @@ class PropertyEnumeration
     const Diet = \OpenActive\Enums\PropertyEnumeration\Diet::class;
     const DietFeatures = \OpenActive\Enums\PropertyEnumeration\DietFeatures::class;
     const DifferentialDiagnosis = \OpenActive\Enums\PropertyEnumeration\DifferentialDiagnosis::class;
+    const DigitalSourceType = \OpenActive\Enums\PropertyEnumeration\DigitalSourceType::class;
     const DirectApply = \OpenActive\Enums\PropertyEnumeration\DirectApply::class;
     const Director = \OpenActive\Enums\PropertyEnumeration\Director::class;
     const Directors = \OpenActive\Enums\PropertyEnumeration\Directors::class;
@@ -670,6 +681,7 @@ class PropertyEnumeration
     const HasBioPolymerSequence = \OpenActive\Enums\PropertyEnumeration\HasBioPolymerSequence::class;
     const HasBroadcastChannel = \OpenActive\Enums\PropertyEnumeration\HasBroadcastChannel::class;
     const HasCategoryCode = \OpenActive\Enums\PropertyEnumeration\HasCategoryCode::class;
+    const HasCertification = \OpenActive\Enums\PropertyEnumeration\HasCertification::class;
     const HasCourse = \OpenActive\Enums\PropertyEnumeration\HasCourse::class;
     const HasCourseInstance = \OpenActive\Enums\PropertyEnumeration\HasCourseInstance::class;
     const HasCredential = \OpenActive\Enums\PropertyEnumeration\HasCredential::class;
@@ -679,9 +691,11 @@ class PropertyEnumeration
     const HasDriveThroughService = \OpenActive\Enums\PropertyEnumeration\HasDriveThroughService::class;
     const HasEnergyConsumptionDetails = \OpenActive\Enums\PropertyEnumeration\HasEnergyConsumptionDetails::class;
     const HasEnergyEfficiencyCategory = \OpenActive\Enums\PropertyEnumeration\HasEnergyEfficiencyCategory::class;
+    const HasGS1DigitalLink = \OpenActive\Enums\PropertyEnumeration\HasGS1DigitalLink::class;
     const HasHealthAspect = \OpenActive\Enums\PropertyEnumeration\HasHealthAspect::class;
     const HasMap = \OpenActive\Enums\PropertyEnumeration\HasMap::class;
     const HasMeasurement = \OpenActive\Enums\PropertyEnumeration\HasMeasurement::class;
+    const HasMemberProgram = \OpenActive\Enums\PropertyEnumeration\HasMemberProgram::class;
     const HasMenu = \OpenActive\Enums\PropertyEnumeration\HasMenu::class;
     const HasMenuItem = \OpenActive\Enums\PropertyEnumeration\HasMenuItem::class;
     const HasMenuSection = \OpenActive\Enums\PropertyEnumeration\HasMenuSection::class;
@@ -692,6 +706,9 @@ class PropertyEnumeration
     const HasPOS = \OpenActive\Enums\PropertyEnumeration\HasPOS::class;
     const HasPart = \OpenActive\Enums\PropertyEnumeration\HasPart::class;
     const HasRepresentation = \OpenActive\Enums\PropertyEnumeration\HasRepresentation::class;
+    const HasTierBenefit = \OpenActive\Enums\PropertyEnumeration\HasTierBenefit::class;
+    const HasTierRequirement = \OpenActive\Enums\PropertyEnumeration\HasTierRequirement::class;
+    const HasTiers = \OpenActive\Enums\PropertyEnumeration\HasTiers::class;
     const HasVariant = \OpenActive\Enums\PropertyEnumeration\HasVariant::class;
     const Headline = \OpenActive\Enums\PropertyEnumeration\Headline::class;
     const HealthCondition = \OpenActive\Enums\PropertyEnumeration\HealthCondition::class;
@@ -793,6 +810,7 @@ class PropertyEnumeration
     const IsRelatedTo = \OpenActive\Enums\PropertyEnumeration\IsRelatedTo::class;
     const IsResizable = \OpenActive\Enums\PropertyEnumeration\IsResizable::class;
     const IsSimilarTo = \OpenActive\Enums\PropertyEnumeration\IsSimilarTo::class;
+    const IsTierOf = \OpenActive\Enums\PropertyEnumeration\IsTierOf::class;
     const IsUnlabelledFallback = \OpenActive\Enums\PropertyEnumeration\IsUnlabelledFallback::class;
     const IsVariantOf = \OpenActive\Enums\PropertyEnumeration\IsVariantOf::class;
     const Isbn = \OpenActive\Enums\PropertyEnumeration\Isbn::class;
@@ -900,7 +918,9 @@ class PropertyEnumeration
     const MaximumVirtualAttendeeCapacity = \OpenActive\Enums\PropertyEnumeration\MaximumVirtualAttendeeCapacity::class;
     const MealService = \OpenActive\Enums\PropertyEnumeration\MealService::class;
     const MeasuredProperty = \OpenActive\Enums\PropertyEnumeration\MeasuredProperty::class;
-    const MeasuredValue = \OpenActive\Enums\PropertyEnumeration\MeasuredValue::class;
+    const MeasurementDenominator = \OpenActive\Enums\PropertyEnumeration\MeasurementDenominator::class;
+    const MeasurementMethod = \OpenActive\Enums\PropertyEnumeration\MeasurementMethod::class;
+    const MeasurementQualifier = \OpenActive\Enums\PropertyEnumeration\MeasurementQualifier::class;
     const MeasurementTechnique = \OpenActive\Enums\PropertyEnumeration\MeasurementTechnique::class;
     const MechanismOfAction = \OpenActive\Enums\PropertyEnumeration\MechanismOfAction::class;
     const MediaAuthenticityCategory = \OpenActive\Enums\PropertyEnumeration\MediaAuthenticityCategory::class;
@@ -928,6 +948,7 @@ class PropertyEnumeration
     const MinValue = \OpenActive\Enums\PropertyEnumeration\MinValue::class;
     const MinimumPaymentDue = \OpenActive\Enums\PropertyEnumeration\MinimumPaymentDue::class;
     const MissionCoveragePrioritiesPolicy = \OpenActive\Enums\PropertyEnumeration\MissionCoveragePrioritiesPolicy::class;
+    const MobileUrl = \OpenActive\Enums\PropertyEnumeration\MobileUrl::class;
     const Model = \OpenActive\Enums\PropertyEnumeration\Model::class;
     const ModelDate = \OpenActive\Enums\PropertyEnumeration\ModelDate::class;
     const ModifiedTime = \OpenActive\Enums\PropertyEnumeration\ModifiedTime::class;
@@ -990,8 +1011,9 @@ class PropertyEnumeration
     const NumberedPosition = \OpenActive\Enums\PropertyEnumeration\NumberedPosition::class;
     const Nutrition = \OpenActive\Enums\PropertyEnumeration\Nutrition::class;
     const Object = \OpenActive\Enums\PropertyEnumeration\Object::class;
+    const ObservationAbout = \OpenActive\Enums\PropertyEnumeration\ObservationAbout::class;
     const ObservationDate = \OpenActive\Enums\PropertyEnumeration\ObservationDate::class;
-    const ObservedNode = \OpenActive\Enums\PropertyEnumeration\ObservedNode::class;
+    const ObservationPeriod = \OpenActive\Enums\PropertyEnumeration\ObservationPeriod::class;
     const Occupancy = \OpenActive\Enums\PropertyEnumeration\Occupancy::class;
     const OccupationLocation = \OpenActive\Enums\PropertyEnumeration\OccupationLocation::class;
     const OccupationalCategory = \OpenActive\Enums\PropertyEnumeration\OccupationalCategory::class;
@@ -1053,6 +1075,7 @@ class PropertyEnumeration
     const PaymentDueDate = \OpenActive\Enums\PropertyEnumeration\PaymentDueDate::class;
     const PaymentMethod = \OpenActive\Enums\PropertyEnumeration\PaymentMethod::class;
     const PaymentMethodId = \OpenActive\Enums\PropertyEnumeration\PaymentMethodId::class;
+    const PaymentMethodType = \OpenActive\Enums\PropertyEnumeration\PaymentMethodType::class;
     const PaymentStatus = \OpenActive\Enums\PropertyEnumeration\PaymentStatus::class;
     const PaymentUrl = \OpenActive\Enums\PropertyEnumeration\PaymentUrl::class;
     const Penciler = \OpenActive\Enums\PropertyEnumeration\Penciler::class;
@@ -1094,6 +1117,7 @@ class PropertyEnumeration
     const PostalCodeRange = \OpenActive\Enums\PropertyEnumeration\PostalCodeRange::class;
     const PotentialAction = \OpenActive\Enums\PropertyEnumeration\PotentialAction::class;
     const PotentialUse = \OpenActive\Enums\PropertyEnumeration\PotentialUse::class;
+    const PracticesAt = \OpenActive\Enums\PropertyEnumeration\PracticesAt::class;
     const PreOp = \OpenActive\Enums\PropertyEnumeration\PreOp::class;
     const PredecessorOf = \OpenActive\Enums\PropertyEnumeration\PredecessorOf::class;
     const PregnancyCategory = \OpenActive\Enums\PropertyEnumeration\PregnancyCategory::class;
@@ -1130,6 +1154,7 @@ class PropertyEnumeration
     const ProductionCompany = \OpenActive\Enums\PropertyEnumeration\ProductionCompany::class;
     const ProductionDate = \OpenActive\Enums\PropertyEnumeration\ProductionDate::class;
     const ProficiencyLevel = \OpenActive\Enums\PropertyEnumeration\ProficiencyLevel::class;
+    const Program = \OpenActive\Enums\PropertyEnumeration\Program::class;
     const ProgramMembershipUsed = \OpenActive\Enums\PropertyEnumeration\ProgramMembershipUsed::class;
     const ProgramName = \OpenActive\Enums\PropertyEnumeration\ProgramName::class;
     const ProgramPrerequisites = \OpenActive\Enums\PropertyEnumeration\ProgramPrerequisites::class;
@@ -1302,6 +1327,7 @@ class PropertyEnumeration
     const ShippingDestination = \OpenActive\Enums\PropertyEnumeration\ShippingDestination::class;
     const ShippingDetails = \OpenActive\Enums\PropertyEnumeration\ShippingDetails::class;
     const ShippingLabel = \OpenActive\Enums\PropertyEnumeration\ShippingLabel::class;
+    const ShippingOrigin = \OpenActive\Enums\PropertyEnumeration\ShippingOrigin::class;
     const ShippingRate = \OpenActive\Enums\PropertyEnumeration\ShippingRate::class;
     const ShippingSettingsLink = \OpenActive\Enums\PropertyEnumeration\ShippingSettingsLink::class;
     const Sibling = \OpenActive\Enums\PropertyEnumeration\Sibling::class;
@@ -1347,6 +1373,7 @@ class PropertyEnumeration
     const StartDate = \OpenActive\Enums\PropertyEnumeration\StartDate::class;
     const StartOffset = \OpenActive\Enums\PropertyEnumeration\StartOffset::class;
     const StartTime = \OpenActive\Enums\PropertyEnumeration\StartTime::class;
+    const StatType = \OpenActive\Enums\PropertyEnumeration\StatType::class;
     const Status = \OpenActive\Enums\PropertyEnumeration\Status::class;
     const SteeringPosition = \OpenActive\Enums\PropertyEnumeration\SteeringPosition::class;
     const Step = \OpenActive\Enums\PropertyEnumeration\Step::class;
@@ -1386,6 +1413,7 @@ class PropertyEnumeration
     const SupplyTo = \OpenActive\Enums\PropertyEnumeration\SupplyTo::class;
     const SupportingData = \OpenActive\Enums\PropertyEnumeration\SupportingData::class;
     const Surface = \OpenActive\Enums\PropertyEnumeration\Surface::class;
+    const SyllabusSections = \OpenActive\Enums\PropertyEnumeration\SyllabusSections::class;
     const Target = \OpenActive\Enums\PropertyEnumeration\Target::class;
     const TargetCollection = \OpenActive\Enums\PropertyEnumeration\TargetCollection::class;
     const TargetDescription = \OpenActive\Enums\PropertyEnumeration\TargetDescription::class;
@@ -1426,6 +1454,7 @@ class PropertyEnumeration
     const TongueWeight = \OpenActive\Enums\PropertyEnumeration\TongueWeight::class;
     const Tool = \OpenActive\Enums\PropertyEnumeration\Tool::class;
     const Torque = \OpenActive\Enums\PropertyEnumeration\Torque::class;
+    const TotalHistoricalEnrollment = \OpenActive\Enums\PropertyEnumeration\TotalHistoricalEnrollment::class;
     const TotalJobOpenings = \OpenActive\Enums\PropertyEnumeration\TotalJobOpenings::class;
     const TotalPaymentDue = \OpenActive\Enums\PropertyEnumeration\TotalPaymentDue::class;
     const TotalPrice = \OpenActive\Enums\PropertyEnumeration\TotalPrice::class;
@@ -1451,6 +1480,7 @@ class PropertyEnumeration
     const TravelBans = \OpenActive\Enums\PropertyEnumeration\TravelBans::class;
     const TrialDesign = \OpenActive\Enums\PropertyEnumeration\TrialDesign::class;
     const Tributary = \OpenActive\Enums\PropertyEnumeration\Tributary::class;
+    const TripOrigin = \OpenActive\Enums\PropertyEnumeration\TripOrigin::class;
     const TypeOfBed = \OpenActive\Enums\PropertyEnumeration\TypeOfBed::class;
     const TypeOfGood = \OpenActive\Enums\PropertyEnumeration\TypeOfGood::class;
     const TypicalAgeRange = \OpenActive\Enums\PropertyEnumeration\TypicalAgeRange::class;
@@ -1465,6 +1495,7 @@ class PropertyEnumeration
     const UpvoteCount = \OpenActive\Enums\PropertyEnumeration\UpvoteCount::class;
     const Url = \OpenActive\Enums\PropertyEnumeration\Url::class;
     const UrlTemplate = \OpenActive\Enums\PropertyEnumeration\UrlTemplate::class;
+    const UsNPI = \OpenActive\Enums\PropertyEnumeration\UsNPI::class;
     const UsageInfo = \OpenActive\Enums\PropertyEnumeration\UsageInfo::class;
     const UsedToDiagnose = \OpenActive\Enums\PropertyEnumeration\UsedToDiagnose::class;
     const UserInteractionCount = \OpenActive\Enums\PropertyEnumeration\UserInteractionCount::class;
@@ -1472,6 +1503,7 @@ class PropertyEnumeration
     const UsesHealthPlanIdStandard = \OpenActive\Enums\PropertyEnumeration\UsesHealthPlanIdStandard::class;
     const Utterances = \OpenActive\Enums\PropertyEnumeration\Utterances::class;
     const ValidFor = \OpenActive\Enums\PropertyEnumeration\ValidFor::class;
+    const ValidForMemberTier = \OpenActive\Enums\PropertyEnumeration\ValidForMemberTier::class;
     const ValidFrom = \OpenActive\Enums\PropertyEnumeration\ValidFrom::class;
     const ValidIn = \OpenActive\Enums\PropertyEnumeration\ValidIn::class;
     const ValidThrough = \OpenActive\Enums\PropertyEnumeration\ValidThrough::class;

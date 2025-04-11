@@ -17,14 +17,22 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
 
     public static function fieldList() {
         $fields = [
+            "competitor" => "competitor",
             "homeTeam" => "homeTeam",
             "awayTeam" => "awayTeam",
-            "competitor" => "competitor",
             "sport" => "sport",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * A competitor in a sports event.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam|string
+     */
+    protected $competitor;
 
     /**
      * The home team in a sports event.
@@ -38,17 +46,9 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
      * The away team in a sports event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $awayTeam;
-
-    /**
-     * A competitor in a sports event.
-     *
-     *
      * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam|string
      */
-    protected $competitor;
+    protected $awayTeam;
 
     /**
      * A type of sport (e.g. Baseball).
@@ -57,6 +57,32 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
      * @var string
      */
     protected $sport;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam|string
+     */
+    public function getCompetitor()
+    {
+        return $this->competitor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam|string $competitor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCompetitor($competitor)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\SportsTeam",
+            "string",
+        ];
+
+        $competitor = self::checkTypes($competitor, $types);
+
+        $this->competitor = $competitor;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam|string
@@ -85,7 +111,7 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person|string
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam|string
      */
     public function getAwayTeam()
     {
@@ -93,47 +119,21 @@ class SportsEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\SportsTeam|\OpenActive\Models\SchemaOrg\Person|string $awayTeam
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam|string $awayTeam
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAwayTeam($awayTeam)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\SportsTeam",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\SportsTeam",
             "string",
         ];
 
         $awayTeam = self::checkTypes($awayTeam, $types);
 
         $this->awayTeam = $awayTeam;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam|string
-     */
-    public function getCompetitor()
-    {
-        return $this->competitor;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\SportsTeam|string $competitor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCompetitor($competitor)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\SportsTeam",
-            "string",
-        ];
-
-        $competitor = self::checkTypes($competitor, $types);
-
-        $this->competitor = $competitor;
     }
 
     /**

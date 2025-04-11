@@ -17,39 +17,15 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "characterAttribute" => "characterAttribute",
-            "gameItem" => "gameItem",
-            "numberOfPlayers" => "numberOfPlayers",
             "quest" => "quest",
+            "numberOfPlayers" => "numberOfPlayers",
+            "gameItem" => "gameItem",
             "gameLocation" => "gameLocation",
+            "characterAttribute" => "characterAttribute",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A piece of data that represents a particular aspect of a fictional character (skill, power, character points, advantage, disadvantage).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    protected $characterAttribute;
-
-    /**
-     * An item is an object within the game world that can be collected by a player or, occasionally, a non-player character.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    protected $gameItem;
-
-    /**
-     * Indicate how many people can play this game (minimum, maximum, or range).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
-     */
-    protected $numberOfPlayers;
 
     /**
      * The task that a player-controlled character, or group of characters may complete in order to gain a reward.
@@ -60,61 +36,60 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $quest;
 
     /**
+     * Indicate how many people can play this game (minimum, maximum, or range).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    protected $numberOfPlayers;
+
+    /**
+     * An item is an object within the game world that can be collected by a player or, occasionally, a non-player character.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    protected $gameItem;
+
+    /**
      * Real or fictional location of the game (or part of game).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress
+     * @var string|\OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place
      */
     protected $gameLocation;
 
     /**
+     * A piece of data that represents a particular aspect of a fictional character (skill, power, character points, advantage, disadvantage).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    protected $characterAttribute;
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
-    public function getCharacterAttribute()
+    public function getQuest()
     {
-        return $this->characterAttribute;
+        return $this->quest;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $characterAttribute
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $quest
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCharacterAttribute($characterAttribute)
+    public function setQuest($quest)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Thing",
             "string",
         ];
 
-        $characterAttribute = self::checkTypes($characterAttribute, $types);
+        $quest = self::checkTypes($quest, $types);
 
-        $this->characterAttribute = $characterAttribute;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    public function getGameItem()
-    {
-        return $this->gameItem;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $gameItem
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGameItem($gameItem)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
-        ];
-
-        $gameItem = self::checkTypes($gameItem, $types);
-
-        $this->gameItem = $gameItem;
+        $this->quest = $quest;
     }
 
     /**
@@ -145,30 +120,30 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
-    public function getQuest()
+    public function getGameItem()
     {
-        return $this->quest;
+        return $this->gameItem;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $quest
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $gameItem
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setQuest($quest)
+    public function setGameItem($gameItem)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Thing",
             "string",
         ];
 
-        $quest = self::checkTypes($quest, $types);
+        $gameItem = self::checkTypes($gameItem, $types);
 
-        $this->quest = $quest;
+        $this->gameItem = $gameItem;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress
+     * @return string|\OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place
      */
     public function getGameLocation()
     {
@@ -176,21 +151,46 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress $gameLocation
+     * @param string|\OpenActive\Models\SchemaOrg\PostalAddress|\OpenActive\Models\SchemaOrg\Place $gameLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGameLocation($gameLocation)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Place",
             "string",
             "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "\OpenActive\Models\SchemaOrg\Place",
         ];
 
         $gameLocation = self::checkTypes($gameLocation, $types);
 
         $this->gameLocation = $gameLocation;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    public function getCharacterAttribute()
+    {
+        return $this->characterAttribute;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $characterAttribute
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCharacterAttribute($characterAttribute)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
+        ];
+
+        $characterAttribute = self::checkTypes($characterAttribute, $types);
+
+        $this->characterAttribute = $characterAttribute;
     }
 
 }

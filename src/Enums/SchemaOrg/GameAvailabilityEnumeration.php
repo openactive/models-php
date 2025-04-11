@@ -8,6 +8,6 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class GameAvailabilityEnumeration
 {
-    const FullGameAvailability = \OpenActive\Enums\SchemaOrg\GameAvailabilityEnumeration\FullGameAvailability::class;
     const DemoGameAvailability = \OpenActive\Enums\SchemaOrg\GameAvailabilityEnumeration\DemoGameAvailability::class;
+    const FullGameAvailability = \OpenActive\Enums\SchemaOrg\GameAvailabilityEnumeration\FullGameAvailability::class;
 }

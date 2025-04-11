@@ -28,7 +28,7 @@ class MoneyTransfer extends \OpenActive\Models\SchemaOrg\TransferAction
      * A bank or bank’s branch, financial institution or international financial institution operating the beneficiary’s bank account or releasing funds for the beneficiary.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\BankOrCreditUnion|string
+     * @var string|\OpenActive\Models\SchemaOrg\BankOrCreditUnion
      */
     protected $beneficiaryBank;
 
@@ -36,12 +36,12 @@ class MoneyTransfer extends \OpenActive\Models\SchemaOrg\TransferAction
      * The amount of money.
      *
      *
-     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
      */
     protected $amount;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\BankOrCreditUnion|string
+     * @return string|\OpenActive\Models\SchemaOrg\BankOrCreditUnion
      */
     public function getBeneficiaryBank()
     {
@@ -49,15 +49,15 @@ class MoneyTransfer extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\BankOrCreditUnion|string $beneficiaryBank
+     * @param string|\OpenActive\Models\SchemaOrg\BankOrCreditUnion $beneficiaryBank
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBeneficiaryBank($beneficiaryBank)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\BankOrCreditUnion",
             "string",
+            "\OpenActive\Models\SchemaOrg\BankOrCreditUnion",
         ];
 
         $beneficiaryBank = self::checkTypes($beneficiaryBank, $types);
@@ -66,7 +66,7 @@ class MoneyTransfer extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
      */
     public function getAmount()
     {
@@ -74,16 +74,16 @@ class MoneyTransfer extends \OpenActive\Models\SchemaOrg\TransferAction
     }
 
     /**
-     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $amount
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null $amount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAmount($amount)
     {
         $types = [
-            "Number",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "string",
+            "Number",
             "null",
         ];
 
