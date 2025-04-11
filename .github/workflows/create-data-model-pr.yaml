@@ -38,13 +38,20 @@ jobs:
       - name: Run PHP models generator
         run: npm start -- generate PHP --destination ../models-php/src/
         working-directory: ./models-lib/
-        
+
+      - name: Generate GitHub App Token
+        uses: actions/create-github-app-token@v1
+        id: generate-token
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
           path: ./models-php/
-          token: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
+          token: ${{ steps.generate-token.outputs.token }}
           commit-message: Update data models
           committer: openactive-bot <openactive-bot@users.noreply.github.com>
           author: openactive-bot <openactive-bot@users.noreply.github.com>
