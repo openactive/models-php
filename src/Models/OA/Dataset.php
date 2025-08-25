@@ -147,10 +147,10 @@ class Dataset extends \OpenActive\Models\SchemaOrg\Dataset
     protected $distribution;
 
     /**
-     * A link to documentation related to the `Dataset`, or a link to the OpenActive developer documentation if no Dataset-specific documentation is available.
+     * A link to documentation related to the `Dataset`, or a link to the OpenActive developer documentation using `https://permalink.openactive.io/dataset-site/open-data-documentation` if no Dataset-specific documentation is available.
      *
      * ```json
-     * "documentation": "https://developer.openactive.io"
+     * "documentation": "https://permalink.openactive.io/dataset-site/open-data-documentation"
      * ```
      *
      * @var string

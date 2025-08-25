@@ -25,10 +25,10 @@ class PodcastSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
+     * An actor (individual or a group), e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\PerformingGroup|string
      */
     protected $actor;
 
@@ -36,12 +36,12 @@ class PodcastSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
      * The URL for a feed, e.g. associated with a podcast series, blog, or series of date-stamped updates. This is usually RSS or Atom.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DataFeed|string
+     * @var string|\OpenActive\Models\SchemaOrg\DataFeed
      */
     protected $webFeed;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\PerformingGroup|string
      */
     public function getActor()
     {
@@ -49,7 +49,7 @@ class PodcastSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $actor
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\PerformingGroup|string $actor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -57,6 +57,7 @@ class PodcastSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\PerformingGroup",
             "string",
         ];
 
@@ -66,7 +67,7 @@ class PodcastSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DataFeed|string
+     * @return string|\OpenActive\Models\SchemaOrg\DataFeed
      */
     public function getWebFeed()
     {
@@ -74,15 +75,15 @@ class PodcastSeries extends \OpenActive\Models\SchemaOrg\CreativeWorkSeries
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DataFeed|string $webFeed
+     * @param string|\OpenActive\Models\SchemaOrg\DataFeed $webFeed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setWebFeed($webFeed)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\DataFeed",
             "string",
+            "\OpenActive\Models\SchemaOrg\DataFeed",
         ];
 
         $webFeed = self::checkTypes($webFeed, $types);

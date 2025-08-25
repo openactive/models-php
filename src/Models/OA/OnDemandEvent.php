@@ -153,26 +153,26 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     protected $schedulingNote;
 
     /**
-     * The start date and time of the event. Can be specified as a schema:Date or schema:DateTime.
+     * The start date and time of the event. Can be specified as a schema:DateTime.
      *
      * ```json
      * "startDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var Date|DateTime|null
+     * @var DateTime|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $startDate;
 
     /**
-     * The end date and time of the event. Can be specified as a schema:Date or  schema:DateTime
+     * The end date and time of the event. Can be specified as a schema:DateTime
      * It is recommended that publishers provide either an schema:endDate or a schema:duration for an event.
      *
      * ```json
      * "endDate": "2018-01-27T12:00:00Z"
      * ```
      *
-     * @var Date|DateTime|null
+     * @var DateTime|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     protected $endDate;
@@ -430,7 +430,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return DateTime|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getStartDate()
@@ -439,7 +439,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param Date|DateTime|null $startDate
+     * @param DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -447,7 +447,6 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     public function setStartDate($startDate)
     {
         $types = [
-            "Date",
             "DateTime",
             "null",
         ];
@@ -458,7 +457,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return DateTime|null
      * @deprecated This property is disinherited in this type, and must not be used.
      */
     public function getEndDate()
@@ -467,7 +466,7 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     }
 
     /**
-     * @param Date|DateTime|null $endDate
+     * @param DateTime|null $endDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      * @deprecated This property is disinherited in this type, and must not be used.
@@ -475,7 +474,6 @@ class OnDemandEvent extends \OpenActive\Models\OA\Event
     public function setEndDate($endDate)
     {
         $types = [
-            "Date",
             "DateTime",
             "null",
         ];

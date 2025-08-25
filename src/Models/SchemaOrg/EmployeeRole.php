@@ -25,7 +25,7 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
     }
 
     /**
-     * The currency (coded using [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) ) used for the main salary information in this job posting or for this employee.
+     * The currency (coded using [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217)) used for the main salary information in this job posting or for this employee.
      *
      *
      * @var string
@@ -36,7 +36,7 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
      * The base salary of the job or of an employee in an EmployeeRole.
      *
      *
-     * @var Number|\OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     * @var \OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
      */
     protected $baseSalary;
 
@@ -65,7 +65,7 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
     }
 
     /**
-     * @return Number|\OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     * @return \OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
      */
     public function getBaseSalary()
     {
@@ -73,17 +73,17 @@ class EmployeeRole extends \OpenActive\Models\SchemaOrg\OrganizationRole
     }
 
     /**
-     * @param Number|\OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $baseSalary
+     * @param \OpenActive\Models\SchemaOrg\PriceSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null $baseSalary
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setBaseSalary($baseSalary)
     {
         $types = [
-            "Number",
             "\OpenActive\Models\SchemaOrg\PriceSpecification",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "string",
+            "Number",
             "null",
         ];
 

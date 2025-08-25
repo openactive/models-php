@@ -8,8 +8,8 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class MerchantReturnEnumeration
 {
-    const MerchantReturnNotPermitted = \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration\MerchantReturnNotPermitted::class;
-    const MerchantReturnUnlimitedWindow = \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration\MerchantReturnUnlimitedWindow::class;
     const MerchantReturnFiniteReturnWindow = \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration\MerchantReturnFiniteReturnWindow::class;
+    const MerchantReturnNotPermitted = \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration\MerchantReturnNotPermitted::class;
     const MerchantReturnUnspecified = \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration\MerchantReturnUnspecified::class;
+    const MerchantReturnUnlimitedWindow = \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration\MerchantReturnUnlimitedWindow::class;
 }

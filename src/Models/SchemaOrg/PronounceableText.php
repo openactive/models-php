@@ -18,9 +18,9 @@ class PronounceableText extends \OpenActive\BaseModel
     public static function fieldList() {
         $fields = [
             "phoneticText" => "phoneticText",
-            "speechToTextMarkup" => "speechToTextMarkup",
             "textValue" => "textValue",
             "inLanguage" => "inLanguage",
+            "speechToTextMarkup" => "speechToTextMarkup",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -35,14 +35,6 @@ class PronounceableText extends \OpenActive\BaseModel
     protected $phoneticText;
 
     /**
-     * Form of markup used. eg. [SSML](https://www.w3.org/TR/speech-synthesis11) or [IPA](https://www.wikidata.org/wiki/Property:P898).
-     *
-     *
-     * @var string
-     */
-    protected $speechToTextMarkup;
-
-    /**
      * Text value being annotated.
      *
      *
@@ -54,9 +46,17 @@ class PronounceableText extends \OpenActive\BaseModel
      * The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]].
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Language
+     * @var \OpenActive\Models\SchemaOrg\Language|string
      */
     protected $inLanguage;
+
+    /**
+     * Form of markup used. eg. [SSML](https://www.w3.org/TR/speech-synthesis11) or [IPA](https://www.wikidata.org/wiki/Property:P898).
+     *
+     *
+     * @var string
+     */
+    protected $speechToTextMarkup;
 
     /**
      * @return string
@@ -85,30 +85,6 @@ class PronounceableText extends \OpenActive\BaseModel
     /**
      * @return string
      */
-    public function getSpeechToTextMarkup()
-    {
-        return $this->speechToTextMarkup;
-    }
-
-    /**
-     * @param string $speechToTextMarkup
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSpeechToTextMarkup($speechToTextMarkup)
-    {
-        $types = [
-            "string",
-        ];
-
-        $speechToTextMarkup = self::checkTypes($speechToTextMarkup, $types);
-
-        $this->speechToTextMarkup = $speechToTextMarkup;
-    }
-
-    /**
-     * @return string
-     */
     public function getTextValue()
     {
         return $this->textValue;
@@ -131,7 +107,7 @@ class PronounceableText extends \OpenActive\BaseModel
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Language
+     * @return \OpenActive\Models\SchemaOrg\Language|string
      */
     public function getInLanguage()
     {
@@ -139,20 +115,44 @@ class PronounceableText extends \OpenActive\BaseModel
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Language $inLanguage
+     * @param \OpenActive\Models\SchemaOrg\Language|string $inLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setInLanguage($inLanguage)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\Language",
+            "string",
         ];
 
         $inLanguage = self::checkTypes($inLanguage, $types);
 
         $this->inLanguage = $inLanguage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSpeechToTextMarkup()
+    {
+        return $this->speechToTextMarkup;
+    }
+
+    /**
+     * @param string $speechToTextMarkup
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSpeechToTextMarkup($speechToTextMarkup)
+    {
+        $types = [
+            "string",
+        ];
+
+        $speechToTextMarkup = self::checkTypes($speechToTextMarkup, $types);
+
+        $this->speechToTextMarkup = $speechToTextMarkup;
     }
 
 }

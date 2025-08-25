@@ -36,7 +36,7 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
      * [object Object]
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress
+     * @var string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress
      */
     protected $itemLocation;
 
@@ -66,7 +66,7 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress
+     * @return string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress
      */
     public function getItemLocation()
     {
@@ -74,15 +74,15 @@ class ArchiveComponent extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress $itemLocation
+     * @param string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress $itemLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemLocation($itemLocation)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Place",
             "string",
+            "\OpenActive\Models\SchemaOrg\Place",
             "\OpenActive\Models\SchemaOrg\PostalAddress",
         ];
 

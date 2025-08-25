@@ -6,8 +6,8 @@ namespace OpenActive\Enums\PropertyEnumeration;
  * This enumeration contains a value for all properties in the https://schema.org/ and https://openactive.io/ vocabularies.
  *
  */
-class ObservedNode extends \OpenActive\Enums\PropertyEnumeration
+class HasCertification extends \OpenActive\Enums\PropertyEnumeration
 {
-    const value = "ObservedNode";
-    const memberVal = "https://schema.org/observedNode";
+    const value = "HasCertification";
+    const memberVal = "https://schema.org/hasCertification";
 }

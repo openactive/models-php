@@ -37,7 +37,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
      * For itemListElement values, you can use simple strings (e.g. "Peter", "Paul", "Mary"), existing entities, or use ListItem.\n\nText values are best if the elements in the list are plain strings. Existing entities are best for a simple, unordered list of existing things in your data. ListItem is used with ordered lists when you want to provide additional context about the element in that list or when the same item might be in different places in different lists.\n\nNote: The order of elements in your mark-up is not sufficient for indicating the order or elements.  Use ListItem with a 'position' property in such cases.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\ListItem|string
+     * @var \OpenActive\Models\SchemaOrg\ListItem|\OpenActive\Models\SchemaOrg\Thing|string
      */
     protected $itemListElement;
 
@@ -45,7 +45,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
      * Type of ordering (e.g. Ascending, Descending, Unordered).
      *
      *
-     * @var string|\OpenActive\Enums\SchemaOrg\ItemListOrderType|null
+     * @var \OpenActive\Enums\SchemaOrg\ItemListOrderType|string|null
      */
     protected $itemListOrder;
 
@@ -75,7 +75,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\ListItem|string
+     * @return \OpenActive\Models\SchemaOrg\ListItem|\OpenActive\Models\SchemaOrg\Thing|string
      */
     public function getItemListElement()
     {
@@ -83,15 +83,15 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\ListItem|string $itemListElement
+     * @param \OpenActive\Models\SchemaOrg\ListItem|\OpenActive\Models\SchemaOrg\Thing|string $itemListElement
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemListElement($itemListElement)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
             "\OpenActive\Models\SchemaOrg\ListItem",
+            "\OpenActive\Models\SchemaOrg\Thing",
             "string",
         ];
 
@@ -101,7 +101,7 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Enums\SchemaOrg\ItemListOrderType|null
+     * @return \OpenActive\Enums\SchemaOrg\ItemListOrderType|string|null
      */
     public function getItemListOrder()
     {
@@ -109,15 +109,15 @@ class ItemList extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param string|\OpenActive\Enums\SchemaOrg\ItemListOrderType|null $itemListOrder
+     * @param \OpenActive\Enums\SchemaOrg\ItemListOrderType|string|null $itemListOrder
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setItemListOrder($itemListOrder)
     {
         $types = [
-            "string",
             "\OpenActive\Enums\SchemaOrg\ItemListOrderType",
+            "string",
             "null",
         ];
 

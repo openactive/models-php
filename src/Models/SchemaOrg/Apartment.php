@@ -17,12 +17,21 @@ class Apartment extends \OpenActive\Models\SchemaOrg\Accommodation
 
     public static function fieldList() {
         $fields = [
-            "numberOfRooms" => "numberOfRooms",
             "occupancy" => "occupancy",
+            "numberOfRooms" => "numberOfRooms",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person).
+     * Typical unit code(s): C62 for person.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    protected $occupancy;
 
     /**
      * The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business.
@@ -34,13 +43,29 @@ class Apartment extends \OpenActive\Models\SchemaOrg\Accommodation
     protected $numberOfRooms;
 
     /**
-     * The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person).
-     * Typical unit code(s): C62 for person
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
-    protected $occupancy;
+    public function getOccupancy()
+    {
+        return $this->occupancy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $occupancy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOccupancy($occupancy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
+        ];
+
+        $occupancy = self::checkTypes($occupancy, $types);
+
+        $this->occupancy = $occupancy;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null
@@ -67,31 +92,6 @@ class Apartment extends \OpenActive\Models\SchemaOrg\Accommodation
         $numberOfRooms = self::checkTypes($numberOfRooms, $types);
 
         $this->numberOfRooms = $numberOfRooms;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
-     */
-    public function getOccupancy()
-    {
-        return $this->occupancy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $occupancy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOccupancy($occupancy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "string",
-        ];
-
-        $occupancy = self::checkTypes($occupancy, $types);
-
-        $this->occupancy = $occupancy;
     }
 
 }

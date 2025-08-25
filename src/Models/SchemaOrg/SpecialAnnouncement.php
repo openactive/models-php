@@ -17,73 +17,39 @@ class SpecialAnnouncement extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "governmentBenefitsInfo" => "governmentBenefitsInfo",
+            "webFeed" => "webFeed",
+            "datePosted" => "datePosted",
+            "diseasePreventionInfo" => "diseasePreventionInfo",
+            "publicTransportClosuresInfo" => "publicTransportClosuresInfo",
             "category" => "category",
+            "schoolClosuresInfo" => "schoolClosuresInfo",
+            "quarantineGuidelines" => "quarantineGuidelines",
+            "governmentBenefitsInfo" => "governmentBenefitsInfo",
+            "travelBans" => "travelBans",
             "diseaseSpreadStatistics" => "diseaseSpreadStatistics",
             "gettingTestedInfo" => "gettingTestedInfo",
             "announcementLocation" => "announcementLocation",
-            "travelBans" => "travelBans",
-            "diseasePreventionInfo" => "diseasePreventionInfo",
-            "publicTransportClosuresInfo" => "publicTransportClosuresInfo",
-            "schoolClosuresInfo" => "schoolClosuresInfo",
-            "datePosted" => "datePosted",
             "newsUpdatesAndGuidelines" => "newsUpdatesAndGuidelines",
-            "quarantineGuidelines" => "quarantineGuidelines",
-            "webFeed" => "webFeed",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * governmentBenefitsInfo provides information about government benefits associated with a SpecialAnnouncement.
+     * The URL for a feed, e.g. associated with a podcast series, blog, or series of date-stamped updates. This is usually RSS or Atom.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\GovernmentService|string
+     * @var string|\OpenActive\Models\SchemaOrg\DataFeed
      */
-    protected $governmentBenefitsInfo;
+    protected $webFeed;
 
     /**
-     * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
+     * Publication date of an online listing.
      *
      *
-     * @var string|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\CategoryCode|null
+     * @var Date|DateTime|null
      */
-    protected $category;
-
-    /**
-     * Statistical information about the spread of a disease, either as [[WebContent]], or
-     *   described directly as a [[Dataset]], or the specific [[Observation]]s in the dataset. When a [[WebContent]] URL is
-     *   provided, the page indicated might also contain more such markup.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Dataset|\OpenActive\Models\SchemaOrg\Observation|\OpenActive\Models\SchemaOrg\WebContent|string
-     */
-    protected $diseaseSpreadStatistics;
-
-    /**
-     * Information about getting tested (for a [[MedicalCondition]]), e.g. in the context of a pandemic.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\WebContent|string
-     */
-    protected $gettingTestedInfo;
-
-    /**
-     * Indicates a specific [[CivicStructure]] or [[LocalBusiness]] associated with the SpecialAnnouncement. For example, a specific testing facility or business with special opening hours. For a larger geographic region like a quarantine of an entire region, use [[spatialCoverage]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CivicStructure|\OpenActive\Models\SchemaOrg\LocalBusiness|string
-     */
-    protected $announcementLocation;
-
-    /**
-     * Information about travel bans, e.g. in the context of a pandemic.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\WebContent
-     */
-    protected $travelBans;
+    protected $datePosted;
 
     /**
      * Information about disease prevention.
@@ -97,49 +63,262 @@ class SpecialAnnouncement extends \OpenActive\Models\SchemaOrg\CreativeWork
      * Information about public transport closures.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\WebContent
+     * @var \OpenActive\Models\SchemaOrg\WebContent|string
      */
     protected $publicTransportClosuresInfo;
+
+    /**
+     * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\CategoryCode|string|null
+     */
+    protected $category;
 
     /**
      * Information about school closures.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\WebContent|string
-     */
-    protected $schoolClosuresInfo;
-
-    /**
-     * Publication date of an online listing.
-     *
-     *
-     * @var Date|DateTime|null
-     */
-    protected $datePosted;
-
-    /**
-     * Indicates a page with news updates and guidelines. This could often be (but is not required to be) the main page containing [[SpecialAnnouncement]] markup on a site.
-     *
-     *
      * @var string|\OpenActive\Models\SchemaOrg\WebContent
      */
-    protected $newsUpdatesAndGuidelines;
+    protected $schoolClosuresInfo;
 
     /**
      * Guidelines about quarantine rules, e.g. in the context of a pandemic.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\WebContent
+     * @var \OpenActive\Models\SchemaOrg\WebContent|string
      */
     protected $quarantineGuidelines;
 
     /**
-     * The URL for a feed, e.g. associated with a podcast series, blog, or series of date-stamped updates. This is usually RSS or Atom.
+     * governmentBenefitsInfo provides information about government benefits associated with a SpecialAnnouncement.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\DataFeed|string
+     * @var \OpenActive\Models\SchemaOrg\GovernmentService|string
      */
-    protected $webFeed;
+    protected $governmentBenefitsInfo;
+
+    /**
+     * Information about travel bans, e.g. in the context of a pandemic.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\WebContent
+     */
+    protected $travelBans;
+
+    /**
+     * Statistical information about the spread of a disease, either as [[WebContent]], or
+     *   described directly as a [[Dataset]], or the specific [[Observation]]s in the dataset. When a [[WebContent]] URL is
+     *   provided, the page indicated might also contain more such markup.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\WebContent|\OpenActive\Models\SchemaOrg\Dataset|\OpenActive\Models\SchemaOrg\Observation|string
+     */
+    protected $diseaseSpreadStatistics;
+
+    /**
+     * Information about getting tested (for a [[MedicalCondition]]), e.g. in the context of a pandemic.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\WebContent
+     */
+    protected $gettingTestedInfo;
+
+    /**
+     * Indicates a specific [[CivicStructure]] or [[LocalBusiness]] associated with the SpecialAnnouncement. For example, a specific testing facility or business with special opening hours. For a larger geographic region like a quarantine of an entire region, use [[spatialCoverage]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CivicStructure|\OpenActive\Models\SchemaOrg\LocalBusiness|string
+     */
+    protected $announcementLocation;
+
+    /**
+     * Indicates a page with news updates and guidelines. This could often be (but is not required to be) the main page containing [[SpecialAnnouncement]] markup on a site.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\WebContent|string
+     */
+    protected $newsUpdatesAndGuidelines;
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\DataFeed
+     */
+    public function getWebFeed()
+    {
+        return $this->webFeed;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\DataFeed $webFeed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setWebFeed($webFeed)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\DataFeed",
+        ];
+
+        $webFeed = self::checkTypes($webFeed, $types);
+
+        $this->webFeed = $webFeed;
+    }
+
+    /**
+     * @return Date|DateTime|null
+     */
+    public function getDatePosted()
+    {
+        return $this->datePosted;
+    }
+
+    /**
+     * @param Date|DateTime|null $datePosted
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDatePosted($datePosted)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $datePosted = self::checkTypes($datePosted, $types);
+
+        $this->datePosted = $datePosted;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\WebContent
+     */
+    public function getDiseasePreventionInfo()
+    {
+        return $this->diseasePreventionInfo;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\WebContent $diseasePreventionInfo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDiseasePreventionInfo($diseasePreventionInfo)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\WebContent",
+        ];
+
+        $diseasePreventionInfo = self::checkTypes($diseasePreventionInfo, $types);
+
+        $this->diseasePreventionInfo = $diseasePreventionInfo;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\WebContent|string
+     */
+    public function getPublicTransportClosuresInfo()
+    {
+        return $this->publicTransportClosuresInfo;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\WebContent|string $publicTransportClosuresInfo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPublicTransportClosuresInfo($publicTransportClosuresInfo)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\WebContent",
+            "string",
+        ];
+
+        $publicTransportClosuresInfo = self::checkTypes($publicTransportClosuresInfo, $types);
+
+        $this->publicTransportClosuresInfo = $publicTransportClosuresInfo;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\CategoryCode|string|null
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\CategoryCode|string|null $category
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCategory($category)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory",
+            "\OpenActive\Models\SchemaOrg\CategoryCode",
+            "string",
+            "null",
+        ];
+
+        $category = self::checkTypes($category, $types);
+
+        $this->category = $category;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\WebContent
+     */
+    public function getSchoolClosuresInfo()
+    {
+        return $this->schoolClosuresInfo;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\WebContent $schoolClosuresInfo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSchoolClosuresInfo($schoolClosuresInfo)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\WebContent",
+        ];
+
+        $schoolClosuresInfo = self::checkTypes($schoolClosuresInfo, $types);
+
+        $this->schoolClosuresInfo = $schoolClosuresInfo;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\WebContent|string
+     */
+    public function getQuarantineGuidelines()
+    {
+        return $this->quarantineGuidelines;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\WebContent|string $quarantineGuidelines
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setQuarantineGuidelines($quarantineGuidelines)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\WebContent",
+            "string",
+        ];
+
+        $quarantineGuidelines = self::checkTypes($quarantineGuidelines, $types);
+
+        $this->quarantineGuidelines = $quarantineGuidelines;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\GovernmentService|string
@@ -167,35 +346,32 @@ class SpecialAnnouncement extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\CategoryCode|null
+     * @return string|\OpenActive\Models\SchemaOrg\WebContent
      */
-    public function getCategory()
+    public function getTravelBans()
     {
-        return $this->category;
+        return $this->travelBans;
     }
 
     /**
-     * @param string|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\CategoryCode|null $category
+     * @param string|\OpenActive\Models\SchemaOrg\WebContent $travelBans
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCategory($category)
+    public function setTravelBans($travelBans)
     {
         $types = [
             "string",
-            "\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory",
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "\OpenActive\Models\SchemaOrg\CategoryCode",
-            "null",
+            "\OpenActive\Models\SchemaOrg\WebContent",
         ];
 
-        $category = self::checkTypes($category, $types);
+        $travelBans = self::checkTypes($travelBans, $types);
 
-        $this->category = $category;
+        $this->travelBans = $travelBans;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Dataset|\OpenActive\Models\SchemaOrg\Observation|\OpenActive\Models\SchemaOrg\WebContent|string
+     * @return \OpenActive\Models\SchemaOrg\WebContent|\OpenActive\Models\SchemaOrg\Dataset|\OpenActive\Models\SchemaOrg\Observation|string
      */
     public function getDiseaseSpreadStatistics()
     {
@@ -203,16 +379,16 @@ class SpecialAnnouncement extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Dataset|\OpenActive\Models\SchemaOrg\Observation|\OpenActive\Models\SchemaOrg\WebContent|string $diseaseSpreadStatistics
+     * @param \OpenActive\Models\SchemaOrg\WebContent|\OpenActive\Models\SchemaOrg\Dataset|\OpenActive\Models\SchemaOrg\Observation|string $diseaseSpreadStatistics
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setDiseaseSpreadStatistics($diseaseSpreadStatistics)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\WebContent",
             "\OpenActive\Models\SchemaOrg\Dataset",
             "\OpenActive\Models\SchemaOrg\Observation",
-            "\OpenActive\Models\SchemaOrg\WebContent",
             "string",
         ];
 
@@ -222,7 +398,7 @@ class SpecialAnnouncement extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\WebContent|string
+     * @return string|\OpenActive\Models\SchemaOrg\WebContent
      */
     public function getGettingTestedInfo()
     {
@@ -230,15 +406,15 @@ class SpecialAnnouncement extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\WebContent|string $gettingTestedInfo
+     * @param string|\OpenActive\Models\SchemaOrg\WebContent $gettingTestedInfo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setGettingTestedInfo($gettingTestedInfo)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\WebContent",
             "string",
+            "\OpenActive\Models\SchemaOrg\WebContent",
         ];
 
         $gettingTestedInfo = self::checkTypes($gettingTestedInfo, $types);
@@ -273,133 +449,7 @@ class SpecialAnnouncement extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\WebContent
-     */
-    public function getTravelBans()
-    {
-        return $this->travelBans;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\WebContent $travelBans
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTravelBans($travelBans)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\WebContent",
-        ];
-
-        $travelBans = self::checkTypes($travelBans, $types);
-
-        $this->travelBans = $travelBans;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\WebContent
-     */
-    public function getDiseasePreventionInfo()
-    {
-        return $this->diseasePreventionInfo;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\WebContent $diseasePreventionInfo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDiseasePreventionInfo($diseasePreventionInfo)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\WebContent",
-        ];
-
-        $diseasePreventionInfo = self::checkTypes($diseasePreventionInfo, $types);
-
-        $this->diseasePreventionInfo = $diseasePreventionInfo;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\WebContent
-     */
-    public function getPublicTransportClosuresInfo()
-    {
-        return $this->publicTransportClosuresInfo;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\WebContent $publicTransportClosuresInfo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPublicTransportClosuresInfo($publicTransportClosuresInfo)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\WebContent",
-        ];
-
-        $publicTransportClosuresInfo = self::checkTypes($publicTransportClosuresInfo, $types);
-
-        $this->publicTransportClosuresInfo = $publicTransportClosuresInfo;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\WebContent|string
-     */
-    public function getSchoolClosuresInfo()
-    {
-        return $this->schoolClosuresInfo;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\WebContent|string $schoolClosuresInfo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSchoolClosuresInfo($schoolClosuresInfo)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\WebContent",
-            "string",
-        ];
-
-        $schoolClosuresInfo = self::checkTypes($schoolClosuresInfo, $types);
-
-        $this->schoolClosuresInfo = $schoolClosuresInfo;
-    }
-
-    /**
-     * @return Date|DateTime|null
-     */
-    public function getDatePosted()
-    {
-        return $this->datePosted;
-    }
-
-    /**
-     * @param Date|DateTime|null $datePosted
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDatePosted($datePosted)
-    {
-        $types = [
-            "Date",
-            "DateTime",
-            "null",
-        ];
-
-        $datePosted = self::checkTypes($datePosted, $types);
-
-        $this->datePosted = $datePosted;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\WebContent
      */
     public function getNewsUpdatesAndGuidelines()
     {
@@ -407,70 +457,20 @@ class SpecialAnnouncement extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\WebContent $newsUpdatesAndGuidelines
+     * @param \OpenActive\Models\SchemaOrg\WebContent|string $newsUpdatesAndGuidelines
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNewsUpdatesAndGuidelines($newsUpdatesAndGuidelines)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\WebContent",
+            "string",
         ];
 
         $newsUpdatesAndGuidelines = self::checkTypes($newsUpdatesAndGuidelines, $types);
 
         $this->newsUpdatesAndGuidelines = $newsUpdatesAndGuidelines;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\WebContent
-     */
-    public function getQuarantineGuidelines()
-    {
-        return $this->quarantineGuidelines;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\WebContent $quarantineGuidelines
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setQuarantineGuidelines($quarantineGuidelines)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\WebContent",
-        ];
-
-        $quarantineGuidelines = self::checkTypes($quarantineGuidelines, $types);
-
-        $this->quarantineGuidelines = $quarantineGuidelines;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DataFeed|string
-     */
-    public function getWebFeed()
-    {
-        return $this->webFeed;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DataFeed|string $webFeed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setWebFeed($webFeed)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DataFeed",
-            "string",
-        ];
-
-        $webFeed = self::checkTypes($webFeed, $types);
-
-        $this->webFeed = $webFeed;
     }
 
 }

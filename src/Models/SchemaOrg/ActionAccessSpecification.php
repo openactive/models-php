@@ -17,17 +17,34 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
+            "availabilityStarts" => "availabilityStarts",
+            "ineligibleRegion" => "ineligibleRegion",
             "expectsAcceptanceOf" => "expectsAcceptanceOf",
             "category" => "category",
-            "ineligibleRegion" => "ineligibleRegion",
             "requiresSubscription" => "requiresSubscription",
-            "availabilityEnds" => "availabilityEnds",
             "eligibleRegion" => "eligibleRegion",
-            "availabilityStarts" => "availabilityStarts",
+            "availabilityEnds" => "availabilityEnds",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The beginning of the availability of the product or service included in the offer.
+     *
+     *
+     * @var Date|DateTime|string|null
+     */
+    protected $availabilityStarts;
+
+    /**
+     * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.\n\nSee also [[eligibleRegion]].
+     *       
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\GeoShape
+     */
+    protected $ineligibleRegion;
 
     /**
      * An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it.
@@ -41,34 +58,17 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
      * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
      *
      *
-     * @var string|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\CategoryCode|null
+     * @var \OpenActive\Models\SchemaOrg\Thing|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\CategoryCode|string|null
      */
     protected $category;
-
-    /**
-     * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.\n\nSee also [[eligibleRegion]].
-     *       
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\GeoShape
-     */
-    protected $ineligibleRegion;
 
     /**
      * Indicates if use of the media require a subscription  (either paid or free). Allowed values are ```true``` or ```false``` (note that an earlier version had 'yes', 'no').
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MediaSubscription|bool|string|null
+     * @var bool|\OpenActive\Models\SchemaOrg\MediaSubscription|string|null
      */
     protected $requiresSubscription;
-
-    /**
-     * The end of the availability of the product or service included in the offer.
-     *
-     *
-     * @var Date|DateTime|string|null
-     */
-    protected $availabilityEnds;
 
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.\n\nSee also [[ineligibleRegion]].
@@ -80,64 +80,38 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     protected $eligibleRegion;
 
     /**
-     * The beginning of the availability of the product or service included in the offer.
+     * The end of the availability of the product or service included in the offer.
      *
      *
      * @var Date|DateTime|string|null
      */
-    protected $availabilityStarts;
+    protected $availabilityEnds;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Offer|string
+     * @return Date|DateTime|string|null
      */
-    public function getExpectsAcceptanceOf()
+    public function getAvailabilityStarts()
     {
-        return $this->expectsAcceptanceOf;
+        return $this->availabilityStarts;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Offer|string $expectsAcceptanceOf
+     * @param Date|DateTime|string|null $availabilityStarts
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setExpectsAcceptanceOf($expectsAcceptanceOf)
+    public function setAvailabilityStarts($availabilityStarts)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Offer",
-            "string",
-        ];
-
-        $expectsAcceptanceOf = self::checkTypes($expectsAcceptanceOf, $types);
-
-        $this->expectsAcceptanceOf = $expectsAcceptanceOf;
-    }
-
-    /**
-     * @return string|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\CategoryCode|null
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param string|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\CategoryCode|null $category
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCategory($category)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory",
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "\OpenActive\Models\SchemaOrg\CategoryCode",
+            "Date",
+            "DateTime",
+            "Time",
             "null",
         ];
 
-        $category = self::checkTypes($category, $types);
+        $availabilityStarts = self::checkTypes($availabilityStarts, $types);
 
-        $this->category = $category;
+        $this->availabilityStarts = $availabilityStarts;
     }
 
     /**
@@ -167,7 +141,60 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MediaSubscription|bool|string|null
+     * @return \OpenActive\Models\SchemaOrg\Offer|string
+     */
+    public function getExpectsAcceptanceOf()
+    {
+        return $this->expectsAcceptanceOf;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Offer|string $expectsAcceptanceOf
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setExpectsAcceptanceOf($expectsAcceptanceOf)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Offer",
+            "string",
+        ];
+
+        $expectsAcceptanceOf = self::checkTypes($expectsAcceptanceOf, $types);
+
+        $this->expectsAcceptanceOf = $expectsAcceptanceOf;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\CategoryCode|string|null
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\CategoryCode|string|null $category
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCategory($category)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory",
+            "\OpenActive\Models\SchemaOrg\CategoryCode",
+            "string",
+            "null",
+        ];
+
+        $category = self::checkTypes($category, $types);
+
+        $this->category = $category;
+    }
+
+    /**
+     * @return bool|\OpenActive\Models\SchemaOrg\MediaSubscription|string|null
      */
     public function getRequiresSubscription()
     {
@@ -175,15 +202,15 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MediaSubscription|bool|string|null $requiresSubscription
+     * @param bool|\OpenActive\Models\SchemaOrg\MediaSubscription|string|null $requiresSubscription
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRequiresSubscription($requiresSubscription)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MediaSubscription",
             "bool",
+            "\OpenActive\Models\SchemaOrg\MediaSubscription",
             "string",
             "null",
         ];
@@ -191,33 +218,6 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
         $requiresSubscription = self::checkTypes($requiresSubscription, $types);
 
         $this->requiresSubscription = $requiresSubscription;
-    }
-
-    /**
-     * @return Date|DateTime|string|null
-     */
-    public function getAvailabilityEnds()
-    {
-        return $this->availabilityEnds;
-    }
-
-    /**
-     * @param Date|DateTime|string|null $availabilityEnds
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAvailabilityEnds($availabilityEnds)
-    {
-        $types = [
-            "Date",
-            "DateTime",
-            "Time",
-            "null",
-        ];
-
-        $availabilityEnds = self::checkTypes($availabilityEnds, $types);
-
-        $this->availabilityEnds = $availabilityEnds;
     }
 
     /**
@@ -249,17 +249,17 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return Date|DateTime|string|null
      */
-    public function getAvailabilityStarts()
+    public function getAvailabilityEnds()
     {
-        return $this->availabilityStarts;
+        return $this->availabilityEnds;
     }
 
     /**
-     * @param Date|DateTime|string|null $availabilityStarts
+     * @param Date|DateTime|string|null $availabilityEnds
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAvailabilityStarts($availabilityStarts)
+    public function setAvailabilityEnds($availabilityEnds)
     {
         $types = [
             "Date",
@@ -268,9 +268,9 @@ class ActionAccessSpecification extends \OpenActive\Models\SchemaOrg\Intangible
             "null",
         ];
 
-        $availabilityStarts = self::checkTypes($availabilityStarts, $types);
+        $availabilityEnds = self::checkTypes($availabilityEnds, $types);
 
-        $this->availabilityStarts = $availabilityStarts;
+        $this->availabilityEnds = $availabilityEnds;
     }
 
 }

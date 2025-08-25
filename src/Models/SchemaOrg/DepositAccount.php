@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class DepositAccount extends \OpenActive\Models\SchemaOrg\InvestmentOrDeposit
+class DepositAccount extends \OpenActive\Models\SchemaOrg\BankAccount
 {
     /**
      * @return string[]|null

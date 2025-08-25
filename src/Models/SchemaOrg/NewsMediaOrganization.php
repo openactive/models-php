@@ -17,45 +17,21 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
 
     public static function fieldList() {
         $fields = [
-            "ownershipFundingInfo" => "ownershipFundingInfo",
-            "correctionsPolicy" => "correctionsPolicy",
-            "diversityStaffingReport" => "diversityStaffingReport",
             "diversityPolicy" => "diversityPolicy",
             "ethicsPolicy" => "ethicsPolicy",
-            "missionCoveragePrioritiesPolicy" => "missionCoveragePrioritiesPolicy",
-            "actionableFeedbackPolicy" => "actionableFeedbackPolicy",
             "masthead" => "masthead",
-            "unnamedSourcesPolicy" => "unnamedSourcesPolicy",
             "verificationFactCheckingPolicy" => "verificationFactCheckingPolicy",
             "noBylinesPolicy" => "noBylinesPolicy",
+            "unnamedSourcesPolicy" => "unnamedSourcesPolicy",
+            "correctionsPolicy" => "correctionsPolicy",
+            "ownershipFundingInfo" => "ownershipFundingInfo",
+            "diversityStaffingReport" => "diversityStaffingReport",
+            "actionableFeedbackPolicy" => "actionableFeedbackPolicy",
+            "missionCoveragePrioritiesPolicy" => "missionCoveragePrioritiesPolicy",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * For an [[Organization]] (often but not necessarily a [[NewsMediaOrganization]]), a description of organizational ownership structure; funding and grants. In a news/media setting, this is with particular reference to editorial independence.   Note that the [[funder]] is also available and can be used to make basic funder information machine-readable.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\AboutPage|\OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    protected $ownershipFundingInfo;
-
-    /**
-     * For an [[Organization]] (e.g. [[NewsMediaOrganization]]), a statement describing (in news media, the newsroom’s) disclosure and correction policy for errors.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    protected $correctionsPolicy;
-
-    /**
-     * For an [[Organization]] (often but not necessarily a [[NewsMediaOrganization]]), a report on staffing diversity issues. In a news context this might be for example ASNE or RTDNA (US) reports, or self-reported.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Article
-     */
-    protected $diversityStaffingReport;
 
     /**
      * Statement on diversity policy by an [[Organization]] e.g. a [[NewsMediaOrganization]]. For a [[NewsMediaOrganization]], a statement describing the newsroom’s diversity policy on both staffing and sources, typically providing staffing data.
@@ -74,42 +50,18 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     protected $ethicsPolicy;
 
     /**
-     * For a [[NewsMediaOrganization]], a statement on coverage priorities, including any public agenda or stance on issues.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
-     */
-    protected $missionCoveragePrioritiesPolicy;
-
-    /**
-     * For a [[NewsMediaOrganization]] or other news-related [[Organization]], a statement about public engagement activities (for news media, the newsroom’s), including involving the public - digitally or otherwise -- in coverage decisions, reporting and activities after publication.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    protected $actionableFeedbackPolicy;
-
-    /**
      * For a [[NewsMediaOrganization]], a link to the masthead page or a page listing top editorial management.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    protected $masthead;
-
-    /**
-     * For an [[Organization]] (typically a [[NewsMediaOrganization]]), a statement about policy on use of unnamed sources and the decision process required.
-     *
-     *
      * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
-    protected $unnamedSourcesPolicy;
+    protected $masthead;
 
     /**
      * Disclosure about verification and fact-checking processes for a [[NewsMediaOrganization]] or other fact-checking [[Organization]].
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
     protected $verificationFactCheckingPolicy;
 
@@ -122,80 +74,52 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     protected $noBylinesPolicy;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\AboutPage|\OpenActive\Models\SchemaOrg\CreativeWork
+     * For an [[Organization]] (typically a [[NewsMediaOrganization]]), a statement about policy on use of unnamed sources and the decision process required.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
-    public function getOwnershipFundingInfo()
-    {
-        return $this->ownershipFundingInfo;
-    }
+    protected $unnamedSourcesPolicy;
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\AboutPage|\OpenActive\Models\SchemaOrg\CreativeWork $ownershipFundingInfo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * For an [[Organization]] (e.g. [[NewsMediaOrganization]]), a statement describing (in news media, the newsroom’s) disclosure and correction policy for errors.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
-    public function setOwnershipFundingInfo($ownershipFundingInfo)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\AboutPage",
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-        ];
-
-        $ownershipFundingInfo = self::checkTypes($ownershipFundingInfo, $types);
-
-        $this->ownershipFundingInfo = $ownershipFundingInfo;
-    }
+    protected $correctionsPolicy;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
+     * For an [[Organization]] (often but not necessarily a [[NewsMediaOrganization]]), a description of organizational ownership structure; funding and grants. In a news/media setting, this is with particular reference to editorial independence.   Note that the [[funder]] is also available and can be used to make basic funder information machine-readable.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string|\OpenActive\Models\SchemaOrg\AboutPage
      */
-    public function getCorrectionsPolicy()
-    {
-        return $this->correctionsPolicy;
-    }
+    protected $ownershipFundingInfo;
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $correctionsPolicy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * For an [[Organization]] (often but not necessarily a [[NewsMediaOrganization]]), a report on staffing diversity issues. In a news context this might be for example ASNE or RTDNA (US) reports, or self-reported.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Article
      */
-    public function setCorrectionsPolicy($correctionsPolicy)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-        ];
-
-        $correctionsPolicy = self::checkTypes($correctionsPolicy, $types);
-
-        $this->correctionsPolicy = $correctionsPolicy;
-    }
+    protected $diversityStaffingReport;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Article
+     * For a [[NewsMediaOrganization]] or other news-related [[Organization]], a statement about public engagement activities (for news media, the newsroom’s), including involving the public - digitally or otherwise -- in coverage decisions, reporting and activities after publication.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
      */
-    public function getDiversityStaffingReport()
-    {
-        return $this->diversityStaffingReport;
-    }
+    protected $actionableFeedbackPolicy;
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Article $diversityStaffingReport
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * For a [[NewsMediaOrganization]], a statement on coverage priorities, including any public agenda or stance on issues.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\CreativeWork
      */
-    public function setDiversityStaffingReport($diversityStaffingReport)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\Article",
-        ];
-
-        $diversityStaffingReport = self::checkTypes($diversityStaffingReport, $types);
-
-        $this->diversityStaffingReport = $diversityStaffingReport;
-    }
+    protected $missionCoveragePrioritiesPolicy;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
@@ -250,71 +174,21 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
-    public function getMissionCoveragePrioritiesPolicy()
-    {
-        return $this->missionCoveragePrioritiesPolicy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $missionCoveragePrioritiesPolicy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMissionCoveragePrioritiesPolicy($missionCoveragePrioritiesPolicy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-            "string",
-        ];
-
-        $missionCoveragePrioritiesPolicy = self::checkTypes($missionCoveragePrioritiesPolicy, $types);
-
-        $this->missionCoveragePrioritiesPolicy = $missionCoveragePrioritiesPolicy;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
-     */
-    public function getActionableFeedbackPolicy()
-    {
-        return $this->actionableFeedbackPolicy;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $actionableFeedbackPolicy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setActionableFeedbackPolicy($actionableFeedbackPolicy)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-        ];
-
-        $actionableFeedbackPolicy = self::checkTypes($actionableFeedbackPolicy, $types);
-
-        $this->actionableFeedbackPolicy = $actionableFeedbackPolicy;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
-     */
     public function getMasthead()
     {
         return $this->masthead;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $masthead
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $masthead
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setMasthead($masthead)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
         ];
 
         $masthead = self::checkTypes($masthead, $types);
@@ -325,46 +199,21 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
     /**
      * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
      */
-    public function getUnnamedSourcesPolicy()
-    {
-        return $this->unnamedSourcesPolicy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $unnamedSourcesPolicy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setUnnamedSourcesPolicy($unnamedSourcesPolicy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-            "string",
-        ];
-
-        $unnamedSourcesPolicy = self::checkTypes($unnamedSourcesPolicy, $types);
-
-        $this->unnamedSourcesPolicy = $unnamedSourcesPolicy;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
-     */
     public function getVerificationFactCheckingPolicy()
     {
         return $this->verificationFactCheckingPolicy;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $verificationFactCheckingPolicy
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $verificationFactCheckingPolicy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVerificationFactCheckingPolicy($verificationFactCheckingPolicy)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
         ];
 
         $verificationFactCheckingPolicy = self::checkTypes($verificationFactCheckingPolicy, $types);
@@ -395,6 +244,157 @@ class NewsMediaOrganization extends \OpenActive\Models\SchemaOrg\Organization
         $noBylinesPolicy = self::checkTypes($noBylinesPolicy, $types);
 
         $this->noBylinesPolicy = $noBylinesPolicy;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    public function getUnnamedSourcesPolicy()
+    {
+        return $this->unnamedSourcesPolicy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $unnamedSourcesPolicy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUnnamedSourcesPolicy($unnamedSourcesPolicy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
+        ];
+
+        $unnamedSourcesPolicy = self::checkTypes($unnamedSourcesPolicy, $types);
+
+        $this->unnamedSourcesPolicy = $unnamedSourcesPolicy;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    public function getCorrectionsPolicy()
+    {
+        return $this->correctionsPolicy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $correctionsPolicy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCorrectionsPolicy($correctionsPolicy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
+        ];
+
+        $correctionsPolicy = self::checkTypes($correctionsPolicy, $types);
+
+        $this->correctionsPolicy = $correctionsPolicy;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string|\OpenActive\Models\SchemaOrg\AboutPage
+     */
+    public function getOwnershipFundingInfo()
+    {
+        return $this->ownershipFundingInfo;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string|\OpenActive\Models\SchemaOrg\AboutPage $ownershipFundingInfo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOwnershipFundingInfo($ownershipFundingInfo)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
+            "\OpenActive\Models\SchemaOrg\AboutPage",
+        ];
+
+        $ownershipFundingInfo = self::checkTypes($ownershipFundingInfo, $types);
+
+        $this->ownershipFundingInfo = $ownershipFundingInfo;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Article
+     */
+    public function getDiversityStaffingReport()
+    {
+        return $this->diversityStaffingReport;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Article $diversityStaffingReport
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDiversityStaffingReport($diversityStaffingReport)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\Article",
+        ];
+
+        $diversityStaffingReport = self::checkTypes($diversityStaffingReport, $types);
+
+        $this->diversityStaffingReport = $diversityStaffingReport;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    public function getActionableFeedbackPolicy()
+    {
+        return $this->actionableFeedbackPolicy;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $actionableFeedbackPolicy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActionableFeedbackPolicy($actionableFeedbackPolicy)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+        ];
+
+        $actionableFeedbackPolicy = self::checkTypes($actionableFeedbackPolicy, $types);
+
+        $this->actionableFeedbackPolicy = $actionableFeedbackPolicy;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\CreativeWork
+     */
+    public function getMissionCoveragePrioritiesPolicy()
+    {
+        return $this->missionCoveragePrioritiesPolicy;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\CreativeWork $missionCoveragePrioritiesPolicy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMissionCoveragePrioritiesPolicy($missionCoveragePrioritiesPolicy)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+        ];
+
+        $missionCoveragePrioritiesPolicy = self::checkTypes($missionCoveragePrioritiesPolicy, $types);
+
+        $this->missionCoveragePrioritiesPolicy = $missionCoveragePrioritiesPolicy;
     }
 
 }

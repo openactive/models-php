@@ -17,8 +17,8 @@ class SuperficialAnatomy extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "relatedTherapy" => "relatedTherapy",
             "significance" => "significance",
+            "relatedTherapy" => "relatedTherapy",
             "relatedAnatomy" => "relatedAnatomy",
             "relatedCondition" => "relatedCondition",
             "associatedPathophysiology" => "associatedPathophysiology",
@@ -28,20 +28,20 @@ class SuperficialAnatomy extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * A medical therapy related to this anatomy.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
-     */
-    protected $relatedTherapy;
-
-    /**
      * The significance associated with the superficial anatomy; as an example, how characteristics of the superficial anatomy can suggest underlying medical conditions or courses of treatment.
      *
      *
      * @var string
      */
     protected $significance;
+
+    /**
+     * A medical therapy related to this anatomy.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     */
+    protected $relatedTherapy;
 
     /**
      * Anatomical systems or structures that relate to the superficial anatomy.
@@ -68,6 +68,30 @@ class SuperficialAnatomy extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $associatedPathophysiology;
 
     /**
+     * @return string
+     */
+    public function getSignificance()
+    {
+        return $this->significance;
+    }
+
+    /**
+     * @param string $significance
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSignificance($significance)
+    {
+        $types = [
+            "string",
+        ];
+
+        $significance = self::checkTypes($significance, $types);
+
+        $this->significance = $significance;
+    }
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
     public function getRelatedTherapy()
@@ -90,30 +114,6 @@ class SuperficialAnatomy extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $relatedTherapy = self::checkTypes($relatedTherapy, $types);
 
         $this->relatedTherapy = $relatedTherapy;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSignificance()
-    {
-        return $this->significance;
-    }
-
-    /**
-     * @param string $significance
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSignificance($significance)
-    {
-        $types = [
-            "string",
-        ];
-
-        $significance = self::checkTypes($significance, $types);
-
-        $this->significance = $significance;
     }
 
     /**

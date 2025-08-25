@@ -17,24 +17,16 @@ class DrugCost extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "applicableLocation" => "applicableLocation",
             "costPerUnit" => "costPerUnit",
+            "costOrigin" => "costOrigin",
             "costCategory" => "costCategory",
             "drugUnit" => "drugUnit",
             "costCurrency" => "costCurrency",
-            "costOrigin" => "costOrigin",
+            "applicableLocation" => "applicableLocation",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The location in which the status applies.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
-     */
-    protected $applicableLocation;
 
     /**
      * The cost per unit of the drug.
@@ -43,6 +35,14 @@ class DrugCost extends \OpenActive\Models\SchemaOrg\MedicalEntity
      * @var string|Number|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
      */
     protected $costPerUnit;
+
+    /**
+     * Additional details to capture the origin of the cost data. For example, 'Medicare Part B'.
+     *
+     *
+     * @var string
+     */
+    protected $costOrigin;
 
     /**
      * The category of cost, such as wholesale, retail, reimbursement cap, etc.
@@ -61,7 +61,7 @@ class DrugCost extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $drugUnit;
 
     /**
-     * The currency (in 3-letter of the drug cost. See: http://en.wikipedia.org/wiki/ISO_4217. 
+     * The currency (in 3-letter) of the drug cost. See: http://en.wikipedia.org/wiki/ISO_4217. 
      *
      *
      * @var string
@@ -69,37 +69,12 @@ class DrugCost extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $costCurrency;
 
     /**
-     * Additional details to capture the origin of the cost data. For example, 'Medicare Part B'.
+     * The location in which the status applies.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
      */
-    protected $costOrigin;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
-     */
-    public function getApplicableLocation()
-    {
-        return $this->applicableLocation;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $applicableLocation
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setApplicableLocation($applicableLocation)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-            "string",
-        ];
-
-        $applicableLocation = self::checkTypes($applicableLocation, $types);
-
-        $this->applicableLocation = $applicableLocation;
-    }
+    protected $applicableLocation;
 
     /**
      * @return string|Number|\OpenActive\Enums\SchemaOrg\QualitativeValue|null
@@ -126,6 +101,30 @@ class DrugCost extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $costPerUnit = self::checkTypes($costPerUnit, $types);
 
         $this->costPerUnit = $costPerUnit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCostOrigin()
+    {
+        return $this->costOrigin;
+    }
+
+    /**
+     * @param string $costOrigin
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCostOrigin($costOrigin)
+    {
+        $types = [
+            "string",
+        ];
+
+        $costOrigin = self::checkTypes($costOrigin, $types);
+
+        $this->costOrigin = $costOrigin;
     }
 
     /**
@@ -202,27 +201,28 @@ class DrugCost extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
      */
-    public function getCostOrigin()
+    public function getApplicableLocation()
     {
-        return $this->costOrigin;
+        return $this->applicableLocation;
     }
 
     /**
-     * @param string $costOrigin
+     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $applicableLocation
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCostOrigin($costOrigin)
+    public function setApplicableLocation($applicableLocation)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
             "string",
         ];
 
-        $costOrigin = self::checkTypes($costOrigin, $types);
+        $applicableLocation = self::checkTypes($applicableLocation, $types);
 
-        $this->costOrigin = $costOrigin;
+        $this->applicableLocation = $applicableLocation;
     }
 
 }

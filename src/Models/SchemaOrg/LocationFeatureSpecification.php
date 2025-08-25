@@ -17,13 +17,21 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
 
     public static function fieldList() {
         $fields = [
+            "validThrough" => "validThrough",
             "hoursAvailable" => "hoursAvailable",
             "validFrom" => "validFrom",
-            "validThrough" => "validThrough",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $validThrough;
 
     /**
      * The hours during which this service or contact is available.
@@ -42,12 +50,30 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
     protected $validFrom;
 
     /**
-     * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
-     *
-     *
-     * @var Date|DateTime|null
+     * @return Date|DateTime|null
      */
-    protected $validThrough;
+    public function getValidThrough()
+    {
+        return $this->validThrough;
+    }
+
+    /**
+     * @param Date|DateTime|null $validThrough
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValidThrough($validThrough)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $validThrough = self::checkTypes($validThrough, $types);
+
+        $this->validThrough = $validThrough;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\OpeningHoursSpecification|string
@@ -98,32 +124,6 @@ class LocationFeatureSpecification extends \OpenActive\Models\SchemaOrg\Property
         $validFrom = self::checkTypes($validFrom, $types);
 
         $this->validFrom = $validFrom;
-    }
-
-    /**
-     * @return Date|DateTime|null
-     */
-    public function getValidThrough()
-    {
-        return $this->validThrough;
-    }
-
-    /**
-     * @param Date|DateTime|null $validThrough
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setValidThrough($validThrough)
-    {
-        $types = [
-            "Date",
-            "DateTime",
-            "null",
-        ];
-
-        $validThrough = self::checkTypes($validThrough, $types);
-
-        $this->validThrough = $validThrough;
     }
 
 }

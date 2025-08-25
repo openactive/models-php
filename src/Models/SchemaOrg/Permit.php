@@ -17,17 +17,33 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "validFor" => "validFor",
             "issuedBy" => "issuedBy",
+            "validIn" => "validIn",
+            "validFor" => "validFor",
+            "issuedThrough" => "issuedThrough",
             "validUntil" => "validUntil",
             "validFrom" => "validFrom",
-            "issuedThrough" => "issuedThrough",
-            "validIn" => "validIn",
             "permitAudience" => "permitAudience",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The organization issuing the item, for example a [[Permit]], [[Ticket]], or [[Certification]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    protected $issuedBy;
+
+    /**
+     * The geographic area where the item is valid. Applies for example to a [[Permit]], a [[Certification]], or an [[EducationalOccupationalCredential]]. 
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
+     */
+    protected $validIn;
 
     /**
      * The duration of validity of a permit or similar thing.
@@ -38,12 +54,12 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     protected $validFor;
 
     /**
-     * The organization issuing the ticket or permit.
+     * The service through which the permit was granted.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     * @var \OpenActive\Models\SchemaOrg\Service|string
      */
-    protected $issuedBy;
+    protected $issuedThrough;
 
     /**
      * The date when the item is no longer valid.
@@ -62,28 +78,62 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     protected $validFrom;
 
     /**
-     * The service through with the permit was granted.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Service|string
-     */
-    protected $issuedThrough;
-
-    /**
-     * The geographic area where a permit or similar thing is valid.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
-     */
-    protected $validIn;
-
-    /**
      * The target audience for this permit.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Audience|string
      */
     protected $permitAudience;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getIssuedBy()
+    {
+        return $this->issuedBy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|string $issuedBy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIssuedBy($issuedBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $issuedBy = self::checkTypes($issuedBy, $types);
+
+        $this->issuedBy = $issuedBy;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
+     */
+    public function getValidIn()
+    {
+        return $this->validIn;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $validIn
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValidIn($validIn)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+            "string",
+        ];
+
+        $validIn = self::checkTypes($validIn, $types);
+
+        $this->validIn = $validIn;
+    }
 
     /**
      * @return DateInterval|string|null
@@ -112,28 +162,28 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|string
+     * @return \OpenActive\Models\SchemaOrg\Service|string
      */
-    public function getIssuedBy()
+    public function getIssuedThrough()
     {
-        return $this->issuedBy;
+        return $this->issuedThrough;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|string $issuedBy
+     * @param \OpenActive\Models\SchemaOrg\Service|string $issuedThrough
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIssuedBy($issuedBy)
+    public function setIssuedThrough($issuedThrough)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Service",
             "string",
         ];
 
-        $issuedBy = self::checkTypes($issuedBy, $types);
+        $issuedThrough = self::checkTypes($issuedThrough, $types);
 
-        $this->issuedBy = $issuedBy;
+        $this->issuedThrough = $issuedThrough;
     }
 
     /**
@@ -185,56 +235,6 @@ class Permit extends \OpenActive\Models\SchemaOrg\Intangible
         $validFrom = self::checkTypes($validFrom, $types);
 
         $this->validFrom = $validFrom;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Service|string
-     */
-    public function getIssuedThrough()
-    {
-        return $this->issuedThrough;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Service|string $issuedThrough
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIssuedThrough($issuedThrough)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Service",
-            "string",
-        ];
-
-        $issuedThrough = self::checkTypes($issuedThrough, $types);
-
-        $this->issuedThrough = $issuedThrough;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
-     */
-    public function getValidIn()
-    {
-        return $this->validIn;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $validIn
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setValidIn($validIn)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-            "string",
-        ];
-
-        $validIn = self::checkTypes($validIn, $types);
-
-        $this->validIn = $validIn;
     }
 
     /**

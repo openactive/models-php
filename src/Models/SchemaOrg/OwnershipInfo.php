@@ -18,9 +18,9 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     public static function fieldList() {
         $fields = [
             "ownedFrom" => "ownedFrom",
+            "ownedThrough" => "ownedThrough",
             "typeOfGood" => "typeOfGood",
             "acquiredFrom" => "acquiredFrom",
-            "ownedThrough" => "ownedThrough",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -35,6 +35,14 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $ownedFrom;
 
     /**
+     * The date and time of giving up ownership on the product.
+     *
+     *
+     * @var DateTime|null
+     */
+    protected $ownedThrough;
+
+    /**
      * The product that this structured value is referring to.
      *
      *
@@ -46,17 +54,9 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
      * The organization or person from which the product was acquired.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
     protected $acquiredFrom;
-
-    /**
-     * The date and time of giving up ownership on the product.
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $ownedThrough;
 
     /**
      * @return DateTime|null
@@ -81,6 +81,31 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
         $ownedFrom = self::checkTypes($ownedFrom, $types);
 
         $this->ownedFrom = $ownedFrom;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getOwnedThrough()
+    {
+        return $this->ownedThrough;
+    }
+
+    /**
+     * @param DateTime|null $ownedThrough
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOwnedThrough($ownedThrough)
+    {
+        $types = [
+            "DateTime",
+            "null",
+        ];
+
+        $ownedThrough = self::checkTypes($ownedThrough, $types);
+
+        $this->ownedThrough = $ownedThrough;
     }
 
     /**
@@ -110,7 +135,7 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
     public function getAcquiredFrom()
     {
@@ -118,46 +143,21 @@ class OwnershipInfo extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $acquiredFrom
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $acquiredFrom
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAcquiredFrom($acquiredFrom)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
             "string",
         ];
 
         $acquiredFrom = self::checkTypes($acquiredFrom, $types);
 
         $this->acquiredFrom = $acquiredFrom;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getOwnedThrough()
-    {
-        return $this->ownedThrough;
-    }
-
-    /**
-     * @param DateTime|null $ownedThrough
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOwnedThrough($ownedThrough)
-    {
-        $types = [
-            "DateTime",
-            "null",
-        ];
-
-        $ownedThrough = self::checkTypes($ownedThrough, $types);
-
-        $this->ownedThrough = $ownedThrough;
     }
 
 }

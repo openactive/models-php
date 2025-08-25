@@ -17,21 +17,13 @@ class EducationEvent extends \OpenActive\Models\SchemaOrg\Event
 
     public static function fieldList() {
         $fields = [
-            "teaches" => "teaches",
             "educationalLevel" => "educationalLevel",
             "assesses" => "assesses",
+            "teaches" => "teaches",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The item being described is intended to help a person learn the competency or learning outcome defined by the referenced term.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
-     */
-    protected $teaches;
 
     /**
      * The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators.
@@ -45,34 +37,17 @@ class EducationEvent extends \OpenActive\Models\SchemaOrg\Event
      * The item being described is intended to assess the competency or learning outcome defined by the referenced term.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
     protected $assesses;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     * The item being described is intended to help a person learn the competency or learning outcome defined by the referenced term.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
-    public function getTeaches()
-    {
-        return $this->teaches;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $teaches
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTeaches($teaches)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-            "string",
-        ];
-
-        $teaches = self::checkTypes($teaches, $types);
-
-        $this->teaches = $teaches;
-    }
+    protected $teaches;
 
     /**
      * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
@@ -100,7 +75,7 @@ class EducationEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
     public function getAssesses()
     {
@@ -108,20 +83,45 @@ class EducationEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $assesses
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $assesses
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAssesses($assesses)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
         ];
 
         $assesses = self::checkTypes($assesses, $types);
 
         $this->assesses = $assesses;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     */
+    public function getTeaches()
+    {
+        return $this->teaches;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $teaches
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTeaches($teaches)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+        ];
+
+        $teaches = self::checkTypes($teaches, $types);
+
+        $this->teaches = $teaches;
     }
 
 }

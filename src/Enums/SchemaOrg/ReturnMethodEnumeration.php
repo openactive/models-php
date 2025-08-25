@@ -8,7 +8,8 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class ReturnMethodEnumeration
 {
-    const ReturnByMail = \OpenActive\Enums\SchemaOrg\ReturnMethodEnumeration\ReturnByMail::class;
-    const ReturnAtKiosk = \OpenActive\Enums\SchemaOrg\ReturnMethodEnumeration\ReturnAtKiosk::class;
+    const KeepProduct = \OpenActive\Enums\SchemaOrg\ReturnMethodEnumeration\KeepProduct::class;
     const ReturnInStore = \OpenActive\Enums\SchemaOrg\ReturnMethodEnumeration\ReturnInStore::class;
+    const ReturnAtKiosk = \OpenActive\Enums\SchemaOrg\ReturnMethodEnumeration\ReturnAtKiosk::class;
+    const ReturnByMail = \OpenActive\Enums\SchemaOrg\ReturnMethodEnumeration\ReturnByMail::class;
 }

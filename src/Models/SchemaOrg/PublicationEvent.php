@@ -18,8 +18,8 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
     public static function fieldList() {
         $fields = [
             "publishedBy" => "publishedBy",
-            "free" => "free",
             "publishedOn" => "publishedOn",
+            "free" => "free",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -29,17 +29,9 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
      * An agent associated with the publication event.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
     protected $publishedBy;
-
-    /**
-     * A flag to signal that the item, event, or place is accessible for free.
-     *
-     *
-     * @var bool|null
-     */
-    protected $free;
 
     /**
      * A broadcast service associated with the publication event.
@@ -50,7 +42,15 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
     protected $publishedOn;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     * A flag to signal that the item, event, or place is accessible for free.
+     *
+     *
+     * @var bool|null
+     */
+    protected $free;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
     public function getPublishedBy()
     {
@@ -58,46 +58,21 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $publishedBy
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $publishedBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPublishedBy($publishedBy)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
             "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
             "string",
         ];
 
         $publishedBy = self::checkTypes($publishedBy, $types);
 
         $this->publishedBy = $publishedBy;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getFree()
-    {
-        return $this->free;
-    }
-
-    /**
-     * @param bool|null $free
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFree($free)
-    {
-        $types = [
-            "bool",
-            "null",
-        ];
-
-        $free = self::checkTypes($free, $types);
-
-        $this->free = $free;
     }
 
     /**
@@ -123,6 +98,31 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
         $publishedOn = self::checkTypes($publishedOn, $types);
 
         $this->publishedOn = $publishedOn;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getFree()
+    {
+        return $this->free;
+    }
+
+    /**
+     * @param bool|null $free
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFree($free)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $free = self::checkTypes($free, $types);
+
+        $this->free = $free;
     }
 
 }

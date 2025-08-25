@@ -17,20 +17,12 @@ class DDxElement extends \OpenActive\Models\SchemaOrg\MedicalIntangible
 
     public static function fieldList() {
         $fields = [
-            "distinguishingSign" => "distinguishingSign",
             "diagnosis" => "diagnosis",
+            "distinguishingSign" => "distinguishingSign",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * One of a set of signs and symptoms that can be used to distinguish this diagnosis from others in the differential diagnosis.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom|string
-     */
-    protected $distinguishingSign;
 
     /**
      * One or more alternative conditions considered in the differential diagnosis process as output of a diagnosis process.
@@ -41,29 +33,12 @@ class DDxElement extends \OpenActive\Models\SchemaOrg\MedicalIntangible
     protected $diagnosis;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom|string
+     * One of a set of signs and symptoms that can be used to distinguish this diagnosis from others in the differential diagnosis.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom|string
      */
-    public function getDistinguishingSign()
-    {
-        return $this->distinguishingSign;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom|string $distinguishingSign
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDistinguishingSign($distinguishingSign)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalSignOrSymptom",
-            "string",
-        ];
-
-        $distinguishingSign = self::checkTypes($distinguishingSign, $types);
-
-        $this->distinguishingSign = $distinguishingSign;
-    }
+    protected $distinguishingSign;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
@@ -88,6 +63,31 @@ class DDxElement extends \OpenActive\Models\SchemaOrg\MedicalIntangible
         $diagnosis = self::checkTypes($diagnosis, $types);
 
         $this->diagnosis = $diagnosis;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom|string
+     */
+    public function getDistinguishingSign()
+    {
+        return $this->distinguishingSign;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalSignOrSymptom|string $distinguishingSign
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDistinguishingSign($distinguishingSign)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalSignOrSymptom",
+            "string",
+        ];
+
+        $distinguishingSign = self::checkTypes($distinguishingSign, $types);
+
+        $this->distinguishingSign = $distinguishingSign;
     }
 
 }

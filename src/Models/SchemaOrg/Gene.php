@@ -17,25 +17,25 @@ class Gene extends \OpenActive\Models\SchemaOrg\BioChemEntity
 
     public static function fieldList() {
         $fields = [
-            "alternativeOf" => "alternativeOf",
+            "expressedIn" => "expressedIn",
             "hasBioPolymerSequence" => "hasBioPolymerSequence",
             "encodesBioChemEntity" => "encodesBioChemEntity",
-            "expressedIn" => "expressedIn",
+            "alternativeOf" => "alternativeOf",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Another gene which is a variation of this one.
+     * Tissue, organ, biological sample, etc in which activity of this gene has been observed experimentally. For example brain, digestive system.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Gene|string
+     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\BioChemEntity|string
      */
-    protected $alternativeOf;
+    protected $expressedIn;
 
     /**
-     * A symbolic representation of a BioChemEnity. For example, a nucleotide sequence of a Gene or an amino acid sequence of a Protein.
+     * A symbolic representation of a BioChemEntity. For example, a nucleotide sequence of a Gene or an amino acid sequence of a Protein.
      *
      *
      * @var string
@@ -51,36 +51,39 @@ class Gene extends \OpenActive\Models\SchemaOrg\BioChemEntity
     protected $encodesBioChemEntity;
 
     /**
-     * Tissue, organ, biological sample, etc in which activity of this gene has been observed experimentally. For example brain, digestive system.
+     * Another gene which is a variation of this one.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\BioChemEntity|\OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string
+     * @var \OpenActive\Models\SchemaOrg\Gene|string
      */
-    protected $expressedIn;
+    protected $alternativeOf;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Gene|string
+     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\BioChemEntity|string
      */
-    public function getAlternativeOf()
+    public function getExpressedIn()
     {
-        return $this->alternativeOf;
+        return $this->expressedIn;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Gene|string $alternativeOf
+     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\BioChemEntity|string $expressedIn
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAlternativeOf($alternativeOf)
+    public function setExpressedIn($expressedIn)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Gene",
+            "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
+            "\OpenActive\Models\SchemaOrg\AnatomicalSystem",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "\OpenActive\Models\SchemaOrg\BioChemEntity",
             "string",
         ];
 
-        $alternativeOf = self::checkTypes($alternativeOf, $types);
+        $expressedIn = self::checkTypes($expressedIn, $types);
 
-        $this->alternativeOf = $alternativeOf;
+        $this->expressedIn = $expressedIn;
     }
 
     /**
@@ -133,31 +136,28 @@ class Gene extends \OpenActive\Models\SchemaOrg\BioChemEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\BioChemEntity|\OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string
+     * @return \OpenActive\Models\SchemaOrg\Gene|string
      */
-    public function getExpressedIn()
+    public function getAlternativeOf()
     {
-        return $this->expressedIn;
+        return $this->alternativeOf;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\BioChemEntity|\OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string $expressedIn
+     * @param \OpenActive\Models\SchemaOrg\Gene|string $alternativeOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setExpressedIn($expressedIn)
+    public function setAlternativeOf($alternativeOf)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
-            "\OpenActive\Models\SchemaOrg\BioChemEntity",
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-            "\OpenActive\Models\SchemaOrg\AnatomicalSystem",
+            "\OpenActive\Models\SchemaOrg\Gene",
             "string",
         ];
 
-        $expressedIn = self::checkTypes($expressedIn, $types);
+        $alternativeOf = self::checkTypes($alternativeOf, $types);
 
-        $this->expressedIn = $expressedIn;
+        $this->alternativeOf = $alternativeOf;
     }
 
 }

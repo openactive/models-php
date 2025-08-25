@@ -17,38 +17,14 @@ class ShippingDeliveryTime extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "transitTime" => "transitTime",
-            "businessDays" => "businessDays",
-            "handlingTime" => "handlingTime",
             "cutoffTime" => "cutoffTime",
+            "businessDays" => "businessDays",
+            "transitTime" => "transitTime",
+            "handlingTime" => "handlingTime",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The typical delay the order has been sent for delivery and the goods reach the final customer. Typical properties: minValue, maxValue, unitCode (d for DAY).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
-     */
-    protected $transitTime;
-
-    /**
-     * Days of the week when the merchant typically operates, indicated via opening hours markup.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\OpeningHoursSpecification|string
-     */
-    protected $businessDays;
-
-    /**
-     * The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup. Typical properties: minValue, maxValue, unitCode (d for DAY).  This is by common convention assumed to mean business days (if a unitCode is used, coded as "d"), i.e. only counting days when the business normally operates.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
-     */
-    protected $handlingTime;
 
     /**
      * Order cutoff time allows merchants to describe the time after which they will no longer process orders received on that day. For orders processed after cutoff time, one day gets added to the delivery time estimate. This property is expected to be most typically used via the [[ShippingRateSettings]] publication pattern. The time is indicated using the ISO-8601 Time format, e.g. "23:30:00-05:00" would represent 6:30 pm Eastern Standard Time (EST) which is 5 hours behind Coordinated Universal Time (UTC).
@@ -59,28 +35,52 @@ class ShippingDeliveryTime extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $cutoffTime;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     * Days of the week when the merchant typically operates, indicated via opening hours markup.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\OpeningHoursSpecification|string
      */
-    public function getTransitTime()
+    protected $businessDays;
+
+    /**
+     * The typical delay the order has been sent for delivery and the goods reach the final customer. Typical properties: minValue, maxValue, unitCode (d for DAY).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    protected $transitTime;
+
+    /**
+     * The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup. Typical properties: minValue, maxValue, unitCode (d for DAY).  This is by common convention assumed to mean business days (if a unitCode is used, coded as "d"), i.e. only counting days when the business normally operates.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    protected $handlingTime;
+
+    /**
+     * @return string|null
+     */
+    public function getCutoffTime()
     {
-        return $this->transitTime;
+        return $this->cutoffTime;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $transitTime
+     * @param string|null $cutoffTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTransitTime($transitTime)
+    public function setCutoffTime($cutoffTime)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "string",
+            "Time",
+            "null",
         ];
 
-        $transitTime = self::checkTypes($transitTime, $types);
+        $cutoffTime = self::checkTypes($cutoffTime, $types);
 
-        $this->transitTime = $transitTime;
+        $this->cutoffTime = $cutoffTime;
     }
 
     /**
@@ -111,6 +111,31 @@ class ShippingDeliveryTime extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
+    public function getTransitTime()
+    {
+        return $this->transitTime;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $transitTime
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTransitTime($transitTime)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
+        ];
+
+        $transitTime = self::checkTypes($transitTime, $types);
+
+        $this->transitTime = $transitTime;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
     public function getHandlingTime()
     {
         return $this->handlingTime;
@@ -131,31 +156,6 @@ class ShippingDeliveryTime extends \OpenActive\Models\SchemaOrg\StructuredValue
         $handlingTime = self::checkTypes($handlingTime, $types);
 
         $this->handlingTime = $handlingTime;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getCutoffTime()
-    {
-        return $this->cutoffTime;
-    }
-
-    /**
-     * @param string|null $cutoffTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCutoffTime($cutoffTime)
-    {
-        $types = [
-            "Time",
-            "null",
-        ];
-
-        $cutoffTime = self::checkTypes($cutoffTime, $types);
-
-        $this->cutoffTime = $cutoffTime;
     }
 
 }

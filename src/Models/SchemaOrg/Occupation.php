@@ -17,26 +17,59 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
+            "qualifications" => "qualifications",
+            "experienceRequirements" => "experienceRequirements",
             "estimatedSalary" => "estimatedSalary",
+            "skills" => "skills",
+            "occupationalCategory" => "occupationalCategory",
             "responsibilities" => "responsibilities",
             "occupationLocation" => "occupationLocation",
-            "experienceRequirements" => "experienceRequirements",
             "educationRequirements" => "educationRequirements",
-            "skills" => "skills",
-            "qualifications" => "qualifications",
-            "occupationalCategory" => "occupationalCategory",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
+     * Specific qualifications required for this role or Occupation.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
+     */
+    protected $qualifications;
+
+    /**
+     * Description of skills and experience needed for the position or Occupation.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\OccupationalExperienceRequirements|string
+     */
+    protected $experienceRequirements;
+
+    /**
      * An estimated salary for a job posting or occupation, based on a variety of variables including, but not limited to industry, job title, and location. Estimated salaries  are often computed by outside organizations rather than the hiring organization, who may not have committed to the estimated value.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|Number|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|string|null
      */
     protected $estimatedSalary;
+
+    /**
+     * A statement of knowledge, skill, ability, task or any other assertion expressing a competency that is either claimed by a person, an organization or desired or required to fulfill a role or to work in an occupation.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     */
+    protected $skills;
+
+    /**
+     * A category describing the job, preferably using a term from a taxonomy such as [BLS O*NET-SOC](http://www.onetcenter.org/taxonomy.html), [ISCO-08](https://www.ilo.org/public/english/bureau/stat/isco/isco08/) or similar, with the property repeated for each applicable value. Ideally the taxonomy should be identified, and both the textual label and formal code for the category should be provided.\n
+     * Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CategoryCode|string
+     */
+    protected $occupationalCategory;
 
     /**
      * Responsibilities associated with this role or Occupation.
@@ -55,48 +88,65 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $occupationLocation;
 
     /**
-     * Description of skills and experience needed for the position or Occupation.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\OccupationalExperienceRequirements
-     */
-    protected $experienceRequirements;
-
-    /**
      * Educational background needed for the position or Occupation.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
-     */
-    protected $educationRequirements;
-
-    /**
-     * A statement of knowledge, skill, ability, task or any other assertion expressing a competency that is desired or required to fulfill this role or to work in this occupation.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
-     */
-    protected $skills;
-
-    /**
-     * Specific qualifications required for this role or Occupation.
      *
      *
      * @var string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
      */
-    protected $qualifications;
+    protected $educationRequirements;
 
     /**
-     * A category describing the job, preferably using a term from a taxonomy such as [BLS O*NET-SOC](http://www.onetcenter.org/taxonomy.html), [ISCO-08](https://www.ilo.org/public/english/bureau/stat/isco/isco08/) or similar, with the property repeated for each applicable value. Ideally the taxonomy should be identified, and both the textual label and formal code for the category should be provided.\n
-     * Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CategoryCode|string
+     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
      */
-    protected $occupationalCategory;
+    public function getQualifications()
+    {
+        return $this->qualifications;
+    }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
+     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $qualifications
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setQualifications($qualifications)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
+        ];
+
+        $qualifications = self::checkTypes($qualifications, $types);
+
+        $this->qualifications = $qualifications;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\OccupationalExperienceRequirements|string
+     */
+    public function getExperienceRequirements()
+    {
+        return $this->experienceRequirements;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\OccupationalExperienceRequirements|string $experienceRequirements
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setExperienceRequirements($experienceRequirements)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\OccupationalExperienceRequirements",
+            "string",
+        ];
+
+        $experienceRequirements = self::checkTypes($experienceRequirements, $types);
+
+        $this->experienceRequirements = $experienceRequirements;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|Number|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|string|null
      */
     public function getEstimatedSalary()
     {
@@ -104,23 +154,73 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null $estimatedSalary
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|Number|\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution|string|null $estimatedSalary
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEstimatedSalary($estimatedSalary)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution",
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "string",
             "Number",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmountDistribution",
+            "string",
             "null",
         ];
 
         $estimatedSalary = self::checkTypes($estimatedSalary, $types);
 
         $this->estimatedSalary = $estimatedSalary;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     */
+    public function getSkills()
+    {
+        return $this->skills;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $skills
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSkills($skills)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+        ];
+
+        $skills = self::checkTypes($skills, $types);
+
+        $this->skills = $skills;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CategoryCode|string
+     */
+    public function getOccupationalCategory()
+    {
+        return $this->occupationalCategory;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CategoryCode|string $occupationalCategory
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOccupationalCategory($occupationalCategory)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CategoryCode",
+            "string",
+        ];
+
+        $occupationalCategory = self::checkTypes($occupationalCategory, $types);
+
+        $this->occupationalCategory = $occupationalCategory;
     }
 
     /**
@@ -173,32 +273,7 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\OccupationalExperienceRequirements
-     */
-    public function getExperienceRequirements()
-    {
-        return $this->experienceRequirements;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\OccupationalExperienceRequirements $experienceRequirements
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setExperienceRequirements($experienceRequirements)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\OccupationalExperienceRequirements",
-        ];
-
-        $experienceRequirements = self::checkTypes($experienceRequirements, $types);
-
-        $this->experienceRequirements = $experienceRequirements;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string
+     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
      */
     public function getEducationRequirements()
     {
@@ -206,95 +281,20 @@ class Occupation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\EducationalOccupationalCredential|string $educationRequirements
+     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $educationRequirements
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setEducationRequirements($educationRequirements)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
             "string",
+            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
         ];
 
         $educationRequirements = self::checkTypes($educationRequirements, $types);
 
         $this->educationRequirements = $educationRequirements;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
-     */
-    public function getSkills()
-    {
-        return $this->skills;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $skills
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSkills($skills)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-        ];
-
-        $skills = self::checkTypes($skills, $types);
-
-        $this->skills = $skills;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential
-     */
-    public function getQualifications()
-    {
-        return $this->qualifications;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential $qualifications
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setQualifications($qualifications)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\EducationalOccupationalCredential",
-        ];
-
-        $qualifications = self::checkTypes($qualifications, $types);
-
-        $this->qualifications = $qualifications;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CategoryCode|string
-     */
-    public function getOccupationalCategory()
-    {
-        return $this->occupationalCategory;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CategoryCode|string $occupationalCategory
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOccupationalCategory($occupationalCategory)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\CategoryCode",
-            "string",
-        ];
-
-        $occupationalCategory = self::checkTypes($occupationalCategory, $types);
-
-        $this->occupationalCategory = $occupationalCategory;
     }
 
 }

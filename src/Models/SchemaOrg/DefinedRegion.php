@@ -18,46 +18,22 @@ class DefinedRegion extends \OpenActive\Models\SchemaOrg\StructuredValue
     public static function fieldList() {
         $fields = [
             "addressCountry" => "addressCountry",
-            "addressRegion" => "addressRegion",
-            "postalCodeRange" => "postalCodeRange",
-            "postalCodePrefix" => "postalCodePrefix",
             "postalCode" => "postalCode",
+            "addressRegion" => "addressRegion",
+            "postalCodePrefix" => "postalCodePrefix",
+            "postalCodeRange" => "postalCodeRange",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The country. For example, USA. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1).
+     * The country. Recommended to be in 2-letter [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1) format, for example "US". For backward compatibility, a 3-letter [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) country code such as "SGP" or a full country name such as "Singapore" can also be used.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Country|string
+     * @var string|\OpenActive\Models\SchemaOrg\Country
      */
     protected $addressCountry;
-
-    /**
-     * The region in which the locality is, and which is in the country. For example, California or another appropriate first-level [Administrative division](https://en.wikipedia.org/wiki/List_of_administrative_divisions_by_country) 
-     *
-     *
-     * @var string
-     */
-    protected $addressRegion;
-
-    /**
-     * A defined range of postal codes.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification|string
-     */
-    protected $postalCodeRange;
-
-    /**
-     * A defined range of postal codes indicated by a common textual prefix. Used for non-numeric systems such as UK.
-     *
-     *
-     * @var string
-     */
-    protected $postalCodePrefix;
 
     /**
      * The postal code. For example, 94043.
@@ -68,7 +44,31 @@ class DefinedRegion extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $postalCode;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Country|string
+     * The region in which the locality is, and which is in the country. For example, California or another appropriate first-level [Administrative division](https://en.wikipedia.org/wiki/List_of_administrative_divisions_by_country).
+     *
+     *
+     * @var string
+     */
+    protected $addressRegion;
+
+    /**
+     * A defined range of postal codes indicated by a common textual prefix. Used for non-numeric systems such as UK.
+     *
+     *
+     * @var string
+     */
+    protected $postalCodePrefix;
+
+    /**
+     * A defined range of postal codes.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification|string
+     */
+    protected $postalCodeRange;
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Country
      */
     public function getAddressCountry()
     {
@@ -76,20 +76,44 @@ class DefinedRegion extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Country|string $addressCountry
+     * @param string|\OpenActive\Models\SchemaOrg\Country $addressCountry
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddressCountry($addressCountry)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Country",
             "string",
+            "\OpenActive\Models\SchemaOrg\Country",
         ];
 
         $addressCountry = self::checkTypes($addressCountry, $types);
 
         $this->addressCountry = $addressCountry;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPostalCode()
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * @param string $postalCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPostalCode($postalCode)
+    {
+        $types = [
+            "string",
+        ];
+
+        $postalCode = self::checkTypes($postalCode, $types);
+
+        $this->postalCode = $postalCode;
     }
 
     /**
@@ -117,31 +141,6 @@ class DefinedRegion extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification|string
-     */
-    public function getPostalCodeRange()
-    {
-        return $this->postalCodeRange;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification|string $postalCodeRange
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPostalCodeRange($postalCodeRange)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification",
-            "string",
-        ];
-
-        $postalCodeRange = self::checkTypes($postalCodeRange, $types);
-
-        $this->postalCodeRange = $postalCodeRange;
-    }
-
-    /**
      * @return string
      */
     public function getPostalCodePrefix()
@@ -166,27 +165,28 @@ class DefinedRegion extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification|string
      */
-    public function getPostalCode()
+    public function getPostalCodeRange()
     {
-        return $this->postalCode;
+        return $this->postalCodeRange;
     }
 
     /**
-     * @param string $postalCode
+     * @param \OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification|string $postalCodeRange
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPostalCode($postalCode)
+    public function setPostalCodeRange($postalCodeRange)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification",
             "string",
         ];
 
-        $postalCode = self::checkTypes($postalCode, $types);
+        $postalCodeRange = self::checkTypes($postalCodeRange, $types);
 
-        $this->postalCode = $postalCode;
+        $this->postalCodeRange = $postalCodeRange;
     }
 
 }

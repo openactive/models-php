@@ -17,42 +17,59 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "review" => "review",
-            "award" => "award",
-            "serviceAudience" => "serviceAudience",
-            "category" => "category",
-            "hoursAvailable" => "hoursAvailable",
-            "audience" => "audience",
-            "offers" => "offers",
-            "serviceOutput" => "serviceOutput",
-            "provider" => "provider",
-            "termsOfService" => "termsOfService",
-            "providerMobility" => "providerMobility",
-            "broker" => "broker",
-            "aggregateRating" => "aggregateRating",
-            "isSimilarTo" => "isSimilarTo",
-            "availableChannel" => "availableChannel",
-            "slogan" => "slogan",
-            "brand" => "brand",
-            "logo" => "logo",
-            "produces" => "produces",
-            "serviceArea" => "serviceArea",
             "serviceType" => "serviceType",
-            "areaServed" => "areaServed",
-            "isRelatedTo" => "isRelatedTo",
+            "termsOfService" => "termsOfService",
+            "isSimilarTo" => "isSimilarTo",
+            "award" => "award",
+            "broker" => "broker",
             "hasOfferCatalog" => "hasOfferCatalog",
+            "hasCertification" => "hasCertification",
+            "serviceAudience" => "serviceAudience",
+            "logo" => "logo",
+            "areaServed" => "areaServed",
+            "serviceArea" => "serviceArea",
+            "brand" => "brand",
+            "category" => "category",
+            "providerMobility" => "providerMobility",
+            "isRelatedTo" => "isRelatedTo",
+            "hoursAvailable" => "hoursAvailable",
+            "review" => "review",
+            "produces" => "produces",
+            "offers" => "offers",
+            "provider" => "provider",
+            "slogan" => "slogan",
+            "aggregateRating" => "aggregateRating",
+            "serviceOutput" => "serviceOutput",
+            "availableChannel" => "availableChannel",
+            "audience" => "audience",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A review of the item.
+     * The type of service being offered, e.g. veterans' benefits, emergency relief, etc.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Review|string
+     * @var \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType|string|null
      */
-    protected $review;
+    protected $serviceType;
+
+    /**
+     * Human-readable terms of service documentation.
+     *
+     *
+     * @var string
+     */
+    protected $termsOfService;
+
+    /**
+     * A pointer to another, functionally similar product (or multiple products).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
+     */
+    protected $isSimilarTo;
 
     /**
      * An award won by or for this item.
@@ -63,6 +80,30 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     protected $award;
 
     /**
+     * An entity that arranges for an exchange between a buyer and a seller.  In most cases a broker never acquires or releases ownership of a product or service involved in an exchange.  If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $broker;
+
+    /**
+     * Indicates an OfferCatalog listing for this Organization, Person, or Service.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\OfferCatalog|string
+     */
+    protected $hasOfferCatalog;
+
+    /**
+     * Certification information about a product, organization, service, place, or person.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Certification|string
+     */
+    protected $hasCertification;
+
+    /**
      * The audience eligible for this service.
      *
      *
@@ -71,12 +112,60 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     protected $serviceAudience;
 
     /**
+     * An associated logo.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\ImageObject
+     */
+    protected $logo;
+
+    /**
+     * The geographic area where a service or offered item is provided.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea
+     */
+    protected $areaServed;
+
+    /**
+     * The geographic area where the service is provided.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\Place|string
+     */
+    protected $serviceArea;
+
+    /**
+     * The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Brand|string
+     */
+    protected $brand;
+
+    /**
      * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
      *
      *
-     * @var string|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\CategoryCode|null
+     * @var \OpenActive\Models\SchemaOrg\Thing|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\CategoryCode|string|null
      */
     protected $category;
+
+    /**
+     * Indicates the mobility of a provided service (e.g. 'static', 'dynamic').
+     *
+     *
+     * @var string
+     */
+    protected $providerMobility;
+
+    /**
+     * A pointer to another, somehow related product (or multiple products).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
+     */
+    protected $isRelatedTo;
 
     /**
      * The hours during which this service or contact is available.
@@ -87,12 +176,20 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     protected $hoursAvailable;
 
     /**
-     * An intended audience, i.e. a group for whom something was created.
+     * A review of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Audience|string
+     * @var \OpenActive\Models\SchemaOrg\Review|string
      */
-    protected $audience;
+    protected $review;
+
+    /**
+     * The tangible thing generated by the service, e.g. a passport, permit, etc.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    protected $produces;
 
     /**
      * An offer to provide this item&#x2014;for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use [[businessFunction]] to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a [[Demand]]. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer.
@@ -104,68 +201,12 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     protected $offers;
 
     /**
-     * The tangible thing generated by the service, e.g. a passport, permit, etc.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    protected $serviceOutput;
-
-    /**
      * The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $provider;
-
-    /**
-     * Human-readable terms of service documentation.
-     *
-     *
-     * @var string
-     */
-    protected $termsOfService;
-
-    /**
-     * Indicates the mobility of a provided service (e.g. 'static', 'dynamic').
-     *
-     *
-     * @var string
-     */
-    protected $providerMobility;
-
-    /**
-     * An entity that arranges for an exchange between a buyer and a seller.  In most cases a broker never acquires or releases ownership of a product or service involved in an exchange.  If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
      */
-    protected $broker;
-
-    /**
-     * The overall rating, based on a collection of reviews or ratings, of the item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\AggregateRating|string
-     */
-    protected $aggregateRating;
-
-    /**
-     * A pointer to another, functionally similar product (or multiple products).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product|string
-     */
-    protected $isSimilarTo;
-
-    /**
-     * A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ServiceChannel|string
-     */
-    protected $availableChannel;
+    protected $provider;
 
     /**
      * A slogan or motto associated with the item.
@@ -176,20 +217,12 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     protected $slogan;
 
     /**
-     * The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+     * The overall rating, based on a collection of reviews or ratings, of the item.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Brand|string
+     * @var \OpenActive\Models\SchemaOrg\AggregateRating|string
      */
-    protected $brand;
-
-    /**
-     * An associated logo.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\ImageObject
-     */
-    protected $logo;
+    protected $aggregateRating;
 
     /**
      * The tangible thing generated by the service, e.g. a passport, permit, etc.
@@ -197,71 +230,98 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
      *
      * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $produces;
+    protected $serviceOutput;
 
     /**
-     * The geographic area where the service is provided.
+     * A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\Place|string
+     * @var \OpenActive\Models\SchemaOrg\ServiceChannel|string
      */
-    protected $serviceArea;
+    protected $availableChannel;
 
     /**
-     * The type of service being offered, e.g. veterans' benefits, emergency relief, etc.
+     * An intended audience, i.e. a group for whom something was created.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType|string|null
+     * @var \OpenActive\Models\SchemaOrg\Audience|string
      */
-    protected $serviceType;
+    protected $audience;
 
     /**
-     * The geographic area where a service or offered item is provided.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\Place
+     * @return \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType|string|null
      */
-    protected $areaServed;
-
-    /**
-     * A pointer to another, somehow related product (or multiple products).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product|string
-     */
-    protected $isRelatedTo;
-
-    /**
-     * Indicates an OfferCatalog listing for this Organization, Person, or Service.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\OfferCatalog|string
-     */
-    protected $hasOfferCatalog;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Review|string
-     */
-    public function getReview()
+    public function getServiceType()
     {
-        return $this->review;
+        return $this->serviceType;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Review|string $review
+     * @param \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType|string|null $serviceType
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setReview($review)
+    public function setServiceType($serviceType)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Review",
+            "\OpenActive\Enums\SchemaOrg\GovernmentBenefitsType",
+            "string",
+            "null",
+        ];
+
+        $serviceType = self::checkTypes($serviceType, $types);
+
+        $this->serviceType = $serviceType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTermsOfService()
+    {
+        return $this->termsOfService;
+    }
+
+    /**
+     * @param string $termsOfService
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTermsOfService($termsOfService)
+    {
+        $types = [
             "string",
         ];
 
-        $review = self::checkTypes($review, $types);
+        $termsOfService = self::checkTypes($termsOfService, $types);
 
-        $this->review = $review;
+        $this->termsOfService = $termsOfService;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
+     */
+    public function getIsSimilarTo()
+    {
+        return $this->isSimilarTo;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string $isSimilarTo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsSimilarTo($isSimilarTo)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Product",
+            "\OpenActive\Models\SchemaOrg\Service",
+            "string",
+        ];
+
+        $isSimilarTo = self::checkTypes($isSimilarTo, $types);
+
+        $this->isSimilarTo = $isSimilarTo;
     }
 
     /**
@@ -286,6 +346,82 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
         $award = self::checkTypes($award, $types);
 
         $this->award = $award;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getBroker()
+    {
+        return $this->broker;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $broker
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBroker($broker)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $broker = self::checkTypes($broker, $types);
+
+        $this->broker = $broker;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\OfferCatalog|string
+     */
+    public function getHasOfferCatalog()
+    {
+        return $this->hasOfferCatalog;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\OfferCatalog|string $hasOfferCatalog
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasOfferCatalog($hasOfferCatalog)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\OfferCatalog",
+            "string",
+        ];
+
+        $hasOfferCatalog = self::checkTypes($hasOfferCatalog, $types);
+
+        $this->hasOfferCatalog = $hasOfferCatalog;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Certification|string
+     */
+    public function getHasCertification()
+    {
+        return $this->hasCertification;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Certification|string $hasCertification
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHasCertification($hasCertification)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Certification",
+            "string",
+        ];
+
+        $hasCertification = self::checkTypes($hasCertification, $types);
+
+        $this->hasCertification = $hasCertification;
     }
 
     /**
@@ -314,361 +450,6 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\CategoryCode|null
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param string|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\CategoryCode|null $category
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCategory($category)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory",
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "\OpenActive\Models\SchemaOrg\CategoryCode",
-            "null",
-        ];
-
-        $category = self::checkTypes($category, $types);
-
-        $this->category = $category;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\OpeningHoursSpecification|string
-     */
-    public function getHoursAvailable()
-    {
-        return $this->hoursAvailable;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\OpeningHoursSpecification|string $hoursAvailable
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHoursAvailable($hoursAvailable)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\OpeningHoursSpecification",
-            "string",
-        ];
-
-        $hoursAvailable = self::checkTypes($hoursAvailable, $types);
-
-        $this->hoursAvailable = $hoursAvailable;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Audience|string
-     */
-    public function getAudience()
-    {
-        return $this->audience;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Audience|string $audience
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAudience($audience)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Audience",
-            "string",
-        ];
-
-        $audience = self::checkTypes($audience, $types);
-
-        $this->audience = $audience;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand|string
-     */
-    public function getOffers()
-    {
-        return $this->offers;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand|string $offers
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOffers($offers)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Offer",
-            "\OpenActive\Models\SchemaOrg\Demand",
-            "string",
-        ];
-
-        $offers = self::checkTypes($offers, $types);
-
-        $this->offers = $offers;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    public function getServiceOutput()
-    {
-        return $this->serviceOutput;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $serviceOutput
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setServiceOutput($serviceOutput)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
-        ];
-
-        $serviceOutput = self::checkTypes($serviceOutput, $types);
-
-        $this->serviceOutput = $serviceOutput;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getProvider()
-    {
-        return $this->provider;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $provider
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProvider($provider)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $provider = self::checkTypes($provider, $types);
-
-        $this->provider = $provider;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTermsOfService()
-    {
-        return $this->termsOfService;
-    }
-
-    /**
-     * @param string $termsOfService
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTermsOfService($termsOfService)
-    {
-        $types = [
-            "string",
-        ];
-
-        $termsOfService = self::checkTypes($termsOfService, $types);
-
-        $this->termsOfService = $termsOfService;
-    }
-
-    /**
-     * @return string
-     */
-    public function getProviderMobility()
-    {
-        return $this->providerMobility;
-    }
-
-    /**
-     * @param string $providerMobility
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProviderMobility($providerMobility)
-    {
-        $types = [
-            "string",
-        ];
-
-        $providerMobility = self::checkTypes($providerMobility, $types);
-
-        $this->providerMobility = $providerMobility;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getBroker()
-    {
-        return $this->broker;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $broker
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBroker($broker)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "string",
-        ];
-
-        $broker = self::checkTypes($broker, $types);
-
-        $this->broker = $broker;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\AggregateRating|string
-     */
-    public function getAggregateRating()
-    {
-        return $this->aggregateRating;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\AggregateRating|string $aggregateRating
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAggregateRating($aggregateRating)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\AggregateRating",
-            "string",
-        ];
-
-        $aggregateRating = self::checkTypes($aggregateRating, $types);
-
-        $this->aggregateRating = $aggregateRating;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product|string
-     */
-    public function getIsSimilarTo()
-    {
-        return $this->isSimilarTo;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product|string $isSimilarTo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIsSimilarTo($isSimilarTo)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Service",
-            "\OpenActive\Models\SchemaOrg\Product",
-            "string",
-        ];
-
-        $isSimilarTo = self::checkTypes($isSimilarTo, $types);
-
-        $this->isSimilarTo = $isSimilarTo;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ServiceChannel|string
-     */
-    public function getAvailableChannel()
-    {
-        return $this->availableChannel;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ServiceChannel|string $availableChannel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAvailableChannel($availableChannel)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ServiceChannel",
-            "string",
-        ];
-
-        $availableChannel = self::checkTypes($availableChannel, $types);
-
-        $this->availableChannel = $availableChannel;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSlogan()
-    {
-        return $this->slogan;
-    }
-
-    /**
-     * @param string $slogan
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSlogan($slogan)
-    {
-        $types = [
-            "string",
-        ];
-
-        $slogan = self::checkTypes($slogan, $types);
-
-        $this->slogan = $slogan;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Brand|string
-     */
-    public function getBrand()
-    {
-        return $this->brand;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Brand|string $brand
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBrand($brand)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Brand",
-            "string",
-        ];
-
-        $brand = self::checkTypes($brand, $types);
-
-        $this->brand = $brand;
-    }
-
-    /**
      * @return string|\OpenActive\Models\SchemaOrg\ImageObject
      */
     public function getLogo()
@@ -694,28 +475,30 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     * @return string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea
      */
-    public function getProduces()
+    public function getAreaServed()
     {
-        return $this->produces;
+        return $this->areaServed;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $produces
+     * @param string|\OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\GeoShape|\OpenActive\Models\SchemaOrg\AdministrativeArea $areaServed
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setProduces($produces)
+    public function setAreaServed($areaServed)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
             "string",
+            "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\GeoShape",
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
         ];
 
-        $produces = self::checkTypes($produces, $types);
+        $areaServed = self::checkTypes($areaServed, $types);
 
-        $this->produces = $produces;
+        $this->areaServed = $areaServed;
     }
 
     /**
@@ -746,60 +529,85 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType|string|null
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Brand|string
      */
-    public function getServiceType()
+    public function getBrand()
     {
-        return $this->serviceType;
+        return $this->brand;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\GovernmentBenefitsType|string|null $serviceType
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Brand|string $brand
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setServiceType($serviceType)
+    public function setBrand($brand)
     {
         $types = [
-            "\OpenActive\Enums\SchemaOrg\GovernmentBenefitsType",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Brand",
+            "string",
+        ];
+
+        $brand = self::checkTypes($brand, $types);
+
+        $this->brand = $brand;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\CategoryCode|string|null
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\CategoryCode|string|null $category
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCategory($category)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory",
+            "\OpenActive\Models\SchemaOrg\CategoryCode",
             "string",
             "null",
         ];
 
-        $serviceType = self::checkTypes($serviceType, $types);
+        $category = self::checkTypes($category, $types);
 
-        $this->serviceType = $serviceType;
+        $this->category = $category;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\Place
+     * @return string
      */
-    public function getAreaServed()
+    public function getProviderMobility()
     {
-        return $this->areaServed;
+        return $this->providerMobility;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|\OpenActive\Models\SchemaOrg\GeoShape|string|\OpenActive\Models\SchemaOrg\Place $areaServed
+     * @param string $providerMobility
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAreaServed($areaServed)
+    public function setProviderMobility($providerMobility)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-            "\OpenActive\Models\SchemaOrg\GeoShape",
             "string",
-            "\OpenActive\Models\SchemaOrg\Place",
         ];
 
-        $areaServed = self::checkTypes($areaServed, $types);
+        $providerMobility = self::checkTypes($providerMobility, $types);
 
-        $this->areaServed = $areaServed;
+        $this->providerMobility = $providerMobility;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product|string
+     * @return \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
      */
     public function getIsRelatedTo()
     {
@@ -807,15 +615,15 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\Product|string $isRelatedTo
+     * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string $isRelatedTo
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setIsRelatedTo($isRelatedTo)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Service",
             "\OpenActive\Models\SchemaOrg\Product",
+            "\OpenActive\Models\SchemaOrg\Service",
             "string",
         ];
 
@@ -825,28 +633,254 @@ class Service extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\OfferCatalog|string
+     * @return \OpenActive\Models\SchemaOrg\OpeningHoursSpecification|string
      */
-    public function getHasOfferCatalog()
+    public function getHoursAvailable()
     {
-        return $this->hasOfferCatalog;
+        return $this->hoursAvailable;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\OfferCatalog|string $hasOfferCatalog
+     * @param \OpenActive\Models\SchemaOrg\OpeningHoursSpecification|string $hoursAvailable
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHasOfferCatalog($hasOfferCatalog)
+    public function setHoursAvailable($hoursAvailable)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\OfferCatalog",
+            "\OpenActive\Models\SchemaOrg\OpeningHoursSpecification",
             "string",
         ];
 
-        $hasOfferCatalog = self::checkTypes($hasOfferCatalog, $types);
+        $hoursAvailable = self::checkTypes($hoursAvailable, $types);
 
-        $this->hasOfferCatalog = $hasOfferCatalog;
+        $this->hoursAvailable = $hoursAvailable;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Review|string
+     */
+    public function getReview()
+    {
+        return $this->review;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Review|string $review
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReview($review)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Review",
+            "string",
+        ];
+
+        $review = self::checkTypes($review, $types);
+
+        $this->review = $review;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    public function getProduces()
+    {
+        return $this->produces;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $produces
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProduces($produces)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
+        ];
+
+        $produces = self::checkTypes($produces, $types);
+
+        $this->produces = $produces;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand|string
+     */
+    public function getOffers()
+    {
+        return $this->offers;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Offer|\OpenActive\Models\SchemaOrg\Demand|string $offers
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOffers($offers)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Offer",
+            "\OpenActive\Models\SchemaOrg\Demand",
+            "string",
+        ];
+
+        $offers = self::checkTypes($offers, $types);
+
+        $this->offers = $offers;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
+     */
+    public function getProvider()
+    {
+        return $this->provider;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $provider
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setProvider($provider)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $provider = self::checkTypes($provider, $types);
+
+        $this->provider = $provider;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlogan()
+    {
+        return $this->slogan;
+    }
+
+    /**
+     * @param string $slogan
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSlogan($slogan)
+    {
+        $types = [
+            "string",
+        ];
+
+        $slogan = self::checkTypes($slogan, $types);
+
+        $this->slogan = $slogan;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AggregateRating|string
+     */
+    public function getAggregateRating()
+    {
+        return $this->aggregateRating;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\AggregateRating|string $aggregateRating
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAggregateRating($aggregateRating)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\AggregateRating",
+            "string",
+        ];
+
+        $aggregateRating = self::checkTypes($aggregateRating, $types);
+
+        $this->aggregateRating = $aggregateRating;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    public function getServiceOutput()
+    {
+        return $this->serviceOutput;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $serviceOutput
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setServiceOutput($serviceOutput)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
+        ];
+
+        $serviceOutput = self::checkTypes($serviceOutput, $types);
+
+        $this->serviceOutput = $serviceOutput;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ServiceChannel|string
+     */
+    public function getAvailableChannel()
+    {
+        return $this->availableChannel;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ServiceChannel|string $availableChannel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAvailableChannel($availableChannel)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ServiceChannel",
+            "string",
+        ];
+
+        $availableChannel = self::checkTypes($availableChannel, $types);
+
+        $this->availableChannel = $availableChannel;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Audience|string
+     */
+    public function getAudience()
+    {
+        return $this->audience;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Audience|string $audience
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAudience($audience)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Audience",
+            "string",
+        ];
+
+        $audience = self::checkTypes($audience, $types);
+
+        $this->audience = $audience;
     }
 
 }

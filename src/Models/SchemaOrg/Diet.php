@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
+class Diet extends \OpenActive\Models\SchemaOrg\CreativeWork
 {
     /**
      * @return string[]|null
@@ -18,10 +18,10 @@ class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
     public static function fieldList() {
         $fields = [
             "expertConsiderations" => "expertConsiderations",
-            "risks" => "risks",
-            "physiologicalBenefits" => "physiologicalBenefits",
             "endorsers" => "endorsers",
             "dietFeatures" => "dietFeatures",
+            "physiologicalBenefits" => "physiologicalBenefits",
+            "risks" => "risks",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -34,22 +34,6 @@ class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
      * @var string
      */
     protected $expertConsiderations;
-
-    /**
-     * Specific physiologic risks associated to the diet plan.
-     *
-     *
-     * @var string
-     */
-    protected $risks;
-
-    /**
-     * Specific physiologic benefits associated to the plan.
-     *
-     *
-     * @var string
-     */
-    protected $physiologicalBenefits;
 
     /**
      * People or organizations that endorse the plan.
@@ -66,6 +50,22 @@ class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
      * @var string
      */
     protected $dietFeatures;
+
+    /**
+     * Specific physiologic benefits associated to the plan.
+     *
+     *
+     * @var string
+     */
+    protected $physiologicalBenefits;
+
+    /**
+     * Specific physiologic risks associated to the diet plan.
+     *
+     *
+     * @var string
+     */
+    protected $risks;
 
     /**
      * @return string
@@ -89,54 +89,6 @@ class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
         $expertConsiderations = self::checkTypes($expertConsiderations, $types);
 
         $this->expertConsiderations = $expertConsiderations;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRisks()
-    {
-        return $this->risks;
-    }
-
-    /**
-     * @param string $risks
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRisks($risks)
-    {
-        $types = [
-            "string",
-        ];
-
-        $risks = self::checkTypes($risks, $types);
-
-        $this->risks = $risks;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhysiologicalBenefits()
-    {
-        return $this->physiologicalBenefits;
-    }
-
-    /**
-     * @param string $physiologicalBenefits
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPhysiologicalBenefits($physiologicalBenefits)
-    {
-        $types = [
-            "string",
-        ];
-
-        $physiologicalBenefits = self::checkTypes($physiologicalBenefits, $types);
-
-        $this->physiologicalBenefits = $physiologicalBenefits;
     }
 
     /**
@@ -187,6 +139,54 @@ class Diet extends \OpenActive\Models\SchemaOrg\LifestyleModification
         $dietFeatures = self::checkTypes($dietFeatures, $types);
 
         $this->dietFeatures = $dietFeatures;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhysiologicalBenefits()
+    {
+        return $this->physiologicalBenefits;
+    }
+
+    /**
+     * @param string $physiologicalBenefits
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPhysiologicalBenefits($physiologicalBenefits)
+    {
+        $types = [
+            "string",
+        ];
+
+        $physiologicalBenefits = self::checkTypes($physiologicalBenefits, $types);
+
+        $this->physiologicalBenefits = $physiologicalBenefits;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRisks()
+    {
+        return $this->risks;
+    }
+
+    /**
+     * @param string $risks
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRisks($risks)
+    {
+        $types = [
+            "string",
+        ];
+
+        $risks = self::checkTypes($risks, $types);
+
+        $this->risks = $risks;
     }
 
 }

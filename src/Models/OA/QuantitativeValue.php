@@ -26,7 +26,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
     }
 
     /**
-     * The maximum value.
+     * The maximum value, inclusive.
      *
      * ```json
      * "maxValue": 60
@@ -37,7 +37,7 @@ class QuantitativeValue extends \OpenActive\Models\SchemaOrg\QuantitativeValue
     protected $maxValue;
 
     /**
-     * The minimum value.
+     * The minimum value, inclusive.
      *
      * ```json
      * "minValue": 16

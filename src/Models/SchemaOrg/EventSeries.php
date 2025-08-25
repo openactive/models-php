@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class EventSeries extends \OpenActive\Models\SchemaOrg\Series
+class EventSeries extends \OpenActive\Models\SchemaOrg\Event
 {
     /**
      * @return string[]|null

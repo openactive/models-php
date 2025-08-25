@@ -17,74 +17,26 @@ class MedicalCondition extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "possibleComplication" => "possibleComplication",
-            "naturalProgression" => "naturalProgression",
-            "primaryPrevention" => "primaryPrevention",
-            "status" => "status",
-            "differentialDiagnosis" => "differentialDiagnosis",
-            "stage" => "stage",
             "pathophysiology" => "pathophysiology",
-            "drug" => "drug",
+            "possibleComplication" => "possibleComplication",
+            "possibleTreatment" => "possibleTreatment",
+            "expectedPrognosis" => "expectedPrognosis",
             "secondaryPrevention" => "secondaryPrevention",
+            "stage" => "stage",
+            "typicalTest" => "typicalTest",
+            "drug" => "drug",
+            "differentialDiagnosis" => "differentialDiagnosis",
+            "riskFactor" => "riskFactor",
             "associatedAnatomy" => "associatedAnatomy",
             "signOrSymptom" => "signOrSymptom",
-            "typicalTest" => "typicalTest",
+            "status" => "status",
+            "primaryPrevention" => "primaryPrevention",
+            "naturalProgression" => "naturalProgression",
             "epidemiology" => "epidemiology",
-            "riskFactor" => "riskFactor",
-            "expectedPrognosis" => "expectedPrognosis",
-            "possibleTreatment" => "possibleTreatment",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A possible unexpected and unfavorable evolution of a medical condition. Complications may include worsening of the signs or symptoms of the disease, extension of the condition to other organ systems, etc.
-     *
-     *
-     * @var string
-     */
-    protected $possibleComplication;
-
-    /**
-     * The expected progression of the condition if it is not treated and allowed to progress naturally.
-     *
-     *
-     * @var string
-     */
-    protected $naturalProgression;
-
-    /**
-     * A preventative therapy used to prevent an initial occurrence of the medical condition, such as vaccination.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
-     */
-    protected $primaryPrevention;
-
-    /**
-     * The status of the study (enumerated).
-     *
-     *
-     * @var string|\OpenActive\Enums\SchemaOrg\EventStatusType|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|null
-     */
-    protected $status;
-
-    /**
-     * One of a set of differential diagnoses for the condition. Specifically, a closely-related or competing diagnosis typically considered later in the cognitive process whereby this medical condition is distinguished from others most likely responsible for a similar collection of signs and symptoms to reach the most parsimonious diagnosis or diagnoses in a patient.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DDxElement|string
-     */
-    protected $differentialDiagnosis;
-
-    /**
-     * The stage of the condition, if applicable.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalConditionStage|string
-     */
-    protected $stage;
 
     /**
      * Changes in the normal mechanical, physical, and biochemical functions that are associated with this activity or condition.
@@ -95,12 +47,28 @@ class MedicalCondition extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $pathophysiology;
 
     /**
-     * Specifying a drug or medicine used in a medication procedure.
+     * A possible unexpected and unfavorable evolution of a medical condition. Complications may include worsening of the signs or symptoms of the disease, extension of the condition to other organ systems, etc.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Drug|string
+     * @var string
      */
-    protected $drug;
+    protected $possibleComplication;
+
+    /**
+     * A possible treatment to address this condition, sign or symptom.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     */
+    protected $possibleTreatment;
+
+    /**
+     * The likely outcome in either the short term or long term of the medical condition.
+     *
+     *
+     * @var string
+     */
+    protected $expectedPrognosis;
 
     /**
      * A preventative therapy used to prevent reoccurrence of the medical condition after an initial episode of the condition.
@@ -109,6 +77,46 @@ class MedicalCondition extends \OpenActive\Models\SchemaOrg\MedicalEntity
      * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
     protected $secondaryPrevention;
+
+    /**
+     * The stage of the condition, if applicable.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalConditionStage|string
+     */
+    protected $stage;
+
+    /**
+     * A medical test typically performed given this condition.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalTest|string
+     */
+    protected $typicalTest;
+
+    /**
+     * Specifying a drug or medicine used in a medication procedure.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Drug|string
+     */
+    protected $drug;
+
+    /**
+     * One of a set of differential diagnoses for the condition. Specifically, a closely-related or competing diagnosis typically considered later in the cognitive process whereby this medical condition is distinguished from others most likely responsible for a similar collection of signs and symptoms to reach the most parsimonious diagnosis or diagnoses in a patient.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DDxElement|string
+     */
+    protected $differentialDiagnosis;
+
+    /**
+     * A modifiable or non-modifiable factor that increases the risk of a patient contracting this condition, e.g. age,  coexisting condition.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalRiskFactor|string
+     */
+    protected $riskFactor;
 
     /**
      * The anatomy of the underlying organ system or structures associated with this entity.
@@ -127,12 +135,28 @@ class MedicalCondition extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $signOrSymptom;
 
     /**
-     * A medical test typically performed given this condition.
+     * The status of the study (enumerated).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTest|string
+     * @var \OpenActive\Models\SchemaOrg\MedicalStudyStatus|string|\OpenActive\Enums\SchemaOrg\EventStatusType|null
      */
-    protected $typicalTest;
+    protected $status;
+
+    /**
+     * A preventative therapy used to prevent an initial occurrence of the medical condition, such as vaccination.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     */
+    protected $primaryPrevention;
+
+    /**
+     * The expected progression of the condition if it is not treated and allowed to progress naturally.
+     *
+     *
+     * @var string
+     */
+    protected $naturalProgression;
 
     /**
      * The characteristics of associated patients, such as age, gender, race etc.
@@ -143,28 +167,28 @@ class MedicalCondition extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $epidemiology;
 
     /**
-     * A modifiable or non-modifiable factor that increases the risk of a patient contracting this condition, e.g. age,  coexisting condition.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalRiskFactor|string
+     * @return string
      */
-    protected $riskFactor;
+    public function getPathophysiology()
+    {
+        return $this->pathophysiology;
+    }
 
     /**
-     * The likely outcome in either the short term or long term of the medical condition.
-     *
-     *
-     * @var string
+     * @param string $pathophysiology
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $expectedPrognosis;
+    public function setPathophysiology($pathophysiology)
+    {
+        $types = [
+            "string",
+        ];
 
-    /**
-     * A possible treatment to address this condition, sign or symptom.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
-     */
-    protected $possibleTreatment;
+        $pathophysiology = self::checkTypes($pathophysiology, $types);
+
+        $this->pathophysiology = $pathophysiology;
+    }
 
     /**
      * @return string
@@ -191,104 +215,77 @@ class MedicalCondition extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return string
-     */
-    public function getNaturalProgression()
-    {
-        return $this->naturalProgression;
-    }
-
-    /**
-     * @param string $naturalProgression
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNaturalProgression($naturalProgression)
-    {
-        $types = [
-            "string",
-        ];
-
-        $naturalProgression = self::checkTypes($naturalProgression, $types);
-
-        $this->naturalProgression = $naturalProgression;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
-    public function getPrimaryPrevention()
+    public function getPossibleTreatment()
     {
-        return $this->primaryPrevention;
+        return $this->possibleTreatment;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy|string $primaryPrevention
+     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy|string $possibleTreatment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPrimaryPrevention($primaryPrevention)
+    public function setPossibleTreatment($possibleTreatment)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MedicalTherapy",
             "string",
         ];
 
-        $primaryPrevention = self::checkTypes($primaryPrevention, $types);
+        $possibleTreatment = self::checkTypes($possibleTreatment, $types);
 
-        $this->primaryPrevention = $primaryPrevention;
+        $this->possibleTreatment = $possibleTreatment;
     }
 
     /**
-     * @return string|\OpenActive\Enums\SchemaOrg\EventStatusType|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|null
+     * @return string
      */
-    public function getStatus()
+    public function getExpectedPrognosis()
     {
-        return $this->status;
+        return $this->expectedPrognosis;
     }
 
     /**
-     * @param string|\OpenActive\Enums\SchemaOrg\EventStatusType|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|null $status
+     * @param string $expectedPrognosis
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setStatus($status)
+    public function setExpectedPrognosis($expectedPrognosis)
     {
         $types = [
             "string",
-            "\OpenActive\Enums\SchemaOrg\EventStatusType",
-            "\OpenActive\Models\SchemaOrg\MedicalStudyStatus",
-            "null",
         ];
 
-        $status = self::checkTypes($status, $types);
+        $expectedPrognosis = self::checkTypes($expectedPrognosis, $types);
 
-        $this->status = $status;
+        $this->expectedPrognosis = $expectedPrognosis;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DDxElement|string
+     * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
-    public function getDifferentialDiagnosis()
+    public function getSecondaryPrevention()
     {
-        return $this->differentialDiagnosis;
+        return $this->secondaryPrevention;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DDxElement|string $differentialDiagnosis
+     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy|string $secondaryPrevention
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDifferentialDiagnosis($differentialDiagnosis)
+    public function setSecondaryPrevention($secondaryPrevention)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\DDxElement",
+            "\OpenActive\Models\SchemaOrg\MedicalTherapy",
             "string",
         ];
 
-        $differentialDiagnosis = self::checkTypes($differentialDiagnosis, $types);
+        $secondaryPrevention = self::checkTypes($secondaryPrevention, $types);
 
-        $this->differentialDiagnosis = $differentialDiagnosis;
+        $this->secondaryPrevention = $secondaryPrevention;
     }
 
     /**
@@ -317,27 +314,28 @@ class MedicalCondition extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\MedicalTest|string
      */
-    public function getPathophysiology()
+    public function getTypicalTest()
     {
-        return $this->pathophysiology;
+        return $this->typicalTest;
     }
 
     /**
-     * @param string $pathophysiology
+     * @param \OpenActive\Models\SchemaOrg\MedicalTest|string $typicalTest
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPathophysiology($pathophysiology)
+    public function setTypicalTest($typicalTest)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalTest",
             "string",
         ];
 
-        $pathophysiology = self::checkTypes($pathophysiology, $types);
+        $typicalTest = self::checkTypes($typicalTest, $types);
 
-        $this->pathophysiology = $pathophysiology;
+        $this->typicalTest = $typicalTest;
     }
 
     /**
@@ -366,28 +364,53 @@ class MedicalCondition extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     * @return \OpenActive\Models\SchemaOrg\DDxElement|string
      */
-    public function getSecondaryPrevention()
+    public function getDifferentialDiagnosis()
     {
-        return $this->secondaryPrevention;
+        return $this->differentialDiagnosis;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy|string $secondaryPrevention
+     * @param \OpenActive\Models\SchemaOrg\DDxElement|string $differentialDiagnosis
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSecondaryPrevention($secondaryPrevention)
+    public function setDifferentialDiagnosis($differentialDiagnosis)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalTherapy",
+            "\OpenActive\Models\SchemaOrg\DDxElement",
             "string",
         ];
 
-        $secondaryPrevention = self::checkTypes($secondaryPrevention, $types);
+        $differentialDiagnosis = self::checkTypes($differentialDiagnosis, $types);
 
-        $this->secondaryPrevention = $secondaryPrevention;
+        $this->differentialDiagnosis = $differentialDiagnosis;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalRiskFactor|string
+     */
+    public function getRiskFactor()
+    {
+        return $this->riskFactor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalRiskFactor|string $riskFactor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRiskFactor($riskFactor)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalRiskFactor",
+            "string",
+        ];
+
+        $riskFactor = self::checkTypes($riskFactor, $types);
+
+        $this->riskFactor = $riskFactor;
     }
 
     /**
@@ -443,28 +466,79 @@ class MedicalCondition extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTest|string
+     * @return \OpenActive\Models\SchemaOrg\MedicalStudyStatus|string|\OpenActive\Enums\SchemaOrg\EventStatusType|null
      */
-    public function getTypicalTest()
+    public function getStatus()
     {
-        return $this->typicalTest;
+        return $this->status;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTest|string $typicalTest
+     * @param \OpenActive\Models\SchemaOrg\MedicalStudyStatus|string|\OpenActive\Enums\SchemaOrg\EventStatusType|null $status
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTypicalTest($typicalTest)
+    public function setStatus($status)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalTest",
+            "\OpenActive\Models\SchemaOrg\MedicalStudyStatus",
+            "string",
+            "\OpenActive\Enums\SchemaOrg\EventStatusType",
+            "null",
+        ];
+
+        $status = self::checkTypes($status, $types);
+
+        $this->status = $status;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     */
+    public function getPrimaryPrevention()
+    {
+        return $this->primaryPrevention;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy|string $primaryPrevention
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPrimaryPrevention($primaryPrevention)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalTherapy",
             "string",
         ];
 
-        $typicalTest = self::checkTypes($typicalTest, $types);
+        $primaryPrevention = self::checkTypes($primaryPrevention, $types);
 
-        $this->typicalTest = $typicalTest;
+        $this->primaryPrevention = $primaryPrevention;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNaturalProgression()
+    {
+        return $this->naturalProgression;
+    }
+
+    /**
+     * @param string $naturalProgression
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNaturalProgression($naturalProgression)
+    {
+        $types = [
+            "string",
+        ];
+
+        $naturalProgression = self::checkTypes($naturalProgression, $types);
+
+        $this->naturalProgression = $naturalProgression;
     }
 
     /**
@@ -489,80 +563,6 @@ class MedicalCondition extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $epidemiology = self::checkTypes($epidemiology, $types);
 
         $this->epidemiology = $epidemiology;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalRiskFactor|string
-     */
-    public function getRiskFactor()
-    {
-        return $this->riskFactor;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalRiskFactor|string $riskFactor
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRiskFactor($riskFactor)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalRiskFactor",
-            "string",
-        ];
-
-        $riskFactor = self::checkTypes($riskFactor, $types);
-
-        $this->riskFactor = $riskFactor;
-    }
-
-    /**
-     * @return string
-     */
-    public function getExpectedPrognosis()
-    {
-        return $this->expectedPrognosis;
-    }
-
-    /**
-     * @param string $expectedPrognosis
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setExpectedPrognosis($expectedPrognosis)
-    {
-        $types = [
-            "string",
-        ];
-
-        $expectedPrognosis = self::checkTypes($expectedPrognosis, $types);
-
-        $this->expectedPrognosis = $expectedPrognosis;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|string
-     */
-    public function getPossibleTreatment()
-    {
-        return $this->possibleTreatment;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy|string $possibleTreatment
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPossibleTreatment($possibleTreatment)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalTherapy",
-            "string",
-        ];
-
-        $possibleTreatment = self::checkTypes($possibleTreatment, $types);
-
-        $this->possibleTreatment = $possibleTreatment;
     }
 
 }

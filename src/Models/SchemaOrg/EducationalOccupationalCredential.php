@@ -17,16 +17,32 @@ class EducationalOccupationalCredential extends \OpenActive\Models\SchemaOrg\Cre
 
     public static function fieldList() {
         $fields = [
+            "recognizedBy" => "recognizedBy",
+            "validIn" => "validIn",
             "validFor" => "validFor",
             "educationalLevel" => "educationalLevel",
             "credentialCategory" => "credentialCategory",
-            "recognizedBy" => "recognizedBy",
             "competencyRequired" => "competencyRequired",
-            "validIn" => "validIn",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * An organization that acknowledges the validity, value or utility of a credential. Note: recognition may include a process of quality assurance or accreditation.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    protected $recognizedBy;
+
+    /**
+     * The geographic area where the item is valid. Applies for example to a [[Permit]], a [[Certification]], or an [[EducationalOccupationalCredential]]. 
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
+     */
+    protected $validIn;
 
     /**
      * The duration of validity of a permit or similar thing.
@@ -53,14 +69,6 @@ class EducationalOccupationalCredential extends \OpenActive\Models\SchemaOrg\Cre
     protected $credentialCategory;
 
     /**
-     * An organization that acknowledges the validity, value or utility of a credential. Note: recognition may include a process of quality assurance or accreditation.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $recognizedBy;
-
-    /**
      * Knowledge, skill, ability or personal attribute that must be demonstrated by a person or other entity in order to do something such as earn an Educational Occupational Credential or understand a LearningResource.
      *
      *
@@ -69,12 +77,54 @@ class EducationalOccupationalCredential extends \OpenActive\Models\SchemaOrg\Cre
     protected $competencyRequired;
 
     /**
-     * The geographic area where a permit or similar thing is valid.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
+     * @return \OpenActive\Models\SchemaOrg\Organization|string
      */
-    protected $validIn;
+    public function getRecognizedBy()
+    {
+        return $this->recognizedBy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|string $recognizedBy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRecognizedBy($recognizedBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "string",
+        ];
+
+        $recognizedBy = self::checkTypes($recognizedBy, $types);
+
+        $this->recognizedBy = $recognizedBy;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
+     */
+    public function getValidIn()
+    {
+        return $this->validIn;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $validIn
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setValidIn($validIn)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+            "string",
+        ];
+
+        $validIn = self::checkTypes($validIn, $types);
+
+        $this->validIn = $validIn;
+    }
 
     /**
      * @return DateInterval|string|null
@@ -153,31 +203,6 @@ class EducationalOccupationalCredential extends \OpenActive\Models\SchemaOrg\Cre
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getRecognizedBy()
-    {
-        return $this->recognizedBy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|string $recognizedBy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRecognizedBy($recognizedBy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "string",
-        ];
-
-        $recognizedBy = self::checkTypes($recognizedBy, $types);
-
-        $this->recognizedBy = $recognizedBy;
-    }
-
-    /**
      * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
     public function getCompetencyRequired()
@@ -200,31 +225,6 @@ class EducationalOccupationalCredential extends \OpenActive\Models\SchemaOrg\Cre
         $competencyRequired = self::checkTypes($competencyRequired, $types);
 
         $this->competencyRequired = $competencyRequired;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
-     */
-    public function getValidIn()
-    {
-        return $this->validIn;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $validIn
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setValidIn($validIn)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-            "string",
-        ];
-
-        $validIn = self::checkTypes($validIn, $types);
-
-        $this->validIn = $validIn;
     }
 
 }

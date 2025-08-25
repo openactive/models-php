@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class CreditCard extends \OpenActive\Models\SchemaOrg\PaymentCard
+class CreditCard extends \OpenActive\Models\SchemaOrg\LoanOrCredit
 {
     /**
      * @return string[]|null

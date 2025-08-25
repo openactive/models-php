@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Hospital extends \OpenActive\Models\SchemaOrg\MedicalOrganization
+class Hospital extends \OpenActive\Models\SchemaOrg\CivicStructure
 {
     /**
      * @return string[]|null
@@ -17,29 +17,13 @@ class Hospital extends \OpenActive\Models\SchemaOrg\MedicalOrganization
 
     public static function fieldList() {
         $fields = [
+            "medicalSpecialty" => "medicalSpecialty",
             "availableService" => "availableService",
             "healthcareReportingData" => "healthcareReportingData",
-            "medicalSpecialty" => "medicalSpecialty",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A medical service available from this provider.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
-     */
-    protected $availableService;
-
-    /**
-     * Indicates data describing a hospital, e.g. a CDC [[CDCPMDRecord]] or as some kind of [[Dataset]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Dataset|\OpenActive\Models\SchemaOrg\CDCPMDRecord|string
-     */
-    protected $healthcareReportingData;
 
     /**
      * A medical specialty of the provider.
@@ -50,57 +34,20 @@ class Hospital extends \OpenActive\Models\SchemaOrg\MedicalOrganization
     protected $medicalSpecialty;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     * A medical service available from this provider.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalTherapy|\OpenActive\Models\SchemaOrg\MedicalProcedure|string
      */
-    public function getAvailableService()
-    {
-        return $this->availableService;
-    }
+    protected $availableService;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string $availableService
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * Indicates data describing a hospital, e.g. a CDC [[CDCPMDRecord]] or as some kind of [[Dataset]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CDCPMDRecord|\OpenActive\Models\SchemaOrg\Dataset|string
      */
-    public function setAvailableService($availableService)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalTest",
-            "\OpenActive\Models\SchemaOrg\MedicalProcedure",
-            "\OpenActive\Models\SchemaOrg\MedicalTherapy",
-            "string",
-        ];
-
-        $availableService = self::checkTypes($availableService, $types);
-
-        $this->availableService = $availableService;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Dataset|\OpenActive\Models\SchemaOrg\CDCPMDRecord|string
-     */
-    public function getHealthcareReportingData()
-    {
-        return $this->healthcareReportingData;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Dataset|\OpenActive\Models\SchemaOrg\CDCPMDRecord|string $healthcareReportingData
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setHealthcareReportingData($healthcareReportingData)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Dataset",
-            "\OpenActive\Models\SchemaOrg\CDCPMDRecord",
-            "string",
-        ];
-
-        $healthcareReportingData = self::checkTypes($healthcareReportingData, $types);
-
-        $this->healthcareReportingData = $healthcareReportingData;
-    }
+    protected $healthcareReportingData;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MedicalSpecialty|string
@@ -125,6 +72,59 @@ class Hospital extends \OpenActive\Models\SchemaOrg\MedicalOrganization
         $medicalSpecialty = self::checkTypes($medicalSpecialty, $types);
 
         $this->medicalSpecialty = $medicalSpecialty;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalTherapy|\OpenActive\Models\SchemaOrg\MedicalProcedure|string
+     */
+    public function getAvailableService()
+    {
+        return $this->availableService;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalTherapy|\OpenActive\Models\SchemaOrg\MedicalProcedure|string $availableService
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAvailableService($availableService)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalTest",
+            "\OpenActive\Models\SchemaOrg\MedicalTherapy",
+            "\OpenActive\Models\SchemaOrg\MedicalProcedure",
+            "string",
+        ];
+
+        $availableService = self::checkTypes($availableService, $types);
+
+        $this->availableService = $availableService;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CDCPMDRecord|\OpenActive\Models\SchemaOrg\Dataset|string
+     */
+    public function getHealthcareReportingData()
+    {
+        return $this->healthcareReportingData;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CDCPMDRecord|\OpenActive\Models\SchemaOrg\Dataset|string $healthcareReportingData
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHealthcareReportingData($healthcareReportingData)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CDCPMDRecord",
+            "\OpenActive\Models\SchemaOrg\Dataset",
+            "string",
+        ];
+
+        $healthcareReportingData = self::checkTypes($healthcareReportingData, $types);
+
+        $this->healthcareReportingData = $healthcareReportingData;
     }
 
 }

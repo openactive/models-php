@@ -17,15 +17,47 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "unitText" => "unitText",
-            "businessFunction" => "businessFunction",
-            "typeOfGood" => "typeOfGood",
-            "amountOfThisGood" => "amountOfThisGood",
             "unitCode" => "unitCode",
+            "amountOfThisGood" => "amountOfThisGood",
+            "typeOfGood" => "typeOfGood",
+            "businessFunction" => "businessFunction",
+            "unitText" => "unitText",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
+     *
+     *
+     * @var string
+     */
+    protected $unitCode;
+
+    /**
+     * The quantity of the goods included in the offer.
+     *
+     *
+     * @var Number|null
+     */
+    protected $amountOfThisGood;
+
+    /**
+     * The product that this structured value is referring to.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
+     */
+    protected $typeOfGood;
+
+    /**
+     * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\BusinessFunction|null
+     */
+    protected $businessFunction;
 
     /**
      * A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for
@@ -37,84 +69,52 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $unitText;
 
     /**
-     * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\BusinessFunction|null
-     */
-    protected $businessFunction;
-
-    /**
-     * The product that this structured value is referring to.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
-     */
-    protected $typeOfGood;
-
-    /**
-     * The quantity of the goods included in the offer.
-     *
-     *
-     * @var Number|null
-     */
-    protected $amountOfThisGood;
-
-    /**
-     * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
-     *
-     *
-     * @var string
-     */
-    protected $unitCode;
-
-    /**
      * @return string
      */
-    public function getUnitText()
+    public function getUnitCode()
     {
-        return $this->unitText;
+        return $this->unitCode;
     }
 
     /**
-     * @param string $unitText
+     * @param string $unitCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setUnitText($unitText)
+    public function setUnitCode($unitCode)
     {
         $types = [
             "string",
         ];
 
-        $unitText = self::checkTypes($unitText, $types);
+        $unitCode = self::checkTypes($unitCode, $types);
 
-        $this->unitText = $unitText;
+        $this->unitCode = $unitCode;
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\BusinessFunction|null
+     * @return Number|null
      */
-    public function getBusinessFunction()
+    public function getAmountOfThisGood()
     {
-        return $this->businessFunction;
+        return $this->amountOfThisGood;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\BusinessFunction|null $businessFunction
+     * @param Number|null $amountOfThisGood
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBusinessFunction($businessFunction)
+    public function setAmountOfThisGood($amountOfThisGood)
     {
         $types = [
-            "\OpenActive\Enums\SchemaOrg\BusinessFunction",
+            "Number",
             "null",
         ];
 
-        $businessFunction = self::checkTypes($businessFunction, $types);
+        $amountOfThisGood = self::checkTypes($amountOfThisGood, $types);
 
-        $this->businessFunction = $businessFunction;
+        $this->amountOfThisGood = $amountOfThisGood;
     }
 
     /**
@@ -144,52 +144,52 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return Number|null
+     * @return \OpenActive\Enums\SchemaOrg\BusinessFunction|null
      */
-    public function getAmountOfThisGood()
+    public function getBusinessFunction()
     {
-        return $this->amountOfThisGood;
+        return $this->businessFunction;
     }
 
     /**
-     * @param Number|null $amountOfThisGood
+     * @param \OpenActive\Enums\SchemaOrg\BusinessFunction|null $businessFunction
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAmountOfThisGood($amountOfThisGood)
+    public function setBusinessFunction($businessFunction)
     {
         $types = [
-            "Number",
+            "\OpenActive\Enums\SchemaOrg\BusinessFunction",
             "null",
         ];
 
-        $amountOfThisGood = self::checkTypes($amountOfThisGood, $types);
+        $businessFunction = self::checkTypes($businessFunction, $types);
 
-        $this->amountOfThisGood = $amountOfThisGood;
+        $this->businessFunction = $businessFunction;
     }
 
     /**
      * @return string
      */
-    public function getUnitCode()
+    public function getUnitText()
     {
-        return $this->unitCode;
+        return $this->unitText;
     }
 
     /**
-     * @param string $unitCode
+     * @param string $unitText
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setUnitCode($unitCode)
+    public function setUnitText($unitText)
     {
         $types = [
             "string",
         ];
 
-        $unitCode = self::checkTypes($unitCode, $types);
+        $unitText = self::checkTypes($unitText, $types);
 
-        $this->unitCode = $unitCode;
+        $this->unitText = $unitText;
     }
 
 }

@@ -17,14 +17,22 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "review" => "review",
-            "aggregateRating" => "aggregateRating",
-            "slogan" => "slogan",
             "logo" => "logo",
+            "review" => "review",
+            "slogan" => "slogan",
+            "aggregateRating" => "aggregateRating",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * An associated logo.
+     *
+     *
+     * @var string|\OpenActive\Models\SchemaOrg\ImageObject
+     */
+    protected $logo;
 
     /**
      * A review of the item.
@@ -35,14 +43,6 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $review;
 
     /**
-     * The overall rating, based on a collection of reviews or ratings, of the item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\AggregateRating|string
-     */
-    protected $aggregateRating;
-
-    /**
      * A slogan or motto associated with the item.
      *
      *
@@ -51,12 +51,37 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
     protected $slogan;
 
     /**
-     * An associated logo.
+     * The overall rating, based on a collection of reviews or ratings, of the item.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\ImageObject
+     * @var \OpenActive\Models\SchemaOrg\AggregateRating|string
      */
-    protected $logo;
+    protected $aggregateRating;
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\ImageObject
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\ImageObject $logo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLogo($logo)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\ImageObject",
+        ];
+
+        $logo = self::checkTypes($logo, $types);
+
+        $this->logo = $logo;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Review|string
@@ -84,31 +109,6 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AggregateRating|string
-     */
-    public function getAggregateRating()
-    {
-        return $this->aggregateRating;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\AggregateRating|string $aggregateRating
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAggregateRating($aggregateRating)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\AggregateRating",
-            "string",
-        ];
-
-        $aggregateRating = self::checkTypes($aggregateRating, $types);
-
-        $this->aggregateRating = $aggregateRating;
-    }
-
-    /**
      * @return string
      */
     public function getSlogan()
@@ -133,28 +133,28 @@ class Brand extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\ImageObject
+     * @return \OpenActive\Models\SchemaOrg\AggregateRating|string
      */
-    public function getLogo()
+    public function getAggregateRating()
     {
-        return $this->logo;
+        return $this->aggregateRating;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\ImageObject $logo
+     * @param \OpenActive\Models\SchemaOrg\AggregateRating|string $aggregateRating
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLogo($logo)
+    public function setAggregateRating($aggregateRating)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\AggregateRating",
             "string",
-            "\OpenActive\Models\SchemaOrg\ImageObject",
         ];
 
-        $logo = self::checkTypes($logo, $types);
+        $aggregateRating = self::checkTypes($aggregateRating, $types);
 
-        $this->logo = $logo;
+        $this->aggregateRating = $aggregateRating;
     }
 
 }

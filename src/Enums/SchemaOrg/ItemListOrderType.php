@@ -8,7 +8,7 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class ItemListOrderType
 {
+    const ItemListOrderAscending = \OpenActive\Enums\SchemaOrg\ItemListOrderType\ItemListOrderAscending::class;
     const ItemListUnordered = \OpenActive\Enums\SchemaOrg\ItemListOrderType\ItemListUnordered::class;
     const ItemListOrderDescending = \OpenActive\Enums\SchemaOrg\ItemListOrderType\ItemListOrderDescending::class;
-    const ItemListOrderAscending = \OpenActive\Enums\SchemaOrg\ItemListOrderType\ItemListOrderAscending::class;
 }
