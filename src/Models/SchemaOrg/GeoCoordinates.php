@@ -17,24 +17,40 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "addressCountry" => "addressCountry",
-            "latitude" => "latitude",
             "address" => "address",
-            "postalCode" => "postalCode",
+            "addressCountry" => "addressCountry",
             "elevation" => "elevation",
+            "latitude" => "latitude",
             "longitude" => "longitude",
+            "postalCode" => "postalCode",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The country. For example, USA. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1).
+     * Physical address of the item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string
+     */
+    protected $address;
+
+    /**
+     * The country. Recommended to be in 2-letter [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1) format, for example "US". For backward compatibility, a 3-letter [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) country code such as "SGP" or a full country name such as "Singapore" can also be used.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Country|string
      */
     protected $addressCountry;
+
+    /**
+     * The elevation of a location ([WGS 84](https://en.wikipedia.org/wiki/World_Geodetic_System)). Values may be of the form 'NUMBER UNIT\_OF\_MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters.
+     *
+     *
+     * @var string|Number|null
+     */
+    protected $elevation;
 
     /**
      * The latitude of a location. For example ```37.42242``` ([WGS 84](https://en.wikipedia.org/wiki/World_Geodetic_System)).
@@ -45,12 +61,12 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $latitude;
 
     /**
-     * Physical address of the item.
+     * The longitude of a location. For example ```-122.08585``` ([WGS 84](https://en.wikipedia.org/wiki/World_Geodetic_System)).
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\PostalAddress
+     * @var string|Number|null
      */
-    protected $address;
+    protected $longitude;
 
     /**
      * The postal code. For example, 94043.
@@ -61,20 +77,29 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $postalCode;
 
     /**
-     * The elevation of a location ([WGS 84](https://en.wikipedia.org/wiki/World_Geodetic_System)). Values may be of the form 'NUMBER UNIT_OF_MEASUREMENT' (e.g., '1,000 m', '3,200 ft') while numbers alone should be assumed to be a value in meters.
-     *
-     *
-     * @var string|Number|null
+     * @return \OpenActive\Models\SchemaOrg\PostalAddress|string
      */
-    protected $elevation;
+    public function getAddress()
+    {
+        return $this->address;
+    }
 
     /**
-     * The longitude of a location. For example ```-122.08585``` ([WGS 84](https://en.wikipedia.org/wiki/World_Geodetic_System)).
-     *
-     *
-     * @var string|Number|null
+     * @param \OpenActive\Models\SchemaOrg\PostalAddress|string $address
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $longitude;
+    public function setAddress($address)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "string",
+        ];
+
+        $address = self::checkTypes($address, $types);
+
+        $this->address = $address;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Country|string
@@ -99,81 +124,6 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
         $addressCountry = self::checkTypes($addressCountry, $types);
 
         $this->addressCountry = $addressCountry;
-    }
-
-    /**
-     * @return string|Number|null
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * @param string|Number|null $latitude
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLatitude($latitude)
-    {
-        $types = [
-            "string",
-            "Number",
-            "null",
-        ];
-
-        $latitude = self::checkTypes($latitude, $types);
-
-        $this->latitude = $latitude;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\PostalAddress
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\PostalAddress $address
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAddress($address)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
-        ];
-
-        $address = self::checkTypes($address, $types);
-
-        $this->address = $address;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPostalCode()
-    {
-        return $this->postalCode;
-    }
-
-    /**
-     * @param string $postalCode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPostalCode($postalCode)
-    {
-        $types = [
-            "string",
-        ];
-
-        $postalCode = self::checkTypes($postalCode, $types);
-
-        $this->postalCode = $postalCode;
     }
 
     /**
@@ -205,6 +155,32 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
     /**
      * @return string|Number|null
      */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * @param string|Number|null $latitude
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLatitude($latitude)
+    {
+        $types = [
+            "string",
+            "Number",
+            "null",
+        ];
+
+        $latitude = self::checkTypes($latitude, $types);
+
+        $this->latitude = $latitude;
+    }
+
+    /**
+     * @return string|Number|null
+     */
     public function getLongitude()
     {
         return $this->longitude;
@@ -226,6 +202,30 @@ class GeoCoordinates extends \OpenActive\Models\SchemaOrg\StructuredValue
         $longitude = self::checkTypes($longitude, $types);
 
         $this->longitude = $longitude;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPostalCode()
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * @param string $postalCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPostalCode($postalCode)
+    {
+        $types = [
+            "string",
+        ];
+
+        $postalCode = self::checkTypes($postalCode, $types);
+
+        $this->postalCode = $postalCode;
     }
 
 }

@@ -17,36 +17,20 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
 
     public static function fieldList() {
         $fields = [
-            "parentTaxon" => "parentTaxon",
-            "taxonRank" => "taxonRank",
             "childTaxon" => "childTaxon",
             "hasDefinedTerm" => "hasDefinedTerm",
+            "parentTaxon" => "parentTaxon",
+            "taxonRank" => "taxonRank",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Closest parent taxon of the taxon in question.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\Taxon
-     */
-    protected $parentTaxon;
-
-    /**
-     * The taxonomic rank of this taxon given preferably as a URI from a controlled vocabulary – (typically the ranks from TDWG TaxonRank ontology or equivalent Wikidata URIs).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
-     */
-    protected $taxonRank;
-
-    /**
      * Closest child taxa of the taxon in question.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Taxon
+     * @var \OpenActive\Models\SchemaOrg\Taxon|string
      */
     protected $childTaxon;
 
@@ -59,57 +43,23 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
     protected $hasDefinedTerm;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Taxon
+     * Closest parent taxon of the taxon in question.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Taxon|string
      */
-    public function getParentTaxon()
-    {
-        return $this->parentTaxon;
-    }
+    protected $parentTaxon;
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Taxon $parentTaxon
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The taxonomic rank of this taxon given preferably as a URI from a controlled vocabulary – typically the ranks from TDWG TaxonRank ontology or equivalent Wikidata URIs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
-    public function setParentTaxon($parentTaxon)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\Taxon",
-        ];
-
-        $parentTaxon = self::checkTypes($parentTaxon, $types);
-
-        $this->parentTaxon = $parentTaxon;
-    }
+    protected $taxonRank;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
-     */
-    public function getTaxonRank()
-    {
-        return $this->taxonRank;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $taxonRank
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTaxonRank($taxonRank)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\PropertyValue",
-            "string",
-        ];
-
-        $taxonRank = self::checkTypes($taxonRank, $types);
-
-        $this->taxonRank = $taxonRank;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Taxon
+     * @return \OpenActive\Models\SchemaOrg\Taxon|string
      */
     public function getChildTaxon()
     {
@@ -117,15 +67,15 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Taxon $childTaxon
+     * @param \OpenActive\Models\SchemaOrg\Taxon|string $childTaxon
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setChildTaxon($childTaxon)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\Taxon",
+            "string",
         ];
 
         $childTaxon = self::checkTypes($childTaxon, $types);
@@ -156,6 +106,56 @@ class Taxon extends \OpenActive\Models\SchemaOrg\Thing
         $hasDefinedTerm = self::checkTypes($hasDefinedTerm, $types);
 
         $this->hasDefinedTerm = $hasDefinedTerm;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Taxon|string
+     */
+    public function getParentTaxon()
+    {
+        return $this->parentTaxon;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Taxon|string $parentTaxon
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setParentTaxon($parentTaxon)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Taxon",
+            "string",
+        ];
+
+        $parentTaxon = self::checkTypes($parentTaxon, $types);
+
+        $this->parentTaxon = $parentTaxon;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
+     */
+    public function getTaxonRank()
+    {
+        return $this->taxonRank;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $taxonRank
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTaxonRank($taxonRank)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "string",
+        ];
+
+        $taxonRank = self::checkTypes($taxonRank, $types);
+
+        $this->taxonRank = $taxonRank;
     }
 
 }

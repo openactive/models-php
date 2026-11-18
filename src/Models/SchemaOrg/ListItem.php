@@ -17,9 +17,9 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "position" => "position",
-            "nextItem" => "nextItem",
             "item" => "item",
+            "nextItem" => "nextItem",
+            "position" => "position",
             "previousItem" => "previousItem",
         ];
 
@@ -27,12 +27,12 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * The position of an item in a series or sequence of items.
+     * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists').
      *
      *
-     * @var string|int|null
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $position;
+    protected $item;
 
     /**
      * A link to the ListItem that follows the current one.
@@ -43,15 +43,15 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $nextItem;
 
     /**
-     * An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.
+     * The position of an item in a series or sequence of items.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
+     * @var string|int|null
      */
-    protected $item;
+    protected $position;
 
     /**
-     * A link to the ListItem that preceeds the current one.
+     * A link to the ListItem that precedes the current one.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\ListItem|string
@@ -59,29 +59,28 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     protected $previousItem;
 
     /**
-     * @return string|int|null
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
      */
-    public function getPosition()
+    public function getItem()
     {
-        return $this->position;
+        return $this->item;
     }
 
     /**
-     * @param string|int|null $position
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $item
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPosition($position)
+    public function setItem($item)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
             "string",
-            "int",
-            "null",
         ];
 
-        $position = self::checkTypes($position, $types);
+        $item = self::checkTypes($item, $types);
 
-        $this->position = $position;
+        $this->item = $item;
     }
 
     /**
@@ -110,28 +109,29 @@ class ListItem extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     * @return string|int|null
      */
-    public function getItem()
+    public function getPosition()
     {
-        return $this->item;
+        return $this->position;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $item
+     * @param string|int|null $position
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setItem($item)
+    public function setPosition($position)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
             "string",
+            "int",
+            "null",
         ];
 
-        $item = self::checkTypes($item, $types);
+        $position = self::checkTypes($position, $types);
 
-        $this->item = $item;
+        $this->position = $position;
     }
 
     /**

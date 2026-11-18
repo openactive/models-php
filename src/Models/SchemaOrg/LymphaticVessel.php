@@ -17,29 +17,13 @@ class LymphaticVessel extends \OpenActive\Models\SchemaOrg\Vessel
 
     public static function fieldList() {
         $fields = [
-            "runsTo" => "runsTo",
-            "regionDrained" => "regionDrained",
             "originatesFrom" => "originatesFrom",
+            "regionDrained" => "regionDrained",
+            "runsTo" => "runsTo",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The vasculature the lymphatic structure runs, or efferents, to.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Vessel|string
-     */
-    protected $runsTo;
-
-    /**
-     * The anatomical or organ system drained by this vessel; generally refers to a specific part of an organ.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string
-     */
-    protected $regionDrained;
 
     /**
      * The vasculature the lymphatic structure originates, or afferents, from.
@@ -50,55 +34,20 @@ class LymphaticVessel extends \OpenActive\Models\SchemaOrg\Vessel
     protected $originatesFrom;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Vessel|string
+     * The anatomical or organ system drained by this vessel; generally refers to a specific part of an organ.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string
      */
-    public function getRunsTo()
-    {
-        return $this->runsTo;
-    }
+    protected $regionDrained;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Vessel|string $runsTo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The vasculature the lymphatic structure runs, or efferents, to.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Vessel|string
      */
-    public function setRunsTo($runsTo)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Vessel",
-            "string",
-        ];
-
-        $runsTo = self::checkTypes($runsTo, $types);
-
-        $this->runsTo = $runsTo;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string
-     */
-    public function getRegionDrained()
-    {
-        return $this->regionDrained;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string $regionDrained
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRegionDrained($regionDrained)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\AnatomicalSystem",
-            "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
-            "string",
-        ];
-
-        $regionDrained = self::checkTypes($regionDrained, $types);
-
-        $this->regionDrained = $regionDrained;
-    }
+    protected $runsTo;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Vessel|string
@@ -123,6 +72,57 @@ class LymphaticVessel extends \OpenActive\Models\SchemaOrg\Vessel
         $originatesFrom = self::checkTypes($originatesFrom, $types);
 
         $this->originatesFrom = $originatesFrom;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string
+     */
+    public function getRegionDrained()
+    {
+        return $this->regionDrained;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string $regionDrained
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRegionDrained($regionDrained)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
+            "\OpenActive\Models\SchemaOrg\AnatomicalSystem",
+            "string",
+        ];
+
+        $regionDrained = self::checkTypes($regionDrained, $types);
+
+        $this->regionDrained = $regionDrained;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Vessel|string
+     */
+    public function getRunsTo()
+    {
+        return $this->runsTo;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Vessel|string $runsTo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRunsTo($runsTo)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Vessel",
+            "string",
+        ];
+
+        $runsTo = self::checkTypes($runsTo, $types);
+
+        $this->runsTo = $runsTo;
     }
 
 }

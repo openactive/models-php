@@ -17,6 +17,7 @@ class Guide extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
+            "category" => "category",
             "reviewAspect" => "reviewAspect",
         ];
 
@@ -24,15 +25,51 @@ class Guide extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
+     * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CategoryCode|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|string|\OpenActive\Models\SchemaOrg\Thing|null
+     */
+    protected $category;
+
+    /**
      * This Review or Rating is relevant to this part or facet of the itemReviewed.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\StructuredValue|string
      */
     protected $reviewAspect;
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\CategoryCode|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|string|\OpenActive\Models\SchemaOrg\Thing|null
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CategoryCode|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|string|\OpenActive\Models\SchemaOrg\Thing|null $category
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCategory($category)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CategoryCode",
+            "\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory",
+            "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "null",
+        ];
+
+        $category = self::checkTypes($category, $types);
+
+        $this->category = $category;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\StructuredValue|string
      */
     public function getReviewAspect()
     {
@@ -40,13 +77,14 @@ class Guide extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string $reviewAspect
+     * @param \OpenActive\Models\SchemaOrg\StructuredValue|string $reviewAspect
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setReviewAspect($reviewAspect)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\StructuredValue",
             "string",
         ];
 

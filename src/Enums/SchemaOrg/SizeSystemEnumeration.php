@@ -8,6 +8,6 @@ namespace OpenActive\Enums\SchemaOrg;
  */
 class SizeSystemEnumeration
 {
-    const SizeSystemMetric = \OpenActive\Enums\SchemaOrg\SizeSystemEnumeration\SizeSystemMetric::class;
     const SizeSystemImperial = \OpenActive\Enums\SchemaOrg\SizeSystemEnumeration\SizeSystemImperial::class;
+    const SizeSystemMetric = \OpenActive\Enums\SchemaOrg\SizeSystemEnumeration\SizeSystemMetric::class;
 }

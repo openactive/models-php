@@ -17,111 +17,46 @@ class Legislation extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "legislationTransposes" => "legislationTransposes",
-            "legislationLegalForce" => "legislationLegalForce",
-            "legislationType" => "legislationType",
             "jurisdiction" => "jurisdiction",
-            "legislationIdentifier" => "legislationIdentifier",
-            "legislationChanges" => "legislationChanges",
-            "legislationResponsible" => "legislationResponsible",
-            "legislationJurisdiction" => "legislationJurisdiction",
-            "legislationDate" => "legislationDate",
-            "legislationPassedBy" => "legislationPassedBy",
-            "legislationConsolidates" => "legislationConsolidates",
+            "legislationAmends" => "legislationAmends",
             "legislationApplies" => "legislationApplies",
+            "legislationChanges" => "legislationChanges",
+            "legislationCommences" => "legislationCommences",
+            "legislationConsolidates" => "legislationConsolidates",
+            "legislationCorrects" => "legislationCorrects",
+            "legislationCountersignedBy" => "legislationCountersignedBy",
+            "legislationDate" => "legislationDate",
+            "legislationDateOfApplicability" => "legislationDateOfApplicability",
             "legislationDateVersion" => "legislationDateVersion",
+            "legislationEnsuresImplementationOf" => "legislationEnsuresImplementationOf",
+            "legislationIdentifier" => "legislationIdentifier",
+            "legislationJurisdiction" => "legislationJurisdiction",
+            "legislationLegalForce" => "legislationLegalForce",
+            "legislationPassedBy" => "legislationPassedBy",
+            "legislationRepeals" => "legislationRepeals",
+            "legislationResponsible" => "legislationResponsible",
+            "legislationTransposes" => "legislationTransposes",
+            "legislationType" => "legislationType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Indicates that this legislation (or part of legislation) fulfills the objectives set by another legislation, by passing appropriate implementation measures. Typically, some legislations of European Union's member states or regions transpose European Directives. This indicates a legally binding link between the 2 legislations.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Legislation|string
-     */
-    protected $legislationTransposes;
-
-    /**
-     * Whether the legislation is currently in force, not in force, or partially in force.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\LegalForceStatus|string
-     */
-    protected $legislationLegalForce;
-
-    /**
-     * The type of the legislation. Examples of values are "law", "act", "directive", "decree", "regulation", "statutory instrument", "loi organique", "règlement grand-ducal", etc., depending on the country.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CategoryCode|string
-     */
-    protected $legislationType;
-
-    /**
      * Indicates a legal jurisdiction, e.g. of some legislation, or where some government service is based.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\AdministrativeArea
-     */
-    protected $jurisdiction;
-
-    /**
-     * An identifier for the legislation. This can be either a string-based identifier, like the CELEX at EU level or the NOR in France, or a web-based, URL/URI identifier, like an ELI (European Legislation Identifier) or an URN-Lex.
-     *
-     *
-     * @var string
-     */
-    protected $legislationIdentifier;
-
-    /**
-     * Another legislation that this legislation changes. This encompasses the notions of amendment, replacement, correction, repeal, or other types of change. This may be a direct change (textual or non-textual amendment) or a consequential or indirect change. The property is to be used to express the existence of a change relationship between two acts rather than the existence of a consolidated version of the text that shows the result of the change. For consolidation relationships, use the <a href="/legislationConsolidates">legislationConsolidates</a> property.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Legislation|string
-     */
-    protected $legislationChanges;
-
-    /**
-     * An individual or organization that has some kind of responsibility for the legislation. Typically the ministry who is/was in charge of elaborating the legislation, or the adressee for potential questions about the legislation once it is published.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $legislationResponsible;
-
-    /**
-     * The jurisdiction from which the legislation originates.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
      */
-    protected $legislationJurisdiction;
+    protected $jurisdiction;
 
     /**
-     * The date of adoption or signature of the legislation. This is the date at which the text is officially aknowledged to be a legislation, even though it might not even be published or in force.
-     *
-     *
-     * @var Date|null
-     */
-    protected $legislationDate;
-
-    /**
-     * The person or organization that originally passed or made the law : typically parliament (for primary legislation) or government (for secondary legislation). This indicates the "legal author" of the law, as opposed to its physical author.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $legislationPassedBy;
-
-    /**
-     * Indicates another legislation taken into account in this consolidated legislation (which is usually the product of an editorial process that revises the legislation). This property should be used multiple times to refer to both the original version or the previous consolidated version, and to the legislations making the change.
+     * Another legislation that this legislation amends, introducing legal changes.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Legislation|string
      */
-    protected $legislationConsolidates;
+    protected $legislationAmends;
 
     /**
      * Indicates that this legislation (or part of a legislation) somehow transfers another legislation in a different legislative context. This is an informative link, and it has no legal value. For legally-binding links of transposition, use the <a href="/legislationTransposes">legislationTransposes</a> property. For example an informative consolidated law of a European Union's member state "applies" the consolidated version of the European Directive implemented in it.
@@ -132,7 +67,63 @@ class Legislation extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $legislationApplies;
 
     /**
-     * The point-in-time at which the provided description of the legislation is valid (e.g. : when looking at the law on the 2016-04-07 (= dateVersion), I get the consolidation of 2015-04-12 of the "National Insurance Contributions Act 2015")
+     * Another legislation that this legislation changes. This encompasses the notions of amendment, replacement, correction, repeal, or other types of change. This may be a direct change (textual or non-textual amendment) or a consequential or indirect change. The property is to be used to express the existence of a change relationship between two acts rather than the existence of a consolidated version of the text that shows the result of the change. For consolidation relationships, use the <a href="/legislationConsolidates">legislationConsolidates</a> property.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Legislation|string
+     */
+    protected $legislationChanges;
+
+    /**
+     * Another legislation that this one sets into force.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Legislation|string
+     */
+    protected $legislationCommences;
+
+    /**
+     * Indicates another legislation taken into account in this consolidated legislation (which is usually the product of an editorial process that revises the legislation). This property should be used multiple times to refer to both the original version or the previous consolidated version, and to the legislations making the change.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Legislation|string
+     */
+    protected $legislationConsolidates;
+
+    /**
+     * Another legislation in which this one introduces textual changes, like correction of spelling mistakes, with no legal impact (for modifications that have legal impact, use <a href="/legislationAmends">legislationAmends</a>).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Legislation|string
+     */
+    protected $legislationCorrects;
+
+    /**
+     * The person or organization that countersigned the legislation. Depending on the legal context, a countersignature can indicate that the signed authority undertakes to assume responsibility for texts emanating from a person who is inviolable and irresponsible, (for example a King, Grand Duc or President), or that the authority is in charge of the implementation of the text.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $legislationCountersignedBy;
+
+    /**
+     * The date of adoption or signature of the legislation. This is the date at which the text is officially aknowledged to be a legislation, even though it might not even be published or in force.
+     *
+     *
+     * @var Date|null
+     */
+    protected $legislationDate;
+
+    /**
+     * The date at which the Legislation becomes applicable. This can sometimes be distinct from the date of entry into force : a text may come in force today, and state it will become applicable in 3 months.
+     *
+     *
+     * @var Date|null
+     */
+    protected $legislationDateOfApplicability;
+
+    /**
+     * The point-in-time at which the provided description of the legislation is valid (e.g.: when looking at the law on the 2016-04-07 (= dateVersion), I get the consolidation of 2015-04-12 of the "National Insurance Contributions Act 2015")
      *
      *
      * @var Date|null
@@ -140,82 +131,79 @@ class Legislation extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $legislationDateVersion;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Legislation|string
+     * Indicates that this Legislation ensures the implementation of another Legislation, for example by modifying national legislations so that they do not contradict to an EU regulation or decision. This implies a legal meaning. Transpositions of EU Directive should be captured with <a href="/legislationTransposes">legislationTransposes</a>.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Legislation|string
      */
-    public function getLegislationTransposes()
-    {
-        return $this->legislationTransposes;
-    }
+    protected $legislationEnsuresImplementationOf;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Legislation|string $legislationTransposes
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * An identifier for the legislation. This can be either a string-based identifier, like the CELEX at EU level or the NOR in France, or a web-based, URL/URI identifier, like an ELI (European Legislation Identifier) or an URN-Lex.
+     *
+     *
+     * @var string
      */
-    public function setLegislationTransposes($legislationTransposes)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Legislation",
-            "string",
-        ];
-
-        $legislationTransposes = self::checkTypes($legislationTransposes, $types);
-
-        $this->legislationTransposes = $legislationTransposes;
-    }
+    protected $legislationIdentifier;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\LegalForceStatus|string
+     * The jurisdiction from which the legislation originates.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
      */
-    public function getLegislationLegalForce()
-    {
-        return $this->legislationLegalForce;
-    }
+    protected $legislationJurisdiction;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\LegalForceStatus|string $legislationLegalForce
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * Whether the legislation is currently in force, not in force, or partially in force.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\LegalForceStatus|string
      */
-    public function setLegislationLegalForce($legislationLegalForce)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\LegalForceStatus",
-            "string",
-        ];
-
-        $legislationLegalForce = self::checkTypes($legislationLegalForce, $types);
-
-        $this->legislationLegalForce = $legislationLegalForce;
-    }
+    protected $legislationLegalForce;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\CategoryCode|string
+     * The person or organization that originally passed or made the law: typically parliament (for primary legislation) or government (for secondary legislation). This indicates the "legal author" of the law, as opposed to its physical author.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getLegislationType()
-    {
-        return $this->legislationType;
-    }
+    protected $legislationPassedBy;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\CategoryCode|string $legislationType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * Another legislation that this legislation repeals (cancels, abrogates).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Legislation|string
      */
-    public function setLegislationType($legislationType)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\CategoryCode",
-            "string",
-        ];
-
-        $legislationType = self::checkTypes($legislationType, $types);
-
-        $this->legislationType = $legislationType;
-    }
+    protected $legislationRepeals;
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\AdministrativeArea
+     * An individual or organization that has some kind of responsibility for the legislation. Typically the ministry who is/was in charge of elaborating the legislation, or the adressee for potential questions about the legislation once it is published.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $legislationResponsible;
+
+    /**
+     * Indicates that this legislation (or part of legislation) fulfills the objectives set by another legislation, by passing appropriate implementation measures. Typically, some legislations of European Union's member states or regions transpose European Directives. This indicates a legally binding link between the 2 legislations.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Legislation|string
+     */
+    protected $legislationTransposes;
+
+    /**
+     * The type of the legislation. Examples of values are "law", "act", "directive", "decree", "regulation", "statutory instrument", "loi organique", "règlement grand-ducal", etc., depending on the country.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CategoryCode|string
+     */
+    protected $legislationType;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
      */
     public function getJurisdiction()
     {
@@ -223,15 +211,15 @@ class Legislation extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\AdministrativeArea $jurisdiction
+     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $jurisdiction
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setJurisdiction($jurisdiction)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+            "string",
         ];
 
         $jurisdiction = self::checkTypes($jurisdiction, $types);
@@ -240,27 +228,53 @@ class Legislation extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\Legislation|string
      */
-    public function getLegislationIdentifier()
+    public function getLegislationAmends()
     {
-        return $this->legislationIdentifier;
+        return $this->legislationAmends;
     }
 
     /**
-     * @param string $legislationIdentifier
+     * @param \OpenActive\Models\SchemaOrg\Legislation|string $legislationAmends
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLegislationIdentifier($legislationIdentifier)
+    public function setLegislationAmends($legislationAmends)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\Legislation",
             "string",
         ];
 
-        $legislationIdentifier = self::checkTypes($legislationIdentifier, $types);
+        $legislationAmends = self::checkTypes($legislationAmends, $types);
 
-        $this->legislationIdentifier = $legislationIdentifier;
+        $this->legislationAmends = $legislationAmends;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Legislation|string
+     */
+    public function getLegislationApplies()
+    {
+        return $this->legislationApplies;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Legislation|string $legislationApplies
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegislationApplies($legislationApplies)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Legislation",
+            "string",
+        ];
+
+        $legislationApplies = self::checkTypes($legislationApplies, $types);
+
+        $this->legislationApplies = $legislationApplies;
     }
 
     /**
@@ -289,105 +303,28 @@ class Legislation extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     * @return \OpenActive\Models\SchemaOrg\Legislation|string
      */
-    public function getLegislationResponsible()
+    public function getLegislationCommences()
     {
-        return $this->legislationResponsible;
+        return $this->legislationCommences;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $legislationResponsible
+     * @param \OpenActive\Models\SchemaOrg\Legislation|string $legislationCommences
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLegislationResponsible($legislationResponsible)
+    public function setLegislationCommences($legislationCommences)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Legislation",
             "string",
         ];
 
-        $legislationResponsible = self::checkTypes($legislationResponsible, $types);
+        $legislationCommences = self::checkTypes($legislationCommences, $types);
 
-        $this->legislationResponsible = $legislationResponsible;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
-     */
-    public function getLegislationJurisdiction()
-    {
-        return $this->legislationJurisdiction;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $legislationJurisdiction
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLegislationJurisdiction($legislationJurisdiction)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
-            "string",
-        ];
-
-        $legislationJurisdiction = self::checkTypes($legislationJurisdiction, $types);
-
-        $this->legislationJurisdiction = $legislationJurisdiction;
-    }
-
-    /**
-     * @return Date|null
-     */
-    public function getLegislationDate()
-    {
-        return $this->legislationDate;
-    }
-
-    /**
-     * @param Date|null $legislationDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLegislationDate($legislationDate)
-    {
-        $types = [
-            "Date",
-            "null",
-        ];
-
-        $legislationDate = self::checkTypes($legislationDate, $types);
-
-        $this->legislationDate = $legislationDate;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getLegislationPassedBy()
-    {
-        return $this->legislationPassedBy;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $legislationPassedBy
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLegislationPassedBy($legislationPassedBy)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "string",
-        ];
-
-        $legislationPassedBy = self::checkTypes($legislationPassedBy, $types);
-
-        $this->legislationPassedBy = $legislationPassedBy;
+        $this->legislationCommences = $legislationCommences;
     }
 
     /**
@@ -418,26 +355,102 @@ class Legislation extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @return \OpenActive\Models\SchemaOrg\Legislation|string
      */
-    public function getLegislationApplies()
+    public function getLegislationCorrects()
     {
-        return $this->legislationApplies;
+        return $this->legislationCorrects;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Legislation|string $legislationApplies
+     * @param \OpenActive\Models\SchemaOrg\Legislation|string $legislationCorrects
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLegislationApplies($legislationApplies)
+    public function setLegislationCorrects($legislationCorrects)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Legislation",
             "string",
         ];
 
-        $legislationApplies = self::checkTypes($legislationApplies, $types);
+        $legislationCorrects = self::checkTypes($legislationCorrects, $types);
 
-        $this->legislationApplies = $legislationApplies;
+        $this->legislationCorrects = $legislationCorrects;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getLegislationCountersignedBy()
+    {
+        return $this->legislationCountersignedBy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $legislationCountersignedBy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegislationCountersignedBy($legislationCountersignedBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $legislationCountersignedBy = self::checkTypes($legislationCountersignedBy, $types);
+
+        $this->legislationCountersignedBy = $legislationCountersignedBy;
+    }
+
+    /**
+     * @return Date|null
+     */
+    public function getLegislationDate()
+    {
+        return $this->legislationDate;
+    }
+
+    /**
+     * @param Date|null $legislationDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegislationDate($legislationDate)
+    {
+        $types = [
+            "Date",
+            "null",
+        ];
+
+        $legislationDate = self::checkTypes($legislationDate, $types);
+
+        $this->legislationDate = $legislationDate;
+    }
+
+    /**
+     * @return Date|null
+     */
+    public function getLegislationDateOfApplicability()
+    {
+        return $this->legislationDateOfApplicability;
+    }
+
+    /**
+     * @param Date|null $legislationDateOfApplicability
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegislationDateOfApplicability($legislationDateOfApplicability)
+    {
+        $types = [
+            "Date",
+            "null",
+        ];
+
+        $legislationDateOfApplicability = self::checkTypes($legislationDateOfApplicability, $types);
+
+        $this->legislationDateOfApplicability = $legislationDateOfApplicability;
     }
 
     /**
@@ -463,6 +476,232 @@ class Legislation extends \OpenActive\Models\SchemaOrg\CreativeWork
         $legislationDateVersion = self::checkTypes($legislationDateVersion, $types);
 
         $this->legislationDateVersion = $legislationDateVersion;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Legislation|string
+     */
+    public function getLegislationEnsuresImplementationOf()
+    {
+        return $this->legislationEnsuresImplementationOf;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Legislation|string $legislationEnsuresImplementationOf
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegislationEnsuresImplementationOf($legislationEnsuresImplementationOf)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Legislation",
+            "string",
+        ];
+
+        $legislationEnsuresImplementationOf = self::checkTypes($legislationEnsuresImplementationOf, $types);
+
+        $this->legislationEnsuresImplementationOf = $legislationEnsuresImplementationOf;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLegislationIdentifier()
+    {
+        return $this->legislationIdentifier;
+    }
+
+    /**
+     * @param string $legislationIdentifier
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegislationIdentifier($legislationIdentifier)
+    {
+        $types = [
+            "string",
+        ];
+
+        $legislationIdentifier = self::checkTypes($legislationIdentifier, $types);
+
+        $this->legislationIdentifier = $legislationIdentifier;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
+     */
+    public function getLegislationJurisdiction()
+    {
+        return $this->legislationJurisdiction;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $legislationJurisdiction
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegislationJurisdiction($legislationJurisdiction)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
+            "string",
+        ];
+
+        $legislationJurisdiction = self::checkTypes($legislationJurisdiction, $types);
+
+        $this->legislationJurisdiction = $legislationJurisdiction;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\LegalForceStatus|string
+     */
+    public function getLegislationLegalForce()
+    {
+        return $this->legislationLegalForce;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\LegalForceStatus|string $legislationLegalForce
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegislationLegalForce($legislationLegalForce)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\LegalForceStatus",
+            "string",
+        ];
+
+        $legislationLegalForce = self::checkTypes($legislationLegalForce, $types);
+
+        $this->legislationLegalForce = $legislationLegalForce;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getLegislationPassedBy()
+    {
+        return $this->legislationPassedBy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $legislationPassedBy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegislationPassedBy($legislationPassedBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $legislationPassedBy = self::checkTypes($legislationPassedBy, $types);
+
+        $this->legislationPassedBy = $legislationPassedBy;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Legislation|string
+     */
+    public function getLegislationRepeals()
+    {
+        return $this->legislationRepeals;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Legislation|string $legislationRepeals
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegislationRepeals($legislationRepeals)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Legislation",
+            "string",
+        ];
+
+        $legislationRepeals = self::checkTypes($legislationRepeals, $types);
+
+        $this->legislationRepeals = $legislationRepeals;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getLegislationResponsible()
+    {
+        return $this->legislationResponsible;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $legislationResponsible
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegislationResponsible($legislationResponsible)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $legislationResponsible = self::checkTypes($legislationResponsible, $types);
+
+        $this->legislationResponsible = $legislationResponsible;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Legislation|string
+     */
+    public function getLegislationTransposes()
+    {
+        return $this->legislationTransposes;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Legislation|string $legislationTransposes
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegislationTransposes($legislationTransposes)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Legislation",
+            "string",
+        ];
+
+        $legislationTransposes = self::checkTypes($legislationTransposes, $types);
+
+        $this->legislationTransposes = $legislationTransposes;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CategoryCode|string
+     */
+    public function getLegislationType()
+    {
+        return $this->legislationType;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CategoryCode|string $legislationType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLegislationType($legislationType)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CategoryCode",
+            "string",
+        ];
+
+        $legislationType = self::checkTypes($legislationType, $types);
+
+        $this->legislationType = $legislationType;
     }
 
 }

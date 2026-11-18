@@ -5,14 +5,14 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Quantity extends \OpenActive\Models\SchemaOrg\Intangible
+class IPTCDigitalSourceEnumeration extends \OpenActive\BaseModel
 {
     /**
      * @return string[]|null
      */
     public static function getType()
     {
-        return "schema:Quantity";
+        return "schema:IPTCDigitalSourceEnumeration";
     }
 
     public static function fieldList() {

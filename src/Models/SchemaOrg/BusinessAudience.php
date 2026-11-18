@@ -17,13 +17,21 @@ class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
 
     public static function fieldList() {
         $fields = [
-            "yearlyRevenue" => "yearlyRevenue",
             "numberOfEmployees" => "numberOfEmployees",
+            "yearlyRevenue" => "yearlyRevenue",
             "yearsInOperation" => "yearsInOperation",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The number of employees in an organization, e.g. business.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    protected $numberOfEmployees;
 
     /**
      * The size of the business in annual revenue.
@@ -34,45 +42,12 @@ class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
     protected $yearlyRevenue;
 
     /**
-     * The number of employees in an organization e.g. business.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
-     */
-    protected $numberOfEmployees;
-
-    /**
      * The age of the business.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
     protected $yearsInOperation;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
-     */
-    public function getYearlyRevenue()
-    {
-        return $this->yearlyRevenue;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $yearlyRevenue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setYearlyRevenue($yearlyRevenue)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "string",
-        ];
-
-        $yearlyRevenue = self::checkTypes($yearlyRevenue, $types);
-
-        $this->yearlyRevenue = $yearlyRevenue;
-    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
@@ -97,6 +72,31 @@ class BusinessAudience extends \OpenActive\Models\SchemaOrg\Audience
         $numberOfEmployees = self::checkTypes($numberOfEmployees, $types);
 
         $this->numberOfEmployees = $numberOfEmployees;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    public function getYearlyRevenue()
+    {
+        return $this->yearlyRevenue;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $yearlyRevenue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setYearlyRevenue($yearlyRevenue)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
+        ];
+
+        $yearlyRevenue = self::checkTypes($yearlyRevenue, $types);
+
+        $this->yearlyRevenue = $yearlyRevenue;
     }
 
     /**

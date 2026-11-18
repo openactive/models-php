@@ -152,14 +152,33 @@ class Place extends \OpenActive\Models\SchemaOrg\Place
     protected $containedInPlace;
 
     /**
-     * Places that exist within this place
+     * A specific identifiable facility (`SportsActivityLocation`) or place (`Place`) that exist within this place
      *
      * ```json
-     * "containsPlace": {
-     *   "@type": "Place",
-     *   "url": "https://www.everyoneactive.com/centres/Center-Parcs-Sports-Plaza",
-     *   "name": "Center Parcs Sports Plaza"
-     * }
+     * "containsPlace": [
+     *   {
+     *     "@type": "SportsActivityLocation",
+     *     "@id": "https://api.example.com/places/1402CBP20150217/sports-activity-locations/3",
+     *     "url": "https://www.better.org.uk/leisure-centre/manchester/belle-vue-sports-village/facilities",
+     *     "name": "Studio",
+     *     "description": "We have a great range of Fitness Classes at Belle Vue Leisure Centre including Group Cycle, Zumba, Pilates and much much more.",
+     *     "image": [
+     *       {
+     *         "@type": "ImageObject",
+     *         "url": "https://res-1.cloudinary.com/gll/image/upload/c_fit,f_auto,h_169,w_384/v1592158966/production/0065/7/66/PHOTO-2020-06-09-14-25-53_3.jpg"
+     *       }
+     *     ],
+     *     "specialOpeningHoursSpecification": [
+     *       {
+     *         "@type": "OpeningHoursSpecification",
+     *         "opens": "00:00",
+     *         "closes": "00:00",
+     *         "validFrom": "2022-01-01",
+     *         "validThrough": "2022-12-31"
+     *       }
+     *     ]
+     *   }
+     * ]
      * ```
      *
      * @var \OpenActive\Models\OA\Place[]

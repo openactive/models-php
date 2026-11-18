@@ -17,48 +17,32 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "orderDelivery" => "orderDelivery",
-            "billingAddress" => "billingAddress",
             "acceptedOffer" => "acceptedOffer",
-            "merchant" => "merchant",
-            "orderStatus" => "orderStatus",
-            "confirmationNumber" => "confirmationNumber",
-            "partOfInvoice" => "partOfInvoice",
-            "orderNumber" => "orderNumber",
-            "seller" => "seller",
-            "customer" => "customer",
-            "paymentDueDate" => "paymentDueDate",
+            "billingAddress" => "billingAddress",
             "broker" => "broker",
-            "discountCode" => "discountCode",
+            "confirmationNumber" => "confirmationNumber",
+            "customer" => "customer",
             "discount" => "discount",
+            "discountCode" => "discountCode",
+            "discountCurrency" => "discountCurrency",
+            "isGift" => "isGift",
+            "merchant" => "merchant",
+            "orderDate" => "orderDate",
+            "orderDelivery" => "orderDelivery",
+            "orderNumber" => "orderNumber",
+            "orderStatus" => "orderStatus",
+            "orderedItem" => "orderedItem",
+            "partOfInvoice" => "partOfInvoice",
+            "paymentDue" => "paymentDue",
+            "paymentDueDate" => "paymentDueDate",
+            "paymentMethod" => "paymentMethod",
             "paymentMethodId" => "paymentMethodId",
             "paymentUrl" => "paymentUrl",
-            "discountCurrency" => "discountCurrency",
-            "paymentDue" => "paymentDue",
-            "orderDate" => "orderDate",
-            "isGift" => "isGift",
-            "orderedItem" => "orderedItem",
-            "paymentMethod" => "paymentMethod",
+            "seller" => "seller",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The delivery of the parcel related to this order or order item.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ParcelDelivery|string
-     */
-    protected $orderDelivery;
-
-    /**
-     * The billing address for the order.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string
-     */
-    protected $billingAddress;
 
     /**
      * The offer(s) -- e.g., product, quantity and price combinations -- included in the order.
@@ -69,20 +53,20 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     protected $acceptedOffer;
 
     /**
-     * 'merchant' is an out-dated term for 'seller'.
+     * The billing address for the order.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PostalAddress|string
+     */
+    protected $billingAddress;
+
+    /**
+     * An entity that arranges for an exchange between a buyer and a seller.  In most cases a broker never acquires or releases ownership of a product or service involved in an exchange.  If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $merchant;
-
-    /**
-     * The current status of the order.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\OrderStatus|string
-     */
-    protected $orderStatus;
+    protected $broker;
 
     /**
      * A number that confirms the given order or payment has been received.
@@ -93,30 +77,6 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     protected $confirmationNumber;
 
     /**
-     * The order is being paid as part of the referenced Invoice.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Invoice|string
-     */
-    protected $partOfInvoice;
-
-    /**
-     * The identifier of the transaction.
-     *
-     *
-     * @var string
-     */
-    protected $orderNumber;
-
-    /**
-     * An entity which offers (sells / leases / lends / loans) the services / goods.  A seller may also be a provider.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $seller;
-
-    /**
      * Party placing the order or paying the invoice.
      *
      *
@@ -125,20 +85,12 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     protected $customer;
 
     /**
-     * The date that payment is due.
+     * Any discount applied (to an Order).
      *
      *
-     * @var Date|DateTime|null
+     * @var string|Number|null
      */
-    protected $paymentDueDate;
-
-    /**
-     * An entity that arranges for an exchange between a buyer and a seller.  In most cases a broker never acquires or releases ownership of a product or service involved in an exchange.  If it is not clear whether an entity is a broker, seller, or buyer, the latter two terms are preferred.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $broker;
+    protected $discount;
 
     /**
      * Code used to redeem a discount.
@@ -149,12 +101,100 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     protected $discountCode;
 
     /**
-     * Any discount applied (to an Order).
+     * The currency of the discount.\n\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217), e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies, e.g. "BTC"; well known names for [Local Exchange Trading Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types, e.g. "Ithaca HOUR".
      *
      *
-     * @var string|Number|null
+     * @var string
      */
-    protected $discount;
+    protected $discountCurrency;
+
+    /**
+     * Indicates whether the offer was accepted as a gift for someone other than the buyer.
+     *
+     *
+     * @var bool|null
+     */
+    protected $isGift;
+
+    /**
+     * 'merchant' is an out-dated term for 'seller'.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $merchant;
+
+    /**
+     * Date order was placed.
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $orderDate;
+
+    /**
+     * The delivery of the parcel related to this order or order item.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ParcelDelivery|string
+     */
+    protected $orderDelivery;
+
+    /**
+     * The identifier of the transaction.
+     *
+     *
+     * @var string
+     */
+    protected $orderNumber;
+
+    /**
+     * The current status of the order.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\OrderStatus|string
+     */
+    protected $orderStatus;
+
+    /**
+     * The item ordered.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
+     */
+    protected $orderedItem;
+
+    /**
+     * The order is being paid as part of the referenced Invoice.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Invoice|string
+     */
+    protected $partOfInvoice;
+
+    /**
+     * The date that payment is due.
+     *
+     *
+     * @var DateTime|null
+     */
+    protected $paymentDue;
+
+    /**
+     * The date that payment is due.
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $paymentDueDate;
+
+    /**
+     * The name of the credit card or other method of payment for the order.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PaymentMethod|string
+     */
+    protected $paymentMethod;
 
     /**
      * An identifier for the method of payment used (e.g. the last 4 digits of the credit card).
@@ -173,76 +213,36 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     protected $paymentUrl;
 
     /**
-     * The currency of the discount.\n\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217) e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies e.g. "BTC"; well known names for [Local Exchange Tradings Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types e.g. "Ithaca HOUR".
+     * An entity which offers (sells / leases / lends / loans) the services / goods.  A seller may also be a provider.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $discountCurrency;
+    protected $seller;
 
     /**
-     * The date that payment is due.
-     *
-     *
-     * @var DateTime|null
+     * @return \OpenActive\Models\SchemaOrg\Offer|string
      */
-    protected $paymentDue;
-
-    /**
-     * Date order was placed.
-     *
-     *
-     * @var Date|DateTime|null
-     */
-    protected $orderDate;
-
-    /**
-     * Was the offer accepted as a gift for someone other than the buyer.
-     *
-     *
-     * @var bool|null
-     */
-    protected $isGift;
-
-    /**
-     * The item ordered.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|string
-     */
-    protected $orderedItem;
-
-    /**
-     * The name of the credit card or other method of payment for the order.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\PaymentMethod|null
-     */
-    protected $paymentMethod;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ParcelDelivery|string
-     */
-    public function getOrderDelivery()
+    public function getAcceptedOffer()
     {
-        return $this->orderDelivery;
+        return $this->acceptedOffer;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ParcelDelivery|string $orderDelivery
+     * @param \OpenActive\Models\SchemaOrg\Offer|string $acceptedOffer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setOrderDelivery($orderDelivery)
+    public function setAcceptedOffer($acceptedOffer)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\ParcelDelivery",
+            "\OpenActive\Models\SchemaOrg\Offer",
             "string",
         ];
 
-        $orderDelivery = self::checkTypes($orderDelivery, $types);
+        $acceptedOffer = self::checkTypes($acceptedOffer, $types);
 
-        $this->orderDelivery = $orderDelivery;
+        $this->acceptedOffer = $acceptedOffer;
     }
 
     /**
@@ -271,44 +271,19 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Offer|string
-     */
-    public function getAcceptedOffer()
-    {
-        return $this->acceptedOffer;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Offer|string $acceptedOffer
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAcceptedOffer($acceptedOffer)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Offer",
-            "string",
-        ];
-
-        $acceptedOffer = self::checkTypes($acceptedOffer, $types);
-
-        $this->acceptedOffer = $acceptedOffer;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getMerchant()
+    public function getBroker()
     {
-        return $this->merchant;
+        return $this->broker;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $merchant
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $broker
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMerchant($merchant)
+    public function setBroker($broker)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Organization",
@@ -316,34 +291,9 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
             "string",
         ];
 
-        $merchant = self::checkTypes($merchant, $types);
+        $broker = self::checkTypes($broker, $types);
 
-        $this->merchant = $merchant;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\OrderStatus|string
-     */
-    public function getOrderStatus()
-    {
-        return $this->orderStatus;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\OrderStatus|string $orderStatus
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOrderStatus($orderStatus)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\OrderStatus",
-            "string",
-        ];
-
-        $orderStatus = self::checkTypes($orderStatus, $types);
-
-        $this->orderStatus = $orderStatus;
+        $this->broker = $broker;
     }
 
     /**
@@ -368,81 +318,6 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
         $confirmationNumber = self::checkTypes($confirmationNumber, $types);
 
         $this->confirmationNumber = $confirmationNumber;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Invoice|string
-     */
-    public function getPartOfInvoice()
-    {
-        return $this->partOfInvoice;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Invoice|string $partOfInvoice
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPartOfInvoice($partOfInvoice)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Invoice",
-            "string",
-        ];
-
-        $partOfInvoice = self::checkTypes($partOfInvoice, $types);
-
-        $this->partOfInvoice = $partOfInvoice;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOrderNumber()
-    {
-        return $this->orderNumber;
-    }
-
-    /**
-     * @param string $orderNumber
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOrderNumber($orderNumber)
-    {
-        $types = [
-            "string",
-        ];
-
-        $orderNumber = self::checkTypes($orderNumber, $types);
-
-        $this->orderNumber = $orderNumber;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getSeller()
-    {
-        return $this->seller;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $seller
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSeller($seller)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $seller = self::checkTypes($seller, $types);
-
-        $this->seller = $seller;
     }
 
     /**
@@ -472,55 +347,29 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Date|DateTime|null
+     * @return string|Number|null
      */
-    public function getPaymentDueDate()
+    public function getDiscount()
     {
-        return $this->paymentDueDate;
+        return $this->discount;
     }
 
     /**
-     * @param Date|DateTime|null $paymentDueDate
+     * @param string|Number|null $discount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPaymentDueDate($paymentDueDate)
+    public function setDiscount($discount)
     {
         $types = [
-            "Date",
-            "DateTime",
+            "string",
+            "Number",
             "null",
         ];
 
-        $paymentDueDate = self::checkTypes($paymentDueDate, $types);
+        $discount = self::checkTypes($discount, $types);
 
-        $this->paymentDueDate = $paymentDueDate;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getBroker()
-    {
-        return $this->broker;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $broker
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBroker($broker)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "string",
-        ];
-
-        $broker = self::checkTypes($broker, $types);
-
-        $this->broker = $broker;
+        $this->discount = $discount;
     }
 
     /**
@@ -548,29 +397,306 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|Number|null
+     * @return string
      */
-    public function getDiscount()
+    public function getDiscountCurrency()
     {
-        return $this->discount;
+        return $this->discountCurrency;
     }
 
     /**
-     * @param string|Number|null $discount
+     * @param string $discountCurrency
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDiscount($discount)
+    public function setDiscountCurrency($discountCurrency)
     {
         $types = [
             "string",
-            "Number",
+        ];
+
+        $discountCurrency = self::checkTypes($discountCurrency, $types);
+
+        $this->discountCurrency = $discountCurrency;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getIsGift()
+    {
+        return $this->isGift;
+    }
+
+    /**
+     * @param bool|null $isGift
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsGift($isGift)
+    {
+        $types = [
+            "bool",
             "null",
         ];
 
-        $discount = self::checkTypes($discount, $types);
+        $isGift = self::checkTypes($isGift, $types);
 
-        $this->discount = $discount;
+        $this->isGift = $isGift;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getMerchant()
+    {
+        return $this->merchant;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $merchant
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMerchant($merchant)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $merchant = self::checkTypes($merchant, $types);
+
+        $this->merchant = $merchant;
+    }
+
+    /**
+     * @return Date|DateTime|null
+     */
+    public function getOrderDate()
+    {
+        return $this->orderDate;
+    }
+
+    /**
+     * @param Date|DateTime|null $orderDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOrderDate($orderDate)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $orderDate = self::checkTypes($orderDate, $types);
+
+        $this->orderDate = $orderDate;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ParcelDelivery|string
+     */
+    public function getOrderDelivery()
+    {
+        return $this->orderDelivery;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ParcelDelivery|string $orderDelivery
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOrderDelivery($orderDelivery)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ParcelDelivery",
+            "string",
+        ];
+
+        $orderDelivery = self::checkTypes($orderDelivery, $types);
+
+        $this->orderDelivery = $orderDelivery;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrderNumber()
+    {
+        return $this->orderNumber;
+    }
+
+    /**
+     * @param string $orderNumber
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOrderNumber($orderNumber)
+    {
+        $types = [
+            "string",
+        ];
+
+        $orderNumber = self::checkTypes($orderNumber, $types);
+
+        $this->orderNumber = $orderNumber;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\OrderStatus|string
+     */
+    public function getOrderStatus()
+    {
+        return $this->orderStatus;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\OrderStatus|string $orderStatus
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOrderStatus($orderStatus)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\OrderStatus",
+            "string",
+        ];
+
+        $orderStatus = self::checkTypes($orderStatus, $types);
+
+        $this->orderStatus = $orderStatus;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string
+     */
+    public function getOrderedItem()
+    {
+        return $this->orderedItem;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Service|string $orderedItem
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOrderedItem($orderedItem)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\OrderItem",
+            "\OpenActive\Models\SchemaOrg\Product",
+            "\OpenActive\Models\SchemaOrg\Service",
+            "string",
+        ];
+
+        $orderedItem = self::checkTypes($orderedItem, $types);
+
+        $this->orderedItem = $orderedItem;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Invoice|string
+     */
+    public function getPartOfInvoice()
+    {
+        return $this->partOfInvoice;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Invoice|string $partOfInvoice
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPartOfInvoice($partOfInvoice)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Invoice",
+            "string",
+        ];
+
+        $partOfInvoice = self::checkTypes($partOfInvoice, $types);
+
+        $this->partOfInvoice = $partOfInvoice;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getPaymentDue()
+    {
+        return $this->paymentDue;
+    }
+
+    /**
+     * @param DateTime|null $paymentDue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPaymentDue($paymentDue)
+    {
+        $types = [
+            "DateTime",
+            "null",
+        ];
+
+        $paymentDue = self::checkTypes($paymentDue, $types);
+
+        $this->paymentDue = $paymentDue;
+    }
+
+    /**
+     * @return Date|DateTime|null
+     */
+    public function getPaymentDueDate()
+    {
+        return $this->paymentDueDate;
+    }
+
+    /**
+     * @param Date|DateTime|null $paymentDueDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPaymentDueDate($paymentDueDate)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $paymentDueDate = self::checkTypes($paymentDueDate, $types);
+
+        $this->paymentDueDate = $paymentDueDate;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\PaymentMethod|string
+     */
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\PaymentMethod|string $paymentMethod
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\PaymentMethod",
+            "string",
+        ];
+
+        $paymentMethod = self::checkTypes($paymentMethod, $types);
+
+        $this->paymentMethod = $paymentMethod;
     }
 
     /**
@@ -622,155 +748,29 @@ class Order extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getDiscountCurrency()
+    public function getSeller()
     {
-        return $this->discountCurrency;
+        return $this->seller;
     }
 
     /**
-     * @param string $discountCurrency
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $seller
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDiscountCurrency($discountCurrency)
+    public function setSeller($seller)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
             "string",
         ];
 
-        $discountCurrency = self::checkTypes($discountCurrency, $types);
+        $seller = self::checkTypes($seller, $types);
 
-        $this->discountCurrency = $discountCurrency;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function getPaymentDue()
-    {
-        return $this->paymentDue;
-    }
-
-    /**
-     * @param DateTime|null $paymentDue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPaymentDue($paymentDue)
-    {
-        $types = [
-            "DateTime",
-            "null",
-        ];
-
-        $paymentDue = self::checkTypes($paymentDue, $types);
-
-        $this->paymentDue = $paymentDue;
-    }
-
-    /**
-     * @return Date|DateTime|null
-     */
-    public function getOrderDate()
-    {
-        return $this->orderDate;
-    }
-
-    /**
-     * @param Date|DateTime|null $orderDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOrderDate($orderDate)
-    {
-        $types = [
-            "Date",
-            "DateTime",
-            "null",
-        ];
-
-        $orderDate = self::checkTypes($orderDate, $types);
-
-        $this->orderDate = $orderDate;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getIsGift()
-    {
-        return $this->isGift;
-    }
-
-    /**
-     * @param bool|null $isGift
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setIsGift($isGift)
-    {
-        $types = [
-            "bool",
-            "null",
-        ];
-
-        $isGift = self::checkTypes($isGift, $types);
-
-        $this->isGift = $isGift;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|string
-     */
-    public function getOrderedItem()
-    {
-        return $this->orderedItem;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Service|\OpenActive\Models\SchemaOrg\OrderItem|\OpenActive\Models\SchemaOrg\Product|string $orderedItem
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOrderedItem($orderedItem)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Service",
-            "\OpenActive\Models\SchemaOrg\OrderItem",
-            "\OpenActive\Models\SchemaOrg\Product",
-            "string",
-        ];
-
-        $orderedItem = self::checkTypes($orderedItem, $types);
-
-        $this->orderedItem = $orderedItem;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\PaymentMethod|null
-     */
-    public function getPaymentMethod()
-    {
-        return $this->paymentMethod;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\PaymentMethod|null $paymentMethod
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPaymentMethod($paymentMethod)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\PaymentMethod",
-            "null",
-        ];
-
-        $paymentMethod = self::checkTypes($paymentMethod, $types);
-
-        $this->paymentMethod = $paymentMethod;
+        $this->seller = $seller;
     }
 
 }

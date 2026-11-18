@@ -3,7 +3,7 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from https://pending.schema.org/Schedule.
+ * This type is derived from https://schema.org/Schedule, which means that any of this type's properties within schema.org may also be used.
  *
  */
 class PartialSchedule extends \OpenActive\Models\OA\Schedule

@@ -17,21 +17,13 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
 
     public static function fieldList() {
         $fields = [
-            "publishedBy" => "publishedBy",
             "free" => "free",
+            "publishedBy" => "publishedBy",
             "publishedOn" => "publishedOn",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * An agent associated with the publication event.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $publishedBy;
 
     /**
      * A flag to signal that the item, event, or place is accessible for free.
@@ -42,12 +34,45 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
     protected $free;
 
     /**
+     * An agent associated with the publication event.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $publishedBy;
+
+    /**
      * A broadcast service associated with the publication event.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\BroadcastService|string
      */
     protected $publishedOn;
+
+    /**
+     * @return bool|null
+     */
+    public function getFree()
+    {
+        return $this->free;
+    }
+
+    /**
+     * @param bool|null $free
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFree($free)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $free = self::checkTypes($free, $types);
+
+        $this->free = $free;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
@@ -73,31 +98,6 @@ class PublicationEvent extends \OpenActive\Models\SchemaOrg\Event
         $publishedBy = self::checkTypes($publishedBy, $types);
 
         $this->publishedBy = $publishedBy;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getFree()
-    {
-        return $this->free;
-    }
-
-    /**
-     * @param bool|null $free
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFree($free)
-    {
-        $types = [
-            "bool",
-            "null",
-        ];
-
-        $free = self::checkTypes($free, $types);
-
-        $this->free = $free;
     }
 
     /**

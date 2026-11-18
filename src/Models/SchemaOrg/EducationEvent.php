@@ -17,13 +17,29 @@ class EducationEvent extends \OpenActive\Models\SchemaOrg\Event
 
     public static function fieldList() {
         $fields = [
-            "teaches" => "teaches",
-            "educationalLevel" => "educationalLevel",
             "assesses" => "assesses",
+            "educationalLevel" => "educationalLevel",
+            "teaches" => "teaches",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The item being described is intended to assess the competency or learning outcome defined by the referenced term.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    protected $assesses;
+
+    /**
+     * The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    protected $educationalLevel;
 
     /**
      * The item being described is intended to help a person learn the competency or learning outcome defined by the referenced term.
@@ -34,20 +50,54 @@ class EducationEvent extends \OpenActive\Models\SchemaOrg\Event
     protected $teaches;
 
     /**
-     * The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
-    protected $educationalLevel;
+    public function getAssesses()
+    {
+        return $this->assesses;
+    }
 
     /**
-     * The item being described is intended to assess the competency or learning outcome defined by the referenced term.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $assesses
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $assesses;
+    public function setAssesses($assesses)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
+        ];
+
+        $assesses = self::checkTypes($assesses, $types);
+
+        $this->assesses = $assesses;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    public function getEducationalLevel()
+    {
+        return $this->educationalLevel;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $educationalLevel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEducationalLevel($educationalLevel)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
+        ];
+
+        $educationalLevel = self::checkTypes($educationalLevel, $types);
+
+        $this->educationalLevel = $educationalLevel;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
@@ -72,56 +122,6 @@ class EducationEvent extends \OpenActive\Models\SchemaOrg\Event
         $teaches = self::checkTypes($teaches, $types);
 
         $this->teaches = $teaches;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
-     */
-    public function getEducationalLevel()
-    {
-        return $this->educationalLevel;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $educationalLevel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEducationalLevel($educationalLevel)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-        ];
-
-        $educationalLevel = self::checkTypes($educationalLevel, $types);
-
-        $this->educationalLevel = $educationalLevel;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
-     */
-    public function getAssesses()
-    {
-        return $this->assesses;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $assesses
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAssesses($assesses)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-        ];
-
-        $assesses = self::checkTypes($assesses, $types);
-
-        $this->assesses = $assesses;
     }
 
 }

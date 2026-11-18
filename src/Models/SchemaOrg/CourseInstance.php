@@ -17,21 +17,30 @@ class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
 
     public static function fieldList() {
         $fields = [
-            "instructor" => "instructor",
-            "courseWorkload" => "courseWorkload",
             "courseMode" => "courseMode",
+            "courseSchedule" => "courseSchedule",
+            "courseWorkload" => "courseWorkload",
+            "instructor" => "instructor",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A person assigned to instruct or provide instructional assistance for the [[CourseInstance]].
+     * The medium or means of delivery of the course instance or the mode of study, either as a text label (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time") or as a URL reference to a term from a controlled vocabulary (e.g. https://ceds.ed.gov/element/001311#Asynchronous).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
+     * @var string
      */
-    protected $instructor;
+    protected $courseMode;
+
+    /**
+     * Represents the length and pace of a course, expressed as a [[Schedule]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Schedule|string
+     */
+    protected $courseSchedule;
 
     /**
      * The amount of work expected of students taking the course, often provided as a figure per week or per month, and may be broken down by type. For example, "2 hours of lectures, 1 hour of lab work and 3 hours of independent study per week".
@@ -42,36 +51,60 @@ class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
     protected $courseWorkload;
 
     /**
-     * The medium or means of delivery of the course instance or the mode of study, either as a text label (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time") or as a URL reference to a term from a controlled vocabulary (e.g. https://ceds.ed.gov/element/001311#Asynchronous ).
+     * A person assigned to instruct or provide instructional assistance for the [[CourseInstance]].
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $courseMode;
+    protected $instructor;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
+     * @return string
      */
-    public function getInstructor()
+    public function getCourseMode()
     {
-        return $this->instructor;
+        return $this->courseMode;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $instructor
+     * @param string $courseMode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setInstructor($instructor)
+    public function setCourseMode($courseMode)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
             "string",
         ];
 
-        $instructor = self::checkTypes($instructor, $types);
+        $courseMode = self::checkTypes($courseMode, $types);
 
-        $this->instructor = $instructor;
+        $this->courseMode = $courseMode;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Schedule|string
+     */
+    public function getCourseSchedule()
+    {
+        return $this->courseSchedule;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Schedule|string $courseSchedule
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCourseSchedule($courseSchedule)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Schedule",
+            "string",
+        ];
+
+        $courseSchedule = self::checkTypes($courseSchedule, $types);
+
+        $this->courseSchedule = $courseSchedule;
     }
 
     /**
@@ -99,27 +132,28 @@ class CourseInstance extends \OpenActive\Models\SchemaOrg\Event
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getCourseMode()
+    public function getInstructor()
     {
-        return $this->courseMode;
+        return $this->instructor;
     }
 
     /**
-     * @param string $courseMode
+     * @param \OpenActive\Models\SchemaOrg\Person|string $instructor
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCourseMode($courseMode)
+    public function setInstructor($instructor)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
             "string",
         ];
 
-        $courseMode = self::checkTypes($courseMode, $types);
+        $instructor = self::checkTypes($instructor, $types);
 
-        $this->courseMode = $courseMode;
+        $this->instructor = $instructor;
     }
 
 }

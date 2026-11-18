@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class DietarySupplement extends \OpenActive\Models\SchemaOrg\Substance
+class DietarySupplement extends \OpenActive\Models\SchemaOrg\Product
 {
     /**
      * @return string[]|null
@@ -17,61 +17,20 @@ class DietarySupplement extends \OpenActive\Models\SchemaOrg\Substance
 
     public static function fieldList() {
         $fields = [
-            "targetPopulation" => "targetPopulation",
-            "recommendedIntake" => "recommendedIntake",
-            "legalStatus" => "legalStatus",
-            "mechanismOfAction" => "mechanismOfAction",
-            "maximumIntake" => "maximumIntake",
             "activeIngredient" => "activeIngredient",
-            "proprietaryName" => "proprietaryName",
-            "nonProprietaryName" => "nonProprietaryName",
-            "manufacturer" => "manufacturer",
             "isProprietary" => "isProprietary",
+            "legalStatus" => "legalStatus",
+            "maximumIntake" => "maximumIntake",
+            "mechanismOfAction" => "mechanismOfAction",
+            "nonProprietaryName" => "nonProprietaryName",
+            "proprietaryName" => "proprietaryName",
+            "recommendedIntake" => "recommendedIntake",
             "safetyConsideration" => "safetyConsideration",
+            "targetPopulation" => "targetPopulation",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Characteristics of the population for which this is intended, or which typically uses it, e.g. 'adults'.
-     *
-     *
-     * @var string
-     */
-    protected $targetPopulation;
-
-    /**
-     * Recommended intake of this supplement for a given population as defined by a specific recommending authority.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\RecommendedDoseSchedule|string
-     */
-    protected $recommendedIntake;
-
-    /**
-     * The drug or supplement's legal status, including any controlled substance schedules that apply.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DrugLegalStatus|string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
-     */
-    protected $legalStatus;
-
-    /**
-     * The specific biochemical interaction through which this drug or supplement produces its pharmacological effect.
-     *
-     *
-     * @var string
-     */
-    protected $mechanismOfAction;
-
-    /**
-     * Recommended intake of this supplement for a given population as defined by a specific recommending authority.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string
-     */
-    protected $maximumIntake;
 
     /**
      * An active ingredient, typically chemical compounds and/or biologic substances.
@@ -82,12 +41,36 @@ class DietarySupplement extends \OpenActive\Models\SchemaOrg\Substance
     protected $activeIngredient;
 
     /**
-     * Proprietary name given to the diet plan, typically by its originator or creator.
+     * True if this item's name is a proprietary/brand name (vs. generic name).
+     *
+     *
+     * @var bool|null
+     */
+    protected $isProprietary;
+
+    /**
+     * The drug or supplement's legal status, including any controlled substance schedules that apply.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DrugLegalStatus|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|string|null
+     */
+    protected $legalStatus;
+
+    /**
+     * Recommended intake of this supplement for a given population as defined by a specific recommending authority.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string
+     */
+    protected $maximumIntake;
+
+    /**
+     * The specific biochemical interaction through which this drug or supplement produces its pharmacological effect.
      *
      *
      * @var string
      */
-    protected $proprietaryName;
+    protected $mechanismOfAction;
 
     /**
      * The generic name of this drug or supplement.
@@ -98,20 +81,20 @@ class DietarySupplement extends \OpenActive\Models\SchemaOrg\Substance
     protected $nonProprietaryName;
 
     /**
-     * The manufacturer of the product.
+     * Proprietary name given to the diet plan, typically by its originator or creator.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     * @var string
      */
-    protected $manufacturer;
+    protected $proprietaryName;
 
     /**
-     * True if this item's name is a proprietary/brand name (vs. generic name).
+     * Recommended intake of this supplement for a given population as defined by a specific recommending authority.
      *
      *
-     * @var bool|null
+     * @var \OpenActive\Models\SchemaOrg\RecommendedDoseSchedule|string
      */
-    protected $isProprietary;
+    protected $recommendedIntake;
 
     /**
      * Any potential safety concern associated with the supplement. May include interactions with other drugs and foods, pregnancy, breastfeeding, known adverse reactions, and documented efficacy of the supplement.
@@ -122,56 +105,64 @@ class DietarySupplement extends \OpenActive\Models\SchemaOrg\Substance
     protected $safetyConsideration;
 
     /**
+     * Characteristics of the population for which this is intended, or which typically uses it, e.g. 'adults'.
+     *
+     *
+     * @var string
+     */
+    protected $targetPopulation;
+
+    /**
      * @return string
      */
-    public function getTargetPopulation()
+    public function getActiveIngredient()
     {
-        return $this->targetPopulation;
+        return $this->activeIngredient;
     }
 
     /**
-     * @param string $targetPopulation
+     * @param string $activeIngredient
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTargetPopulation($targetPopulation)
+    public function setActiveIngredient($activeIngredient)
     {
         $types = [
             "string",
         ];
 
-        $targetPopulation = self::checkTypes($targetPopulation, $types);
+        $activeIngredient = self::checkTypes($activeIngredient, $types);
 
-        $this->targetPopulation = $targetPopulation;
+        $this->activeIngredient = $activeIngredient;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\RecommendedDoseSchedule|string
+     * @return bool|null
      */
-    public function getRecommendedIntake()
+    public function getIsProprietary()
     {
-        return $this->recommendedIntake;
+        return $this->isProprietary;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\RecommendedDoseSchedule|string $recommendedIntake
+     * @param bool|null $isProprietary
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRecommendedIntake($recommendedIntake)
+    public function setIsProprietary($isProprietary)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\RecommendedDoseSchedule",
-            "string",
+            "bool",
+            "null",
         ];
 
-        $recommendedIntake = self::checkTypes($recommendedIntake, $types);
+        $isProprietary = self::checkTypes($isProprietary, $types);
 
-        $this->recommendedIntake = $recommendedIntake;
+        $this->isProprietary = $isProprietary;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DrugLegalStatus|string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
+     * @return \OpenActive\Models\SchemaOrg\DrugLegalStatus|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|string|null
      */
     public function getLegalStatus()
     {
@@ -179,7 +170,7 @@ class DietarySupplement extends \OpenActive\Models\SchemaOrg\Substance
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DrugLegalStatus|string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null $legalStatus
+     * @param \OpenActive\Models\SchemaOrg\DrugLegalStatus|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|string|null $legalStatus
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -187,38 +178,14 @@ class DietarySupplement extends \OpenActive\Models\SchemaOrg\Substance
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\DrugLegalStatus",
-            "string",
             "\OpenActive\Enums\SchemaOrg\MedicalEnumeration",
+            "string",
             "null",
         ];
 
         $legalStatus = self::checkTypes($legalStatus, $types);
 
         $this->legalStatus = $legalStatus;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMechanismOfAction()
-    {
-        return $this->mechanismOfAction;
-    }
-
-    /**
-     * @param string $mechanismOfAction
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMechanismOfAction($mechanismOfAction)
-    {
-        $types = [
-            "string",
-        ];
-
-        $mechanismOfAction = self::checkTypes($mechanismOfAction, $types);
-
-        $this->mechanismOfAction = $mechanismOfAction;
     }
 
     /**
@@ -249,49 +216,25 @@ class DietarySupplement extends \OpenActive\Models\SchemaOrg\Substance
     /**
      * @return string
      */
-    public function getActiveIngredient()
+    public function getMechanismOfAction()
     {
-        return $this->activeIngredient;
+        return $this->mechanismOfAction;
     }
 
     /**
-     * @param string $activeIngredient
+     * @param string $mechanismOfAction
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setActiveIngredient($activeIngredient)
+    public function setMechanismOfAction($mechanismOfAction)
     {
         $types = [
             "string",
         ];
 
-        $activeIngredient = self::checkTypes($activeIngredient, $types);
+        $mechanismOfAction = self::checkTypes($mechanismOfAction, $types);
 
-        $this->activeIngredient = $activeIngredient;
-    }
-
-    /**
-     * @return string
-     */
-    public function getProprietaryName()
-    {
-        return $this->proprietaryName;
-    }
-
-    /**
-     * @param string $proprietaryName
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setProprietaryName($proprietaryName)
-    {
-        $types = [
-            "string",
-        ];
-
-        $proprietaryName = self::checkTypes($proprietaryName, $types);
-
-        $this->proprietaryName = $proprietaryName;
+        $this->mechanismOfAction = $mechanismOfAction;
     }
 
     /**
@@ -319,53 +262,52 @@ class DietarySupplement extends \OpenActive\Models\SchemaOrg\Substance
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|string
+     * @return string
      */
-    public function getManufacturer()
+    public function getProprietaryName()
     {
-        return $this->manufacturer;
+        return $this->proprietaryName;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|string $manufacturer
+     * @param string $proprietaryName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setManufacturer($manufacturer)
+    public function setProprietaryName($proprietaryName)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
             "string",
         ];
 
-        $manufacturer = self::checkTypes($manufacturer, $types);
+        $proprietaryName = self::checkTypes($proprietaryName, $types);
 
-        $this->manufacturer = $manufacturer;
+        $this->proprietaryName = $proprietaryName;
     }
 
     /**
-     * @return bool|null
+     * @return \OpenActive\Models\SchemaOrg\RecommendedDoseSchedule|string
      */
-    public function getIsProprietary()
+    public function getRecommendedIntake()
     {
-        return $this->isProprietary;
+        return $this->recommendedIntake;
     }
 
     /**
-     * @param bool|null $isProprietary
+     * @param \OpenActive\Models\SchemaOrg\RecommendedDoseSchedule|string $recommendedIntake
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIsProprietary($isProprietary)
+    public function setRecommendedIntake($recommendedIntake)
     {
         $types = [
-            "bool",
-            "null",
+            "\OpenActive\Models\SchemaOrg\RecommendedDoseSchedule",
+            "string",
         ];
 
-        $isProprietary = self::checkTypes($isProprietary, $types);
+        $recommendedIntake = self::checkTypes($recommendedIntake, $types);
 
-        $this->isProprietary = $isProprietary;
+        $this->recommendedIntake = $recommendedIntake;
     }
 
     /**
@@ -390,6 +332,30 @@ class DietarySupplement extends \OpenActive\Models\SchemaOrg\Substance
         $safetyConsideration = self::checkTypes($safetyConsideration, $types);
 
         $this->safetyConsideration = $safetyConsideration;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTargetPopulation()
+    {
+        return $this->targetPopulation;
+    }
+
+    /**
+     * @param string $targetPopulation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTargetPopulation($targetPopulation)
+    {
+        $types = [
+            "string",
+        ];
+
+        $targetPopulation = self::checkTypes($targetPopulation, $types);
+
+        $this->targetPopulation = $targetPopulation;
     }
 
 }

@@ -17,22 +17,30 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
 
     public static function fieldList() {
         $fields = [
-            "startDate" => "startDate",
-            "endDate" => "endDate",
-            "currency" => "currency",
             "amount" => "amount",
+            "currency" => "currency",
+            "endDate" => "endDate",
+            "startDate" => "startDate",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
+     * The amount of money.
      *
      *
-     * @var Date|DateTime|null
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
      */
-    protected $startDate;
+    protected $amount;
+
+    /**
+     * The currency in which the monetary amount is expressed.\n\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217), e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies, e.g. "BTC"; well known names for [Local Exchange Trading Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types, e.g. "Ithaca HOUR".
+     *
+     *
+     * @var string
+     */
+    protected $currency;
 
     /**
      * The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
@@ -43,45 +51,62 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     protected $endDate;
 
     /**
-     * The currency in which the monetary amount is expressed.\n\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217) e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies e.g. "BTC"; well known names for [Local Exchange Tradings Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types e.g. "Ithaca HOUR".
+     * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
      *
      *
-     * @var string
+     * @var Date|DateTime|null
      */
-    protected $currency;
+    protected $startDate;
 
     /**
-     * The amount of money.
-     *
-     *
-     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
      */
-    protected $amount;
-
-    /**
-     * @return Date|DateTime|null
-     */
-    public function getStartDate()
+    public function getAmount()
     {
-        return $this->startDate;
+        return $this->amount;
     }
 
     /**
-     * @param Date|DateTime|null $startDate
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null $amount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setStartDate($startDate)
+    public function setAmount($amount)
     {
         $types = [
-            "Date",
-            "DateTime",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
+            "Number",
             "null",
         ];
 
-        $startDate = self::checkTypes($startDate, $types);
+        $amount = self::checkTypes($amount, $types);
 
-        $this->startDate = $startDate;
+        $this->amount = $amount;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param string $currency
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCurrency($currency)
+    {
+        $types = [
+            "string",
+        ];
+
+        $currency = self::checkTypes($currency, $types);
+
+        $this->currency = $currency;
     }
 
     /**
@@ -111,54 +136,29 @@ class DatedMoneySpecification extends \OpenActive\Models\SchemaOrg\StructuredVal
     }
 
     /**
-     * @return string
+     * @return Date|DateTime|null
      */
-    public function getCurrency()
+    public function getStartDate()
     {
-        return $this->currency;
+        return $this->startDate;
     }
 
     /**
-     * @param string $currency
+     * @param Date|DateTime|null $startDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCurrency($currency)
+    public function setStartDate($startDate)
     {
         $types = [
-            "string",
-        ];
-
-        $currency = self::checkTypes($currency, $types);
-
-        $this->currency = $currency;
-    }
-
-    /**
-     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
-     */
-    public function getAmount()
-    {
-        return $this->amount;
-    }
-
-    /**
-     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $amount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAmount($amount)
-    {
-        $types = [
-            "Number",
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "string",
+            "Date",
+            "DateTime",
             "null",
         ];
 
-        $amount = self::checkTypes($amount, $types);
+        $startDate = self::checkTypes($startDate, $types);
 
-        $this->amount = $amount;
+        $this->startDate = $startDate;
     }
 
 }

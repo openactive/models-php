@@ -17,27 +17,19 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
 
     public static function fieldList() {
         $fields = [
-            "recipe" => "recipe",
             "foodEstablishment" => "foodEstablishment",
             "foodEvent" => "foodEvent",
+            "recipe" => "recipe",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A sub property of instrument. The recipe/instructions used to perform the action.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Recipe|string
-     */
-    protected $recipe;
-
-    /**
      * A sub property of location. The specific food establishment where the action occurred.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment|string
+     * @var \OpenActive\Models\SchemaOrg\FoodEstablishment|\OpenActive\Models\SchemaOrg\Place|string
      */
     protected $foodEstablishment;
 
@@ -50,32 +42,15 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     protected $foodEvent;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Recipe|string
+     * A sub property of instrument. The recipe/instructions used to perform the action.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Recipe|string
      */
-    public function getRecipe()
-    {
-        return $this->recipe;
-    }
+    protected $recipe;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Recipe|string $recipe
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRecipe($recipe)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Recipe",
-            "string",
-        ];
-
-        $recipe = self::checkTypes($recipe, $types);
-
-        $this->recipe = $recipe;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment|string
+     * @return \OpenActive\Models\SchemaOrg\FoodEstablishment|\OpenActive\Models\SchemaOrg\Place|string
      */
     public function getFoodEstablishment()
     {
@@ -83,15 +58,15 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\FoodEstablishment|string $foodEstablishment
+     * @param \OpenActive\Models\SchemaOrg\FoodEstablishment|\OpenActive\Models\SchemaOrg\Place|string $foodEstablishment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setFoodEstablishment($foodEstablishment)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Place",
             "\OpenActive\Models\SchemaOrg\FoodEstablishment",
+            "\OpenActive\Models\SchemaOrg\Place",
             "string",
         ];
 
@@ -123,6 +98,31 @@ class CookAction extends \OpenActive\Models\SchemaOrg\CreateAction
         $foodEvent = self::checkTypes($foodEvent, $types);
 
         $this->foodEvent = $foodEvent;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Recipe|string
+     */
+    public function getRecipe()
+    {
+        return $this->recipe;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Recipe|string $recipe
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRecipe($recipe)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Recipe",
+            "string",
+        ];
+
+        $recipe = self::checkTypes($recipe, $types);
+
+        $this->recipe = $recipe;
     }
 
 }

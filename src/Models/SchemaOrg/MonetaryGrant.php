@@ -17,12 +17,20 @@ class MonetaryGrant extends \OpenActive\Models\SchemaOrg\Grant
 
     public static function fieldList() {
         $fields = [
-            "funder" => "funder",
             "amount" => "amount",
+            "funder" => "funder",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The amount of money.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
+     */
+    protected $amount;
 
     /**
      * A person or organization that supports (sponsors) something through some kind of financial contribution.
@@ -33,12 +41,31 @@ class MonetaryGrant extends \OpenActive\Models\SchemaOrg\Grant
     protected $funder;
 
     /**
-     * The amount of money.
-     *
-     *
-     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
      */
-    protected $amount;
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null $amount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAmount($amount)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
+            "Number",
+            "null",
+        ];
+
+        $amount = self::checkTypes($amount, $types);
+
+        $this->amount = $amount;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
@@ -64,33 +91,6 @@ class MonetaryGrant extends \OpenActive\Models\SchemaOrg\Grant
         $funder = self::checkTypes($funder, $types);
 
         $this->funder = $funder;
-    }
-
-    /**
-     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
-     */
-    public function getAmount()
-    {
-        return $this->amount;
-    }
-
-    /**
-     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $amount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAmount($amount)
-    {
-        $types = [
-            "Number",
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "string",
-            "null",
-        ];
-
-        $amount = self::checkTypes($amount, $types);
-
-        $this->amount = $amount;
     }
 
 }

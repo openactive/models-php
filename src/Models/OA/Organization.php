@@ -21,12 +21,20 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
             "identifier" => "identifier",
             "name" => "name",
             "description" => "description",
+            "activity" => "activity",
             "address" => "address",
+            "ageRange" => "ageRange",
+            "alternateName" => "alternateName",
             "email" => "email",
+            "genderRestriction" => "genderRestriction",
             "hasAccount" => "hasAccount",
             "isOpenBookingAllowed" => "isOpenBookingAllowed",
             "legalName" => "legalName",
+            "license" => "license",
+            "location" => "location",
             "logo" => "logo",
+            "member" => "member",
+            "memberOf" => "memberOf",
             "sameAs" => "sameAs",
             "taxMode" => "taxMode",
             "telephone" => "telephone",
@@ -36,6 +44,7 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
             "formattedDescription" => "beta:formattedDescription",
             "video" => "beta:video",
             "formalCriteriaMet" => "beta:formalCriteriaMet",
+            "dateVerified" => "beta:dateVerified",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -75,12 +84,58 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     protected $description;
 
     /**
+     * The physical activity or activities provided by this organization.
+     *
+     * ```json
+     * "activity": [
+     *   {
+     *     "@type": "Concept",
+     *     "@id": "https://openactive.io/activity-list#6bb8b844-df3e-4cae-bf5f-3e129c6b1a9d",
+     *     "prefLabel": "Sailing",
+     *     "inScheme": "https://openactive.io/activity-list"
+     *   }
+     * ]
+     * ```
+     *
+     * @var \OpenActive\Models\OA\Concept[]
+     */
+    protected $activity;
+
+    /**
      * Address of the Seller, used on tax receipts.
      *
      *
      * @var \OpenActive\Models\OA\PostalAddress
      */
     protected $address;
+
+    /**
+     * The age range this organization caters for overall.
+     *
+     * ```json
+     * "ageRange": {
+     *   "@type": "QuantitativeValue",
+     *   "minValue": 5,
+     *   "maxValue": 16
+     * }
+     * ```
+     *
+     * @var \OpenActive\Models\OA\QuantitativeValue
+     */
+    protected $ageRange;
+
+    /**
+     * Aliases, common acronyms or alternative names for the organization.
+     *
+     * ```json
+     * "alternateName": [
+     *   "EYC"
+     * ]
+     * ```
+     *
+     * @var string[]|string
+     */
+    protected $alternateName;
 
     /**
      * General enquiries e-mail address for the organization.
@@ -92,6 +147,17 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      * @var string
      */
     protected $email;
+
+    /**
+     * Indicates that the organization provides activities that are restricted to male or female participants, or that there are no restrictions.
+     *
+     * ```json
+     * "genderRestriction": "https://openactive.io/FemaleOnly"
+     * ```
+     *
+     * @var \OpenActive\Enums\GenderRestrictionType|null
+     */
+    protected $genderRestriction;
 
     /**
      * Reference to the CustomerAccount associated with this Customer, for use within the Open Booking API flow.
@@ -125,6 +191,37 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     protected $legalName;
 
     /**
+     * Reference to the license under which the Organization's data is published. Required when an Organization is published on its own outside an RPDE feed; in an RPDE feed, the license is given by each feed page, so it should not be included.
+     *
+     * ```json
+     * "license": "https://creativecommons.org/licenses/by/4.0/"
+     * ```
+     *
+     * @var string
+     */
+    protected $license;
+
+    /**
+     * The main address of the organization, or the key locations of the activities it provides.
+     *
+     * ```json
+     * "location": {
+     *   "@type": "Place",
+     *   "@id": "https://example.com/locations/1234ABCD",
+     *   "name": "Example Sailing Club",
+     *   "address": {
+     *     "@type": "PostalAddress",
+     *     "postalCode": "SE10 0BW",
+     *     "addressCountry": "GB"
+     *   }
+     * }
+     * ```
+     *
+     * @var string|\OpenActive\Models\OA\Place[]|\OpenActive\Models\OA\PostalAddress|\OpenActive\Models\OA\Place
+     */
+    protected $location;
+
+    /**
      * A logo for the Organization.
      *
      * ```json
@@ -137,6 +234,30 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
      * @var \OpenActive\Models\OA\ImageObject
      */
     protected $logo;
+
+    /**
+     * The `@id`s of organizations affiliated to this organization. For example, a national governing body can list its affiliated clubs.
+     *
+     * ```json
+     * "member": [
+     *   "https://example.org/id/organisation/1"
+     * ]
+     * ```
+     *
+     * @var string|string[]
+     */
+    protected $member;
+
+    /**
+     * The `@id` of an organization that this organization is affiliated to. For example, a club can link to its national governing body.
+     *
+     * ```json
+     * "memberOf": "https://example.org/id/organisation/national-governing-body"
+     * ```
+     *
+     * @var \OpenActive\Models\OA\Organization|string
+     */
+    protected $memberOf;
 
     /**
      * Lists the URL(s) of the official social media profile pages associated with the organization.
@@ -232,6 +353,17 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     protected $formalCriteriaMet;
 
     /**
+     * [NOTICE: This is a beta property, and is highly likely to change in future versions of this library.]
+     * The date on which the details of this organization were last verified as correct by the publisher. Unlike `schema:dateModified`, this changes when the details are confirmed, even if nothing in them has changed.
+     * 
+     * If you are using this property, please join the discussion at proposal [#313](https://github.com/openactive/modelling-opportunity-data/issues/313).
+     *
+     *
+     * @var Date|null
+     */
+    protected $dateVerified;
+
+    /**
      * @return string|int|\OpenActive\Models\OA\PropertyValue|\OpenActive\Models\OA\PropertyValue[]|null
      */
     public function getIdentifier()
@@ -308,6 +440,30 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
+     * @return \OpenActive\Models\OA\Concept[]
+     */
+    public function getActivity()
+    {
+        return $this->activity;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\Concept[] $activity
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActivity($activity)
+    {
+        $types = [
+            "\OpenActive\Models\OA\Concept[]",
+        ];
+
+        $activity = self::checkTypes($activity, $types);
+
+        $this->activity = $activity;
+    }
+
+    /**
      * @return \OpenActive\Models\OA\PostalAddress
      */
     public function getAddress()
@@ -332,6 +488,55 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
+     * @return \OpenActive\Models\OA\QuantitativeValue
+     */
+    public function getAgeRange()
+    {
+        return $this->ageRange;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\QuantitativeValue $ageRange
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAgeRange($ageRange)
+    {
+        $types = [
+            "\OpenActive\Models\OA\QuantitativeValue",
+        ];
+
+        $ageRange = self::checkTypes($ageRange, $types);
+
+        $this->ageRange = $ageRange;
+    }
+
+    /**
+     * @return string[]|string
+     */
+    public function getAlternateName()
+    {
+        return $this->alternateName;
+    }
+
+    /**
+     * @param string[]|string $alternateName
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAlternateName($alternateName)
+    {
+        $types = [
+            "string[]",
+            "string",
+        ];
+
+        $alternateName = self::checkTypes($alternateName, $types);
+
+        $this->alternateName = $alternateName;
+    }
+
+    /**
      * @return string
      */
     public function getEmail()
@@ -353,6 +558,31 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
         $email = self::checkTypes($email, $types);
 
         $this->email = $email;
+    }
+
+    /**
+     * @return \OpenActive\Enums\GenderRestrictionType|null
+     */
+    public function getGenderRestriction()
+    {
+        return $this->genderRestriction;
+    }
+
+    /**
+     * @param \OpenActive\Enums\GenderRestrictionType|null $genderRestriction
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGenderRestriction($genderRestriction)
+    {
+        $types = [
+            "\OpenActive\Enums\GenderRestrictionType",
+            "null",
+        ];
+
+        $genderRestriction = self::checkTypes($genderRestriction, $types);
+
+        $this->genderRestriction = $genderRestriction;
     }
 
     /**
@@ -430,6 +660,57 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
     }
 
     /**
+     * @return string
+     */
+    public function getLicense()
+    {
+        return $this->license;
+    }
+
+    /**
+     * @param string $license
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLicense($license)
+    {
+        $types = [
+            "string",
+        ];
+
+        $license = self::checkTypes($license, $types);
+
+        $this->license = $license;
+    }
+
+    /**
+     * @return string|\OpenActive\Models\OA\Place[]|\OpenActive\Models\OA\PostalAddress|\OpenActive\Models\OA\Place
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\OA\Place[]|\OpenActive\Models\OA\PostalAddress|\OpenActive\Models\OA\Place $location
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLocation($location)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\OA\Place[]",
+            "\OpenActive\Models\OA\PostalAddress",
+            "\OpenActive\Models\OA\Place",
+        ];
+
+        $location = self::checkTypes($location, $types);
+
+        $this->location = $location;
+    }
+
+    /**
      * @return \OpenActive\Models\OA\ImageObject
      */
     public function getLogo()
@@ -451,6 +732,56 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
         $logo = self::checkTypes($logo, $types);
 
         $this->logo = $logo;
+    }
+
+    /**
+     * @return string|string[]
+     */
+    public function getMember()
+    {
+        return $this->member;
+    }
+
+    /**
+     * @param string|string[] $member
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMember($member)
+    {
+        $types = [
+            "string",
+            "string[]",
+        ];
+
+        $member = self::checkTypes($member, $types);
+
+        $this->member = $member;
+    }
+
+    /**
+     * @return \OpenActive\Models\OA\Organization|string
+     */
+    public function getMemberOf()
+    {
+        return $this->memberOf;
+    }
+
+    /**
+     * @param \OpenActive\Models\OA\Organization|string $memberOf
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMemberOf($memberOf)
+    {
+        $types = [
+            "\OpenActive\Models\OA\Organization",
+            "string",
+        ];
+
+        $memberOf = self::checkTypes($memberOf, $types);
+
+        $this->memberOf = $memberOf;
     }
 
     /**
@@ -668,6 +999,31 @@ class Organization extends \OpenActive\Models\SchemaOrg\Organization
         $formalCriteriaMet = self::checkTypes($formalCriteriaMet, $types);
 
         $this->formalCriteriaMet = $formalCriteriaMet;
+    }
+
+    /**
+     * @return Date|null
+     */
+    public function getDateVerified()
+    {
+        return $this->dateVerified;
+    }
+
+    /**
+     * @param Date|null $dateVerified
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDateVerified($dateVerified)
+    {
+        $types = [
+            "Date",
+            "null",
+        ];
+
+        $dateVerified = self::checkTypes($dateVerified, $types);
+
+        $this->dateVerified = $dateVerified;
     }
 
 }

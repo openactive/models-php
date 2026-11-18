@@ -17,53 +17,21 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "valueMaxLength" => "valueMaxLength",
-            "readonlyValue" => "readonlyValue",
-            "maxValue" => "maxValue",
-            "valueName" => "valueName",
             "defaultValue" => "defaultValue",
-            "valueMinLength" => "valueMinLength",
-            "valueRequired" => "valueRequired",
+            "maxValue" => "maxValue",
             "minValue" => "minValue",
-            "valuePattern" => "valuePattern",
-            "stepValue" => "stepValue",
             "multipleValues" => "multipleValues",
+            "readonlyValue" => "readonlyValue",
+            "stepValue" => "stepValue",
+            "valueMaxLength" => "valueMaxLength",
+            "valueMinLength" => "valueMinLength",
+            "valueName" => "valueName",
+            "valuePattern" => "valuePattern",
+            "valueRequired" => "valueRequired",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Specifies the allowed range for number of characters in a literal value.
-     *
-     *
-     * @var Number|null
-     */
-    protected $valueMaxLength;
-
-    /**
-     * Whether or not a property is mutable.  Default is false. Specifying this for a property that also has a value makes it act similar to a "hidden" input in an HTML form.
-     *
-     *
-     * @var bool|null
-     */
-    protected $readonlyValue;
-
-    /**
-     * The upper value of some characteristic or property.
-     *
-     *
-     * @var Number|null
-     */
-    protected $maxValue;
-
-    /**
-     * Indicates the name of the PropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML's `input@name`.
-     *
-     *
-     * @var string
-     */
-    protected $valueName;
 
     /**
      * The default value of the input.  For properties that expect a literal, the default is a literal value, for properties that expect an object, it's an ID reference to one of the current values.
@@ -74,20 +42,12 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     protected $defaultValue;
 
     /**
-     * Specifies the minimum allowed range for number of characters in a literal value.
+     * The upper value of some characteristic or property.
      *
      *
      * @var Number|null
      */
-    protected $valueMinLength;
-
-    /**
-     * Whether the property must be filled in to complete the action.  Default is false.
-     *
-     *
-     * @var bool|null
-     */
-    protected $valueRequired;
+    protected $maxValue;
 
     /**
      * The lower value of some characteristic or property.
@@ -98,12 +58,20 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     protected $minValue;
 
     /**
-     * Specifies a regular expression for testing literal values according to the HTML spec.
+     * Whether multiple values are allowed for the property.  Default is false.
      *
      *
-     * @var string
+     * @var bool|null
      */
-    protected $valuePattern;
+    protected $multipleValues;
+
+    /**
+     * Whether or not a property is mutable.  Default is false. Specifying this for a property that also has a value makes it act similar to a "hidden" input in an HTML form.
+     *
+     *
+     * @var bool|null
+     */
+    protected $readonlyValue;
 
     /**
      * The stepValue attribute indicates the granularity that is expected (and required) of the value in a PropertyValueSpecification.
@@ -114,36 +82,143 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     protected $stepValue;
 
     /**
-     * Whether multiple values are allowed for the property.  Default is false.
+     * Specifies the allowed range for number of characters in a literal value.
+     *
+     *
+     * @var Number|null
+     */
+    protected $valueMaxLength;
+
+    /**
+     * Specifies the minimum allowed range for number of characters in a literal value.
+     *
+     *
+     * @var Number|null
+     */
+    protected $valueMinLength;
+
+    /**
+     * Indicates the name of the PropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML's `input@name`.
+     *
+     *
+     * @var string
+     */
+    protected $valueName;
+
+    /**
+     * Specifies a regular expression for testing literal values according to the HTML spec.
+     *
+     *
+     * @var string
+     */
+    protected $valuePattern;
+
+    /**
+     * Whether the property must be filled in to complete the action.  Default is false.
      *
      *
      * @var bool|null
      */
-    protected $multipleValues;
+    protected $valueRequired;
+
+    /**
+     * @return string|\OpenActive\Models\SchemaOrg\Thing
+     */
+    public function getDefaultValue()
+    {
+        return $this->defaultValue;
+    }
+
+    /**
+     * @param string|\OpenActive\Models\SchemaOrg\Thing $defaultValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDefaultValue($defaultValue)
+    {
+        $types = [
+            "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
+        ];
+
+        $defaultValue = self::checkTypes($defaultValue, $types);
+
+        $this->defaultValue = $defaultValue;
+    }
 
     /**
      * @return Number|null
      */
-    public function getValueMaxLength()
+    public function getMaxValue()
     {
-        return $this->valueMaxLength;
+        return $this->maxValue;
     }
 
     /**
-     * @param Number|null $valueMaxLength
+     * @param Number|null $maxValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setValueMaxLength($valueMaxLength)
+    public function setMaxValue($maxValue)
     {
         $types = [
             "Number",
             "null",
         ];
 
-        $valueMaxLength = self::checkTypes($valueMaxLength, $types);
+        $maxValue = self::checkTypes($maxValue, $types);
 
-        $this->valueMaxLength = $valueMaxLength;
+        $this->maxValue = $maxValue;
+    }
+
+    /**
+     * @return Number|null
+     */
+    public function getMinValue()
+    {
+        return $this->minValue;
+    }
+
+    /**
+     * @param Number|null $minValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMinValue($minValue)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $minValue = self::checkTypes($minValue, $types);
+
+        $this->minValue = $minValue;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getMultipleValues()
+    {
+        return $this->multipleValues;
+    }
+
+    /**
+     * @param bool|null $multipleValues
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMultipleValues($multipleValues)
+    {
+        $types = [
+            "bool",
+            "null",
+        ];
+
+        $multipleValues = self::checkTypes($multipleValues, $types);
+
+        $this->multipleValues = $multipleValues;
     }
 
     /**
@@ -174,75 +249,51 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     /**
      * @return Number|null
      */
-    public function getMaxValue()
+    public function getStepValue()
     {
-        return $this->maxValue;
+        return $this->stepValue;
     }
 
     /**
-     * @param Number|null $maxValue
+     * @param Number|null $stepValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMaxValue($maxValue)
+    public function setStepValue($stepValue)
     {
         $types = [
             "Number",
             "null",
         ];
 
-        $maxValue = self::checkTypes($maxValue, $types);
+        $stepValue = self::checkTypes($stepValue, $types);
 
-        $this->maxValue = $maxValue;
+        $this->stepValue = $stepValue;
     }
 
     /**
-     * @return string
+     * @return Number|null
      */
-    public function getValueName()
+    public function getValueMaxLength()
     {
-        return $this->valueName;
+        return $this->valueMaxLength;
     }
 
     /**
-     * @param string $valueName
+     * @param Number|null $valueMaxLength
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setValueName($valueName)
+    public function setValueMaxLength($valueMaxLength)
     {
         $types = [
-            "string",
+            "Number",
+            "null",
         ];
 
-        $valueName = self::checkTypes($valueName, $types);
+        $valueMaxLength = self::checkTypes($valueMaxLength, $types);
 
-        $this->valueName = $valueName;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\Thing
-     */
-    public function getDefaultValue()
-    {
-        return $this->defaultValue;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\Thing $defaultValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDefaultValue($defaultValue)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\Thing",
-        ];
-
-        $defaultValue = self::checkTypes($defaultValue, $types);
-
-        $this->defaultValue = $defaultValue;
+        $this->valueMaxLength = $valueMaxLength;
     }
 
     /**
@@ -271,53 +322,27 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return bool|null
+     * @return string
      */
-    public function getValueRequired()
+    public function getValueName()
     {
-        return $this->valueRequired;
+        return $this->valueName;
     }
 
     /**
-     * @param bool|null $valueRequired
+     * @param string $valueName
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setValueRequired($valueRequired)
+    public function setValueName($valueName)
     {
         $types = [
-            "bool",
-            "null",
+            "string",
         ];
 
-        $valueRequired = self::checkTypes($valueRequired, $types);
+        $valueName = self::checkTypes($valueName, $types);
 
-        $this->valueRequired = $valueRequired;
-    }
-
-    /**
-     * @return Number|null
-     */
-    public function getMinValue()
-    {
-        return $this->minValue;
-    }
-
-    /**
-     * @param Number|null $minValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMinValue($minValue)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $minValue = self::checkTypes($minValue, $types);
-
-        $this->minValue = $minValue;
+        $this->valueName = $valueName;
     }
 
     /**
@@ -345,53 +370,28 @@ class PropertyValueSpecification extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return Number|null
-     */
-    public function getStepValue()
-    {
-        return $this->stepValue;
-    }
-
-    /**
-     * @param Number|null $stepValue
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setStepValue($stepValue)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $stepValue = self::checkTypes($stepValue, $types);
-
-        $this->stepValue = $stepValue;
-    }
-
-    /**
      * @return bool|null
      */
-    public function getMultipleValues()
+    public function getValueRequired()
     {
-        return $this->multipleValues;
+        return $this->valueRequired;
     }
 
     /**
-     * @param bool|null $multipleValues
+     * @param bool|null $valueRequired
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMultipleValues($multipleValues)
+    public function setValueRequired($valueRequired)
     {
         $types = [
             "bool",
             "null",
         ];
 
-        $multipleValues = self::checkTypes($multipleValues, $types);
+        $valueRequired = self::checkTypes($valueRequired, $types);
 
-        $this->multipleValues = $multipleValues;
+        $this->valueRequired = $valueRequired;
     }
 
 }

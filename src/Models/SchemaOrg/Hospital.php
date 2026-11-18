@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Hospital extends \OpenActive\Models\SchemaOrg\MedicalOrganization
+class Hospital extends \OpenActive\Models\SchemaOrg\CivicStructure
 {
     /**
      * @return string[]|null
@@ -29,7 +29,7 @@ class Hospital extends \OpenActive\Models\SchemaOrg\MedicalOrganization
      * A medical service available from this provider.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     * @var \OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
     protected $availableService;
 
@@ -37,7 +37,7 @@ class Hospital extends \OpenActive\Models\SchemaOrg\MedicalOrganization
      * Indicates data describing a hospital, e.g. a CDC [[CDCPMDRecord]] or as some kind of [[Dataset]].
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Dataset|\OpenActive\Models\SchemaOrg\CDCPMDRecord|string
+     * @var \OpenActive\Models\SchemaOrg\CDCPMDRecord|\OpenActive\Models\SchemaOrg\Dataset|string
      */
     protected $healthcareReportingData;
 
@@ -50,7 +50,7 @@ class Hospital extends \OpenActive\Models\SchemaOrg\MedicalOrganization
     protected $medicalSpecialty;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     * @return \OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
     public function getAvailableService()
     {
@@ -58,15 +58,15 @@ class Hospital extends \OpenActive\Models\SchemaOrg\MedicalOrganization
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string $availableService
+     * @param \OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalTherapy|string $availableService
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableService($availableService)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalTest",
             "\OpenActive\Models\SchemaOrg\MedicalProcedure",
+            "\OpenActive\Models\SchemaOrg\MedicalTest",
             "\OpenActive\Models\SchemaOrg\MedicalTherapy",
             "string",
         ];
@@ -77,7 +77,7 @@ class Hospital extends \OpenActive\Models\SchemaOrg\MedicalOrganization
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Dataset|\OpenActive\Models\SchemaOrg\CDCPMDRecord|string
+     * @return \OpenActive\Models\SchemaOrg\CDCPMDRecord|\OpenActive\Models\SchemaOrg\Dataset|string
      */
     public function getHealthcareReportingData()
     {
@@ -85,15 +85,15 @@ class Hospital extends \OpenActive\Models\SchemaOrg\MedicalOrganization
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Dataset|\OpenActive\Models\SchemaOrg\CDCPMDRecord|string $healthcareReportingData
+     * @param \OpenActive\Models\SchemaOrg\CDCPMDRecord|\OpenActive\Models\SchemaOrg\Dataset|string $healthcareReportingData
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setHealthcareReportingData($healthcareReportingData)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Dataset",
             "\OpenActive\Models\SchemaOrg\CDCPMDRecord",
+            "\OpenActive\Models\SchemaOrg\Dataset",
             "string",
         ];
 

@@ -17,20 +17,12 @@ class HyperToc extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "tocEntry" => "tocEntry",
             "associatedMedia" => "associatedMedia",
+            "tocEntry" => "tocEntry",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Indicates a [[HyperTocEntry]] in a [[HyperToc]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\HyperTocEntry|string
-     */
-    protected $tocEntry;
 
     /**
      * A media object that encodes this CreativeWork. This property is a synonym for encoding.
@@ -41,29 +33,12 @@ class HyperToc extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $associatedMedia;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\HyperTocEntry|string
+     * Indicates a [[HyperTocEntry]] in a [[HyperToc]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\HyperTocEntry|string
      */
-    public function getTocEntry()
-    {
-        return $this->tocEntry;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\HyperTocEntry|string $tocEntry
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTocEntry($tocEntry)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\HyperTocEntry",
-            "string",
-        ];
-
-        $tocEntry = self::checkTypes($tocEntry, $types);
-
-        $this->tocEntry = $tocEntry;
-    }
+    protected $tocEntry;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MediaObject|string
@@ -88,6 +63,31 @@ class HyperToc extends \OpenActive\Models\SchemaOrg\CreativeWork
         $associatedMedia = self::checkTypes($associatedMedia, $types);
 
         $this->associatedMedia = $associatedMedia;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\HyperTocEntry|string
+     */
+    public function getTocEntry()
+    {
+        return $this->tocEntry;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\HyperTocEntry|string $tocEntry
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTocEntry($tocEntry)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\HyperTocEntry",
+            "string",
+        ];
+
+        $tocEntry = self::checkTypes($tocEntry, $types);
+
+        $this->tocEntry = $tocEntry;
     }
 
 }

@@ -17,23 +17,25 @@ class ComicStory extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "letterer" => "letterer",
+            "artist" => "artist",
             "colorist" => "colorist",
             "inker" => "inker",
+            "letterer" => "letterer",
             "penciler" => "penciler",
-            "artist" => "artist",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The individual who adds lettering, including speech balloons and sound effects, to artwork.
+     * The primary artist for a work
+     *     	in a medium other than pencils or digital line art--for example, if the
+     *     	primary artwork is done in watercolors or digital paints.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $letterer;
+    protected $artist;
 
     /**
      * The individual who adds color to inked drawings.
@@ -52,6 +54,14 @@ class ComicStory extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $inker;
 
     /**
+     * The individual who adds lettering, including speech balloons and sound effects, to artwork.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $letterer;
+
+    /**
      * The individual who draws the primary narrative artwork.
      *
      *
@@ -60,38 +70,28 @@ class ComicStory extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $penciler;
 
     /**
-     * The primary artist for a work
-     *     	in a medium other than pencils or digital line art--for example, if the
-     *     	primary artwork is done in watercolors or digital paints.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $artist;
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getLetterer()
+    public function getArtist()
     {
-        return $this->letterer;
+        return $this->artist;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $letterer
+     * @param \OpenActive\Models\SchemaOrg\Person|string $artist
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLetterer($letterer)
+    public function setArtist($artist)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
             "string",
         ];
 
-        $letterer = self::checkTypes($letterer, $types);
+        $artist = self::checkTypes($artist, $types);
 
-        $this->letterer = $letterer;
+        $this->artist = $artist;
     }
 
     /**
@@ -147,6 +147,31 @@ class ComicStory extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @return \OpenActive\Models\SchemaOrg\Person|string
      */
+    public function getLetterer()
+    {
+        return $this->letterer;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Person|string $letterer
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLetterer($letterer)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $letterer = self::checkTypes($letterer, $types);
+
+        $this->letterer = $letterer;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Person|string
+     */
     public function getPenciler()
     {
         return $this->penciler;
@@ -167,31 +192,6 @@ class ComicStory extends \OpenActive\Models\SchemaOrg\CreativeWork
         $penciler = self::checkTypes($penciler, $types);
 
         $this->penciler = $penciler;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
-     */
-    public function getArtist()
-    {
-        return $this->artist;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $artist
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setArtist($artist)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "string",
-        ];
-
-        $artist = self::checkTypes($artist, $types);
-
-        $this->artist = $artist;
     }
 
 }

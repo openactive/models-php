@@ -105,7 +105,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     protected $accessibilitySupport;
 
     /**
-     * Specifies the physical activity or activities that will take place during a Course.
+     * Specifies the physical activity or activities associated with this resource.
      *
      * ```json
      * "activity": [
@@ -123,7 +123,7 @@ class Course extends \OpenActive\Models\SchemaOrg\Course
     protected $activity;
 
     /**
-     * Indicates that an event is recommended as being suitable for or is targetted at a specific age range.
+     * Indicates that this resource is recommended as being suitable for, or is targeted at, a specific age range.
      *
      * ```json
      * "ageRange": {

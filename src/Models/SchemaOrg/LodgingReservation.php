@@ -17,48 +17,16 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
 
     public static function fieldList() {
         $fields = [
-            "lodgingUnitType" => "lodgingUnitType",
-            "lodgingUnitDescription" => "lodgingUnitDescription",
-            "checkoutTime" => "checkoutTime",
-            "numAdults" => "numAdults",
             "checkinTime" => "checkinTime",
+            "checkoutTime" => "checkoutTime",
+            "lodgingUnitDescription" => "lodgingUnitDescription",
+            "lodgingUnitType" => "lodgingUnitType",
+            "numAdults" => "numAdults",
             "numChildren" => "numChildren",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Textual description of the unit type (including suite vs. room, size of bed, etc.).
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
-     */
-    protected $lodgingUnitType;
-
-    /**
-     * A full description of the lodging unit.
-     *
-     *
-     * @var string
-     */
-    protected $lodgingUnitDescription;
-
-    /**
-     * The latest someone may check out of a lodging establishment.
-     *
-     *
-     * @var DateTime|string|null
-     */
-    protected $checkoutTime;
-
-    /**
-     * The number of adults staying in the unit.
-     *
-     *
-     * @var int|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
-     */
-    protected $numAdults;
 
     /**
      * The earliest someone may check into a lodging establishment.
@@ -69,6 +37,38 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $checkinTime;
 
     /**
+     * The latest someone may check out of a lodging establishment.
+     *
+     *
+     * @var DateTime|string|null
+     */
+    protected $checkoutTime;
+
+    /**
+     * A full description of the lodging unit.
+     *
+     *
+     * @var string
+     */
+    protected $lodgingUnitDescription;
+
+    /**
+     * Textual description of the unit type (including suite vs. room, size of bed, etc.).
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     */
+    protected $lodgingUnitType;
+
+    /**
+     * The number of adults staying in the unit.
+     *
+     *
+     * @var int|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     */
+    protected $numAdults;
+
+    /**
      * The number of children staying in the unit.
      *
      *
@@ -77,53 +77,29 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $numChildren;
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     * @return DateTime|string|null
      */
-    public function getLodgingUnitType()
+    public function getCheckinTime()
     {
-        return $this->lodgingUnitType;
+        return $this->checkinTime;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null $lodgingUnitType
+     * @param DateTime|string|null $checkinTime
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setLodgingUnitType($lodgingUnitType)
+    public function setCheckinTime($checkinTime)
     {
         $types = [
-            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
-            "string",
+            "DateTime",
+            "Time",
             "null",
         ];
 
-        $lodgingUnitType = self::checkTypes($lodgingUnitType, $types);
+        $checkinTime = self::checkTypes($checkinTime, $types);
 
-        $this->lodgingUnitType = $lodgingUnitType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLodgingUnitDescription()
-    {
-        return $this->lodgingUnitDescription;
-    }
-
-    /**
-     * @param string $lodgingUnitDescription
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLodgingUnitDescription($lodgingUnitDescription)
-    {
-        $types = [
-            "string",
-        ];
-
-        $lodgingUnitDescription = self::checkTypes($lodgingUnitDescription, $types);
-
-        $this->lodgingUnitDescription = $lodgingUnitDescription;
+        $this->checkinTime = $checkinTime;
     }
 
     /**
@@ -153,6 +129,56 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
     }
 
     /**
+     * @return string
+     */
+    public function getLodgingUnitDescription()
+    {
+        return $this->lodgingUnitDescription;
+    }
+
+    /**
+     * @param string $lodgingUnitDescription
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLodgingUnitDescription($lodgingUnitDescription)
+    {
+        $types = [
+            "string",
+        ];
+
+        $lodgingUnitDescription = self::checkTypes($lodgingUnitDescription, $types);
+
+        $this->lodgingUnitDescription = $lodgingUnitDescription;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
+     */
+    public function getLodgingUnitType()
+    {
+        return $this->lodgingUnitType;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null $lodgingUnitType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLodgingUnitType($lodgingUnitType)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\QualitativeValue",
+            "string",
+            "null",
+        ];
+
+        $lodgingUnitType = self::checkTypes($lodgingUnitType, $types);
+
+        $this->lodgingUnitType = $lodgingUnitType;
+    }
+
+    /**
      * @return int|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
     public function getNumAdults()
@@ -177,32 +203,6 @@ class LodgingReservation extends \OpenActive\Models\SchemaOrg\Reservation
         $numAdults = self::checkTypes($numAdults, $types);
 
         $this->numAdults = $numAdults;
-    }
-
-    /**
-     * @return DateTime|string|null
-     */
-    public function getCheckinTime()
-    {
-        return $this->checkinTime;
-    }
-
-    /**
-     * @param DateTime|string|null $checkinTime
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCheckinTime($checkinTime)
-    {
-        $types = [
-            "DateTime",
-            "Time",
-            "null",
-        ];
-
-        $checkinTime = self::checkTypes($checkinTime, $types);
-
-        $this->checkinTime = $checkinTime;
     }
 
     /**

@@ -17,24 +17,19 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "shippingDestination" => "shippingDestination",
             "doesNotShip" => "doesNotShip",
-            "shippingLabel" => "shippingLabel",
-            "isUnlabelledFallback" => "isUnlabelledFallback",
-            "shippingRate" => "shippingRate",
             "freeShippingThreshold" => "freeShippingThreshold",
+            "isUnlabelledFallback" => "isUnlabelledFallback",
+            "minimumOrderValue" => "minimumOrderValue",
+            "orderPercentage" => "orderPercentage",
+            "shippingDestination" => "shippingDestination",
+            "shippingLabel" => "shippingLabel",
+            "shippingRate" => "shippingRate",
+            "weightPercentage" => "weightPercentage",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * indicates (possibly multiple) shipping destinations. These can be defined in several ways e.g. postalCode ranges.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DefinedRegion|string
-     */
-    protected $shippingDestination;
 
     /**
      * Indicates when shipping to a particular [[shippingDestination]] is not available.
@@ -45,12 +40,12 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $doesNotShip;
 
     /**
-     * Label to match an [[OfferShippingDetails]] with a [[ShippingRateSettings]] (within the context of a [[shippingSettingsLink]] cross-reference).
+     * A monetary value above (or at) which the shipping rate becomes free. Intended to be used via an [[OfferShippingDetails]] with [[shippingSettingsLink]] matching this [[ShippingRateSettings]].
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\DeliveryChargeSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string
      */
-    protected $shippingLabel;
+    protected $freeShippingThreshold;
 
     /**
      * This can be marked 'true' to indicate that some published [[DeliveryTimeSettings]] or [[ShippingRateSettings]] are intended to apply to all [[OfferShippingDetails]] published by the same merchant, when referenced by a [[shippingSettingsLink]] in those settings. It is not meaningful to use a 'true' value for this property alongside a transitTimeLabel (for [[DeliveryTimeSettings]]) or shippingLabel (for [[ShippingRateSettings]]), since this property is for use with unlabelled settings.
@@ -61,45 +56,52 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $isUnlabelledFallback;
 
     /**
+     * The minimum order value required for this shipping rate to apply.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|Number|\OpenActive\Models\SchemaOrg\PriceSpecification|string|null
+     */
+    protected $minimumOrderValue;
+
+    /**
+     * Value representing the fraction of the value of the order that is charged as shipping cost. Example: 0.10 would mean shipping rate is 10% of the total order value.
+     *
+     *
+     * @var Number|null
+     */
+    protected $orderPercentage;
+
+    /**
+     * indicates (possibly multiple) shipping destinations. These can be defined in several ways, e.g. postalCode ranges.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedRegion|string
+     */
+    protected $shippingDestination;
+
+    /**
+     * Label to match an [[OfferShippingDetails]] with a [[ShippingRateSettings]] (within the context of a [[shippingSettingsLink]] cross-reference).
+     *
+     *
+     * @var string
+     */
+    protected $shippingLabel;
+
+    /**
      * The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the [[MonetaryAmount]]) are most appropriate.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\ShippingRateSettings|string
      */
     protected $shippingRate;
 
     /**
-     * A monetary value above which (or equal to) the shipping rate becomes free. Intended to be used via an [[OfferShippingDetails]] with [[shippingSettingsLink]] matching this [[ShippingRateSettings]].
+     * Value representing the fraction of the weight that is used to compute the shipping price. Example: 0.10 and a shipping weight of 15kg would add $1.5 to the order price, where the $ is the currency of the order.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\DeliveryChargeSpecification|string
+     * @var Number|null
      */
-    protected $freeShippingThreshold;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\DefinedRegion|string
-     */
-    public function getShippingDestination()
-    {
-        return $this->shippingDestination;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedRegion|string $shippingDestination
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setShippingDestination($shippingDestination)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DefinedRegion",
-            "string",
-        ];
-
-        $shippingDestination = self::checkTypes($shippingDestination, $types);
-
-        $this->shippingDestination = $shippingDestination;
-    }
+    protected $weightPercentage;
 
     /**
      * @return bool|null
@@ -127,27 +129,29 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\DeliveryChargeSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string
      */
-    public function getShippingLabel()
+    public function getFreeShippingThreshold()
     {
-        return $this->shippingLabel;
+        return $this->freeShippingThreshold;
     }
 
     /**
-     * @param string $shippingLabel
+     * @param \OpenActive\Models\SchemaOrg\DeliveryChargeSpecification|\OpenActive\Models\SchemaOrg\MonetaryAmount|string $freeShippingThreshold
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setShippingLabel($shippingLabel)
+    public function setFreeShippingThreshold($freeShippingThreshold)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\DeliveryChargeSpecification",
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "string",
         ];
 
-        $shippingLabel = self::checkTypes($shippingLabel, $types);
+        $freeShippingThreshold = self::checkTypes($freeShippingThreshold, $types);
 
-        $this->shippingLabel = $shippingLabel;
+        $this->freeShippingThreshold = $freeShippingThreshold;
     }
 
     /**
@@ -176,7 +180,109 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|Number|\OpenActive\Models\SchemaOrg\PriceSpecification|string|null
+     */
+    public function getMinimumOrderValue()
+    {
+        return $this->minimumOrderValue;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|Number|\OpenActive\Models\SchemaOrg\PriceSpecification|string|null $minimumOrderValue
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMinimumOrderValue($minimumOrderValue)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "Number",
+            "\OpenActive\Models\SchemaOrg\PriceSpecification",
+            "string",
+            "null",
+        ];
+
+        $minimumOrderValue = self::checkTypes($minimumOrderValue, $types);
+
+        $this->minimumOrderValue = $minimumOrderValue;
+    }
+
+    /**
+     * @return Number|null
+     */
+    public function getOrderPercentage()
+    {
+        return $this->orderPercentage;
+    }
+
+    /**
+     * @param Number|null $orderPercentage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOrderPercentage($orderPercentage)
+    {
+        $types = [
+            "Number",
+            "null",
+        ];
+
+        $orderPercentage = self::checkTypes($orderPercentage, $types);
+
+        $this->orderPercentage = $orderPercentage;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DefinedRegion|string
+     */
+    public function getShippingDestination()
+    {
+        return $this->shippingDestination;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedRegion|string $shippingDestination
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setShippingDestination($shippingDestination)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedRegion",
+            "string",
+        ];
+
+        $shippingDestination = self::checkTypes($shippingDestination, $types);
+
+        $this->shippingDestination = $shippingDestination;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShippingLabel()
+    {
+        return $this->shippingLabel;
+    }
+
+    /**
+     * @param string $shippingLabel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setShippingLabel($shippingLabel)
+    {
+        $types = [
+            "string",
+        ];
+
+        $shippingLabel = self::checkTypes($shippingLabel, $types);
+
+        $this->shippingLabel = $shippingLabel;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\ShippingRateSettings|string
      */
     public function getShippingRate()
     {
@@ -184,7 +290,7 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string $shippingRate
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\ShippingRateSettings|string $shippingRate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -192,6 +298,7 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "\OpenActive\Models\SchemaOrg\ShippingRateSettings",
             "string",
         ];
 
@@ -201,29 +308,28 @@ class ShippingRateSettings extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\DeliveryChargeSpecification|string
+     * @return Number|null
      */
-    public function getFreeShippingThreshold()
+    public function getWeightPercentage()
     {
-        return $this->freeShippingThreshold;
+        return $this->weightPercentage;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|\OpenActive\Models\SchemaOrg\DeliveryChargeSpecification|string $freeShippingThreshold
+     * @param Number|null $weightPercentage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setFreeShippingThreshold($freeShippingThreshold)
+    public function setWeightPercentage($weightPercentage)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "\OpenActive\Models\SchemaOrg\DeliveryChargeSpecification",
-            "string",
+            "Number",
+            "null",
         ];
 
-        $freeShippingThreshold = self::checkTypes($freeShippingThreshold, $types);
+        $weightPercentage = self::checkTypes($weightPercentage, $types);
 
-        $this->freeShippingThreshold = $freeShippingThreshold;
+        $this->weightPercentage = $weightPercentage;
     }
 
 }

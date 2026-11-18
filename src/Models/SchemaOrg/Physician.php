@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Physician extends \OpenActive\Models\SchemaOrg\MedicalOrganization
+class Physician extends \OpenActive\Models\SchemaOrg\MedicalBusiness
 {
     /**
      * @return string[]|null
@@ -18,8 +18,10 @@ class Physician extends \OpenActive\Models\SchemaOrg\MedicalOrganization
     public static function fieldList() {
         $fields = [
             "availableService" => "availableService",
-            "medicalSpecialty" => "medicalSpecialty",
             "hospitalAffiliation" => "hospitalAffiliation",
+            "medicalSpecialty" => "medicalSpecialty",
+            "occupationalCategory" => "occupationalCategory",
+            "usNPI" => "usNPI",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -29,17 +31,9 @@ class Physician extends \OpenActive\Models\SchemaOrg\MedicalOrganization
      * A medical service available from this provider.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     * @var \OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
     protected $availableService;
-
-    /**
-     * A medical specialty of the provider.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalSpecialty|string
-     */
-    protected $medicalSpecialty;
 
     /**
      * A hospital with which the physician or office is affiliated.
@@ -50,7 +44,33 @@ class Physician extends \OpenActive\Models\SchemaOrg\MedicalOrganization
     protected $hospitalAffiliation;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     * A medical specialty of the provider.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalSpecialty|string
+     */
+    protected $medicalSpecialty;
+
+    /**
+     * A category describing the job, preferably using a term from a taxonomy such as [BLS O*NET-SOC](http://www.onetcenter.org/taxonomy.html), [ISCO-08](https://www.ilo.org/public/english/bureau/stat/isco/isco08/) or similar, with the property repeated for each applicable value. Ideally the taxonomy should be identified, and both the textual label and formal code for the category should be provided.\n
+     * Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CategoryCode|string
+     */
+    protected $occupationalCategory;
+
+    /**
+     * A <a href="https://en.wikipedia.org/wiki/National_Provider_Identifier">National Provider Identifier</a> (NPI) 
+     *     is a unique 10-digit identification number issued to health care providers in the United States by the Centers for Medicare and Medicaid Services.
+     *
+     *
+     * @var string
+     */
+    protected $usNPI;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
     public function getAvailableService()
     {
@@ -58,15 +78,15 @@ class Physician extends \OpenActive\Models\SchemaOrg\MedicalOrganization
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTherapy|string $availableService
+     * @param \OpenActive\Models\SchemaOrg\MedicalProcedure|\OpenActive\Models\SchemaOrg\MedicalTest|\OpenActive\Models\SchemaOrg\MedicalTherapy|string $availableService
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAvailableService($availableService)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalTest",
             "\OpenActive\Models\SchemaOrg\MedicalProcedure",
+            "\OpenActive\Models\SchemaOrg\MedicalTest",
             "\OpenActive\Models\SchemaOrg\MedicalTherapy",
             "string",
         ];
@@ -74,6 +94,31 @@ class Physician extends \OpenActive\Models\SchemaOrg\MedicalOrganization
         $availableService = self::checkTypes($availableService, $types);
 
         $this->availableService = $availableService;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Hospital|string
+     */
+    public function getHospitalAffiliation()
+    {
+        return $this->hospitalAffiliation;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Hospital|string $hospitalAffiliation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setHospitalAffiliation($hospitalAffiliation)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Hospital",
+            "string",
+        ];
+
+        $hospitalAffiliation = self::checkTypes($hospitalAffiliation, $types);
+
+        $this->hospitalAffiliation = $hospitalAffiliation;
     }
 
     /**
@@ -102,28 +147,52 @@ class Physician extends \OpenActive\Models\SchemaOrg\MedicalOrganization
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Hospital|string
+     * @return \OpenActive\Models\SchemaOrg\CategoryCode|string
      */
-    public function getHospitalAffiliation()
+    public function getOccupationalCategory()
     {
-        return $this->hospitalAffiliation;
+        return $this->occupationalCategory;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Hospital|string $hospitalAffiliation
+     * @param \OpenActive\Models\SchemaOrg\CategoryCode|string $occupationalCategory
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setHospitalAffiliation($hospitalAffiliation)
+    public function setOccupationalCategory($occupationalCategory)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Hospital",
+            "\OpenActive\Models\SchemaOrg\CategoryCode",
             "string",
         ];
 
-        $hospitalAffiliation = self::checkTypes($hospitalAffiliation, $types);
+        $occupationalCategory = self::checkTypes($occupationalCategory, $types);
 
-        $this->hospitalAffiliation = $hospitalAffiliation;
+        $this->occupationalCategory = $occupationalCategory;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsNPI()
+    {
+        return $this->usNPI;
+    }
+
+    /**
+     * @param string $usNPI
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUsNPI($usNPI)
+    {
+        $types = [
+            "string",
+        ];
+
+        $usNPI = self::checkTypes($usNPI, $types);
+
+        $this->usNPI = $usNPI;
     }
 
 }

@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Mass extends \OpenActive\Models\SchemaOrg\Quantity
+class Mass extends \OpenActive\BaseModel
 {
     /**
      * @return string[]|null

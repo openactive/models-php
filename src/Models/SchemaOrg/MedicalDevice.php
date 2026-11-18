@@ -18,18 +18,18 @@ class MedicalDevice extends \OpenActive\Models\SchemaOrg\MedicalEntity
     public static function fieldList() {
         $fields = [
             "adverseOutcome" => "adverseOutcome",
-            "preOp" => "preOp",
-            "seriousAdverseOutcome" => "seriousAdverseOutcome",
-            "postOp" => "postOp",
-            "procedure" => "procedure",
             "contraindication" => "contraindication",
+            "postOp" => "postOp",
+            "preOp" => "preOp",
+            "procedure" => "procedure",
+            "seriousAdverseOutcome" => "seriousAdverseOutcome",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A possible complication and/or side effect of this therapy. If it is known that an adverse outcome is serious (resulting in death, disability, or permanent damage; requiring hospitalization; or is otherwise life-threatening or requires immediate medical attention), tag it as a seriouseAdverseOutcome instead.
+     * A possible complication and/or side effect of this therapy. If it is known that an adverse outcome is serious (resulting in death, disability, or permanent damage; requiring hospitalization; or otherwise life-threatening or requiring immediate medical attention), tag it as a seriousAdverseOutcome instead.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
@@ -37,20 +37,12 @@ class MedicalDevice extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $adverseOutcome;
 
     /**
-     * A description of the workup, testing, and other preparations required before implanting this device.
+     * A contraindication for this therapy.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\MedicalContraindication|string
      */
-    protected $preOp;
-
-    /**
-     * A possible serious complication and/or serious side effect of this therapy. Serious adverse outcomes include those that are life-threatening; result in death, disability, or permanent damage; require hospitalization or prolong existing hospitalization; cause congenital anomalies or birth defects; or jeopardize the patient and may require medical or surgical intervention to prevent one of the outcomes in this definition.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
-     */
-    protected $seriousAdverseOutcome;
+    protected $contraindication;
 
     /**
      * A description of the postoperative procedures, care, and/or followups for this device.
@@ -61,6 +53,14 @@ class MedicalDevice extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $postOp;
 
     /**
+     * A description of the workup, testing, and other preparations required before implanting this device.
+     *
+     *
+     * @var string
+     */
+    protected $preOp;
+
+    /**
      * A description of the procedure involved in setting up, using, and/or installing the device.
      *
      *
@@ -69,12 +69,12 @@ class MedicalDevice extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $procedure;
 
     /**
-     * A contraindication for this therapy.
+     * A possible serious complication and/or serious side effect of this therapy. Serious adverse outcomes include those that are life-threatening; result in death, disability, or permanent damage; require hospitalization or prolong existing hospitalization; cause congenital anomalies or birth defects; or jeopardize the patient and may require medical or surgical intervention to prevent one of the outcomes in this definition.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\MedicalContraindication
+     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
-    protected $contraindication;
+    protected $seriousAdverseOutcome;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
@@ -102,52 +102,28 @@ class MedicalDevice extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\MedicalContraindication|string
      */
-    public function getPreOp()
+    public function getContraindication()
     {
-        return $this->preOp;
+        return $this->contraindication;
     }
 
     /**
-     * @param string $preOp
+     * @param \OpenActive\Models\SchemaOrg\MedicalContraindication|string $contraindication
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPreOp($preOp)
+    public function setContraindication($contraindication)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalContraindication",
             "string",
         ];
 
-        $preOp = self::checkTypes($preOp, $types);
+        $contraindication = self::checkTypes($contraindication, $types);
 
-        $this->preOp = $preOp;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
-     */
-    public function getSeriousAdverseOutcome()
-    {
-        return $this->seriousAdverseOutcome;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalEntity|string $seriousAdverseOutcome
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSeriousAdverseOutcome($seriousAdverseOutcome)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalEntity",
-            "string",
-        ];
-
-        $seriousAdverseOutcome = self::checkTypes($seriousAdverseOutcome, $types);
-
-        $this->seriousAdverseOutcome = $seriousAdverseOutcome;
+        $this->contraindication = $contraindication;
     }
 
     /**
@@ -177,6 +153,30 @@ class MedicalDevice extends \OpenActive\Models\SchemaOrg\MedicalEntity
     /**
      * @return string
      */
+    public function getPreOp()
+    {
+        return $this->preOp;
+    }
+
+    /**
+     * @param string $preOp
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPreOp($preOp)
+    {
+        $types = [
+            "string",
+        ];
+
+        $preOp = self::checkTypes($preOp, $types);
+
+        $this->preOp = $preOp;
+    }
+
+    /**
+     * @return string
+     */
     public function getProcedure()
     {
         return $this->procedure;
@@ -199,28 +199,28 @@ class MedicalDevice extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\MedicalContraindication
+     * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
-    public function getContraindication()
+    public function getSeriousAdverseOutcome()
     {
-        return $this->contraindication;
+        return $this->seriousAdverseOutcome;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\MedicalContraindication $contraindication
+     * @param \OpenActive\Models\SchemaOrg\MedicalEntity|string $seriousAdverseOutcome
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setContraindication($contraindication)
+    public function setSeriousAdverseOutcome($seriousAdverseOutcome)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalEntity",
             "string",
-            "\OpenActive\Models\SchemaOrg\MedicalContraindication",
         ];
 
-        $contraindication = self::checkTypes($contraindication, $types);
+        $seriousAdverseOutcome = self::checkTypes($seriousAdverseOutcome, $types);
 
-        $this->contraindication = $contraindication;
+        $this->seriousAdverseOutcome = $seriousAdverseOutcome;
     }
 
 }

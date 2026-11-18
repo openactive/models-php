@@ -18,6 +18,7 @@ class Residence extends \OpenActive\Models\SchemaOrg\Place
     public static function fieldList() {
         $fields = [
             "accommodationFloorPlan" => "accommodationFloorPlan",
+            "floorLevel" => "floorLevel",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -30,6 +31,15 @@ class Residence extends \OpenActive\Models\SchemaOrg\Place
      * @var \OpenActive\Models\SchemaOrg\FloorPlan|string
      */
     protected $accommodationFloorPlan;
+
+    /**
+     * The floor level for an [[Accommodation]] in a multi-storey building. Since counting
+     *   systems [vary internationally](https://en.wikipedia.org/wiki/Storey#Consecutive_number_floor_designations), the local system should be used where possible.
+     *
+     *
+     * @var string
+     */
+    protected $floorLevel;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\FloorPlan|string
@@ -54,6 +64,30 @@ class Residence extends \OpenActive\Models\SchemaOrg\Place
         $accommodationFloorPlan = self::checkTypes($accommodationFloorPlan, $types);
 
         $this->accommodationFloorPlan = $accommodationFloorPlan;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFloorLevel()
+    {
+        return $this->floorLevel;
+    }
+
+    /**
+     * @param string $floorLevel
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFloorLevel($floorLevel)
+    {
+        $types = [
+            "string",
+        ];
+
+        $floorLevel = self::checkTypes($floorLevel, $types);
+
+        $this->floorLevel = $floorLevel;
     }
 
 }

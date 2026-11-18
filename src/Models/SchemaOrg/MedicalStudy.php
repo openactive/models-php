@@ -18,10 +18,10 @@ class MedicalStudy extends \OpenActive\Models\SchemaOrg\MedicalEntity
     public static function fieldList() {
         $fields = [
             "healthCondition" => "healthCondition",
-            "status" => "status",
-            "studySubject" => "studySubject",
-            "studyLocation" => "studyLocation",
             "sponsor" => "sponsor",
+            "status" => "status",
+            "studyLocation" => "studyLocation",
+            "studySubject" => "studySubject",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -36,20 +36,20 @@ class MedicalStudy extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $healthCondition;
 
     /**
+     * A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $sponsor;
+
+    /**
      * The status of the study (enumerated).
      *
      *
-     * @var string|\OpenActive\Enums\SchemaOrg\EventStatusType|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|null
+     * @var \OpenActive\Enums\SchemaOrg\EventStatusType|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|string|null
      */
     protected $status;
-
-    /**
-     * A subject of the study, i.e. one of the medical conditions, therapies, devices, drugs, etc. investigated by the study.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
-     */
-    protected $studySubject;
 
     /**
      * The location in which the study is taking/took place.
@@ -60,12 +60,12 @@ class MedicalStudy extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $studyLocation;
 
     /**
-     * A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
+     * A subject of the study, i.e. one of the medical conditions, therapies, devices, drugs, etc. investigated by the study.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
-    protected $sponsor;
+    protected $studySubject;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
@@ -93,7 +93,33 @@ class MedicalStudy extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return string|\OpenActive\Enums\SchemaOrg\EventStatusType|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|null
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getSponsor()
+    {
+        return $this->sponsor;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $sponsor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSponsor($sponsor)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $sponsor = self::checkTypes($sponsor, $types);
+
+        $this->sponsor = $sponsor;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\EventStatusType|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|string|null
      */
     public function getStatus()
     {
@@ -101,47 +127,22 @@ class MedicalStudy extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @param string|\OpenActive\Enums\SchemaOrg\EventStatusType|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|null $status
+     * @param \OpenActive\Enums\SchemaOrg\EventStatusType|\OpenActive\Models\SchemaOrg\MedicalStudyStatus|string|null $status
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setStatus($status)
     {
         $types = [
-            "string",
             "\OpenActive\Enums\SchemaOrg\EventStatusType",
             "\OpenActive\Models\SchemaOrg\MedicalStudyStatus",
+            "string",
             "null",
         ];
 
         $status = self::checkTypes($status, $types);
 
         $this->status = $status;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
-     */
-    public function getStudySubject()
-    {
-        return $this->studySubject;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalEntity|string $studySubject
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setStudySubject($studySubject)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalEntity",
-            "string",
-        ];
-
-        $studySubject = self::checkTypes($studySubject, $types);
-
-        $this->studySubject = $studySubject;
     }
 
     /**
@@ -170,29 +171,28 @@ class MedicalStudy extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
      */
-    public function getSponsor()
+    public function getStudySubject()
     {
-        return $this->sponsor;
+        return $this->studySubject;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $sponsor
+     * @param \OpenActive\Models\SchemaOrg\MedicalEntity|string $studySubject
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSponsor($sponsor)
+    public function setStudySubject($studySubject)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\MedicalEntity",
             "string",
         ];
 
-        $sponsor = self::checkTypes($sponsor, $types);
+        $studySubject = self::checkTypes($studySubject, $types);
 
-        $this->sponsor = $sponsor;
+        $this->studySubject = $studySubject;
     }
 
 }

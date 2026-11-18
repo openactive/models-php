@@ -17,20 +17,12 @@ class PostalCodeRangeSpecification extends \OpenActive\Models\SchemaOrg\Structur
 
     public static function fieldList() {
         $fields = [
-            "postalCodeEnd" => "postalCodeEnd",
             "postalCodeBegin" => "postalCodeBegin",
+            "postalCodeEnd" => "postalCodeEnd",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Last postal code in the range (included). Needs to be after [[postalCodeBegin]].
-     *
-     *
-     * @var string
-     */
-    protected $postalCodeEnd;
 
     /**
      * First postal code in a range (included).
@@ -41,28 +33,12 @@ class PostalCodeRangeSpecification extends \OpenActive\Models\SchemaOrg\Structur
     protected $postalCodeBegin;
 
     /**
-     * @return string
+     * Last postal code in the range (included). Needs to be after [[postalCodeBegin]].
+     *
+     *
+     * @var string
      */
-    public function getPostalCodeEnd()
-    {
-        return $this->postalCodeEnd;
-    }
-
-    /**
-     * @param string $postalCodeEnd
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPostalCodeEnd($postalCodeEnd)
-    {
-        $types = [
-            "string",
-        ];
-
-        $postalCodeEnd = self::checkTypes($postalCodeEnd, $types);
-
-        $this->postalCodeEnd = $postalCodeEnd;
-    }
+    protected $postalCodeEnd;
 
     /**
      * @return string
@@ -86,6 +62,30 @@ class PostalCodeRangeSpecification extends \OpenActive\Models\SchemaOrg\Structur
         $postalCodeBegin = self::checkTypes($postalCodeBegin, $types);
 
         $this->postalCodeBegin = $postalCodeBegin;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPostalCodeEnd()
+    {
+        return $this->postalCodeEnd;
+    }
+
+    /**
+     * @param string $postalCodeEnd
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPostalCodeEnd($postalCodeEnd)
+    {
+        $types = [
+            "string",
+        ];
+
+        $postalCodeEnd = self::checkTypes($postalCodeEnd, $types);
+
+        $this->postalCodeEnd = $postalCodeEnd;
     }
 
 }

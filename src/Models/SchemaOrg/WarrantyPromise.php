@@ -17,20 +17,12 @@ class WarrantyPromise extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "warrantyScope" => "warrantyScope",
             "durationOfWarranty" => "durationOfWarranty",
+            "warrantyScope" => "warrantyScope",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The scope of the warranty promise.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\WarrantyScope|null
-     */
-    protected $warrantyScope;
 
     /**
      * The duration of the warranty promise. Common unitCode values are ANN for year, MON for months, or DAY for days.
@@ -41,29 +33,12 @@ class WarrantyPromise extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $durationOfWarranty;
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\WarrantyScope|null
+     * The scope of the warranty promise.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\WarrantyScope|null
      */
-    public function getWarrantyScope()
-    {
-        return $this->warrantyScope;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\WarrantyScope|null $warrantyScope
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setWarrantyScope($warrantyScope)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\WarrantyScope",
-            "null",
-        ];
-
-        $warrantyScope = self::checkTypes($warrantyScope, $types);
-
-        $this->warrantyScope = $warrantyScope;
-    }
+    protected $warrantyScope;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
@@ -88,6 +63,31 @@ class WarrantyPromise extends \OpenActive\Models\SchemaOrg\StructuredValue
         $durationOfWarranty = self::checkTypes($durationOfWarranty, $types);
 
         $this->durationOfWarranty = $durationOfWarranty;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\WarrantyScope|null
+     */
+    public function getWarrantyScope()
+    {
+        return $this->warrantyScope;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\WarrantyScope|null $warrantyScope
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setWarrantyScope($warrantyScope)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\WarrantyScope",
+            "null",
+        ];
+
+        $warrantyScope = self::checkTypes($warrantyScope, $types);
+
+        $this->warrantyScope = $warrantyScope;
     }
 
 }

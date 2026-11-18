@@ -17,50 +17,23 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "measuredValue" => "measuredValue",
-            "observedNode" => "observedNode",
-            "measuredProperty" => "measuredProperty",
-            "observationDate" => "observationDate",
             "marginOfError" => "marginOfError",
+            "measuredProperty" => "measuredProperty",
+            "measurementDenominator" => "measurementDenominator",
+            "measurementMethod" => "measurementMethod",
+            "measurementQualifier" => "measurementQualifier",
+            "measurementTechnique" => "measurementTechnique",
+            "observationAbout" => "observationAbout",
+            "observationDate" => "observationDate",
+            "observationPeriod" => "observationPeriod",
+            "variableMeasured" => "variableMeasured",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The measuredValue of an [[Observation]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DataType
-     */
-    protected $measuredValue;
-
-    /**
-     * The observedNode of an [[Observation]], often a [[StatisticalPopulation]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\StatisticalPopulation|string
-     */
-    protected $observedNode;
-
-    /**
-     * The measuredProperty of an [[Observation]], either a schema.org property, a property from other RDF-compatible systems e.g. W3C RDF Data Cube, or schema.org extensions such as [GS1's](https://www.gs1.org/voc/?show=properties).
-     *
-     *
-     * @var string|\OpenActive\Enums\PropertyEnumeration|null
-     */
-    protected $measuredProperty;
-
-    /**
-     * The observationDate of an [[Observation]].
-     *
-     *
-     * @var DateTime|null
-     */
-    protected $observationDate;
-
-    /**
-     * A marginOfError for an [[Observation]].
+     * A [[marginOfError]] for an [[Observation]].
      *
      *
      * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
@@ -68,52 +41,106 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
     protected $marginOfError;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\DataType
+     * The measuredProperty of an [[Observation]], typically via its [[StatisticalVariable]]. There are various kinds of applicable [[Property]]: a schema.org property, a property from other RDF-compatible systems, e.g. W3C RDF Data Cube, Data Commons, Wikidata, or schema.org extensions such as [GS1's](https://www.gs1.org/voc/?show=properties).
+     *
+     *
+     * @var string|\OpenActive\Enums\PropertyEnumeration|null
      */
-    public function getMeasuredValue()
+    protected $measuredProperty;
+
+    /**
+     * Identifies the denominator variable when an observation represents a ratio or percentage.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\StatisticalVariable|string
+     */
+    protected $measurementDenominator;
+
+    /**
+     * A subproperty of [[measurementTechnique]] that can be used for specifying specific methods, in particular via [[MeasurementMethodEnum]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum|string|null
+     */
+    protected $measurementMethod;
+
+    /**
+     * Provides additional qualification to an observation. For example, a GDP observation measures the Nominal value.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Enumeration|string
+     */
+    protected $measurementQualifier;
+
+    /**
+     * A technique, method or technology used in an [[Observation]], [[StatisticalVariable]] or [[Dataset]] (or [[DataDownload]], [[DataCatalog]]), corresponding to the method used for measuring the corresponding variable(s) (for datasets, described using [[variableMeasured]]; for [[Observation]], a [[StatisticalVariable]]). Often but not necessarily each [[variableMeasured]] will have an explicit representation as (or mapping to) an property such as those defined in Schema.org, or other RDF vocabularies and "knowledge graphs". In that case the subproperty of [[variableMeasured]] called [[measuredProperty]] is applicable.
+     *     
+     * The [[measurementTechnique]] property helps when extra clarification is needed about how a [[measuredProperty]] was measured. This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but can often serve as a high level summary for dataset discovery. 
+     * 
+     * For example, if [[variableMeasured]] is: molecule concentration, [[measurementTechnique]] could be: "mass spectrometry" or "nmr spectroscopy" or "colorimetry" or "immunofluorescence". If the [[variableMeasured]] is "depression rating", the [[measurementTechnique]] could be "Zung Scale" or "HAM-D" or "Beck Depression Inventory". 
+     * 
+     * If there are several [[variableMeasured]] properties recorded for some given data object, use a [[PropertyValue]] for each [[variableMeasured]] and attach the corresponding [[measurementTechnique]]. The value can also be from an enumeration, organized as a [[MeasurementMethodEnum]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum|string|null
+     */
+    protected $measurementTechnique;
+
+    /**
+     * The [[observationAbout]] property identifies an entity, often a [[Place]], associated with an [[Observation]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\Thing|string
+     */
+    protected $observationAbout;
+
+    /**
+     * The observationDate of an [[Observation]].
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $observationDate;
+
+    /**
+     * The length of time an Observation took place over. The format follows `P[0-9]*[Y|M|D|h|m|s]`. For example, P1Y is Period 1 Year, P3M is Period 3 Months, P3h is Period 3 hours.
+     *
+     *
+     * @var string
+     */
+    protected $observationPeriod;
+
+    /**
+     * The variableMeasured property can indicate (repeated as necessary) the  variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue, or more explicitly as a [[StatisticalVariable]].
+     *
+     *
+     * @var \OpenActive\Enums\PropertyEnumeration|\OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Models\SchemaOrg\StatisticalVariable|string|null
+     */
+    protected $variableMeasured;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     */
+    public function getMarginOfError()
     {
-        return $this->measuredValue;
+        return $this->marginOfError;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DataType $measuredValue
+     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $marginOfError
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMeasuredValue($measuredValue)
+    public function setMarginOfError($marginOfError)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\DataType",
-        ];
-
-        $measuredValue = self::checkTypes($measuredValue, $types);
-
-        $this->measuredValue = $measuredValue;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\StatisticalPopulation|string
-     */
-    public function getObservedNode()
-    {
-        return $this->observedNode;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\StatisticalPopulation|string $observedNode
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setObservedNode($observedNode)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\StatisticalPopulation",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
         ];
 
-        $observedNode = self::checkTypes($observedNode, $types);
+        $marginOfError = self::checkTypes($marginOfError, $types);
 
-        $this->observedNode = $observedNode;
+        $this->marginOfError = $marginOfError;
     }
 
     /**
@@ -143,7 +170,137 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return DateTime|null
+     * @return \OpenActive\Models\SchemaOrg\StatisticalVariable|string
+     */
+    public function getMeasurementDenominator()
+    {
+        return $this->measurementDenominator;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\StatisticalVariable|string $measurementDenominator
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMeasurementDenominator($measurementDenominator)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\StatisticalVariable",
+            "string",
+        ];
+
+        $measurementDenominator = self::checkTypes($measurementDenominator, $types);
+
+        $this->measurementDenominator = $measurementDenominator;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum|string|null
+     */
+    public function getMeasurementMethod()
+    {
+        return $this->measurementMethod;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum|string|null $measurementMethod
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMeasurementMethod($measurementMethod)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum",
+            "string",
+            "null",
+        ];
+
+        $measurementMethod = self::checkTypes($measurementMethod, $types);
+
+        $this->measurementMethod = $measurementMethod;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Enumeration|string
+     */
+    public function getMeasurementQualifier()
+    {
+        return $this->measurementQualifier;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Enumeration|string $measurementQualifier
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMeasurementQualifier($measurementQualifier)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Enumeration",
+            "string",
+        ];
+
+        $measurementQualifier = self::checkTypes($measurementQualifier, $types);
+
+        $this->measurementQualifier = $measurementQualifier;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum|string|null
+     */
+    public function getMeasurementTechnique()
+    {
+        return $this->measurementTechnique;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum|string|null $measurementTechnique
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMeasurementTechnique($measurementTechnique)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "\OpenActive\Enums\SchemaOrg\MeasurementMethodEnum",
+            "string",
+            "null",
+        ];
+
+        $measurementTechnique = self::checkTypes($measurementTechnique, $types);
+
+        $this->measurementTechnique = $measurementTechnique;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\Thing|string
+     */
+    public function getObservationAbout()
+    {
+        return $this->observationAbout;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\Thing|string $observationAbout
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setObservationAbout($observationAbout)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
+        ];
+
+        $observationAbout = self::checkTypes($observationAbout, $types);
+
+        $this->observationAbout = $observationAbout;
+    }
+
+    /**
+     * @return Date|DateTime|null
      */
     public function getObservationDate()
     {
@@ -151,13 +308,14 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @param DateTime|null $observationDate
+     * @param Date|DateTime|null $observationDate
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setObservationDate($observationDate)
     {
         $types = [
+            "Date",
             "DateTime",
             "null",
         ];
@@ -168,28 +326,55 @@ class Observation extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
+     * @return string
      */
-    public function getMarginOfError()
+    public function getObservationPeriod()
     {
-        return $this->marginOfError;
+        return $this->observationPeriod;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string $marginOfError
+     * @param string $observationPeriod
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMarginOfError($marginOfError)
+    public function setObservationPeriod($observationPeriod)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
         ];
 
-        $marginOfError = self::checkTypes($marginOfError, $types);
+        $observationPeriod = self::checkTypes($observationPeriod, $types);
 
-        $this->marginOfError = $marginOfError;
+        $this->observationPeriod = $observationPeriod;
+    }
+
+    /**
+     * @return \OpenActive\Enums\PropertyEnumeration|\OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Models\SchemaOrg\StatisticalVariable|string|null
+     */
+    public function getVariableMeasured()
+    {
+        return $this->variableMeasured;
+    }
+
+    /**
+     * @param \OpenActive\Enums\PropertyEnumeration|\OpenActive\Models\SchemaOrg\PropertyValue|\OpenActive\Models\SchemaOrg\StatisticalVariable|string|null $variableMeasured
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVariableMeasured($variableMeasured)
+    {
+        $types = [
+            "\OpenActive\Enums\PropertyEnumeration",
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "\OpenActive\Models\SchemaOrg\StatisticalVariable",
+            "string",
+            "null",
+        ];
+
+        $variableMeasured = self::checkTypes($variableMeasured, $types);
+
+        $this->variableMeasured = $variableMeasured;
     }
 
 }

@@ -24,7 +24,7 @@ class TouristTrip extends \OpenActive\Models\SchemaOrg\Trip
     }
 
     /**
-     * Attraction suitable for type(s) of tourist. eg. Children, visitors from a particular country, etc. 
+     * Attraction suitable for type(s) of tourist. E.g. children, visitors from a particular country, etc. 
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Audience|string

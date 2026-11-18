@@ -19,9 +19,9 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
         $fields = [
             "numberOfAccommodationUnits" => "numberOfAccommodationUnits",
             "numberOfAvailableAccommodationUnits" => "numberOfAvailableAccommodationUnits",
-            "tourBookingPage" => "tourBookingPage",
             "numberOfBedrooms" => "numberOfBedrooms",
             "petsAllowed" => "petsAllowed",
+            "tourBookingPage" => "tourBookingPage",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -44,14 +44,6 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
     protected $numberOfAvailableAccommodationUnits;
 
     /**
-     * A page providing information on how to book a tour of some [[Place]], such as an [[Accommodation]] or [[ApartmentComplex]] in a real estate setting, as well as other kinds of tours as appropriate.
-     *
-     *
-     * @var string
-     */
-    protected $tourBookingPage;
-
-    /**
      * The total integer number of bedrooms in a some [[Accommodation]], [[ApartmentComplex]] or [[FloorPlan]].
      *
      *
@@ -66,6 +58,14 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
      * @var bool|string|null
      */
     protected $petsAllowed;
+
+    /**
+     * A page providing information on how to book a tour of some [[Place]], such as an [[Accommodation]] or [[ApartmentComplex]] in a real estate setting, as well as other kinds of tours as appropriate.
+     *
+     *
+     * @var string
+     */
+    protected $tourBookingPage;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
@@ -115,30 +115,6 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
         $numberOfAvailableAccommodationUnits = self::checkTypes($numberOfAvailableAccommodationUnits, $types);
 
         $this->numberOfAvailableAccommodationUnits = $numberOfAvailableAccommodationUnits;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTourBookingPage()
-    {
-        return $this->tourBookingPage;
-    }
-
-    /**
-     * @param string $tourBookingPage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTourBookingPage($tourBookingPage)
-    {
-        $types = [
-            "string",
-        ];
-
-        $tourBookingPage = self::checkTypes($tourBookingPage, $types);
-
-        $this->tourBookingPage = $tourBookingPage;
     }
 
     /**
@@ -192,6 +168,30 @@ class ApartmentComplex extends \OpenActive\Models\SchemaOrg\Residence
         $petsAllowed = self::checkTypes($petsAllowed, $types);
 
         $this->petsAllowed = $petsAllowed;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTourBookingPage()
+    {
+        return $this->tourBookingPage;
+    }
+
+    /**
+     * @param string $tourBookingPage
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTourBookingPage($tourBookingPage)
+    {
+        $types = [
+            "string",
+        ];
+
+        $tourBookingPage = self::checkTypes($tourBookingPage, $types);
+
+        $this->tourBookingPage = $tourBookingPage;
     }
 
 }

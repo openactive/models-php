@@ -17,23 +17,23 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
 
     public static function fieldList() {
         $fields = [
-            "numberOfLoanPayments" => "numberOfLoanPayments",
+            "downPayment" => "downPayment",
             "earlyPrepaymentPenalty" => "earlyPrepaymentPenalty",
             "loanPaymentAmount" => "loanPaymentAmount",
             "loanPaymentFrequency" => "loanPaymentFrequency",
-            "downPayment" => "downPayment",
+            "numberOfLoanPayments" => "numberOfLoanPayments",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The number of payments contractually required at origination to repay the loan. For monthly paying loans this is the number of months from the contractual first payment date to the maturity date.
+     * a type of payment made in cash during the onset of the purchase of an expensive good/service. The payment typically represents only a percentage of the full purchase price.
      *
      *
-     * @var Number|null
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
      */
-    protected $numberOfLoanPayments;
+    protected $downPayment;
 
     /**
      * The amount to be paid as a penalty in the event of early payment of the loan.
@@ -60,36 +60,38 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
     protected $loanPaymentFrequency;
 
     /**
-     * a type of payment made in cash during the onset of the purchase of an expensive good/service. The payment typically represents only a percentage of the full purchase price.
+     * The number of payments contractually required at origination to repay the loan. For monthly paying loans this is the number of months from the contractual first payment date to the maturity date.
      *
      *
-     * @var Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     * @var Number|null
      */
-    protected $downPayment;
+    protected $numberOfLoanPayments;
 
     /**
-     * @return Number|null
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
      */
-    public function getNumberOfLoanPayments()
+    public function getDownPayment()
     {
-        return $this->numberOfLoanPayments;
+        return $this->downPayment;
     }
 
     /**
-     * @param Number|null $numberOfLoanPayments
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null $downPayment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setNumberOfLoanPayments($numberOfLoanPayments)
+    public function setDownPayment($downPayment)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
             "Number",
             "null",
         ];
 
-        $numberOfLoanPayments = self::checkTypes($numberOfLoanPayments, $types);
+        $downPayment = self::checkTypes($downPayment, $types);
 
-        $this->numberOfLoanPayments = $numberOfLoanPayments;
+        $this->downPayment = $downPayment;
     }
 
     /**
@@ -168,30 +170,28 @@ class RepaymentSpecification extends \OpenActive\Models\SchemaOrg\StructuredValu
     }
 
     /**
-     * @return Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null
+     * @return Number|null
      */
-    public function getDownPayment()
+    public function getNumberOfLoanPayments()
     {
-        return $this->downPayment;
+        return $this->numberOfLoanPayments;
     }
 
     /**
-     * @param Number|\OpenActive\Models\SchemaOrg\MonetaryAmount|string|null $downPayment
+     * @param Number|null $numberOfLoanPayments
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDownPayment($downPayment)
+    public function setNumberOfLoanPayments($numberOfLoanPayments)
     {
         $types = [
             "Number",
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "string",
             "null",
         ];
 
-        $downPayment = self::checkTypes($downPayment, $types);
+        $numberOfLoanPayments = self::checkTypes($numberOfLoanPayments, $types);
 
-        $this->downPayment = $downPayment;
+        $this->numberOfLoanPayments = $numberOfLoanPayments;
     }
 
 }
