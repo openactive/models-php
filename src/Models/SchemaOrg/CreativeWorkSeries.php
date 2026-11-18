@@ -17,21 +17,13 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "startDate" => "startDate",
             "endDate" => "endDate",
             "issn" => "issn",
+            "startDate" => "startDate",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
-     *
-     *
-     * @var Date|DateTime|null
-     */
-    protected $startDate;
 
     /**
      * The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
@@ -50,30 +42,12 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $issn;
 
     /**
-     * @return Date|DateTime|null
+     * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
+     *
+     *
+     * @var Date|DateTime|null
      */
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
-
-    /**
-     * @param Date|DateTime|null $startDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setStartDate($startDate)
-    {
-        $types = [
-            "Date",
-            "DateTime",
-            "null",
-        ];
-
-        $startDate = self::checkTypes($startDate, $types);
-
-        $this->startDate = $startDate;
-    }
+    protected $startDate;
 
     /**
      * @return Date|DateTime|null
@@ -123,6 +97,32 @@ class CreativeWorkSeries extends \OpenActive\Models\SchemaOrg\CreativeWork
         $issn = self::checkTypes($issn, $types);
 
         $this->issn = $issn;
+    }
+
+    /**
+     * @return Date|DateTime|null
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @param Date|DateTime|null $startDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setStartDate($startDate)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $startDate = self::checkTypes($startDate, $types);
+
+        $this->startDate = $startDate;
     }
 
 }

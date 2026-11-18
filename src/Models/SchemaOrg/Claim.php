@@ -17,33 +17,16 @@ class Claim extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
+            "appearance" => "appearance",
             "claimInterpreter" => "claimInterpreter",
             "firstAppearance" => "firstAppearance",
-            "appearance" => "appearance",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * For a [[Claim]] interpreted from [[MediaObject]] content
-     *     sed to indicate a claim contained, implied or refined from the content of a [[MediaObject]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $claimInterpreter;
-
-    /**
-     * Indicates the first known occurence of a [[Claim]] in some [[CreativeWork]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
-     */
-    protected $firstAppearance;
-
-    /**
-     * Indicates an occurence of a [[Claim]] in some [[CreativeWork]].
+     * Indicates an occurrence of a [[Claim]] in some [[CreativeWork]].
      *
      *
      * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
@@ -51,7 +34,48 @@ class Claim extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $appearance;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string
+     * For a [[Claim]] interpreted from [[MediaObject]] content, the [[interpretedAsClaim]] property can be used to indicate a claim contained, implied or refined from the content of a [[MediaObject]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $claimInterpreter;
+
+    /**
+     * Indicates the first known occurrence of a [[Claim]] in some [[CreativeWork]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    protected $firstAppearance;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    public function getAppearance()
+    {
+        return $this->appearance;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $appearance
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAppearance($appearance)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
+        ];
+
+        $appearance = self::checkTypes($appearance, $types);
+
+        $this->appearance = $appearance;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
     public function getClaimInterpreter()
     {
@@ -59,15 +83,15 @@ class Claim extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Organization|string $claimInterpreter
+     * @param \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string $claimInterpreter
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setClaimInterpreter($claimInterpreter)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
             "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
             "string",
         ];
 
@@ -99,31 +123,6 @@ class Claim extends \OpenActive\Models\SchemaOrg\CreativeWork
         $firstAppearance = self::checkTypes($firstAppearance, $types);
 
         $this->firstAppearance = $firstAppearance;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\CreativeWork|string
-     */
-    public function getAppearance()
-    {
-        return $this->appearance;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\CreativeWork|string $appearance
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAppearance($appearance)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-            "string",
-        ];
-
-        $appearance = self::checkTypes($appearance, $types);
-
-        $this->appearance = $appearance;
     }
 
 }

@@ -17,21 +17,37 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
+            "actor" => "actor",
+            "actors" => "actors",
             "countryOfOrigin" => "countryOfOrigin",
             "director" => "director",
-            "titleEIDR" => "titleEIDR",
-            "subtitleLanguage" => "subtitleLanguage",
-            "actor" => "actor",
-            "trailer" => "trailer",
-            "duration" => "duration",
-            "productionCompany" => "productionCompany",
-            "actors" => "actors",
-            "musicBy" => "musicBy",
             "directors" => "directors",
+            "duration" => "duration",
+            "musicBy" => "musicBy",
+            "productionCompany" => "productionCompany",
+            "subtitleLanguage" => "subtitleLanguage",
+            "titleEIDR" => "titleEIDR",
+            "trailer" => "trailer",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * An actor (individual or a group), e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\PerformingGroup|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $actor;
+
+    /**
+     * An actor, e.g. in TV, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $actors;
 
     /**
      * The country of origin of something, including products as well as creative  works such as movie and TV content.
@@ -46,7 +62,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $countryOfOrigin;
 
     /**
-     * A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
+     * A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Person|string
@@ -54,17 +70,36 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $director;
 
     /**
-     * An [EIDR](https://eidr.org/) (Entertainment Identifier Registry) [[identifier]] representing at the most general/abstract level, a work of film or television.
-     * 
-     * For example, the motion picture known as "Ghostbusters" has a titleEIDR of  "10.5240/7EC7-228A-510A-053E-CBB8-J". This title (or work) may have several variants, which EIDR calls "edits". See [[editEIDR]].
-     * 
-     * Since schema.org types like [[Movie]] and [[TVEpisode]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.
-     * 
+     * A director of e.g. TV, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $titleEIDR;
+    protected $directors;
+
+    /**
+     * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
+     *
+     *
+     * @var DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     */
+    protected $duration;
+
+    /**
+     * The composer of the soundtrack.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    protected $musicBy;
+
+    /**
+     * The production company or studio responsible for the item, e.g. series, video game, episode etc.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     */
+    protected $productionCompany;
 
     /**
      * Languages in which subtitles/captions are available, in [IETF BCP 47 standard format](http://tools.ietf.org/html/bcp47).
@@ -75,15 +110,20 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $subtitleLanguage;
 
     /**
-     * An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.
+     * An [EIDR](https://eidr.org/) (Entertainment Identifier Registry) [[identifier]] representing at the most general/abstract level, a work of film or television.
+     * 
+     * For example, the motion picture known as "Ghostbusters" has a titleEIDR of  "10.5240/7EC7-228A-510A-053E-CBB8-J". This title (or work) may have several variants, which EIDR calls "edits". See [[editEIDR]].
+     * 
+     * Since schema.org types like [[Movie]], [[TVEpisode]], [[TVSeason]], and [[TVSeries]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.
+     * 
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
+     * @var string
      */
-    protected $actor;
+    protected $titleEIDR;
 
     /**
-     * The trailer of a movie or tv/radio series, season, episode, etc.
+     * The trailer of a movie or TV/radio series, season, episode, etc.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\VideoObject|string
@@ -91,44 +131,55 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $trailer;
 
     /**
-     * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).
-     *
-     *
-     * @var DateInterval|string|null
+     * @return \OpenActive\Models\SchemaOrg\PerformingGroup|\OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $duration;
+    public function getActor()
+    {
+        return $this->actor;
+    }
 
     /**
-     * The production company or studio responsible for the item e.g. series, video game, episode etc.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Organization|string
+     * @param \OpenActive\Models\SchemaOrg\PerformingGroup|\OpenActive\Models\SchemaOrg\Person|string $actor
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $productionCompany;
+    public function setActor($actor)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\PerformingGroup",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $actor = self::checkTypes($actor, $types);
+
+        $this->actor = $actor;
+    }
 
     /**
-     * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
+     * @return \OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $actors;
+    public function getActors()
+    {
+        return $this->actors;
+    }
 
     /**
-     * The composer of the soundtrack.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string
+     * @param \OpenActive\Models\SchemaOrg\Person|string $actors
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    protected $musicBy;
+    public function setActors($actors)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
 
-    /**
-     * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|string
-     */
-    protected $directors;
+        $actors = self::checkTypes($actors, $types);
+
+        $this->actors = $actors;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Country|string
@@ -181,106 +232,32 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string
-     */
-    public function getTitleEIDR()
-    {
-        return $this->titleEIDR;
-    }
-
-    /**
-     * @param string $titleEIDR
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTitleEIDR($titleEIDR)
-    {
-        $types = [
-            "string",
-        ];
-
-        $titleEIDR = self::checkTypes($titleEIDR, $types);
-
-        $this->titleEIDR = $titleEIDR;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Language|string
-     */
-    public function getSubtitleLanguage()
-    {
-        return $this->subtitleLanguage;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Language|string $subtitleLanguage
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSubtitleLanguage($subtitleLanguage)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Language",
-            "string",
-        ];
-
-        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
-
-        $this->subtitleLanguage = $subtitleLanguage;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\Person|string
      */
-    public function getActor()
+    public function getDirectors()
     {
-        return $this->actor;
+        return $this->directors;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $actor
+     * @param \OpenActive\Models\SchemaOrg\Person|string $directors
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setActor($actor)
+    public function setDirectors($directors)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Person",
             "string",
         ];
 
-        $actor = self::checkTypes($actor, $types);
+        $directors = self::checkTypes($directors, $types);
 
-        $this->actor = $actor;
+        $this->directors = $directors;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\VideoObject|string
-     */
-    public function getTrailer()
-    {
-        return $this->trailer;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\VideoObject|string $trailer
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTrailer($trailer)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\VideoObject",
-            "string",
-        ];
-
-        $trailer = self::checkTypes($trailer, $types);
-
-        $this->trailer = $trailer;
-    }
-
-    /**
-     * @return DateInterval|string|null
+     * @return DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
     public function getDuration()
     {
@@ -288,7 +265,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param DateInterval|string|null $duration
+     * @param DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $duration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
@@ -296,6 +273,7 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     {
         $types = [
             "DateInterval",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
             "null",
         ];
@@ -303,6 +281,32 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
         $duration = self::checkTypes($duration, $types);
 
         $this->duration = $duration;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person|string
+     */
+    public function getMusicBy()
+    {
+        return $this->musicBy;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person|string $musicBy
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMusicBy($musicBy)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "string",
+        ];
+
+        $musicBy = self::checkTypes($musicBy, $types);
+
+        $this->musicBy = $musicBy;
     }
 
     /**
@@ -331,79 +335,77 @@ class Movie extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
+     * @return \OpenActive\Models\SchemaOrg\Language|string
      */
-    public function getActors()
+    public function getSubtitleLanguage()
     {
-        return $this->actors;
+        return $this->subtitleLanguage;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $actors
+     * @param \OpenActive\Models\SchemaOrg\Language|string $subtitleLanguage
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setActors($actors)
+    public function setSubtitleLanguage($subtitleLanguage)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Language",
             "string",
         ];
 
-        $actors = self::checkTypes($actors, $types);
+        $subtitleLanguage = self::checkTypes($subtitleLanguage, $types);
 
-        $this->actors = $actors;
+        $this->subtitleLanguage = $subtitleLanguage;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string
+     * @return string
      */
-    public function getMusicBy()
+    public function getTitleEIDR()
     {
-        return $this->musicBy;
+        return $this->titleEIDR;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string $musicBy
+     * @param string $titleEIDR
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setMusicBy($musicBy)
+    public function setTitleEIDR($titleEIDR)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\MusicGroup",
             "string",
         ];
 
-        $musicBy = self::checkTypes($musicBy, $types);
+        $titleEIDR = self::checkTypes($titleEIDR, $types);
 
-        $this->musicBy = $musicBy;
+        $this->titleEIDR = $titleEIDR;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Person|string
+     * @return \OpenActive\Models\SchemaOrg\VideoObject|string
      */
-    public function getDirectors()
+    public function getTrailer()
     {
-        return $this->directors;
+        return $this->trailer;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Person|string $directors
+     * @param \OpenActive\Models\SchemaOrg\VideoObject|string $trailer
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setDirectors($directors)
+    public function setTrailer($trailer)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\VideoObject",
             "string",
         ];
 
-        $directors = self::checkTypes($directors, $types);
+        $trailer = self::checkTypes($trailer, $types);
 
-        $this->directors = $directors;
+        $this->trailer = $trailer;
     }
 
 }

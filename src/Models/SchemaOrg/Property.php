@@ -18,9 +18,9 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
     public static function fieldList() {
         $fields = [
             "domainIncludes" => "domainIncludes",
-            "supersededBy" => "supersededBy",
-            "rangeIncludes" => "rangeIncludes",
             "inverseOf" => "inverseOf",
+            "rangeIncludes" => "rangeIncludes",
+            "supersededBy" => "supersededBy",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -35,12 +35,12 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
     protected $domainIncludes;
 
     /**
-     * Relates a term (i.e. a property, class or enumeration) to one that supersedes it.
+     * Relates a property to a property that is its inverse. Inverse properties relate the same pairs of items to each other, but in reversed direction. For example, the 'alumni' and 'alumniOf' properties are inverseOf each other. Some properties don't have explicit inverses; in these situations RDFa and JSON-LD syntax for reverse properties can be used.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|\OpenActive\Enums\PropertyEnumeration|null
+     * @var string|\OpenActive\Enums\PropertyEnumeration|null
      */
-    protected $supersededBy;
+    protected $inverseOf;
 
     /**
      * Relates a property to a class that constitutes (one of) the expected type(s) for values of the property.
@@ -51,12 +51,12 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
     protected $rangeIncludes;
 
     /**
-     * Relates a property to a property that is its inverse. Inverse properties relate the same pairs of items to each other, but in reversed direction. For example, the 'alumni' and 'alumniOf' properties are inverseOf each other. Some properties don't have explicit inverses; in these situations RDFa and JSON-LD syntax for reverse properties can be used.
+     * Relates a term (i.e. a property, class or enumeration) to one that supersedes it.
      *
      *
-     * @var string|\OpenActive\Enums\PropertyEnumeration|null
+     * @var \OpenActive\Models\SchemaOrg\Class|\OpenActive\Models\SchemaOrg\Enumeration|string|\OpenActive\Enums\PropertyEnumeration|null
      */
-    protected $inverseOf;
+    protected $supersededBy;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Class|string
@@ -84,31 +84,29 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|\OpenActive\Enums\PropertyEnumeration|null
+     * @return string|\OpenActive\Enums\PropertyEnumeration|null
      */
-    public function getSupersededBy()
+    public function getInverseOf()
     {
-        return $this->supersededBy;
+        return $this->inverseOf;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Enumeration|\OpenActive\Models\SchemaOrg\Class|string|\OpenActive\Enums\PropertyEnumeration|null $supersededBy
+     * @param string|\OpenActive\Enums\PropertyEnumeration|null $inverseOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSupersededBy($supersededBy)
+    public function setInverseOf($inverseOf)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\Enumeration",
-            "\OpenActive\Models\SchemaOrg\Class",
             "string",
             "\OpenActive\Enums\PropertyEnumeration",
             "null",
         ];
 
-        $supersededBy = self::checkTypes($supersededBy, $types);
+        $inverseOf = self::checkTypes($inverseOf, $types);
 
-        $this->supersededBy = $supersededBy;
+        $this->inverseOf = $inverseOf;
     }
 
     /**
@@ -137,29 +135,31 @@ class Property extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Enums\PropertyEnumeration|null
+     * @return \OpenActive\Models\SchemaOrg\Class|\OpenActive\Models\SchemaOrg\Enumeration|string|\OpenActive\Enums\PropertyEnumeration|null
      */
-    public function getInverseOf()
+    public function getSupersededBy()
     {
-        return $this->inverseOf;
+        return $this->supersededBy;
     }
 
     /**
-     * @param string|\OpenActive\Enums\PropertyEnumeration|null $inverseOf
+     * @param \OpenActive\Models\SchemaOrg\Class|\OpenActive\Models\SchemaOrg\Enumeration|string|\OpenActive\Enums\PropertyEnumeration|null $supersededBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setInverseOf($inverseOf)
+    public function setSupersededBy($supersededBy)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\Class",
+            "\OpenActive\Models\SchemaOrg\Enumeration",
             "string",
             "\OpenActive\Enums\PropertyEnumeration",
             "null",
         ];
 
-        $inverseOf = self::checkTypes($inverseOf, $types);
+        $supersededBy = self::checkTypes($supersededBy, $types);
 
-        $this->inverseOf = $inverseOf;
+        $this->supersededBy = $supersededBy;
     }
 
 }

@@ -17,21 +17,21 @@ class ProductModel extends \OpenActive\Models\SchemaOrg\Product
 
     public static function fieldList() {
         $fields = [
-            "successorOf" => "successorOf",
-            "predecessorOf" => "predecessorOf",
             "isVariantOf" => "isVariantOf",
+            "predecessorOf" => "predecessorOf",
+            "successorOf" => "successorOf",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A pointer from a newer variant of a product  to its previous, often discontinued predecessor.
+     * Indicates the kind of product that this is a variant of. In the case of [[ProductModel]], this is a pointer (from a ProductModel) to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive. In the case of a [[ProductGroup]], the group description also serves as a template, representing a set of Products that vary on explicitly defined, specific dimensions only (so it defines both a set of variants, as well as which values distinguish amongst those variants). When used with [[ProductGroup]], this property can apply to any [[Product]] included in the group.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ProductModel|string
+     * @var \OpenActive\Models\SchemaOrg\ProductGroup|\OpenActive\Models\SchemaOrg\ProductModel|string
      */
-    protected $successorOf;
+    protected $isVariantOf;
 
     /**
      * A pointer from a previous, often discontinued variant of the product to its newer variant.
@@ -42,36 +42,37 @@ class ProductModel extends \OpenActive\Models\SchemaOrg\Product
     protected $predecessorOf;
 
     /**
-     * Indicates the kind of product that this is a variant of. In the case of [[ProductModel]], this is a pointer (from a ProductModel) to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive. In the case of a [[ProductGroup]], the group description also serves as a template, representing a set of Products that vary on explicitly defined, specific dimensions only (so it defines both a set of variants, as well as which values distinguish amongst those variants). When used with [[ProductGroup]], this property can apply to any [[Product]] included in the group.
+     * A pointer from a newer variant of a product  to its previous, often discontinued predecessor.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\ProductModel|\OpenActive\Models\SchemaOrg\ProductGroup|string
+     * @var \OpenActive\Models\SchemaOrg\ProductModel|string
      */
-    protected $isVariantOf;
+    protected $successorOf;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ProductModel|string
+     * @return \OpenActive\Models\SchemaOrg\ProductGroup|\OpenActive\Models\SchemaOrg\ProductModel|string
      */
-    public function getSuccessorOf()
+    public function getIsVariantOf()
     {
-        return $this->successorOf;
+        return $this->isVariantOf;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ProductModel|string $successorOf
+     * @param \OpenActive\Models\SchemaOrg\ProductGroup|\OpenActive\Models\SchemaOrg\ProductModel|string $isVariantOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setSuccessorOf($successorOf)
+    public function setIsVariantOf($isVariantOf)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\ProductGroup",
             "\OpenActive\Models\SchemaOrg\ProductModel",
             "string",
         ];
 
-        $successorOf = self::checkTypes($successorOf, $types);
+        $isVariantOf = self::checkTypes($isVariantOf, $types);
 
-        $this->successorOf = $successorOf;
+        $this->isVariantOf = $isVariantOf;
     }
 
     /**
@@ -100,29 +101,28 @@ class ProductModel extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ProductModel|\OpenActive\Models\SchemaOrg\ProductGroup|string
+     * @return \OpenActive\Models\SchemaOrg\ProductModel|string
      */
-    public function getIsVariantOf()
+    public function getSuccessorOf()
     {
-        return $this->isVariantOf;
+        return $this->successorOf;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ProductModel|\OpenActive\Models\SchemaOrg\ProductGroup|string $isVariantOf
+     * @param \OpenActive\Models\SchemaOrg\ProductModel|string $successorOf
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIsVariantOf($isVariantOf)
+    public function setSuccessorOf($successorOf)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\ProductModel",
-            "\OpenActive\Models\SchemaOrg\ProductGroup",
             "string",
         ];
 
-        $isVariantOf = self::checkTypes($isVariantOf, $types);
+        $successorOf = self::checkTypes($successorOf, $types);
 
-        $this->isVariantOf = $isVariantOf;
+        $this->successorOf = $successorOf;
     }
 
 }

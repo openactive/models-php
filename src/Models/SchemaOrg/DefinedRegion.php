@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class DefinedRegion extends \OpenActive\Models\SchemaOrg\StructuredValue
+class DefinedRegion extends \OpenActive\Models\SchemaOrg\Place
 {
     /**
      * @return string[]|null
@@ -19,16 +19,16 @@ class DefinedRegion extends \OpenActive\Models\SchemaOrg\StructuredValue
         $fields = [
             "addressCountry" => "addressCountry",
             "addressRegion" => "addressRegion",
-            "postalCodeRange" => "postalCodeRange",
-            "postalCodePrefix" => "postalCodePrefix",
             "postalCode" => "postalCode",
+            "postalCodePrefix" => "postalCodePrefix",
+            "postalCodeRange" => "postalCodeRange",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The country. For example, USA. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1).
+     * The country. Recommended to be in 2-letter [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1) format, for example "US". For backward compatibility, a 3-letter [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) country code such as "SGP" or a full country name such as "Singapore" can also be used.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Country|string
@@ -36,20 +36,20 @@ class DefinedRegion extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $addressCountry;
 
     /**
-     * The region in which the locality is, and which is in the country. For example, California or another appropriate first-level [Administrative division](https://en.wikipedia.org/wiki/List_of_administrative_divisions_by_country) 
+     * The region in which the locality is, and which is in the country. For example, California or another appropriate first-level [Administrative division](https://en.wikipedia.org/wiki/List_of_administrative_divisions_by_country) such as the Province in Italy or Region in Germany.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
      */
     protected $addressRegion;
 
     /**
-     * A defined range of postal codes.
+     * The postal code. For example, 94043.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification|string
+     * @var string
      */
-    protected $postalCodeRange;
+    protected $postalCode;
 
     /**
      * A defined range of postal codes indicated by a common textual prefix. Used for non-numeric systems such as UK.
@@ -60,12 +60,12 @@ class DefinedRegion extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $postalCodePrefix;
 
     /**
-     * The postal code. For example, 94043.
+     * A defined range of postal codes.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification|string
      */
-    protected $postalCode;
+    protected $postalCodeRange;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Country|string
@@ -93,7 +93,7 @@ class DefinedRegion extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
      */
     public function getAddressRegion()
     {
@@ -101,13 +101,14 @@ class DefinedRegion extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @param string $addressRegion
+     * @param \OpenActive\Models\SchemaOrg\AdministrativeArea|string $addressRegion
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAddressRegion($addressRegion)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\AdministrativeArea",
             "string",
         ];
 
@@ -117,28 +118,27 @@ class DefinedRegion extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification|string
+     * @return string
      */
-    public function getPostalCodeRange()
+    public function getPostalCode()
     {
-        return $this->postalCodeRange;
+        return $this->postalCode;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification|string $postalCodeRange
+     * @param string $postalCode
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPostalCodeRange($postalCodeRange)
+    public function setPostalCode($postalCode)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification",
             "string",
         ];
 
-        $postalCodeRange = self::checkTypes($postalCodeRange, $types);
+        $postalCode = self::checkTypes($postalCode, $types);
 
-        $this->postalCodeRange = $postalCodeRange;
+        $this->postalCode = $postalCode;
     }
 
     /**
@@ -166,27 +166,28 @@ class DefinedRegion extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification|string
      */
-    public function getPostalCode()
+    public function getPostalCodeRange()
     {
-        return $this->postalCode;
+        return $this->postalCodeRange;
     }
 
     /**
-     * @param string $postalCode
+     * @param \OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification|string $postalCodeRange
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPostalCode($postalCode)
+    public function setPostalCodeRange($postalCodeRange)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\PostalCodeRangeSpecification",
             "string",
         ];
 
-        $postalCode = self::checkTypes($postalCode, $types);
+        $postalCodeRange = self::checkTypes($postalCodeRange, $types);
 
-        $this->postalCode = $postalCode;
+        $this->postalCodeRange = $postalCodeRange;
     }
 
 }

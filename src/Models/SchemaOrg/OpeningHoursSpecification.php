@@ -19,8 +19,8 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
         $fields = [
             "closes" => "closes",
             "dayOfWeek" => "dayOfWeek",
-            "validFrom" => "validFrom",
             "opens" => "opens",
+            "validFrom" => "validFrom",
             "validThrough" => "validThrough",
         ];
 
@@ -44,20 +44,20 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     protected $dayOfWeek;
 
     /**
-     * The date when the item becomes valid.
-     *
-     *
-     * @var Date|DateTime|null
-     */
-    protected $validFrom;
-
-    /**
      * The opening hour of the place or service on the given day(s) of the week.
      *
      *
      * @var string|null
      */
     protected $opens;
+
+    /**
+     * The date when the item becomes valid.
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $validFrom;
 
     /**
      * The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.
@@ -118,6 +118,31 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
     }
 
     /**
+     * @return string|null
+     */
+    public function getOpens()
+    {
+        return $this->opens;
+    }
+
+    /**
+     * @param string|null $opens
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setOpens($opens)
+    {
+        $types = [
+            "Time",
+            "null",
+        ];
+
+        $opens = self::checkTypes($opens, $types);
+
+        $this->opens = $opens;
+    }
+
+    /**
      * @return Date|DateTime|null
      */
     public function getValidFrom()
@@ -141,31 +166,6 @@ class OpeningHoursSpecification extends \OpenActive\Models\SchemaOrg\StructuredV
         $validFrom = self::checkTypes($validFrom, $types);
 
         $this->validFrom = $validFrom;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getOpens()
-    {
-        return $this->opens;
-    }
-
-    /**
-     * @param string|null $opens
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setOpens($opens)
-    {
-        $types = [
-            "Time",
-            "null",
-        ];
-
-        $opens = self::checkTypes($opens, $types);
-
-        $this->opens = $opens;
     }
 
     /**

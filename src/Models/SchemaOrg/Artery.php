@@ -17,20 +17,12 @@ class Artery extends \OpenActive\Models\SchemaOrg\Vessel
 
     public static function fieldList() {
         $fields = [
-            "supplyTo" => "supplyTo",
             "arterialBranch" => "arterialBranch",
+            "supplyTo" => "supplyTo",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The area to which the artery supplies blood.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
-     */
-    protected $supplyTo;
 
     /**
      * The branches that comprise the arterial structure.
@@ -41,29 +33,12 @@ class Artery extends \OpenActive\Models\SchemaOrg\Vessel
     protected $arterialBranch;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
+     * The area to which the artery supplies blood.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
      */
-    public function getSupplyTo()
-    {
-        return $this->supplyTo;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|string $supplyTo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setSupplyTo($supplyTo)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
-            "string",
-        ];
-
-        $supplyTo = self::checkTypes($supplyTo, $types);
-
-        $this->supplyTo = $supplyTo;
-    }
+    protected $supplyTo;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
@@ -88,6 +63,31 @@ class Artery extends \OpenActive\Models\SchemaOrg\Vessel
         $arterialBranch = self::checkTypes($arterialBranch, $types);
 
         $this->arterialBranch = $arterialBranch;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|string
+     */
+    public function getSupplyTo()
+    {
+        return $this->supplyTo;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|string $supplyTo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSupplyTo($supplyTo)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
+            "string",
+        ];
+
+        $supplyTo = self::checkTypes($supplyTo, $types);
+
+        $this->supplyTo = $supplyTo;
     }
 
 }

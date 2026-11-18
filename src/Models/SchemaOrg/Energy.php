@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Energy extends \OpenActive\Models\SchemaOrg\Quantity
+class Energy extends \OpenActive\BaseModel
 {
     /**
      * @return string[]|null

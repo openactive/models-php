@@ -17,22 +17,14 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "pageStart" => "pageStart",
             "pageEnd" => "pageEnd",
-            "volumeNumber" => "volumeNumber",
+            "pageStart" => "pageStart",
             "pagination" => "pagination",
+            "volumeNumber" => "volumeNumber",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The page on which the work starts; for example "135" or "xiii".
-     *
-     *
-     * @var string|int|null
-     */
-    protected $pageStart;
 
     /**
      * The page on which the work ends; for example "138" or "xvi".
@@ -43,12 +35,12 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $pageEnd;
 
     /**
-     * Identifies the volume of publication or multi-part work; for example, "iii" or "2".
+     * The page on which the work starts; for example "135" or "xiii".
      *
      *
      * @var string|int|null
      */
-    protected $volumeNumber;
+    protected $pageStart;
 
     /**
      * Any description of pages that is not separated into pageStart and pageEnd; for example, "1-6, 9, 55" or "10-12, 46-49".
@@ -59,30 +51,12 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $pagination;
 
     /**
-     * @return string|int|null
+     * Identifies the volume of publication or multi-part work; for example, "iii" or "2".
+     *
+     *
+     * @var string|int|null
      */
-    public function getPageStart()
-    {
-        return $this->pageStart;
-    }
-
-    /**
-     * @param string|int|null $pageStart
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPageStart($pageStart)
-    {
-        $types = [
-            "string",
-            "int",
-            "null",
-        ];
-
-        $pageStart = self::checkTypes($pageStart, $types);
-
-        $this->pageStart = $pageStart;
-    }
+    protected $volumeNumber;
 
     /**
      * @return string|int|null
@@ -113,17 +87,17 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @return string|int|null
      */
-    public function getVolumeNumber()
+    public function getPageStart()
     {
-        return $this->volumeNumber;
+        return $this->pageStart;
     }
 
     /**
-     * @param string|int|null $volumeNumber
+     * @param string|int|null $pageStart
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setVolumeNumber($volumeNumber)
+    public function setPageStart($pageStart)
     {
         $types = [
             "string",
@@ -131,9 +105,9 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
             "null",
         ];
 
-        $volumeNumber = self::checkTypes($volumeNumber, $types);
+        $pageStart = self::checkTypes($pageStart, $types);
 
-        $this->volumeNumber = $volumeNumber;
+        $this->pageStart = $pageStart;
     }
 
     /**
@@ -158,6 +132,32 @@ class PublicationVolume extends \OpenActive\Models\SchemaOrg\CreativeWork
         $pagination = self::checkTypes($pagination, $types);
 
         $this->pagination = $pagination;
+    }
+
+    /**
+     * @return string|int|null
+     */
+    public function getVolumeNumber()
+    {
+        return $this->volumeNumber;
+    }
+
+    /**
+     * @param string|int|null $volumeNumber
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setVolumeNumber($volumeNumber)
+    {
+        $types = [
+            "string",
+            "int",
+            "null",
+        ];
+
+        $volumeNumber = self::checkTypes($volumeNumber, $types);
+
+        $this->volumeNumber = $volumeNumber;
     }
 
 }

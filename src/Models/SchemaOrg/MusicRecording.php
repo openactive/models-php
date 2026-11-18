@@ -17,32 +17,32 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "isrcCode" => "isrcCode",
-            "inPlaylist" => "inPlaylist",
-            "inAlbum" => "inAlbum",
-            "recordingOf" => "recordingOf",
-            "duration" => "duration",
             "byArtist" => "byArtist",
+            "duration" => "duration",
+            "inAlbum" => "inAlbum",
+            "inPlaylist" => "inPlaylist",
+            "isrcCode" => "isrcCode",
+            "recordingOf" => "recordingOf",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The International Standard Recording Code for the recording.
+     * The artist that performed this album or recording.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $isrcCode;
+    protected $byArtist;
 
     /**
-     * The playlist to which this recording belongs.
+     * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MusicPlaylist|string
+     * @var DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
-    protected $inPlaylist;
+    protected $duration;
 
     /**
      * The album to which this recording belongs.
@@ -53,6 +53,22 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $inAlbum;
 
     /**
+     * The playlist to which this recording belongs.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MusicPlaylist|string
+     */
+    protected $inPlaylist;
+
+    /**
+     * The International Standard Recording Code for the recording.
+     *
+     *
+     * @var string
+     */
+    protected $isrcCode;
+
+    /**
      * The composition this track is a recording of.
      *
      *
@@ -61,68 +77,56 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $recordingOf;
 
     /**
-     * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).
-     *
-     *
-     * @var DateInterval|string|null
+     * @return \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person|string
      */
-    protected $duration;
-
-    /**
-     * The artist that performed this album or recording.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string
-     */
-    protected $byArtist;
-
-    /**
-     * @return string
-     */
-    public function getIsrcCode()
+    public function getByArtist()
     {
-        return $this->isrcCode;
+        return $this->byArtist;
     }
 
     /**
-     * @param string $isrcCode
+     * @param \OpenActive\Models\SchemaOrg\MusicGroup|\OpenActive\Models\SchemaOrg\Person|string $byArtist
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setIsrcCode($isrcCode)
+    public function setByArtist($byArtist)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\MusicGroup",
+            "\OpenActive\Models\SchemaOrg\Person",
             "string",
         ];
 
-        $isrcCode = self::checkTypes($isrcCode, $types);
+        $byArtist = self::checkTypes($byArtist, $types);
 
-        $this->isrcCode = $isrcCode;
+        $this->byArtist = $byArtist;
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MusicPlaylist|string
+     * @return DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
-    public function getInPlaylist()
+    public function getDuration()
     {
-        return $this->inPlaylist;
+        return $this->duration;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MusicPlaylist|string $inPlaylist
+     * @param DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $duration
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setInPlaylist($inPlaylist)
+    public function setDuration($duration)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\MusicPlaylist",
+            "DateInterval",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
+            "null",
         ];
 
-        $inPlaylist = self::checkTypes($inPlaylist, $types);
+        $duration = self::checkTypes($duration, $types);
 
-        $this->inPlaylist = $inPlaylist;
+        $this->duration = $duration;
     }
 
     /**
@@ -151,6 +155,55 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\MusicPlaylist|string
+     */
+    public function getInPlaylist()
+    {
+        return $this->inPlaylist;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MusicPlaylist|string $inPlaylist
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInPlaylist($inPlaylist)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MusicPlaylist",
+            "string",
+        ];
+
+        $inPlaylist = self::checkTypes($inPlaylist, $types);
+
+        $this->inPlaylist = $inPlaylist;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIsrcCode()
+    {
+        return $this->isrcCode;
+    }
+
+    /**
+     * @param string $isrcCode
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setIsrcCode($isrcCode)
+    {
+        $types = [
+            "string",
+        ];
+
+        $isrcCode = self::checkTypes($isrcCode, $types);
+
+        $this->isrcCode = $isrcCode;
+    }
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\MusicComposition|string
      */
     public function getRecordingOf()
@@ -173,58 +226,6 @@ class MusicRecording extends \OpenActive\Models\SchemaOrg\CreativeWork
         $recordingOf = self::checkTypes($recordingOf, $types);
 
         $this->recordingOf = $recordingOf;
-    }
-
-    /**
-     * @return DateInterval|string|null
-     */
-    public function getDuration()
-    {
-        return $this->duration;
-    }
-
-    /**
-     * @param DateInterval|string|null $duration
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDuration($duration)
-    {
-        $types = [
-            "DateInterval",
-            "string",
-            "null",
-        ];
-
-        $duration = self::checkTypes($duration, $types);
-
-        $this->duration = $duration;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string
-     */
-    public function getByArtist()
-    {
-        return $this->byArtist;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\MusicGroup|string $byArtist
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setByArtist($byArtist)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\MusicGroup",
-            "string",
-        ];
-
-        $byArtist = self::checkTypes($byArtist, $types);
-
-        $this->byArtist = $byArtist;
     }
 
 }

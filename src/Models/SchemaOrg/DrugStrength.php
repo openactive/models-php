@@ -17,39 +17,15 @@ class DrugStrength extends \OpenActive\Models\SchemaOrg\MedicalIntangible
 
     public static function fieldList() {
         $fields = [
-            "availableIn" => "availableIn",
-            "strengthUnit" => "strengthUnit",
-            "maximumIntake" => "maximumIntake",
             "activeIngredient" => "activeIngredient",
+            "availableIn" => "availableIn",
+            "maximumIntake" => "maximumIntake",
+            "strengthUnit" => "strengthUnit",
             "strengthValue" => "strengthValue",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The location in which the strength is available.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
-     */
-    protected $availableIn;
-
-    /**
-     * The units of an active ingredient's strength, e.g. mg.
-     *
-     *
-     * @var string
-     */
-    protected $strengthUnit;
-
-    /**
-     * Recommended intake of this supplement for a given population as defined by a specific recommending authority.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string
-     */
-    protected $maximumIntake;
 
     /**
      * An active ingredient, typically chemical compounds and/or biologic substances.
@@ -60,12 +36,60 @@ class DrugStrength extends \OpenActive\Models\SchemaOrg\MedicalIntangible
     protected $activeIngredient;
 
     /**
+     * The location in which the strength is available.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\AdministrativeArea|string
+     */
+    protected $availableIn;
+
+    /**
+     * Recommended intake of this supplement for a given population as defined by a specific recommending authority.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MaximumDoseSchedule|string
+     */
+    protected $maximumIntake;
+
+    /**
+     * The units of an active ingredient's strength, e.g. mg.
+     *
+     *
+     * @var string
+     */
+    protected $strengthUnit;
+
+    /**
      * The value of an active ingredient's strength, e.g. 325.
      *
      *
      * @var Number|null
      */
     protected $strengthValue;
+
+    /**
+     * @return string
+     */
+    public function getActiveIngredient()
+    {
+        return $this->activeIngredient;
+    }
+
+    /**
+     * @param string $activeIngredient
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setActiveIngredient($activeIngredient)
+    {
+        $types = [
+            "string",
+        ];
+
+        $activeIngredient = self::checkTypes($activeIngredient, $types);
+
+        $this->activeIngredient = $activeIngredient;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\AdministrativeArea|string
@@ -90,30 +114,6 @@ class DrugStrength extends \OpenActive\Models\SchemaOrg\MedicalIntangible
         $availableIn = self::checkTypes($availableIn, $types);
 
         $this->availableIn = $availableIn;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStrengthUnit()
-    {
-        return $this->strengthUnit;
-    }
-
-    /**
-     * @param string $strengthUnit
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setStrengthUnit($strengthUnit)
-    {
-        $types = [
-            "string",
-        ];
-
-        $strengthUnit = self::checkTypes($strengthUnit, $types);
-
-        $this->strengthUnit = $strengthUnit;
     }
 
     /**
@@ -144,25 +144,25 @@ class DrugStrength extends \OpenActive\Models\SchemaOrg\MedicalIntangible
     /**
      * @return string
      */
-    public function getActiveIngredient()
+    public function getStrengthUnit()
     {
-        return $this->activeIngredient;
+        return $this->strengthUnit;
     }
 
     /**
-     * @param string $activeIngredient
+     * @param string $strengthUnit
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setActiveIngredient($activeIngredient)
+    public function setStrengthUnit($strengthUnit)
     {
         $types = [
             "string",
         ];
 
-        $activeIngredient = self::checkTypes($activeIngredient, $types);
+        $strengthUnit = self::checkTypes($strengthUnit, $types);
 
-        $this->activeIngredient = $activeIngredient;
+        $this->strengthUnit = $strengthUnit;
     }
 
     /**

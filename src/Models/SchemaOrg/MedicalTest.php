@@ -17,23 +17,15 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
 
     public static function fieldList() {
         $fields = [
-            "usedToDiagnose" => "usedToDiagnose",
             "affectedBy" => "affectedBy",
             "normalRange" => "normalRange",
             "signDetected" => "signDetected",
+            "usedToDiagnose" => "usedToDiagnose",
             "usesDevice" => "usesDevice",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A condition the test is used to diagnose.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalCondition|string
-     */
-    protected $usedToDiagnose;
 
     /**
      * Drugs that affect the test's results.
@@ -47,7 +39,7 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
      * Range of acceptable values for a typical patient, when applicable.
      *
      *
-     * @var string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
+     * @var \OpenActive\Enums\SchemaOrg\MedicalEnumeration|string|null
      */
     protected $normalRange;
 
@@ -60,37 +52,20 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $signDetected;
 
     /**
+     * A condition the test is used to diagnose.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalCondition|string
+     */
+    protected $usedToDiagnose;
+
+    /**
      * Device used to perform the test.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\MedicalDevice|string
      */
     protected $usesDevice;
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
-     */
-    public function getUsedToDiagnose()
-    {
-        return $this->usedToDiagnose;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalCondition|string $usedToDiagnose
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setUsedToDiagnose($usedToDiagnose)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalCondition",
-            "string",
-        ];
-
-        $usedToDiagnose = self::checkTypes($usedToDiagnose, $types);
-
-        $this->usedToDiagnose = $usedToDiagnose;
-    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Drug|string
@@ -118,7 +93,7 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null
+     * @return \OpenActive\Enums\SchemaOrg\MedicalEnumeration|string|null
      */
     public function getNormalRange()
     {
@@ -126,15 +101,15 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @param string|\OpenActive\Enums\SchemaOrg\MedicalEnumeration|null $normalRange
+     * @param \OpenActive\Enums\SchemaOrg\MedicalEnumeration|string|null $normalRange
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNormalRange($normalRange)
     {
         $types = [
-            "string",
             "\OpenActive\Enums\SchemaOrg\MedicalEnumeration",
+            "string",
             "null",
         ];
 
@@ -166,6 +141,31 @@ class MedicalTest extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $signDetected = self::checkTypes($signDetected, $types);
 
         $this->signDetected = $signDetected;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalCondition|string
+     */
+    public function getUsedToDiagnose()
+    {
+        return $this->usedToDiagnose;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalCondition|string $usedToDiagnose
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUsedToDiagnose($usedToDiagnose)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalCondition",
+            "string",
+        ];
+
+        $usedToDiagnose = self::checkTypes($usedToDiagnose, $types);
+
+        $this->usedToDiagnose = $usedToDiagnose;
     }
 
     /**

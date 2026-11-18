@@ -17,20 +17,12 @@ class RealEstateListing extends \OpenActive\Models\SchemaOrg\WebPage
 
     public static function fieldList() {
         $fields = [
-            "leaseLength" => "leaseLength",
             "datePosted" => "datePosted",
+            "leaseLength" => "leaseLength",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Length of the lease for some [[Accommodation]], either particular to some [[Offer]] or in some cases intrinsic to the property.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|DateInterval|string|null
-     */
-    protected $leaseLength;
 
     /**
      * Publication date of an online listing.
@@ -41,31 +33,12 @@ class RealEstateListing extends \OpenActive\Models\SchemaOrg\WebPage
     protected $datePosted;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|DateInterval|string|null
+     * Length of the lease for some [[Accommodation]], either particular to some [[Offer]] or in some cases intrinsic to the property.
+     *
+     *
+     * @var DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
-    public function getLeaseLength()
-    {
-        return $this->leaseLength;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|DateInterval|string|null $leaseLength
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setLeaseLength($leaseLength)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
-            "DateInterval",
-            "string",
-            "null",
-        ];
-
-        $leaseLength = self::checkTypes($leaseLength, $types);
-
-        $this->leaseLength = $leaseLength;
-    }
+    protected $leaseLength;
 
     /**
      * @return Date|DateTime|null
@@ -91,6 +64,33 @@ class RealEstateListing extends \OpenActive\Models\SchemaOrg\WebPage
         $datePosted = self::checkTypes($datePosted, $types);
 
         $this->datePosted = $datePosted;
+    }
+
+    /**
+     * @return DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     */
+    public function getLeaseLength()
+    {
+        return $this->leaseLength;
+    }
+
+    /**
+     * @param DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $leaseLength
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setLeaseLength($leaseLength)
+    {
+        $types = [
+            "DateInterval",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
+            "null",
+        ];
+
+        $leaseLength = self::checkTypes($leaseLength, $types);
+
+        $this->leaseLength = $leaseLength;
     }
 
 }

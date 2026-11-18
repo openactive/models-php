@@ -17,19 +17,27 @@ class Vein extends \OpenActive\Models\SchemaOrg\Vessel
 
     public static function fieldList() {
         $fields = [
+            "drainsTo" => "drainsTo",
             "regionDrained" => "regionDrained",
             "tributary" => "tributary",
-            "drainsTo" => "drainsTo",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
+     * The vasculature that the vein drains into.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Vessel|string
+     */
+    protected $drainsTo;
+
+    /**
      * The anatomical or organ system drained by this vessel; generally refers to a specific part of an organ.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string
+     * @var \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string
      */
     protected $regionDrained;
 
@@ -42,15 +50,32 @@ class Vein extends \OpenActive\Models\SchemaOrg\Vessel
     protected $tributary;
 
     /**
-     * The vasculature that the vein drains into.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Vessel|string
+     * @return \OpenActive\Models\SchemaOrg\Vessel|string
      */
-    protected $drainsTo;
+    public function getDrainsTo()
+    {
+        return $this->drainsTo;
+    }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string
+     * @param \OpenActive\Models\SchemaOrg\Vessel|string $drainsTo
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDrainsTo($drainsTo)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Vessel",
+            "string",
+        ];
+
+        $drainsTo = self::checkTypes($drainsTo, $types);
+
+        $this->drainsTo = $drainsTo;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string
      */
     public function getRegionDrained()
     {
@@ -58,15 +83,15 @@ class Vein extends \OpenActive\Models\SchemaOrg\Vessel
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\AnatomicalStructure|string $regionDrained
+     * @param \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|string $regionDrained
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setRegionDrained($regionDrained)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\AnatomicalSystem",
             "\OpenActive\Models\SchemaOrg\AnatomicalStructure",
+            "\OpenActive\Models\SchemaOrg\AnatomicalSystem",
             "string",
         ];
 
@@ -98,31 +123,6 @@ class Vein extends \OpenActive\Models\SchemaOrg\Vessel
         $tributary = self::checkTypes($tributary, $types);
 
         $this->tributary = $tributary;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Vessel|string
-     */
-    public function getDrainsTo()
-    {
-        return $this->drainsTo;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Vessel|string $drainsTo
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDrainsTo($drainsTo)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Vessel",
-            "string",
-        ];
-
-        $drainsTo = self::checkTypes($drainsTo, $types);
-
-        $this->drainsTo = $drainsTo;
     }
 
 }

@@ -17,30 +17,19 @@ class MerchantReturnPolicySeasonalOverride extends \OpenActive\Models\SchemaOrg\
 
     public static function fieldList() {
         $fields = [
-            "returnPolicyCategory" => "returnPolicyCategory",
-            "startDate" => "startDate",
             "endDate" => "endDate",
             "merchantReturnDays" => "merchantReturnDays",
+            "refundType" => "refundType",
+            "restockingFee" => "restockingFee",
+            "returnFees" => "returnFees",
+            "returnMethod" => "returnMethod",
+            "returnPolicyCategory" => "returnPolicyCategory",
+            "returnShippingFeesAmount" => "returnShippingFeesAmount",
+            "startDate" => "startDate",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * Specifies an applicable return policy (from an enumeration).
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
-     */
-    protected $returnPolicyCategory;
-
-    /**
-     * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
-     *
-     *
-     * @var Date|DateTime|null
-     */
-    protected $startDate;
 
     /**
      * The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
@@ -59,55 +48,60 @@ class MerchantReturnPolicySeasonalOverride extends \OpenActive\Models\SchemaOrg\
     protected $merchantReturnDays;
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
+     * A refund type, from an enumerated list.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null
      */
-    public function getReturnPolicyCategory()
-    {
-        return $this->returnPolicyCategory;
-    }
+    protected $refundType;
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null $returnPolicyCategory
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * Use [[MonetaryAmount]] to specify a fixed restocking fee for product returns, or use [[Number]] to specify a percentage of the product price paid by the customer.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
      */
-    public function setReturnPolicyCategory($returnPolicyCategory)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration",
-            "null",
-        ];
-
-        $returnPolicyCategory = self::checkTypes($returnPolicyCategory, $types);
-
-        $this->returnPolicyCategory = $returnPolicyCategory;
-    }
+    protected $restockingFee;
 
     /**
-     * @return Date|DateTime|null
+     * The type of return fees for purchased products (for any return reason).
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
      */
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
+    protected $returnFees;
 
     /**
-     * @param Date|DateTime|null $startDate
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * The type of return method offered, specified from an enumeration.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\ReturnMethodEnumeration|null
      */
-    public function setStartDate($startDate)
-    {
-        $types = [
-            "Date",
-            "DateTime",
-            "null",
-        ];
+    protected $returnMethod;
 
-        $startDate = self::checkTypes($startDate, $types);
+    /**
+     * Specifies an applicable return policy (from an enumeration).
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
+     */
+    protected $returnPolicyCategory;
 
-        $this->startDate = $startDate;
-    }
+    /**
+     * Amount of shipping costs for product returns (for any reason). Applicable when property [[returnFees]] equals [[ReturnShippingFees]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string
+     */
+    protected $returnShippingFeesAmount;
+
+    /**
+     * The start date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).
+     *
+     *
+     * @var Date|DateTime|null
+     */
+    protected $startDate;
 
     /**
      * @return Date|DateTime|null
@@ -160,6 +154,184 @@ class MerchantReturnPolicySeasonalOverride extends \OpenActive\Models\SchemaOrg\
         $merchantReturnDays = self::checkTypes($merchantReturnDays, $types);
 
         $this->merchantReturnDays = $merchantReturnDays;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null
+     */
+    public function getRefundType()
+    {
+        return $this->refundType;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null $refundType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRefundType($refundType)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\RefundTypeEnumeration",
+            "null",
+        ];
+
+        $refundType = self::checkTypes($refundType, $types);
+
+        $this->refundType = $refundType;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
+     */
+    public function getRestockingFee()
+    {
+        return $this->restockingFee;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null $restockingFee
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRestockingFee($restockingFee)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
+            "Number",
+            "null",
+        ];
+
+        $restockingFee = self::checkTypes($restockingFee, $types);
+
+        $this->restockingFee = $restockingFee;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
+     */
+    public function getReturnFees()
+    {
+        return $this->returnFees;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null $returnFees
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReturnFees($returnFees)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration",
+            "null",
+        ];
+
+        $returnFees = self::checkTypes($returnFees, $types);
+
+        $this->returnFees = $returnFees;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\ReturnMethodEnumeration|null
+     */
+    public function getReturnMethod()
+    {
+        return $this->returnMethod;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\ReturnMethodEnumeration|null $returnMethod
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReturnMethod($returnMethod)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\ReturnMethodEnumeration",
+            "null",
+        ];
+
+        $returnMethod = self::checkTypes($returnMethod, $types);
+
+        $this->returnMethod = $returnMethod;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
+     */
+    public function getReturnPolicyCategory()
+    {
+        return $this->returnPolicyCategory;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null $returnPolicyCategory
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReturnPolicyCategory($returnPolicyCategory)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration",
+            "null",
+        ];
+
+        $returnPolicyCategory = self::checkTypes($returnPolicyCategory, $types);
+
+        $this->returnPolicyCategory = $returnPolicyCategory;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string
+     */
+    public function getReturnShippingFeesAmount()
+    {
+        return $this->returnShippingFeesAmount;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string $returnShippingFeesAmount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReturnShippingFeesAmount($returnShippingFeesAmount)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
+        ];
+
+        $returnShippingFeesAmount = self::checkTypes($returnShippingFeesAmount, $types);
+
+        $this->returnShippingFeesAmount = $returnShippingFeesAmount;
+    }
+
+    /**
+     * @return Date|DateTime|null
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @param Date|DateTime|null $startDate
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setStartDate($startDate)
+    {
+        $types = [
+            "Date",
+            "DateTime",
+            "null",
+        ];
+
+        $startDate = self::checkTypes($startDate, $types);
+
+        $this->startDate = $startDate;
     }
 
 }

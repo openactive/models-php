@@ -17,24 +17,23 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
 
     public static function fieldList() {
         $fields = [
-            "unitText" => "unitText",
+            "amountOfThisGood" => "amountOfThisGood",
             "businessFunction" => "businessFunction",
             "typeOfGood" => "typeOfGood",
-            "amountOfThisGood" => "amountOfThisGood",
             "unitCode" => "unitCode",
+            "unitText" => "unitText",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for
-     * <a href='unitCode'>unitCode</a>.
+     * The quantity of the goods included in the offer.
      *
      *
-     * @var string
+     * @var Number|null
      */
-    protected $unitText;
+    protected $amountOfThisGood;
 
     /**
      * The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
@@ -53,14 +52,6 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $typeOfGood;
 
     /**
-     * The quantity of the goods included in the offer.
-     *
-     *
-     * @var Number|null
-     */
-    protected $amountOfThisGood;
-
-    /**
      * The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
      *
      *
@@ -69,27 +60,37 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     protected $unitCode;
 
     /**
-     * @return string
+     * A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for
+     * <a href='unitCode'>unitCode</a>.
+     *
+     *
+     * @var string
      */
-    public function getUnitText()
+    protected $unitText;
+
+    /**
+     * @return Number|null
+     */
+    public function getAmountOfThisGood()
     {
-        return $this->unitText;
+        return $this->amountOfThisGood;
     }
 
     /**
-     * @param string $unitText
+     * @param Number|null $amountOfThisGood
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setUnitText($unitText)
+    public function setAmountOfThisGood($amountOfThisGood)
     {
         $types = [
-            "string",
+            "Number",
+            "null",
         ];
 
-        $unitText = self::checkTypes($unitText, $types);
+        $amountOfThisGood = self::checkTypes($amountOfThisGood, $types);
 
-        $this->unitText = $unitText;
+        $this->amountOfThisGood = $amountOfThisGood;
     }
 
     /**
@@ -144,31 +145,6 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
     }
 
     /**
-     * @return Number|null
-     */
-    public function getAmountOfThisGood()
-    {
-        return $this->amountOfThisGood;
-    }
-
-    /**
-     * @param Number|null $amountOfThisGood
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAmountOfThisGood($amountOfThisGood)
-    {
-        $types = [
-            "Number",
-            "null",
-        ];
-
-        $amountOfThisGood = self::checkTypes($amountOfThisGood, $types);
-
-        $this->amountOfThisGood = $amountOfThisGood;
-    }
-
-    /**
      * @return string
      */
     public function getUnitCode()
@@ -190,6 +166,30 @@ class TypeAndQuantityNode extends \OpenActive\Models\SchemaOrg\StructuredValue
         $unitCode = self::checkTypes($unitCode, $types);
 
         $this->unitCode = $unitCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUnitText()
+    {
+        return $this->unitText;
+    }
+
+    /**
+     * @param string $unitText
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setUnitText($unitText)
+    {
+        $types = [
+            "string",
+        ];
+
+        $unitText = self::checkTypes($unitText, $types);
+
+        $this->unitText = $unitText;
     }
 
 }

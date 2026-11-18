@@ -18,17 +18,17 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     public static function fieldList() {
         $fields = [
             "assembly" => "assembly",
-            "targetPlatform" => "targetPlatform",
+            "assemblyVersion" => "assemblyVersion",
             "executableLibraryName" => "executableLibraryName",
             "programmingModel" => "programmingModel",
-            "assemblyVersion" => "assemblyVersion",
+            "targetPlatform" => "targetPlatform",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Library file name e.g., mscorlib.dll, system.web.dll.
+     * Library file name, e.g., mscorlib.dll, system.web.dll.
      *
      *
      * @var string
@@ -36,15 +36,15 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     protected $assembly;
 
     /**
-     * Type of app development: phone, Metro style, desktop, XBox, etc.
+     * Associated product/technology version. E.g., .NET Framework 4.5.
      *
      *
      * @var string
      */
-    protected $targetPlatform;
+    protected $assemblyVersion;
 
     /**
-     * Library file name e.g., mscorlib.dll, system.web.dll.
+     * Library file name, e.g., mscorlib.dll, system.web.dll.
      *
      *
      * @var string
@@ -60,12 +60,12 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     protected $programmingModel;
 
     /**
-     * Associated product/technology version. e.g., .NET Framework 4.5.
+     * Type of app development: phone, Metro style, desktop, XBox, etc.
      *
      *
      * @var string
      */
-    protected $assemblyVersion;
+    protected $targetPlatform;
 
     /**
      * @return string
@@ -94,25 +94,25 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     /**
      * @return string
      */
-    public function getTargetPlatform()
+    public function getAssemblyVersion()
     {
-        return $this->targetPlatform;
+        return $this->assemblyVersion;
     }
 
     /**
-     * @param string $targetPlatform
+     * @param string $assemblyVersion
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTargetPlatform($targetPlatform)
+    public function setAssemblyVersion($assemblyVersion)
     {
         $types = [
             "string",
         ];
 
-        $targetPlatform = self::checkTypes($targetPlatform, $types);
+        $assemblyVersion = self::checkTypes($assemblyVersion, $types);
 
-        $this->targetPlatform = $targetPlatform;
+        $this->assemblyVersion = $assemblyVersion;
     }
 
     /**
@@ -166,25 +166,25 @@ class APIReference extends \OpenActive\Models\SchemaOrg\TechArticle
     /**
      * @return string
      */
-    public function getAssemblyVersion()
+    public function getTargetPlatform()
     {
-        return $this->assemblyVersion;
+        return $this->targetPlatform;
     }
 
     /**
-     * @param string $assemblyVersion
+     * @param string $targetPlatform
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAssemblyVersion($assemblyVersion)
+    public function setTargetPlatform($targetPlatform)
     {
         $types = [
             "string",
         ];
 
-        $assemblyVersion = self::checkTypes($assemblyVersion, $types);
+        $targetPlatform = self::checkTypes($targetPlatform, $types);
 
-        $this->assemblyVersion = $assemblyVersion;
+        $this->targetPlatform = $targetPlatform;
     }
 
 }

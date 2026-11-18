@@ -17,82 +17,76 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "returnPolicyCategory" => "returnPolicyCategory",
-            "returnPolicyCountry" => "returnPolicyCountry",
-            "merchantReturnLink" => "merchantReturnLink",
-            "restockingFee" => "restockingFee",
-            "itemDefectReturnShippingFeesAmount" => "itemDefectReturnShippingFeesAmount",
-            "itemDefectReturnFees" => "itemDefectReturnFees",
+            "additionalProperty" => "additionalProperty",
+            "applicableCountry" => "applicableCountry",
+            "customerRemorseReturnFees" => "customerRemorseReturnFees",
+            "customerRemorseReturnLabelSource" => "customerRemorseReturnLabelSource",
+            "customerRemorseReturnShippingFeesAmount" => "customerRemorseReturnShippingFeesAmount",
             "inStoreReturnsOffered" => "inStoreReturnsOffered",
             "itemCondition" => "itemCondition",
+            "itemDefectReturnFees" => "itemDefectReturnFees",
             "itemDefectReturnLabelSource" => "itemDefectReturnLabelSource",
-            "returnLabelSource" => "returnLabelSource",
-            "customerRemorseReturnShippingFeesAmount" => "customerRemorseReturnShippingFeesAmount",
-            "refundType" => "refundType",
-            "returnShippingFeesAmount" => "returnShippingFeesAmount",
+            "itemDefectReturnShippingFeesAmount" => "itemDefectReturnShippingFeesAmount",
             "merchantReturnDays" => "merchantReturnDays",
-            "returnMethod" => "returnMethod",
-            "additionalProperty" => "additionalProperty",
-            "customerRemorseReturnLabelSource" => "customerRemorseReturnLabelSource",
-            "customerRemorseReturnFees" => "customerRemorseReturnFees",
-            "returnPolicySeasonalOverride" => "returnPolicySeasonalOverride",
-            "applicableCountry" => "applicableCountry",
+            "merchantReturnLink" => "merchantReturnLink",
+            "refundType" => "refundType",
+            "restockingFee" => "restockingFee",
             "returnFees" => "returnFees",
+            "returnLabelSource" => "returnLabelSource",
+            "returnMethod" => "returnMethod",
+            "returnPolicyCategory" => "returnPolicyCategory",
+            "returnPolicyCountry" => "returnPolicyCountry",
+            "returnPolicySeasonalOverride" => "returnPolicySeasonalOverride",
+            "returnShippingFeesAmount" => "returnShippingFeesAmount",
+            "validForMemberTier" => "validForMemberTier",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * Specifies an applicable return policy (from an enumeration).
+     * A property-value pair representing an additional characteristic of the entity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.\n\nNote: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
+     * 
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
+     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
-    protected $returnPolicyCategory;
+    protected $additionalProperty;
 
     /**
-     * The country where the product has to be sent to for returns, for example "Ireland" using the [[name]] property of [[Country]]. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1). Note that this can be different from the country where the product was originally shipped from or sent too.
+     * A country where a particular merchant return policy applies to, for example the two-letter ISO 3166-1 alpha-2 country code.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Country|string
      */
-    protected $returnPolicyCountry;
+    protected $applicableCountry;
 
     /**
-     * Specifies a Web page or service by URL, for product returns.
-     *
-     *
-     * @var string
-     */
-    protected $merchantReturnLink;
-
-    /**
-     * Use [[MonetaryAmount]] to specify a fixed restocking fee for product returns, or use [[Number]] to specify a percentage of the product price paid by the customer.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
-     */
-    protected $restockingFee;
-
-    /**
-     * Amount of shipping costs for defect product returns. Applicable when property [[itemDefectReturnFees]] equals [[ReturnShippingFees]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string
-     */
-    protected $itemDefectReturnShippingFeesAmount;
-
-    /**
-     * The type of return fees for returns of defect products.
+     * The type of return fees if the product is returned due to customer remorse.
      *
      *
      * @var \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
      */
-    protected $itemDefectReturnFees;
+    protected $customerRemorseReturnFees;
 
     /**
-     * Are in-store returns offered? (for more advanced return methods use the [[returnMethod]] property)
+     * The method (from an enumeration) by which the customer obtains a return shipping label for a product returned due to customer remorse.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration|null
+     */
+    protected $customerRemorseReturnLabelSource;
+
+    /**
+     * The amount of shipping costs if a product is returned due to customer remorse. Applicable when property [[customerRemorseReturnFees]] equals [[ReturnShippingFees]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string
+     */
+    protected $customerRemorseReturnShippingFeesAmount;
+
+    /**
+     * Are in-store returns offered? (For more advanced return methods use the [[returnMethod]] property.)
      *
      *
      * @var bool|null
@@ -108,6 +102,14 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     protected $itemCondition;
 
     /**
+     * The type of return fees for returns of defect products.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
+     */
+    protected $itemDefectReturnFees;
+
+    /**
      * The method (from an enumeration) by which the customer obtains a return shipping label for a defect product.
      *
      *
@@ -116,36 +118,12 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     protected $itemDefectReturnLabelSource;
 
     /**
-     * The method (from an enumeration) by which the customer obtains a return shipping label for a product returned for any reason.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration|null
-     */
-    protected $returnLabelSource;
-
-    /**
-     * The amount of shipping costs if a product is returned due to customer remorse. Applicable when property [[customerRemorseReturnFees]] equals [[ReturnShippingFees]].
+     * Amount of shipping costs for defect product returns. Applicable when property [[itemDefectReturnFees]] equals [[ReturnShippingFees]].
      *
      *
      * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string
      */
-    protected $customerRemorseReturnShippingFeesAmount;
-
-    /**
-     * A refund type, from an enumerated list.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null
-     */
-    protected $refundType;
-
-    /**
-     * Amount of shipping costs for product returns (for any reason). Applicable when property [[returnFees]] equals [[ReturnShippingFees]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string
-     */
-    protected $returnShippingFeesAmount;
+    protected $itemDefectReturnShippingFeesAmount;
 
     /**
      * Specifies either a fixed return date or the number of days (from the delivery date) that a product can be returned. Used when the [[returnPolicyCategory]] property is specified as [[MerchantReturnFiniteReturnWindow]].
@@ -156,6 +134,46 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     protected $merchantReturnDays;
 
     /**
+     * Specifies a Web page or service by URL, for product returns.
+     *
+     *
+     * @var string
+     */
+    protected $merchantReturnLink;
+
+    /**
+     * A refund type, from an enumerated list.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null
+     */
+    protected $refundType;
+
+    /**
+     * Use [[MonetaryAmount]] to specify a fixed restocking fee for product returns, or use [[Number]] to specify a percentage of the product price paid by the customer.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
+     */
+    protected $restockingFee;
+
+    /**
+     * The type of return fees for purchased products (for any return reason).
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
+     */
+    protected $returnFees;
+
+    /**
+     * The method (from an enumeration) by which the customer obtains a return shipping label for a product returned for any reason.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration|null
+     */
+    protected $returnLabelSource;
+
+    /**
      * The type of return method offered, specified from an enumeration.
      *
      *
@@ -164,29 +182,20 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     protected $returnMethod;
 
     /**
-     * A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.\n\nNote: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
-     * 
+     * Specifies an applicable return policy (from an enumeration).
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\PropertyValue|string
+     * @var \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
      */
-    protected $additionalProperty;
+    protected $returnPolicyCategory;
 
     /**
-     * The method (from an enumeration) by which the customer obtains a return shipping label for a product returned due to customer remorse.
+     * The country where the product has to be sent to for returns, for example "Ireland" using the [[name]] property of [[Country]]. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1). Note that this can be different from the country where the product was originally shipped from or sent to.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration|null
+     * @var \OpenActive\Models\SchemaOrg\Country|string
      */
-    protected $customerRemorseReturnLabelSource;
-
-    /**
-     * The type of return fees if the product is returned due to customer remorse.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
-     */
-    protected $customerRemorseReturnFees;
+    protected $returnPolicyCountry;
 
     /**
      * Seasonal override of a return policy.
@@ -197,170 +206,144 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     protected $returnPolicySeasonalOverride;
 
     /**
-     * A country where a particular merchant return policy applies to, for example the two-letter ISO 3166-1 alpha-2 country code.
+     * Amount of shipping costs for product returns (for any reason). Applicable when property [[returnFees]] equals [[ReturnShippingFees]].
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\Country
+     * @var \OpenActive\Models\SchemaOrg\MonetaryAmount|string
      */
-    protected $applicableCountry;
+    protected $returnShippingFeesAmount;
 
     /**
-     * The type of return fees for purchased products (for any return reason)
+     * The membership program tier(s) an Offer (or a PriceSpecification, OfferShippingDetails, or MerchantReturnPolicy under an Offer) is valid for.
      *
      *
-     * @var \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
+     * @var \OpenActive\Models\SchemaOrg\MemberProgramTier|string
      */
-    protected $returnFees;
+    protected $validForMemberTier;
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
+     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
      */
-    public function getReturnPolicyCategory()
+    public function getAdditionalProperty()
     {
-        return $this->returnPolicyCategory;
+        return $this->additionalProperty;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null $returnPolicyCategory
+     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $additionalProperty
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setReturnPolicyCategory($returnPolicyCategory)
+    public function setAdditionalProperty($additionalProperty)
     {
         $types = [
-            "\OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration",
-            "null",
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "string",
         ];
 
-        $returnPolicyCategory = self::checkTypes($returnPolicyCategory, $types);
+        $additionalProperty = self::checkTypes($additionalProperty, $types);
 
-        $this->returnPolicyCategory = $returnPolicyCategory;
+        $this->additionalProperty = $additionalProperty;
     }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Country|string
      */
-    public function getReturnPolicyCountry()
+    public function getApplicableCountry()
     {
-        return $this->returnPolicyCountry;
+        return $this->applicableCountry;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\Country|string $returnPolicyCountry
+     * @param \OpenActive\Models\SchemaOrg\Country|string $applicableCountry
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setReturnPolicyCountry($returnPolicyCountry)
+    public function setApplicableCountry($applicableCountry)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\Country",
             "string",
         ];
 
-        $returnPolicyCountry = self::checkTypes($returnPolicyCountry, $types);
+        $applicableCountry = self::checkTypes($applicableCountry, $types);
 
-        $this->returnPolicyCountry = $returnPolicyCountry;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMerchantReturnLink()
-    {
-        return $this->merchantReturnLink;
-    }
-
-    /**
-     * @param string $merchantReturnLink
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setMerchantReturnLink($merchantReturnLink)
-    {
-        $types = [
-            "string",
-        ];
-
-        $merchantReturnLink = self::checkTypes($merchantReturnLink, $types);
-
-        $this->merchantReturnLink = $merchantReturnLink;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
-     */
-    public function getRestockingFee()
-    {
-        return $this->restockingFee;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null $restockingFee
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRestockingFee($restockingFee)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "string",
-            "Number",
-            "null",
-        ];
-
-        $restockingFee = self::checkTypes($restockingFee, $types);
-
-        $this->restockingFee = $restockingFee;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string
-     */
-    public function getItemDefectReturnShippingFeesAmount()
-    {
-        return $this->itemDefectReturnShippingFeesAmount;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string $itemDefectReturnShippingFeesAmount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setItemDefectReturnShippingFeesAmount($itemDefectReturnShippingFeesAmount)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "string",
-        ];
-
-        $itemDefectReturnShippingFeesAmount = self::checkTypes($itemDefectReturnShippingFeesAmount, $types);
-
-        $this->itemDefectReturnShippingFeesAmount = $itemDefectReturnShippingFeesAmount;
+        $this->applicableCountry = $applicableCountry;
     }
 
     /**
      * @return \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
      */
-    public function getItemDefectReturnFees()
+    public function getCustomerRemorseReturnFees()
     {
-        return $this->itemDefectReturnFees;
+        return $this->customerRemorseReturnFees;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null $itemDefectReturnFees
+     * @param \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null $customerRemorseReturnFees
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setItemDefectReturnFees($itemDefectReturnFees)
+    public function setCustomerRemorseReturnFees($customerRemorseReturnFees)
     {
         $types = [
             "\OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration",
             "null",
         ];
 
-        $itemDefectReturnFees = self::checkTypes($itemDefectReturnFees, $types);
+        $customerRemorseReturnFees = self::checkTypes($customerRemorseReturnFees, $types);
 
-        $this->itemDefectReturnFees = $itemDefectReturnFees;
+        $this->customerRemorseReturnFees = $customerRemorseReturnFees;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration|null
+     */
+    public function getCustomerRemorseReturnLabelSource()
+    {
+        return $this->customerRemorseReturnLabelSource;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration|null $customerRemorseReturnLabelSource
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCustomerRemorseReturnLabelSource($customerRemorseReturnLabelSource)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration",
+            "null",
+        ];
+
+        $customerRemorseReturnLabelSource = self::checkTypes($customerRemorseReturnLabelSource, $types);
+
+        $this->customerRemorseReturnLabelSource = $customerRemorseReturnLabelSource;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string
+     */
+    public function getCustomerRemorseReturnShippingFeesAmount()
+    {
+        return $this->customerRemorseReturnShippingFeesAmount;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string $customerRemorseReturnShippingFeesAmount
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCustomerRemorseReturnShippingFeesAmount($customerRemorseReturnShippingFeesAmount)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
+        ];
+
+        $customerRemorseReturnShippingFeesAmount = self::checkTypes($customerRemorseReturnShippingFeesAmount, $types);
+
+        $this->customerRemorseReturnShippingFeesAmount = $customerRemorseReturnShippingFeesAmount;
     }
 
     /**
@@ -414,6 +397,31 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
+     * @return \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
+     */
+    public function getItemDefectReturnFees()
+    {
+        return $this->itemDefectReturnFees;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null $itemDefectReturnFees
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setItemDefectReturnFees($itemDefectReturnFees)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration",
+            "null",
+        ];
+
+        $itemDefectReturnFees = self::checkTypes($itemDefectReturnFees, $types);
+
+        $this->itemDefectReturnFees = $itemDefectReturnFees;
+    }
+
+    /**
      * @return \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration|null
      */
     public function getItemDefectReturnLabelSource()
@@ -439,103 +447,28 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration|null
-     */
-    public function getReturnLabelSource()
-    {
-        return $this->returnLabelSource;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration|null $returnLabelSource
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReturnLabelSource($returnLabelSource)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration",
-            "null",
-        ];
-
-        $returnLabelSource = self::checkTypes($returnLabelSource, $types);
-
-        $this->returnLabelSource = $returnLabelSource;
-    }
-
-    /**
      * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string
      */
-    public function getCustomerRemorseReturnShippingFeesAmount()
+    public function getItemDefectReturnShippingFeesAmount()
     {
-        return $this->customerRemorseReturnShippingFeesAmount;
+        return $this->itemDefectReturnShippingFeesAmount;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string $customerRemorseReturnShippingFeesAmount
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string $itemDefectReturnShippingFeesAmount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCustomerRemorseReturnShippingFeesAmount($customerRemorseReturnShippingFeesAmount)
+    public function setItemDefectReturnShippingFeesAmount($itemDefectReturnShippingFeesAmount)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "string",
         ];
 
-        $customerRemorseReturnShippingFeesAmount = self::checkTypes($customerRemorseReturnShippingFeesAmount, $types);
+        $itemDefectReturnShippingFeesAmount = self::checkTypes($itemDefectReturnShippingFeesAmount, $types);
 
-        $this->customerRemorseReturnShippingFeesAmount = $customerRemorseReturnShippingFeesAmount;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null
-     */
-    public function getRefundType()
-    {
-        return $this->refundType;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null $refundType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setRefundType($refundType)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\RefundTypeEnumeration",
-            "null",
-        ];
-
-        $refundType = self::checkTypes($refundType, $types);
-
-        $this->refundType = $refundType;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string
-     */
-    public function getReturnShippingFeesAmount()
-    {
-        return $this->returnShippingFeesAmount;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string $returnShippingFeesAmount
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReturnShippingFeesAmount($returnShippingFeesAmount)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
-            "string",
-        ];
-
-        $returnShippingFeesAmount = self::checkTypes($returnShippingFeesAmount, $types);
-
-        $this->returnShippingFeesAmount = $returnShippingFeesAmount;
+        $this->itemDefectReturnShippingFeesAmount = $itemDefectReturnShippingFeesAmount;
     }
 
     /**
@@ -566,6 +499,132 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
+     * @return string
+     */
+    public function getMerchantReturnLink()
+    {
+        return $this->merchantReturnLink;
+    }
+
+    /**
+     * @param string $merchantReturnLink
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setMerchantReturnLink($merchantReturnLink)
+    {
+        $types = [
+            "string",
+        ];
+
+        $merchantReturnLink = self::checkTypes($merchantReturnLink, $types);
+
+        $this->merchantReturnLink = $merchantReturnLink;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null
+     */
+    public function getRefundType()
+    {
+        return $this->refundType;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\RefundTypeEnumeration|null $refundType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRefundType($refundType)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\RefundTypeEnumeration",
+            "null",
+        ];
+
+        $refundType = self::checkTypes($refundType, $types);
+
+        $this->refundType = $refundType;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null
+     */
+    public function getRestockingFee()
+    {
+        return $this->restockingFee;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string|Number|null $restockingFee
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setRestockingFee($restockingFee)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
+            "string",
+            "Number",
+            "null",
+        ];
+
+        $restockingFee = self::checkTypes($restockingFee, $types);
+
+        $this->restockingFee = $restockingFee;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
+     */
+    public function getReturnFees()
+    {
+        return $this->returnFees;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null $returnFees
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReturnFees($returnFees)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration",
+            "null",
+        ];
+
+        $returnFees = self::checkTypes($returnFees, $types);
+
+        $this->returnFees = $returnFees;
+    }
+
+    /**
+     * @return \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration|null
+     */
+    public function getReturnLabelSource()
+    {
+        return $this->returnLabelSource;
+    }
+
+    /**
+     * @param \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration|null $returnLabelSource
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReturnLabelSource($returnLabelSource)
+    {
+        $types = [
+            "\OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration",
+            "null",
+        ];
+
+        $returnLabelSource = self::checkTypes($returnLabelSource, $types);
+
+        $this->returnLabelSource = $returnLabelSource;
+    }
+
+    /**
      * @return \OpenActive\Enums\SchemaOrg\ReturnMethodEnumeration|null
      */
     public function getReturnMethod()
@@ -591,78 +650,53 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\PropertyValue|string
+     * @return \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null
      */
-    public function getAdditionalProperty()
+    public function getReturnPolicyCategory()
     {
-        return $this->additionalProperty;
+        return $this->returnPolicyCategory;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\PropertyValue|string $additionalProperty
+     * @param \OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration|null $returnPolicyCategory
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAdditionalProperty($additionalProperty)
+    public function setReturnPolicyCategory($returnPolicyCategory)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "\OpenActive\Enums\SchemaOrg\MerchantReturnEnumeration",
+            "null",
+        ];
+
+        $returnPolicyCategory = self::checkTypes($returnPolicyCategory, $types);
+
+        $this->returnPolicyCategory = $returnPolicyCategory;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Country|string
+     */
+    public function getReturnPolicyCountry()
+    {
+        return $this->returnPolicyCountry;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Country|string $returnPolicyCountry
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReturnPolicyCountry($returnPolicyCountry)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Country",
             "string",
         ];
 
-        $additionalProperty = self::checkTypes($additionalProperty, $types);
+        $returnPolicyCountry = self::checkTypes($returnPolicyCountry, $types);
 
-        $this->additionalProperty = $additionalProperty;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration|null
-     */
-    public function getCustomerRemorseReturnLabelSource()
-    {
-        return $this->customerRemorseReturnLabelSource;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration|null $customerRemorseReturnLabelSource
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCustomerRemorseReturnLabelSource($customerRemorseReturnLabelSource)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\ReturnLabelSourceEnumeration",
-            "null",
-        ];
-
-        $customerRemorseReturnLabelSource = self::checkTypes($customerRemorseReturnLabelSource, $types);
-
-        $this->customerRemorseReturnLabelSource = $customerRemorseReturnLabelSource;
-    }
-
-    /**
-     * @return \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
-     */
-    public function getCustomerRemorseReturnFees()
-    {
-        return $this->customerRemorseReturnFees;
-    }
-
-    /**
-     * @param \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null $customerRemorseReturnFees
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCustomerRemorseReturnFees($customerRemorseReturnFees)
-    {
-        $types = [
-            "\OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration",
-            "null",
-        ];
-
-        $customerRemorseReturnFees = self::checkTypes($customerRemorseReturnFees, $types);
-
-        $this->customerRemorseReturnFees = $customerRemorseReturnFees;
+        $this->returnPolicyCountry = $returnPolicyCountry;
     }
 
     /**
@@ -691,53 +725,53 @@ class MerchantReturnPolicy extends \OpenActive\Models\SchemaOrg\Intangible
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\Country
+     * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string
      */
-    public function getApplicableCountry()
+    public function getReturnShippingFeesAmount()
     {
-        return $this->applicableCountry;
+        return $this->returnShippingFeesAmount;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\Country $applicableCountry
+     * @param \OpenActive\Models\SchemaOrg\MonetaryAmount|string $returnShippingFeesAmount
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setApplicableCountry($applicableCountry)
+    public function setReturnShippingFeesAmount($returnShippingFeesAmount)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\MonetaryAmount",
             "string",
-            "\OpenActive\Models\SchemaOrg\Country",
         ];
 
-        $applicableCountry = self::checkTypes($applicableCountry, $types);
+        $returnShippingFeesAmount = self::checkTypes($returnShippingFeesAmount, $types);
 
-        $this->applicableCountry = $applicableCountry;
+        $this->returnShippingFeesAmount = $returnShippingFeesAmount;
     }
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null
+     * @return \OpenActive\Models\SchemaOrg\MemberProgramTier|string
      */
-    public function getReturnFees()
+    public function getValidForMemberTier()
     {
-        return $this->returnFees;
+        return $this->validForMemberTier;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration|null $returnFees
+     * @param \OpenActive\Models\SchemaOrg\MemberProgramTier|string $validForMemberTier
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setReturnFees($returnFees)
+    public function setValidForMemberTier($validForMemberTier)
     {
         $types = [
-            "\OpenActive\Enums\SchemaOrg\ReturnFeesEnumeration",
-            "null",
+            "\OpenActive\Models\SchemaOrg\MemberProgramTier",
+            "string",
         ];
 
-        $returnFees = self::checkTypes($returnFees, $types);
+        $validForMemberTier = self::checkTypes($validForMemberTier, $types);
 
-        $this->returnFees = $returnFees;
+        $this->validForMemberTier = $validForMemberTier;
     }
 
 }

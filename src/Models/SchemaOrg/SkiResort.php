@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class SkiResort extends \OpenActive\Models\SchemaOrg\SportsActivityLocation
+class SkiResort extends \OpenActive\Models\SchemaOrg\Resort
 {
     /**
      * @return string[]|null

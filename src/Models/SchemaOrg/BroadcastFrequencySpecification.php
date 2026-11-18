@@ -17,29 +17,13 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
 
     public static function fieldList() {
         $fields = [
-            "broadcastSubChannel" => "broadcastSubChannel",
-            "broadcastSignalModulation" => "broadcastSignalModulation",
             "broadcastFrequencyValue" => "broadcastFrequencyValue",
+            "broadcastSignalModulation" => "broadcastSignalModulation",
+            "broadcastSubChannel" => "broadcastSubChannel",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The subchannel used for the broadcast.
-     *
-     *
-     * @var string
-     */
-    protected $broadcastSubChannel;
-
-    /**
-     * The modulation (e.g. FM, AM, etc) used by a particular broadcast service.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
-     */
-    protected $broadcastSignalModulation;
 
     /**
      * The frequency in MHz for a particular broadcast.
@@ -50,27 +34,46 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     protected $broadcastFrequencyValue;
 
     /**
-     * @return string
+     * The modulation (e.g. FM, AM, etc) used by a particular broadcast service.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
      */
-    public function getBroadcastSubChannel()
+    protected $broadcastSignalModulation;
+
+    /**
+     * The subchannel used for the broadcast.
+     *
+     *
+     * @var string
+     */
+    protected $broadcastSubChannel;
+
+    /**
+     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     */
+    public function getBroadcastFrequencyValue()
     {
-        return $this->broadcastSubChannel;
+        return $this->broadcastFrequencyValue;
     }
 
     /**
-     * @param string $broadcastSubChannel
+     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $broadcastFrequencyValue
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBroadcastSubChannel($broadcastSubChannel)
+    public function setBroadcastFrequencyValue($broadcastFrequencyValue)
     {
         $types = [
+            "Number",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
+            "null",
         ];
 
-        $broadcastSubChannel = self::checkTypes($broadcastSubChannel, $types);
+        $broadcastFrequencyValue = self::checkTypes($broadcastFrequencyValue, $types);
 
-        $this->broadcastSubChannel = $broadcastSubChannel;
+        $this->broadcastFrequencyValue = $broadcastFrequencyValue;
     }
 
     /**
@@ -100,30 +103,27 @@ class BroadcastFrequencySpecification extends \OpenActive\Models\SchemaOrg\Intan
     }
 
     /**
-     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     * @return string
      */
-    public function getBroadcastFrequencyValue()
+    public function getBroadcastSubChannel()
     {
-        return $this->broadcastFrequencyValue;
+        return $this->broadcastSubChannel;
     }
 
     /**
-     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $broadcastFrequencyValue
+     * @param string $broadcastSubChannel
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBroadcastFrequencyValue($broadcastFrequencyValue)
+    public function setBroadcastSubChannel($broadcastSubChannel)
     {
         $types = [
-            "Number",
-            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
-            "null",
         ];
 
-        $broadcastFrequencyValue = self::checkTypes($broadcastFrequencyValue, $types);
+        $broadcastSubChannel = self::checkTypes($broadcastSubChannel, $types);
 
-        $this->broadcastFrequencyValue = $broadcastFrequencyValue;
+        $this->broadcastSubChannel = $broadcastSubChannel;
     }
 
 }

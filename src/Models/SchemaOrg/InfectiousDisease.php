@@ -17,21 +17,13 @@ class InfectiousDisease extends \OpenActive\Models\SchemaOrg\MedicalCondition
 
     public static function fieldList() {
         $fields = [
-            "infectiousAgentClass" => "infectiousAgentClass",
             "infectiousAgent" => "infectiousAgent",
+            "infectiousAgentClass" => "infectiousAgentClass",
             "transmissionMethod" => "transmissionMethod",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The class of infectious agent (bacteria, prion, etc.) that causes the disease.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\InfectiousAgentClass|string
-     */
-    protected $infectiousAgentClass;
 
     /**
      * The actual infectious agent, such as a specific bacterium.
@@ -42,12 +34,44 @@ class InfectiousDisease extends \OpenActive\Models\SchemaOrg\MedicalCondition
     protected $infectiousAgent;
 
     /**
+     * The class of infectious agent (bacteria, prion, etc.) that causes the disease.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\InfectiousAgentClass|string
+     */
+    protected $infectiousAgentClass;
+
+    /**
      * How the disease spreads, either as a route or vector, for example 'direct contact', 'Aedes aegypti', etc.
      *
      *
      * @var string
      */
     protected $transmissionMethod;
+
+    /**
+     * @return string
+     */
+    public function getInfectiousAgent()
+    {
+        return $this->infectiousAgent;
+    }
+
+    /**
+     * @param string $infectiousAgent
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setInfectiousAgent($infectiousAgent)
+    {
+        $types = [
+            "string",
+        ];
+
+        $infectiousAgent = self::checkTypes($infectiousAgent, $types);
+
+        $this->infectiousAgent = $infectiousAgent;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\InfectiousAgentClass|string
@@ -72,30 +96,6 @@ class InfectiousDisease extends \OpenActive\Models\SchemaOrg\MedicalCondition
         $infectiousAgentClass = self::checkTypes($infectiousAgentClass, $types);
 
         $this->infectiousAgentClass = $infectiousAgentClass;
-    }
-
-    /**
-     * @return string
-     */
-    public function getInfectiousAgent()
-    {
-        return $this->infectiousAgent;
-    }
-
-    /**
-     * @param string $infectiousAgent
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setInfectiousAgent($infectiousAgent)
-    {
-        $types = [
-            "string",
-        ];
-
-        $infectiousAgent = self::checkTypes($infectiousAgent, $types);
-
-        $this->infectiousAgent = $infectiousAgent;
     }
 
     /**

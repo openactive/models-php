@@ -29,13 +29,13 @@ class SingleFamilyResidence extends \OpenActive\Models\SchemaOrg\House
      * Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null
+     * @var Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
     protected $numberOfRooms;
 
     /**
      * The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person).
-     * Typical unit code(s): C62 for person
+     * Typical unit code(s): C62 for person.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\QuantitativeValue|string
@@ -43,7 +43,7 @@ class SingleFamilyResidence extends \OpenActive\Models\SchemaOrg\House
     protected $occupancy;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null
+     * @return Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
     public function getNumberOfRooms()
     {
@@ -51,16 +51,16 @@ class SingleFamilyResidence extends \OpenActive\Models\SchemaOrg\House
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\QuantitativeValue|string|Number|null $numberOfRooms
+     * @param Number|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $numberOfRooms
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setNumberOfRooms($numberOfRooms)
     {
         $types = [
+            "Number",
             "\OpenActive\Models\SchemaOrg\QuantitativeValue",
             "string",
-            "Number",
             "null",
         ];
 

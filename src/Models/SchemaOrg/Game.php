@@ -19,9 +19,9 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
         $fields = [
             "characterAttribute" => "characterAttribute",
             "gameItem" => "gameItem",
+            "gameLocation" => "gameLocation",
             "numberOfPlayers" => "numberOfPlayers",
             "quest" => "quest",
-            "gameLocation" => "gameLocation",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -44,6 +44,14 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $gameItem;
 
     /**
+     * Real or fictional location of the game (or part of game).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress|string
+     */
+    protected $gameLocation;
+
+    /**
      * Indicate how many people can play this game (minimum, maximum, or range).
      *
      *
@@ -58,14 +66,6 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
      * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
     protected $quest;
-
-    /**
-     * Real or fictional location of the game (or part of game).
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress
-     */
-    protected $gameLocation;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Thing|string
@@ -118,6 +118,32 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress|string
+     */
+    public function getGameLocation()
+    {
+        return $this->gameLocation;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Place|\OpenActive\Models\SchemaOrg\PostalAddress|string $gameLocation
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGameLocation($gameLocation)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Place",
+            "\OpenActive\Models\SchemaOrg\PostalAddress",
+            "string",
+        ];
+
+        $gameLocation = self::checkTypes($gameLocation, $types);
+
+        $this->gameLocation = $gameLocation;
+    }
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\QuantitativeValue|string
      */
     public function getNumberOfPlayers()
@@ -165,32 +191,6 @@ class Game extends \OpenActive\Models\SchemaOrg\CreativeWork
         $quest = self::checkTypes($quest, $types);
 
         $this->quest = $quest;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress
-     */
-    public function getGameLocation()
-    {
-        return $this->gameLocation;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Place|string|\OpenActive\Models\SchemaOrg\PostalAddress $gameLocation
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGameLocation($gameLocation)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Place",
-            "string",
-            "\OpenActive\Models\SchemaOrg\PostalAddress",
-        ];
-
-        $gameLocation = self::checkTypes($gameLocation, $types);
-
-        $this->gameLocation = $gameLocation;
     }
 
 }

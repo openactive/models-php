@@ -19,8 +19,8 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $fields = [
             "evidenceLevel" => "evidenceLevel",
             "evidenceOrigin" => "evidenceOrigin",
-            "guidelineSubject" => "guidelineSubject",
             "guidelineDate" => "guidelineDate",
+            "guidelineSubject" => "guidelineSubject",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -43,20 +43,20 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
     protected $evidenceOrigin;
 
     /**
-     * The medical conditions, treatments, etc. that are the subject of the guideline.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
-     */
-    protected $guidelineSubject;
-
-    /**
      * Date on which this guideline's recommendation was made.
      *
      *
      * @var Date|null
      */
     protected $guidelineDate;
+
+    /**
+     * The medical conditions, treatments, etc. that are the subject of the guideline.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\MedicalEntity|string
+     */
+    protected $guidelineSubject;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MedicalEvidenceLevel|string
@@ -108,31 +108,6 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
-     */
-    public function getGuidelineSubject()
-    {
-        return $this->guidelineSubject;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalEntity|string $guidelineSubject
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setGuidelineSubject($guidelineSubject)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\MedicalEntity",
-            "string",
-        ];
-
-        $guidelineSubject = self::checkTypes($guidelineSubject, $types);
-
-        $this->guidelineSubject = $guidelineSubject;
-    }
-
-    /**
      * @return Date|null
      */
     public function getGuidelineDate()
@@ -155,6 +130,31 @@ class MedicalGuideline extends \OpenActive\Models\SchemaOrg\MedicalEntity
         $guidelineDate = self::checkTypes($guidelineDate, $types);
 
         $this->guidelineDate = $guidelineDate;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\MedicalEntity|string
+     */
+    public function getGuidelineSubject()
+    {
+        return $this->guidelineSubject;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\MedicalEntity|string $guidelineSubject
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setGuidelineSubject($guidelineSubject)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\MedicalEntity",
+            "string",
+        ];
+
+        $guidelineSubject = self::checkTypes($guidelineSubject, $types);
+
+        $this->guidelineSubject = $guidelineSubject;
     }
 
 }

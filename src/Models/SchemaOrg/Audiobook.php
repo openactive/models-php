@@ -17,12 +17,20 @@ class Audiobook extends \OpenActive\Models\SchemaOrg\AudioObject
 
     public static function fieldList() {
         $fields = [
-            "readBy" => "readBy",
             "duration" => "duration",
+            "readBy" => "readBy",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).
+     *
+     *
+     * @var DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
+     */
+    protected $duration;
 
     /**
      * A person who reads (performs) the audiobook.
@@ -33,12 +41,31 @@ class Audiobook extends \OpenActive\Models\SchemaOrg\AudioObject
     protected $readBy;
 
     /**
-     * The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).
-     *
-     *
-     * @var DateInterval|string|null
+     * @return DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null
      */
-    protected $duration;
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * @param DateInterval|\OpenActive\Models\SchemaOrg\QuantitativeValue|string|null $duration
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setDuration($duration)
+    {
+        $types = [
+            "DateInterval",
+            "\OpenActive\Models\SchemaOrg\QuantitativeValue",
+            "string",
+            "null",
+        ];
+
+        $duration = self::checkTypes($duration, $types);
+
+        $this->duration = $duration;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Person|string
@@ -63,32 +90,6 @@ class Audiobook extends \OpenActive\Models\SchemaOrg\AudioObject
         $readBy = self::checkTypes($readBy, $types);
 
         $this->readBy = $readBy;
-    }
-
-    /**
-     * @return DateInterval|string|null
-     */
-    public function getDuration()
-    {
-        return $this->duration;
-    }
-
-    /**
-     * @param DateInterval|string|null $duration
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setDuration($duration)
-    {
-        $types = [
-            "DateInterval",
-            "string",
-            "null",
-        ];
-
-        $duration = self::checkTypes($duration, $types);
-
-        $this->duration = $duration;
     }
 
 }

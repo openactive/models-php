@@ -17,22 +17,15 @@ class Question extends \OpenActive\Models\SchemaOrg\Comment
 
     public static function fieldList() {
         $fields = [
-            "suggestedAnswer" => "suggestedAnswer",
             "acceptedAnswer" => "acceptedAnswer",
             "answerCount" => "answerCount",
             "eduQuestionType" => "eduQuestionType",
+            "parentItem" => "parentItem",
+            "suggestedAnswer" => "suggestedAnswer",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer|string
-     */
-    protected $suggestedAnswer;
 
     /**
      * The answer(s) that has been accepted as best, typically on a Question/Answer site. Sites vary in their selection mechanisms, e.g. drawing on community opinion and/or the view of the Question author.
@@ -59,30 +52,20 @@ class Question extends \OpenActive\Models\SchemaOrg\Comment
     protected $eduQuestionType;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer|string
+     * The parent of a question, answer or item in general. Typically used for Q/A discussion threads e.g. a chain of comments with the first comment being an [[Article]] or other [[CreativeWork]]. See also [[comment]] which points from something to a comment about it.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Comment|\OpenActive\Models\SchemaOrg\CreativeWork|string
      */
-    public function getSuggestedAnswer()
-    {
-        return $this->suggestedAnswer;
-    }
+    protected $parentItem;
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\Answer|string $suggestedAnswer
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     * An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList|string
      */
-    public function setSuggestedAnswer($suggestedAnswer)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ItemList",
-            "\OpenActive\Models\SchemaOrg\Answer",
-            "string",
-        ];
-
-        $suggestedAnswer = self::checkTypes($suggestedAnswer, $types);
-
-        $this->suggestedAnswer = $suggestedAnswer;
-    }
+    protected $suggestedAnswer;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList|string
@@ -157,6 +140,58 @@ class Question extends \OpenActive\Models\SchemaOrg\Comment
         $eduQuestionType = self::checkTypes($eduQuestionType, $types);
 
         $this->eduQuestionType = $eduQuestionType;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Comment|\OpenActive\Models\SchemaOrg\CreativeWork|string
+     */
+    public function getParentItem()
+    {
+        return $this->parentItem;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Comment|\OpenActive\Models\SchemaOrg\CreativeWork|string $parentItem
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setParentItem($parentItem)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Comment",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "string",
+        ];
+
+        $parentItem = self::checkTypes($parentItem, $types);
+
+        $this->parentItem = $parentItem;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList|string
+     */
+    public function getSuggestedAnswer()
+    {
+        return $this->suggestedAnswer;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Answer|\OpenActive\Models\SchemaOrg\ItemList|string $suggestedAnswer
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setSuggestedAnswer($suggestedAnswer)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Answer",
+            "\OpenActive\Models\SchemaOrg\ItemList",
+            "string",
+        ];
+
+        $suggestedAnswer = self::checkTypes($suggestedAnswer, $types);
+
+        $this->suggestedAnswer = $suggestedAnswer;
     }
 
 }

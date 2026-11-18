@@ -17,29 +17,13 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
 
     public static function fieldList() {
         $fields = [
-            "rsvpResponse" => "rsvpResponse",
-            "comment" => "comment",
             "additionalNumberOfGuests" => "additionalNumberOfGuests",
+            "comment" => "comment",
+            "rsvpResponse" => "rsvpResponse",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The response (yes, no, maybe) to the RSVP.
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\RsvpResponseType|null
-     */
-    protected $rsvpResponse;
-
-    /**
-     * Comments, typically from users.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Comment|string
-     */
-    protected $comment;
 
     /**
      * If responding yes, the number of guests who will attend in addition to the invitee.
@@ -50,28 +34,44 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     protected $additionalNumberOfGuests;
 
     /**
-     * @return \OpenActive\Enums\SchemaOrg\RsvpResponseType|null
+     * Comments, typically from users.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Comment|string
      */
-    public function getRsvpResponse()
+    protected $comment;
+
+    /**
+     * The response (yes, no, maybe) to the RSVP.
+     *
+     *
+     * @var \OpenActive\Enums\SchemaOrg\RsvpResponseType|null
+     */
+    protected $rsvpResponse;
+
+    /**
+     * @return Number|null
+     */
+    public function getAdditionalNumberOfGuests()
     {
-        return $this->rsvpResponse;
+        return $this->additionalNumberOfGuests;
     }
 
     /**
-     * @param \OpenActive\Enums\SchemaOrg\RsvpResponseType|null $rsvpResponse
+     * @param Number|null $additionalNumberOfGuests
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setRsvpResponse($rsvpResponse)
+    public function setAdditionalNumberOfGuests($additionalNumberOfGuests)
     {
         $types = [
-            "\OpenActive\Enums\SchemaOrg\RsvpResponseType",
+            "Number",
             "null",
         ];
 
-        $rsvpResponse = self::checkTypes($rsvpResponse, $types);
+        $additionalNumberOfGuests = self::checkTypes($additionalNumberOfGuests, $types);
 
-        $this->rsvpResponse = $rsvpResponse;
+        $this->additionalNumberOfGuests = $additionalNumberOfGuests;
     }
 
     /**
@@ -100,28 +100,28 @@ class RsvpAction extends \OpenActive\Models\SchemaOrg\InformAction
     }
 
     /**
-     * @return Number|null
+     * @return \OpenActive\Enums\SchemaOrg\RsvpResponseType|null
      */
-    public function getAdditionalNumberOfGuests()
+    public function getRsvpResponse()
     {
-        return $this->additionalNumberOfGuests;
+        return $this->rsvpResponse;
     }
 
     /**
-     * @param Number|null $additionalNumberOfGuests
+     * @param \OpenActive\Enums\SchemaOrg\RsvpResponseType|null $rsvpResponse
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setAdditionalNumberOfGuests($additionalNumberOfGuests)
+    public function setRsvpResponse($rsvpResponse)
     {
         $types = [
-            "Number",
+            "\OpenActive\Enums\SchemaOrg\RsvpResponseType",
             "null",
         ];
 
-        $additionalNumberOfGuests = self::checkTypes($additionalNumberOfGuests, $types);
+        $rsvpResponse = self::checkTypes($rsvpResponse, $types);
 
-        $this->additionalNumberOfGuests = $additionalNumberOfGuests;
+        $this->rsvpResponse = $rsvpResponse;
     }
 
 }

@@ -17,13 +17,21 @@ class Grant extends \OpenActive\Models\SchemaOrg\Intangible
 
     public static function fieldList() {
         $fields = [
-            "funder" => "funder",
             "fundedItem" => "fundedItem",
+            "funder" => "funder",
             "sponsor" => "sponsor",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
+
+    /**
+     * Indicates something directly or indirectly funded or sponsored through a [[Grant]]. See also [[ownershipFundingInfo]].
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\BioChemEntity|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\MedicalEntity|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Product|string
+     */
+    protected $fundedItem;
 
     /**
      * A person or organization that supports (sponsors) something through some kind of financial contribution.
@@ -34,20 +42,43 @@ class Grant extends \OpenActive\Models\SchemaOrg\Intangible
     protected $funder;
 
     /**
-     * Indicates something directly or indirectly funded or sponsored through a [[Grant]]. See also [[ownershipFundingInfo]].
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\BioChemEntity|\OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\MedicalEntity|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Organization|string
-     */
-    protected $fundedItem;
-
-    /**
-     * A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.
+     * A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
      */
     protected $sponsor;
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\BioChemEntity|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\MedicalEntity|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Product|string
+     */
+    public function getFundedItem()
+    {
+        return $this->fundedItem;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\BioChemEntity|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\MedicalEntity|\OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\Product|string $fundedItem
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setFundedItem($fundedItem)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\BioChemEntity",
+            "\OpenActive\Models\SchemaOrg\CreativeWork",
+            "\OpenActive\Models\SchemaOrg\Event",
+            "\OpenActive\Models\SchemaOrg\MedicalEntity",
+            "\OpenActive\Models\SchemaOrg\Organization",
+            "\OpenActive\Models\SchemaOrg\Person",
+            "\OpenActive\Models\SchemaOrg\Product",
+            "string",
+        ];
+
+        $fundedItem = self::checkTypes($fundedItem, $types);
+
+        $this->fundedItem = $fundedItem;
+    }
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Organization|\OpenActive\Models\SchemaOrg\Person|string
@@ -73,37 +104,6 @@ class Grant extends \OpenActive\Models\SchemaOrg\Intangible
         $funder = self::checkTypes($funder, $types);
 
         $this->funder = $funder;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\BioChemEntity|\OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\MedicalEntity|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Organization|string
-     */
-    public function getFundedItem()
-    {
-        return $this->fundedItem;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Product|\OpenActive\Models\SchemaOrg\Person|\OpenActive\Models\SchemaOrg\BioChemEntity|\OpenActive\Models\SchemaOrg\Event|\OpenActive\Models\SchemaOrg\MedicalEntity|\OpenActive\Models\SchemaOrg\CreativeWork|\OpenActive\Models\SchemaOrg\Organization|string $fundedItem
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setFundedItem($fundedItem)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Product",
-            "\OpenActive\Models\SchemaOrg\Person",
-            "\OpenActive\Models\SchemaOrg\BioChemEntity",
-            "\OpenActive\Models\SchemaOrg\Event",
-            "\OpenActive\Models\SchemaOrg\MedicalEntity",
-            "\OpenActive\Models\SchemaOrg\CreativeWork",
-            "\OpenActive\Models\SchemaOrg\Organization",
-            "string",
-        ];
-
-        $fundedItem = self::checkTypes($fundedItem, $types);
-
-        $this->fundedItem = $fundedItem;
     }
 
     /**

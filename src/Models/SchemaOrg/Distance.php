@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Distance extends \OpenActive\Models\SchemaOrg\Quantity
+class Distance extends \OpenActive\BaseModel
 {
     /**
      * @return string[]|null

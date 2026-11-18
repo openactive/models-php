@@ -3,10 +3,10 @@
 namespace OpenActive\Models\OA;
 
 /**
- * This type is derived from https://pending.schema.org/VirtualLocation.
+ * This type is derived from https://schema.org/VirtualLocation, which means that any of this type's properties within schema.org may also be used.
  *
  */
-class VirtualLocation extends \OpenActive\BaseModel
+class VirtualLocation extends \OpenActive\Models\SchemaOrg\VirtualLocation
 {
     /**
      * @return string[]|null

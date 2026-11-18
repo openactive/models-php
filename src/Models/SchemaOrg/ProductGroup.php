@@ -42,10 +42,10 @@ class ProductGroup extends \OpenActive\Models\SchemaOrg\Product
     protected $productGroupID;
 
     /**
-     * Indicates the property or properties by which the variants in a [[ProductGroup]] vary, e.g. their size, color etc. Schema.org properties can be referenced by their short name e.g. "color"; terms defined elsewhere can be referenced with their URIs.
+     * Indicates the property or properties by which the variants in a [[ProductGroup]] vary, e.g. their size, color etc. Schema.org properties can be referenced by their short name e.g. "color"; terms defined elsewhere can be referenced with their URIs. Variant properties can be provided using [[PropertyValue]] instead of plain [[Text]], to allow specification of the values available for a variant property.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\PropertyValue|string
      */
     protected $variesBy;
 
@@ -99,7 +99,7 @@ class ProductGroup extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\PropertyValue|string
      */
     public function getVariesBy()
     {
@@ -107,15 +107,16 @@ class ProductGroup extends \OpenActive\Models\SchemaOrg\Product
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $variesBy
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|\OpenActive\Models\SchemaOrg\PropertyValue|string $variesBy
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setVariesBy($variesBy)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "\OpenActive\Models\SchemaOrg\PropertyValue",
+            "string",
         ];
 
         $variesBy = self::checkTypes($variesBy, $types);

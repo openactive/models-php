@@ -17,22 +17,14 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
 
     public static function fieldList() {
         $fields = [
-            "passengerPriorityStatus" => "passengerPriorityStatus",
             "boardingGroup" => "boardingGroup",
-            "securityScreening" => "securityScreening",
+            "passengerPriorityStatus" => "passengerPriorityStatus",
             "passengerSequenceNumber" => "passengerSequenceNumber",
+            "securityScreening" => "securityScreening",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The priority status assigned to a passenger for security or boarding (e.g. FastTrack or Priority).
-     *
-     *
-     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
-     */
-    protected $passengerPriorityStatus;
 
     /**
      * The airline-specific indicator of boarding order / preference.
@@ -43,12 +35,12 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     protected $boardingGroup;
 
     /**
-     * The type of security screening the passenger is subject to.
+     * The priority status assigned to a passenger for security or boarding (e.g. FastTrack or Priority).
      *
      *
-     * @var string
+     * @var \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
      */
-    protected $securityScreening;
+    protected $passengerPriorityStatus;
 
     /**
      * The passenger's sequence number as assigned by the airline.
@@ -57,6 +49,38 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
      * @var string
      */
     protected $passengerSequenceNumber;
+
+    /**
+     * The type of security screening the passenger is subject to.
+     *
+     *
+     * @var string
+     */
+    protected $securityScreening;
+
+    /**
+     * @return string
+     */
+    public function getBoardingGroup()
+    {
+        return $this->boardingGroup;
+    }
+
+    /**
+     * @param string $boardingGroup
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBoardingGroup($boardingGroup)
+    {
+        $types = [
+            "string",
+        ];
+
+        $boardingGroup = self::checkTypes($boardingGroup, $types);
+
+        $this->boardingGroup = $boardingGroup;
+    }
 
     /**
      * @return \OpenActive\Enums\SchemaOrg\QualitativeValue|string|null
@@ -87,25 +111,25 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
     /**
      * @return string
      */
-    public function getBoardingGroup()
+    public function getPassengerSequenceNumber()
     {
-        return $this->boardingGroup;
+        return $this->passengerSequenceNumber;
     }
 
     /**
-     * @param string $boardingGroup
+     * @param string $passengerSequenceNumber
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setBoardingGroup($boardingGroup)
+    public function setPassengerSequenceNumber($passengerSequenceNumber)
     {
         $types = [
             "string",
         ];
 
-        $boardingGroup = self::checkTypes($boardingGroup, $types);
+        $passengerSequenceNumber = self::checkTypes($passengerSequenceNumber, $types);
 
-        $this->boardingGroup = $boardingGroup;
+        $this->passengerSequenceNumber = $passengerSequenceNumber;
     }
 
     /**
@@ -130,30 +154,6 @@ class FlightReservation extends \OpenActive\Models\SchemaOrg\Reservation
         $securityScreening = self::checkTypes($securityScreening, $types);
 
         $this->securityScreening = $securityScreening;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPassengerSequenceNumber()
-    {
-        return $this->passengerSequenceNumber;
-    }
-
-    /**
-     * @param string $passengerSequenceNumber
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPassengerSequenceNumber($passengerSequenceNumber)
-    {
-        $types = [
-            "string",
-        ];
-
-        $passengerSequenceNumber = self::checkTypes($passengerSequenceNumber, $types);
-
-        $this->passengerSequenceNumber = $passengerSequenceNumber;
     }
 
 }

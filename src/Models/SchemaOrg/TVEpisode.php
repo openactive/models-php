@@ -18,9 +18,9 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     public static function fieldList() {
         $fields = [
             "countryOfOrigin" => "countryOfOrigin",
-            "titleEIDR" => "titleEIDR",
-            "subtitleLanguage" => "subtitleLanguage",
             "partOfTVSeries" => "partOfTVSeries",
+            "subtitleLanguage" => "subtitleLanguage",
+            "titleEIDR" => "titleEIDR",
         ];
 
         return array_merge(parent::fieldList(), $fields);
@@ -39,17 +39,12 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     protected $countryOfOrigin;
 
     /**
-     * An [EIDR](https://eidr.org/) (Entertainment Identifier Registry) [[identifier]] representing at the most general/abstract level, a work of film or television.
-     * 
-     * For example, the motion picture known as "Ghostbusters" has a titleEIDR of  "10.5240/7EC7-228A-510A-053E-CBB8-J". This title (or work) may have several variants, which EIDR calls "edits". See [[editEIDR]].
-     * 
-     * Since schema.org types like [[Movie]] and [[TVEpisode]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.
-     * 
+     * The TV series to which this episode or season belongs.
      *
      *
-     * @var string
+     * @var \OpenActive\Models\SchemaOrg\TVSeries|string
      */
-    protected $titleEIDR;
+    protected $partOfTVSeries;
 
     /**
      * Languages in which subtitles/captions are available, in [IETF BCP 47 standard format](http://tools.ietf.org/html/bcp47).
@@ -60,12 +55,17 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     protected $subtitleLanguage;
 
     /**
-     * The TV series to which this episode or season belongs.
+     * An [EIDR](https://eidr.org/) (Entertainment Identifier Registry) [[identifier]] representing at the most general/abstract level, a work of film or television.
+     * 
+     * For example, the motion picture known as "Ghostbusters" has a titleEIDR of  "10.5240/7EC7-228A-510A-053E-CBB8-J". This title (or work) may have several variants, which EIDR calls "edits". See [[editEIDR]].
+     * 
+     * Since schema.org types like [[Movie]], [[TVEpisode]], [[TVSeason]], and [[TVSeries]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.
+     * 
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\TVSeries|string
+     * @var string
      */
-    protected $partOfTVSeries;
+    protected $titleEIDR;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Country|string
@@ -93,27 +93,28 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     }
 
     /**
-     * @return string
+     * @return \OpenActive\Models\SchemaOrg\TVSeries|string
      */
-    public function getTitleEIDR()
+    public function getPartOfTVSeries()
     {
-        return $this->titleEIDR;
+        return $this->partOfTVSeries;
     }
 
     /**
-     * @param string $titleEIDR
+     * @param \OpenActive\Models\SchemaOrg\TVSeries|string $partOfTVSeries
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setTitleEIDR($titleEIDR)
+    public function setPartOfTVSeries($partOfTVSeries)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\TVSeries",
             "string",
         ];
 
-        $titleEIDR = self::checkTypes($titleEIDR, $types);
+        $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
 
-        $this->titleEIDR = $titleEIDR;
+        $this->partOfTVSeries = $partOfTVSeries;
     }
 
     /**
@@ -142,28 +143,27 @@ class TVEpisode extends \OpenActive\Models\SchemaOrg\Episode
     }
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\TVSeries|string
+     * @return string
      */
-    public function getPartOfTVSeries()
+    public function getTitleEIDR()
     {
-        return $this->partOfTVSeries;
+        return $this->titleEIDR;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\TVSeries|string $partOfTVSeries
+     * @param string $titleEIDR
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setPartOfTVSeries($partOfTVSeries)
+    public function setTitleEIDR($titleEIDR)
     {
         $types = [
-            "\OpenActive\Models\SchemaOrg\TVSeries",
             "string",
         ];
 
-        $partOfTVSeries = self::checkTypes($partOfTVSeries, $types);
+        $titleEIDR = self::checkTypes($titleEIDR, $types);
 
-        $this->partOfTVSeries = $partOfTVSeries;
+        $this->titleEIDR = $titleEIDR;
     }
 
 }

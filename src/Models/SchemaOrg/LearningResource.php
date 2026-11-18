@@ -17,49 +17,33 @@ class LearningResource extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "teaches" => "teaches",
-            "educationalLevel" => "educationalLevel",
             "assesses" => "assesses",
-            "educationalUse" => "educationalUse",
-            "educationalAlignment" => "educationalAlignment",
             "competencyRequired" => "competencyRequired",
+            "educationalAlignment" => "educationalAlignment",
+            "educationalLevel" => "educationalLevel",
+            "educationalUse" => "educationalUse",
             "learningResourceType" => "learningResourceType",
+            "teaches" => "teaches",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The item being described is intended to help a person learn the competency or learning outcome defined by the referenced term.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
-     */
-    protected $teaches;
-
-    /**
-     * The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators.
-     *
-     *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
-     */
-    protected $educationalLevel;
-
-    /**
      * The item being described is intended to assess the competency or learning outcome defined by the referenced term.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
     protected $assesses;
 
     /**
-     * The purpose of a work in the context of education; for example, 'assignment', 'group work'.
+     * Knowledge, skill, ability or personal attribute that must be demonstrated by a person or other entity in order to do something such as earn an Educational Occupational Credential or understand a LearningResource.
      *
      *
      * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
-    protected $educationalUse;
+    protected $competencyRequired;
 
     /**
      * An alignment to an established educational framework.
@@ -72,12 +56,20 @@ class LearningResource extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $educationalAlignment;
 
     /**
-     * Knowledge, skill, ability or personal attribute that must be demonstrated by a person or other entity in order to do something such as earn an Educational Occupational Credential or understand a LearningResource.
+     * The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators.
      *
      *
-     * @var string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
-    protected $competencyRequired;
+    protected $educationalLevel;
+
+    /**
+     * The purpose of a work in the context of education; for example, 'assignment', 'group work'.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    protected $educationalUse;
 
     /**
      * The predominant type or kind characterizing the learning resource. For example, 'presentation', 'handout'.
@@ -88,57 +80,15 @@ class LearningResource extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $learningResourceType;
 
     /**
+     * The item being described is intended to help a person learn the competency or learning outcome defined by the referenced term.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    protected $teaches;
+
+    /**
      * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
-     */
-    public function getTeaches()
-    {
-        return $this->teaches;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $teaches
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setTeaches($teaches)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-            "string",
-        ];
-
-        $teaches = self::checkTypes($teaches, $types);
-
-        $this->teaches = $teaches;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
-     */
-    public function getEducationalLevel()
-    {
-        return $this->educationalLevel;
-    }
-
-    /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $educationalLevel
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setEducationalLevel($educationalLevel)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Models\SchemaOrg\DefinedTerm",
-        ];
-
-        $educationalLevel = self::checkTypes($educationalLevel, $types);
-
-        $this->educationalLevel = $educationalLevel;
-    }
-
-    /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
      */
     public function getAssesses()
     {
@@ -146,15 +96,15 @@ class LearningResource extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $assesses
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $assesses
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setAssesses($assesses)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
         ];
 
         $assesses = self::checkTypes($assesses, $types);
@@ -165,26 +115,26 @@ class LearningResource extends \OpenActive\Models\SchemaOrg\CreativeWork
     /**
      * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
-    public function getEducationalUse()
+    public function getCompetencyRequired()
     {
-        return $this->educationalUse;
+        return $this->competencyRequired;
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $educationalUse
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $competencyRequired
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setEducationalUse($educationalUse)
+    public function setCompetencyRequired($competencyRequired)
     {
         $types = [
             "\OpenActive\Models\SchemaOrg\DefinedTerm",
             "string",
         ];
 
-        $educationalUse = self::checkTypes($educationalUse, $types);
+        $competencyRequired = self::checkTypes($competencyRequired, $types);
 
-        $this->educationalUse = $educationalUse;
+        $this->competencyRequired = $competencyRequired;
     }
 
     /**
@@ -213,28 +163,53 @@ class LearningResource extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
-     * @return string|\OpenActive\Models\SchemaOrg\DefinedTerm
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
      */
-    public function getCompetencyRequired()
+    public function getEducationalLevel()
     {
-        return $this->competencyRequired;
+        return $this->educationalLevel;
     }
 
     /**
-     * @param string|\OpenActive\Models\SchemaOrg\DefinedTerm $competencyRequired
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $educationalLevel
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
-    public function setCompetencyRequired($competencyRequired)
+    public function setEducationalLevel($educationalLevel)
     {
         $types = [
-            "string",
             "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
         ];
 
-        $competencyRequired = self::checkTypes($competencyRequired, $types);
+        $educationalLevel = self::checkTypes($educationalLevel, $types);
 
-        $this->competencyRequired = $competencyRequired;
+        $this->educationalLevel = $educationalLevel;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    public function getEducationalUse()
+    {
+        return $this->educationalUse;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $educationalUse
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setEducationalUse($educationalUse)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
+        ];
+
+        $educationalUse = self::checkTypes($educationalUse, $types);
+
+        $this->educationalUse = $educationalUse;
     }
 
     /**
@@ -260,6 +235,31 @@ class LearningResource extends \OpenActive\Models\SchemaOrg\CreativeWork
         $learningResourceType = self::checkTypes($learningResourceType, $types);
 
         $this->learningResourceType = $learningResourceType;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\DefinedTerm|string
+     */
+    public function getTeaches()
+    {
+        return $this->teaches;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\DefinedTerm|string $teaches
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setTeaches($teaches)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\DefinedTerm",
+            "string",
+        ];
+
+        $teaches = self::checkTypes($teaches, $types);
+
+        $this->teaches = $teaches;
     }
 
 }

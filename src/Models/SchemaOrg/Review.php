@@ -17,54 +17,22 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
 
     public static function fieldList() {
         $fields = [
-            "reviewRating" => "reviewRating",
+            "associatedClaimReview" => "associatedClaimReview",
+            "associatedMediaReview" => "associatedMediaReview",
+            "associatedReview" => "associatedReview",
             "itemReviewed" => "itemReviewed",
             "negativeNotes" => "negativeNotes",
-            "reviewAspect" => "reviewAspect",
-            "associatedClaimReview" => "associatedClaimReview",
             "positiveNotes" => "positiveNotes",
-            "associatedReview" => "associatedReview",
-            "associatedMediaReview" => "associatedMediaReview",
+            "reviewAspect" => "reviewAspect",
             "reviewBody" => "reviewBody",
+            "reviewRating" => "reviewRating",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
 
     /**
-     * The rating given in this review. Note that reviews can themselves be rated. The ```reviewRating``` applies to rating given by the review. The [[aggregateRating]] property applies to the review itself, as a creative work.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Rating|string
-     */
-    protected $reviewRating;
-
-    /**
-     * The item that is being reviewed/rated.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    protected $itemReviewed;
-
-    /**
-     * Indicates, in the context of a [[Review]] (e.g. framed as 'pro' vs 'con' considerations), negative considerations - either as unstructured text, or a list.
-     *
-     *
-     * @var \OpenActive\Models\SchemaOrg\ListItem|string|\OpenActive\Models\SchemaOrg\WebContent|\OpenActive\Models\SchemaOrg\ItemList
-     */
-    protected $negativeNotes;
-
-    /**
-     * This Review or Rating is relevant to this part or facet of the itemReviewed.
-     *
-     *
-     * @var string
-     */
-    protected $reviewAspect;
-
-    /**
-     * An associated [[ClaimReview]], related by specific common content, topic or claim. The expectation is that this property would be most typically used in cases where a single activity is conducting both claim reviews and media reviews, in which case [[relatedMediaReview]] would commonly be used on a [[ClaimReview]], while [[relatedClaimReview]] would be used on [[MediaReview]].
+     * An associated [[ClaimReview]], related by specific common content, topic or claim. The expectation is that this property would be most typically used in cases where a single activity is conducting both claim reviews and media reviews, in which case [[relatedMediaReview]] would commonly be used on a [[ClaimReview]], while [[associatedClaimReview]] would be used on [[MediaReview]].
      *
      *
      * @var \OpenActive\Models\SchemaOrg\Review|string
@@ -72,12 +40,12 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $associatedClaimReview;
 
     /**
-     * Indicates, in the context of a [[Review]] (e.g. framed as 'pro' vs 'con' considerations), positive considerations - either as unstructured text, or a list.
+     * An associated [[MediaReview]], related by specific common content, topic or claim. The expectation is that this property would be most typically used in cases where a single activity is conducting both claim reviews and media reviews, in which case [[relatedMediaReview]] would commonly be used on a [[ClaimReview]], while [[associatedClaimReview]] would be used on [[MediaReview]].
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\WebContent|string|\OpenActive\Models\SchemaOrg\ListItem|\OpenActive\Models\SchemaOrg\ItemList
+     * @var \OpenActive\Models\SchemaOrg\Review|string
      */
-    protected $positiveNotes;
+    protected $associatedMediaReview;
 
     /**
      * An associated [[Review]].
@@ -88,12 +56,45 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $associatedReview;
 
     /**
-     * An associated [[MediaReview]], related by specific common content, topic or claim. The expectation is that this property would be most typically used in cases where a single activity is conducting both claim reviews and media reviews, in which case [[relatedMediaReview]] would commonly be used on a [[ClaimReview]], while [[relatedClaimReview]] would be used on [[MediaReview]].
+     * The item that is being reviewed/rated.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\Review|string
+     * @var \OpenActive\Models\SchemaOrg\Thing|string
      */
-    protected $associatedMediaReview;
+    protected $itemReviewed;
+
+    /**
+     * Provides negative considerations regarding something, most typically in pro/con lists for reviews (alongside [[positiveNotes]]). For symmetry 
+     * 
+     * In the case of a [[Review]], the property describes the [[itemReviewed]] from the perspective of the review; in the case of a [[Product]], the product itself is being described. Since product descriptions 
+     * tend to emphasise positive claims, it may be relatively unusual to find [[negativeNotes]] used in this way. Nevertheless for the sake of symmetry, [[negativeNotes]] can be used on [[Product]].
+     * 
+     * The property values can be expressed either as unstructured text (repeated as necessary), or if ordered, as a list (in which case the most negative is at the beginning of the list).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\ListItem|string|\OpenActive\Models\SchemaOrg\WebContent
+     */
+    protected $negativeNotes;
+
+    /**
+     * Provides positive considerations regarding something, for example product highlights or (alongside [[negativeNotes]]) pro/con lists for reviews.
+     * 
+     * In the case of a [[Review]], the property describes the [[itemReviewed]] from the perspective of the review; in the case of a [[Product]], the product itself is being described.
+     * 
+     * The property values can be expressed either as unstructured text (repeated as necessary), or if ordered, as a list (in which case the most positive is at the beginning of the list).
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\ListItem|string|\OpenActive\Models\SchemaOrg\WebContent
+     */
+    protected $positiveNotes;
+
+    /**
+     * This Review or Rating is relevant to this part or facet of the itemReviewed.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\StructuredValue|string
+     */
+    protected $reviewAspect;
 
     /**
      * The actual body of the review.
@@ -104,105 +105,12 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
     protected $reviewBody;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\Rating|string
+     * The rating given in this review. Note that reviews can themselves be rated. The ```reviewRating``` applies to rating given by the review. The [[aggregateRating]] property applies to the review itself, as a creative work.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\Rating|string
      */
-    public function getReviewRating()
-    {
-        return $this->reviewRating;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Rating|string $reviewRating
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReviewRating($reviewRating)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Rating",
-            "string",
-        ];
-
-        $reviewRating = self::checkTypes($reviewRating, $types);
-
-        $this->reviewRating = $reviewRating;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Thing|string
-     */
-    public function getItemReviewed()
-    {
-        return $this->itemReviewed;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Thing|string $itemReviewed
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setItemReviewed($itemReviewed)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "string",
-        ];
-
-        $itemReviewed = self::checkTypes($itemReviewed, $types);
-
-        $this->itemReviewed = $itemReviewed;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\ListItem|string|\OpenActive\Models\SchemaOrg\WebContent|\OpenActive\Models\SchemaOrg\ItemList
-     */
-    public function getNegativeNotes()
-    {
-        return $this->negativeNotes;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\ListItem|string|\OpenActive\Models\SchemaOrg\WebContent|\OpenActive\Models\SchemaOrg\ItemList $negativeNotes
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setNegativeNotes($negativeNotes)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\ListItem",
-            "string",
-            "\OpenActive\Models\SchemaOrg\WebContent",
-            "\OpenActive\Models\SchemaOrg\ItemList",
-        ];
-
-        $negativeNotes = self::checkTypes($negativeNotes, $types);
-
-        $this->negativeNotes = $negativeNotes;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReviewAspect()
-    {
-        return $this->reviewAspect;
-    }
-
-    /**
-     * @param string $reviewAspect
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setReviewAspect($reviewAspect)
-    {
-        $types = [
-            "string",
-        ];
-
-        $reviewAspect = self::checkTypes($reviewAspect, $types);
-
-        $this->reviewAspect = $reviewAspect;
-    }
+    protected $reviewRating;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\Review|string
@@ -227,58 +135,6 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
         $associatedClaimReview = self::checkTypes($associatedClaimReview, $types);
 
         $this->associatedClaimReview = $associatedClaimReview;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\WebContent|string|\OpenActive\Models\SchemaOrg\ListItem|\OpenActive\Models\SchemaOrg\ItemList
-     */
-    public function getPositiveNotes()
-    {
-        return $this->positiveNotes;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\WebContent|string|\OpenActive\Models\SchemaOrg\ListItem|\OpenActive\Models\SchemaOrg\ItemList $positiveNotes
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPositiveNotes($positiveNotes)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\WebContent",
-            "string",
-            "\OpenActive\Models\SchemaOrg\ListItem",
-            "\OpenActive\Models\SchemaOrg\ItemList",
-        ];
-
-        $positiveNotes = self::checkTypes($positiveNotes, $types);
-
-        $this->positiveNotes = $positiveNotes;
-    }
-
-    /**
-     * @return \OpenActive\Models\SchemaOrg\Review|string
-     */
-    public function getAssociatedReview()
-    {
-        return $this->associatedReview;
-    }
-
-    /**
-     * @param \OpenActive\Models\SchemaOrg\Review|string $associatedReview
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setAssociatedReview($associatedReview)
-    {
-        $types = [
-            "\OpenActive\Models\SchemaOrg\Review",
-            "string",
-        ];
-
-        $associatedReview = self::checkTypes($associatedReview, $types);
-
-        $this->associatedReview = $associatedReview;
     }
 
     /**
@@ -307,6 +163,135 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\Review|string
+     */
+    public function getAssociatedReview()
+    {
+        return $this->associatedReview;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Review|string $associatedReview
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setAssociatedReview($associatedReview)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Review",
+            "string",
+        ];
+
+        $associatedReview = self::checkTypes($associatedReview, $types);
+
+        $this->associatedReview = $associatedReview;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Thing|string
+     */
+    public function getItemReviewed()
+    {
+        return $this->itemReviewed;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Thing|string $itemReviewed
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setItemReviewed($itemReviewed)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "string",
+        ];
+
+        $itemReviewed = self::checkTypes($itemReviewed, $types);
+
+        $this->itemReviewed = $itemReviewed;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\ListItem|string|\OpenActive\Models\SchemaOrg\WebContent
+     */
+    public function getNegativeNotes()
+    {
+        return $this->negativeNotes;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\ListItem|string|\OpenActive\Models\SchemaOrg\WebContent $negativeNotes
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setNegativeNotes($negativeNotes)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ItemList",
+            "\OpenActive\Models\SchemaOrg\ListItem",
+            "string",
+            "\OpenActive\Models\SchemaOrg\WebContent",
+        ];
+
+        $negativeNotes = self::checkTypes($negativeNotes, $types);
+
+        $this->negativeNotes = $negativeNotes;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\ListItem|string|\OpenActive\Models\SchemaOrg\WebContent
+     */
+    public function getPositiveNotes()
+    {
+        return $this->positiveNotes;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\ItemList|\OpenActive\Models\SchemaOrg\ListItem|string|\OpenActive\Models\SchemaOrg\WebContent $positiveNotes
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPositiveNotes($positiveNotes)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\ItemList",
+            "\OpenActive\Models\SchemaOrg\ListItem",
+            "string",
+            "\OpenActive\Models\SchemaOrg\WebContent",
+        ];
+
+        $positiveNotes = self::checkTypes($positiveNotes, $types);
+
+        $this->positiveNotes = $positiveNotes;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\StructuredValue|string
+     */
+    public function getReviewAspect()
+    {
+        return $this->reviewAspect;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\StructuredValue|string $reviewAspect
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReviewAspect($reviewAspect)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\StructuredValue",
+            "string",
+        ];
+
+        $reviewAspect = self::checkTypes($reviewAspect, $types);
+
+        $this->reviewAspect = $reviewAspect;
+    }
+
+    /**
      * @return string
      */
     public function getReviewBody()
@@ -328,6 +313,31 @@ class Review extends \OpenActive\Models\SchemaOrg\CreativeWork
         $reviewBody = self::checkTypes($reviewBody, $types);
 
         $this->reviewBody = $reviewBody;
+    }
+
+    /**
+     * @return \OpenActive\Models\SchemaOrg\Rating|string
+     */
+    public function getReviewRating()
+    {
+        return $this->reviewRating;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\Rating|string $reviewRating
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setReviewRating($reviewRating)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\Rating",
+            "string",
+        ];
+
+        $reviewRating = self::checkTypes($reviewRating, $types);
+
+        $this->reviewRating = $reviewRating;
     }
 
 }

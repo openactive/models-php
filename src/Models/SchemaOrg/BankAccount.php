@@ -17,21 +17,13 @@ class BankAccount extends \OpenActive\Models\SchemaOrg\FinancialProduct
 
     public static function fieldList() {
         $fields = [
-            "bankAccountType" => "bankAccountType",
             "accountMinimumInflow" => "accountMinimumInflow",
             "accountOverdraftLimit" => "accountOverdraftLimit",
+            "bankAccountType" => "bankAccountType",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * The type of a bank account.
-     *
-     *
-     * @var string
-     */
-    protected $bankAccountType;
 
     /**
      * A minimum amount that has to be paid in every month.
@@ -50,28 +42,12 @@ class BankAccount extends \OpenActive\Models\SchemaOrg\FinancialProduct
     protected $accountOverdraftLimit;
 
     /**
-     * @return string
+     * The type of a bank account.
+     *
+     *
+     * @var string
      */
-    public function getBankAccountType()
-    {
-        return $this->bankAccountType;
-    }
-
-    /**
-     * @param string $bankAccountType
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setBankAccountType($bankAccountType)
-    {
-        $types = [
-            "string",
-        ];
-
-        $bankAccountType = self::checkTypes($bankAccountType, $types);
-
-        $this->bankAccountType = $bankAccountType;
-    }
+    protected $bankAccountType;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\MonetaryAmount|string
@@ -121,6 +97,30 @@ class BankAccount extends \OpenActive\Models\SchemaOrg\FinancialProduct
         $accountOverdraftLimit = self::checkTypes($accountOverdraftLimit, $types);
 
         $this->accountOverdraftLimit = $accountOverdraftLimit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBankAccountType()
+    {
+        return $this->bankAccountType;
+    }
+
+    /**
+     * @param string $bankAccountType
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setBankAccountType($bankAccountType)
+    {
+        $types = [
+            "string",
+        ];
+
+        $bankAccountType = self::checkTypes($bankAccountType, $types);
+
+        $this->bankAccountType = $bankAccountType;
     }
 
 }

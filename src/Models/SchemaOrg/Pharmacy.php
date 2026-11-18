@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Pharmacy extends \OpenActive\Models\SchemaOrg\MedicalOrganization
+class Pharmacy extends \OpenActive\Models\SchemaOrg\MedicalBusiness
 {
     /**
      * @return string[]|null

@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class PalliativeProcedure extends \OpenActive\Models\SchemaOrg\MedicalTherapy
+class PalliativeProcedure extends \OpenActive\Models\SchemaOrg\MedicalProcedure
 {
     /**
      * @return string[]|null

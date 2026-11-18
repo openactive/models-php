@@ -17,30 +17,14 @@ class PhysicalActivity extends \OpenActive\Models\SchemaOrg\LifestyleModificatio
 
     public static function fieldList() {
         $fields = [
-            "category" => "category",
-            "pathophysiology" => "pathophysiology",
             "associatedAnatomy" => "associatedAnatomy",
+            "category" => "category",
             "epidemiology" => "epidemiology",
+            "pathophysiology" => "pathophysiology",
         ];
 
         return array_merge(parent::fieldList(), $fields);
     }
-
-    /**
-     * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
-     *
-     *
-     * @var string|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\CategoryCode|null
-     */
-    protected $category;
-
-    /**
-     * Changes in the normal mechanical, physical, and biochemical functions that are associated with this activity or condition.
-     *
-     *
-     * @var string
-     */
-    protected $pathophysiology;
 
     /**
      * The anatomy of the underlying organ system or structures associated with this entity.
@@ -51,6 +35,14 @@ class PhysicalActivity extends \OpenActive\Models\SchemaOrg\LifestyleModificatio
     protected $associatedAnatomy;
 
     /**
+     * A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy.
+     *
+     *
+     * @var \OpenActive\Models\SchemaOrg\CategoryCode|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|string|\OpenActive\Models\SchemaOrg\Thing|null
+     */
+    protected $category;
+
+    /**
      * The characteristics of associated patients, such as age, gender, race etc.
      *
      *
@@ -59,56 +51,12 @@ class PhysicalActivity extends \OpenActive\Models\SchemaOrg\LifestyleModificatio
     protected $epidemiology;
 
     /**
-     * @return string|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\CategoryCode|null
+     * Changes in the normal mechanical, physical, and biochemical functions that are associated with this activity or condition.
+     *
+     *
+     * @var string
      */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param string|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|\OpenActive\Models\SchemaOrg\Thing|\OpenActive\Models\SchemaOrg\CategoryCode|null $category
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setCategory($category)
-    {
-        $types = [
-            "string",
-            "\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory",
-            "\OpenActive\Models\SchemaOrg\Thing",
-            "\OpenActive\Models\SchemaOrg\CategoryCode",
-            "null",
-        ];
-
-        $category = self::checkTypes($category, $types);
-
-        $this->category = $category;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPathophysiology()
-    {
-        return $this->pathophysiology;
-    }
-
-    /**
-     * @param string $pathophysiology
-     * @return void
-     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
-     */
-    public function setPathophysiology($pathophysiology)
-    {
-        $types = [
-            "string",
-        ];
-
-        $pathophysiology = self::checkTypes($pathophysiology, $types);
-
-        $this->pathophysiology = $pathophysiology;
-    }
+    protected $pathophysiology;
 
     /**
      * @return \OpenActive\Models\SchemaOrg\AnatomicalStructure|\OpenActive\Models\SchemaOrg\AnatomicalSystem|\OpenActive\Models\SchemaOrg\SuperficialAnatomy|string
@@ -138,6 +86,34 @@ class PhysicalActivity extends \OpenActive\Models\SchemaOrg\LifestyleModificatio
     }
 
     /**
+     * @return \OpenActive\Models\SchemaOrg\CategoryCode|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|string|\OpenActive\Models\SchemaOrg\Thing|null
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param \OpenActive\Models\SchemaOrg\CategoryCode|\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory|string|\OpenActive\Models\SchemaOrg\Thing|null $category
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setCategory($category)
+    {
+        $types = [
+            "\OpenActive\Models\SchemaOrg\CategoryCode",
+            "\OpenActive\Enums\SchemaOrg\PhysicalActivityCategory",
+            "string",
+            "\OpenActive\Models\SchemaOrg\Thing",
+            "null",
+        ];
+
+        $category = self::checkTypes($category, $types);
+
+        $this->category = $category;
+    }
+
+    /**
      * @return string
      */
     public function getEpidemiology()
@@ -159,6 +135,30 @@ class PhysicalActivity extends \OpenActive\Models\SchemaOrg\LifestyleModificatio
         $epidemiology = self::checkTypes($epidemiology, $types);
 
         $this->epidemiology = $epidemiology;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPathophysiology()
+    {
+        return $this->pathophysiology;
+    }
+
+    /**
+     * @param string $pathophysiology
+     * @return void
+     * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
+     */
+    public function setPathophysiology($pathophysiology)
+    {
+        $types = [
+            "string",
+        ];
+
+        $pathophysiology = self::checkTypes($pathophysiology, $types);
+
+        $this->pathophysiology = $pathophysiology;
     }
 
 }

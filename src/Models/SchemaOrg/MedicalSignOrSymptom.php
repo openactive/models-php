@@ -27,12 +27,12 @@ class MedicalSignOrSymptom extends \OpenActive\Models\SchemaOrg\MedicalCondition
      * A possible treatment to address this condition, sign or symptom.
      *
      *
-     * @var \OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     * @var \OpenActive\Models\SchemaOrg\Drug|\OpenActive\Models\SchemaOrg\DrugClass|\OpenActive\Models\SchemaOrg\LifestyleModification|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
     protected $possibleTreatment;
 
     /**
-     * @return \OpenActive\Models\SchemaOrg\MedicalTherapy|string
+     * @return \OpenActive\Models\SchemaOrg\Drug|\OpenActive\Models\SchemaOrg\DrugClass|\OpenActive\Models\SchemaOrg\LifestyleModification|\OpenActive\Models\SchemaOrg\MedicalTherapy|string
      */
     public function getPossibleTreatment()
     {
@@ -40,13 +40,16 @@ class MedicalSignOrSymptom extends \OpenActive\Models\SchemaOrg\MedicalCondition
     }
 
     /**
-     * @param \OpenActive\Models\SchemaOrg\MedicalTherapy|string $possibleTreatment
+     * @param \OpenActive\Models\SchemaOrg\Drug|\OpenActive\Models\SchemaOrg\DrugClass|\OpenActive\Models\SchemaOrg\LifestyleModification|\OpenActive\Models\SchemaOrg\MedicalTherapy|string $possibleTreatment
      * @return void
      * @throws \OpenActive\Exceptions\InvalidArgumentException If the provided argument is not of a supported type.
      */
     public function setPossibleTreatment($possibleTreatment)
     {
         $types = [
+            "\OpenActive\Models\SchemaOrg\Drug",
+            "\OpenActive\Models\SchemaOrg\DrugClass",
+            "\OpenActive\Models\SchemaOrg\LifestyleModification",
             "\OpenActive\Models\SchemaOrg\MedicalTherapy",
             "string",
         ];

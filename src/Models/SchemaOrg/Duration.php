@@ -5,7 +5,7 @@ namespace OpenActive\Models\SchemaOrg;
 /**
  *
  */
-class Duration extends \OpenActive\Models\SchemaOrg\Quantity
+class Duration extends \OpenActive\BaseModel
 {
     /**
      * @return string[]|null
